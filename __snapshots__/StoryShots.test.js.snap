@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button blue button 1`] = `
+<a
+  className="button_tk8a3j-o_O-blue_8qkqhj"
+>
+  <span
+    className="LabelLarge_19qk49e"
+  >
+    Hello, world!
+  </span>
+</a>
+`;
+
+exports[`Storyshots Button gold button 1`] = `
+<a
+  className="button_tk8a3j-o_O-gold_13p1uyi"
+>
+  <span
+    className="LabelLarge_19qk49e"
+  >
+    Hello, world!
+  </span>
+</a>
+`;
+
+exports[`Storyshots Button green button 1`] = `
+<a
+  className="button_tk8a3j-o_O-green_wcschq"
+>
+  <span
+    className="LabelLarge_19qk49e"
+  >
+    Hello, world!
+  </span>
+</a>
+`;
+
+exports[`Storyshots Button red button 1`] = `
+<a
+  className="button_tk8a3j-o_O-red_1u3r2w"
+>
+  <span
+    className="LabelLarge_19qk49e"
+  >
+    Hello, world!
+  </span>
+</a>
+`;
+
+exports[`Storyshots Heading.Large with text 1`] = `
+<h1
+  className="HeadingLarge_1y2mmy6"
+>
+  Hello, world!
+</h1>
+`;
+
+exports[`Storyshots Title with text 1`] = `
+<h1
+  className="Title_pg0x2d"
+>
+  Hello, world!
+</h1>
+`;

@@ -1,0 +1,11 @@
+{
+  "name": "wonder-blocks-typography",
+  "version": "0.0.2",
+  "description": "Typography components for Wonder Blocks design system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
