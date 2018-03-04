@@ -1,8 +1,7 @@
 // @flow
 
+// TODO(kevinb): fix style type after upgrading flow
 export type Props = {
-    style?: {
-        color?: string,
-    },
-    children: string,
+    style?: any,
+    children?: string,
 };

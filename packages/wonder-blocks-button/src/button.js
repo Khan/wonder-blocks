@@ -2,11 +2,12 @@
 import React, {Component} from "react";
 import {StyleSheet, css} from "aphrodite";
 
-import Color from "wonder-blocks-color";
-import {Label} from "wonder-blocks-typography";
+import Color from "@khanacademy/wonder-blocks-color";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
     color?: "blue" | "green" | "gold" | "red",
+    onClick?: (e: SyntheticEvent) => void,
 };
 
 export default class Button extends Component {
@@ -19,8 +20,9 @@ export default class Button extends Component {
                     styles.button,
                     styles[this.props.color || "blue"],
                 )}
+                onClick={this.props.onClick}
             >
-                <Label.Large>Hello, world!</Label.Large>
+                <LabelLarge>Hello, world!</LabelLarge>
             </a>
         );
     }

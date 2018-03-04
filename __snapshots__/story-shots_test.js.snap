@@ -1,0 +1,359 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button blue button 1`] = `
+<a
+  className="button_tk8a3j-o_O-blue_8qkqhj"
+  onClick={undefined}
+>
+  <span
+    className="LabelLarge_19qk49e"
+    style={Object {}}
+  >
+    Hello, world!
+  </span>
+</a>
+`;
+
+exports[`Storyshots Button gold button 1`] = `
+<a
+  className="button_tk8a3j-o_O-gold_13p1uyi"
+  onClick={undefined}
+>
+  <span
+    className="LabelLarge_19qk49e"
+    style={Object {}}
+  >
+    Hello, world!
+  </span>
+</a>
+`;
+
+exports[`Storyshots Button green button 1`] = `
+<a
+  className="button_tk8a3j-o_O-green_wcschq"
+  onClick={undefined}
+>
+  <span
+    className="LabelLarge_19qk49e"
+    style={Object {}}
+  >
+    Hello, world!
+  </span>
+</a>
+`;
+
+exports[`Storyshots Button red button 1`] = `
+<a
+  className="button_tk8a3j-o_O-red_1u3r2w"
+  onClick={undefined}
+>
+  <span
+    className="LabelLarge_19qk49e"
+    style={Object {}}
+  >
+    Hello, world!
+  </span>
+</a>
+`;
+
+exports[`Storyshots Core all 1`] = `
+<div>
+  <span
+    className=""
+    style={Object {}}
+  >
+    Text
+  </span>
+  <div
+    className=""
+    style={Object {}}
+  >
+    View
+  </div>
+</div>
+`;
+
+exports[`Storyshots Core/Text aphrodite styles 1`] = `
+<span
+  className="pink_th4aeu"
+  style={Object {}}
+>
+  Text
+</span>
+`;
+
+exports[`Storyshots Core/Text multiple Aphrodite styles 1`] = `
+<span
+  className="pink_th4aeu-o_O-bold_hq5slr"
+  style={Object {}}
+>
+  Text
+</span>
+`;
+
+exports[`Storyshots Core/Text multiple text elements 1`] = `
+<div>
+  <span
+    className="bold_hq5slr"
+    style={Object {}}
+  >
+    Text
+  </span>
+  <span
+    className="pink_th4aeu"
+    style={Object {}}
+  >
+    Text
+  </span>
+</div>
+`;
+
+exports[`Storyshots Core/Text text 1`] = `
+<span
+  className=""
+  style={Object {}}
+>
+  Text
+</span>
+`;
+
+exports[`Storyshots Core/View aphrodite styles 1`] = `
+<div
+  className="pink_th4aeu"
+  style={Object {}}
+>
+  View
+</div>
+`;
+
+exports[`Storyshots Core/View multiple Aphrodite styles 1`] = `
+<div
+  className="pink_th4aeu-o_O-bold_hq5slr"
+  style={Object {}}
+>
+  Text
+</div>
+`;
+
+exports[`Storyshots Core/View multiple view elements 1`] = `
+<div>
+  <div
+    className="bold_hq5slr"
+    style={Object {}}
+  >
+    Text
+  </div>
+  <div
+    className="pink_th4aeu"
+    style={Object {}}
+  >
+    Text
+  </div>
+</div>
+`;
+
+exports[`Storyshots Core/View view 1`] = `
+<div
+  className=""
+  style={Object {}}
+>
+  View
+</div>
+`;
+
+exports[`Storyshots Typography all 1`] = `
+<div>
+  <h1
+    className="Title_pg0x2d"
+    style={Object {}}
+  >
+    Title
+  </h1>
+  <h2
+    className="HeadingLarge_1y2mmy6"
+    style={Object {}}
+  >
+    HeadingLarge
+  </h2>
+  <h3
+    className="HeadingMedium_17b4v23"
+    style={Object {}}
+  >
+    HeadingMedium
+  </h3>
+  <h4
+    className="HeadingSmall_1vtz1kj"
+    style={Object {}}
+  >
+    HeadingSmall
+  </h4>
+  <h4
+    className="HeadingXSmall_1eifnrn"
+    style={Object {}}
+  >
+    HeadingXSmall
+  </h4>
+  <span
+    className="LabelLarge_19qk49e"
+    style={Object {}}
+  >
+    LabelLarge
+  </span>
+  <span
+    className="LabelMedium_1y2bm6p"
+    style={Object {}}
+  >
+    LabelMedium
+  </span>
+  <span
+    className="LabelSmall_m1nyja"
+    style={Object {}}
+  >
+    LabelSmall
+  </span>
+</div>
+`;
+
+exports[`Storyshots Typography/HeadingLarge default 1`] = `
+<h2
+  className="HeadingLarge_1y2mmy6"
+  style={Object {}}
+>
+  HeadingLarge
+</h2>
+`;
+
+exports[`Storyshots Typography/HeadingLarge styled 1`] = `
+<h2
+  className="HeadingLarge_1y2mmy6-o_O-blue_1tsdo2i"
+  style={Object {}}
+>
+  HeadingLarge
+</h2>
+`;
+
+exports[`Storyshots Typography/HeadingMedium default 1`] = `
+<h3
+  className="HeadingMedium_17b4v23"
+  style={Object {}}
+>
+  HeadingMedium
+</h3>
+`;
+
+exports[`Storyshots Typography/HeadingMedium styled 1`] = `
+<h3
+  className="HeadingMedium_17b4v23-o_O-blue_1tsdo2i"
+  style={Object {}}
+>
+  HeadingMedium
+</h3>
+`;
+
+exports[`Storyshots Typography/HeadingSmall default 1`] = `
+<h4
+  className="HeadingSmall_1vtz1kj"
+  style={Object {}}
+>
+  HeadingSmall
+</h4>
+`;
+
+exports[`Storyshots Typography/HeadingSmall styled 1`] = `
+<h4
+  className="HeadingSmall_1vtz1kj-o_O-blue_1tsdo2i"
+  style={Object {}}
+>
+  HeadingSmall
+</h4>
+`;
+
+exports[`Storyshots Typography/HeadingXSmall default 1`] = `
+<h4
+  className="HeadingXSmall_1eifnrn"
+  style={Object {}}
+>
+  HeadingXSmall
+</h4>
+`;
+
+exports[`Storyshots Typography/HeadingXSmall styled 1`] = `
+<h4
+  className="HeadingXSmall_1eifnrn-o_O-blue_1tsdo2i"
+  style={Object {}}
+>
+  HeadingXSmall
+</h4>
+`;
+
+exports[`Storyshots Typography/LabelLarge default 1`] = `
+<span
+  className="LabelLarge_19qk49e"
+  style={Object {}}
+>
+  LabelLarge
+</span>
+`;
+
+exports[`Storyshots Typography/LabelLarge styled 1`] = `
+<span
+  className="LabelLarge_19qk49e-o_O-blue_1tsdo2i"
+  style={Object {}}
+>
+  LabelLarge
+</span>
+`;
+
+exports[`Storyshots Typography/LabelMedium default 1`] = `
+<span
+  className="LabelMedium_1y2bm6p"
+  style={Object {}}
+>
+  LabelMedium
+</span>
+`;
+
+exports[`Storyshots Typography/LabelMedium styled 1`] = `
+<span
+  className="LabelMedium_1y2bm6p-o_O-blue_1tsdo2i"
+  style={Object {}}
+>
+  LabelMedium
+</span>
+`;
+
+exports[`Storyshots Typography/LabelSmall default 1`] = `
+<span
+  className="LabelSmall_m1nyja"
+  style={Object {}}
+>
+  LabelSmall
+</span>
+`;
+
+exports[`Storyshots Typography/LabelSmall styled 1`] = `
+<span
+  className="LabelSmall_m1nyja-o_O-blue_1tsdo2i"
+  style={Object {}}
+>
+  LabelSmall
+</span>
+`;
+
+exports[`Storyshots Typography/Title default 1`] = `
+<h1
+  className="Title_pg0x2d"
+  style={Object {}}
+>
+  Title
+</h1>
+`;
+
+exports[`Storyshots Typography/Title styled 1`] = `
+<h1
+  className="Title_pg0x2d-o_O-blue_1tsdo2i"
+  style={Object {}}
+>
+  Title
+</h1>
+`;

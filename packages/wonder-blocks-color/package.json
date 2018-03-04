@@ -1,11 +1,14 @@
 {
-  "name": "wonder-blocks-color",
-  "version": "0.0.1",
+  "name": "@khanacademy/wonder-blocks-color",
+  "version": "0.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": {
+    "name": "Khan Academy",
+    "email": "opensource+npm@khanacademy.com"
+  },
   "license": "MIT"
 }

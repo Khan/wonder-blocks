@@ -1,0 +1,4 @@
+# All filenames are taken to be relative to the directory containing
+# this file.
+
+docs/

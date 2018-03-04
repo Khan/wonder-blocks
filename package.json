@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "storybook": "start-storybook -p 9001 -c .storybook",
+    "serve:storybook": "start-storybook -p 9001 -c .storybook",
     "build:storybook": "build-storybook -c .storybook -o docs"
   },
   "author": "",
@@ -15,16 +15,23 @@
     "@storybook/react": "^3.3.14",
     "babel-core": "6.18.0",
     "babel-jest": "^22.4.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-15": "^1.0.5",
     "jest": "^22.4.2",
     "lerna": "^2.9.0",
     "react-test-renderer": "^15.3.0"
   },
   "dependencies": {
     "aphrodite": "^1.2.5",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2"
+  },
+  "jest": {
+    "testRegex": "_test\\.jsx?$",
+    "setupTestFrameworkScriptFile": "./test-setup.js"
   }
 }
