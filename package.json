@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "serve:storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "build:storybook": "build-storybook -c .storybook -o docs"
   },
   "author": "",
@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "aphrodite": "^1.2.5",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2"
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   },
   "jest": {
     "testRegex": "_test\\.jsx?$",

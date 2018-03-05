@@ -1,18 +1,11 @@
 {
-  "name": "@khanacademy/wonder-blocks-button",
-  "version": "0.0.6",
+  "name": "wonder-blocks-button",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": {
-    "name": "Khan Academy",
-    "email": "opensource+npm@khanacademy.com"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@khanacademy/wonder-blocks-color": "~0.0.5",
-    "@khanacademy/wonder-blocks-typography": "~0.0.6"
-  }
+  "author": "",
+  "license": "MIT"
 }

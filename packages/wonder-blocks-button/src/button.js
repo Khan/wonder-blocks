@@ -2,8 +2,8 @@
 import React, {Component} from "react";
 import {StyleSheet, css} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import Color from "wonder-blocks-color";
+import {LabelLarge} from "wonder-blocks-typography";
 
 type Props = {
     color?: "blue" | "green" | "gold" | "red",
