@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "wonder-blocks-core": "../wonder-blocks-core",
+    "wonder-blocks-color": "../wonder-blocks-color",
     "wonder-blocks-typography": "../wonder-blocks-typography"
   }
 }
