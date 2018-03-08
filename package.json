@@ -4,6 +4,7 @@
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
   "scripts": {
+    "install": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "test": "jest",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build:storybook": "build-storybook -c .storybook -o docs"
@@ -31,7 +32,10 @@
     "react-dom": "^15.3.2"
   },
   "jest": {
-    "testRegex": "_test\\.jsx?$",
-    "setupTestFrameworkScriptFile": "./test-setup.js"
+    "testRegex": ".test\\.jsx?$",
+    "setupTestFrameworkScriptFile": "./test-setup.js",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   }
 }
