@@ -17,7 +17,7 @@ const componentNames = [
     "LabelSmall",
 ];
 
-storiesOf("Typography", module).add("all", () => (
+storiesOf("Typography", module).addWithJSX("all", () => (
     <div>
         {componentNames.map(componentName => {
             const Component = Typography[componentName];
@@ -29,8 +29,8 @@ storiesOf("Typography", module).add("all", () => (
 for (const componentName of componentNames) {
     const Component = Typography[componentName];
     storiesOf(`Typography/${componentName}`, module)
-        .add("default", () => <Component>{componentName}</Component>)
-        .add("styled", () => (
+        .addWithJSX("default", () => <Component>{componentName}</Component>)
+        .addWithJSX("styled", () => (
             <Component style={styles.blue}>{componentName}</Component>
         ));
 }

@@ -6,7 +6,7 @@ import {StyleSheet} from "aphrodite";
 
 import {Text, View} from "./index.js";
 
-storiesOf("Core", module).add("all", () => (
+storiesOf("Core", module).addWithJSX("all", () => (
     <div>
         <Text>Text</Text>
         <View>View</View>
@@ -14,12 +14,12 @@ storiesOf("Core", module).add("all", () => (
 ));
 
 storiesOf("Core/Text", module)
-    .add("text", () => <Text>Text</Text>)
-    .add("aphrodite styles", () => <Text style={styles.pink}>Text</Text>)
-    .add("multiple Aphrodite styles", () => (
+    .addWithJSX("text", () => <Text>Text</Text>)
+    .addWithJSX("aphrodite styles", () => <Text style={styles.pink}>Text</Text>)
+    .addWithJSX("multiple Aphrodite styles", () => (
         <Text style={[styles.pink, styles.bold]}>Text</Text>
     ))
-    .add("multiple text elements", () => (
+    .addWithJSX("multiple text elements", () => (
         <div>
             <Text style={styles.bold}>Text</Text>
             <Text style={styles.pink}>Text</Text>
@@ -27,12 +27,12 @@ storiesOf("Core/Text", module)
     ));
 
 storiesOf("Core/View", module)
-    .add("view", () => <View>View</View>)
-    .add("aphrodite styles", () => <View style={styles.pink}>View</View>)
-    .add("multiple Aphrodite styles", () => (
+    .addWithJSX("view", () => <View>View</View>)
+    .addWithJSX("aphrodite styles", () => <View style={styles.pink}>View</View>)
+    .addWithJSX("multiple Aphrodite styles", () => (
         <View style={[styles.pink, styles.bold]}>Text</View>
     ))
-    .add("multiple view elements", () => (
+    .addWithJSX("multiple view elements", () => (
         <div>
             <View style={styles.bold}>Text</View>
             <View style={styles.pink}>Text</View>
