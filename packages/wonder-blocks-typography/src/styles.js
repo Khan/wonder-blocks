@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
             lineHeight: "32px",
         },
     },
+    Tagline: {
+        fontFamily: "Lato",
+        fontWeight: Regular,
+        fontSize: 20,
+        lineHeight: "24px",
+    },
     HeadingLarge: {
         fontFamily: "Lato",
         fontWeight: Bold,
@@ -51,6 +57,32 @@ const styles = StyleSheet.create({
         fontSize: 12,
         lineHeight: "16px",
     },
+    BodySerifBlock: {
+        // TODO(alex): Use Minion Pro here
+        fontFamily: "serif",
+        fontWeight: Regular,
+        fontSize: 22,
+        lineHeight: "28px",
+    },
+    BodySerif: {
+        // TODO(alex): Use Minion Pro here
+        fontFamily: "serif",
+        fontWeight: Regular,
+        fontSize: 18,
+        lineHeight: "22px",
+    },
+    BodyMonospace: {
+        fontFamily: "Inconsolata",
+        fontWeight: Regular,
+        fontSize: 17,
+        lineHeight: "22px",
+    },
+    Body: {
+        fontFamily: "Lato",
+        fontWeight: Regular,
+        fontSize: 16,
+        lineHeight: "22px",
+    },
     LabelLarge: {
         fontFamily: "Lato",
         fontWeight: Bold,
@@ -67,7 +99,25 @@ const styles = StyleSheet.create({
         fontFamily: "Lato",
         fontWeight: Regular,
         fontSize: 14,
+        lineHeight: "18px",
+    },
+    LabelXSmall: {
+        fontFamily: "Lato",
+        fontWeight: Regular,
+        fontSize: 12,
         lineHeight: "16px",
+    },
+    Caption: {
+        fontFamily: "Lato",
+        fontWeight: Regular,
+        fontSize: 14,
+        lineHeight: "20px",
+    },
+    Footnote: {
+        fontFamily: "Lato",
+        fontWeight: Regular,
+        fontSize: 12,
+        lineHeight: "18px",
     },
 });
 

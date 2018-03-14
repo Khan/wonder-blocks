@@ -9,6 +9,8 @@ type Props = {
     children?: any,
 };
 
+const isHeaderRegex = /^h[1-6]$/;
+
 export default class Text extends Component {
     props: Props;
 
@@ -17,7 +19,13 @@ export default class Text extends Component {
     };
 
     render() {
-        const {className, style} = processStyleList(this.props.style);
+        const isHeader = isHeaderRegex.test(this.props.tag);
+        const {className, style} = processStyleList([
+            // User agent stylesheets add vertical margins to header tags by
+            // default. We prefer to be more deliberate in our spacing instead.
+            isHeader && {marginTop: 0, marginBottom: 0},
+            this.props.style,
+        ]);
 
         return (
             <this.props.tag style={style} className={className}>
