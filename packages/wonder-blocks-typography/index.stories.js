@@ -8,20 +8,30 @@ import * as Typography from "./index.js";
 
 const componentNames = [
     "Title",
+    "Tagline",
     "HeadingLarge",
     "HeadingMedium",
     "HeadingSmall",
     "HeadingXSmall",
+    "BodySerifBlock",
+    "BodySerif",
+    "BodyMonospace",
+    "Body",
     "LabelLarge",
     "LabelMedium",
     "LabelSmall",
+    "LabelXSmall",
+    "Caption",
+    "Footnote",
 ];
 
 storiesOf("Typography", module).addWithJSX("all", () => (
     <div>
         {componentNames.map(componentName => {
             const Component = Typography[componentName];
-            return <Component key={componentName}>{componentName}</Component>;
+            return <div key={componentName}>
+                <Component>{componentName}</Component>
+            </div>;
         })}
     </div>
 ));
