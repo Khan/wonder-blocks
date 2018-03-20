@@ -225,7 +225,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <h4
-      className="HeadingXSmall_1eifnrn"
+      className="HeadingXSmall_3f6s5f"
       style={
         Object {
           "marginBottom": 0,
@@ -513,7 +513,7 @@ exports[`Storyshots Typography/HeadingSmall styled 1`] = `
 
 exports[`Storyshots Typography/HeadingXSmall default 1`] = `
 <h4
-  className="HeadingXSmall_1eifnrn"
+  className="HeadingXSmall_3f6s5f"
   style={
     Object {
       "marginBottom": 0,
@@ -527,7 +527,7 @@ exports[`Storyshots Typography/HeadingXSmall default 1`] = `
 
 exports[`Storyshots Typography/HeadingXSmall styled 1`] = `
 <h4
-  className="HeadingXSmall_1eifnrn-o_O-blue_1tsdo2i"
+  className="HeadingXSmall_3f6s5f-o_O-blue_1tsdo2i"
   style={
     Object {
       "marginBottom": 0,

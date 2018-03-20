@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
         fontWeight: Bold,
         fontSize: 12,
         lineHeight: "16px",
+        letterSpacing: 0.6,
+        textTransform: "uppercase",
     },
     BodySerifBlock: {
         // TODO(alex): Use Minion Pro here
