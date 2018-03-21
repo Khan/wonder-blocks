@@ -3,6 +3,7 @@
 import React from "react";
 import {storiesOf} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
+import Color from "wonder-blocks-color";
 
 import * as Typography from "./index.js";
 
@@ -40,13 +41,14 @@ for (const componentName of componentNames) {
     const Component = Typography[componentName];
     storiesOf(`Typography/${componentName}`, module)
         .addWithJSX("default", () => <Component>{componentName}</Component>)
-        .addWithJSX("styled", () => (
-            <Component style={styles.blue}>{componentName}</Component>
+        .addWithJSX("light on dark", () => (
+            <Component style={styles.lightOnDark}>{componentName}</Component>
         ));
 }
 
 const styles = StyleSheet.create({
-    blue: {
-        color: "blue",
+    lightOnDark: {
+        color: Color.white,
+        background: Color.offBlack,
     },
 });
