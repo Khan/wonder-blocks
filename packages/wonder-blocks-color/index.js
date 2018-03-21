@@ -8,7 +8,7 @@ const Color = {
 
     // Neutral
     offBlack: "#21242C",
-    offBlackSecondary: "rgba(33, 36, 44, 0.5)",
+    offBlackSecondary: "rgba(33, 36, 44, 0.64)",
     offBlackBorder: "rgba(33, 36, 44, 0.1)",
     offWhite: "#F7F8FA",
     white: "#FFFFFF",
