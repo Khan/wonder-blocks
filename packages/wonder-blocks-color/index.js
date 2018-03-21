@@ -8,6 +8,8 @@ const Color = {
 
     // Neutral
     offBlack: "#21242C",
+    offBlackSecondary: "rgba(33, 36, 44, 0.5)",
+    offBlackBorder: "rgba(33, 36, 44, 0.1)",
     offWhite: "#F7F8FA",
     white: "#FFFFFF",
 
@@ -17,5 +19,7 @@ const Color = {
     pink: "#FA50AE",
     salmon: "#FD6C6E",
 };
+
+Color.azul = Color.blue;
 
 export {Color as default};
