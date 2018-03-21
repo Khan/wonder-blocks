@@ -20,6 +20,4 @@ const Color = {
     salmon: "#FD6C6E",
 };
 
-Color.azul = Color.blue;
-
 export {Color as default};
