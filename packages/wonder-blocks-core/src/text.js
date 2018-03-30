@@ -1,7 +1,6 @@
 // @flow
 import React, {Component} from "react";
 import {StyleSheet} from "aphrodite";
-import Color from "wonder-blocks-color";
 
 import {processStyleList} from "./util.js";
 
@@ -15,11 +14,6 @@ const isHeaderRegex = /^h[1-6]$/;
 
 const styles = StyleSheet.create({
     text: {
-        // Our primary text color, off-black, looks a lot like pure black.
-        // We set it to be the default text color so that we don't ever
-        // have to worry about trying to visually distinguish the two.
-        color: Color.offBlack,
-
         // Disable subpixel antialiasing on Mac desktop for consistency of
         // rendering with mobile and Sketch (neither of which support it).
         // See https://bjango.com/articles/subpixeltext/ for more details.
