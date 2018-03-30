@@ -4,17 +4,22 @@ import {Text} from "wonder-blocks-core";
 
 import styles from "./styles.js";
 
-import type {Props} from "./types.js";
+import type {Props, HeadingProps} from "./types.js";
 
 // TODO(alex): Once style prop validation works, if all of the style prop flow
 //             types are the same then switch to using functional components.
 export class Title extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "h1",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text tag="h1" style={[styles.Title, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Title, style]}>
+                {children}
             </Text>
         );
     }
@@ -33,48 +38,68 @@ export class Tagline extends Component {
 }
 
 export class HeadingLarge extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "h2",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text tag="h2" style={[styles.HeadingLarge, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.HeadingLarge, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class HeadingMedium extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "h3",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text tag="h3" style={[styles.HeadingMedium, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.HeadingMedium, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class HeadingSmall extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "h4",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text tag="h4" style={[styles.HeadingSmall, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.HeadingSmall, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class HeadingXSmall extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "h4",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text tag="h4" style={[styles.HeadingXSmall, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.HeadingXSmall, style]}>
+                {children}
             </Text>
         );
     }
