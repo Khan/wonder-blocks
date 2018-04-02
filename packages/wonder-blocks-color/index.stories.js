@@ -35,9 +35,9 @@ const ColorWithName = ({colorName, color}: {
         marginRight: 10,
     }} />
     <ColoredTextWithBackground textColor={color}/>
-    <ColoredTextWithBackground textColor={color} backgroundColor={Color.offWhite}/>
-    <ColoredTextWithBackground textColor={color} backgroundColor={Color.offBlack64}/>
-    <ColoredTextWithBackground textColor={color} backgroundColor={Color.darkBlue}/>
+    <ColoredTextWithBackground textColor={color} backgroundColor={Color.offWhite} />
+    <ColoredTextWithBackground textColor={color} backgroundColor={Color.offBlack64} />
+    <ColoredTextWithBackground textColor={color} backgroundColor={Color.darkBlue} />
 </div>};
 
 storiesOf("Color", module)
