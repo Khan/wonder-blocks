@@ -8,16 +8,20 @@ const Color = {
 
     // Neutral
     offBlack: "#21242C",
-    offBlackSecondary: "rgba(33, 36, 44, 0.64)",
-    offBlackBorder: "rgba(33, 36, 44, 0.1)",
+    offBlack64: "rgba(33, 36, 44, 0.64)",
+    offBlack32: "rgba(33, 36, 44, 0.32)",
+    offBlack16: "rgba(33, 36, 44, 0.16)",
+    offBlack8: "rgba(33, 36, 44, 0.08)",
+
     offWhite: "#F7F8FA",
     white: "#FFFFFF",
+    white64: "rgba(255, 255, 255, 0.64)",
 
     // Brand
     darkBlue: "#044760",
+    teal: "#00E5AE",
     lightBlue: "#37C5FD",
     pink: "#FA50AE",
-    salmon: "#FD6C6E",
 };
 
 export {Color as default};
