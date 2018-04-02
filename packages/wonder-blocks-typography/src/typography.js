@@ -26,12 +26,17 @@ export class Title extends Component {
 }
 
 export class Tagline extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.Tagline, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Tagline, style]}>
+                {children}
             </Text>
         );
     }
@@ -106,48 +111,68 @@ export class HeadingXSmall extends Component {
 }
 
 export class BodySerifBlock extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.BodySerifBlock, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.BodySerifBlock, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class BodySerif extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.BodySerif, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.BodySerif, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class BodyMonospace extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.BodyMonospace, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.BodyMonospace, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class Body extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.Body, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Body, style]}>
+                {children}
             </Text>
         );
     }
@@ -155,72 +180,102 @@ export class Body extends Component {
 
 // TODO(kevinb): consider making labels block level elements
 export class LabelLarge extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.LabelLarge, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.LabelLarge, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class LabelMedium extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.LabelMedium, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.LabelMedium, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class LabelSmall extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.LabelSmall, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.LabelSmall, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class LabelXSmall extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.LabelXSmall, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.LabelXSmall, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class Caption extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.Caption, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Caption, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class Footnote extends Component {
-    props: Props;
+    props: HeadingProps;
+
+    static defaultProps = {
+        tag: "span",
+    };
 
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.Footnote, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Footnote, style]}>
+                {children}
             </Text>
         );
     }

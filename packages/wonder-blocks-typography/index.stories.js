@@ -43,14 +43,10 @@ for (const componentName of componentNames) {
         .addWithJSX("default", () => <Component>{componentName}</Component>)
         .addWithJSX("light on dark", () => (
             <Component style={styles.lightOnDark}>{componentName}</Component>
+        ))
+        .addWithJSX("as an h5 tag", () => (
+            <Component tag="h5">{componentName}</Component>
         ));
-
-    if (componentName === "Title" || componentName.includes("Heading")) {
-        storiesOf(`Typography/${componentName}`, module)
-            .addWithJSX("as an h5 tag", () => (
-                <Component tag="h5">{componentName}</Component>
-            ));
-    }
 }
 
 const styles = StyleSheet.create({
