@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "./util.js";
+import Color from "wonder-blocks-color";
 import type TextTag from "./types.js";
 
 type Props = {
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
         // See https://bjango.com/articles/subpixeltext/ for more details.
         WebkitFontSmoothing: "antialiased",
         MozOsxFontSmoothing: "grayscale",
+        color: Color.offBlack,
     },
     header: {
         // User agent stylesheets add vertical margins to header tags by

@@ -6,7 +6,7 @@ exports[`Storyshots Button blue button 1`] = `
   onClick={undefined}
 >
   <span
-    className="text_f1191h-o_O-LabelLarge_19qk49e"
+    className="text_1kihlfd-o_O-LabelLarge_19qk49e"
     style={Object {}}
   >
     Hello, world!
@@ -20,7 +20,7 @@ exports[`Storyshots Button gold button 1`] = `
   onClick={undefined}
 >
   <span
-    className="text_f1191h-o_O-LabelLarge_19qk49e"
+    className="text_1kihlfd-o_O-LabelLarge_19qk49e"
     style={Object {}}
   >
     Hello, world!
@@ -34,7 +34,7 @@ exports[`Storyshots Button green button 1`] = `
   onClick={undefined}
 >
   <span
-    className="text_f1191h-o_O-LabelLarge_19qk49e"
+    className="text_1kihlfd-o_O-LabelLarge_19qk49e"
     style={Object {}}
   >
     Hello, world!
@@ -48,7 +48,7 @@ exports[`Storyshots Button red button 1`] = `
   onClick={undefined}
 >
   <span
-    className="text_f1191h-o_O-LabelLarge_19qk49e"
+    className="text_1kihlfd-o_O-LabelLarge_19qk49e"
     style={Object {}}
   >
     Hello, world!
@@ -1248,7 +1248,7 @@ exports[`Storyshots Color All colors 1`] = `
 exports[`Storyshots Core all 1`] = `
 <div>
   <span
-    className="text_f1191h"
+    className="text_1kihlfd"
     style={Object {}}
   >
     Text
@@ -1269,7 +1269,7 @@ exports[`Storyshots Core nested text inherits color 1`] = `
     style={Object {}}
   >
     <span
-      className="text_f1191h"
+      className="text_1kihlfd"
       style={Object {}}
     >
       Text
@@ -1280,7 +1280,7 @@ exports[`Storyshots Core nested text inherits color 1`] = `
 
 exports[`Storyshots Core/Text aphrodite styles 1`] = `
 <span
-  className="text_f1191h-o_O-pink_th4aeu"
+  className="text_1kihlfd-o_O-pink_th4aeu"
   style={Object {}}
 >
   Text
@@ -1289,7 +1289,7 @@ exports[`Storyshots Core/Text aphrodite styles 1`] = `
 
 exports[`Storyshots Core/Text multiple Aphrodite styles 1`] = `
 <span
-  className="text_f1191h-o_O-pink_th4aeu-o_O-bold_hq5slr"
+  className="text_1kihlfd-o_O-pink_th4aeu-o_O-bold_hq5slr"
   style={Object {}}
 >
   Text
@@ -1299,13 +1299,13 @@ exports[`Storyshots Core/Text multiple Aphrodite styles 1`] = `
 exports[`Storyshots Core/Text multiple text elements 1`] = `
 <div>
   <span
-    className="text_f1191h-o_O-bold_hq5slr"
+    className="text_1kihlfd-o_O-bold_hq5slr"
     style={Object {}}
   >
     Text
   </span>
   <span
-    className="text_f1191h-o_O-pink_th4aeu"
+    className="text_1kihlfd-o_O-pink_th4aeu"
     style={Object {}}
   >
     Text
@@ -1315,7 +1315,7 @@ exports[`Storyshots Core/Text multiple text elements 1`] = `
 
 exports[`Storyshots Core/Text text 1`] = `
 <span
-  className="text_f1191h"
+  className="text_1kihlfd"
   style={Object {}}
 >
   Text
@@ -1370,7 +1370,7 @@ exports[`Storyshots Typography all 1`] = `
 <div>
   <div>
     <h1
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_pg0x2d"
+      className="text_1kihlfd-o_O-header_1sc4ubv-o_O-Title_pg0x2d"
       style={Object {}}
     >
       Title
@@ -1378,7 +1378,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-Tagline_13wg9ps"
+      className="text_1kihlfd-o_O-Tagline_13wg9ps"
       style={Object {}}
     >
       Tagline
@@ -1386,7 +1386,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <h2
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
+      className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
       style={Object {}}
     >
       HeadingLarge
@@ -1394,7 +1394,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <h3
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
+      className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
       style={Object {}}
     >
       HeadingMedium
@@ -1402,7 +1402,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <h4
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
+      className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
       style={Object {}}
     >
       HeadingSmall
@@ -1410,7 +1410,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <h4
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f"
+      className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f"
       style={Object {}}
     >
       HeadingXSmall
@@ -1418,7 +1418,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-BodySerifBlock_1q1y0lf"
+      className="text_1kihlfd-o_O-BodySerifBlock_1q1y0lf"
       style={Object {}}
     >
       BodySerifBlock
@@ -1426,7 +1426,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-BodySerif_czdgjk"
+      className="text_1kihlfd-o_O-BodySerif_czdgjk"
       style={Object {}}
     >
       BodySerif
@@ -1434,7 +1434,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-BodyMonospace_1s34hz9"
+      className="text_1kihlfd-o_O-BodyMonospace_1s34hz9"
       style={Object {}}
     >
       BodyMonospace
@@ -1442,7 +1442,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-Body_aye3wz"
+      className="text_1kihlfd-o_O-Body_aye3wz"
       style={Object {}}
     >
       Body
@@ -1450,7 +1450,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-LabelLarge_19qk49e"
+      className="text_1kihlfd-o_O-LabelLarge_19qk49e"
       style={Object {}}
     >
       LabelLarge
@@ -1458,7 +1458,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-LabelMedium_1y2bm6p"
+      className="text_1kihlfd-o_O-LabelMedium_1y2bm6p"
       style={Object {}}
     >
       LabelMedium
@@ -1466,7 +1466,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-LabelSmall_xwaspk"
+      className="text_1kihlfd-o_O-LabelSmall_xwaspk"
       style={Object {}}
     >
       LabelSmall
@@ -1474,7 +1474,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-LabelXSmall_1ot4900"
+      className="text_1kihlfd-o_O-LabelXSmall_1ot4900"
       style={Object {}}
     >
       LabelXSmall
@@ -1482,7 +1482,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-Caption_1d6h637"
+      className="text_1kihlfd-o_O-Caption_1d6h637"
       style={Object {}}
     >
       Caption
@@ -1490,7 +1490,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <span
-      className="text_f1191h-o_O-Footnote_1h6ehge"
+      className="text_1kihlfd-o_O-Footnote_1h6ehge"
       style={Object {}}
     >
       Footnote
@@ -1501,7 +1501,7 @@ exports[`Storyshots Typography all 1`] = `
 
 exports[`Storyshots Typography/Body default 1`] = `
 <span
-  className="text_f1191h-o_O-Body_aye3wz"
+  className="text_1kihlfd-o_O-Body_aye3wz"
   style={Object {}}
 >
   Body
@@ -1510,7 +1510,7 @@ exports[`Storyshots Typography/Body default 1`] = `
 
 exports[`Storyshots Typography/Body light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-Body_aye3wz-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-Body_aye3wz-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   Body
@@ -1519,7 +1519,7 @@ exports[`Storyshots Typography/Body light on dark 1`] = `
 
 exports[`Storyshots Typography/BodyMonospace default 1`] = `
 <span
-  className="text_f1191h-o_O-BodyMonospace_1s34hz9"
+  className="text_1kihlfd-o_O-BodyMonospace_1s34hz9"
   style={Object {}}
 >
   BodyMonospace
@@ -1528,7 +1528,7 @@ exports[`Storyshots Typography/BodyMonospace default 1`] = `
 
 exports[`Storyshots Typography/BodyMonospace light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-BodyMonospace_1s34hz9-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-BodyMonospace_1s34hz9-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   BodyMonospace
@@ -1537,7 +1537,7 @@ exports[`Storyshots Typography/BodyMonospace light on dark 1`] = `
 
 exports[`Storyshots Typography/BodySerif default 1`] = `
 <span
-  className="text_f1191h-o_O-BodySerif_czdgjk"
+  className="text_1kihlfd-o_O-BodySerif_czdgjk"
   style={Object {}}
 >
   BodySerif
@@ -1546,7 +1546,7 @@ exports[`Storyshots Typography/BodySerif default 1`] = `
 
 exports[`Storyshots Typography/BodySerif light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-BodySerif_czdgjk-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-BodySerif_czdgjk-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   BodySerif
@@ -1555,7 +1555,7 @@ exports[`Storyshots Typography/BodySerif light on dark 1`] = `
 
 exports[`Storyshots Typography/BodySerifBlock default 1`] = `
 <span
-  className="text_f1191h-o_O-BodySerifBlock_1q1y0lf"
+  className="text_1kihlfd-o_O-BodySerifBlock_1q1y0lf"
   style={Object {}}
 >
   BodySerifBlock
@@ -1564,7 +1564,7 @@ exports[`Storyshots Typography/BodySerifBlock default 1`] = `
 
 exports[`Storyshots Typography/BodySerifBlock light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-BodySerifBlock_1q1y0lf-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-BodySerifBlock_1q1y0lf-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   BodySerifBlock
@@ -1573,7 +1573,7 @@ exports[`Storyshots Typography/BodySerifBlock light on dark 1`] = `
 
 exports[`Storyshots Typography/Caption default 1`] = `
 <span
-  className="text_f1191h-o_O-Caption_1d6h637"
+  className="text_1kihlfd-o_O-Caption_1d6h637"
   style={Object {}}
 >
   Caption
@@ -1582,7 +1582,7 @@ exports[`Storyshots Typography/Caption default 1`] = `
 
 exports[`Storyshots Typography/Caption light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-Caption_1d6h637-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-Caption_1d6h637-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   Caption
@@ -1591,7 +1591,7 @@ exports[`Storyshots Typography/Caption light on dark 1`] = `
 
 exports[`Storyshots Typography/Footnote default 1`] = `
 <span
-  className="text_f1191h-o_O-Footnote_1h6ehge"
+  className="text_1kihlfd-o_O-Footnote_1h6ehge"
   style={Object {}}
 >
   Footnote
@@ -1600,7 +1600,7 @@ exports[`Storyshots Typography/Footnote default 1`] = `
 
 exports[`Storyshots Typography/Footnote light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-Footnote_1h6ehge-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-Footnote_1h6ehge-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   Footnote
@@ -1609,7 +1609,7 @@ exports[`Storyshots Typography/Footnote light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
   style={Object {}}
 >
   HeadingLarge
@@ -1618,7 +1618,7 @@ exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge default 1`] = `
 <h2
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
   style={Object {}}
 >
   HeadingLarge
@@ -1627,7 +1627,7 @@ exports[`Storyshots Typography/HeadingLarge default 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 <h2
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   HeadingLarge
@@ -1636,7 +1636,7 @@ exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
   style={Object {}}
 >
   HeadingMedium
@@ -1645,7 +1645,7 @@ exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium default 1`] = `
 <h3
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
   style={Object {}}
 >
   HeadingMedium
@@ -1654,7 +1654,7 @@ exports[`Storyshots Typography/HeadingMedium default 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium light on dark 1`] = `
 <h3
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   HeadingMedium
@@ -1663,7 +1663,7 @@ exports[`Storyshots Typography/HeadingMedium light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingSmall as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
   style={Object {}}
 >
   HeadingSmall
@@ -1672,7 +1672,7 @@ exports[`Storyshots Typography/HeadingSmall as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingSmall default 1`] = `
 <h4
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
   style={Object {}}
 >
   HeadingSmall
@@ -1681,7 +1681,7 @@ exports[`Storyshots Typography/HeadingSmall default 1`] = `
 
 exports[`Storyshots Typography/HeadingSmall light on dark 1`] = `
 <h4
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   HeadingSmall
@@ -1690,7 +1690,7 @@ exports[`Storyshots Typography/HeadingSmall light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingXSmall as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f"
   style={Object {}}
 >
   HeadingXSmall
@@ -1699,7 +1699,7 @@ exports[`Storyshots Typography/HeadingXSmall as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingXSmall default 1`] = `
 <h4
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f"
   style={Object {}}
 >
   HeadingXSmall
@@ -1708,7 +1708,7 @@ exports[`Storyshots Typography/HeadingXSmall default 1`] = `
 
 exports[`Storyshots Typography/HeadingXSmall light on dark 1`] = `
 <h4
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   HeadingXSmall
@@ -1717,7 +1717,7 @@ exports[`Storyshots Typography/HeadingXSmall light on dark 1`] = `
 
 exports[`Storyshots Typography/LabelLarge default 1`] = `
 <span
-  className="text_f1191h-o_O-LabelLarge_19qk49e"
+  className="text_1kihlfd-o_O-LabelLarge_19qk49e"
   style={Object {}}
 >
   LabelLarge
@@ -1726,7 +1726,7 @@ exports[`Storyshots Typography/LabelLarge default 1`] = `
 
 exports[`Storyshots Typography/LabelLarge light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-LabelLarge_19qk49e-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-LabelLarge_19qk49e-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   LabelLarge
@@ -1735,7 +1735,7 @@ exports[`Storyshots Typography/LabelLarge light on dark 1`] = `
 
 exports[`Storyshots Typography/LabelMedium default 1`] = `
 <span
-  className="text_f1191h-o_O-LabelMedium_1y2bm6p"
+  className="text_1kihlfd-o_O-LabelMedium_1y2bm6p"
   style={Object {}}
 >
   LabelMedium
@@ -1744,7 +1744,7 @@ exports[`Storyshots Typography/LabelMedium default 1`] = `
 
 exports[`Storyshots Typography/LabelMedium light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-LabelMedium_1y2bm6p-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-LabelMedium_1y2bm6p-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   LabelMedium
@@ -1753,7 +1753,7 @@ exports[`Storyshots Typography/LabelMedium light on dark 1`] = `
 
 exports[`Storyshots Typography/LabelSmall default 1`] = `
 <span
-  className="text_f1191h-o_O-LabelSmall_xwaspk"
+  className="text_1kihlfd-o_O-LabelSmall_xwaspk"
   style={Object {}}
 >
   LabelSmall
@@ -1762,7 +1762,7 @@ exports[`Storyshots Typography/LabelSmall default 1`] = `
 
 exports[`Storyshots Typography/LabelSmall light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-LabelSmall_xwaspk-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-LabelSmall_xwaspk-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   LabelSmall
@@ -1771,7 +1771,7 @@ exports[`Storyshots Typography/LabelSmall light on dark 1`] = `
 
 exports[`Storyshots Typography/LabelXSmall default 1`] = `
 <span
-  className="text_f1191h-o_O-LabelXSmall_1ot4900"
+  className="text_1kihlfd-o_O-LabelXSmall_1ot4900"
   style={Object {}}
 >
   LabelXSmall
@@ -1780,7 +1780,7 @@ exports[`Storyshots Typography/LabelXSmall default 1`] = `
 
 exports[`Storyshots Typography/LabelXSmall light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-LabelXSmall_1ot4900-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-LabelXSmall_1ot4900-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   LabelXSmall
@@ -1789,7 +1789,7 @@ exports[`Storyshots Typography/LabelXSmall light on dark 1`] = `
 
 exports[`Storyshots Typography/Tagline default 1`] = `
 <span
-  className="text_f1191h-o_O-Tagline_13wg9ps"
+  className="text_1kihlfd-o_O-Tagline_13wg9ps"
   style={Object {}}
 >
   Tagline
@@ -1798,7 +1798,7 @@ exports[`Storyshots Typography/Tagline default 1`] = `
 
 exports[`Storyshots Typography/Tagline light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-Tagline_13wg9ps-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-Tagline_13wg9ps-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   Tagline
@@ -1807,7 +1807,7 @@ exports[`Storyshots Typography/Tagline light on dark 1`] = `
 
 exports[`Storyshots Typography/Title as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_pg0x2d"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-Title_pg0x2d"
   style={Object {}}
 >
   Title
@@ -1816,7 +1816,7 @@ exports[`Storyshots Typography/Title as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/Title default 1`] = `
 <h1
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_pg0x2d"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-Title_pg0x2d"
   style={Object {}}
 >
   Title
@@ -1825,7 +1825,7 @@ exports[`Storyshots Typography/Title default 1`] = `
 
 exports[`Storyshots Typography/Title light on dark 1`] = `
 <h1
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_pg0x2d-o_O-lightOnDark_lsccso"
+  className="text_1kihlfd-o_O-header_1sc4ubv-o_O-Title_pg0x2d-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   Title
