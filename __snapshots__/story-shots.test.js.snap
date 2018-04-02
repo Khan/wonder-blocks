@@ -418,6 +418,15 @@ exports[`Storyshots Typography/Footnote light on dark 1`] = `
 </span>
 `;
 
+exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
+  style={Object {}}
+>
+  HeadingLarge
+</h5>
+`;
+
 exports[`Storyshots Typography/HeadingLarge default 1`] = `
 <h2
   className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
@@ -434,6 +443,15 @@ exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 >
   HeadingLarge
 </h2>
+`;
+
+exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
+  style={Object {}}
+>
+  HeadingMedium
+</h5>
 `;
 
 exports[`Storyshots Typography/HeadingMedium default 1`] = `
@@ -454,6 +472,15 @@ exports[`Storyshots Typography/HeadingMedium light on dark 1`] = `
 </h3>
 `;
 
+exports[`Storyshots Typography/HeadingSmall as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
+  style={Object {}}
+>
+  HeadingSmall
+</h5>
+`;
+
 exports[`Storyshots Typography/HeadingSmall default 1`] = `
 <h4
   className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
@@ -470,6 +497,15 @@ exports[`Storyshots Typography/HeadingSmall light on dark 1`] = `
 >
   HeadingSmall
 </h4>
+`;
+
+exports[`Storyshots Typography/HeadingXSmall as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f"
+  style={Object {}}
+>
+  HeadingXSmall
+</h5>
 `;
 
 exports[`Storyshots Typography/HeadingXSmall default 1`] = `
@@ -578,6 +614,15 @@ exports[`Storyshots Typography/Tagline light on dark 1`] = `
 >
   Tagline
 </span>
+`;
+
+exports[`Storyshots Typography/Title as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_pg0x2d"
+  style={Object {}}
+>
+  Title
+</h5>
 `;
 
 exports[`Storyshots Typography/Title default 1`] = `

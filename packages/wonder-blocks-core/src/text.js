@@ -3,10 +3,11 @@ import React, {Component} from "react";
 import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "./util.js";
+import type TextTag from "./types.js";
 
 type Props = {
     style?: any,
-    tag: "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6",
+    tag: TextTag,
     children?: any,
 };
 
