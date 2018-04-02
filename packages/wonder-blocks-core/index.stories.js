@@ -6,12 +6,18 @@ import {StyleSheet} from "aphrodite";
 
 import {Text, View} from "./index.js";
 
-storiesOf("Core", module).addWithJSX("all", () => (
-    <div>
-        <Text>Text</Text>
-        <View>View</View>
-    </div>
-));
+storiesOf("Core", module)
+    .addWithJSX("all", () => (
+        <div>
+            <Text>Text</Text>
+            <View>View</View>
+        </div>
+    ))
+    .addWithJSX("nested text inherits color", () => (
+        <div>
+            <View style={styles.blue}><Text>Text</Text></View>
+        </div>
+    ));
 
 storiesOf("Core/Text", module)
     .addWithJSX("text", () => <Text>Text</Text>)
@@ -40,6 +46,9 @@ storiesOf("Core/View", module)
     ));
 
 const styles = StyleSheet.create({
+    blue: {
+        color: "blue",
+    },
     pink: {
         backgroundColor: "pink",
     },
