@@ -30,7 +30,7 @@ exports[`Storyshots Button gold button 1`] = `
 
 exports[`Storyshots Button green button 1`] = `
 <a
-  className="button_tk8a3j-o_O-green_wcschq"
+  className="button_tk8a3j-o_O-green_8j7jxn"
   onClick={undefined}
 >
   <span
@@ -54,6 +54,1195 @@ exports[`Storyshots Button red button 1`] = `
     Hello, world!
   </span>
 </a>
+`;
+
+exports[`Storyshots Color All colors 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      blue
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#1865F2",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#1865F2",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#1865F2",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#1865F2",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#1865F2",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      green
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#00A60E",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#00A60E",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#00A60E",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#00A60E",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#00A60E",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      gold
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFB100",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#FFB100",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#FFB100",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#FFB100",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#FFB100",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      red
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#D92916",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#D92916",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#D92916",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#D92916",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#D92916",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      offBlack
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#21242C",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#21242C",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#21242C",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#21242C",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#21242C",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      offBlack64
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "rgba(33, 36, 44, 0.64)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "rgba(33, 36, 44, 0.64)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "rgba(33, 36, 44, 0.64)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "rgba(33, 36, 44, 0.64)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      offBlack32
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.32)",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "rgba(33, 36, 44, 0.32)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "rgba(33, 36, 44, 0.32)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "rgba(33, 36, 44, 0.32)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "rgba(33, 36, 44, 0.32)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      offBlack16
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.16)",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "rgba(33, 36, 44, 0.16)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "rgba(33, 36, 44, 0.16)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "rgba(33, 36, 44, 0.16)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "rgba(33, 36, 44, 0.16)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      offBlack8
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.08)",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "rgba(33, 36, 44, 0.08)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "rgba(33, 36, 44, 0.08)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "rgba(33, 36, 44, 0.08)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "rgba(33, 36, 44, 0.08)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      offWhite
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#F7F8FA",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#F7F8FA",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#F7F8FA",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#F7F8FA",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      white
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#FFFFFF",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#FFFFFF",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#FFFFFF",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#FFFFFF",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      white64
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(255, 255, 255, 0.64)",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "rgba(255, 255, 255, 0.64)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "rgba(255, 255, 255, 0.64)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "rgba(255, 255, 255, 0.64)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "rgba(255, 255, 255, 0.64)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      darkBlue
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#0A2A66",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#0A2A66",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#0A2A66",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#0A2A66",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      teal
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#00E5AE",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#00E5AE",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#00E5AE",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#00E5AE",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#00E5AE",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      lightBlue
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#37C5FD",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#37C5FD",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#37C5FD",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#37C5FD",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#37C5FD",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      pink
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FA50AE",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "#FA50AE",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "#FA50AE",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "#FA50AE",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "#FA50AE",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Storyshots Core all 1`] = `
