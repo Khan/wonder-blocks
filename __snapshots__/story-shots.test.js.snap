@@ -1499,6 +1499,15 @@ exports[`Storyshots Typography all 1`] = `
 </div>
 `;
 
+exports[`Storyshots Typography/Body as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-Body_aye3wz"
+  style={Object {}}
+>
+  Body
+</h5>
+`;
+
 exports[`Storyshots Typography/Body default 1`] = `
 <span
   className="text_f1191h-o_O-Body_aye3wz"
@@ -1515,6 +1524,15 @@ exports[`Storyshots Typography/Body light on dark 1`] = `
 >
   Body
 </span>
+`;
+
+exports[`Storyshots Typography/BodyMonospace as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-BodyMonospace_1s34hz9"
+  style={Object {}}
+>
+  BodyMonospace
+</h5>
 `;
 
 exports[`Storyshots Typography/BodyMonospace default 1`] = `
@@ -1535,6 +1553,15 @@ exports[`Storyshots Typography/BodyMonospace light on dark 1`] = `
 </span>
 `;
 
+exports[`Storyshots Typography/BodySerif as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-BodySerif_czdgjk"
+  style={Object {}}
+>
+  BodySerif
+</h5>
+`;
+
 exports[`Storyshots Typography/BodySerif default 1`] = `
 <span
   className="text_f1191h-o_O-BodySerif_czdgjk"
@@ -1551,6 +1578,15 @@ exports[`Storyshots Typography/BodySerif light on dark 1`] = `
 >
   BodySerif
 </span>
+`;
+
+exports[`Storyshots Typography/BodySerifBlock as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-BodySerifBlock_1q1y0lf"
+  style={Object {}}
+>
+  BodySerifBlock
+</h5>
 `;
 
 exports[`Storyshots Typography/BodySerifBlock default 1`] = `
@@ -1571,6 +1607,15 @@ exports[`Storyshots Typography/BodySerifBlock light on dark 1`] = `
 </span>
 `;
 
+exports[`Storyshots Typography/Caption as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-Caption_1d6h637"
+  style={Object {}}
+>
+  Caption
+</h5>
+`;
+
 exports[`Storyshots Typography/Caption default 1`] = `
 <span
   className="text_f1191h-o_O-Caption_1d6h637"
@@ -1587,6 +1632,15 @@ exports[`Storyshots Typography/Caption light on dark 1`] = `
 >
   Caption
 </span>
+`;
+
+exports[`Storyshots Typography/Footnote as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-Footnote_1h6ehge"
+  style={Object {}}
+>
+  Footnote
+</h5>
 `;
 
 exports[`Storyshots Typography/Footnote default 1`] = `
@@ -1715,6 +1769,15 @@ exports[`Storyshots Typography/HeadingXSmall light on dark 1`] = `
 </h4>
 `;
 
+exports[`Storyshots Typography/LabelLarge as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-LabelLarge_19qk49e"
+  style={Object {}}
+>
+  LabelLarge
+</h5>
+`;
+
 exports[`Storyshots Typography/LabelLarge default 1`] = `
 <span
   className="text_f1191h-o_O-LabelLarge_19qk49e"
@@ -1731,6 +1794,15 @@ exports[`Storyshots Typography/LabelLarge light on dark 1`] = `
 >
   LabelLarge
 </span>
+`;
+
+exports[`Storyshots Typography/LabelMedium as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-LabelMedium_1y2bm6p"
+  style={Object {}}
+>
+  LabelMedium
+</h5>
 `;
 
 exports[`Storyshots Typography/LabelMedium default 1`] = `
@@ -1751,6 +1823,15 @@ exports[`Storyshots Typography/LabelMedium light on dark 1`] = `
 </span>
 `;
 
+exports[`Storyshots Typography/LabelSmall as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-LabelSmall_xwaspk"
+  style={Object {}}
+>
+  LabelSmall
+</h5>
+`;
+
 exports[`Storyshots Typography/LabelSmall default 1`] = `
 <span
   className="text_f1191h-o_O-LabelSmall_xwaspk"
@@ -1769,6 +1850,15 @@ exports[`Storyshots Typography/LabelSmall light on dark 1`] = `
 </span>
 `;
 
+exports[`Storyshots Typography/LabelXSmall as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-LabelXSmall_1ot4900"
+  style={Object {}}
+>
+  LabelXSmall
+</h5>
+`;
+
 exports[`Storyshots Typography/LabelXSmall default 1`] = `
 <span
   className="text_f1191h-o_O-LabelXSmall_1ot4900"
@@ -1785,6 +1875,15 @@ exports[`Storyshots Typography/LabelXSmall light on dark 1`] = `
 >
   LabelXSmall
 </span>
+`;
+
+exports[`Storyshots Typography/Tagline as an h5 tag 1`] = `
+<h5
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-Tagline_13wg9ps"
+  style={Object {}}
+>
+  Tagline
+</h5>
 `;
 
 exports[`Storyshots Typography/Tagline default 1`] = `

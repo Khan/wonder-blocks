@@ -4,12 +4,12 @@ import {Text} from "wonder-blocks-core";
 
 import styles from "./styles.js";
 
-import type {Props, HeadingProps} from "./types.js";
+import type {Props} from "./types.js";
 
 // TODO(alex): Once style prop validation works, if all of the style prop flow
 //             types are the same then switch to using functional components.
 export class Title extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h1",
@@ -28,17 +28,22 @@ export class Title extends Component {
 export class Tagline extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.Tagline, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Tagline, style]}>
+                {children}
             </Text>
         );
     }
 }
 
 export class HeadingLarge extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h2",
@@ -55,7 +60,7 @@ export class HeadingLarge extends Component {
 }
 
 export class HeadingMedium extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h3",
@@ -72,7 +77,7 @@ export class HeadingMedium extends Component {
 }
 
 export class HeadingSmall extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h4",
@@ -89,7 +94,7 @@ export class HeadingSmall extends Component {
 }
 
 export class HeadingXSmall extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h4",
@@ -108,10 +113,15 @@ export class HeadingXSmall extends Component {
 export class BodySerifBlock extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.BodySerifBlock, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.BodySerifBlock, style]}>
+                {children}
             </Text>
         );
     }
@@ -120,10 +130,15 @@ export class BodySerifBlock extends Component {
 export class BodySerif extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.BodySerif, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.BodySerif, style]}>
+                {children}
             </Text>
         );
     }
@@ -132,10 +147,15 @@ export class BodySerif extends Component {
 export class BodyMonospace extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.BodyMonospace, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.BodyMonospace, style]}>
+                {children}
             </Text>
         );
     }
@@ -144,10 +164,15 @@ export class BodyMonospace extends Component {
 export class Body extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.Body, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Body, style]}>
+                {children}
             </Text>
         );
     }
@@ -157,10 +182,15 @@ export class Body extends Component {
 export class LabelLarge extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.LabelLarge, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.LabelLarge, style]}>
+                {children}
             </Text>
         );
     }
@@ -169,10 +199,15 @@ export class LabelLarge extends Component {
 export class LabelMedium extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.LabelMedium, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.LabelMedium, style]}>
+                {children}
             </Text>
         );
     }
@@ -181,10 +216,15 @@ export class LabelMedium extends Component {
 export class LabelSmall extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.LabelSmall, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.LabelSmall, style]}>
+                {children}
             </Text>
         );
     }
@@ -193,10 +233,15 @@ export class LabelSmall extends Component {
 export class LabelXSmall extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.LabelXSmall, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.LabelXSmall, style]}>
+                {children}
             </Text>
         );
     }
@@ -205,10 +250,15 @@ export class LabelXSmall extends Component {
 export class Caption extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.Caption, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Caption, style]}>
+                {children}
             </Text>
         );
     }
@@ -217,10 +267,15 @@ export class Caption extends Component {
 export class Footnote extends Component {
     props: Props;
 
+    static defaultProps = {
+        tag: "span",
+    };
+
     render() {
+        const {tag, style, children} = this.props;
         return (
-            <Text style={[styles.Footnote, this.props.style]}>
-                {this.props.children}
+            <Text tag={tag} style={[styles.Footnote, style]}>
+                {children}
             </Text>
         );
     }
