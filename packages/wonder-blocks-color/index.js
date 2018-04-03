@@ -9,6 +9,7 @@ const Color = {
     // Neutral
     offBlack: "#21242C",
     offBlack64: "rgba(33, 36, 44, 0.64)",
+    offBlack50: "rgba(33, 36, 44, 0.5)",
     offBlack32: "rgba(33, 36, 44, 0.32)",
     offBlack16: "rgba(33, 36, 44, 0.16)",
     offBlack8: "rgba(33, 36, 44, 0.08)",

@@ -518,6 +518,80 @@ exports[`Storyshots Color All colors 1`] = `
         }
       }
     >
+      offBlack50
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.5)",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "color": "rgba(33, 36, 44, 0.5)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#F7F8FA",
+          "color": "rgba(33, 36, 44, 0.5)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33, 36, 44, 0.64)",
+          "color": "rgba(33, 36, 44, 0.5)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0A2A66",
+          "color": "rgba(33, 36, 44, 0.5)",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
       offBlack32
       :
     </div>
