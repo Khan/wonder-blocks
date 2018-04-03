@@ -5,8 +5,6 @@ import type TextTag from "wonder-blocks-core";
 export type Props = {
     style?: any,
     children?: string,
+    tag: TextTag,
 };
 
-export type HeadingProps = Props & {
-    tag: TextTag,
-}

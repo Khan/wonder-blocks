@@ -4,12 +4,12 @@ import {Text} from "wonder-blocks-core";
 
 import styles from "./styles.js";
 
-import type {Props, HeadingProps} from "./types.js";
+import type {Props} from "./types.js";
 
 // TODO(alex): Once style prop validation works, if all of the style prop flow
 //             types are the same then switch to using functional components.
 export class Title extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h1",
@@ -26,7 +26,7 @@ export class Title extends Component {
 }
 
 export class Tagline extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -43,7 +43,7 @@ export class Tagline extends Component {
 }
 
 export class HeadingLarge extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h2",
@@ -60,7 +60,7 @@ export class HeadingLarge extends Component {
 }
 
 export class HeadingMedium extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h3",
@@ -77,7 +77,7 @@ export class HeadingMedium extends Component {
 }
 
 export class HeadingSmall extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h4",
@@ -94,7 +94,7 @@ export class HeadingSmall extends Component {
 }
 
 export class HeadingXSmall extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "h4",
@@ -111,7 +111,7 @@ export class HeadingXSmall extends Component {
 }
 
 export class BodySerifBlock extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -128,7 +128,7 @@ export class BodySerifBlock extends Component {
 }
 
 export class BodySerif extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -145,7 +145,7 @@ export class BodySerif extends Component {
 }
 
 export class BodyMonospace extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -162,7 +162,7 @@ export class BodyMonospace extends Component {
 }
 
 export class Body extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -180,7 +180,7 @@ export class Body extends Component {
 
 // TODO(kevinb): consider making labels block level elements
 export class LabelLarge extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -197,7 +197,7 @@ export class LabelLarge extends Component {
 }
 
 export class LabelMedium extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -214,7 +214,7 @@ export class LabelMedium extends Component {
 }
 
 export class LabelSmall extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -231,7 +231,7 @@ export class LabelSmall extends Component {
 }
 
 export class LabelXSmall extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -248,7 +248,7 @@ export class LabelXSmall extends Component {
 }
 
 export class Caption extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
@@ -265,7 +265,7 @@ export class Caption extends Component {
 }
 
 export class Footnote extends Component {
-    props: HeadingProps;
+    props: Props;
 
     static defaultProps = {
         tag: "span",
