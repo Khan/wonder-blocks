@@ -1460,7 +1460,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <h2
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
+      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1wo4u3q"
       style={Object {}}
     >
       HeadingLarge
@@ -1468,7 +1468,7 @@ exports[`Storyshots Typography all 1`] = `
   </div>
   <div>
     <h3
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
+      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_3zbco9"
       style={Object {}}
     >
       HeadingMedium
@@ -1737,7 +1737,7 @@ exports[`Storyshots Typography/Footnote light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1wo4u3q"
   style={Object {}}
 >
   HeadingLarge
@@ -1746,7 +1746,7 @@ exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge default 1`] = `
 <h2
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6"
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1wo4u3q"
   style={Object {}}
 >
   HeadingLarge
@@ -1755,7 +1755,7 @@ exports[`Storyshots Typography/HeadingLarge default 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 <h2
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1y2mmy6-o_O-lightOnDark_lsccso"
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1wo4u3q-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   HeadingLarge
@@ -1764,7 +1764,7 @@ exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_3zbco9"
   style={Object {}}
 >
   HeadingMedium
@@ -1773,7 +1773,7 @@ exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium default 1`] = `
 <h3
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23"
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_3zbco9"
   style={Object {}}
 >
   HeadingMedium
@@ -1782,7 +1782,7 @@ exports[`Storyshots Typography/HeadingMedium default 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium light on dark 1`] = `
 <h3
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_17b4v23-o_O-lightOnDark_lsccso"
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_3zbco9-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   HeadingMedium
