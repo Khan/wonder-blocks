@@ -1442,7 +1442,6 @@ exports[`Storyshots Core/View view 1`] = `
 
 exports[`Storyshots Typography all 1`] = `
 <div>
-<<<<<<< HEAD
   <h1
     className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_ms2740"
     style={Object {}}
@@ -1456,13 +1455,13 @@ exports[`Storyshots Typography all 1`] = `
     Tagline
   </span>
   <h2
-    className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_18zoeff"
+    className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1fsnykj"
     style={Object {}}
   >
     HeadingLarge
   </h2>
   <h3
-    className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1w260ny"
+    className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1dhg170"
     style={Object {}}
   >
     HeadingMedium
@@ -1539,136 +1538,6 @@ exports[`Storyshots Typography all 1`] = `
   >
     Footnote
   </span>
-=======
-  <div>
-    <h1
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_pg0x2d"
-      style={Object {}}
-    >
-      Title
-    </h1>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-Tagline_13wg9ps"
-      style={Object {}}
-    >
-      Tagline
-    </span>
-  </div>
-  <div>
-    <h2
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1wo4u3q"
-      style={Object {}}
-    >
-      HeadingLarge
-    </h2>
-  </div>
-  <div>
-    <h3
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_3zbco9"
-      style={Object {}}
-    >
-      HeadingMedium
-    </h3>
-  </div>
-  <div>
-    <h4
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_1vtz1kj"
-      style={Object {}}
-    >
-      HeadingSmall
-    </h4>
-  </div>
-  <div>
-    <h4
-      className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_3f6s5f"
-      style={Object {}}
-    >
-      HeadingXSmall
-    </h4>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-BodySerifBlock_1q1y0lf"
-      style={Object {}}
-    >
-      BodySerifBlock
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-BodySerif_czdgjk"
-      style={Object {}}
-    >
-      BodySerif
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-BodyMonospace_1s34hz9"
-      style={Object {}}
-    >
-      BodyMonospace
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-Body_aye3wz"
-      style={Object {}}
-    >
-      Body
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-LabelLarge_19qk49e"
-      style={Object {}}
-    >
-      LabelLarge
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-LabelMedium_1y2bm6p"
-      style={Object {}}
-    >
-      LabelMedium
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-LabelSmall_xwaspk"
-      style={Object {}}
-    >
-      LabelSmall
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-LabelXSmall_1ot4900"
-      style={Object {}}
-    >
-      LabelXSmall
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-Caption_1d6h637"
-      style={Object {}}
-    >
-      Caption
-    </span>
-  </div>
-  <div>
-    <span
-      className="text_f1191h-o_O-Footnote_1h6ehge"
-      style={Object {}}
-    >
-      Footnote
-    </span>
-  </div>
->>>>>>> 9cb8424e83d361ecbc673fd78b0fb7c24bce3e05
 </div>
 `;
 
@@ -1836,11 +1705,7 @@ exports[`Storyshots Typography/Footnote light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
 <h5
-<<<<<<< HEAD
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_18zoeff"
-=======
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1wo4u3q"
->>>>>>> 9cb8424e83d361ecbc673fd78b0fb7c24bce3e05
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1fsnykj"
   style={Object {}}
 >
   HeadingLarge
@@ -1849,11 +1714,7 @@ exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge default 1`] = `
 <h2
-<<<<<<< HEAD
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_18zoeff"
-=======
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1wo4u3q"
->>>>>>> 9cb8424e83d361ecbc673fd78b0fb7c24bce3e05
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1fsnykj"
   style={Object {}}
 >
   HeadingLarge
@@ -1862,11 +1723,7 @@ exports[`Storyshots Typography/HeadingLarge default 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 <h2
-<<<<<<< HEAD
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_18zoeff-o_O-lightOnDark_lsccso"
-=======
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1wo4u3q-o_O-lightOnDark_lsccso"
->>>>>>> 9cb8424e83d361ecbc673fd78b0fb7c24bce3e05
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1fsnykj-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   HeadingLarge
@@ -1875,11 +1732,7 @@ exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
 <h5
-<<<<<<< HEAD
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1w260ny"
-=======
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_3zbco9"
->>>>>>> 9cb8424e83d361ecbc673fd78b0fb7c24bce3e05
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1dhg170"
   style={Object {}}
 >
   HeadingMedium
@@ -1888,11 +1741,7 @@ exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium default 1`] = `
 <h3
-<<<<<<< HEAD
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1w260ny"
-=======
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_3zbco9"
->>>>>>> 9cb8424e83d361ecbc673fd78b0fb7c24bce3e05
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1dhg170"
   style={Object {}}
 >
   HeadingMedium
@@ -1901,11 +1750,7 @@ exports[`Storyshots Typography/HeadingMedium default 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium light on dark 1`] = `
 <h3
-<<<<<<< HEAD
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1w260ny-o_O-lightOnDark_lsccso"
-=======
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_3zbco9-o_O-lightOnDark_lsccso"
->>>>>>> 9cb8424e83d361ecbc673fd78b0fb7c24bce3e05
+  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1dhg170-o_O-lightOnDark_lsccso"
   style={Object {}}
 >
   HeadingMedium
