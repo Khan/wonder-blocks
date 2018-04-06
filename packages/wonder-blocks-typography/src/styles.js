@@ -42,16 +42,22 @@ const styles = StyleSheet.create({
             lineHeight: "32px",
         },
         [mobile]: {
-            fontSize: 22,
-            lineHeight: "26px",
+            fontSize: 24,
+            lineHeight: "28px",
         },
     },
     HeadingMedium: {
         ...common,
         fontFamily: "Lato",
         fontWeight: Bold,
-        fontSize: 24,
-        lineHeight: "28px",
+        [desktop]: {
+            fontSize: 24,
+            lineHeight: "28px",
+        },
+        [mobile]: {
+            fontSize: 22,
+            lineHeight: "26px",
+        },
     },
     HeadingSmall: {
         ...common,
