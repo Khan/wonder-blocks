@@ -8,8 +8,13 @@ const Black = 900;
 const mobile = "@media (max-width: 1023px)";
 const desktop = "@media (min-width: 1024px)";
 
+const common = {
+    display: "block",
+};
+
 const styles = StyleSheet.create({
     Title: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Black,
         [desktop]: {
@@ -22,12 +27,14 @@ const styles = StyleSheet.create({
         },
     },
     Tagline: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Regular,
         fontSize: 20,
         lineHeight: "24px",
     },
     HeadingLarge: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Bold,
         [desktop]: {
@@ -40,6 +47,7 @@ const styles = StyleSheet.create({
         },
     },
     HeadingMedium: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Bold,
         [desktop]: {
@@ -52,12 +60,14 @@ const styles = StyleSheet.create({
         },
     },
     HeadingSmall: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Bold,
         fontSize: 20,
         lineHeight: "24px",
     },
     HeadingXSmall: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Bold,
         fontSize: 12,
@@ -67,6 +77,7 @@ const styles = StyleSheet.create({
     },
     BodySerifBlock: {
         // TODO(alex): Use Minion Pro here
+        ...common,
         fontFamily: "serif",
         fontWeight: Regular,
         fontSize: 22,
@@ -74,54 +85,63 @@ const styles = StyleSheet.create({
     },
     BodySerif: {
         // TODO(alex): Use Minion Pro here
+        ...common,
         fontFamily: "serif",
         fontWeight: Regular,
         fontSize: 18,
         lineHeight: "22px",
     },
     BodyMonospace: {
+        ...common,
         fontFamily: "Inconsolata",
         fontWeight: Regular,
         fontSize: 17,
         lineHeight: "22px",
     },
     Body: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Regular,
         fontSize: 16,
         lineHeight: "22px",
     },
     LabelLarge: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Bold,
         fontSize: 16,
         lineHeight: "20px",
     },
     LabelMedium: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Regular,
         fontSize: 16,
         lineHeight: "20px",
     },
     LabelSmall: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Regular,
         fontSize: 14,
         lineHeight: "18px",
     },
     LabelXSmall: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Regular,
         fontSize: 12,
         lineHeight: "16px",
     },
     Caption: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Regular,
         fontSize: 14,
         lineHeight: "20px",
     },
     Footnote: {
+        ...common,
         fontFamily: "Lato",
         fontWeight: Regular,
         fontSize: 12,

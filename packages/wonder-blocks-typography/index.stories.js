@@ -30,9 +30,7 @@ storiesOf("Typography", module).addWithJSX("all", () => (
     <div>
         {componentNames.map(componentName => {
             const Component = Typography[componentName];
-            return <div key={componentName}>
-                <Component>{componentName}</Component>
-            </div>;
+            return <Component key={componentName}>{componentName}</Component>;
         })}
     </div>
 ));
