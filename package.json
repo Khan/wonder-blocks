@@ -8,7 +8,7 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build:storybook": "build-storybook -c .storybook -o docs"
+    "build:storybook": "build-storybook -c .storybook -o docs && git add docs"
   },
   "author": "",
   "license": "MIT",
@@ -26,6 +26,7 @@
     "enzyme-adapter-react-15": "^1.0.5",
     "jest": "^22.4.2",
     "lerna": "^2.9.0",
+    "pre-commit": "^1.2.2",
     "react-test-renderer": "^15.3.0",
     "storybook-addon-jsx": "^5.3.0"
   },
@@ -40,5 +41,9 @@
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     }
-  }
+  },
+  "pre-commit": [
+    "test",
+    "build:storybook"
+  ]
 }
