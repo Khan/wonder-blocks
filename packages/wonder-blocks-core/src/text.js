@@ -1,9 +1,9 @@
 // @flow
-import React, {Component} from "react";
+import React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "./util.js";
-import type TextTag from "./types.js";
+import type {TextTag} from "./types.js";
 
 type Props = {
     style?: any,
@@ -29,9 +29,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class Text extends Component {
-    props: Props;
-
+export default class Text extends React.Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -44,10 +42,12 @@ export default class Text extends Component {
             this.props.style,
         ]);
 
+        const Tag = this.props.tag;
+
         return (
-            <this.props.tag style={style} className={className}>
+            <Tag style={style} className={className}>
                 {this.props.children}
-            </this.props.tag>
+            </Tag>
         );
     }
 }

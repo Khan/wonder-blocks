@@ -8,9 +8,7 @@ import type {Props} from "./types.js";
 
 // TODO(alex): Once style prop validation works, if all of the style prop flow
 //             types are the same then switch to using functional components.
-export class Title extends Component {
-    props: Props;
-
+export class Title extends Component<Props> {
     static defaultProps = {
         tag: "h1",
     };
@@ -25,9 +23,7 @@ export class Title extends Component {
     }
 }
 
-export class Tagline extends Component {
-    props: Props;
-
+export class Tagline extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -42,9 +38,7 @@ export class Tagline extends Component {
     }
 }
 
-export class HeadingLarge extends Component {
-    props: Props;
-
+export class HeadingLarge extends Component<Props> {
     static defaultProps = {
         tag: "h2",
     };
@@ -59,9 +53,7 @@ export class HeadingLarge extends Component {
     }
 }
 
-export class HeadingMedium extends Component {
-    props: Props;
-
+export class HeadingMedium extends Component<Props> {
     static defaultProps = {
         tag: "h3",
     };
@@ -76,9 +68,7 @@ export class HeadingMedium extends Component {
     }
 }
 
-export class HeadingSmall extends Component {
-    props: Props;
-
+export class HeadingSmall extends Component<Props> {
     static defaultProps = {
         tag: "h4",
     };
@@ -93,9 +83,7 @@ export class HeadingSmall extends Component {
     }
 }
 
-export class HeadingXSmall extends Component {
-    props: Props;
-
+export class HeadingXSmall extends Component<Props> {
     static defaultProps = {
         tag: "h4",
     };
@@ -110,9 +98,7 @@ export class HeadingXSmall extends Component {
     }
 }
 
-export class BodySerifBlock extends Component {
-    props: Props;
-
+export class BodySerifBlock extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -127,9 +113,7 @@ export class BodySerifBlock extends Component {
     }
 }
 
-export class BodySerif extends Component {
-    props: Props;
-
+export class BodySerif extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -144,9 +128,7 @@ export class BodySerif extends Component {
     }
 }
 
-export class BodyMonospace extends Component {
-    props: Props;
-
+export class BodyMonospace extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -161,9 +143,7 @@ export class BodyMonospace extends Component {
     }
 }
 
-export class Body extends Component {
-    props: Props;
-
+export class Body extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -179,9 +159,7 @@ export class Body extends Component {
 }
 
 // TODO(kevinb): consider making labels block level elements
-export class LabelLarge extends Component {
-    props: Props;
-
+export class LabelLarge extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -196,9 +174,7 @@ export class LabelLarge extends Component {
     }
 }
 
-export class LabelMedium extends Component {
-    props: Props;
-
+export class LabelMedium extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -213,9 +189,7 @@ export class LabelMedium extends Component {
     }
 }
 
-export class LabelSmall extends Component {
-    props: Props;
-
+export class LabelSmall extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -230,10 +204,8 @@ export class LabelSmall extends Component {
     }
 }
 
-export class LabelXSmall extends Component {
-    props: Props;
-
-    static defaultProps = {
+export class LabelXSmall extends Component<Props> {
+   static defaultProps = {
         tag: "span",
     };
 
@@ -247,9 +219,7 @@ export class LabelXSmall extends Component {
     }
 }
 
-export class Caption extends Component {
-    props: Props;
-
+export class Caption extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };
@@ -264,9 +234,7 @@ export class Caption extends Component {
     }
 }
 
-export class Footnote extends Component {
-    props: Props;
-
+export class Footnote extends Component<Props> {
     static defaultProps = {
         tag: "span",
     };

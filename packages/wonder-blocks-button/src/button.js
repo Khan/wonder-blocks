@@ -1,5 +1,5 @@
 // @flow
-import React, {Component} from "react";
+import React from "react";
 import {StyleSheet, css} from "aphrodite";
 
 import Color from "wonder-blocks-color";
@@ -7,10 +7,10 @@ import {LabelLarge} from "wonder-blocks-typography";
 
 type Props = {
     color?: "blue" | "green" | "gold" | "red",
-    onClick?: (e: SyntheticEvent) => void,
+    onClick?: (e: SyntheticEvent<MouseEvent | TouchEvent>) => void,
 };
 
-export default class Button extends Component {
+export default class Button extends React.Component<Props> {
     props: Props;
 
     render() {
