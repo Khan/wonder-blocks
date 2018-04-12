@@ -5,6 +5,5 @@ install:
   - npm install
   - npm install -g codecov
 script:
-  - npm flow
   - npm test
   - npm run coverage && codecov
