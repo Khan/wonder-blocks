@@ -1,11 +1,11 @@
 // @flow
-import React, {Component} from "react";
+import React from "react";
 
 import {processStyleList} from "./util.js";
 
 import type {Props} from "./types.js";
 
-export default class View extends Component {
+export default class View extends React.Component<Props> {
     props: Props;
 
     render() {
