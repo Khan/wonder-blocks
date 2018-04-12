@@ -1,28 +1,33 @@
 // @flow
+import {mix, fade} from "./utils.js";
+
+const offBlack = "#21242c";
+const white = "#ffffff";
+
 const Color = {
     // Product
-    blue: "#1865F2",
-    green: "#00A60E",
-    gold: "#FFB100",
-    red: "#D92916",
+    blue: "#1865f2",
+    green: "#00a60e",
+    gold: "#ffb100",
+    red: "#d92916",
 
     // Neutral
-    offBlack: "#21242C",
-    offBlack64: "rgba(33, 36, 44, 0.64)",
-    offBlack50: "rgba(33, 36, 44, 0.5)",
-    offBlack32: "rgba(33, 36, 44, 0.32)",
-    offBlack16: "rgba(33, 36, 44, 0.16)",
-    offBlack8: "rgba(33, 36, 44, 0.08)",
+    offBlack,
+    offBlack64: fade(offBlack, 0.64),
+    offBlack50: fade(offBlack, 0.5),
+    offBlack32: fade(offBlack, 0.32),
+    offBlack16: fade(offBlack, 0.16),
+    offBlack8: fade(offBlack, 0.08),
 
-    offWhite: "#F7F8FA",
-    white: "#FFFFFF",
-    white64: "rgba(255, 255, 255, 0.64)",
+    offWhite: "#f7f8fa",
+    white,
+    white64: fade(white, 0.64),
 
     // Brand
-    darkBlue: "#0A2A66",
-    teal: "#00E5AE",
-    lightBlue: "#37C5FD",
-    pink: "#FA50AE",
+    darkBlue: "#0a2a66",
+    teal: "#00e5ae",
+    lightBlue: "#37c5fd",
+    pink: "#fa50ae",
 };
 
-export {Color as default};
+export {Color as default, mix, fade};
