@@ -74,6 +74,6 @@ export const mix = (color: string, background: string) => {
         r: colorObj.r * colorObj.a + bgObj.r * (1 - colorObj.a),
         g: colorObj.g * colorObj.a + bgObj.g * (1 - colorObj.a),
         b: colorObj.b * colorObj.a + bgObj.b * (1 - colorObj.a),
-        a: 1,
+        a: bgObj.a,
     });
 };
