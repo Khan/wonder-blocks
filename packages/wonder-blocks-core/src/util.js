@@ -33,7 +33,14 @@ export function processStyleList<T: Object>(style?: StyleType<T>) {
     flatten(style).forEach((child: T) => {
         // Check for aphrodite internal property
         if ((child: any)._definition) {
-            stylesheetStyles.push(child);
+            if (
+                typeof process !== "undefined" &&
+                process.env.STORYBOOK_INLINE_APHRODITE
+            ) {
+                inlineStyles.push(child._definition);
+            } else {
+                stylesheetStyles.push(child);
+            }
         } else {
             inlineStyles.push(child);
         }

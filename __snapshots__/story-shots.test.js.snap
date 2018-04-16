@@ -6,8 +6,18 @@ exports[`Storyshots Button blue button 1`] = `
   onClick={undefined}
 >
   <span
-    className="text_f1191h-o_O-LabelLarge_1py5n5j"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
   >
     Hello, world!
   </span>
@@ -20,8 +30,18 @@ exports[`Storyshots Button gold button 1`] = `
   onClick={undefined}
 >
   <span
-    className="text_f1191h-o_O-LabelLarge_1py5n5j"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
   >
     Hello, world!
   </span>
@@ -34,8 +54,18 @@ exports[`Storyshots Button green button 1`] = `
   onClick={undefined}
 >
   <span
-    className="text_f1191h-o_O-LabelLarge_1py5n5j"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
   >
     Hello, world!
   </span>
@@ -48,8 +78,18 @@ exports[`Storyshots Button red button 1`] = `
   onClick={undefined}
 >
   <span
-    className="text_f1191h-o_O-LabelLarge_1py5n5j"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
   >
     Hello, world!
   </span>
@@ -2314,8 +2354,13 @@ exports[`Storyshots Color Color Utilities 1`] = `
 exports[`Storyshots Core all 1`] = `
 <div>
   <span
-    className="text_f1191h"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+      }
+    }
   >
     Text
   </span>
@@ -2331,12 +2376,21 @@ exports[`Storyshots Core all 1`] = `
 exports[`Storyshots Core nested text inherits color 1`] = `
 <div>
   <div
-    className="blue_1tsdo2i"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "color": "blue",
+      }
+    }
   >
     <span
-      className="text_f1191h"
-      style={Object {}}
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+        }
+      }
     >
       Text
     </span>
@@ -2346,8 +2400,14 @@ exports[`Storyshots Core nested text inherits color 1`] = `
 
 exports[`Storyshots Core/Text aphrodite styles 1`] = `
 <span
-  className="text_f1191h-o_O-pink_th4aeu"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "backgroundColor": "pink",
+    }
+  }
 >
   Text
 </span>
@@ -2355,8 +2415,15 @@ exports[`Storyshots Core/Text aphrodite styles 1`] = `
 
 exports[`Storyshots Core/Text multiple Aphrodite styles 1`] = `
 <span
-  className="text_f1191h-o_O-pink_th4aeu-o_O-bold_hq5slr"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "backgroundColor": "pink",
+      "fontWeight": "bold",
+    }
+  }
 >
   Text
 </span>
@@ -2365,14 +2432,26 @@ exports[`Storyshots Core/Text multiple Aphrodite styles 1`] = `
 exports[`Storyshots Core/Text multiple text elements 1`] = `
 <div>
   <span
-    className="text_f1191h-o_O-bold_hq5slr"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "fontWeight": "bold",
+      }
+    }
   >
     Text
   </span>
   <span
-    className="text_f1191h-o_O-pink_th4aeu"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "backgroundColor": "pink",
+      }
+    }
   >
     Text
   </span>
@@ -2381,8 +2460,13 @@ exports[`Storyshots Core/Text multiple text elements 1`] = `
 
 exports[`Storyshots Core/Text text 1`] = `
 <span
-  className="text_f1191h"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+    }
+  }
 >
   Text
 </span>
@@ -2390,8 +2474,12 @@ exports[`Storyshots Core/Text text 1`] = `
 
 exports[`Storyshots Core/View aphrodite styles 1`] = `
 <div
-  className="pink_th4aeu"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "backgroundColor": "pink",
+    }
+  }
 >
   View
 </div>
@@ -2399,8 +2487,13 @@ exports[`Storyshots Core/View aphrodite styles 1`] = `
 
 exports[`Storyshots Core/View multiple Aphrodite styles 1`] = `
 <div
-  className="pink_th4aeu-o_O-bold_hq5slr"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "backgroundColor": "pink",
+      "fontWeight": "bold",
+    }
+  }
 >
   Text
 </div>
@@ -2409,14 +2502,22 @@ exports[`Storyshots Core/View multiple Aphrodite styles 1`] = `
 exports[`Storyshots Core/View multiple view elements 1`] = `
 <div>
   <div
-    className="bold_hq5slr"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
   >
     Text
   </div>
   <div
-    className="pink_th4aeu"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "backgroundColor": "pink",
+      }
+    }
   >
     Text
   </div>
@@ -2435,98 +2536,288 @@ exports[`Storyshots Core/View view 1`] = `
 exports[`Storyshots Typography all 1`] = `
 <div>
   <h1
-    className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_ms2740"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "@media (max-width: 1023px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "@media (min-width: 1024px)": Object {
+          "fontSize": 36,
+          "lineHeight": "40px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontWeight": 900,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
   >
     Title
   </h1>
   <span
-    className="text_f1191h-o_O-Tagline_l6egb9"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 20,
+        "fontWeight": 400,
+        "lineHeight": "24px",
+      }
+    }
   >
     Tagline
   </span>
   <h2
-    className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1fsnykj"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "@media (max-width: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "@media (min-width: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
   >
     HeadingLarge
   </h2>
   <h3
-    className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1dhg170"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "@media (max-width: 1023px)": Object {
+          "fontSize": 22,
+          "lineHeight": "26px",
+        },
+        "@media (min-width: 1024px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
   >
     HeadingMedium
   </h3>
   <h4
-    className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_sfjk2e"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
   >
     HeadingSmall
   </h4>
   <h4
-    className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_1owftwm"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "letterSpacing": 0.6,
+        "lineHeight": "16px",
+        "marginBottom": 0,
+        "marginTop": 0,
+        "textTransform": "uppercase",
+      }
+    }
   >
     HeadingXSmall
   </h4>
   <span
-    className="text_f1191h-o_O-BodySerifBlock_145unc6"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "serif",
+        "fontSize": 22,
+        "fontWeight": 400,
+        "lineHeight": "28px",
+      }
+    }
   >
     BodySerifBlock
   </span>
   <span
-    className="text_f1191h-o_O-BodySerif_1hczmt"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "serif",
+        "fontSize": 18,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
   >
     BodySerif
   </span>
   <span
-    className="text_f1191h-o_O-BodyMonospace_1xc1y8w"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
   >
     BodyMonospace
   </span>
   <span
-    className="text_f1191h-o_O-Body_1k617xy"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
   >
     Body
   </span>
   <span
-    className="text_f1191h-o_O-LabelLarge_1py5n5j"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
   >
     LabelLarge
   </span>
   <span
-    className="text_f1191h-o_O-LabelMedium_1dopp6c"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
   >
     LabelMedium
   </span>
   <span
-    className="text_f1191h-o_O-LabelSmall_zytyd9"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
   >
     LabelSmall
   </span>
   <span
-    className="text_f1191h-o_O-LabelXSmall_kib3ed"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "16px",
+      }
+    }
   >
     LabelXSmall
   </span>
   <span
-    className="text_f1191h-o_O-Caption_1bahyye"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
   >
     Caption
   </span>
   <span
-    className="text_f1191h-o_O-Footnote_1m8k62j"
-    style={Object {}}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
   >
     Footnote
   </span>
@@ -2535,8 +2826,20 @@ exports[`Storyshots Typography all 1`] = `
 
 exports[`Storyshots Typography/Body as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Body_1k617xy"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   Body
 </h5>
@@ -2544,8 +2847,18 @@ exports[`Storyshots Typography/Body as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/Body default 1`] = `
 <span
-  className="text_f1191h-o_O-Body_1k617xy"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+    }
+  }
 >
   Body
 </span>
@@ -2553,8 +2866,20 @@ exports[`Storyshots Typography/Body default 1`] = `
 
 exports[`Storyshots Typography/Body light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-Body_1k617xy-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+    }
+  }
 >
   Body
 </span>
@@ -2562,8 +2887,20 @@ exports[`Storyshots Typography/Body light on dark 1`] = `
 
 exports[`Storyshots Typography/BodyMonospace as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-BodyMonospace_1xc1y8w"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Inconsolata",
+      "fontSize": 17,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   BodyMonospace
 </h5>
@@ -2571,8 +2908,18 @@ exports[`Storyshots Typography/BodyMonospace as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/BodyMonospace default 1`] = `
 <span
-  className="text_f1191h-o_O-BodyMonospace_1xc1y8w"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Inconsolata",
+      "fontSize": 17,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+    }
+  }
 >
   BodyMonospace
 </span>
@@ -2580,8 +2927,20 @@ exports[`Storyshots Typography/BodyMonospace default 1`] = `
 
 exports[`Storyshots Typography/BodyMonospace light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-BodyMonospace_1xc1y8w-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Inconsolata",
+      "fontSize": 17,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+    }
+  }
 >
   BodyMonospace
 </span>
@@ -2589,8 +2948,20 @@ exports[`Storyshots Typography/BodyMonospace light on dark 1`] = `
 
 exports[`Storyshots Typography/BodySerif as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-BodySerif_1hczmt"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "serif",
+      "fontSize": 18,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   BodySerif
 </h5>
@@ -2598,8 +2969,18 @@ exports[`Storyshots Typography/BodySerif as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/BodySerif default 1`] = `
 <span
-  className="text_f1191h-o_O-BodySerif_1hczmt"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "serif",
+      "fontSize": 18,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+    }
+  }
 >
   BodySerif
 </span>
@@ -2607,8 +2988,20 @@ exports[`Storyshots Typography/BodySerif default 1`] = `
 
 exports[`Storyshots Typography/BodySerif light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-BodySerif_1hczmt-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "serif",
+      "fontSize": 18,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+    }
+  }
 >
   BodySerif
 </span>
@@ -2616,8 +3009,20 @@ exports[`Storyshots Typography/BodySerif light on dark 1`] = `
 
 exports[`Storyshots Typography/BodySerifBlock as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-BodySerifBlock_145unc6"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "serif",
+      "fontSize": 22,
+      "fontWeight": 400,
+      "lineHeight": "28px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   BodySerifBlock
 </h5>
@@ -2625,8 +3030,18 @@ exports[`Storyshots Typography/BodySerifBlock as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/BodySerifBlock default 1`] = `
 <span
-  className="text_f1191h-o_O-BodySerifBlock_145unc6"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "serif",
+      "fontSize": 22,
+      "fontWeight": 400,
+      "lineHeight": "28px",
+    }
+  }
 >
   BodySerifBlock
 </span>
@@ -2634,8 +3049,20 @@ exports[`Storyshots Typography/BodySerifBlock default 1`] = `
 
 exports[`Storyshots Typography/BodySerifBlock light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-BodySerifBlock_145unc6-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "serif",
+      "fontSize": 22,
+      "fontWeight": 400,
+      "lineHeight": "28px",
+    }
+  }
 >
   BodySerifBlock
 </span>
@@ -2643,8 +3070,20 @@ exports[`Storyshots Typography/BodySerifBlock light on dark 1`] = `
 
 exports[`Storyshots Typography/Caption as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Caption_1bahyye"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": "20px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   Caption
 </h5>
@@ -2652,8 +3091,18 @@ exports[`Storyshots Typography/Caption as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/Caption default 1`] = `
 <span
-  className="text_f1191h-o_O-Caption_1bahyye"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": "20px",
+    }
+  }
 >
   Caption
 </span>
@@ -2661,8 +3110,20 @@ exports[`Storyshots Typography/Caption default 1`] = `
 
 exports[`Storyshots Typography/Caption light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-Caption_1bahyye-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": "20px",
+    }
+  }
 >
   Caption
 </span>
@@ -2670,8 +3131,20 @@ exports[`Storyshots Typography/Caption light on dark 1`] = `
 
 exports[`Storyshots Typography/Footnote as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Footnote_1m8k62j"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 400,
+      "lineHeight": "18px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   Footnote
 </h5>
@@ -2679,8 +3152,18 @@ exports[`Storyshots Typography/Footnote as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/Footnote default 1`] = `
 <span
-  className="text_f1191h-o_O-Footnote_1m8k62j"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 400,
+      "lineHeight": "18px",
+    }
+  }
 >
   Footnote
 </span>
@@ -2688,8 +3171,20 @@ exports[`Storyshots Typography/Footnote default 1`] = `
 
 exports[`Storyshots Typography/Footnote light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-Footnote_1m8k62j-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 400,
+      "lineHeight": "18px",
+    }
+  }
 >
   Footnote
 </span>
@@ -2697,8 +3192,26 @@ exports[`Storyshots Typography/Footnote light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1fsnykj"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 24,
+        "lineHeight": "28px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 28,
+        "lineHeight": "32px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 700,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingLarge
 </h5>
@@ -2706,8 +3219,26 @@ exports[`Storyshots Typography/HeadingLarge as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge default 1`] = `
 <h2
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1fsnykj"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 24,
+        "lineHeight": "28px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 28,
+        "lineHeight": "32px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 700,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingLarge
 </h2>
@@ -2715,8 +3246,28 @@ exports[`Storyshots Typography/HeadingLarge default 1`] = `
 
 exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 <h2
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingLarge_1fsnykj-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 24,
+        "lineHeight": "28px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 28,
+        "lineHeight": "32px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 700,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingLarge
 </h2>
@@ -2724,8 +3275,26 @@ exports[`Storyshots Typography/HeadingLarge light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1dhg170"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 22,
+        "lineHeight": "26px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 24,
+        "lineHeight": "28px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 700,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingMedium
 </h5>
@@ -2733,8 +3302,26 @@ exports[`Storyshots Typography/HeadingMedium as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium default 1`] = `
 <h3
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1dhg170"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 22,
+        "lineHeight": "26px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 24,
+        "lineHeight": "28px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 700,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingMedium
 </h3>
@@ -2742,8 +3329,28 @@ exports[`Storyshots Typography/HeadingMedium default 1`] = `
 
 exports[`Storyshots Typography/HeadingMedium light on dark 1`] = `
 <h3
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingMedium_1dhg170-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 22,
+        "lineHeight": "26px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 24,
+        "lineHeight": "28px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 700,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingMedium
 </h3>
@@ -2751,8 +3358,20 @@ exports[`Storyshots Typography/HeadingMedium light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingSmall as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_sfjk2e"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 20,
+      "fontWeight": 700,
+      "lineHeight": "24px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingSmall
 </h5>
@@ -2760,8 +3379,20 @@ exports[`Storyshots Typography/HeadingSmall as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingSmall default 1`] = `
 <h4
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_sfjk2e"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 20,
+      "fontWeight": 700,
+      "lineHeight": "24px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingSmall
 </h4>
@@ -2769,8 +3400,22 @@ exports[`Storyshots Typography/HeadingSmall default 1`] = `
 
 exports[`Storyshots Typography/HeadingSmall light on dark 1`] = `
 <h4
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingSmall_sfjk2e-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 20,
+      "fontWeight": 700,
+      "lineHeight": "24px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   HeadingSmall
 </h4>
@@ -2778,8 +3423,22 @@ exports[`Storyshots Typography/HeadingSmall light on dark 1`] = `
 
 exports[`Storyshots Typography/HeadingXSmall as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_1owftwm"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.6,
+      "lineHeight": "16px",
+      "marginBottom": 0,
+      "marginTop": 0,
+      "textTransform": "uppercase",
+    }
+  }
 >
   HeadingXSmall
 </h5>
@@ -2787,8 +3446,22 @@ exports[`Storyshots Typography/HeadingXSmall as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/HeadingXSmall default 1`] = `
 <h4
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_1owftwm"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.6,
+      "lineHeight": "16px",
+      "marginBottom": 0,
+      "marginTop": 0,
+      "textTransform": "uppercase",
+    }
+  }
 >
   HeadingXSmall
 </h4>
@@ -2796,8 +3469,24 @@ exports[`Storyshots Typography/HeadingXSmall default 1`] = `
 
 exports[`Storyshots Typography/HeadingXSmall light on dark 1`] = `
 <h4
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-HeadingXSmall_1owftwm-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 700,
+      "letterSpacing": 0.6,
+      "lineHeight": "16px",
+      "marginBottom": 0,
+      "marginTop": 0,
+      "textTransform": "uppercase",
+    }
+  }
 >
   HeadingXSmall
 </h4>
@@ -2805,8 +3494,20 @@ exports[`Storyshots Typography/HeadingXSmall light on dark 1`] = `
 
 exports[`Storyshots Typography/LabelLarge as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-LabelLarge_1py5n5j"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 700,
+      "lineHeight": "20px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   LabelLarge
 </h5>
@@ -2814,8 +3515,18 @@ exports[`Storyshots Typography/LabelLarge as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/LabelLarge default 1`] = `
 <span
-  className="text_f1191h-o_O-LabelLarge_1py5n5j"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 700,
+      "lineHeight": "20px",
+    }
+  }
 >
   LabelLarge
 </span>
@@ -2823,8 +3534,20 @@ exports[`Storyshots Typography/LabelLarge default 1`] = `
 
 exports[`Storyshots Typography/LabelLarge light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-LabelLarge_1py5n5j-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 700,
+      "lineHeight": "20px",
+    }
+  }
 >
   LabelLarge
 </span>
@@ -2832,8 +3555,20 @@ exports[`Storyshots Typography/LabelLarge light on dark 1`] = `
 
 exports[`Storyshots Typography/LabelMedium as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-LabelMedium_1dopp6c"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "lineHeight": "20px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   LabelMedium
 </h5>
@@ -2841,8 +3576,18 @@ exports[`Storyshots Typography/LabelMedium as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/LabelMedium default 1`] = `
 <span
-  className="text_f1191h-o_O-LabelMedium_1dopp6c"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "lineHeight": "20px",
+    }
+  }
 >
   LabelMedium
 </span>
@@ -2850,8 +3595,20 @@ exports[`Storyshots Typography/LabelMedium default 1`] = `
 
 exports[`Storyshots Typography/LabelMedium light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-LabelMedium_1dopp6c-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "lineHeight": "20px",
+    }
+  }
 >
   LabelMedium
 </span>
@@ -2859,8 +3616,20 @@ exports[`Storyshots Typography/LabelMedium light on dark 1`] = `
 
 exports[`Storyshots Typography/LabelSmall as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-LabelSmall_zytyd9"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": "18px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   LabelSmall
 </h5>
@@ -2868,8 +3637,18 @@ exports[`Storyshots Typography/LabelSmall as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/LabelSmall default 1`] = `
 <span
-  className="text_f1191h-o_O-LabelSmall_zytyd9"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": "18px",
+    }
+  }
 >
   LabelSmall
 </span>
@@ -2877,8 +3656,20 @@ exports[`Storyshots Typography/LabelSmall default 1`] = `
 
 exports[`Storyshots Typography/LabelSmall light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-LabelSmall_zytyd9-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": "18px",
+    }
+  }
 >
   LabelSmall
 </span>
@@ -2886,8 +3677,20 @@ exports[`Storyshots Typography/LabelSmall light on dark 1`] = `
 
 exports[`Storyshots Typography/LabelXSmall as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-LabelXSmall_kib3ed"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 400,
+      "lineHeight": "16px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   LabelXSmall
 </h5>
@@ -2895,8 +3698,18 @@ exports[`Storyshots Typography/LabelXSmall as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/LabelXSmall default 1`] = `
 <span
-  className="text_f1191h-o_O-LabelXSmall_kib3ed"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 400,
+      "lineHeight": "16px",
+    }
+  }
 >
   LabelXSmall
 </span>
@@ -2904,8 +3717,20 @@ exports[`Storyshots Typography/LabelXSmall default 1`] = `
 
 exports[`Storyshots Typography/LabelXSmall light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-LabelXSmall_kib3ed-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 12,
+      "fontWeight": 400,
+      "lineHeight": "16px",
+    }
+  }
 >
   LabelXSmall
 </span>
@@ -2913,8 +3738,20 @@ exports[`Storyshots Typography/LabelXSmall light on dark 1`] = `
 
 exports[`Storyshots Typography/Tagline as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Tagline_l6egb9"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 20,
+      "fontWeight": 400,
+      "lineHeight": "24px",
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   Tagline
 </h5>
@@ -2922,8 +3759,18 @@ exports[`Storyshots Typography/Tagline as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/Tagline default 1`] = `
 <span
-  className="text_f1191h-o_O-Tagline_l6egb9"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 20,
+      "fontWeight": 400,
+      "lineHeight": "24px",
+    }
+  }
 >
   Tagline
 </span>
@@ -2931,8 +3778,20 @@ exports[`Storyshots Typography/Tagline default 1`] = `
 
 exports[`Storyshots Typography/Tagline light on dark 1`] = `
 <span
-  className="text_f1191h-o_O-Tagline_l6egb9-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontSize": 20,
+      "fontWeight": 400,
+      "lineHeight": "24px",
+    }
+  }
 >
   Tagline
 </span>
@@ -2940,8 +3799,26 @@ exports[`Storyshots Typography/Tagline light on dark 1`] = `
 
 exports[`Storyshots Typography/Title as an h5 tag 1`] = `
 <h5
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_ms2740"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 28,
+        "lineHeight": "32px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 36,
+        "lineHeight": "40px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 900,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   Title
 </h5>
@@ -2949,8 +3826,26 @@ exports[`Storyshots Typography/Title as an h5 tag 1`] = `
 
 exports[`Storyshots Typography/Title default 1`] = `
 <h1
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_ms2740"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 28,
+        "lineHeight": "32px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 36,
+        "lineHeight": "40px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 900,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   Title
 </h1>
@@ -2958,8 +3853,28 @@ exports[`Storyshots Typography/Title default 1`] = `
 
 exports[`Storyshots Typography/Title light on dark 1`] = `
 <h1
-  className="text_f1191h-o_O-header_1sc4ubv-o_O-Title_ms2740-o_O-lightOnDark_1y4oyso"
-  style={Object {}}
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 28,
+        "lineHeight": "32px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 36,
+        "lineHeight": "40px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "background": "#21242c",
+      "color": "#ffffff",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 900,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
 >
   Title
 </h1>
