@@ -8,7 +8,7 @@
     "flow": "flow",
     "jest": "STORYBOOK_INLINE_APHRODITE=1 jest",
     "test": "npm run flow && npm run jest",
-    "coverage": "jest --coverage",
+    "coverage": "STORYBOOK_INLINE_APHRODITE=1 jest --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build:storybook": "build-storybook -c .storybook -o docs && git add docs"
   },
