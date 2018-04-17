@@ -5,3 +5,5 @@
 <PROJECT_ROOT>/node_modules/react-element-to-jsx-string
 <PROJECT_ROOT>/node_modules/react-style-proptype
 <PROJECT_ROOT>/node_modules/config-chain
+<PROJECT_ROOT>/node_modules/jss
+<PROJECT_ROOT>/node_modules/findup

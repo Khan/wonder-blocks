@@ -11,8 +11,6 @@ type Props = {
 };
 
 export default class Button extends React.Component<Props> {
-    props: Props;
-
     render() {
         return (
             <a
