@@ -10,7 +10,6 @@
     "test": "npm run flow && npm run jest",
     "coverage": "STORYBOOK_INLINE_APHRODITE=1 jest --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build:storybook": "build-storybook -c .storybook -o docs && git add docs",
     "styleguidist": "styleguidist server",
     "build:styleguidist": "styleguidist build"
   },
@@ -51,6 +50,6 @@
   },
   "pre-commit": [
     "test",
-    "build:storybook"
+    "build:styleguidist"
   ]
 }
