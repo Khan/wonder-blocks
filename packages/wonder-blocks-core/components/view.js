@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
 
-import {processStyleList} from "./util.js";
+import {processStyleList} from "../util/util.js";
 
-import type {Props} from "./types.js";
+import type {Props} from "../util/types.js";
 
 export default class View extends React.Component<Props> {
     props: Props;

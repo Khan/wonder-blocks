@@ -10,7 +10,9 @@
     "test": "npm run flow && npm run jest",
     "coverage": "STORYBOOK_INLINE_APHRODITE=1 jest --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build:storybook": "build-storybook -c .storybook -o docs && git add docs"
+    "build:storybook": "build-storybook -c .storybook -o docs && git add docs",
+    "styleguidist": "styleguidist server",
+    "build:styleguidist": "styleguidist build"
   },
   "author": "",
   "license": "MIT",
@@ -30,8 +32,10 @@
     "jest": "^22.4.2",
     "lerna": "^2.9.0",
     "pre-commit": "^1.2.2",
+    "react-styleguidist": "^7.0.5",
     "react-test-renderer": "^15.3.0",
-    "storybook-addon-jsx": "^5.3.0"
+    "storybook-addon-jsx": "^5.3.0",
+    "webpack-blocks": "^1.0.0"
   },
   "dependencies": {
     "aphrodite": "^1.2.5",

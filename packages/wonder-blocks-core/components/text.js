@@ -2,8 +2,8 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {processStyleList} from "./util.js";
-import type {TextTag} from "./types.js";
+import {processStyleList} from "../util/util.js";
+import type {TextTag} from "../util/types.js";
 
 type Props = {
     style?: any,
