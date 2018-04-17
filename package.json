@@ -11,7 +11,8 @@
     "coverage": "STORYBOOK_INLINE_APHRODITE=1 jest --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "styleguidist": "styleguidist server",
-    "build:styleguidist": "styleguidist build"
+    "build:styleguidist": "styleguidist build",
+    "git-add-docs": "git add docs"
   },
   "author": "",
   "license": "MIT",
@@ -50,6 +51,7 @@
   },
   "pre-commit": [
     "test",
-    "build:styleguidist"
+    "build:styleguidist",
+    "git-add-docs"
   ]
 }
