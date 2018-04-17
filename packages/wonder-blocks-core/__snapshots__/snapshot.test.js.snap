@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-core example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "backgroundColor": "plum",
+      "padding": 32,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "fontFamily": "sans-serif",
+        "fontSize": 24,
+      }
+    }
+  >
+    Hello, world!
+  </span>
+</div>
+`;
