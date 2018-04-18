@@ -6,13 +6,14 @@
   "scripts": {
     "install": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "flow": "flow",
+    "gen-snapshot-tests": "node gen-snapshot-tests.js",
     "jest": "STORYBOOK_INLINE_APHRODITE=1 jest",
-    "test": "npm run flow && npm run jest",
+    "test": "npm run flow && npm run gen-snapshot-tests && npm run jest",
     "coverage": "STORYBOOK_INLINE_APHRODITE=1 jest --coverage",
-    "storybook": "start-storybook -p 9001 -c .storybook",
     "styleguidist": "styleguidist server",
     "build:styleguidist": "styleguidist build",
-    "git-add-docs": "git add docs"
+    "git-add-docs": "git add docs",
+    "git-add-snapshot-tests": "git add packages/*/snapshot.test.js"
   },
   "author": "",
   "license": "MIT",
