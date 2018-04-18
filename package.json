@@ -6,7 +6,7 @@
   "scripts": {
     "install": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "flow": "flow",
-    "gen-snapshot-tests": "node gen-snapshot-tests.js",
+    "gen-snapshot-tests": "node utils/gen-snapshot-tests.js",
     "jest": "STORYBOOK_INLINE_APHRODITE=1 jest",
     "test": "npm run flow && npm run gen-snapshot-tests && npm run jest",
     "coverage": "STORYBOOK_INLINE_APHRODITE=1 jest --coverage",
