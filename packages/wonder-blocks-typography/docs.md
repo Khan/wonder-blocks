@@ -1,20 +1,24 @@
 ```js
-<Title>Title</Title>
-<HeadingLarge>HeadingLarge</HeadingLarge>
-<HeadingMedium>HeadingMedium</HeadingMedium>
-<HeadingSmall>HeadingSmall</HeadingSmall>
-<HeadingXSmall>HeadingXSmall</HeadingXSmall>
-<BodySerifBlock>BodySerifBlock</BodySerifBlock>
-<BodySerif>BodySerif</BodySerif>
-<BodyMonospace>BodyMonospace</BodyMonospace>
-<Body>Body</Body>
-<LabelLarge>LabelLarge</LabelLarge>
-<LabelMedium>LabelMedium</LabelMedium>
-<LabelSmall>LabelSmall</LabelSmall>
-<LabelXSmall>LabelXSmall</LabelXSmall>
-<Tagline>Tagline</Tagline>
-<Caption>Caption</Caption>
-<Footnote>Footnote</Footnote>
+const {View} = require("wonder-blocks-core");
+
+<View>
+    <Title>Title</Title>
+    <HeadingLarge>HeadingLarge</HeadingLarge>
+    <HeadingMedium>HeadingMedium</HeadingMedium>
+    <HeadingSmall>HeadingSmall</HeadingSmall>
+    <HeadingXSmall>HeadingXSmall</HeadingXSmall>
+    <BodySerifBlock>BodySerifBlock</BodySerifBlock>
+    <BodySerif>BodySerif</BodySerif>
+    <BodyMonospace>BodyMonospace</BodyMonospace>
+    <Body>Body</Body>
+    <LabelLarge>LabelLarge</LabelLarge>
+    <LabelMedium>LabelMedium</LabelMedium>
+    <LabelSmall>LabelSmall</LabelSmall>
+    <LabelXSmall>LabelXSmall</LabelXSmall>
+    <Tagline>Tagline</Tagline>
+    <Caption>Caption</Caption>
+    <Footnote>Footnote</Footnote>
+</View>
 ```
 
 You can change the color of text with the `color` prop:

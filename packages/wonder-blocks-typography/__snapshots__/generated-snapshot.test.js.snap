@@ -1,0 +1,323 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-typography example 1 1`] = `
+<div
+  className=""
+  style={Object {}}
+>
+  <h1
+    className=""
+    style={
+      Object {
+        "@media (max-width: 1023px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "@media (min-width: 1024px)": Object {
+          "fontSize": 36,
+          "lineHeight": "40px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontWeight": 900,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Title
+  </h1>
+  <h2
+    className=""
+    style={
+      Object {
+        "@media (max-width: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "@media (min-width: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    HeadingLarge
+  </h2>
+  <h3
+    className=""
+    style={
+      Object {
+        "@media (max-width: 1023px)": Object {
+          "fontSize": 22,
+          "lineHeight": "26px",
+        },
+        "@media (min-width: 1024px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    HeadingMedium
+  </h3>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    HeadingSmall
+  </h4>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "letterSpacing": 0.6,
+        "lineHeight": "16px",
+        "marginBottom": 0,
+        "marginTop": 0,
+        "textTransform": "uppercase",
+      }
+    }
+  >
+    HeadingXSmall
+  </h4>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "serif",
+        "fontSize": 22,
+        "fontWeight": 400,
+        "lineHeight": "28px",
+      }
+    }
+  >
+    BodySerifBlock
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "serif",
+        "fontSize": 18,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    BodySerif
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    BodyMonospace
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Body
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    LabelLarge
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    LabelMedium
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    LabelSmall
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "16px",
+      }
+    }
+  >
+    LabelXSmall
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 20,
+        "fontWeight": 400,
+        "lineHeight": "24px",
+      }
+    }
+  >
+    Tagline
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Caption
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Footnote
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-typography example 2 1`] = `
+<h1
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 28,
+        "lineHeight": "32px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 36,
+        "lineHeight": "40px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "color": "#1865f2",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 900,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
+>
+  Blue Title
+</h1>
+`;

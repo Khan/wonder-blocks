@@ -19,4 +19,4 @@ module.exports = {
             components: "packages/wonder-blocks-core/components/*.js",
         },
     ]
-}
+};
