@@ -107,6 +107,4 @@ for (const section of styleguideConfig.sections) {
         console.warn("no content for section: ");
         console.warn(JSON.stringify(section));
     }
-    
-    const components = section.components;
 }
