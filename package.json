@@ -13,7 +13,7 @@
     "styleguidist": "styleguidist server",
     "build:styleguidist": "styleguidist build",
     "git-add-docs": "git add docs",
-    "git-add-snapshot-tests": "git add packages/*/snapshot.test.js"
+    "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js"
   },
   "author": "",
   "license": "MIT",
@@ -56,6 +56,7 @@
   "pre-commit": [
     "test",
     "build:styleguidist",
-    "git-add-docs"
+    "git-add-docs",
+    "git-add-snapshot-tests"
   ]
 }
