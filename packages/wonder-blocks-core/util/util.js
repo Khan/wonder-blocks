@@ -35,7 +35,7 @@ export function processStyleList<T: Object>(style?: StyleType<T>) {
         if ((child: any)._definition) {
             if (
                 typeof process !== "undefined" &&
-                process.env.STORYBOOK_INLINE_APHRODITE
+                process.env.SNAPSHOT_INLINE_APHRODITE
             ) {
                 inlineStyles.push(child._definition);
             } else {
