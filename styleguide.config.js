@@ -14,6 +14,11 @@ module.exports = {
             content: "packages/wonder-blocks-color/docs.md",
         },
         {
+            name: "Grid",
+            content: "packages/wonder-blocks-grid/docs.md",
+            components: "packages/wonder-blocks-grid/components/*.js",
+        },
+        {
             name: "Core",
             content: "packages/wonder-blocks-core/docs.md",
             components: "packages/wonder-blocks-core/components/*.js",
