@@ -7,6 +7,7 @@ const white = "#ffffff";
 const Color = {
     // Product
     blue: "#1865f2",
+    purple: "#9059ff",
     green: "#00a60e",
     gold: "#ffb100",
     red: "#d92916",
