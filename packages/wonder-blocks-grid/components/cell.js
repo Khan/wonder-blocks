@@ -8,27 +8,7 @@ import FixedWidthCell from "./fixed-width-cell.js";
 
 import type {GridSize} from "../util/sizes.js";
 
-/**
- * A Cell is a form of [FixedWidthCell](#fixedwidthcell) whose width is set
- * based on the width of the specified columns at the current grid size.
- * You will specify the number of columns that you want this component to
- * span at each grid size. This component should only be used as a child
- * of a [Row](#row).
- *
- * This component renders a [View](#view) that
- * uses Flex Box and has a [flex-basis](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis)
- * of the specified "width" and [flex-shrink](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink)
- * of 0.
- *
- * By default (with no properties specified) it will display at all
- * grid sizes. If you specify the `small`, `medium`, `large`, or `width`
- * props then the component will only be shown at those grid sizes and
- * using the specified column width.
- *
- * @version 1.0
- * @since 1.0
- */
-export default class Cell extends React.Component<{
+type Props = {
     /** The number of columns this cell should span on a Small Grid. */
     small?: number,
     /** The number of columns this cell should span on a Medium Grid. */
@@ -51,7 +31,29 @@ export default class Cell extends React.Component<{
           }) => React.Node),
     /** The styling to apply to the cell. */
     style?: any,
-}> {
+};
+
+/**
+ * A Cell is a form of [FixedWidthCell](#fixedwidthcell) whose width is set
+ * based on the width of the specified columns at the current grid size.
+ * You will specify the number of columns that you want this component to
+ * span at each grid size. This component should only be used as a child
+ * of a [Row](#row).
+ *
+ * This component renders a [View](#view) that
+ * uses Flex Box and has a [flex-basis](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis)
+ * of the specified "width" and [flex-shrink](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink)
+ * of 0.
+ *
+ * By default (with no properties specified) it will display at all
+ * grid sizes. If you specify the `small`, `medium`, `large`, or `width`
+ * props then the component will only be shown at those grid sizes and
+ * using the specified column width.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+export default class Cell extends React.Component<Props> {
     static contextTypes = gridContextTypes;
     static defaultProps = {
         small: 0,
@@ -60,12 +62,12 @@ export default class Cell extends React.Component<{
         width: 0,
     };
 
-    getWidth() {
-        return widthFromProps(this.props, this.context.gridSize);
+    static getWidth(props: Props, gridSize: GridSize) {
+        return widthFromProps(props, gridSize);
     }
 
-    shouldDisplay() {
-        const width = this.getWidth();
+    static shouldDisplay(props: Props, gridSize: GridSize) {
+        const width = Cell.getWidth(props, gridSize);
         return width !== null && width !== 0;
     }
 
@@ -75,7 +77,7 @@ export default class Cell extends React.Component<{
         // Get the settings for this particular size of grid
         const {totalColumns, gutterWidth, marginWidth} = gridSizes[gridSize];
 
-        const width = this.getWidth();
+        const width = Cell.getWidth(this.props, gridSize);
 
         // If no width is ever specified then we assume we're rendering
         // a flexible-width cell (flex: grow)

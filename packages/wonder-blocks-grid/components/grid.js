@@ -137,9 +137,11 @@ export default class Grid extends React.Component<
         // that this Grid attached.
         for (const size of Object.keys(gridSizes)) {
             const watcher = Grid.WATCHERS[size];
-            const handler = this.watchHandlers[size];
-            watcher.removeListener(handler);
-            delete this.watchHandlers[size];
+            if (watcher) {
+                const handler = this.watchHandlers[size];
+                watcher.removeListener(handler);
+                delete this.watchHandlers[size];
+            }
         }
     }
 

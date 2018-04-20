@@ -63,17 +63,14 @@ export default class Row extends React.Component<{
         large: false,
     };
 
-    shouldDisplay() {
-        return matchesSize(this.props, this.context.gridSize);
-    }
-
     render() {
         const {style, children} = this.props;
         const {gridSize} = this.context;
         const {marginWidth, hasMaxWidth, totalColumns} = gridSizes[gridSize];
+        const shouldDisplay = matchesSize(this.props, gridSize);
 
         // Don't render the row if it's been disabled at this size
-        if (!this.shouldDisplay()) {
+        if (!shouldDisplay) {
             return null;
         }
 
@@ -95,9 +92,11 @@ export default class Row extends React.Component<{
 
         for (const item of contents) {
             if (
-                !item.shouldDisplay ||
-                (typeof item.shouldDisplay === "function" &&
-                    item.shouldDisplay())
+                !item.type ||
+                !item.props ||
+                !item.type.shouldDisplay ||
+                (typeof item.type.shouldDisplay === "function" &&
+                    item.type.shouldDisplay(item.props, gridSize))
             ) {
                 if (hasVisibleCell) {
                     filteredContents.push(
