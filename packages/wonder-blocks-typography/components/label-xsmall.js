@@ -7,7 +7,7 @@ import styles from "../util/styles.js";
 import type {Props} from "../util/types.js";
 
 export default class LabelXSmall extends Component<Props> {
-   static defaultProps = {
+    static defaultProps = {
         tag: "span",
     };
 

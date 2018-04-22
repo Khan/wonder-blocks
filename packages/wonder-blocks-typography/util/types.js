@@ -7,4 +7,3 @@ export type Props = {
     children?: string,
     tag: TextTag,
 };
-
