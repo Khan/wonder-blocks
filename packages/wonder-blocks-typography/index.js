@@ -35,6 +35,5 @@ export {
     Tagline,
     Caption,
     Footnote,
-
     styles,
 };

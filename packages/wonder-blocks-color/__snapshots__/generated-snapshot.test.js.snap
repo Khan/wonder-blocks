@@ -97,6 +97,83 @@ exports[`wonder-blocks-color example 1 1`] = `
         }
       }
     >
+      purple
+      :
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#9059ff",
+          "border": "1px solid #21242c",
+          "height": 30,
+          "marginRight": 10,
+          "width": 30,
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "color": "#9059ff",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#f7f8fa",
+          "color": "#9059ff",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "rgba(33,36,44,0.64)",
+          "color": "#9059ff",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "#0a2a66",
+          "color": "#9059ff",
+          "padding": 10,
+        }
+      }
+    >
+      Hello world!
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "minHeight": 40,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 10,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
       green
       :
     </div>
