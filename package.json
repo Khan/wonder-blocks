@@ -13,7 +13,8 @@
     "styleguidist": "styleguidist server",
     "build:styleguidist": "styleguidist build",
     "git-add-docs": "git add docs",
-    "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js"
+    "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
+    "pretty-quick": "pretty-quick --staged"
   },
   "author": "",
   "license": "MIT",
@@ -34,6 +35,8 @@
     "lerna": "^2.9.0",
     "marked": "^0.3.19",
     "pre-commit": "^1.2.2",
+    "prettier": "^1.12.1",
+    "pretty-quick": "^1.4.1",
     "react-docgen": "^2.20.1",
     "react-styleguidist": "^7.0.5",
     "react-test-renderer": "^15.3.0",
@@ -57,6 +60,7 @@
     "test",
     "build:styleguidist",
     "git-add-docs",
-    "git-add-snapshot-tests"
+    "git-add-snapshot-tests",
+    "pretty-quick"
   ]
 }
