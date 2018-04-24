@@ -1,7 +1,7 @@
-# wonder-blocks
+# Wonder Blocks
 
-This package contains all components for the Wonder Blocks design system.  All
-source files for this package live in third_party/javascript/wonder-blocks.
+[![Build Status](https://travis-ci.org/Khan/wonder-blocks.svg?branch=master)](https://travis-ci.org/Khan/wonder-blocks) [![codecov](https://codecov.io/gh/Khan/wonder-blocks/branch/master/graph/badge.svg)](https://codecov.io/gh/Khan/wonder-blocks)
 
-This folder is only here so that we can define a webapp package in
-javascript-packages.json.
+The Khan Academy Wonder Blocks design system. This is work-in-progress and a lot of things are still in motion.
+
+More information: https://khan.github.io/wonder-blocks
