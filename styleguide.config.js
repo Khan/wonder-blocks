@@ -24,4 +24,32 @@ module.exports = {
             components: "packages/wonder-blocks-modal/components/*.js",
         },
     ],
+
+    // Use Lato as the default font family, in the style guide UI and in the
+    // examples.
+    template: {
+        // This loads Lato from Google Fonts.
+        head: {
+            links: [
+                {
+                    rel: "stylesheet",
+                    href: "https://fonts.googleapis.com/css?family=Lato",
+                },
+            ],
+        },
+    },
+    theme: {
+        // This applies Lato to Styleguidist UI.
+        fontFamily: {
+            base: '"Lato", sans-serif',
+        },
+    },
+    styles: {
+        // This applies Lato to example areas.
+        StyleGuide: {
+            "@global body": {
+                fontFamily: "Lato",
+            },
+        },
+    },
 };
