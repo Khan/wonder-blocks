@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-modal example 1 1`] = `
+<div>
+  Hello, world! TODO(mdr): Build TwoColumnModal.
+</div>
+`;

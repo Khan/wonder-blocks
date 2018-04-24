@@ -18,5 +18,10 @@ module.exports = {
             content: "packages/wonder-blocks-core/docs.md",
             components: "packages/wonder-blocks-core/components/*.js",
         },
-    ]
+        {
+            name: "Modal",
+            content: "packages/wonder-blocks-modal/docs.md",
+            components: "packages/wonder-blocks-modal/components/*.js",
+        },
+    ],
 };
