@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {widthFromProps, flexBasis, gridContextTypes} from "../util/utils.js";
+import {flexBasis, gridContextTypes} from "../util/utils.js";
 import FlexCell from "./flex-cell.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 
@@ -9,13 +9,13 @@ import type {GridSize} from "../util/types.js";
 
 type Props = {
     /** The number of columns this cell should span on a Small Grid. */
-    small?: number,
+    smallCols?: number,
     /** The number of columns this cell should span on a Medium Grid. */
-    medium?: number,
+    mediumCols?: number,
     /** The number of columns this cell should span on a Large Grid. */
-    large?: number,
+    largeCols?: number,
     /** The number of columns this should should span by default. */
-    width?: number | ((size: GridSize) => number),
+    cols?: number | ((size: GridSize) => number),
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `gridSize`, `totalColumns`, and cell
@@ -26,7 +26,7 @@ type Props = {
         | (({
               gridSize: GridSize,
               totalColumns: number,
-              width: number | string,
+              cols: number,
           }) => React.Node),
     /** The styling to apply to the cell. */
     style?: any,
@@ -45,8 +45,8 @@ type Props = {
  * of 0.
  *
  * By default (with no properties specified) it will display at all
- * grid sizes. If you specify the `small`, `medium`, `large`, or `width`
- * props then the component will only be shown at those grid sizes and
+ * grid sizes. If you specify the `smallCols`, `mediumCols`, `largeCols`, or
+ * `cols` props then the component will only be shown at those grid sizes and
  * using the specified column width.
  *
  * @version 1.0
@@ -55,19 +55,42 @@ type Props = {
 export default class Cell extends React.Component<Props> {
     static contextTypes = gridContextTypes;
     static defaultProps = {
-        small: 0,
-        medium: 0,
-        large: 0,
-        width: 0,
+        smallCols: 0,
+        mediumCols: 0,
+        largeCols: 0,
+        cols: 0,
     };
 
-    static getWidth(props: Props, gridSize: GridSize) {
-        return widthFromProps(props, gridSize);
+    static getCols(
+        {smallCols, mediumCols, largeCols, cols}: Props,
+        gridSize: GridSize,
+    ) {
+        // If no option was specified then we just return undefined,
+        // components may handle this case differently.
+        // We go through all the ways in which a fixed width can be
+        // specified and find the one that matches our current grid size.
+        if (!smallCols && !mediumCols && !largeCols && !cols) {
+            return undefined;
+        } else if (smallCols && gridSize === "small") {
+            return smallCols;
+        } else if (mediumCols && gridSize === "medium") {
+            return mediumCols;
+        } else if (largeCols && gridSize === "large") {
+            return largeCols;
+        } else if (typeof cols === "function") {
+            return cols(gridSize);
+        } else if (cols) {
+            return cols;
+        }
+
+        // If nothing applies then we return null (usually resulting
+        // in the component not being rendered)
+        return null;
     }
 
     static shouldDisplay(props: Props, gridSize: GridSize) {
-        const width = Cell.getWidth(props, gridSize);
-        return width !== null && width !== 0;
+        const cols = Cell.getCols(props, gridSize);
+        return cols !== null && cols !== 0;
     }
 
     render() {
@@ -76,20 +99,20 @@ export default class Cell extends React.Component<Props> {
         // Get the settings for this particular size of grid
         const {totalColumns, gutterWidth, marginWidth} = gridSpec[gridSize];
 
-        const width = Cell.getWidth(this.props, gridSize);
+        const cols = Cell.getCols(this.props, gridSize);
 
-        // If no width is ever specified then we assume we're rendering
+        // If no columns are specified then we assume we're rendering
         // a flexible-width cell (flex: grow)
-        if (width === undefined) {
+        if (cols === undefined) {
             return <FlexCell style={style}>{children}</FlexCell>;
-        } else if (width === null || width === 0) {
-            // If no width is specified then we just don't render this cell
+        } else if (cols === null || cols === 0) {
+            // If no columns are specified then we just don't render this cell
             return null;
         }
 
-        if (width > totalColumns) {
+        if (cols > totalColumns) {
             throw new Error(
-                `Specified columns ${width} is greater than the maximum ` +
+                `Specified columns ${cols} is greater than the maximum ` +
                     `${totalColumns} at the ${gridSize} grid size.`,
             );
         }
@@ -104,19 +127,19 @@ export default class Cell extends React.Component<Props> {
 
         // Now that we have the full width we can calculate the width of this
         // particular cell by multiplying the full width (allCellWidth) by
-        // the ratio of this cell (width / totalColumns). But we then need to
+        // the ratio of this cell (cols / totalColumns). But we then need to
         // add back in the missing gutter widths:
-        // (gutterWidth * (width - 1)). This gives us to full width of
+        // (gutterWidth * (cols - 1)). This gives us to full width of
         // this particular cell.
-        const calcWidth = `calc(${contentWidth} * ${width /
-            totalColumns} + ${gutterWidth * (width - 1)}px)`;
+        const calcWidth = `calc(${contentWidth} * ${cols /
+            totalColumns} + ${gutterWidth * (cols - 1)}px)`;
 
         let contents = children;
 
         // If the contents are a function then we call it with the gridSize,
-        // totalColumns, and width properties and render the return value.
+        // totalColumns, and cols properties and render the return value.
         if (typeof contents === "function") {
-            contents = contents({gridSize, totalColumns, width});
+            contents = contents({gridSize, totalColumns, cols});
         }
 
         // Render a fixed-width cell (flex-basis: size, flex-shrink: 0)

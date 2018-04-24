@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 					<Text>⇠ Gutters ⇢</Text>
 				</View>
 			</FixedWidthCell>
-			<Cell large={2} style={styles.cell}>
+			<Cell largeCols={2} style={styles.cell}>
 				<Text>Cell (2 columns wide)</Text>
 				<br />
 				<br />
@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
 					<Text>⇠ Gutters ⇢</Text>
 				</View>
 			</Cell>
-			<Cell small={1} medium={3} large={5} style={styles.cell}>
-				{({width}) => {
+			<Cell smallCols={1} mediumCols={3} largeCols={5} style={styles.cell}>
+				{({cols}) => {
 					return (
 						<View>
 							<Text>
-								Cell ({width === 1
+								Cell ({cols === 1
 									? "1 column"
-									: `${width} columns`}{" "}
+									: `${cols} columns`}{" "}
 								wide)
 							</Text>
 							<br />
@@ -172,7 +172,7 @@ const {View, Text} = require("wonder-blocks-core");
 				overflow: "scroll",
 			}}
 		>
-			<Cell medium={2} style={{background: Color.offBlack8}}>
+			<Cell cols={2} style={{background: Color.offBlack8}}>
 				Possible mastery points
 			</Cell>
 			<FixedWidthCell
@@ -192,7 +192,7 @@ const {View, Text} = require("wonder-blocks-core");
 				borderBottom: `1px solid ${Color.offBlack8}`,
 			}}
 		>
-			<Cell large={3}>Possible mastery points</Cell>
+			<Cell cols={3}>Possible mastery points</Cell>
 			<View>Beginner / Points to Apprentice</View>
 		</Row>
 		<Row small medium style={{height: 50}}>
@@ -211,7 +211,7 @@ const {View, Text} = require("wonder-blocks-core");
 			<Cell>Intro to Geometry Angles Quiz 1: 10 questions Polygons</Cell>
 		</Row>
 		<Row large style={{padding: "17px 0"}}>
-			<Cell large={3}>
+			<Cell cols={3}>
 				Skill Summary
 				<hr />
 				Intro to Geometry
