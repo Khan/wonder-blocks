@@ -1,0 +1,701 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-grid example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "background": "#21242c",
+    }
+  }
+>
+  <div
+    className=""
+    style={Object {}}
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "display": "flex",
+            "maxWidth": 1120,
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "@media (max-width: 767px)": Object {
+                "background": "#1865f2",
+              },
+              "@media (min-width: 1024px)": Object {
+                "background": "#ffb100",
+              },
+              "@media (min-width: 768px) and (max-width: 1023px)": Object {
+                "background": "#00a60e",
+              },
+              "flexGrow": 1,
+              "height": 100,
+              "padding": 5,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+          <br />
+          <br />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            ⇠ Margin
+          </span>
+          <br />
+          <div
+            className=""
+            style={
+              Object {
+                "textAlign": "right",
+              }
+            }
+          >
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                }
+              }
+            >
+              Gutter ⇢
+            </span>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "flexBasis": 32,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "@media (max-width: 767px)": Object {
+                "background": "#1865f2",
+              },
+              "@media (min-width: 1024px)": Object {
+                "background": "#ffb100",
+              },
+              "@media (min-width: 768px) and (max-width: 1023px)": Object {
+                "background": "#00a60e",
+              },
+              "MsFlexBasis": 100,
+              "MsFlexPreferredSize": 100,
+              "WebkitFlexBasis": 100,
+              "flexBasis": 100,
+              "flexShrink": 0,
+              "height": 100,
+              "padding": 5,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FixedWidthCell (100px)
+          </span>
+          <br />
+          <br />
+          <div
+            className=""
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                }
+              }
+            >
+              ⇠ Gutters ⇢
+            </span>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "flexBasis": 32,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "@media (max-width: 767px)": Object {
+                "background": "#1865f2",
+              },
+              "@media (min-width: 1024px)": Object {
+                "background": "#ffb100",
+              },
+              "@media (min-width: 768px) and (max-width: 1023px)": Object {
+                "background": "#00a60e",
+              },
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
+              "flexShrink": 0,
+              "height": 100,
+              "padding": 5,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            Cell (2 columns wide)
+          </span>
+          <br />
+          <br />
+          <div
+            className=""
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                }
+              }
+            >
+              ⇠ Gutters ⇢
+            </span>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "flexBasis": 32,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "@media (max-width: 767px)": Object {
+                "background": "#1865f2",
+              },
+              "@media (min-width: 1024px)": Object {
+                "background": "#ffb100",
+              },
+              "@media (min-width: 768px) and (max-width: 1023px)": Object {
+                "background": "#00a60e",
+              },
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+              "flexShrink": 0,
+              "height": 100,
+              "padding": 5,
+            }
+          }
+        >
+          <div
+            className=""
+            style={Object {}}
+          >
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                }
+              }
+            >
+              Cell (
+              5 columns
+               
+              wide)
+            </span>
+            <br />
+            <br />
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                }
+              }
+            >
+              ⇠ Gutter
+            </span>
+            <br />
+            <div
+              className=""
+              style={
+                Object {
+                  "textAlign": "right",
+                }
+              }
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                  }
+                }
+              >
+                Margin ⇢
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-grid example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "background": "#f7f8fa",
+    }
+  }
+>
+  <div
+    className=""
+    style={Object {}}
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#0a2a66",
+          "borderBottom": "1px solid rgba(255,255,255,0.64)",
+          "display": "flex",
+          "height": 64,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "display": "flex",
+            "maxWidth": 1120,
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "color": "#ffffff",
+              "flexGrow": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          Khan Academy
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#0a2a66",
+          "display": "flex",
+          "height": 136,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "display": "flex",
+            "maxWidth": 1120,
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "color": "#ffffff",
+              "flexGrow": 1,
+            }
+          }
+        >
+          Geometry foundations
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#ffffff",
+          "borderBottom": "1px solid rgba(33,36,44,0.08)",
+          "display": "flex",
+          "height": 71,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "display": "flex",
+            "maxWidth": 1120,
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "flexShrink": 0,
+            }
+          }
+        >
+          Possible mastery points
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "flexBasis": 32,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={Object {}}
+        >
+          Beginner / Points to Apprentice
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "padding": "17px 0",
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "display": "flex",
+            "maxWidth": 1120,
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "flexShrink": 0,
+            }
+          }
+        >
+          Skill Summary
+          <hr />
+          Intro to Geometry
+          <hr />
+          Angles
+          <hr />
+          Quiz 1: 10 questions
+          <hr />
+          Polygons
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "flexBasis": 32,
+              "flexShrink": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "background": "#ffffff",
+                "border": "1px solid rgba(33,36,44,0.08)",
+                "height": 360,
+                "padding": 24,
+              }
+            }
+          >
+            Intro to geometry
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "background": "#ffffff",
+                "border": "1px solid rgba(33,36,44,0.08)",
+                "height": 360,
+                "marginTop": 16,
+                "padding": 24,
+              }
+            }
+          >
+            Angles
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "flexBasis": 24,
+              "flexShrink": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
