@@ -40758,7 +40758,15 @@ object-assign
                 showSidebar: !0,
                 previewDelay: 500,
                 theme: {fontFamily: {base: '"Lato", sans-serif'}},
-                styles: {StyleGuide: {"@global body": {fontFamily: "Lato"}}},
+                styles: {
+                    Playground: {
+                        preview: {
+                            fontFamily: '"Lato", sans-serif',
+                            resize: "both",
+                            overflow: "auto",
+                        },
+                    },
+                },
                 compilerConfig: {objectAssign: "Object.assign"},
                 editorConfig: {
                     theme: "base16-light",
