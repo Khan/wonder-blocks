@@ -1,7 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`wonder-blocks-modal example 1 1`] = `
-<div>
-  Hello, world! TODO(mdr): Build TwoColumnModal.
+<div
+  className="example_13z0u2q"
+>
+  <div
+    className="container_n5o74t"
+  >
+    <div
+      className="column_1ogc859-o_O-leftColumn_9yb10g"
+    >
+      <div>
+        <h1
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 36,
+                "lineHeight": "40px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 900,
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          Left column
+        </h1>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "22px",
+            }
+          }
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        </span>
+      </div>
+    </div>
+    <div
+      className="column_1ogc859-o_O-rightColumn_11go2sq"
+    >
+      <div>
+        <h1
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 36,
+                "lineHeight": "40px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 900,
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          Right column
+        </h1>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "22px",
+            }
+          }
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 `;
