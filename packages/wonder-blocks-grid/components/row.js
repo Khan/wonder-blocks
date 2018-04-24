@@ -3,12 +3,11 @@ import * as React from "react";
 import {View} from "wonder-blocks-core";
 
 import styles from "../util/styles.js";
-import gridSizes from "../util/sizes.js";
 import {matchesSize, gridContextTypes} from "../util/utils.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 import Gutter from "./gutter.js";
 
-import type {GridSize} from "../util/sizes.js";
+import type {GridSize} from "../util/types.js";
 
 /**
  * A Row holds all of the Cells that make up the contents of the grid. A row
@@ -65,7 +64,7 @@ export default class Row extends React.Component<{
 
     render() {
         const {style, children} = this.props;
-        const {gridSize} = this.context;
+        const {gridSize, gridSizes} = this.context;
         const {marginWidth, hasMaxWidth, totalColumns} = gridSizes[gridSize];
         const shouldDisplay = matchesSize(this.props, gridSize);
 

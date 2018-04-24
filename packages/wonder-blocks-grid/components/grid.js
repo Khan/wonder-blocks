@@ -3,17 +3,16 @@ import * as React from "react";
 import {View} from "wonder-blocks-core";
 
 import styles from "../util/styles.js";
-import gridSizes from "../util/sizes.js";
+import {GRID_DEFAULT_SIZES, VALID_GRID_SIZES} from "../util/sizes.js";
 import {gridContextTypes} from "../util/utils.js";
 
-import type {GridSize} from "../util/sizes.js";
+import type {GridSize, GridSizes} from "../util/types.js";
 import typeof Row from "./row.js";
 
 type Props = {
     /**
      * Force the grid to be a particular size (ignoring the actual
-     * dimensions of the viewport). Mostly used for testing or
-     * special cases (such as `"internalTools"`).
+     * dimensions of the viewport).
      */
     size?: GridSize,
 
@@ -21,7 +20,14 @@ type Props = {
      * Set the size of the grid to be rendered when doing SSR
      * (Server-Side Rendering) of the component.
      */
-    ssrSize?: GridSize,
+    ssrSize: GridSize,
+
+    /**
+     * The possible sizes of the grid system. Used to define a number of
+     * different layouts to display the grid at. Includes the number of columns
+     * and the size of the margins and gutters are each size.
+     */
+    sizes: GridSizes,
 
     /** The `<Row>` components that will make up the grid */
     children: React.ChildrenArray<Row>,
@@ -35,11 +41,20 @@ type Props = {
  *
  * By default the Grid should be used with no properties. Optionally you can
  * specify the `size` of the Grid. In doing so you will disable all readjustments
- * based on the size of the viewport (this property is mostly used for testing
- * or for special cases, such as `"internalTools"`)
+ * based on the size of the viewport (this property is mostly used for testing).
  *
  * Additionally you can specify `ssrSize` which will render a specific size of
  * grid when this component is Server-Side Renderered. Defaults to "large".
+ *
+ * If you wish to use a different set of grid sizes you can specify them as
+ * part of the `sizes` property. The Grid package exports a couple of the most
+ * commonly used ones:
+ *
+ *  * `GRID_DEFAULT_SIZES` (the default)
+ *  * `GRID_INTERNAL_SIZES` (for internal tools)
+ *  * `GRID_MODAL_12_SIZES` (12-column Modals)
+ *  * `GRID_MODAL_11_SIZES` (11-column Modals)
+ *  * `GRID_MODAL_8_SIZES` (8-column Modals)
  *
  * @version 1.0
  * @since 1.0
@@ -56,6 +71,7 @@ export default class Grid extends React.Component<
 
     static defaultProps = {
         ssrSize: "large",
+        sizes: GRID_DEFAULT_SIZES,
     };
 
     watchHandlers: {
@@ -65,7 +81,7 @@ export default class Grid extends React.Component<
     constructor(props: Props) {
         super(props);
 
-        const {ssrSize, size} = props;
+        const {ssrSize, size, sizes} = props;
 
         // If a size was explicitly defined then we use that
         if (size) {
@@ -87,8 +103,8 @@ export default class Grid extends React.Component<
         // watch for when the viewport changes size.
         this.watchHandlers = {};
 
-        for (const size of Object.keys(gridSizes)) {
-            const {query} = gridSizes[size];
+        for (const size of VALID_GRID_SIZES) {
+            const {query} = sizes[size];
 
             // Don't watch sizes that don't have an associated query
             if (!query) {
@@ -104,7 +120,7 @@ export default class Grid extends React.Component<
 
             // Attach a handler that watches for the change, saving a
             // references to it so we can remove it later
-            const handler = (this.watchHandlers[size] = e => {
+            const handler = (this.watchHandlers[size] = (e) => {
                 if (e.matches) {
                     this.setState({size});
                 }
@@ -133,9 +149,11 @@ export default class Grid extends React.Component<
             return;
         }
 
+        const {sizes} = this.props;
+
         // We go through the component and remove all of the listeners
         // that this Grid attached.
-        for (const size of Object.keys(gridSizes)) {
+        for (const size of VALID_GRID_SIZES) {
             const watcher = Grid.WATCHERS[size];
             if (watcher) {
                 const handler = this.watchHandlers[size];
@@ -147,7 +165,7 @@ export default class Grid extends React.Component<
 
     render() {
         return (
-            <GridContext size={this.state.size}>
+            <GridContext size={this.state.size} sizes={this.props.sizes}>
                 {this.props.children}
             </GridContext>
         );
@@ -162,13 +180,20 @@ class GridContext extends React.Component<{
     // The size of the grid to display (determined by the Grid component)
     size: GridSize,
 
+    // The possible sizes of the grid to display (determined by the Grid
+    // component)
+    sizes: GridSizes,
+
     // The Row components that will make up the grid
     children: React.ChildrenArray<Row>,
 }> {
     static childContextTypes = gridContextTypes;
 
     getChildContext() {
-        return {gridSize: this.props.size};
+        return {
+            gridSize: this.props.size,
+            gridSizes: this.props.sizes,
+        };
     }
 
     render() {

@@ -1,7 +1,7 @@
 // @flow
 import propTypes from "prop-types";
 
-import type {GridSize} from "./sizes.js";
+import type {GridSize} from "./types.js";
 
 export const matchesSize = (
     {
@@ -63,5 +63,6 @@ export const flexBasis = (size: number | string) => {
 };
 
 export const gridContextTypes = {
-    gridSize: propTypes.oneOf(["small", "medium", "large"]),
+    gridSize: propTypes.string,
+    gridSizes: propTypes.object,
 };

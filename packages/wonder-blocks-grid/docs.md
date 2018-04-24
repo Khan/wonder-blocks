@@ -99,12 +99,42 @@ Additionally, there are the following available components which will likely be 
 
 Currently Grids are available at the following sizes (with their columns, gutter size, and margin sizes changing based on the size):
 
-| Size          | Columns | Gutter | Margin | Breakpoint                                                                                                                       |
-| ------------- | ------- | ------ | ------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| small         | 4       | 16px   | 16px   | `max-width: 767px`                                                                                                               |
-| medium        | 8       | 32px   | 24px   | `min-width: 768px and max-width: 1023px`                                                                                         |
-| large         | 12      | 32px   | 24px   | `min-width: 1024px` (maximum content width: `20px`, after which the margins will continue to expand and content remain centered) |
-| internalTools | 12      | 32px   | 16px   | No breakpoint, must be explicitly specified in the `size` prop. Also no maximum content width.                                   |
+**Default Sizes (`GRID_DEFAULT_SIZES`)**
+
+| Size   | Columns | Gutter | Margin | Breakpoint                                                                                                                         |
+| ------ | ------- | ------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| small  | 4       | 16px   | 16px   | `max-width: 767px`                                                                                                                 |
+| medium | 8       | 32px   | 24px   | `min-width: 768px and max-width: 1023px`                                                                                           |
+| large  | 12      | 32px   | 24px   | `min-width: 1024px` (maximum content width: `1120px`, after which the margins will continue to expand and content remain centered) |
+
+Additionally, the following grid sizes are also available:
+
+**Internal Tools (`GRID_INTERNAL_SIZES`)**
+
+| Size  | Columns | Gutter | Margin | Breakpoint                                   |
+| ----- | ------- | ------ | ------ | -------------------------------------------- |
+| large | 12      | 32px   | 16px   | `min-width: 1px` (No maximum content width.) |
+
+**12-Column Modal (`GRID_MODAL_12_SIZES`)**
+
+| Size  | Columns | Gutter | Margin | Breakpoint                                     |
+| ----- | ------- | ------ | ------ | ---------------------------------------------- |
+| small | 4       | 16px   | 16px   | `max-width: 767px`                             |
+| large | 12      | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
+
+**11-Column Modal (`GRID_MODAL_11_SIZES`)**
+
+| Size  | Columns | Gutter | Margin | Breakpoint                                     |
+| ----- | ------- | ------ | ------ | ---------------------------------------------- |
+| small | 4       | 16px   | 16px   | `max-width: 767px`                             |
+| large | 11      | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
+
+**8-Column Modal (`GRID_MODAL_8_SIZES`)**
+
+| Size  | Columns | Gutter | Margin | Breakpoint                                     |
+| ----- | ------- | ------ | ------ | ---------------------------------------------- |
+| small | 4       | 16px   | 16px   | `max-width: 767px`                             |
+| large | 8       | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
 
 These breakpoints allow for a great level of flexibility in the design, constantly adjusting to the size of the viewport and working across mobile, tablet, and desktop devices. An example of this can be seen in this site mock-up:
 

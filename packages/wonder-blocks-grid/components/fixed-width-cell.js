@@ -2,11 +2,10 @@
 import * as React from "react";
 import {View} from "wonder-blocks-core";
 
-import gridSizes from "../util/sizes.js";
 import styles from "../util/styles.js";
 import {widthFromProps, flexBasis, gridContextTypes} from "../util/utils.js";
 
-import type {GridSize} from "../util/sizes.js";
+import type {GridSize} from "../util/types.js";
 
 type Props = {
     /** The width of this cell on a Small Grid (in pixels, %, or other). */
@@ -74,7 +73,7 @@ export default class FixedWidthCell extends React.Component<Props> {
 
     render() {
         const {children, style} = this.props;
-        const {gridSize} = this.context;
+        const {gridSize, gridSizes} = this.context;
         const width = FixedWidthCell.getWidth(this.props, gridSize);
 
         // If no width is ever specified then we error out.
