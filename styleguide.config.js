@@ -30,13 +30,12 @@ module.exports = {
         },
     ],
 
-    // Use Lato as the default font family, in the style guide UI and in the
-    // examples.
+    // These values control our custom styles.
     template: {
-        // This loads Lato from Google Fonts.
         head: {
             links: [
                 {
+                    // Load Lato from Google Fonts.
                     rel: "stylesheet",
                     href: "https://fonts.googleapis.com/css?family=Lato",
                 },
@@ -44,16 +43,20 @@ module.exports = {
         },
     },
     theme: {
-        // This applies Lato to Styleguidist UI.
         fontFamily: {
+            // Apply Lato to the Styleguidist UI.
             base: '"Lato", sans-serif',
         },
     },
     styles: {
-        // This applies Lato to example areas.
-        StyleGuide: {
-            "@global body": {
-                fontFamily: "Lato",
+        Playground: {
+            preview: {
+                // Apply Lato to example areas.
+                fontFamily: '"Lato", sans-serif',
+
+                // Make the preview area resizable.
+                resize: "both",
+                overflow: "auto",
             },
         },
     },
