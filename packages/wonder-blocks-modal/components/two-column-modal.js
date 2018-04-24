@@ -33,6 +33,9 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         alignItems: "stretch",
+
+        borderRadius: 4,
+        overflow: "hidden",
     },
 
     column: {

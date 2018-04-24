@@ -17,8 +17,10 @@ exports[`wonder-blocks-modal example 1 1`] = `
     style={
       Object {
         "alignItems": "stretch",
+        "borderRadius": 4,
         "display": "flex",
         "flexDirection": "row",
+        "overflow": "hidden",
       }
     }
   >
@@ -143,6 +145,29 @@ exports[`wonder-blocks-modal example 1 1`] = `
         </span>
       </div>
     </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "padding": 32,
+      "textAlign": "center",
+    }
+  }
+>
+  <div
+    className=""
+    style={Object {}}
+  >
+    <button
+      onClick={[Function]}
+    >
+      Learn more!
+    </button>
   </div>
 </div>
 `;
