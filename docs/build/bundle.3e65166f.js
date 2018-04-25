@@ -6543,7 +6543,6 @@ object-assign
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "stretch",
-                minHeight: 464,
             },
             column: {
                 boxSizing: "border-box",

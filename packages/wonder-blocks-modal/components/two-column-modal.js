@@ -33,9 +33,6 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         alignItems: "stretch",
-
-        // This minimum height is a fixed number from the spec.
-        minHeight: 464,
     },
 
     column: {
