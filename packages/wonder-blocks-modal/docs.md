@@ -4,6 +4,7 @@ Modals. These are WIP. TODO(mdr): Finish building, and write more thorough docs.
 
 ```js
 const {StyleSheet, css} = require("aphrodite");
+const {View} = require("wonder-blocks-core");
 const {Title, Body} = require("wonder-blocks-typography");
 const TwoColumnModal = require("./components/two-column-modal.js").default;
 
@@ -22,10 +23,10 @@ const styles = StyleSheet.create({
     },
 });
 
-<div className={css(styles.example)}>
+<View style={styles.example}>
     <TwoColumnModal
         leftContent={
-            <div>
+            <View>
                 <Title style={styles.title}>Left column</Title>
                 <Body>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -33,10 +34,10 @@ const styles = StyleSheet.create({
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                     ullamco laboris.
                 </Body>
-            </div>
+            </View>
         }
         rightContent={
-            <div>
+            <View>
                 <Title style={styles.title}>Right column</Title>
                 <Body>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -48,8 +49,8 @@ const styles = StyleSheet.create({
                     occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est.
                 </Body>
-            </div>
+            </View>
         }
     />
-</div>;
+</View>;
 ```

@@ -2,15 +2,46 @@
 
 exports[`wonder-blocks-modal example 1 1`] = `
 <div
-  className="example_13z0u2q"
+  className=""
+  style={
+    Object {
+      "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+      "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+      "backgroundSize": "20px 20px",
+      "padding": 32,
+    }
+  }
 >
   <div
-    className="container_n5o74t"
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "display": "flex",
+        "flexDirection": "row",
+        "minHeight": 464,
+      }
+    }
   >
     <div
-      className="column_1ogc859-o_O-leftColumn_9yb10g"
+      className=""
+      style={
+        Object {
+          "background": "#0a2a66",
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "flex": "0 0 50%",
+          "paddingBottom": 64,
+          "paddingLeft": 64,
+          "paddingRight": 52,
+          "paddingTop": 64,
+        }
+      }
     >
-      <div>
+      <div
+        className=""
+        style={Object {}}
+      >
         <h1
           className=""
           style={
@@ -54,9 +85,23 @@ exports[`wonder-blocks-modal example 1 1`] = `
       </div>
     </div>
     <div
-      className="column_1ogc859-o_O-rightColumn_11go2sq"
+      className=""
+      style={
+        Object {
+          "background": "#ffffff",
+          "boxSizing": "border-box",
+          "flex": "0 0 50%",
+          "paddingBottom": 64,
+          "paddingLeft": 52,
+          "paddingRight": 64,
+          "paddingTop": 64,
+        }
+      }
     >
-      <div>
+      <div
+        className=""
+        style={Object {}}
+      >
         <h1
           className=""
           style={

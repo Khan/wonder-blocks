@@ -8,6 +8,7 @@ import TwoColumnModal from "./components/two-column-modal.js";
 describe("wonder-blocks-modal", () => {
     it("example 1", () => {
         const {StyleSheet, css} = require("aphrodite");
+        const {View} = require("wonder-blocks-core");
         const {Title, Body} = require("wonder-blocks-typography");
         const TwoColumnModal = require("./components/two-column-modal.js")
             .default;
@@ -29,10 +30,10 @@ describe("wonder-blocks-modal", () => {
         });
 
         const example = (
-            <div className={css(styles.example)}>
+            <View style={styles.example}>
                 <TwoColumnModal
                     leftContent={
-                        <div>
+                        <View>
                             <Title style={styles.title}>Left column</Title>
                             <Body>
                                 Lorem ipsum dolor sit amet, consectetur
@@ -41,10 +42,10 @@ describe("wonder-blocks-modal", () => {
                                 enim ad minim veniam, quis nostrud exercitation
                                 ullamco laboris.
                             </Body>
-                        </div>
+                        </View>
                     }
                     rightContent={
-                        <div>
+                        <View>
                             <Title style={styles.title}>Right column</Title>
                             <Body>
                                 Lorem ipsum dolor sit amet, consectetur
@@ -58,10 +59,10 @@ describe("wonder-blocks-modal", () => {
                                 occaecat cupidatat non proident, sunt in culpa
                                 qui officia deserunt mollit anim id est.
                             </Body>
-                        </div>
+                        </View>
                     }
                 />
-            </div>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

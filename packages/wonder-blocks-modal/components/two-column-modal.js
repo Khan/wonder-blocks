@@ -6,6 +6,7 @@ import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
 
 import Color from "wonder-blocks-color";
+import {View} from "wonder-blocks-core";
 
 type Props = {
     leftContent: React.Node,
@@ -15,14 +16,14 @@ type Props = {
 export default class TwoColumnModal extends React.Component<Props> {
     render() {
         return (
-            <div className={css(styles.container)}>
-                <div className={css(styles.column, styles.leftColumn)}>
+            <View style={styles.container}>
+                <View style={[styles.column, styles.leftColumn]}>
                     {this.props.leftContent}
-                </div>
-                <div className={css(styles.column, styles.rightColumn)}>
+                </View>
+                <View style={[styles.column, styles.rightColumn]}>
                     {this.props.rightContent}
-                </div>
-            </div>
+                </View>
+            </View>
         );
     }
 }
