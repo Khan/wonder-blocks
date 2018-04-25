@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
     column: {
         boxSizing: "border-box",
         flex: "0 0 50%",
+
+        // TODO(mdr): Some call sites probably won't want built-in padding. How
+        //     should we handle that possibility?
         paddingTop: 64,
         paddingBottom: 64,
     },
@@ -45,12 +48,18 @@ const styles = StyleSheet.create({
     leftColumn: {
         background: Color.darkBlue,
         color: Color.white,
+
+        // TODO(mdr): Some call sites probably won't want built-in padding. How
+        //     should we handle that possibility?
         paddingLeft: 64,
         paddingRight: 52,
     },
 
     rightColumn: {
         background: Color.white,
+
+        // TODO(mdr): Some call sites probably won't want built-in padding. How
+        //     should we handle that possibility?
         paddingLeft: 52,
         paddingRight: 64,
     },
