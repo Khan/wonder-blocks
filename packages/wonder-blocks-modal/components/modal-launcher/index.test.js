@@ -20,7 +20,9 @@ describe("ModalLauncher", () => {
         let opened = false;
 
         // Once the modal mounts, we'll immediately self-close it on the next
-        // tick, to test the children's ability to self-close.
+        // tick, to test the children's ability to self-close. (We wait a tick
+        // because the API for the `children` prop says not to call `closeModal`
+        // while rendering.)
         //
         // NOTE(mdr): It would be nice to have this be, like, a close button
         //     that closes when you click it. But that requires the button to

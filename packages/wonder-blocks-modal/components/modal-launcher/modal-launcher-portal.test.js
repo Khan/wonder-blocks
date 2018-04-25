@@ -20,16 +20,24 @@ describe("ModalPortal", () => {
                     parent = parent.parentNode;
                 }
 
-                // This nearest parent _should_ be document.body.
+                // This nearest parent _should_ be document.body. It definitely
+                // should not be the `data-this-should-not-contain-the-children`
+                // element! That element shouldn't be in the ancestor chain at
+                // all.
                 expect(parent).toBe(document.body);
                 done();
             }
         };
 
         const wrapper = mount(
-            <ModalLauncherPortal>
-                <div ref={childrenRef} />
-            </ModalLauncherPortal>,
+            // We include an extra wrapper element here, just to extra confirm
+            // that this _isn't_ part of the tree where the children get
+            // mounted.
+            <div data-this-should-not-contain-the-children>
+                <ModalLauncherPortal>
+                    <div ref={childrenRef} />
+                </ModalLauncherPortal>
+            </div>,
         );
     });
 

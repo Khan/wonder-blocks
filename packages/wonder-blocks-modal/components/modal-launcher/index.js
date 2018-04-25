@@ -29,11 +29,17 @@ type Props = {
     // itself by some other means than tapping the backdrop or the default
     // close button a render callback can be passed. The closeModal function
     // provided to this callback can be called to close the modal.
+    //
+    // Note: Don't call `closeModal` while rendering! It should be used to
+    // respond to user intearction, like `onClick`.
     modal: React.Node | (({closeModal: () => void}) => React.Node),
 
     // Use the children-as-function pattern to pass a openModal function for
     // use anywhere within children. This provides a lot of flexibility in
     // terms of what actions may trigger the ModalLauncher to launch the modal.
+    //
+    // Note: Don't call `openModal` while rendering! It should be used to
+    // respond to user intearction, like `onClick`.
     children: ({openModal: () => void}) => React.Node,
 
     // If the parent needs to be notified when the modal is closed use
@@ -77,12 +83,15 @@ export default class ModalLauncher extends React.Component<Props, State> {
         });
 
         return (
+            // TODO(mdr): This can be a fragment once we're on React 16.
             <View>
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
                         <View style={styles.modalPositioner}>
-                            {this._renderModal()}
+                            <View style={styles.modalSizer}>
+                                {this._renderModal()}
+                            </View>
                         </View>
                     </ModalLauncherPortal>
                 )}
@@ -96,19 +105,36 @@ const styles = StyleSheet.create({
         position: "fixed",
         left: 0,
         top: 0,
+        zIndex: 1080, // NOTE(mdr): Copied from Khan Academy webapp.
 
-        boxSizing: "border-box",
         width: "100%",
         height: "100%",
-        paddingLeft: 32,
-        paddingRight: 32,
-        paddingTop: 72,
-        paddingBottom: 72,
 
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
 
+        // If the modal ends up being too big for the viewport (e.g., the min
+        // height is triggered), add another scrollbar specifically for
+        // scrolling modal content.
+        //
+        // TODO(mdr): The specified behavior is that the modal should scroll
+        //     with the rest of the page, rather than separately, if overflow
+        //     turns out to be necessary. That sounds hard to do; punting for
+        //     now!
+        overflow: "auto",
+
         background: Color.offBlack64,
+    },
+
+    modalSizer: {
+        display: "flex",
+        alignItems: "stretch",
+
+        // TODO(mdr): Other modal layouts will have different sizes. These are
+        //     the sizes for the two-column layout.
+        width: "86.72%",
+        height: "60.42%",
+        minHeight: 464,
     },
 });
