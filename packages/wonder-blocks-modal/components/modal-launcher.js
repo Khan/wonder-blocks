@@ -97,9 +97,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {this.state.opened && (
                     <ModalLauncherPortal>
                         <View style={styles.modalPositioner}>
-                            <View style={styles.modalSizer}>
-                                {this._renderModal()}
-                            </View>
+                            {this._renderModal()}
                         </View>
                     </ModalLauncherPortal>
                 )}
@@ -133,16 +131,5 @@ const styles = StyleSheet.create({
         overflow: "auto",
 
         background: Color.offBlack64,
-    },
-
-    modalSizer: {
-        display: "flex",
-        alignItems: "stretch",
-
-        // TODO(mdr): Other modal layouts will have different sizes. These are
-        //     the sizes for the two-column layout.
-        width: "86.72%",
-        height: "60.42%",
-        minHeight: 464,
     },
 });

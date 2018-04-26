@@ -5303,6 +5303,9 @@ object-assign
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "stretch",
+                width: "86.72%",
+                height: "60.42%",
+                minHeight: 464,
                 borderRadius: 4,
                 overflow: "hidden",
             },
@@ -6734,11 +6737,7 @@ object-assign
                                         i.createElement(
                                             s.View,
                                             {style: c.modalPositioner},
-                                            i.createElement(
-                                                s.View,
-                                                {style: c.modalSizer},
-                                                this._renderModal(),
-                                            ),
+                                            this._renderModal(),
                                         ),
                                     ),
                             );
@@ -6762,13 +6761,6 @@ object-assign
                 justifyContent: "center",
                 overflow: "auto",
                 background: o.default.offBlack64,
-            },
-            modalSizer: {
-                display: "flex",
-                alignItems: "stretch",
-                width: "86.72%",
-                height: "60.42%",
-                minHeight: 464,
             },
         });
     },
@@ -38325,7 +38317,7 @@ object-assign
             {
                 type: "code",
                 content:
-                    'const {StyleSheet, css} = require("aphrodite");\nconst {View} = require("wonder-blocks-core");\nconst {Title, Body} = require("wonder-blocks-typography");\nconst TwoColumnModal = require("./two-column-modal.js").default;\n\nconst styles = StyleSheet.create({\n    example: {\n        // Checkerboard background\n        backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",\n        backgroundSize: "20px 20px",\n        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",\n\n        padding: 32,\n    },\n\n    title: {\n        marginBottom: 16,\n    },\n});\n\n<View style={styles.example}>\n    <TwoColumnModal\n        leftContent={\n            <View>\n                <Title style={styles.title}>Left column</Title>\n                <Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                    ullamco laboris.\n                </Body>\n            </View>\n        }\n        rightContent={\n            <View>\n                <Title style={styles.title}>Right column</Title>\n                <Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                    ullamco laboris nisi ut aliquip ex ea commodo consequat.\n                    Duis aute irure dolor in reprehenderit in voluptate velit\n                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint\n                    occaecat cupidatat non proident, sunt in culpa qui officia\n                    deserunt mollit anim id est.\n                </Body>\n            </View>\n        }\n    />\n</View>;',
+                    'const {StyleSheet, css} = require("aphrodite");\nconst {View} = require("wonder-blocks-core");\nconst {Title, Body} = require("wonder-blocks-typography");\nconst TwoColumnModal = require("./two-column-modal.js").default;\n\nconst styles = StyleSheet.create({\n    example: {\n        // Checkerboard background\n        backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",\n        backgroundSize: "20px 20px",\n        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",\n\n        display: "flex",\n        flexDirection: "row",\n        justifyContent: "center",\n        padding: 32,\n    },\n\n    title: {\n        marginBottom: 16,\n    },\n});\n\n<View style={styles.example}>\n    <TwoColumnModal\n        leftContent={\n            <View>\n                <Title style={styles.title}>Left column</Title>\n                <Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                    ullamco laboris.\n                </Body>\n            </View>\n        }\n        rightContent={\n            <View>\n                <Title style={styles.title}>Right column</Title>\n                <Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                    ullamco laboris nisi ut aliquip ex ea commodo consequat.\n                    Duis aute irure dolor in reprehenderit in voluptate velit\n                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint\n                    occaecat cupidatat non proident, sunt in culpa qui officia\n                    deserunt mollit anim id est.\n                </Body>\n            </View>\n        }\n    />\n</View>;',
                 settings: {},
                 evalInContext: a,
             },

@@ -37,6 +37,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "stretch",
 
+        width: "86.72%",
+        height: "60.42%",
+        minHeight: 464,
+
         borderRadius: 4,
         overflow: "hidden",
     },
