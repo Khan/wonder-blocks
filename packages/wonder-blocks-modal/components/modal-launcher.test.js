@@ -2,7 +2,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 
-import ModalLauncher from "./index.js";
+import ModalLauncher from "./modal-launcher.js";
 
 describe("ModalLauncher", () => {
     test("Children can launch the modal", () => {

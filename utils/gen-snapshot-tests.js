@@ -1,10 +1,10 @@
 /**
- * This script generates generated-snapshot.test.js files from examples in 
+ * This script generates generated-snapshot.test.js files from examples in
  * docs.md files in every packages/wonder-blocks-* directory.
- * 
+ *
  * Running `npm test` will run this script and then run jest which will run
  * the tests in all of the generated-snapshot.test.js files.
- * 
+ *
  * TODO(kevinb):
  * - run prettier on the output
  * - extract into a separate repo and publish an npm package
@@ -32,7 +32,9 @@ function generateTestFile(root, examples, componentFileMap) {
     const modName = root.split("/")[1];
 
     if (componentFileMap) {
-        for (const [componentName, filename] of Object.entries(componentFileMap)) {
+        for (const [componentName, filename] of Object.entries(
+            componentFileMap,
+        )) {
             const relFilename = path.relative(root, filename);
             lines.push(`import ${componentName} from "./${relFilename}";`);
         }
@@ -46,7 +48,7 @@ function generateTestFile(root, examples, componentFileMap) {
 
         const ast = babylon.parse(example, {
             plugins: ["jsx", "flow"],
-        });   
+        });
 
         const lastStatement = ast.program.body[ast.program.body.length - 1];
 
@@ -58,10 +60,16 @@ function generateTestFile(root, examples, componentFileMap) {
             throw new Error("last line should be a JSX Element");
         }
 
-        lines.push(...example.split("\n").map((line, index) => 
-            index + 1 === lastStatement.loc.start.line
-                ? `        const example = ${line}`
-                : `        ${line}`));
+        lines.push(
+            ...example
+                .split("\n")
+                .map(
+                    (line, index) =>
+                        index + 1 === lastStatement.loc.start.line
+                            ? `        const example = ${line}`
+                            : `        ${line}`,
+                ),
+        );
 
         lines.push("        const tree = renderer.create(example).toJSON();");
         lines.push("        expect(tree).toMatchSnapshot();");
@@ -79,30 +87,31 @@ function generateTestFile(root, examples, componentFileMap) {
 }
 
 for (const section of styleguideConfig.sections) {
-
     const content = fs.readFileSync(section.content, "utf8");
     const tokens = marked.lexer(content);
-    const examples = tokens.filter(token => token.type === "code").map(token => token.text);
+    const examples = tokens
+        .filter((token) => token.type === "code")
+        .map((token) => token.text);
 
     if (section.content) {
         const root = path.dirname(section.content);
 
         if (section.components) {
             glob(section.components, {}, (err, files) => {
-    
                 const componentFileMap = {};
                 for (const file of files) {
                     const src = fs.readFileSync(file, "utf8");
                     const match = src.match(/export default class ([^ ]+)/);
-                    componentFileMap[match[1]] = file;
+                    if (match) {
+                        componentFileMap[match[1]] = file;
+                    }
                 }
-    
+
                 generateTestFile(root, examples, componentFileMap);
             });
         } else {
             generateTestFile(root, examples);
         }
-    
     } else {
         console.warn("no content for section: ");
         console.warn(JSON.stringify(section));

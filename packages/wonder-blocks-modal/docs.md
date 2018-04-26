@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("wonder-blocks-core");
 const {Title, Body} = require("wonder-blocks-typography");
-const ModalLauncher = require("./components/modal-launcher/index.js").default;
+const ModalLauncher = require("./components/modal-launcher.js").default;
 const TwoColumnModal = require("./components/two-column-modal.js").default;
 
 const styles = StyleSheet.create({
