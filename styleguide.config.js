@@ -27,6 +27,7 @@ module.exports = {
             name: "Modal",
             content: "packages/wonder-blocks-modal/docs.md",
             components: "packages/wonder-blocks-modal/components/*.js",
+            ignore: ["**/components/modal-launcher-portal.js"],
         },
     ],
 

@@ -107,6 +107,10 @@ for (const section of styleguideConfig.sections) {
                     }
                 }
 
+                if (examples.length === 0) {
+                    console.warn(`no examples for section ${section.name}`);
+                    return;
+                }
                 generateTestFile(root, examples, componentFileMap);
             });
         } else {

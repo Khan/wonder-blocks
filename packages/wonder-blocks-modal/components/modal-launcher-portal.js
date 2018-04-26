@@ -1,11 +1,4 @@
 // @flow
-/**
- * An element used by ModalLauncher, that behaves similarly to a React
- * "portal". It renders its children in a new node in `document.body`, rather
- * than in its natural position in the DOM tree.
- *
- * NOTE(mdr): Once we upgrade to React 16, maybe we can use built-in portals!
- */
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {View} from "wonder-blocks-core";
@@ -14,6 +7,13 @@ type Props = {
     children: React.Node,
 };
 
+/**
+ * A private component used by ModalLauncher, that behaves similarly to a React
+ * "portal". It renders its children in a new node in `document.body`, rather
+ * than in its natural position in the DOM tree.
+ *
+ * NOTE(mdr): Once we upgrade to React 16, maybe we can use built-in portals!
+ */
 export default class ModalLauncherPortal extends React.Component<Props> {
     _destination: ?Node;
 

@@ -1,7 +1,4 @@
 // @flow
-/**
- * A two-column modal layout.
- */
 import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
 
@@ -9,10 +6,16 @@ import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
 type Props = {
+    /** The left-hand column's content. */
     leftContent: React.Node,
+
+    /** The right-hand column's content. */
     rightContent: React.Node,
 };
 
+/**
+ * A two-column modal layout.
+ */
 export default class TwoColumnModal extends React.Component<Props> {
     render() {
         return (

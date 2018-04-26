@@ -39,7 +39,7 @@
                             "build/" +
                             ({}[e] || e) +
                             "." +
-                            {0: "401ddd97"}[e] +
+                            {0: "d547da6a"}[e] +
                             ".js"
                         );
                     })(e));
@@ -109,14 +109,14 @@
     (r.push = webpackJsonpCallback), (r = r.slice());
     for (var a = 0; a < r.length; a++) webpackJsonpCallback(r[a]);
     var o = i;
-    __webpack_require__((__webpack_require__.s = 535));
+    __webpack_require__((__webpack_require__.s = 536));
 })([
     function(e, t, n) {
         "use strict";
         e.exports = n(41);
     },
     function(e, t, n) {
-        e.exports = n(416)();
+        e.exports = n(417)();
     },
     function(e, t, n) {
         "use strict";
@@ -155,9 +155,9 @@
             a = n.n(i),
             o = n(1),
             s = n.n(o),
-            l = n(121),
+            l = n(122),
             u = n.n(l),
-            c = n(119),
+            c = n(120),
             p = n.n(c),
             h = n(59),
             d = 8,
@@ -376,7 +376,7 @@
     },
     function(e, t, n) {
         "use strict";
-        var r = n(16);
+        var r = n(18);
         e.exports = r;
     },
     function(e, t, n) {
@@ -1790,7 +1790,7 @@ object-assign
                     }
                     return e;
                 };
-        n(351);
+        n(352);
         var Ve = {
                 a: {component: _e.a},
                 h1: {component: Se, props: {level: 1}},
@@ -1999,7 +1999,7 @@ object-assign
         var r = n(146),
             i = (function _interopRequireDefault(e) {
                 return e && e.__esModule ? e : {default: e};
-            })(n(280));
+            })(n(281));
         (t.default = (0, i.default)(!0, r.defaultSelectorHandlers)),
             (e.exports = t.default);
     },
@@ -2019,6 +2019,25 @@ object-assign
                 isInWorker: !r,
             };
         e.exports = i;
+    },
+    function(e, t) {
+        e.exports = function evalInContext(e, t, n) {
+            return new Function("require", "state", "setState", e + n).bind(
+                null,
+                t,
+            );
+        };
+    },
+    function(e, t) {
+        e.exports = function requireInRuntime(e, t) {
+            if (!(t in e))
+                throw new Error(
+                    'require() statements can be added only by editing a Markdown example file: require("' +
+                        t +
+                        '")',
+                );
+            return e[t];
+        };
     },
     function(e, t, n) {
         var r = n(170),
@@ -2050,30 +2069,11 @@ object-assign
             }),
             (e.exports = r);
     },
-    function(e, t) {
-        e.exports = function evalInContext(e, t, n) {
-            return new Function("require", "state", "setState", e + n).bind(
-                null,
-                t,
-            );
-        };
-    },
-    function(e, t) {
-        e.exports = function requireInRuntime(e, t) {
-            if (!(t in e))
-                throw new Error(
-                    'require() statements can be added only by editing a Markdown example file: require("' +
-                        t +
-                        '")',
-                );
-            return e[t];
-        };
-    },
     function(e, t, n) {
         "use strict";
         Object.defineProperty(t, "__esModule", {value: !0}),
             (t.fade = t.mix = t.default = void 0);
-        var r = n(259),
+        var r = n(260),
             i = {
                 blue: "#1865f2",
                 purple: "#9059ff",
@@ -2421,7 +2421,7 @@ object-assign
         "use strict";
         var r = n(8),
             i = n(35),
-            a = n(16),
+            a = n(18),
             o = (n(4),
             [
                 "dispatchConfig",
@@ -2557,16 +2557,16 @@ object-assign
         });
     },
     function(e, t, n) {
-        var r = n(97),
-            i = n(91);
+        var r = n(98),
+            i = n(92);
         e.exports = function isArrayLike(e) {
             return null != e && i(e.length) && !r(e);
         };
     },
     function(e, t, n) {
         var r = n(68),
-            i = n(403),
-            a = n(402),
+            i = n(404),
+            a = n(403),
             o = "[object Null]",
             s = "[object Undefined]",
             l = r ? r.toStringTag : void 0;
@@ -2581,8 +2581,8 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(404),
-            i = n(399);
+        var r = n(405),
+            i = n(400);
         e.exports = function getNative(e, t) {
             var n = i(e, t);
             return r(n) ? n : void 0;
@@ -2872,13 +2872,13 @@ object-assign
         "use strict";
         var r = n(8),
             i = n(186),
-            a = n(470),
-            o = n(465),
+            a = n(471),
+            o = n(466),
             s = n(40),
-            l = n(464),
-            u = n(463),
-            c = n(462),
-            p = n(460),
+            l = n(465),
+            u = n(464),
+            c = n(463),
+            p = n(461),
             h = s.createElement,
             d = s.createFactory,
             f = s.cloneElement,
@@ -2910,9 +2910,9 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(109),
+        var r = n(110),
             i = n(74),
-            a = n(108),
+            a = n(109),
             o = n(192),
             s =
                 ("undefined" != typeof document &&
@@ -2972,7 +2972,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(498);
+        var r = n(499);
         n(20), n(4);
         function attachRefs() {
             r.attachRefs(this, this._currentElement);
@@ -3153,7 +3153,7 @@ object-assign
                 };
             })(),
             o = _interopRequireDefault(n(30)),
-            s = _interopRequireDefault(n(118)),
+            s = _interopRequireDefault(n(119)),
             l = _interopRequireDefault(n(78));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
@@ -3537,7 +3537,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        e.exports = n(506);
+        e.exports = n(507);
     },
     function(e, t) {
         e.exports = function eq(e, t) {
@@ -3586,7 +3586,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(28),
-            i = n(113),
+            i = n(114),
             a = {
                 view: function(e) {
                     if (e.view) return e.view;
@@ -3607,9 +3607,9 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(5),
-            i = n(116),
-            a = n(115),
-            o = n(114),
+            i = n(117),
+            a = n(116),
+            o = n(115),
             s = n(200),
             l = n(199),
             u = (n(3), {}),
@@ -3722,7 +3722,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(55),
-            i = n(115),
+            i = n(116),
             a = n(200),
             o = n(199),
             s = (n(4), r.getListener);
@@ -3825,7 +3825,7 @@ object-assign
             a = _interopRequireDefault(n(77)),
             o = _interopRequireDefault(n(205)),
             s = _interopRequireDefault(n(45)),
-            l = _interopRequireDefault(n(524));
+            l = _interopRequireDefault(n(525));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -4108,7 +4108,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(120),
+        var r = n(121),
             i = n(229),
             a = n.n(i),
             o = n(228),
@@ -4432,7 +4432,7 @@ object-assign
     },
     function(e, t, n) {
         var r = n(160),
-            i = n(331),
+            i = n(332),
             a = n(32);
         e.exports = function keys(e) {
             return a(e) ? r(e) : i(e);
@@ -4447,7 +4447,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(390);
+        var r = n(391);
         e.exports = function getMapData(e, t) {
             var n = e.__data__;
             return r(t) ? n["string" == typeof t ? "string" : "hash"] : n.map;
@@ -4458,7 +4458,7 @@ object-assign
         e.exports = r;
     },
     function(e, t, n) {
-        var r = n(15).Symbol;
+        var r = n(17).Symbol;
         e.exports = r;
     },
     function(e, t, n) {
@@ -4469,11 +4469,11 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(414),
-            i = n(413),
-            a = n(412),
-            o = n(411),
-            s = n(410);
+        var r = n(415),
+            i = n(414),
+            a = n(413),
+            o = n(412),
+            s = n(411);
         function ListCache(e) {
             var t = -1,
                 n = null == e ? 0 : e.length;
@@ -4497,11 +4497,11 @@ object-assign
         "use strict";
         var r,
             i = n(8),
-            a = n(116),
-            o = n(477),
+            a = n(117),
+            o = n(478),
             s = n(193),
-            l = n(476),
-            u = n(112),
+            l = n(477),
+            u = n(113),
             c = {},
             p = !1,
             h = 0,
@@ -4736,10 +4736,10 @@ object-assign
         "use strict";
         var r,
             i = n(14),
-            a = n(109),
+            a = n(110),
             o = /^[ \r\n\t\f]/,
             s = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/,
-            l = n(108)(function(e, t) {
+            l = n(109)(function(e, t) {
                 if (e.namespaceURI !== a.svg || "innerHTML" in e)
                     e.innerHTML = t;
                 else {
@@ -4782,7 +4782,7 @@ object-assign
                 shiftKey: null,
                 altKey: null,
                 metaKey: null,
-                getModifierState: n(111),
+                getModifierState: n(112),
                 button: function(e) {
                     var t = e.button;
                     return "which" in e ? t : 2 === t ? 2 : 4 === t ? 1 : 0;
@@ -4918,7 +4918,7 @@ object-assign
             });
         var r = _interopRequireDefault(n(30)),
             i = _interopRequireDefault(n(45)),
-            a = _interopRequireDefault(n(527));
+            a = _interopRequireDefault(n(528));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -5195,6 +5195,140 @@ object-assign
         "use strict";
         Object.defineProperty(t, "__esModule", {value: !0});
         var r = (function() {
+                function defineProperties(e, t) {
+                    for (var n = 0; n < t.length; n++) {
+                        var r = t[n];
+                        (r.enumerable = r.enumerable || !1),
+                            (r.configurable = !0),
+                            "value" in r && (r.writable = !0),
+                            Object.defineProperty(e, r.key, r);
+                    }
+                }
+                return function(e, t, n) {
+                    return (
+                        t && defineProperties(e.prototype, t),
+                        n && defineProperties(e, n),
+                        e
+                    );
+                };
+            })(),
+            i = (function _interopRequireWildcard(e) {
+                if (e && e.__esModule) return e;
+                var t = {};
+                if (null != e)
+                    for (var n in e)
+                        Object.prototype.hasOwnProperty.call(e, n) &&
+                            (t[n] = e[n]);
+                return (t.default = e), t;
+            })(n(0)),
+            a = n(13),
+            o = (function _interopRequireDefault(e) {
+                return e && e.__esModule ? e : {default: e};
+            })(n(19)),
+            s = n(6);
+        var l = (function(e) {
+            function TwoColumnModal() {
+                return (
+                    (function _classCallCheck(e, t) {
+                        if (!(e instanceof t))
+                            throw new TypeError(
+                                "Cannot call a class as a function",
+                            );
+                    })(this, TwoColumnModal),
+                    (function _possibleConstructorReturn(e, t) {
+                        if (!e)
+                            throw new ReferenceError(
+                                "this hasn't been initialised - super() hasn't been called",
+                            );
+                        return !t ||
+                            ("object" != typeof t && "function" != typeof t)
+                            ? e
+                            : t;
+                    })(
+                        this,
+                        (
+                            TwoColumnModal.__proto__ ||
+                            Object.getPrototypeOf(TwoColumnModal)
+                        ).apply(this, arguments),
+                    )
+                );
+            }
+            return (
+                (function _inherits(e, t) {
+                    if ("function" != typeof t && null !== t)
+                        throw new TypeError(
+                            "Super expression must either be null or a function, not " +
+                                typeof t,
+                        );
+                    (e.prototype = Object.create(t && t.prototype, {
+                        constructor: {
+                            value: e,
+                            enumerable: !1,
+                            writable: !0,
+                            configurable: !0,
+                        },
+                    })),
+                        t &&
+                            (Object.setPrototypeOf
+                                ? Object.setPrototypeOf(e, t)
+                                : (e.__proto__ = t));
+                })(TwoColumnModal, i.Component),
+                r(TwoColumnModal, [
+                    {
+                        key: "render",
+                        value: function render() {
+                            return i.createElement(
+                                s.View,
+                                {style: u.container},
+                                i.createElement(
+                                    s.View,
+                                    {style: [u.column, u.leftColumn]},
+                                    this.props.leftContent,
+                                ),
+                                i.createElement(
+                                    s.View,
+                                    {style: [u.column, u.rightColumn]},
+                                    this.props.rightContent,
+                                ),
+                            );
+                        },
+                    },
+                ]),
+                TwoColumnModal
+            );
+        })();
+        t.default = l;
+        var u = a.StyleSheet.create({
+            container: {
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "stretch",
+                borderRadius: 4,
+                overflow: "hidden",
+            },
+            column: {
+                boxSizing: "border-box",
+                flex: "0 0 50%",
+                paddingTop: 64,
+                paddingBottom: 64,
+            },
+            leftColumn: {
+                background: o.default.darkBlue,
+                color: o.default.white,
+                paddingLeft: 64,
+                paddingRight: 52,
+            },
+            rightColumn: {
+                background: o.default.white,
+                paddingLeft: 52,
+                paddingRight: 64,
+            },
+        });
+    },
+    function(e, t, n) {
+        "use strict";
+        Object.defineProperty(t, "__esModule", {value: !0});
+        var r = (function() {
             return function(e, t) {
                 if (Array.isArray(e)) return e;
                 if (Symbol.iterator in Object(e))
@@ -5228,7 +5362,7 @@ object-assign
         })();
         var i = (function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
-        })(n(281));
+        })(n(282));
         t.mapObj = function mapObj(e, t) {
             for (var n = Object.keys(e), i = {}, a = 0; a < n.length; a += 1) {
                 var o = t([n[a], e[n[a]]]),
@@ -5417,11 +5551,11 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(349),
-            i = n(323),
-            a = n(87),
+        var r = n(350),
+            i = n(324),
+            a = n(88),
             o = n(21),
-            s = n(314);
+            s = n(315);
         e.exports = function baseIteratee(e) {
             return "function" == typeof e
                 ? e
@@ -5454,23 +5588,23 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(374),
-            i = n(373),
-            a = n(372),
+        var r = n(375),
+            i = n(374),
+            a = n(373),
             o = a && a.isTypedArray,
             s = o ? i(o) : r;
         e.exports = s;
     },
     function(e, t, n) {
         (function(e) {
-            var r = n(15),
-                i = n(376),
+            var r = n(17),
+                i = n(377),
                 a = "object" == typeof t && t && !t.nodeType && t,
                 o = a && "object" == typeof e && e && !e.nodeType && e,
                 s = o && o.exports === a ? r.Buffer : void 0,
                 l = (s ? s.isBuffer : void 0) || i;
             e.exports = l;
-        }.call(this, n(94)(e)));
+        }.call(this, n(95)(e)));
     },
     function(e, t) {
         var n = 9007199254740991;
@@ -5479,7 +5613,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(378),
+        var r = n(379),
             i = n(29),
             a = Object.prototype,
             o = a.hasOwnProperty,
@@ -5542,11 +5676,11 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(398),
-            i = n(391),
-            a = n(389),
-            o = n(388),
-            s = n(387);
+        var r = n(399),
+            i = n(392),
+            a = n(390),
+            o = n(389),
+            s = n(388);
         function MapCache(e) {
             var t = -1,
                 n = null == e ? 0 : e.length;
@@ -5576,16 +5710,16 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(34)(n(15), "Map");
+        var r = n(34)(n(17), "Map");
         e.exports = r;
     },
     function(e, t, n) {
         var r = n(70),
-            i = n(409),
-            a = n(408),
-            o = n(407),
-            s = n(406),
-            l = n(405);
+            i = n(410),
+            a = n(409),
+            o = n(408),
+            s = n(407),
+            l = n(406);
         function Stack(e) {
             var t = (this.__data__ = new r(e));
             this.size = t.size;
@@ -5613,7 +5747,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         n(8);
-        var r = n(16),
+        var r = n(18),
             i = (n(4), r);
         e.exports = i;
     },
@@ -5784,7 +5918,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(5),
-            i = n(474),
+            i = n(475),
             a = n(188)(n(41).isValidElement),
             o = (n(3),
             n(4),
@@ -5895,8 +6029,8 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(42),
-            i = n(492),
-            a = (n(9), n(20), n(108)),
+            i = n(493),
+            a = (n(9), n(20), n(109)),
             o = n(74),
             s = n(192);
         function getNodeAfter(e, t) {
@@ -6079,7 +6213,7 @@ object-assign
         var r,
             i,
             a = n(5),
-            o = n(114);
+            o = n(115);
         n(3), n(4);
         function executeDispatch(e, t, n, r) {
             var i = e.type || "unknown-event";
@@ -6345,7 +6479,7 @@ object-assign
         }
     },
     function(e, t, n) {
-        var r = n(96),
+        var r = n(97),
             i = "Expected a function";
         function memoize(e, t) {
             if ("function" != typeof e || (null != t && "function" != typeof t))
@@ -6366,7 +6500,7 @@ object-assign
         "use strict";
         Object.defineProperty(t, "__esModule", {value: !0}),
             (t.create = t.createGenerateClassName = t.sheets = t.RuleList = t.SheetsManager = t.SheetsRegistry = t.toCssValue = t.getDynamicStyles = void 0);
-        var r = n(529);
+        var r = n(530);
         Object.defineProperty(t, "getDynamicStyles", {
             enumerable: !0,
             get: function get() {
@@ -6387,7 +6521,7 @@ object-assign
                 return _interopRequireDefault(a).default;
             },
         });
-        var o = n(528);
+        var o = n(529);
         Object.defineProperty(t, "SheetsManager", {
             enumerable: !0,
             get: function get() {
@@ -6401,7 +6535,7 @@ object-assign
                 return _interopRequireDefault(s).default;
             },
         });
-        var l = n(117);
+        var l = n(118);
         Object.defineProperty(t, "sheets", {
             enumerable: !0,
             get: function get() {
@@ -6415,7 +6549,7 @@ object-assign
                 return _interopRequireDefault(u).default;
             },
         });
-        var c = _interopRequireDefault(n(522));
+        var c = _interopRequireDefault(n(523));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -6425,145 +6559,53 @@ object-assign
         t.default = p();
     },
     function(e, t, n) {
-        var r = n(415),
-            i = n(365)(function(e, t, n) {
+        var r = n(416),
+            i = n(366)(function(e, t, n) {
                 r(e, t, n);
             });
         e.exports = i;
     },
     function(e, t, n) {
         "use strict";
-        Object.defineProperty(t, "__esModule", {value: !0});
-        var r = (function() {
-                function defineProperties(e, t) {
-                    for (var n = 0; n < t.length; n++) {
-                        var r = t[n];
-                        (r.enumerable = r.enumerable || !1),
-                            (r.configurable = !0),
-                            "value" in r && (r.writable = !0),
-                            Object.defineProperty(e, r.key, r);
-                    }
-                }
-                return function(e, t, n) {
-                    return (
-                        t && defineProperties(e.prototype, t),
-                        n && defineProperties(e, n),
-                        e
-                    );
-                };
-            })(),
-            i = (function _interopRequireWildcard(e) {
-                if (e && e.__esModule) return e;
-                var t = {};
-                if (null != e)
-                    for (var n in e)
-                        Object.prototype.hasOwnProperty.call(e, n) &&
-                            (t[n] = e[n]);
-                return (t.default = e), t;
-            })(n(0)),
-            a = n(13),
-            o = (function _interopRequireDefault(e) {
-                return e && e.__esModule ? e : {default: e};
-            })(n(19)),
-            s = n(6);
-        var l = (function(e) {
-            function TwoColumnModal() {
-                return (
-                    (function _classCallCheck(e, t) {
-                        if (!(e instanceof t))
-                            throw new TypeError(
-                                "Cannot call a class as a function",
-                            );
-                    })(this, TwoColumnModal),
-                    (function _possibleConstructorReturn(e, t) {
-                        if (!e)
-                            throw new ReferenceError(
-                                "this hasn't been initialised - super() hasn't been called",
-                            );
-                        return !t ||
-                            ("object" != typeof t && "function" != typeof t)
-                            ? e
-                            : t;
-                    })(
-                        this,
-                        (
-                            TwoColumnModal.__proto__ ||
-                            Object.getPrototypeOf(TwoColumnModal)
-                        ).apply(this, arguments),
-                    )
-                );
-            }
-            return (
-                (function _inherits(e, t) {
-                    if ("function" != typeof t && null !== t)
-                        throw new TypeError(
-                            "Super expression must either be null or a function, not " +
-                                typeof t,
-                        );
-                    (e.prototype = Object.create(t && t.prototype, {
-                        constructor: {
-                            value: e,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0,
-                        },
-                    })),
-                        t &&
-                            (Object.setPrototypeOf
-                                ? Object.setPrototypeOf(e, t)
-                                : (e.__proto__ = t));
-                })(TwoColumnModal, i.Component),
-                r(TwoColumnModal, [
-                    {
-                        key: "render",
-                        value: function render() {
-                            return i.createElement(
-                                s.View,
-                                {style: u.container},
-                                i.createElement(
-                                    s.View,
-                                    {style: [u.column, u.leftColumn]},
-                                    this.props.leftContent,
-                                ),
-                                i.createElement(
-                                    s.View,
-                                    {style: [u.column, u.rightColumn]},
-                                    this.props.rightContent,
-                                ),
-                            );
-                        },
-                    },
-                ]),
-                TwoColumnModal
-            );
-        })();
-        t.default = l;
-        var u = a.StyleSheet.create({
-            container: {
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "stretch",
-                borderRadius: 4,
-                overflow: "hidden",
-            },
-            column: {
-                boxSizing: "border-box",
-                flex: "0 0 50%",
-                paddingTop: 64,
-                paddingBottom: 64,
-            },
-            leftColumn: {
-                background: o.default.darkBlue,
-                color: o.default.white,
-                paddingLeft: 64,
-                paddingRight: 52,
-            },
-            rightColumn: {
-                background: o.default.white,
-                paddingLeft: 52,
-                paddingRight: 64,
-            },
-        });
+        Object.defineProperty(t, "__esModule", {value: !0}),
+            (t.styles = t.Footnote = t.Caption = t.Tagline = t.LabelXSmall = t.LabelSmall = t.LabelMedium = t.LabelLarge = t.Body = t.BodyMonospace = t.BodySerif = t.BodySerifBlock = t.HeadingXSmall = t.HeadingSmall = t.HeadingMedium = t.HeadingLarge = t.Title = void 0);
+        var r = _interopRequireDefault(n(12)),
+            i = _interopRequireDefault(n(127)),
+            a = _interopRequireDefault(n(136)),
+            o = _interopRequireDefault(n(135)),
+            s = _interopRequireDefault(n(134)),
+            l = _interopRequireDefault(n(133)),
+            u = _interopRequireDefault(n(141)),
+            c = _interopRequireDefault(n(140)),
+            p = _interopRequireDefault(n(148)),
+            h = _interopRequireDefault(n(139)),
+            d = _interopRequireDefault(n(132)),
+            f = _interopRequireDefault(n(131)),
+            m = _interopRequireDefault(n(130)),
+            g = _interopRequireDefault(n(129)),
+            y = _interopRequireDefault(n(128)),
+            v = _interopRequireDefault(n(138)),
+            b = _interopRequireDefault(n(137));
+        function _interopRequireDefault(e) {
+            return e && e.__esModule ? e : {default: e};
+        }
+        (t.Title = i.default),
+            (t.HeadingLarge = a.default),
+            (t.HeadingMedium = o.default),
+            (t.HeadingSmall = s.default),
+            (t.HeadingXSmall = l.default),
+            (t.BodySerifBlock = u.default),
+            (t.BodySerif = c.default),
+            (t.BodyMonospace = p.default),
+            (t.Body = h.default),
+            (t.LabelLarge = d.default),
+            (t.LabelMedium = f.default),
+            (t.LabelSmall = m.default),
+            (t.LabelXSmall = g.default),
+            (t.Tagline = y.default),
+            (t.Caption = v.default),
+            (t.Footnote = b.default),
+            (t.styles = r.default);
     },
     function(e, t, n) {
         "use strict";
@@ -6598,7 +6640,7 @@ object-assign
             a = n(13),
             o = _interopRequireDefault(n(19)),
             s = n(6),
-            l = _interopRequireDefault(n(124));
+            l = _interopRequireDefault(n(239));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -6729,133 +6771,6 @@ object-assign
                 minHeight: 464,
             },
         });
-    },
-    function(e, t, n) {
-        "use strict";
-        Object.defineProperty(t, "__esModule", {value: !0});
-        var r = (function() {
-                function defineProperties(e, t) {
-                    for (var n = 0; n < t.length; n++) {
-                        var r = t[n];
-                        (r.enumerable = r.enumerable || !1),
-                            (r.configurable = !0),
-                            "value" in r && (r.writable = !0),
-                            Object.defineProperty(e, r.key, r);
-                    }
-                }
-                return function(e, t, n) {
-                    return (
-                        t && defineProperties(e.prototype, t),
-                        n && defineProperties(e, n),
-                        e
-                    );
-                };
-            })(),
-            i = _interopRequireWildcard(n(0)),
-            a = _interopRequireWildcard(n(50)),
-            o = n(6);
-        function _interopRequireWildcard(e) {
-            if (e && e.__esModule) return e;
-            var t = {};
-            if (null != e)
-                for (var n in e)
-                    Object.prototype.hasOwnProperty.call(e, n) && (t[n] = e[n]);
-            return (t.default = e), t;
-        }
-        var s = (function(e) {
-            function ModalLauncherPortal() {
-                return (
-                    (function _classCallCheck(e, t) {
-                        if (!(e instanceof t))
-                            throw new TypeError(
-                                "Cannot call a class as a function",
-                            );
-                    })(this, ModalLauncherPortal),
-                    (function _possibleConstructorReturn(e, t) {
-                        if (!e)
-                            throw new ReferenceError(
-                                "this hasn't been initialised - super() hasn't been called",
-                            );
-                        return !t ||
-                            ("object" != typeof t && "function" != typeof t)
-                            ? e
-                            : t;
-                    })(
-                        this,
-                        (
-                            ModalLauncherPortal.__proto__ ||
-                            Object.getPrototypeOf(ModalLauncherPortal)
-                        ).apply(this, arguments),
-                    )
-                );
-            }
-            return (
-                (function _inherits(e, t) {
-                    if ("function" != typeof t && null !== t)
-                        throw new TypeError(
-                            "Super expression must either be null or a function, not " +
-                                typeof t,
-                        );
-                    (e.prototype = Object.create(t && t.prototype, {
-                        constructor: {
-                            value: e,
-                            enumerable: !1,
-                            writable: !0,
-                            configurable: !0,
-                        },
-                    })),
-                        t &&
-                            (Object.setPrototypeOf
-                                ? Object.setPrototypeOf(e, t)
-                                : (e.__proto__ = t));
-                })(ModalLauncherPortal, i.Component),
-                r(ModalLauncherPortal, [
-                    {
-                        key: "componentDidMount",
-                        value: function componentDidMount() {
-                            var e = this._getRoot(),
-                                t = document.createElement("div");
-                            t.setAttribute("data-modal-launcher-portal", ""),
-                                e.appendChild(t);
-                            var n = i.createElement(
-                                o.View,
-                                {"data-modal-launcher-portal": !0},
-                                this.props.children,
-                            );
-                            a.render(n, t), (this._destination = t);
-                        },
-                    },
-                    {
-                        key: "componentWillUnmount",
-                        value: function componentWillUnmount() {
-                            var e = this._destination;
-                            e &&
-                                (a.unmountComponentAtNode(e),
-                                e.parentNode && e.parentNode.removeChild(e));
-                        },
-                    },
-                    {
-                        key: "_getRoot",
-                        value: function _getRoot() {
-                            var e = document.body;
-                            if (!e)
-                                throw new Error(
-                                    "can't mount modal without a document.body",
-                                );
-                            return e;
-                        },
-                    },
-                    {
-                        key: "render",
-                        value: function render() {
-                            return null;
-                        },
-                    },
-                ]),
-                ModalLauncherPortal
-            );
-        })();
-        t.default = s;
     },
     function(e, t, n) {
         "use strict";
@@ -8839,10 +8754,10 @@ object-assign
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
-        var i = _interopRequireDefault(n(300)),
-            a = _interopRequireDefault(n(295)),
+        var i = _interopRequireDefault(n(301)),
+            a = _interopRequireDefault(n(296)),
             o = _interopRequireDefault(n(144)),
-            s = n(83),
+            s = n(84),
             l = (0, i.default)(a.default);
         t.defaultSelectorHandlers = [
             function pseudoSelectors(e, t, n) {
@@ -9123,9 +9038,9 @@ object-assign
     },
     function(e, t, n) {
         var r = n(21),
-            i = n(85),
-            a = n(321),
-            o = n(319);
+            i = n(86),
+            a = n(322),
+            o = n(320);
         e.exports = function castPath(e, t) {
             return r(e) ? e : i(e, t) ? [e] : a(o(e));
         };
@@ -9155,9 +9070,9 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(346),
-            i = n(343),
-            a = n(342),
+        var r = n(347),
+            i = n(344),
+            a = n(343),
             o = 1,
             s = 2;
         e.exports = function equalArrays(e, t, n, l, u, c) {
@@ -9198,7 +9113,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(347),
+        var r = n(348),
             i = n(29);
         e.exports = function baseIsEqual(e, t, n, a, o) {
             return (
@@ -9229,9 +9144,9 @@ object-assign
  * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
  * @license  MIT
  */
-            var r = n(354),
-                i = n(353),
-                a = n(352);
+            var r = n(355),
+                i = n(354),
+                a = n(353);
             function kMaxLength() {
                 return Buffer.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823;
             }
@@ -10956,7 +10871,7 @@ object-assign
     },
     function(e, t, n) {
         var r = n(22),
-            i = n(356),
+            i = n(357),
             a = n(158),
             o = "Expected a function",
             s = Math.max,
@@ -11034,12 +10949,12 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(368),
-            i = n(92),
+        var r = n(369),
+            i = n(93),
             a = n(21),
-            o = n(90),
-            s = n(88),
-            l = n(89),
+            o = n(91),
+            s = n(89),
+            l = n(90),
             u = Object.prototype.hasOwnProperty;
         e.exports = function arrayLikeKeys(e, t) {
             var n = a(e),
@@ -11065,7 +10980,7 @@ object-assign
     },
     function(e, t, n) {
         var r = n(160),
-            i = n(367),
+            i = n(368),
             a = n(32);
         e.exports = function keysIn(e) {
             return a(e) ? r(e, !0) : i(e);
@@ -11088,11 +11003,11 @@ object-assign
         e.exports = r;
     },
     function(e, t, n) {
-        var r = n(15).Uint8Array;
+        var r = n(17).Uint8Array;
         e.exports = r;
     },
     function(e, t, n) {
-        var r = n(386)();
+        var r = n(387)();
         e.exports = r;
     },
     function(e, t, n) {
@@ -11106,7 +11021,7 @@ object-assign
         e.exports = i;
     },
     function(e, t, n) {
-        var r = n(95),
+        var r = n(96),
             i = n(51);
         e.exports = function assignMergeValue(e, t, n) {
             ((void 0 === n || i(e[t], n)) && (void 0 !== n || t in e)) ||
@@ -11154,18 +11069,18 @@ object-assign
             o = n(41),
             s = n(72),
             l = (n(27), n(9)),
-            u = n(423),
-            c = n(422),
+            u = n(424),
+            c = n(423),
             p = n(196),
             h = n(52),
-            d = (n(20), n(421)),
+            d = (n(20), n(422)),
             f = n(43),
-            m = n(102),
+            m = n(103),
             g = n(23),
             y = n(71),
             v = n(181),
             b = (n(3), n(74)),
-            _ = n(104),
+            _ = n(105),
             x = (n(4), a.ID_ATTRIBUTE_NAME),
             C = a.ROOT_ATTRIBUTE_NAME,
             w = 1,
@@ -11385,8 +11300,8 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(440),
-            i = n(438),
+        var r = n(441),
+            i = n(439),
             a = n(191),
             o = n(173);
         var s = {
@@ -11460,7 +11375,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(16),
+        var r = n(18),
             i = {
                 listen: function listen(e, t, n) {
                     return e.addEventListener
@@ -11793,9 +11708,9 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(5),
-            i = (n(27), n(453)),
-            a = n(452),
-            o = (n(3), n(103)),
+            i = (n(27), n(454)),
+            a = n(453),
+            o = (n(3), n(104)),
             s = (n(4), "."),
             l = ":";
         function getComponentKey(e, t) {
@@ -11940,10 +11855,10 @@ object-assign
         "use strict";
         var r = n(5),
             i = n(8),
-            a = n(455),
+            a = n(456),
             o = n(179),
             s = n(178),
-            l = (n(454),
+            l = (n(455),
             n(3),
             n(4),
             function(e) {
@@ -11999,7 +11914,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(8),
-            i = n(107),
+            i = n(108),
             a = n(9),
             o = n(23),
             s = (n(4), !1);
@@ -12121,7 +12036,7 @@ object-assign
             i = n(8),
             a = n(185),
             o = (n(184), n(71));
-        n(3), n(471);
+        n(3), n(472);
         function ReactComponent(e, t, n) {
             (this.props = e),
                 (this.context = t),
@@ -12164,7 +12079,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(473);
+        var r = n(474);
         e.exports = function(e) {
             return r(e, !1);
         };
@@ -12172,7 +12087,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(44),
-            i = (n(9), n(20), n(478)),
+            i = (n(9), n(20), n(479)),
             a = (n(4),
             new RegExp(
                 "^[" +
@@ -12843,7 +12758,7 @@ object-assign
         Object.defineProperty(t, "__esModule", {value: !0});
         var r = _interopRequireDefault(n(30)),
             i = (_interopRequireDefault(n(203)),
-            _interopRequireDefault(n(523)));
+            _interopRequireDefault(n(524)));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -12880,7 +12795,7 @@ object-assign
         Object.defineProperty(t, "__esModule", {value: !0});
         var r = (function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
-        })(n(526));
+        })(n(527));
         t.default = function(e) {
             return e && e[r.default] && e === e[r.default]();
         };
@@ -12998,13 +12913,13 @@ object-assign
         }.call(this, n(26)));
     },
     function(e, t, n) {
-        var r = n(302);
+        var r = n(303);
         e.exports = function isNaN(e) {
             return r(e) && e != +e;
         };
     },
     function(e, t, n) {
-        var r = n(15).isFinite;
+        var r = n(17).isFinite;
         e.exports = function isFinite(e) {
             return "number" == typeof e && r(e);
         };
@@ -13024,7 +12939,7 @@ object-assign
                     return e;
                 },
             i = _interopRequireDefault(n(0)),
-            a = _interopRequireDefault(n(84));
+            a = _interopRequireDefault(n(85));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -13073,7 +12988,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(307)(n(306));
+        var r = n(308)(n(307));
         e.exports = r;
     },
     function(e, t, n) {
@@ -28991,7 +28906,7 @@ object-assign
                     return e;
                 },
             i = _interopRequireDefault(n(0)),
-            a = _interopRequireDefault(n(84));
+            a = _interopRequireDefault(n(85));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -29026,7 +28941,7 @@ object-assign
                     return e;
                 },
             i = _interopRequireDefault(n(0)),
-            a = _interopRequireDefault(n(84));
+            a = _interopRequireDefault(n(85));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -29048,8 +28963,8 @@ object-assign
     },
     function(e, t, n) {
         var r = n(155),
-            i = n(86),
-            a = n(311),
+            i = n(87),
+            a = n(312),
             o = n(21);
         e.exports = function map(e, t) {
             return (o(e) ? r : a)(e, i(t, 3));
@@ -29374,7 +29289,7 @@ object-assign
         var i = addCamelCasedVersion(
             (function _interopRequireDefault(e) {
                 return e && e.__esModule ? e : {default: e};
-            })(n(507)).default,
+            })(n(508)).default,
         );
         function iterate(e, t, n) {
             if (!t) return t;
@@ -29578,8 +29493,8 @@ object-assign
                 },
             };
         };
-        var a = _interopRequireDefault(n(509)),
-            o = _interopRequireDefault(n(508));
+        var a = _interopRequireDefault(n(510)),
+            o = _interopRequireDefault(n(509));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -29706,7 +29621,7 @@ object-assign
                 },
             };
         };
-        var a = n(120);
+        var a = n(121);
         function _classCallCheck(e, t) {
             if (!(e instanceof t))
                 throw new TypeError("Cannot call a class as a function");
@@ -29841,7 +29756,7 @@ object-assign
             l = null,
             u = 0,
             c = [],
-            p = n(355);
+            p = n(356);
         function addStylesToDom(e, t) {
             for (var n = 0; n < e.length; n++) {
                 var r = e[n],
@@ -30112,7 +30027,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         n.r(t);
-        n(534), n(533), n(531);
+        n(535), n(534), n(532);
         var r = n(59)
             .a.createStyleSheet({
                 body: {isolate: !1, margin: 0, padding: 0, border: 0},
@@ -30246,7 +30161,7 @@ object-assign
                                 var e = this;
                                 n
                                     .e(0)
-                                    .then(n.bind(null, 545))
+                                    .then(n.bind(null, 546))
                                     .then(function(t) {
                                         e.setState({editor: t.default});
                                     });
@@ -38368,7 +38283,7 @@ object-assign
             });
         }
         var en = function render() {
-            var e = n(301),
+            var e = n(302),
                 t = "rsg-root";
             document.getElementById("app") &&
                 (console.warn(
@@ -38385,76 +38300,32 @@ object-assign
             en();
     },
     function(e, t, n) {
-        "use strict";
-        Object.defineProperty(t, "__esModule", {value: !0}),
-            (t.styles = t.Footnote = t.Caption = t.Tagline = t.LabelXSmall = t.LabelSmall = t.LabelMedium = t.LabelLarge = t.Body = t.BodyMonospace = t.BodySerif = t.BodySerifBlock = t.HeadingXSmall = t.HeadingSmall = t.HeadingMedium = t.HeadingLarge = t.Title = void 0);
-        var r = _interopRequireDefault(n(12)),
-            i = _interopRequireDefault(n(127)),
-            a = _interopRequireDefault(n(136)),
-            o = _interopRequireDefault(n(135)),
-            s = _interopRequireDefault(n(134)),
-            l = _interopRequireDefault(n(133)),
-            u = _interopRequireDefault(n(141)),
-            c = _interopRequireDefault(n(140)),
-            p = _interopRequireDefault(n(148)),
-            h = _interopRequireDefault(n(139)),
-            d = _interopRequireDefault(n(132)),
-            f = _interopRequireDefault(n(131)),
-            m = _interopRequireDefault(n(130)),
-            g = _interopRequireDefault(n(129)),
-            y = _interopRequireDefault(n(128)),
-            v = _interopRequireDefault(n(138)),
-            b = _interopRequireDefault(n(137));
-        function _interopRequireDefault(e) {
-            return e && e.__esModule ? e : {default: e};
-        }
-        (t.Title = i.default),
-            (t.HeadingLarge = a.default),
-            (t.HeadingMedium = o.default),
-            (t.HeadingSmall = s.default),
-            (t.HeadingXSmall = l.default),
-            (t.BodySerifBlock = u.default),
-            (t.BodySerif = c.default),
-            (t.BodyMonospace = p.default),
-            (t.Body = h.default),
-            (t.LabelLarge = d.default),
-            (t.LabelMedium = f.default),
-            (t.LabelSmall = m.default),
-            (t.LabelXSmall = g.default),
-            (t.Tagline = y.default),
-            (t.Caption = v.default),
-            (t.Footnote = b.default),
-            (t.styles = r.default);
+        var r = {react: n(0)},
+            i = n(16).bind(null, r);
+        n(15).bind(null, "var React = require('react');", i);
+        e.exports = [
+            {
+                type: "markdown",
+                content:
+                    "Modals. These are WIP. TODO(mdr): Finish building, and write more thorough docs.",
+            },
+        ];
     },
     function(e, t, n) {
         var r = {
                 aphrodite: n(13),
                 "wonder-blocks-core": n(6),
-                "wonder-blocks-typography": n(234),
-                "./components/two-column-modal.js": n(122),
-                "./components/modal-launcher.js": n(123),
+                "wonder-blocks-typography": n(123),
+                "./two-column-modal.js": n(83),
                 react: n(0),
             },
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
-                type: "markdown",
-                content:
-                    "Modals. These are WIP. TODO(mdr): Finish building, and write more thorough docs.\n\n## Two-column layout",
-            },
-            {
                 type: "code",
                 content:
-                    'const {StyleSheet, css} = require("aphrodite");\nconst {View} = require("wonder-blocks-core");\nconst {Title, Body} = require("wonder-blocks-typography");\nconst TwoColumnModal = require("./components/two-column-modal.js").default;\n\nconst styles = StyleSheet.create({\n    example: {\n        // Checkerboard background\n        backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",\n        backgroundSize: "20px 20px",\n        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",\n\n        padding: 32,\n    },\n\n    title: {\n        marginBottom: 16,\n    },\n});\n\n<View style={styles.example}>\n    <TwoColumnModal\n        leftContent={\n            <View>\n                <Title style={styles.title}>Left column</Title>\n                <Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                    ullamco laboris.\n                </Body>\n            </View>\n        }\n        rightContent={\n            <View>\n                <Title style={styles.title}>Right column</Title>\n                <Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                    ullamco laboris nisi ut aliquip ex ea commodo consequat.\n                    Duis aute irure dolor in reprehenderit in voluptate velit\n                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint\n                    occaecat cupidatat non proident, sunt in culpa qui officia\n                    deserunt mollit anim id est.\n                </Body>\n            </View>\n        }\n    />\n</View>;',
-                settings: {},
-                evalInContext: a,
-            },
-            {type: "markdown", content: "## Modal launcher"},
-            {
-                type: "code",
-                content:
-                    'const {StyleSheet, css} = require("aphrodite");\nconst {View} = require("wonder-blocks-core");\nconst {Title, Body} = require("wonder-blocks-typography");\nconst ModalLauncher = require("./components/modal-launcher.js").default;\nconst TwoColumnModal = require("./components/two-column-modal.js").default;\n\nconst styles = StyleSheet.create({\n    example: {\n        padding: 32,\n        textAlign: "center",\n    },\n\n    title: {\n        marginBottom: 16,\n    },\n});\n\nconst modal = ({closeModal}) => <TwoColumnModal\n    leftContent={\n        <View>\n            <Title style={styles.title}>Left column</Title>\n            <Body>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                do eiusmod tempor incididunt ut labore et dolore magna\n                aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                ullamco laboris.\n            </Body>\n        </View>\n    }\n    rightContent={\n        <View>\n            <Title style={styles.title}>Right column</Title>\n            <Body>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                do eiusmod tempor incididunt ut labore et dolore magna\n                aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                ullamco laboris nisi ut aliquip ex ea commodo consequat.\n                Duis aute irure dolor in reprehenderit in voluptate velit\n                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint\n                occaecat cupidatat non proident, sunt in culpa qui officia\n                deserunt mollit anim id est.\n            </Body>\n            {/* TODO(mdr): Use Wonder Blocks Button. */}\n            <button\n                onClick={closeModal}\n                style={{marginTop: 16}}\n            >\n                Close modal\n            </button>\n        </View>\n    }\n/>;\n\n// TODO(mdr): Use Wonder Blocks Button.\n<View style={styles.example}>\n    <ModalLauncher modal={modal}>\n        {({openModal}) => <button onClick={openModal}>Learn more!</button>}\n    </ModalLauncher>\n</View>;',
+                    'const {StyleSheet, css} = require("aphrodite");\nconst {View} = require("wonder-blocks-core");\nconst {Title, Body} = require("wonder-blocks-typography");\nconst TwoColumnModal = require("./two-column-modal.js").default;\n\nconst styles = StyleSheet.create({\n    example: {\n        // Checkerboard background\n        backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",\n        backgroundSize: "20px 20px",\n        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",\n\n        padding: 32,\n    },\n\n    title: {\n        marginBottom: 16,\n    },\n});\n\n<View style={styles.example}>\n    <TwoColumnModal\n        leftContent={\n            <View>\n                <Title style={styles.title}>Left column</Title>\n                <Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                    ullamco laboris.\n                </Body>\n            </View>\n        }\n        rightContent={\n            <View>\n                <Title style={styles.title}>Right column</Title>\n                <Body>\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                    do eiusmod tempor incididunt ut labore et dolore magna\n                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                    ullamco laboris nisi ut aliquip ex ea commodo consequat.\n                    Duis aute irure dolor in reprehenderit in voluptate velit\n                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint\n                    occaecat cupidatat non proident, sunt in culpa qui officia\n                    deserunt mollit anim id est.\n                </Body>\n            </View>\n        }\n    />\n</View>;',
                 settings: {},
                 evalInContext: a,
             },
@@ -38462,32 +38333,55 @@ object-assign
     },
     function(e, t, n) {
         e.exports = {
-            description: "",
+            description: "A two-column modal layout.\n",
             displayName: "TwoColumnModal",
             methods: [],
             props: [
                 {
                     flowType: {name: "ReactNode", raw: "React.Node"},
                     required: !0,
-                    description: "",
+                    description: "The left-hand column's content.",
                     tags: {},
                     name: "leftContent",
                 },
                 {
                     flowType: {name: "ReactNode", raw: "React.Node"},
                     required: !0,
-                    description: "",
+                    description: "The right-hand column's content.",
                     tags: {},
                     name: "rightContent",
                 },
             ],
             doclets: {},
-            examples: [],
+            tags: {},
+            examples: n(235),
         };
     },
     function(e, t, n) {
+        var r = {
+                aphrodite: n(13),
+                "wonder-blocks-core": n(6),
+                "wonder-blocks-typography": n(123),
+                "./modal-launcher.js": n(124),
+                "./two-column-modal.js": n(83),
+                react: n(0),
+            },
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
+        e.exports = [
+            {
+                type: "code",
+                content:
+                    'const {StyleSheet, css} = require("aphrodite");\nconst {View} = require("wonder-blocks-core");\nconst {Title, Body} = require("wonder-blocks-typography");\nconst ModalLauncher = require("./modal-launcher.js").default;\nconst TwoColumnModal = require("./two-column-modal.js").default;\n\nconst styles = StyleSheet.create({\n    example: {\n        padding: 32,\n        textAlign: "center",\n    },\n\n    title: {\n        marginBottom: 16,\n    },\n});\n\nconst modal = ({closeModal}) => <TwoColumnModal\n    leftContent={\n        <View>\n            <Title style={styles.title}>Left column</Title>\n            <Body>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                do eiusmod tempor incididunt ut labore et dolore magna\n                aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                ullamco laboris.\n            </Body>\n        </View>\n    }\n    rightContent={\n        <View>\n            <Title style={styles.title}>Right column</Title>\n            <Body>\n                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\n                do eiusmod tempor incididunt ut labore et dolore magna\n                aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n                ullamco laboris nisi ut aliquip ex ea commodo consequat.\n                Duis aute irure dolor in reprehenderit in voluptate velit\n                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint\n                occaecat cupidatat non proident, sunt in culpa qui officia\n                deserunt mollit anim id est.\n            </Body>\n            {/* TODO(mdr): Use Wonder Blocks Button. */}\n            <button\n                onClick={closeModal}\n                style={{marginTop: 16}}\n            >\n                Close modal\n            </button>\n        </View>\n    }\n/>;\n\n// TODO(mdr): Use Wonder Blocks Button.\n<View style={styles.example}>\n    <ModalLauncher modal={modal}>\n        {({openModal}) => <button onClick={openModal}>Learn more!</button>}\n    </ModalLauncher>\n</View>;',
+                settings: {},
+                evalInContext: a,
+            },
+        ];
+    },
+    function(e, t, n) {
         e.exports = {
-            description: "",
+            description:
+                'This component enables you to launch a modal, covering the screen.\n\nChildren have access to `openModal` function via the function-as-children\npattern, so one common use case is for this component to wrap a button:\n\n```js\n&lt;ModalLauncher modal={&lt;TwoColumnModal ... /&gt;}&gt;\n    {({openModal}) =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{openModal}</span>&gt;</span>Learn more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>}\n&lt;<span class="hljs-regexp">/ModalLauncher&gt;</span>\n```\n\nThe actual modal itself is constructed separately, using a layout component\nlike StandardModal, OneColumnModal, or TwoColumnModal, and is provided via\nthe `modal` prop.\n',
             displayName: "ModalLauncher",
             methods: [],
             props: [
@@ -38530,7 +38424,8 @@ object-assign
                         },
                     },
                     required: !0,
-                    description: "",
+                    description:
+                        "Use the children-as-function pattern to pass a openModal function for\nuse anywhere within children. This provides a lot of flexibility in\nterms of what actions may trigger the ModalLauncher to launch the modal.\n\nNote: Don't call `openModal` while rendering! It should be used to\nrespond to user intearction, like `onClick`.",
                     tags: {},
                     name: "children",
                 },
@@ -38588,7 +38483,8 @@ object-assign
                         ],
                     },
                     required: !0,
-                    description: "",
+                    description:
+                        "The modal to render.\n\nThe modal will be rendered inside of a container whose parent is\ndocument.body. This allows us to use ModalLauncher within menus and\nother components that clip their content. If the modal needs to close\nitself by some other means than tapping the backdrop or the default\nclose button a render callback can be passed. The closeModal function\nprovided to this callback can be called to close the modal.\n\nNote: Don't call `closeModal` while rendering! It should be used to\nrespond to user intearction, like `onClick`.",
                     tags: {},
                     name: "modal",
                 },
@@ -38600,37 +38496,148 @@ object-assign
                         signature: {arguments: [], return: {name: "void"}},
                     },
                     required: !1,
-                    description: "",
+                    description:
+                        "If the parent needs to be notified when the modal is closed use\nthis prop.  Do not use `onClose` on the modals themselves as this\nis used by ModalNavigator to determine when to remove the modal\nthe backdrop from the screen.",
                     tags: {},
                     name: "onClose",
                 },
             ],
             doclets: {},
-            examples: [],
+            tags: {},
+            examples: n(237),
         };
     },
     function(e, t, n) {
-        e.exports = {
-            description: "",
-            displayName: "ModalLauncherPortal",
-            methods: [],
-            props: [
-                {
-                    flowType: {name: "ReactNode", raw: "React.Node"},
-                    required: !0,
-                    description: "",
-                    tags: {},
-                    name: "children",
-                },
-            ],
-            doclets: {},
-            examples: [],
-        };
+        "use strict";
+        Object.defineProperty(t, "__esModule", {value: !0});
+        var r = (function() {
+                function defineProperties(e, t) {
+                    for (var n = 0; n < t.length; n++) {
+                        var r = t[n];
+                        (r.enumerable = r.enumerable || !1),
+                            (r.configurable = !0),
+                            "value" in r && (r.writable = !0),
+                            Object.defineProperty(e, r.key, r);
+                    }
+                }
+                return function(e, t, n) {
+                    return (
+                        t && defineProperties(e.prototype, t),
+                        n && defineProperties(e, n),
+                        e
+                    );
+                };
+            })(),
+            i = _interopRequireWildcard(n(0)),
+            a = _interopRequireWildcard(n(50)),
+            o = n(6);
+        function _interopRequireWildcard(e) {
+            if (e && e.__esModule) return e;
+            var t = {};
+            if (null != e)
+                for (var n in e)
+                    Object.prototype.hasOwnProperty.call(e, n) && (t[n] = e[n]);
+            return (t.default = e), t;
+        }
+        var s = (function(e) {
+            function ModalLauncherPortal() {
+                return (
+                    (function _classCallCheck(e, t) {
+                        if (!(e instanceof t))
+                            throw new TypeError(
+                                "Cannot call a class as a function",
+                            );
+                    })(this, ModalLauncherPortal),
+                    (function _possibleConstructorReturn(e, t) {
+                        if (!e)
+                            throw new ReferenceError(
+                                "this hasn't been initialised - super() hasn't been called",
+                            );
+                        return !t ||
+                            ("object" != typeof t && "function" != typeof t)
+                            ? e
+                            : t;
+                    })(
+                        this,
+                        (
+                            ModalLauncherPortal.__proto__ ||
+                            Object.getPrototypeOf(ModalLauncherPortal)
+                        ).apply(this, arguments),
+                    )
+                );
+            }
+            return (
+                (function _inherits(e, t) {
+                    if ("function" != typeof t && null !== t)
+                        throw new TypeError(
+                            "Super expression must either be null or a function, not " +
+                                typeof t,
+                        );
+                    (e.prototype = Object.create(t && t.prototype, {
+                        constructor: {
+                            value: e,
+                            enumerable: !1,
+                            writable: !0,
+                            configurable: !0,
+                        },
+                    })),
+                        t &&
+                            (Object.setPrototypeOf
+                                ? Object.setPrototypeOf(e, t)
+                                : (e.__proto__ = t));
+                })(ModalLauncherPortal, i.Component),
+                r(ModalLauncherPortal, [
+                    {
+                        key: "componentDidMount",
+                        value: function componentDidMount() {
+                            var e = this._getRoot(),
+                                t = document.createElement("div");
+                            t.setAttribute("data-modal-launcher-portal", ""),
+                                e.appendChild(t);
+                            var n = i.createElement(
+                                o.View,
+                                {"data-modal-launcher-portal": !0},
+                                this.props.children,
+                            );
+                            a.render(n, t), (this._destination = t);
+                        },
+                    },
+                    {
+                        key: "componentWillUnmount",
+                        value: function componentWillUnmount() {
+                            var e = this._destination;
+                            e &&
+                                (a.unmountComponentAtNode(e),
+                                e.parentNode && e.parentNode.removeChild(e));
+                        },
+                    },
+                    {
+                        key: "_getRoot",
+                        value: function _getRoot() {
+                            var e = document.body;
+                            if (!e)
+                                throw new Error(
+                                    "can't mount modal without a document.body",
+                                );
+                            return e;
+                        },
+                    },
+                    {
+                        key: "render",
+                        value: function render() {
+                            return null;
+                        },
+                    },
+                ]),
+                ModalLauncherPortal
+            );
+        })();
+        t.default = s;
     },
     function(e, t, n) {
         var r = {aphrodite: n(13), react: n(0)},
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "markdown",
@@ -38695,8 +38702,8 @@ object-assign
                 aphrodite: n(13),
                 react: n(0),
             },
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "markdown",
@@ -38726,8 +38733,8 @@ object-assign
     },
     function(e, t, n) {
         var r = {"wonder-blocks-color": n(19), aphrodite: n(13), react: n(0)},
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "markdown",
@@ -38844,7 +38851,7 @@ object-assign
                 version: [{title: "version", description: "1.0"}],
                 since: [{title: "since", description: "1.0"}],
             },
-            examples: n(243),
+            examples: n(244),
         };
     },
     function(e, t, n) {
@@ -39017,8 +39024,8 @@ object-assign
     },
     function(e, t, n) {
         var r = {"wonder-blocks-color": n(19), aphrodite: n(13), react: n(0)},
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "markdown",
@@ -39072,13 +39079,13 @@ object-assign
                 version: [{title: "version", description: "1.0"}],
                 since: [{title: "since", description: "1.0"}],
             },
-            examples: n(246),
+            examples: n(247),
         };
     },
     function(e, t, n) {
         var r = {"wonder-blocks-color": n(19), aphrodite: n(13), react: n(0)},
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "markdown",
@@ -39136,7 +39143,7 @@ object-assign
                 version: [{title: "version", description: "1.0"}],
                 since: [{title: "since", description: "1.0"}],
             },
-            examples: n(248),
+            examples: n(249),
         };
     },
     function(e, t, n) {
@@ -39366,8 +39373,8 @@ object-assign
     },
     function(e, t, n) {
         var r = {"wonder-blocks-color": n(19), aphrodite: n(13), react: n(0)},
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "markdown",
@@ -39484,13 +39491,13 @@ object-assign
                 version: [{title: "version", description: "1.0"}],
                 since: [{title: "since", description: "1.0"}],
             },
-            examples: n(251),
+            examples: n(252),
         };
     },
     function(e, t, n) {
         var r = {"wonder-blocks-color": n(19), aphrodite: n(13), react: n(0)},
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "markdown",
@@ -39679,13 +39686,13 @@ object-assign
                 version: [{title: "version", description: "1.0"}],
                 since: [{title: "since", description: "1.0"}],
             },
-            examples: n(253),
+            examples: n(254),
         };
     },
     function(e, t, n) {
         var r = {"wonder-blocks-color": n(19), aphrodite: n(13), react: n(0)},
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "markdown",
@@ -39853,7 +39860,7 @@ object-assign
                 version: [{title: "version", description: "1.0"}],
                 since: [{title: "since", description: "1.0"}],
             },
-            examples: n(255),
+            examples: n(256),
         };
     },
     function(e, t, n) {
@@ -40026,8 +40033,8 @@ object-assign
     },
     function(e, t, n) {
         var r = {"./index.js": n(19), react: n(0)},
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "code",
@@ -40119,8 +40126,8 @@ object-assign
                 aphrodite: n(13),
                 react: n(0),
             },
-            i = n(18).bind(null, r),
-            a = n(17).bind(null, "var React = require('react');", i);
+            i = n(16).bind(null, r),
+            a = n(15).bind(null, "var React = require('react');", i);
         e.exports = [
             {
                 type: "code",
@@ -40468,7 +40475,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(277),
+        var r = n(278),
             i = [],
             a = [],
             o = r.makeRequestCallFromTimer(function throwFirstError() {
@@ -40498,10 +40505,10 @@ object-assign
             return e && e.__esModule ? e : {default: e};
         }
         Object.defineProperty(t, "__esModule", {value: !0});
-        var r = _interopRequireDefault(n(278)),
+        var r = _interopRequireDefault(n(279)),
             i = _interopRequireDefault(n(144)),
             a = n(146),
-            o = n(83),
+            o = n(84),
             s = null,
             l = {
                 fontFamily: function fontFamily(e) {
@@ -40693,8 +40700,8 @@ object-assign
                     }
                     return e;
                 },
-            a = n(83),
-            o = n(279),
+            a = n(84),
+            o = n(280),
             s = {
                 create: function create(e) {
                     return (0, a.mapObj)(e, function(e) {
@@ -40845,7 +40852,7 @@ object-assign
                           u);
                 }
             });
-        var r = _interopRequireDefault(n(282)),
+        var r = _interopRequireDefault(n(283)),
             i = _interopRequireDefault(n(39)),
             a = _interopRequireDefault(n(145));
         function _interopRequireDefault(e) {
@@ -41082,18 +41089,18 @@ object-assign
         e.exports = t.default;
     },
     function(e, t, n) {
-        var r = n(294),
-            i = n(293),
-            a = n(292),
-            o = n(291),
-            s = n(290),
-            l = n(289),
-            u = n(288),
-            c = n(287),
-            p = n(286),
-            h = n(285),
-            d = n(284),
-            f = n(283);
+        var r = n(295),
+            i = n(294),
+            a = n(293),
+            o = n(292),
+            s = n(291),
+            l = n(290),
+            u = n(289),
+            c = n(288),
+            p = n(287),
+            h = n(286),
+            d = n(285),
+            f = n(284);
         e.exports = {
             plugins: [r, i, a, o, s, l, u, c, p, h, d, f],
             prefixMap: {
@@ -41293,10 +41300,10 @@ object-assign
                     return e;
                 };
             });
-        var r = _interopRequireDefault(n(299)),
-            i = _interopRequireDefault(n(298)),
-            a = _interopRequireDefault(n(297)),
-            o = _interopRequireDefault(n(296));
+        var r = _interopRequireDefault(n(300)),
+            i = _interopRequireDefault(n(299)),
+            a = _interopRequireDefault(n(298)),
+            o = _interopRequireDefault(n(297));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -41350,7 +41357,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/body-monospace.js",
                             module: n(148),
-                            props: n(276),
+                            props: n(277),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41361,7 +41368,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/body-serif-block.js",
                             module: n(141),
-                            props: n(275),
+                            props: n(276),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41372,7 +41379,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/body-serif.js",
                             module: n(140),
-                            props: n(274),
+                            props: n(275),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41383,7 +41390,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/body.js",
                             module: n(139),
-                            props: n(273),
+                            props: n(274),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41394,7 +41401,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/caption.js",
                             module: n(138),
-                            props: n(272),
+                            props: n(273),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41405,7 +41412,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/footnote.js",
                             module: n(137),
-                            props: n(271),
+                            props: n(272),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41416,7 +41423,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/heading-large.js",
                             module: n(136),
-                            props: n(270),
+                            props: n(271),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41427,7 +41434,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/heading-medium.js",
                             module: n(135),
-                            props: n(269),
+                            props: n(270),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41438,7 +41445,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/heading-small.js",
                             module: n(134),
-                            props: n(268),
+                            props: n(269),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41449,7 +41456,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/heading-xsmall.js",
                             module: n(133),
-                            props: n(267),
+                            props: n(268),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41460,7 +41467,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/label-large.js",
                             module: n(132),
-                            props: n(266),
+                            props: n(267),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41471,7 +41478,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/label-medium.js",
                             module: n(131),
-                            props: n(265),
+                            props: n(266),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41482,7 +41489,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/label-small.js",
                             module: n(130),
-                            props: n(264),
+                            props: n(265),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41493,7 +41500,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/label-xsmall.js",
                             module: n(129),
-                            props: n(263),
+                            props: n(264),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41504,7 +41511,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/tagline.js",
                             module: n(128),
-                            props: n(262),
+                            props: n(263),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41515,12 +41522,12 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-typography/components/title.js",
                             module: n(127),
-                            props: n(261),
+                            props: n(262),
                             hasExamples: !1,
                             metadata: {},
                         },
                     ],
-                    content: n(260),
+                    content: n(261),
                 },
                 {
                     name: "Color",
@@ -41529,7 +41536,7 @@ object-assign
                     sections: [],
                     filepath: "packages/wonder-blocks-color/docs.md",
                     components: [],
-                    content: n(258),
+                    content: n(259),
                 },
                 {
                     name: "Grid (Prototype)",
@@ -41544,8 +41551,8 @@ object-assign
                             slug: "cell",
                             pathLine:
                                 "packages/wonder-blocks-grid/components/cell.js",
-                            module: n(257),
-                            props: n(256),
+                            module: n(258),
+                            props: n(257),
                             hasExamples: !0,
                             metadata: {},
                         },
@@ -41556,7 +41563,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-grid/components/fixed-width-cell.js",
                             module: n(61),
-                            props: n(254),
+                            props: n(255),
                             hasExamples: !0,
                             metadata: {},
                         },
@@ -41567,7 +41574,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-grid/components/flex-cell.js",
                             module: n(126),
-                            props: n(252),
+                            props: n(253),
                             hasExamples: !0,
                             metadata: {},
                         },
@@ -41577,8 +41584,8 @@ object-assign
                             slug: "grid",
                             pathLine:
                                 "packages/wonder-blocks-grid/components/grid.js",
-                            module: n(250),
-                            props: n(249),
+                            module: n(251),
+                            props: n(250),
                             hasExamples: !0,
                             metadata: {},
                         },
@@ -41589,7 +41596,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-grid/components/gutter.js",
                             module: n(125),
-                            props: n(247),
+                            props: n(248),
                             hasExamples: !0,
                             metadata: {},
                         },
@@ -41599,13 +41606,13 @@ object-assign
                             slug: "row",
                             pathLine:
                                 "packages/wonder-blocks-grid/components/row.js",
-                            module: n(245),
-                            props: n(244),
+                            module: n(246),
+                            props: n(245),
                             hasExamples: !0,
                             metadata: {},
                         },
                     ],
-                    content: n(242),
+                    content: n(243),
                 },
                 {
                     name: "Core",
@@ -41621,7 +41628,7 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-core/components/text.js",
                             module: n(147),
-                            props: n(241),
+                            props: n(242),
                             hasExamples: !1,
                             metadata: {},
                         },
@@ -41632,12 +41639,12 @@ object-assign
                             pathLine:
                                 "packages/wonder-blocks-core/components/view.js",
                             module: n(142),
-                            props: n(240),
+                            props: n(241),
                             hasExamples: !1,
                             metadata: {},
                         },
                     ],
-                    content: n(239),
+                    content: n(240),
                 },
                 {
                     name: "Modal",
@@ -41648,24 +41655,13 @@ object-assign
                     components: [
                         {
                             filepath:
-                                "packages/wonder-blocks-modal/components/modal-launcher-portal.js",
-                            slug: "modallauncherportal",
-                            pathLine:
-                                "packages/wonder-blocks-modal/components/modal-launcher-portal.js",
-                            module: n(124),
-                            props: n(238),
-                            hasExamples: !1,
-                            metadata: {},
-                        },
-                        {
-                            filepath:
                                 "packages/wonder-blocks-modal/components/modal-launcher.js",
                             slug: "modallauncher",
                             pathLine:
                                 "packages/wonder-blocks-modal/components/modal-launcher.js",
-                            module: n(123),
-                            props: n(237),
-                            hasExamples: !1,
+                            module: n(124),
+                            props: n(238),
+                            hasExamples: !0,
                             metadata: {},
                         },
                         {
@@ -41674,13 +41670,13 @@ object-assign
                             slug: "twocolumnmodal",
                             pathLine:
                                 "packages/wonder-blocks-modal/components/two-column-modal.js",
-                            module: n(122),
+                            module: n(83),
                             props: n(236),
-                            hasExamples: !1,
+                            hasExamples: !0,
                             metadata: {},
                         },
                     ],
-                    content: n(235),
+                    content: n(234),
                 },
             ],
         };
@@ -41710,7 +41706,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(303);
+        var r = n(304);
         e.exports = function toInteger(e) {
             var t = r(e),
                 n = t % 1;
@@ -41725,9 +41721,9 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(305),
-            i = n(86),
-            a = n(304),
+        var r = n(306),
+            i = n(87),
+            a = n(305),
             o = Math.max;
         e.exports = function findIndex(e, t, n) {
             var s = null == e ? 0 : e.length;
@@ -41737,7 +41733,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(86),
+        var r = n(87),
             i = n(32),
             a = n(64);
         e.exports = function createFind(e) {
@@ -41778,12 +41774,12 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(309),
-            i = n(308)(r);
+        var r = n(310),
+            i = n(309)(r);
         e.exports = i;
     },
     function(e, t, n) {
-        var r = n(310),
+        var r = n(311),
             i = n(32);
         e.exports = function baseMap(e, t) {
             var n = -1,
@@ -41812,9 +41808,9 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(313),
-            i = n(312),
-            a = n(85),
+        var r = n(314),
+            i = n(313),
+            a = n(86),
             o = n(63);
         e.exports = function property(e) {
             return a(e) ? r(o(e)) : i(e);
@@ -41822,10 +41818,10 @@ object-assign
     },
     function(e, t, n) {
         var r = n(149),
-            i = n(92),
+            i = n(93),
             a = n(21),
-            o = n(88),
-            s = n(91),
+            o = n(89),
+            s = n(92),
             l = n(63);
         e.exports = function hasPath(e, t, n) {
             for (var u = -1, c = (t = r(t, e)).length, p = !1; ++u < c; ) {
@@ -41847,8 +41843,8 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(316),
-            i = n(315);
+        var r = n(317),
+            i = n(316);
         e.exports = function hasIn(e, t) {
             return null != e && i(e, t, r);
         };
@@ -41870,13 +41866,13 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(318);
+        var r = n(319);
         e.exports = function toString(e) {
             return null == e ? "" : r(e);
         };
     },
     function(e, t, n) {
-        var r = n(119),
+        var r = n(120),
             i = 500;
         e.exports = function memoizeCapped(e) {
             var t = r(e, function(e) {
@@ -41889,7 +41885,7 @@ object-assign
     function(e, t, n) {
         var r = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,
             i = /\\(\\)?/g,
-            a = n(320)(function(e) {
+            a = n(321)(function(e) {
                 var t = [];
                 return (
                     46 === e.charCodeAt(0) && t.push(""),
@@ -41910,9 +41906,9 @@ object-assign
     },
     function(e, t, n) {
         var r = n(154),
-            i = n(322),
-            a = n(317),
-            o = n(85),
+            i = n(323),
+            a = n(318),
+            o = n(86),
             s = n(152),
             l = n(151),
             u = n(63),
@@ -41940,27 +41936,27 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(34)(n(15), "WeakMap");
+        var r = n(34)(n(17), "WeakMap");
         e.exports = r;
     },
     function(e, t, n) {
-        var r = n(34)(n(15), "Set");
+        var r = n(34)(n(17), "Set");
         e.exports = r;
     },
     function(e, t, n) {
-        var r = n(34)(n(15), "Promise");
+        var r = n(34)(n(17), "Promise");
         e.exports = r;
     },
     function(e, t, n) {
-        var r = n(34)(n(15), "DataView");
+        var r = n(34)(n(17), "DataView");
         e.exports = r;
     },
     function(e, t, n) {
-        var r = n(328),
-            i = n(98),
-            a = n(327),
-            o = n(326),
-            s = n(325),
+        var r = n(329),
+            i = n(99),
+            a = n(328),
+            o = n(327),
+            s = n(326),
             l = n(33),
             u = n(169),
             c = u(r),
@@ -42000,8 +41996,8 @@ object-assign
         e.exports = r;
     },
     function(e, t, n) {
-        var r = n(93),
-            i = n(330),
+        var r = n(94),
+            i = n(331),
             a = Object.prototype.hasOwnProperty;
         e.exports = function baseKeys(e) {
             if (!r(e)) return i(e);
@@ -42030,8 +42026,8 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(333),
-            i = n(332),
+        var r = n(334),
+            i = n(333),
             a = Object.prototype.propertyIsEnumerable,
             o = Object.getOwnPropertySymbols,
             s = o
@@ -42054,7 +42050,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(335),
+        var r = n(336),
             i = n(21);
         e.exports = function baseGetAllKeys(e, t, n) {
             var a = t(e);
@@ -42062,15 +42058,15 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(336),
-            i = n(334),
+        var r = n(337),
+            i = n(335),
             a = n(64);
         e.exports = function getAllKeys(e) {
             return r(e, a, i);
         };
     },
     function(e, t, n) {
-        var r = n(337),
+        var r = n(338),
             i = 1,
             a = Object.prototype.hasOwnProperty;
         e.exports = function equalObjects(e, t, n, o, s, l) {
@@ -42142,8 +42138,8 @@ object-assign
             i = n(165),
             a = n(51),
             o = n(153),
-            s = n(340),
-            l = n(339),
+            s = n(341),
+            l = n(340),
             u = 1,
             c = 2,
             p = "[object Boolean]",
@@ -42221,9 +42217,9 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(96),
-            i = n(345),
-            a = n(344);
+        var r = n(97),
+            i = n(346),
+            a = n(345);
         function SetCache(e) {
             var t = -1,
                 n = null == e ? 0 : e.length;
@@ -42234,14 +42230,14 @@ object-assign
             (e.exports = SetCache);
     },
     function(e, t, n) {
-        var r = n(99),
+        var r = n(100),
             i = n(153),
-            a = n(341),
-            o = n(338),
-            s = n(329),
+            a = n(342),
+            o = n(339),
+            s = n(330),
             l = n(21),
-            u = n(90),
-            c = n(89),
+            u = n(91),
+            c = n(90),
             p = 1,
             h = "[object Arguments]",
             d = "[object Array]",
@@ -42277,7 +42273,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(99),
+        var r = n(100),
             i = n(154),
             a = 1,
             o = 2;
@@ -42306,8 +42302,8 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(348),
-            i = n(324),
+        var r = n(349),
+            i = n(325),
             a = n(151);
         e.exports = function baseMatches(e) {
             var t = i(e);
@@ -42326,7 +42322,7 @@ object-assign
         ]);
     },
     function(e, t, n) {
-        var r = n(350);
+        var r = n(351);
         "string" == typeof r && (r = [[e.i, r, ""]]);
         var i = {hmr: !0, transform: void 0, insertInto: void 0};
         n(231)(r, i);
@@ -42549,7 +42545,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(15);
+        var r = n(17);
         e.exports = function() {
             return r.Date.now();
         };
@@ -42557,7 +42553,7 @@ object-assign
     function(e, t, n) {
         var r = n(51),
             i = n(32),
-            a = n(88),
+            a = n(89),
             o = n(22);
         e.exports = function isIterateeCall(e, t, n) {
             if (!o(n)) return !1;
@@ -42594,9 +42590,9 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(359),
+        var r = n(360),
             i = n(167),
-            a = n(87),
+            a = n(88),
             o = i
                 ? function(e, t) {
                       return i(e, "toString", {
@@ -42610,8 +42606,8 @@ object-assign
         e.exports = o;
     },
     function(e, t, n) {
-        var r = n(360),
-            i = n(358)(r);
+        var r = n(361),
+            i = n(359)(r);
         e.exports = i;
     },
     function(e, t) {
@@ -42630,7 +42626,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(362),
+        var r = n(363),
             i = Math.max;
         e.exports = function overRest(e, t, n) {
             return (
@@ -42653,16 +42649,16 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(87),
-            i = n(363),
-            a = n(361);
+        var r = n(88),
+            i = n(364),
+            a = n(362);
         e.exports = function baseRest(e, t) {
             return a(i(e, t, r), e + "");
         };
     },
     function(e, t, n) {
-        var r = n(364),
-            i = n(357);
+        var r = n(365),
+            i = n(358);
         e.exports = function createAssigner(e) {
             return r(function(t, n) {
                 var r = -1,
@@ -42697,8 +42693,8 @@ object-assign
     },
     function(e, t, n) {
         var r = n(22),
-            i = n(93),
-            a = n(366),
+            i = n(94),
+            a = n(367),
             o = Object.prototype.hasOwnProperty;
         e.exports = function baseKeysIn(e) {
             if (!r(e)) return a(e);
@@ -42716,7 +42712,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(95),
+        var r = n(96),
             i = n(51),
             a = Object.prototype.hasOwnProperty;
         e.exports = function assignValue(e, t, n) {
@@ -42725,8 +42721,8 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(369),
-            i = n(95);
+        var r = n(370),
+            i = n(96);
         e.exports = function copyObject(e, t, n, a) {
             var o = !n;
             n || (n = {});
@@ -42739,7 +42735,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(370),
+        var r = n(371),
             i = n(161);
         e.exports = function toPlainObject(e) {
             return r(e, i(e));
@@ -42757,7 +42753,7 @@ object-assign
                     } catch (e) {}
                 })();
             e.exports = s;
-        }.call(this, n(94)(e)));
+        }.call(this, n(95)(e)));
     },
     function(e, t) {
         e.exports = function baseUnary(e) {
@@ -42768,7 +42764,7 @@ object-assign
     },
     function(e, t, n) {
         var r = n(33),
-            i = n(91),
+            i = n(92),
             a = n(29),
             o = {};
         (o["[object Float32Array]"] = o["[object Float64Array]"] = o[
@@ -42847,9 +42843,9 @@ object-assign
         e.exports = a;
     },
     function(e, t, n) {
-        var r = n(379),
+        var r = n(380),
             i = n(164),
-            a = n(93);
+            a = n(94);
         e.exports = function initCloneObject(e) {
             return "function" != typeof e.constructor || a(e) ? {} : r(i(e));
         };
@@ -42870,7 +42866,7 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(382);
+        var r = n(383);
         e.exports = function cloneTypedArray(e, t) {
             var n = t ? r(e.buffer) : e.buffer;
             return new e.constructor(n, e.byteOffset, e.length);
@@ -42878,7 +42874,7 @@ object-assign
     },
     function(e, t, n) {
         (function(e) {
-            var r = n(15),
+            var r = n(17),
                 i = "object" == typeof t && t && !t.nodeType && t,
                 a = i && "object" == typeof e && e && !e.nodeType && e,
                 o = a && a.exports === i ? r.Buffer : void 0,
@@ -42889,24 +42885,24 @@ object-assign
                     r = s ? s(n) : new e.constructor(n);
                 return e.copy(r), r;
             };
-        }.call(this, n(94)(e)));
+        }.call(this, n(95)(e)));
     },
     function(e, t, n) {
         var r = n(168),
-            i = n(384),
-            a = n(383),
-            o = n(381),
-            s = n(380),
-            l = n(92),
+            i = n(385),
+            a = n(384),
+            o = n(382),
+            s = n(381),
+            l = n(93),
             u = n(21),
-            c = n(377),
-            p = n(90),
-            h = n(97),
+            c = n(378),
+            p = n(91),
+            h = n(98),
             d = n(22),
-            f = n(375),
-            m = n(89),
+            f = n(376),
+            m = n(90),
             g = n(162),
-            y = n(371);
+            y = n(372);
         e.exports = function baseMergeDeep(e, t, n, v, b, _, x) {
             var C = g(e, n),
                 w = g(t, n),
@@ -43036,11 +43032,11 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(396),
-            i = n(395),
-            a = n(394),
-            o = n(393),
-            s = n(392);
+        var r = n(397),
+            i = n(396),
+            a = n(395),
+            o = n(394),
+            s = n(393);
         function Hash(e) {
             var t = -1,
                 n = null == e ? 0 : e.length;
@@ -43057,9 +43053,9 @@ object-assign
             (e.exports = Hash);
     },
     function(e, t, n) {
-        var r = n(397),
+        var r = n(398),
             i = n(70),
-            a = n(98);
+            a = n(99);
         e.exports = function mapCacheClear() {
             (this.size = 0),
                 (this.__data__ = {
@@ -43075,12 +43071,12 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(15)["__core-js_shared__"];
+        var r = n(17)["__core-js_shared__"];
         e.exports = r;
     },
     function(e, t, n) {
         var r,
-            i = n(400),
+            i = n(401),
             a = (r = /[^.]+$/.exec((i && i.keys && i.keys.IE_PROTO) || ""))
                 ? "Symbol(src)_1." + r
                 : "";
@@ -43112,8 +43108,8 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(97),
-            i = n(401),
+        var r = n(98),
+            i = n(402),
             a = n(22),
             o = n(169),
             s = /^\[object .+?Constructor\]$/,
@@ -43138,8 +43134,8 @@ object-assign
     },
     function(e, t, n) {
         var r = n(70),
-            i = n(98),
-            a = n(96),
+            i = n(99),
+            a = n(97),
             o = 200;
         e.exports = function stackSet(e, t) {
             var n = this.__data__;
@@ -43215,10 +43211,10 @@ object-assign
         };
     },
     function(e, t, n) {
-        var r = n(99),
+        var r = n(100),
             i = n(168),
             a = n(166),
-            o = n(385),
+            o = n(386),
             s = n(22),
             l = n(161),
             u = n(162);
@@ -43240,7 +43236,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(16),
+        var r = n(18),
             i = n(3),
             a = n(187);
         e.exports = function() {
@@ -43320,7 +43316,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(420),
+        var r = n(421),
             i = /\/?>/,
             a = /^<\!\-\-/,
             o = {
@@ -43347,7 +43343,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        n(101);
+        n(102);
         var r = 9;
         e.exports = function ReactDOMContainerInfo(e, t) {
             return {
@@ -43416,7 +43412,7 @@ object-assign
                 metaKey: null,
                 ctrlKey: null,
                 shiftKey: null,
-                getModifierState: n(111),
+                getModifierState: n(112),
             };
         function SyntheticTouchEvent(e, t, n, i) {
             return r.call(this, e, t, n, i);
@@ -43435,7 +43431,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(100),
+        var r = n(101),
             i = {
                 Esc: "Escape",
                 Spacebar: " ",
@@ -43505,9 +43501,9 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(54),
-            i = n(100),
+            i = n(101),
             a = {
-                key: n(428),
+                key: n(429),
                 location: null,
                 ctrlKey: null,
                 shiftKey: null,
@@ -43515,7 +43511,7 @@ object-assign
                 metaKey: null,
                 repeat: null,
                 locale: null,
-                getModifierState: n(111),
+                getModifierState: n(112),
                 charCode: function(e) {
                     return "keypress" === e.type ? i(e) : 0;
                 },
@@ -43582,19 +43578,19 @@ object-assign
             i = n(175),
             a = n(56),
             o = n(9),
-            s = n(432),
-            l = n(431),
+            s = n(433),
+            l = n(432),
             u = n(28),
-            c = n(430),
-            p = n(429),
+            c = n(431),
+            p = n(430),
             h = n(75),
-            d = n(427),
-            f = n(426),
-            m = n(425),
+            d = n(428),
+            f = n(427),
+            m = n(426),
             g = n(54),
-            y = n(424),
-            v = n(16),
-            b = n(100),
+            y = n(425),
+            v = n(18),
+            b = n(101),
             _ = (n(3), {}),
             x = {};
         [
@@ -43807,7 +43803,7 @@ object-assign
             s = n(28),
             l = n(173),
             u = n(194),
-            c = n(105),
+            c = n(106),
             p =
                 i.canUseDOM &&
                 "documentMode" in document &&
@@ -44186,14 +44182,14 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(436);
+        var r = n(437);
         e.exports = function isTextNode(e) {
             return r(e) && 3 == e.nodeType;
         };
     },
     function(e, t, n) {
         "use strict";
-        var r = n(437);
+        var r = n(438);
         e.exports = function containsNode(e, t) {
             return (
                 !(!e || !t) &&
@@ -44234,7 +44230,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(14),
-            i = n(439),
+            i = n(440),
             a = n(198);
         function isCollapsed(e, t, n, r) {
             return e === n && t === r;
@@ -44344,7 +44340,7 @@ object-assign
             o = n(72),
             s = n(174),
             l = (n(20), n(76)),
-            u = n(102),
+            u = n(103),
             c = [
                 {
                     initialize: s.getSelectionInformation,
@@ -44402,8 +44398,8 @@ object-assign
         "use strict";
         var r = n(44),
             i = n(55),
-            a = n(115),
-            o = n(106),
+            a = n(116),
+            o = n(107),
             s = n(179),
             l = n(72),
             u = n(178),
@@ -44439,8 +44435,8 @@ object-assign
             o = n(35),
             s = n(9),
             l = n(23),
-            u = n(113),
-            c = n(443);
+            u = n(114),
+            c = n(444);
         function findParent(e) {
             for (; e._hostParent; ) e = e._hostParent;
             var t = s.getNodeFromInstance(e).parentNode;
@@ -44520,7 +44516,7 @@ object-assign
         var r = n(8),
             i = n(23),
             a = n(76),
-            o = n(16),
+            o = n(18),
             s = {
                 initialize: o,
                 close: function() {
@@ -44553,12 +44549,12 @@ object-assign
         "use strict";
         var r = n(5),
             i = n(8),
-            a = n(110),
+            a = n(111),
             o = n(42),
             s = n(9),
             l = n(73),
             u = (n(3),
-            n(101),
+            n(102),
             function(e) {
                 (this._currentElement = e),
                     (this._stringText = "" + e),
@@ -44729,7 +44725,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(102);
+        var r = n(103);
         n(4);
         var i = (function() {
             function ReactServerUpdateQueue(e) {
@@ -44785,7 +44781,7 @@ object-assign
         var r = n(8),
             i = n(35),
             a = n(76),
-            o = (n(20), n(449)),
+            o = (n(20), n(450)),
             s = [];
         var l = {enqueue: function() {}};
         function ReactServerRenderingTransaction(e) {
@@ -44815,7 +44811,7 @@ object-assign
     function(e, t, n) {
         "use strict";
         (function(t) {
-            n(103);
+            n(104);
             var r = n(177);
             n(4);
             function flattenSingleChildIntoContext(e, t, n, r) {
@@ -44862,15 +44858,15 @@ object-assign
         var r = n(5),
             i = n(8),
             a = n(41),
-            o = n(106),
+            o = n(107),
             s = n(27),
-            l = n(114),
+            l = n(115),
             u = n(52),
             c = (n(20), n(180)),
             p = n(43),
             h = n(71),
-            d = (n(3), n(105)),
-            f = n(104),
+            d = (n(3), n(106)),
+            f = n(105),
             m = (n(4), 0),
             g = 1,
             y = 2;
@@ -45285,7 +45281,7 @@ object-assign
         (function(t) {
             var r = n(43),
                 i = n(181),
-                a = (n(103), n(104)),
+                a = (n(104), n(105)),
                 o = n(177);
             n(4);
             function instantiateChild(e, t, n, r) {
@@ -45340,10 +45336,10 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(5),
-            i = n(106),
+            i = n(107),
             a = (n(52), n(20), n(27), n(43)),
-            o = n(456),
-            s = (n(16), n(451));
+            o = n(457),
+            s = (n(18), n(452));
         n(3);
         function enqueue(e, t) {
             return t && (e = e || []).push(t), e;
@@ -45537,7 +45533,7 @@ object-assign
         "use strict";
         var r = n(5),
             i = n(8),
-            a = n(107),
+            a = n(108),
             o = n(9),
             s = n(23);
         n(3), n(4);
@@ -45952,7 +45948,7 @@ object-assign
         var r = n(186).Component,
             i = n(40).isValidElement,
             a = n(185),
-            o = n(461);
+            o = n(462);
         e.exports = o(r, i, a);
     },
     function(e, t, n) {
@@ -46143,8 +46139,8 @@ object-assign
         "use strict";
         var r = n(53),
             i = (n(27), n(183)),
-            a = n(467),
-            o = (n(3), n(466)),
+            a = n(468),
+            o = (n(3), n(467)),
             s = (n(4), "."),
             l = ":";
         function getComponentKey(e, t) {
@@ -46279,10 +46275,10 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(469),
+        var r = n(470),
             i = n(40),
-            a = n(16),
-            o = n(468),
+            a = n(18),
+            o = n(469),
             s = r.twoArgumentPooler,
             l = r.fourArgumentPooler,
             u = /\/+/g;
@@ -46385,12 +46381,12 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(16),
+        var r = n(18),
             i = n(3),
             a = n(4),
             o = n(8),
             s = n(187),
-            l = n(472);
+            l = n(473);
         e.exports = function(e, t) {
             var n = "function" == typeof Symbol && Symbol.iterator,
                 u = "@@iterator";
@@ -46867,7 +46863,7 @@ object-assign
         var r = n(5),
             i = n(8),
             a = n(189),
-            o = n(107),
+            o = n(108),
             s = n(9),
             l = n(23);
         n(3), n(4);
@@ -47069,7 +47065,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(480),
+        var r = n(481),
             i = /^ms-/;
         e.exports = function hyphenateStyleName(e) {
             return r(e).replace(i, "-ms-");
@@ -47098,7 +47094,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(483),
+        var r = n(484),
             i = /^-ms-/;
         e.exports = function camelizeStyleName(e) {
             return r(e.replace(i, "ms-"));
@@ -47108,9 +47104,9 @@ object-assign
         "use strict";
         var r = n(190),
             i = n(14),
-            a = (n(20), n(484), n(482)),
-            o = n(481),
-            s = n(479),
+            a = (n(20), n(485), n(483)),
+            o = n(482),
+            s = n(480),
             l = (n(4),
             s(function(e) {
                 return o(e);
@@ -47175,26 +47171,26 @@ object-assign
         "use strict";
         var r = n(5),
             i = n(8),
-            a = n(486),
-            o = n(485),
+            a = n(487),
+            o = n(486),
             s = n(42),
-            l = n(109),
+            l = n(110),
             u = n(44),
             c = n(189),
             p = n(55),
-            h = n(116),
+            h = n(117),
             d = n(72),
             f = n(201),
             m = n(9),
-            g = n(475),
-            y = n(459),
+            g = n(476),
+            y = n(460),
             v = n(182),
-            b = n(458),
-            _ = (n(20), n(457)),
-            x = n(450),
-            C = (n(16), n(73)),
-            w = (n(3), n(112), n(105), n(195)),
-            k = (n(101), n(4), f),
+            b = n(459),
+            _ = (n(20), n(458)),
+            x = n(451),
+            C = (n(18), n(73)),
+            w = (n(3), n(113), n(106), n(195)),
+            k = (n(102), n(4), f),
             S = p.deleteListener,
             E = m.getNodeFromInstance,
             P = d.listenTo,
@@ -47783,7 +47779,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(110),
+        var r = n(111),
             i = n(9),
             a = {
                 dangerouslyProcessChildrenUpdates: function(e, t) {
@@ -47898,8 +47894,8 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(14),
-            i = n(490),
-            a = n(489),
+            i = n(491),
+            a = n(490),
             o = n(3),
             s = r.canUseDOM ? document.createElement("div") : null,
             l = /^\s*<(\w+)/;
@@ -47927,8 +47923,8 @@ object-assign
         var r = n(5),
             i = n(42),
             a = n(14),
-            o = n(491),
-            s = n(16),
+            o = n(492),
+            s = n(18),
             l = (n(3),
             {
                 dangerouslyReplaceNodeWithMarkup: function(e, t) {
@@ -47947,9 +47943,9 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(110),
+        var r = n(111),
             i = {
-                processChildrenUpdates: n(488)
+                processChildrenUpdates: n(489)
                     .dangerouslyProcessChildrenUpdates,
                 replaceNodeWithMarkup: r.dangerouslyReplaceNodeWithMarkup,
             };
@@ -48230,7 +48226,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(497),
+        var r = n(498),
             i = {};
         (i.attachRefs = function(e, t) {
             if (null !== t && "object" == typeof t) {
@@ -48280,8 +48276,8 @@ object-assign
             s = n(23),
             l = n(28),
             u = n(195),
-            c = n(113),
-            p = n(112),
+            c = n(114),
+            p = n(113),
             h = n(194),
             d = {
                 change: {
@@ -48503,9 +48499,9 @@ object-assign
         "use strict";
         var r = n(56),
             i = n(14),
-            a = n(502),
-            o = n(501),
-            s = n(500),
+            a = n(503),
+            o = n(502),
+            s = n(501),
             l = [9, 13, 27, 32],
             u = 229,
             c = i.canUseDOM && "CompositionEvent" in window,
@@ -48763,25 +48759,25 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        var r = n(504),
-            i = n(503),
-            a = n(499),
-            o = n(496),
-            s = n(495),
-            l = n(494),
-            u = n(493),
-            c = n(487),
+        var r = n(505),
+            i = n(504),
+            a = n(500),
+            o = n(497),
+            s = n(496),
+            l = n(495),
+            u = n(494),
+            c = n(488),
             p = n(9),
-            h = n(448),
-            d = n(447),
-            f = n(446),
-            m = n(445),
-            g = n(444),
-            y = n(442),
-            v = n(441),
-            b = n(435),
-            _ = n(434),
-            x = n(433),
+            h = n(449),
+            d = n(448),
+            f = n(447),
+            m = n(446),
+            g = n(445),
+            y = n(443),
+            v = n(442),
+            b = n(436),
+            _ = n(435),
+            x = n(434),
             C = !1;
         e.exports = {
             inject: function inject() {
@@ -48815,14 +48811,14 @@ object-assign
     function(e, t, n) {
         "use strict";
         var r = n(9),
-            i = n(505),
+            i = n(506),
             a = n(172),
             o = n(43),
             s = n(23),
-            l = n(419),
-            u = n(418),
+            l = n(420),
+            u = n(419),
             c = n(171),
-            p = n(417);
+            p = n(418);
         n(4);
         i.inject();
         var h = {
@@ -49399,7 +49395,7 @@ object-assign
                 };
             })(),
             i = _interopRequireDefault(n(30)),
-            a = _interopRequireDefault(n(117)),
+            a = _interopRequireDefault(n(118)),
             o = _interopRequireDefault(n(45)),
             s = _interopRequireDefault(n(78));
         function _interopRequireDefault(e) {
@@ -49795,7 +49791,7 @@ object-assign
             })(),
             i = (function _interopRequireDefault(e) {
                 return e && e.__esModule ? e : {default: e};
-            })(n(118));
+            })(n(119));
         var a = (function() {
             function ViewportRule(e, t, n) {
                 !(function _classCallCheck(e, t) {
@@ -49847,7 +49843,7 @@ object-assign
             })(),
             i = (function _interopRequireDefault(e) {
                 return e && e.__esModule ? e : {default: e};
-            })(n(118));
+            })(n(119));
         var a = (function() {
             function FontFaceRule(e, t, n) {
                 !(function _classCallCheck(e, t) {
@@ -50120,11 +50116,11 @@ object-assign
     function(e, t, n) {
         "use strict";
         Object.defineProperty(t, "__esModule", {value: !0});
-        var r = _interopRequireDefault(n(518)),
-            i = _interopRequireDefault(n(517)),
-            a = _interopRequireDefault(n(516)),
-            o = _interopRequireDefault(n(515)),
-            s = _interopRequireDefault(n(514));
+        var r = _interopRequireDefault(n(519)),
+            i = _interopRequireDefault(n(518)),
+            a = _interopRequireDefault(n(517)),
+            o = _interopRequireDefault(n(516)),
+            s = _interopRequireDefault(n(515));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -50357,18 +50353,18 @@ object-assign
                     );
                 };
             })(),
-            o = _interopRequireDefault(n(521)),
+            o = _interopRequireDefault(n(522)),
             s = _interopRequireDefault(n(203)),
-            l = _interopRequireDefault(n(520)),
-            u = _interopRequireDefault(n(519)),
-            c = _interopRequireDefault(n(513)),
-            p = _interopRequireDefault(n(512)),
-            h = _interopRequireDefault(n(117)),
+            l = _interopRequireDefault(n(521)),
+            u = _interopRequireDefault(n(520)),
+            c = _interopRequireDefault(n(514)),
+            p = _interopRequireDefault(n(513)),
+            h = _interopRequireDefault(n(118)),
             d = _interopRequireDefault(n(45)),
             f = _interopRequireDefault(n(204)),
             m = _interopRequireDefault(n(77)),
-            g = _interopRequireDefault(n(511)),
-            y = _interopRequireDefault(n(510));
+            g = _interopRequireDefault(n(512)),
+            y = _interopRequireDefault(n(511));
         function _interopRequireDefault(e) {
             return e && e.__esModule ? e : {default: e};
         }
@@ -50578,7 +50574,7 @@ object-assign
                                 : r;
                 var o = Object(a.a)(i);
                 t.default = o;
-            }.call(this, n(26), n(525)(e));
+            }.call(this, n(26), n(526)(e));
     },
     function(e, t, n) {
         "use strict";
@@ -51273,7 +51269,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        e.exports = n(530).polyfill();
+        e.exports = n(531).polyfill();
     },
     function(e, t, n) {
         "use strict";
@@ -51310,7 +51306,7 @@ object-assign
     },
     function(e, t, n) {
         "use strict";
-        n(532).polyfill();
+        n(533).polyfill();
     },
     function(e, t) {
         !(function() {
