@@ -1,13 +1,13 @@
 // @flow
 
-import type {GridSize, GridSizes} from "./types.js";
+import type {GridSize, GridSpec} from "./types.js";
 
 // All possible valid grid sizes
 export const VALID_GRID_SIZES: Array<GridSize> = ["small", "medium", "large"];
 
-// The sizes for the grid component, currently available in
+// The default spec for the grid component, currently available in
 // three different settings (roughly mobile, tablet, and desktop).
-export const GRID_DEFAULT_SIZES: GridSizes = {
+export const GRID_DEFAULT_SPEC: GridSpec = {
     small: {
         query: "(max-width: 767px)",
         totalColumns: 4,
@@ -30,7 +30,7 @@ export const GRID_DEFAULT_SIZES: GridSizes = {
 };
 
 // Used for internal tools
-export const GRID_INTERNAL_SIZES: GridSizes = {
+export const GRID_INTERNAL_SPEC: GridSpec = {
     large: {
         query: "(min-width: 1px)",
         totalColumns: 12,
@@ -40,7 +40,7 @@ export const GRID_INTERNAL_SIZES: GridSizes = {
 };
 
 // The default used for modals
-export const GRID_MODAL_12_SIZES: GridSizes = {
+export const GRID_MODAL_12_SPEC: GridSpec = {
     small: {
         query: "(max-width: 767px)",
         totalColumns: 4,
@@ -56,7 +56,7 @@ export const GRID_MODAL_12_SIZES: GridSizes = {
 };
 
 // The odd-sized modal
-export const GRID_MODAL_11_SIZES: GridSizes = {
+export const GRID_MODAL_11_SPEC: GridSpec = {
     small: {
         query: "(max-width: 767px)",
         totalColumns: 4,
@@ -72,7 +72,7 @@ export const GRID_MODAL_11_SIZES: GridSizes = {
 };
 
 // Smaller modal
-export const GRID_MODAL_8_SIZES: GridSizes = {
+export const GRID_MODAL_8_SPEC: GridSpec = {
     small: {
         query: "(max-width: 767px)",
         totalColumns: 4,

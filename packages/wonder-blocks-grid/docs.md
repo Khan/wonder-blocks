@@ -99,7 +99,7 @@ Additionally, there are the following available components which will likely be 
 
 Currently Grids are available at the following sizes (with their columns, gutter size, and margin sizes changing based on the size):
 
-**Default Sizes (`GRID_DEFAULT_SIZES`)**
+**Default Grid Spec (`GRID_DEFAULT_SPEC`)**
 
 | Size   | Columns | Gutter | Margin | Breakpoint                                                                                                                         |
 | ------ | ------- | ------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -107,29 +107,29 @@ Currently Grids are available at the following sizes (with their columns, gutter
 | medium | 8       | 32px   | 24px   | `min-width: 768px and max-width: 1023px`                                                                                           |
 | large  | 12      | 32px   | 24px   | `min-width: 1024px` (maximum content width: `1120px`, after which the margins will continue to expand and content remain centered) |
 
-Additionally, the following grid sizes are also available:
+Additionally, the following grid size specs are also available:
 
-**Internal Tools (`GRID_INTERNAL_SIZES`)**
+**Internal Tools (`GRID_INTERNAL_SPEC`)**
 
 | Size  | Columns | Gutter | Margin | Breakpoint                                   |
 | ----- | ------- | ------ | ------ | -------------------------------------------- |
 | large | 12      | 32px   | 16px   | `min-width: 1px` (No maximum content width.) |
 
-**12-Column Modal (`GRID_MODAL_12_SIZES`)**
+**12-Column Modal (`GRID_MODAL_12_SPEC`)**
 
 | Size  | Columns | Gutter | Margin | Breakpoint                                     |
 | ----- | ------- | ------ | ------ | ---------------------------------------------- |
 | small | 4       | 16px   | 16px   | `max-width: 767px`                             |
 | large | 12      | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
 
-**11-Column Modal (`GRID_MODAL_11_SIZES`)**
+**11-Column Modal (`GRID_MODAL_11_SPEC`)**
 
 | Size  | Columns | Gutter | Margin | Breakpoint                                     |
 | ----- | ------- | ------ | ------ | ---------------------------------------------- |
 | small | 4       | 16px   | 16px   | `max-width: 767px`                             |
 | large | 11      | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
 
-**8-Column Modal (`GRID_MODAL_8_SIZES`)**
+**8-Column Modal (`GRID_MODAL_8_SPEC`)**
 
 | Size  | Columns | Gutter | Margin | Breakpoint                                     |
 | ----- | ------- | ------ | ------ | ---------------------------------------------- |

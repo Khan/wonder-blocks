@@ -64,5 +64,5 @@ export const flexBasis = (size: number | string) => {
 
 export const gridContextTypes = {
     gridSize: propTypes.string,
-    gridSizes: propTypes.object,
+    gridSpec: propTypes.object,
 };

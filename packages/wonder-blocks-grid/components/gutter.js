@@ -36,8 +36,8 @@ export default class Gutter extends React.Component<{
     };
 
     render() {
-        const {gridSize, gridSizes} = this.context;
-        const {gutterWidth} = gridSizes[gridSize];
+        const {gridSize, gridSpec} = this.context;
+        const {gutterWidth} = gridSpec[gridSize];
         const shouldDisplay = matchesSize(this.props, gridSize);
 
         if (!shouldDisplay) {

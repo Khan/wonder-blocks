@@ -58,7 +58,7 @@ export default class FlexCell extends React.Component<Props> {
 
     render() {
         const {children, style} = this.props;
-        const {gridSize, gridSizes} = this.context;
+        const {gridSize, gridSpec} = this.context;
 
         if (!FlexCell.shouldDisplay(this.props, gridSize)) {
             return null;
@@ -69,7 +69,7 @@ export default class FlexCell extends React.Component<Props> {
         // If the contents are a function then we call it with the gridSize and
         // totalColumns properties and render the return value.
         if (typeof contents === "function") {
-            const {totalColumns} = gridSizes[gridSize];
+            const {totalColumns} = gridSpec[gridSize];
             contents = contents({gridSize, totalColumns});
         }
 

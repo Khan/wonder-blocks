@@ -64,8 +64,8 @@ export default class Row extends React.Component<{
 
     render() {
         const {style, children} = this.props;
-        const {gridSize, gridSizes} = this.context;
-        const {marginWidth, hasMaxWidth, totalColumns} = gridSizes[gridSize];
+        const {gridSize, gridSpec} = this.context;
+        const {marginWidth, hasMaxWidth, totalColumns} = gridSpec[gridSize];
         const shouldDisplay = matchesSize(this.props, gridSize);
 
         // Don't render the row if it's been disabled at this size

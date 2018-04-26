@@ -72,9 +72,9 @@ export default class Cell extends React.Component<Props> {
 
     render() {
         const {children, style} = this.props;
-        const {gridSize, gridSizes} = this.context;
+        const {gridSize, gridSpec} = this.context;
         // Get the settings for this particular size of grid
-        const {totalColumns, gutterWidth, marginWidth} = gridSizes[gridSize];
+        const {totalColumns, gutterWidth, marginWidth} = gridSpec[gridSize];
 
         const width = Cell.getWidth(this.props, gridSize);
 

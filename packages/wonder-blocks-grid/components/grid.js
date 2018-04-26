@@ -3,10 +3,10 @@ import * as React from "react";
 import {View} from "wonder-blocks-core";
 
 import styles from "../util/styles.js";
-import {GRID_DEFAULT_SIZES, VALID_GRID_SIZES} from "../util/sizes.js";
+import {GRID_DEFAULT_SPEC, VALID_GRID_SIZES} from "../util/specs.js";
 import {gridContextTypes} from "../util/utils.js";
 
-import type {GridSize, GridSizes} from "../util/types.js";
+import type {GridSize, GridSpec} from "../util/types.js";
 import typeof Row from "./row.js";
 
 type Props = {
@@ -23,11 +23,11 @@ type Props = {
     ssrSize: GridSize,
 
     /**
-     * The possible sizes of the grid system. Used to define a number of
-     * different layouts to display the grid at. Includes the number of columns
-     * and the size of the margins and gutters are each size.
+     * The spec of the possible sizes of the grid system. Used to define a
+     * number of different layouts to display the grid at. Includes the number
+     * of columns and the size of the margins and gutters are each size.
      */
-    sizes: GridSizes,
+    spec: GridSpec,
 
     /** The `<Row>` components that will make up the grid */
     children: React.ChildrenArray<Row>,
@@ -47,14 +47,14 @@ type Props = {
  * grid when this component is Server-Side Renderered. Defaults to "large".
  *
  * If you wish to use a different set of grid sizes you can specify them as
- * part of the `sizes` property. The Grid package exports a couple of the most
+ * part of the `spec` property. The Grid package exports a couple of the most
  * commonly used ones:
  *
- *  * `GRID_DEFAULT_SIZES` (the default)
- *  * `GRID_INTERNAL_SIZES` (for internal tools)
- *  * `GRID_MODAL_12_SIZES` (12-column Modals)
- *  * `GRID_MODAL_11_SIZES` (11-column Modals)
- *  * `GRID_MODAL_8_SIZES` (8-column Modals)
+ *  * `GRID_DEFAULT_SPEC` (the default)
+ *  * `GRID_INTERNAL_SPEC` (for internal tools)
+ *  * `GRID_MODAL_12_SPEC` (12-column Modals)
+ *  * `GRID_MODAL_11_SPEC` (11-column Modals)
+ *  * `GRID_MODAL_8_SPEC` (8-column Modals)
  *
  * @version 1.0
  * @since 1.0
@@ -71,7 +71,7 @@ export default class Grid extends React.Component<
 
     static defaultProps = {
         ssrSize: "large",
-        sizes: GRID_DEFAULT_SIZES,
+        spec: GRID_DEFAULT_SPEC,
     };
 
     watchHandlers: {
@@ -81,7 +81,7 @@ export default class Grid extends React.Component<
     constructor(props: Props) {
         super(props);
 
-        const {ssrSize, size, sizes} = props;
+        const {ssrSize, size, spec} = props;
 
         // If a size was explicitly defined then we use that
         if (size) {
@@ -104,7 +104,7 @@ export default class Grid extends React.Component<
         this.watchHandlers = {};
 
         for (const size of VALID_GRID_SIZES) {
-            const {query} = sizes[size];
+            const {query} = spec[size];
 
             // Don't watch sizes that don't have an associated query
             if (!query) {
@@ -149,7 +149,7 @@ export default class Grid extends React.Component<
             return;
         }
 
-        const {sizes} = this.props;
+        const {spec} = this.props;
 
         // We go through the component and remove all of the listeners
         // that this Grid attached.
@@ -165,7 +165,7 @@ export default class Grid extends React.Component<
 
     render() {
         return (
-            <GridContext size={this.state.size} sizes={this.props.sizes}>
+            <GridContext size={this.state.size} spec={this.props.spec}>
                 {this.props.children}
             </GridContext>
         );
@@ -180,9 +180,9 @@ class GridContext extends React.Component<{
     // The size of the grid to display (determined by the Grid component)
     size: GridSize,
 
-    // The possible sizes of the grid to display (determined by the Grid
-    // component)
-    sizes: GridSizes,
+    // The spec of the possible sizes of the grid to display (determined by
+    // the Grid component)
+    spec: GridSpec,
 
     // The Row components that will make up the grid
     children: React.ChildrenArray<Row>,
@@ -192,7 +192,7 @@ class GridContext extends React.Component<{
     getChildContext() {
         return {
             gridSize: this.props.size,
-            gridSizes: this.props.sizes,
+            gridSpec: this.props.spec,
         };
     }
 

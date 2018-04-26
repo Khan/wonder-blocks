@@ -2,7 +2,7 @@
 
 export type GridSize = "small" | "medium" | "large";
 
-export type GridSizes = {
+export type GridSpec = {
     [sizeName: GridSize]: {
         /** The query to use to match the viewport against. */
         query: string,
