@@ -32,8 +32,6 @@ export default class ModalBackdrop extends React.Component<Props> {
 
     render() {
         return (
-            // TODO(mdr): Using a div instead of a View for now, because we
-            //     haven't developed our click handling story for View yet.
             <View style={styles.modalPositioner} onClick={this._handleClick}>
                 {this.props.children}
             </View>
