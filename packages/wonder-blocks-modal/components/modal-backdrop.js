@@ -15,7 +15,7 @@ type Props = {
  * content (provided as `children`) over the content, with a gray backdrop
  * behind it.
  */
-export default class ModalLauncherPositioner extends React.Component<Props> {
+export default class ModalBackdrop extends React.Component<Props> {
     /**
      * When the user clicks on the gray backdrop area (i.e., the click came
      * _directly_ from the positioner, not bubbled up from its children), close

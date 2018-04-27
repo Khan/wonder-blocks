@@ -29,7 +29,7 @@ module.exports = {
             components: "packages/wonder-blocks-modal/components/*.js",
             ignore: [
                 "**/components/modal-launcher-portal.js",
-                "**/components/modal-launcher-positioner.js",
+                "**/components/modal-backdrop.js",
             ],
         },
     ],

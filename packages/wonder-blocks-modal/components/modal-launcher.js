@@ -4,7 +4,7 @@ import * as React from "react";
 import {View} from "wonder-blocks-core";
 
 import ModalLauncherPortal from "./modal-launcher-portal.js";
-import ModalLauncherPositioner from "./modal-launcher-positioner.js";
+import ModalBackdrop from "./modal-backdrop.js";
 
 type Props = {
     /**
@@ -96,9 +96,9 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
-                        <ModalLauncherPositioner closeModal={this._closeModal}>
+                        <ModalBackdrop closeModal={this._closeModal}>
                             {this._renderModal()}
-                        </ModalLauncherPositioner>
+                        </ModalBackdrop>
                     </ModalLauncherPortal>
                 )}
             </View>

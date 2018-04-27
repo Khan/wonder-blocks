@@ -2,18 +2,18 @@
 import React from "react";
 import {mount} from "enzyme";
 
-import ModalLauncherPositioner from "./modal-launcher-positioner";
+import ModalBackdrop from "./modal-backdrop";
 
-describe("ModalLauncherPositioner", () => {
+describe("ModalBackdrop", () => {
     test("Clicking the backdrop closes the modal", () => {
         const closeModal = jest.fn();
 
         // We use `mount` instead of `shallow` here, because the component's
         // click handler expects actual DOM events.
         const wrapper = mount(
-            <ModalLauncherPositioner closeModal={closeModal}>
+            <ModalBackdrop closeModal={closeModal}>
                 <button>Hello, world!</button>
-            </ModalLauncherPositioner>,
+            </ModalBackdrop>,
         );
 
         expect(closeModal).not.toHaveBeenCalled();
@@ -27,9 +27,9 @@ describe("ModalLauncherPositioner", () => {
         // We use `mount` instead of `shallow` here, because the component's
         // click handler expects actual DOM events.
         const wrapper = mount(
-            <ModalLauncherPositioner closeModal={closeModal}>
+            <ModalBackdrop closeModal={closeModal}>
                 <button>Hello, world!</button>
-            </ModalLauncherPositioner>,
+            </ModalBackdrop>,
         );
 
         wrapper.find("button").simulate("click");
