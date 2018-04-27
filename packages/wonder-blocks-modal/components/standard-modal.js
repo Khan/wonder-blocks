@@ -47,14 +47,14 @@ export default class StandardModal extends React.Component<Props> {
 
         if (subtitle) {
             return (
-                <View style={[styles.titlebar, styles.titlebarWithSubtitle]}>
+                <View style={[styles.titlebar]}>
                     <HeadingSmall>{title}</HeadingSmall>
                     <LabelSmall>{subtitle}</LabelSmall>
                 </View>
             );
         } else {
             return (
-                <View style={[styles.titlebar, styles.titlebarWithoutSubtitle]}>
+                <View style={[styles.titlebar]}>
                     <HeadingMedium>{title}</HeadingMedium>
                 </View>
             );
@@ -91,26 +91,22 @@ const styles = StyleSheet.create({
 
     titlebar: {
         flex: "0 0 auto",
+        boxSizing: "border-box",
+        minHeight: 64,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingTop: 8,
+        paddingBottom: 8,
 
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-
-        paddingLeft: 16,
-        paddingRight: 16,
+        textAlign: "center",
 
         borderBottomStyle: "solid",
         borderBottomColor: Color.offBlack16,
         borderBottomWidth: 1,
-    },
-
-    titlebarWithSubtitle: {
-        height: 72,
-    },
-
-    titlebarWithoutSubtitle: {
-        height: 64,
     },
 
     content: {
@@ -119,15 +115,18 @@ const styles = StyleSheet.create({
     },
 
     footer: {
-        flex: "0 0 64px",
+        flex: "0 0 auto",
+        boxSizing: "border-box",
+        minHeight: 64,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingTop: 8,
+        paddingBottom: 8,
 
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
-
-        paddingLeft: 16,
-        paddingRight: 16,
 
         borderTopStyle: "solid",
         borderTopColor: Color.offBlack16,
