@@ -96,7 +96,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
-                        <ModalBackdrop closeModal={this._closeModal}>
+                        <ModalBackdrop onClickBackdrop={this._closeModal}>
                             {this._renderModal()}
                         </ModalBackdrop>
                     </ModalLauncherPortal>

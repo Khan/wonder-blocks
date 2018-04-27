@@ -7,7 +7,7 @@ import {View} from "wonder-blocks-core";
 
 type Props = {
     children: React.Node,
-    closeModal: () => void,
+    onClickBackdrop: () => void,
 };
 
 /**
@@ -26,7 +26,7 @@ export default class ModalBackdrop extends React.Component<Props> {
         // Was the lowest-level click target (`e.target`) the positioner element
         // (`e.currentTarget`)?
         if (e.target === e.currentTarget) {
-            this.props.closeModal();
+            this.props.onClickBackdrop();
         }
     };
 

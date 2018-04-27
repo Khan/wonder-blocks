@@ -5,34 +5,34 @@ import {mount} from "enzyme";
 import ModalBackdrop from "./modal-backdrop";
 
 describe("ModalBackdrop", () => {
-    test("Clicking the backdrop closes the modal", () => {
-        const closeModal = jest.fn();
+    test("Clicking the backdrop triggers `onClickBackdrop`", () => {
+        const onClickBackdrop = jest.fn();
 
         // We use `mount` instead of `shallow` here, because the component's
         // click handler expects actual DOM events.
         const wrapper = mount(
-            <ModalBackdrop closeModal={closeModal}>
+            <ModalBackdrop onClickBackdrop={onClickBackdrop}>
                 <button>Hello, world!</button>
             </ModalBackdrop>,
         );
 
-        expect(closeModal).not.toHaveBeenCalled();
+        expect(onClickBackdrop).not.toHaveBeenCalled();
         wrapper.simulate("click");
-        expect(closeModal).toHaveBeenCalled();
+        expect(onClickBackdrop).toHaveBeenCalled();
     });
 
-    test("Clicking the modal content does not close the modal", () => {
-        const closeModal = jest.fn();
+    test("Clicking the modal content does not trigger `onClickBackdrop`", () => {
+        const onClickBackdrop = jest.fn();
 
         // We use `mount` instead of `shallow` here, because the component's
         // click handler expects actual DOM events.
         const wrapper = mount(
-            <ModalBackdrop closeModal={closeModal}>
+            <ModalBackdrop onClickBackdrop={onClickBackdrop}>
                 <button>Hello, world!</button>
             </ModalBackdrop>,
         );
 
         wrapper.find("button").simulate("click");
-        expect(closeModal).not.toHaveBeenCalled();
+        expect(onClickBackdrop).not.toHaveBeenCalled();
     });
 });
