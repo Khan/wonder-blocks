@@ -12,12 +12,12 @@ import {
 
 type Props = {
     /**
-     * The content of the modal, appearing between the header and footer.
+     * The content of the modal, appearing between the titlebar and footer.
      */
     content: React.Node,
 
     /**
-     * The title of the modal, appearing in the header.
+     * The title of the modal, appearing in the titlebar.
      *
      * If a subtitle is also present, this becomes smaller to accommodate both
      * within the title bar.
@@ -25,7 +25,7 @@ type Props = {
     title: string,
 
     /**
-     * The subtitle of the modal, appearing in the header, below the title.
+     * The subtitle of the modal, appearing in the titlebar, below the title.
      */
     subtitle?: string,
 
@@ -39,30 +39,32 @@ type Props = {
 };
 
 /**
- * The "standard" modal layout: a header, a content area, and a footer.
+ * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
-    _renderTitleAndSubtitle() {
+    _renderTitlebar() {
         const {title, subtitle} = this.props;
 
         if (subtitle) {
             return (
-                <View style={styles.titleAndSubtitle}>
+                <View style={[styles.titlebar, styles.titlebarWithSubtitle]}>
                     <HeadingSmall>{title}</HeadingSmall>
                     <LabelSmall>{subtitle}</LabelSmall>
                 </View>
             );
         } else {
-            return <HeadingMedium>{title}</HeadingMedium>;
+            return (
+                <View style={[styles.titlebar, styles.titlebarWithoutSubtitle]}>
+                    <HeadingMedium>{title}</HeadingMedium>
+                </View>
+            );
         }
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.header}>
-                    {this._renderTitleAndSubtitle()}
-                </View>
+                {this._renderTitlebar()}
                 <View style={styles.content}>{this.props.content}</View>
                 <View style={styles.footer}>{this.props.footer}</View>
             </View>
@@ -87,11 +89,11 @@ const styles = StyleSheet.create({
         overflow: "hidden",
     },
 
-    header: {
-        flex: "0 0 64px",
+    titlebar: {
+        flex: "0 0 auto",
 
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
 
@@ -101,6 +103,14 @@ const styles = StyleSheet.create({
         borderBottomStyle: "solid",
         borderBottomColor: Color.offBlack16,
         borderBottomWidth: 1,
+    },
+
+    titlebarWithSubtitle: {
+        height: 72,
+    },
+
+    titlebarWithoutSubtitle: {
+        height: 64,
     },
 
     content: {
