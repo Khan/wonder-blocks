@@ -4,7 +4,11 @@ import {StyleSheet, css} from "aphrodite";
 
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
-import {HeadingMedium} from "wonder-blocks-typography";
+import {
+    HeadingMedium,
+    HeadingSmall,
+    LabelSmall,
+} from "wonder-blocks-typography";
 
 type Props = {
     /**
@@ -31,20 +35,33 @@ type Props = {
      * Content is right-aligned by default. To control alignment yourself,
      * provide a container element with 100% width.
      */
-    footer?: React.Node,
+    footer: React.Node,
 };
 
 /**
  * The "standard" modal layout: a header, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
+    _renderTitleAndSubtitle() {
+        const {title, subtitle} = this.props;
+
+        if (subtitle) {
+            return (
+                <View style={styles.titleAndSubtitle}>
+                    <HeadingSmall>{title}</HeadingSmall>
+                    <LabelSmall>{subtitle}</LabelSmall>
+                </View>
+            );
+        } else {
+            return <HeadingMedium>{title}</HeadingMedium>;
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <HeadingMedium style={styles.title}>
-                        {this.props.title}
-                    </HeadingMedium>
+                    {this._renderTitleAndSubtitle()}
                 </View>
                 <View style={styles.content}>{this.props.content}</View>
                 <View style={styles.footer}>{this.props.footer}</View>
@@ -76,6 +93,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
 
         paddingLeft: 16,
         paddingRight: 16,
@@ -83,11 +101,6 @@ const styles = StyleSheet.create({
         borderBottomStyle: "solid",
         borderBottomColor: Color.offBlack16,
         borderBottomWidth: 1,
-    },
-
-    title: {
-        flex: "1 0 0",
-        textAlign: "center",
     },
 
     content: {
@@ -109,5 +122,12 @@ const styles = StyleSheet.create({
         borderTopStyle: "solid",
         borderTopColor: Color.offBlack16,
         borderTopWidth: 1,
+    },
+
+    titleAndSubtitle: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        textAlign: "center",
     },
 });

@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     <View style={styles.modalPositioner}>
         <StandardModal
             title="Title"
+            subtitle="Wow, look at all this content!"
             content={
                 <View style={styles.modalContent}>
                     <Body tag="p">
