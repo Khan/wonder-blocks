@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 
-import gridSizes from "../util/sizes.js";
 import {matchesSize, gridContextTypes} from "../util/utils.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 
@@ -37,8 +36,8 @@ export default class Gutter extends React.Component<{
     };
 
     render() {
-        const {gridSize} = this.context;
-        const {gutterWidth} = gridSizes[gridSize];
+        const {gridSize, gridSpec} = this.context;
+        const {gutterWidth} = gridSpec[gridSize];
         const shouldDisplay = matchesSize(this.props, gridSize);
 
         if (!shouldDisplay) {

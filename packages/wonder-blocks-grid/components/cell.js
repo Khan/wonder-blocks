@@ -1,12 +1,11 @@
 // @flow
 import * as React from "react";
 
-import gridSizes from "../util/sizes.js";
 import {widthFromProps, flexBasis, gridContextTypes} from "../util/utils.js";
 import FlexCell from "./flex-cell.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 
-import type {GridSize} from "../util/sizes.js";
+import type {GridSize} from "../util/types.js";
 
 type Props = {
     /** The number of columns this cell should span on a Small Grid. */
@@ -73,9 +72,9 @@ export default class Cell extends React.Component<Props> {
 
     render() {
         const {children, style} = this.props;
-        const {gridSize} = this.context;
+        const {gridSize, gridSpec} = this.context;
         // Get the settings for this particular size of grid
-        const {totalColumns, gutterWidth, marginWidth} = gridSizes[gridSize];
+        const {totalColumns, gutterWidth, marginWidth} = gridSpec[gridSize];
 
         const width = Cell.getWidth(this.props, gridSize);
 
