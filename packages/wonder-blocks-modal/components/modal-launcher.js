@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {StyleSheet, css} from "aphrodite";
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
@@ -85,6 +85,19 @@ export default class ModalLauncher extends React.Component<Props, State> {
         }
     }
 
+    /**
+     * When the user clicks on the gray backdrop area (i.e., the click came
+     * _directly_ from the positioner, not bubbled up from its children), close
+     * the modal.
+     */
+    _handlePositionerClick = (e: SyntheticEvent<>) => {
+        // Was the lowest-level click target (`e.target`) the positioner element
+        // (`e.currentTarget`)?
+        if (e.target === e.currentTarget) {
+            this._closeModal();
+        }
+    };
+
     render() {
         const renderedChildren = this.props.children({
             openModal: this._openModal,
@@ -96,9 +109,15 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
-                        <View style={styles.modalPositioner}>
+                        {/* TODO(mdr): Using a div instead of a View for now,
+                          *     because we haven't developed our click handling
+                          *     story for View yet. */}
+                        <div
+                            className={css(styles.modalPositioner)}
+                            onClick={this._handlePositionerClick}
+                        >
                             {this._renderModal()}
-                        </View>
+                        </div>
                     </ModalLauncherPortal>
                 )}
             </View>
