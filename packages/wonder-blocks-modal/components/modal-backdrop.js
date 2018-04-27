@@ -1,8 +1,9 @@
 // @flow
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import Color from "wonder-blocks-color";
+import {View} from "wonder-blocks-core";
 
 type Props = {
     children: React.Node,
@@ -33,12 +34,9 @@ export default class ModalBackdrop extends React.Component<Props> {
         return (
             // TODO(mdr): Using a div instead of a View for now, because we
             //     haven't developed our click handling story for View yet.
-            <div
-                className={css(styles.modalPositioner)}
-                onClick={this._handleClick}
-            >
+            <View style={styles.modalPositioner} onClick={this._handleClick}>
                 {this.props.children}
-            </div>
+            </View>
         );
     }
 }

@@ -12,7 +12,11 @@ export default class View extends React.Component<Props> {
         const {className, style} = processStyleList(this.props.style);
 
         return (
-            <div style={style} className={className}>
+            <div
+                style={style}
+                className={className}
+                onClick={this.props.onClick}
+            >
                 {this.props.children}
             </div>
         );
