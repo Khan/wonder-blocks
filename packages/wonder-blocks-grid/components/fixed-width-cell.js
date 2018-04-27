@@ -3,17 +3,17 @@ import * as React from "react";
 import {View} from "wonder-blocks-core";
 
 import styles from "../util/styles.js";
-import {widthFromProps, flexBasis, gridContextTypes} from "../util/utils.js";
+import {flexBasis, gridContextTypes} from "../util/utils.js";
 
 import type {GridSize} from "../util/types.js";
 
 type Props = {
     /** The width of this cell on a Small Grid (in pixels, %, or other). */
-    small?: number | string,
+    smallWidth?: number | string,
     /** The width of this cell on a Medium Grid (in pixels, %, or other). */
-    medium?: number | string,
+    mediumWidth?: number | string,
     /** The width of this cell on a Large Grid (in pixels, %, or other). */
-    large?: number | string,
+    largeWidth?: number | string,
     /** The default width of the cell (in pixels, %, or other). */
     width?: number | string | ((size: GridSize) => number | string),
     /**
@@ -47,9 +47,9 @@ type Props = {
  * but it's not a requirement, you can use it as a descendant, as well.
  *
  * By default (with no properties specified) it will display at all
- * grid sizes. If you specify the `small`, `medium`, `large`, or `width`
- * props then the component will only be shown at those grid sizes and
- * using the specified width.
+ * grid sizes. If you specify the `smallWidth`, `mediumWidth`, `largeWidth`,
+ * or `width` props then the component will only be shown at those grid sizes
+ * and using the specified width.
  *
  * @version 1.0
  * @since 1.0
@@ -57,14 +57,37 @@ type Props = {
 export default class FixedWidthCell extends React.Component<Props> {
     static contextTypes = gridContextTypes;
     static defaultProps = {
-        small: 0,
-        medium: 0,
-        large: 0,
+        smallWidth: 0,
+        mediumWidth: 0,
+        largeWidth: 0,
         width: 0,
     };
 
-    static getWidth(props: Props, gridSize: GridSize) {
-        return widthFromProps(props, gridSize);
+    static getWidth(
+        {smallWidth, mediumWidth, largeWidth, width}: Props,
+        gridSize: GridSize,
+    ) {
+        // If no option was specified then we just return undefined,
+        // components may handle this case differently.
+        // We go through all the ways in which a fixed width can be
+        // specified and find the one that matches our current grid size.
+        if (!smallWidth && !mediumWidth && !largeWidth && !width) {
+            return undefined;
+        } else if (smallWidth && gridSize === "small") {
+            return smallWidth;
+        } else if (mediumWidth && gridSize === "medium") {
+            return mediumWidth;
+        } else if (largeWidth && gridSize === "large") {
+            return largeWidth;
+        } else if (typeof width === "function") {
+            return width(gridSize);
+        } else if (width) {
+            return width;
+        }
+
+        // If nothing applies then we return null (usually resulting
+        // in the component not being rendered)
+        return null;
     }
 
     static shouldDisplay(props: Props, gridSize: GridSize) {

@@ -1,6 +1,6 @@
 **Example:**
 
-A row inside of a grid containing many Cells. Each cell has a width of 1 and will display at different sizes of the viewport (always matching the number of available columns).
+A row inside of a grid containing many Cells. Each cell has a column width of 1 and will display at different sizes of the viewport (always matching the number of available columns).
 
 ```jsx
 const Color = require("wonder-blocks-color").default;
@@ -32,40 +32,40 @@ const styles = StyleSheet.create({
 <View style={styles.background}>
 	<Grid>
 		<Row>
-			<Cell width={1} style={styles.cell}>
+			<Cell cols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell width={1} style={styles.cell}>
+			<Cell cols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell width={1} style={styles.cell}>
+			<Cell cols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell width={1} style={styles.cell}>
+			<Cell cols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell medium={1} large={1} style={styles.cell}>
+			<Cell mediumCols={1} largeCols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell medium={1} large={1} style={styles.cell}>
+			<Cell mediumCols={1} largeCols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell medium={1} large={1} style={styles.cell}>
+			<Cell mediumCols={1} largeCols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell medium={1} large={1} style={styles.cell}>
+			<Cell mediumCols={1} largeCols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell large={1} style={styles.cell}>
+			<Cell largeCols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell large={1} style={styles.cell}>
+			<Cell largeCols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell large={1} style={styles.cell}>
+			<Cell largeCols={1} style={styles.cell}>
 				1
 			</Cell>
-			<Cell large={1} style={styles.cell}>
+			<Cell largeCols={1} style={styles.cell}>
 				1
 			</Cell>
 		</Row>
