@@ -101,6 +101,10 @@ for (const section of styleguideConfig.sections) {
     const examples = tokens
         .filter((token) => token.type === "code")
         .map((token) => token.text);
+    if (examples.length === 0) {
+        console.warn(`no examples for section ${section.name}`);
+        continue;
+    }
 
     if (section.content) {
         const root = path.dirname(section.content);

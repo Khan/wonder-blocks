@@ -1,4 +1,4 @@
-/* global describe, test */
+// @flow
 import React from "react";
 import {shallow} from "enzyme";
 
