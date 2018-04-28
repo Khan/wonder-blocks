@@ -5,12 +5,17 @@ import {StyleSheet, css} from "aphrodite";
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
+import ModalCloseButton from "./modal-close-button.js";
+
 type Props = {
     /** The left-hand column's content. */
     leftContent: React.Node,
 
     /** The right-hand column's content. */
     rightContent: React.Node,
+
+    /** Called when the close button is clicked. */
+    onClickCloseButton?: () => void,
 };
 
 /**
@@ -20,6 +25,12 @@ export default class TwoColumnModal extends React.Component<Props> {
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.closeButton}>
+                    <ModalCloseButton
+                        color="light"
+                        onClick={this.props.onClickCloseButton}
+                    />
+                </View>
                 <View style={[styles.column, styles.leftColumn]}>
                     {this.props.leftContent}
                 </View>
@@ -36,6 +47,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         alignItems: "stretch",
+        position: "relative",
 
         width: "86.72%",
         height: "60.42%",
@@ -43,6 +55,12 @@ const styles = StyleSheet.create({
 
         borderRadius: 4,
         overflow: "hidden",
+    },
+
+    closeButton: {
+        position: "absolute",
+        left: 24,
+        top: 16,
     },
 
     column: {

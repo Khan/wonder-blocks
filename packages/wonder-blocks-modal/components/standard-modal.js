@@ -10,6 +10,8 @@ import {
     LabelSmall,
 } from "wonder-blocks-typography";
 
+import ModalCloseButton from "./modal-close-button.js";
+
 type Props = {
     /**
      * The content of the modal, appearing between the titlebar and footer.
@@ -36,35 +38,45 @@ type Props = {
      * provide a container element with 100% width.
      */
     footer: React.Node,
+
+    /** Called when the close button is clicked. */
+    onClickCloseButton?: () => void,
 };
 
 /**
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
-    _renderTitlebar() {
+    _renderTitleAndSubtitle() {
         const {title, subtitle} = this.props;
 
         if (subtitle) {
             return (
-                <View style={[styles.titlebar]}>
+                <View>
                     <HeadingSmall>{title}</HeadingSmall>
                     <LabelSmall>{subtitle}</LabelSmall>
                 </View>
             );
         } else {
-            return (
-                <View style={[styles.titlebar]}>
-                    <HeadingMedium>{title}</HeadingMedium>
-                </View>
-            );
+            return <HeadingMedium>{title}</HeadingMedium>;
         }
     }
 
     render() {
         return (
             <View style={styles.container}>
-                {this._renderTitlebar()}
+                <View style={styles.titlebar}>
+                    <View style={styles.closeButton}>
+                        <ModalCloseButton
+                            color="dark"
+                            onClick={this.props.onClickCloseButton}
+                        />
+                    </View>
+                    <View style={styles.titleAndSubtitle}>
+                        {this._renderTitleAndSubtitle()}
+                    </View>
+                    <View style={styles.titleBarSpacer} />
+                </View>
                 <View style={styles.content}>{this.props.content}</View>
                 <View style={styles.footer}>{this.props.footer}</View>
             </View>
@@ -99,10 +111,8 @@ const styles = StyleSheet.create({
         paddingBottom: 8,
 
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
 
         borderBottomStyle: "solid",
         borderBottomColor: Color.offBlack16,
@@ -133,10 +143,21 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
     },
 
+    // This element is centered within the titlebar, despite the presence of
+    // the close button, because there's an additional right-hand spacer
+    // element that grows at the same rate.
     titleAndSubtitle: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
+        flex: "0 0 auto",
         textAlign: "center",
+        paddingLeft: 16,
+        paddingRight: 16,
+    },
+
+    closeButton: {
+        flex: "1 0 0",
+    },
+
+    titleBarSpacer: {
+        flex: "1 0 0",
     },
 });

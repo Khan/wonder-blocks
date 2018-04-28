@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
                 </Body>
             </View>
         }
+        onClickCloseButton={() => alert("This would close the modal.")}
     />
 </View>;
 ```
