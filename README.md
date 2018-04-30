@@ -4,4 +4,4 @@
 
 The Khan Academy Wonder Blocks design system. This is work-in-progress and a lot of things are still in motion.
 
-More information: https://khan.github.io/wonder-blocks
+More information: https://wonder-blocks.netlify.com/
