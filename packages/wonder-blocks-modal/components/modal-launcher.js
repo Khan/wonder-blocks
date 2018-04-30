@@ -6,6 +6,11 @@ import {View} from "wonder-blocks-core";
 import ModalLauncherPortal from "./modal-launcher-portal.js";
 import ModalBackdrop from "./modal-backdrop.js";
 
+// TODO(mdr): This should only match modal elements: StandardModal,
+//     TwoColumnModal, etc. But I had trouble getting the types to work for this
+//     union, especially when combined with `cloneElement`, so I'm punting.
+type ModalElement = React.Element<any>;
+
 type Props = {
     /**
      * The modal to render.
@@ -20,7 +25,7 @@ type Props = {
      * Note: Don't call `closeModal` while rendering! It should be used to
      * respond to user intearction, like `onClick`.
      */
-    modal: React.Node | (({closeModal: () => void}) => React.Node),
+    modal: ModalElement | (({closeModal: () => void}) => ModalElement),
 
     /**
      * Use the children-as-function pattern to pass a openModal function for
@@ -76,13 +81,23 @@ export default class ModalLauncher extends React.Component<Props, State> {
     };
 
     _renderModal() {
+        let modal;
         if (typeof this.props.modal === "function") {
-            return this.props.modal({
+            modal = this.props.modal({
                 closeModal: this._closeModal,
             });
         } else {
-            return this.props.modal;
+            modal = this.props.modal;
         }
+
+        return React.cloneElement(modal, {
+            onClickCloseButton: () => {
+                this._closeModal();
+                if (modal.props.onClickCloseButton) {
+                    modal.props.onClickCloseButton();
+                }
+            },
+        });
     }
 
     render() {
