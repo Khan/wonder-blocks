@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import {shallow} from "enzyme";
+import {shallow, mount} from "enzyme";
 
 import ModalLauncher from "./modal-launcher.js";
 
@@ -58,5 +58,35 @@ describe("ModalLauncher", () => {
         opened = true;
         wrapper.find("button").simulate("click");
         expect(wrapper.find("ModalLauncherPortal")).toHaveLength(1);
+    });
+
+    test("Pressing Escape closes the modal", (done) => {
+        let pressedEscape = false;
+
+        // On close, assert that this function was triggered _after_ Escape was
+        // pressed, and finish the test.
+        const onClose = () => {
+            expect(pressedEscape).toBe(true);
+            done();
+        };
+
+        // We mount into a real DOM, in order to simulate and capture real key
+        // presses anywhere in the document.
+        const wrapper = mount(
+            <ModalLauncher modal={<div />} onClose={onClose}>
+                {({openModal}) => <button onClick={openModal} />}
+            </ModalLauncher>,
+        );
+
+        // Launch the modal.
+        wrapper.find("button").simulate("click");
+
+        // Simulate an Escape keypress. This should call `onClose`, which is
+        // where the test continues.
+        pressedEscape = true;
+        const event: KeyboardEvent = (document.createEvent("Event"): any);
+        event.key = "Escape";
+        event.initEvent("keyup", true, true);
+        document.dispatchEvent(event);
     });
 });
