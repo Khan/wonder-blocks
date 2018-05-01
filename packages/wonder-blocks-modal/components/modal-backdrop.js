@@ -6,8 +6,8 @@ import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
 type Props = {
-    children: React.Node,
-    onClickBackdrop: () => void,
+    children: React.Element<any>,
+    onCloseModal: () => void,
 };
 
 /**
@@ -26,14 +26,22 @@ export default class ModalBackdrop extends React.Component<Props> {
         // Was the lowest-level click target (`e.target`) the positioner element
         // (`e.currentTarget`)?
         if (e.target === e.currentTarget) {
-            this.props.onClickBackdrop();
+            this.props.onCloseModal();
         }
     };
 
     render() {
+        const children = this.props.children;
+        const clonedChildren = React.cloneElement(children, {
+            onClickCloseButton: () => {
+                children.props.onClickCloseButton();
+                this.props.onCloseModal();
+            },
+        });
+
         return (
             <View style={styles.modalPositioner} onClick={this._handleClick}>
-                {this.props.children}
+                {clonedChildren}
             </View>
         );
     }

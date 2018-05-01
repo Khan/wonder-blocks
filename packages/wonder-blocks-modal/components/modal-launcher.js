@@ -81,23 +81,13 @@ export default class ModalLauncher extends React.Component<Props, State> {
     };
 
     _renderModal() {
-        let modal;
         if (typeof this.props.modal === "function") {
-            modal = this.props.modal({
+            return this.props.modal({
                 closeModal: this._closeModal,
             });
         } else {
-            modal = this.props.modal;
+            return this.props.modal;
         }
-
-        return React.cloneElement(modal, {
-            onClickCloseButton: () => {
-                this._closeModal();
-                if (modal.props.onClickCloseButton) {
-                    modal.props.onClickCloseButton();
-                }
-            },
-        });
     }
 
     render() {
@@ -111,7 +101,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
-                        <ModalBackdrop onClickBackdrop={this._closeModal}>
+                        <ModalBackdrop onCloseModal={this._closeModal}>
                             {this._renderModal()}
                         </ModalBackdrop>
                     </ModalLauncherPortal>
