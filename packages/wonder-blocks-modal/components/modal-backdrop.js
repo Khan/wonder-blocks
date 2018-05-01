@@ -5,9 +5,11 @@ import {StyleSheet} from "aphrodite";
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
+import type {ModalElement} from "../util/types.js";
+
 type Props = {
-    children: React.Node,
-    onClickBackdrop: () => void,
+    children: ModalElement,
+    onCloseModal: () => void,
 };
 
 /**
@@ -15,6 +17,10 @@ type Props = {
  * container element that gets mounted outside the DOM. It overlays the modal
  * content (provided as `children`) over the content, with a gray backdrop
  * behind it.
+ *
+ * This component is also responsible for cloning the provided modal `children`,
+ * and adding an `onClickCloseButton` prop that will call `onCloseModal`. If an
+ * `onClickCloseButton` prop is already provided, the two are merged.
  */
 export default class ModalBackdrop extends React.Component<Props> {
     /**
@@ -26,14 +32,24 @@ export default class ModalBackdrop extends React.Component<Props> {
         // Was the lowest-level click target (`e.target`) the positioner element
         // (`e.currentTarget`)?
         if (e.target === e.currentTarget) {
-            this.props.onClickBackdrop();
+            this.props.onCloseModal();
         }
     };
 
     render() {
+        const children = this.props.children;
+        const clonedChildren = React.cloneElement(children, {
+            onClickCloseButton: () => {
+                if (typeof children.props.onClickCloseButton === "function") {
+                    children.props.onClickCloseButton();
+                }
+                this.props.onCloseModal();
+            },
+        });
+
         return (
             <View style={styles.modalPositioner} onClick={this._handleClick}>
-                {this.props.children}
+                {clonedChildren}
             </View>
         );
     }
