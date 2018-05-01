@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
 
         cursor: "pointer",
         fontSize: 24,
-        lineHeight: 1,
+        lineHeight: "48px",
+        width: 48,
+        height: 48,
     },
 
     dark: {

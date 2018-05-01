@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
 
     closeButton: {
         position: "absolute",
-        left: 24,
-        top: 16,
+        left: 4,
+        top: 8,
     },
 
     column: {

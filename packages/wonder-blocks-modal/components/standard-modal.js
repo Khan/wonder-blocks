@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
         flex: "0 0 auto",
         boxSizing: "border-box",
         minHeight: 64,
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: 4,
+        paddingRight: 4,
         paddingTop: 8,
         paddingBottom: 8,
 
@@ -155,10 +155,8 @@ const styles = StyleSheet.create({
     // the close button, because there's an additional right-hand spacer
     // element that grows at the same rate.
     titleAndSubtitle: {
-        flex: "0 0 auto",
+        flex: "0 1 auto",
         textAlign: "center",
-        paddingLeft: 16,
-        paddingRight: 16,
     },
 
     closeButton: {
@@ -167,5 +165,9 @@ const styles = StyleSheet.create({
 
     titleBarSpacer: {
         flex: "1 0 0",
+
+        // When the modal gets small, provide some minimal space here, to
+        // prevent the text from running up against the edge.
+        minWidth: 16,
     },
 });
