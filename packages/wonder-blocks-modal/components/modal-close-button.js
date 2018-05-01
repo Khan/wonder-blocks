@@ -12,7 +12,7 @@ type Props = {
     color: "dark" | "light",
 
     /** Called when the button is clicked. */
-    onClick?: () => void,
+    onClick: () => void,
 };
 
 /** A close button for modals. */

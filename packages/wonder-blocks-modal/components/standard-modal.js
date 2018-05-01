@@ -39,14 +39,22 @@ type Props = {
      */
     footer: React.Node,
 
-    /** Called when the close button is clicked. */
-    onClickCloseButton?: () => void,
+    /**
+     * Called when the close button is clicked.
+     *
+     * This defaults to a no-op via `defaultProps`.
+     */
+    onClickCloseButton: () => void,
 };
 
 /**
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
+    static defaultProps = {
+        onClickCloseButton: () => {},
+    };
+
     _renderTitleAndSubtitle() {
         const {title, subtitle} = this.props;
 

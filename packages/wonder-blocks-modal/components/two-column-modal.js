@@ -14,14 +14,23 @@ type Props = {
     /** The right-hand column's content. */
     rightContent: React.Node,
 
-    /** Called when the close button is clicked. */
-    onClickCloseButton?: () => void,
+    /**
+     * Called when the close button is clicked.
+     *
+     * This defaults to a no-op via `defaultProps`.
+     */
+    onClickCloseButton: () => void,
+    onClickCloseButton: () => void,
 };
 
 /**
  * A two-column modal layout.
  */
 export default class TwoColumnModal extends React.Component<Props> {
+    static defaultProps = {
+        onClickCloseButton: () => {},
+    };
+
     render() {
         return (
             <View style={styles.container}>
