@@ -52,9 +52,6 @@ const styles = StyleSheet.create({
         padding: 0,
 
         cursor: "pointer",
-
-        // TODO(mdr): The modal should specify light or dark.
-        color: Color.white,
         fontSize: 24,
         lineHeight: 1,
     },
