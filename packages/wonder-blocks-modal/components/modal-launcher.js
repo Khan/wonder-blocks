@@ -6,9 +6,13 @@ import {View} from "wonder-blocks-core";
 import ModalLauncherPortal from "./modal-launcher-portal.js";
 import ModalBackdrop from "./modal-backdrop.js";
 
-// TODO(mdr): This should only match modal elements: StandardModal,
-//     TwoColumnModal, etc. But I had trouble getting the types to work for this
-//     union, especially when combined with `cloneElement`, so I'm punting.
+/**
+ * A `ModalElement` should be a React element that either is itself a modal
+ * (StandardModal, OneColumnModal, TwoColumnModal), or wraps a modal. If it's a
+ * wrapper component, then the props must be passed along to the child modal,
+ * because we clone this element and add new props in order to capture
+ * `onClickCloseButton` events.
+ */
 type ModalElement = React.Element<any>;
 
 type Props = {
