@@ -65,11 +65,7 @@ describe("ModalBackdrop", () => {
 
         const wrapper = shallow(
             <ModalBackdrop onCloseModal={onCloseModal}>
-                <StandardModal
-                    title="Title"
-                    content={<div />}
-                    footer={<div />}
-                />
+                {exampleModal}
             </ModalBackdrop>,
         );
 
@@ -96,12 +92,9 @@ describe("ModalBackdrop", () => {
 
             const wrapper = shallow(
                 <ModalBackdrop onCloseModal={onCloseModal}>
-                    <StandardModal
-                        title="Title"
-                        content={<div />}
-                        footer={<div />}
-                        onClickCloseButton={customOnClickCloseButton}
-                    />
+                    {React.cloneElement(exampleModal, {
+                        onClickCloseButton: customOnClickCloseButton,
+                    })}
                 </ModalBackdrop>,
             );
 
