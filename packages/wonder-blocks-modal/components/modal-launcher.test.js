@@ -3,16 +3,11 @@ import React from "react";
 import {shallow, mount} from "enzyme";
 
 import ModalLauncher from "./modal-launcher.js";
-import StandardModal from "./standard-modal.js";
-
-const exampleModal = (
-    <StandardModal content={<div />} title="Title" footer={<div />} />
-);
 
 describe("ModalLauncher", () => {
     test("Children can launch the modal", () => {
         const wrapper = shallow(
-            <ModalLauncher modal={exampleModal}>
+            <ModalLauncher modal={<div />}>
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
@@ -38,7 +33,7 @@ describe("ModalLauncher", () => {
         const modalFn = ({closeModal}) => {
             expect(opened).toBe(true);
             setImmediate(closeModal);
-            return exampleModal;
+            return <div />;
         };
 
         // Once the modal closes, we'll check that it _really_ closed, and
