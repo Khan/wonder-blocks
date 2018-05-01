@@ -15,6 +15,10 @@ type Props = {
  * container element that gets mounted outside the DOM. It overlays the modal
  * content (provided as `children`) over the content, with a gray backdrop
  * behind it.
+ *
+ * This component is also responsible for cloning the provided modal `children`,
+ * and adding an `onClickCloseButton` prop that will call `onCloseModal`. If an
+ * `onClickCloseButton` prop is already provided, the two are merged.
  */
 export default class ModalBackdrop extends React.Component<Props> {
     /**
