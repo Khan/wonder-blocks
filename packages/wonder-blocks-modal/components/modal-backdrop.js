@@ -5,8 +5,10 @@ import {StyleSheet} from "aphrodite";
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
+import type {ModalElement} from "../util/types.js";
+
 type Props = {
-    children: React.Element<any>,
+    children: ModalElement,
     onCloseModal: () => void,
 };
 
