@@ -1,10 +1,13 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
 import {View} from "wonder-blocks-core";
 
+import type {ModalElement} from "../util/types.js";
+
 type Props = {
-    children: React.Element<any>,
+    children: ModalElement,
 };
 
 /**
