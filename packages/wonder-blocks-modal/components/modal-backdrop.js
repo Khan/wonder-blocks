@@ -40,7 +40,9 @@ export default class ModalBackdrop extends React.Component<Props> {
         const children = this.props.children;
         const clonedChildren = React.cloneElement(children, {
             onClickCloseButton: () => {
-                children.props.onClickCloseButton();
+                if (typeof children.props.onClickCloseButton === "function") {
+                    children.props.onClickCloseButton();
+                }
                 this.props.onCloseModal();
             },
         });
