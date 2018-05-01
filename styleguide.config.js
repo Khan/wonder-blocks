@@ -32,6 +32,11 @@ module.exports = {
                 "**/components/modal-backdrop.js",
             ],
         },
+        {
+            name: "Button",
+            content: "packages/wonder-blocks-button/docs.md",
+            components: "packages/wonder-blocks-button/components/*.js",
+        },
     ],
 
     // These values control our custom styles.

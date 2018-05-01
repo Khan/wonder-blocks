@@ -1,52 +1,45 @@
 // @flow
 import React from "react";
 import {StyleSheet, css} from "aphrodite";
+import ButtonCore from "./button-core.js";
 
-import Color from "wonder-blocks-color";
-import {LabelLarge} from "wonder-blocks-typography";
-
-type Props = {
-    color?: "blue" | "green" | "gold" | "red",
-    onClick?: (e: SyntheticEvent<MouseEvent | TouchEvent>) => void,
-};
+import type {SharedProps} from "../types.js";
+type Props =
+    | {|
+          ...SharedProps,
+          href: string,
+      |}
+    | {|
+          ...SharedProps,
+          onClick: (e: SyntheticEvent<MouseEvent | TouchEvent>) => void,
+      |};
 
 export default class Button extends React.Component<Props> {
     render() {
         return (
-            <a
-                className={css(
-                    styles.button,
-                    styles[this.props.color || "blue"],
-                )}
-                onClick={this.props.onClick}
+            <div
+                onClick={this.props.onClick && this.props.onClick}
+                href={this.props.href && this.props.href}
             >
-                <LabelLarge>Hello, world!</LabelLarge>
-            </a>
+                <ButtonCore
+                    title={this.props.title}
+                    icon={this.props.icon ? this.props.icon : undefined}
+                    spinner={this.props.spinner}
+                    color={this.props.color ? this.props.color : undefined}
+                    kind={this.props.kind ? this.props.kind : undefined}
+                    light={this.props.light ? this.props.light : undefined}
+                    size={this.props.size ? this.props.size : undefined}
+                    disabled={
+                        this.props.disabled ? this.props.disabled : undefined
+                    }
+                    testId={this.props.testId}
+                    style={this.props.style ? this.props.style : undefined}
+                >
+                    {this.props.children}
+                </ButtonCore>
+            </div>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    button: {
-        display: "inline-block",
-        minHeight: 40,
-        maxHeight: 40,
-        color: Color.white,
-        padding: "10px 16px",
-        boxSizing: "border-box",
-        borderRadius: 4,
-        cursor: "pointer",
-    },
-    blue: {
-        backgroundColor: Color.blue,
-    },
-    green: {
-        backgroundColor: Color.green,
-    },
-    gold: {
-        backgroundColor: Color.gold,
-    },
-    red: {
-        backgroundColor: Color.red,
-    },
-});
+const styles = StyleSheet.create({});
