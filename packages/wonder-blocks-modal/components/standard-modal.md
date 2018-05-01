@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
                 {/* TODO(mdr): Use Wonder Blocks button. */}
                 <button type="button">Button (no-op)</button>
             </View>}
+            onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
                 {/* TODO(mdr): Use Wonder Blocks button. */}
                 <button type="button">Button (no-op)</button>
             </View>}
+            onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
