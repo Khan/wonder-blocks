@@ -42,7 +42,14 @@ type Props = {
     /**
      * Called when the close button is clicked.
      *
-     * This defaults to a no-op via `defaultProps`.
+     * If you're using `ModalLauncher`, you probably shouldn't use this prop!
+     * Instead, to listen for when the modal closes, add an `onClose` handler
+     * to the `ModalLauncher`.
+     *
+     * This defaults to a no-op via `defaultProps`. (When used in a
+     * `ModalLauncher`, we'll automatically add an extra listener here via
+     * `cloneElement`, so that the `ModalLauncher` can listen for close button
+     * clicks too.)
      */
     onClickCloseButton: () => void,
 };

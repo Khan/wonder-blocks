@@ -33,10 +33,10 @@ type Props = {
     children: ({openModal: () => void}) => React.Node,
 
     /**
-     * If the parent needs to be notified when the modal is closed use
-     * this prop.  Do not use `onClose` on the modals themselves as this
-     * is used by ModalNavigator to determine when to remove the modal
-     * the backdrop from the screen.
+     * If the parent needs to be notified when the modal is closed, use
+     * this prop. You probably want to use this instead of `onClickCloseButton`
+     * on the modals themselves, since this will capture a more complete set of
+     * close events.
      */
     onClose?: () => void,
 };
