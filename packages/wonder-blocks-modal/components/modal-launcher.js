@@ -101,7 +101,33 @@ export default class ModalLauncher extends React.Component<Props, State> {
                         </ModalBackdrop>
                     </ModalLauncherPortal>
                 )}
+                {this.state.opened && (
+                    <ModalLauncherKeypressListener onClose={this._closeModal} />
+                )}
             </View>
         );
+    }
+}
+
+/** A component that, when mounted, calls `onClose` when Escape is pressed. */
+class ModalLauncherKeypressListener extends React.Component<{
+    onClose: () => void,
+}> {
+    componentDidMount() {
+        window.addEventListener("keyup", this._handleKeyup);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("keyup", this._handleKeyup);
+    }
+
+    _handleKeyup = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+            this.props.onClose();
+        }
+    };
+
+    render() {
+        return null;
     }
 }
