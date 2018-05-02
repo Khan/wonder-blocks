@@ -46,7 +46,6 @@ export default class ButtonCore extends React.Component<Props> {
                     disabled
                 >
                     <LabelLarge>{this.props.children}</LabelLarge>
-                    }
                 </button>
             );
         }
