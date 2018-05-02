@@ -4,23 +4,22 @@ import type {Element} from "react";
 
 import type {ValidTints} from "wonder-blocks-color";
 
-export type SharedProps = {|
+export type SharedProps = {
     /**
-     * The title of the button, shown in the tooltip when hovered.
+     * Text to appear on the button.
      */
-    title: string,
+    children: string,
 
     /**
      * An icon, displayed to the left of the title.
      */
-    // TODO(yejia): Icon is not defined
-    // $FlowFixMe
-    icon?: Element<Icon>,
+    icon?: string,
 
     /**
      * If true, replaces the contents with a spinner.
      */
-    spinner: boolean,
+    // TODO(yejia): Implement once spinner is implemented.
+    // spinner: boolean,
 
     /**
      * The color of the button, either blue (default) or red.
@@ -63,6 +62,14 @@ export type SharedProps = {|
     testId: string,
 
     /**
+     * Callback that will be fired regardless of whether the button uses a URL
+     * or an onClick handler.
+     *
+     * This callback can be used for firing BigBingo conversions.
+     */
+    // onAction: () => void,
+
+    /**
      * The content of the modal, appearing between the titlebar and footer.
      */
     style?: any,
@@ -75,6 +82,4 @@ export type SharedProps = {|
         ...FlexItemStyles,
     }>>,
     */
-    // TODO(yejia): Do we want to restrict this?
-    children?: any,
-|};
+};
