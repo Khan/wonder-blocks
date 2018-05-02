@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
 const standardModal = ({closeModal}) => (
     <StandardModal
         title="Title"
+        subtitle="You're reading the subtitle!"
         content={
             <View style={styles.modalContent}>
                 <Body tag="p">

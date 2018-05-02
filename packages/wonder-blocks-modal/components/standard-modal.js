@@ -59,9 +59,31 @@ type Props = {
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
+    /** A unique HTML ID for the title element. */
+    _titleId: string;
+
+    /** A unique HTML ID for the subtitle element. */
+    _subtitleId: string;
+
     static defaultProps = {
         onClickCloseButton: () => {},
     };
+
+    constructor(props: Props) {
+        super(props);
+
+        // Generate a unique ID for this modal. Math.random() isn't great, but
+        // collisions on the same page should be pretty unlikely.
+        const modalId = Math.random()
+            .toString(36)
+            .substr(2);
+
+        // Use that unique ID number to generate unique ID strings for this
+        // modal's elements.
+        const idPrefix = `wonder-blocks-standard-modal-${modalId}`;
+        this._titleId = `${idPrefix}-title`;
+        this._subtitleId = `${idPrefix}-title`;
+    }
 
     _renderTitleAndSubtitle() {
         const {title, subtitle} = this.props;
@@ -69,18 +91,41 @@ export default class StandardModal extends React.Component<Props> {
         if (subtitle) {
             return (
                 <View>
-                    <HeadingSmall>{title}</HeadingSmall>
-                    <LabelSmall>{subtitle}</LabelSmall>
+                    {/* TODO(mdr): Should typography components be able to
+                      *     accept `id` directly? */}
+                    <View id={this._titleId}>
+                        <HeadingSmall>{title}</HeadingSmall>
+                    </View>
+
+                    {/* TODO(mdr): Should typography components be able to
+                      *     accept `id` directly? */}
+                    <View id={this._subtitleId}>
+                        <LabelSmall>{subtitle}</LabelSmall>
+                    </View>
                 </View>
             );
         } else {
-            return <HeadingMedium>{title}</HeadingMedium>;
+            return (
+                // TODO(mdr): Should typography components be able to accept
+                //     `id` directly?
+                <View id={this._titleId}>
+                    <HeadingMedium>{title}</HeadingMedium>
+                </View>
+            );
         }
     }
 
     render() {
         return (
-            <View style={styles.container}>
+            <View
+                style={styles.container}
+                role="dialog"
+                aria-labelledby={this._titleId}
+                // TODO(mdr): Is the subtitle a reliable "description" of the
+                //     modal? Or is it often used to convey more specific
+                //     information?
+                aria-describedby={this._subtitleId}
+            >
                 <View style={styles.titlebar}>
                     <View style={styles.closeButton}>
                         <ModalCloseButton
