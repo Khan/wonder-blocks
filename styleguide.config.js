@@ -31,6 +31,7 @@ module.exports = {
                 "**/components/modal-backdrop.js",
                 "**/components/modal-close-button.js",
                 "**/components/modal-launcher-portal.js",
+                "**/components/scroll-disabler.js",
             ],
         },
     ],
