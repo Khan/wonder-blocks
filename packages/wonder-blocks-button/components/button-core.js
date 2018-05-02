@@ -60,18 +60,6 @@ export default class ButtonCore extends React.Component<Props> {
                 )}
             >
                 <LabelLarge>{this.props.children}</LabelLarge>
-                {(hovered || focused) &&
-                    !pressed &&
-                    (!kind || kind === "primary") && (
-                        <span
-                            className={css(
-                                sharedStyles.focusRing,
-                                color === Color.red &&
-                                    sharedStyles.focusRingRed,
-                                light && sharedStyles.focusRingLight,
-                            )}
-                        />
-                    )}
             </button>
         );
     }
@@ -131,7 +119,20 @@ const _generateStyles = (color, kind, light) => {
                 background: color,
                 color: Color.white,
             },
-            focus: {},
+            focus: {
+                ":before": {
+                    content: "''",
+                    position: "absolute",
+                    top: -3,
+                    left: -3,
+                    right: -3,
+                    bottom: -3,
+                    borderColor: color,
+                    borderWidth: 2,
+                    borderStyle: "solid",
+                    borderRadius: 7,
+                },
+            },
             active: {
                 background: mix(Color.offBlack32, color),
                 color: mix(fade(color, 0.32), Color.white),
@@ -147,7 +148,20 @@ const _generateStyles = (color, kind, light) => {
                 background: Color.white,
                 color: color,
             },
-            focus: {},
+            focus: {
+                ":before": {
+                    content: "''",
+                    position: "absolute",
+                    top: -3,
+                    left: -3,
+                    right: -3,
+                    bottom: -3,
+                    borderColor: Color.white,
+                    borderWidth: 2,
+                    borderStyle: "solid",
+                    borderRadius: 7,
+                },
+            },
             active: {
                 background: mix(fade(color, 0.32), Color.white),
                 color: mix(Color.offBlack32, color),
