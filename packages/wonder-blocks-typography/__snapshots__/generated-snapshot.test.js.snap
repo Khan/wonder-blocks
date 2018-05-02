@@ -3,7 +3,6 @@
 exports[`wonder-blocks-typography example 1 1`] = `
 <div
   className=""
-  onClick={undefined}
   style={Object {}}
 >
   <h1
