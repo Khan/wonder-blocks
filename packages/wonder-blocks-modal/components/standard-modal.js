@@ -91,27 +91,12 @@ export default class StandardModal extends React.Component<Props> {
         if (subtitle) {
             return (
                 <View>
-                    {/* TODO(mdr): Should typography components be able to
-                      *     accept `id` directly? */}
-                    <View id={this._titleId}>
-                        <HeadingSmall>{title}</HeadingSmall>
-                    </View>
-
-                    {/* TODO(mdr): Should typography components be able to
-                      *     accept `id` directly? */}
-                    <View id={this._subtitleId}>
-                        <LabelSmall>{subtitle}</LabelSmall>
-                    </View>
+                    <HeadingSmall id={this._titleId}>{title}</HeadingSmall>
+                    <LabelSmall id={this._subtitleId}>{subtitle}</LabelSmall>
                 </View>
             );
         } else {
-            return (
-                // TODO(mdr): Should typography components be able to accept
-                //     `id` directly?
-                <View id={this._titleId}>
-                    <HeadingMedium>{title}</HeadingMedium>
-                </View>
-            );
+            return <HeadingMedium id={this._titleId}>{title}</HeadingMedium>;
         }
     }
 
