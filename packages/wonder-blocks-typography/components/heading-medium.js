@@ -12,9 +12,9 @@ export default class HeadingMedium extends Component<Props> {
     };
 
     render() {
-        const {tag, style, children} = this.props;
+        const {id, tag, style, children} = this.props;
         return (
-            <Text tag={tag} style={[styles.HeadingMedium, style]}>
+            <Text id={id} tag={tag} style={[styles.HeadingMedium, style]}>
                 {children}
             </Text>
         );

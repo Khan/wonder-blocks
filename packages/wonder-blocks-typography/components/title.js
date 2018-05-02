@@ -14,9 +14,9 @@ export default class Title extends Component<Props> {
     };
 
     render() {
-        const {tag, style, children} = this.props;
+        const {id, tag, style, children} = this.props;
         return (
-            <Text tag={tag} style={[styles.Title, style]}>
+            <Text id={id} tag={tag} style={[styles.Title, style]}>
                 {children}
             </Text>
         );
