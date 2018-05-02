@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "wonder-blocks-color": "../wonder-blocks-color",
+    "wonder-blocks-spacing": "../wonder-blocks-spacing",
     "wonder-blocks-core": "../wonder-blocks-core"
   }
 }
