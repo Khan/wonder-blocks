@@ -30,7 +30,7 @@ type Props = {
     spec: GridSpec,
 
     /** The `<Row>` components that will make up the grid */
-    children: React.ChildrenArray<Row>,
+    children: React.Node,
 };
 
 /**
@@ -66,7 +66,7 @@ export default class Grid extends React.Component<
     },
 > {
     static WATCHERS: {
-        [size: GridSize]: any,
+        [query: string]: any,
     } = {};
 
     static defaultProps = {
@@ -104,6 +104,11 @@ export default class Grid extends React.Component<
         this.watchHandlers = {};
 
         for (const size of VALID_GRID_SIZES) {
+            // Skip sizes that aren't defined
+            if (!spec[size]) {
+                continue;
+            }
+
             const {query} = spec[size];
 
             // Don't watch sizes that don't have an associated query
@@ -112,11 +117,11 @@ export default class Grid extends React.Component<
             }
 
             // Create a new matchMedia watcher if one doesn't exist yet
-            if (!Grid.WATCHERS[size]) {
-                Grid.WATCHERS[size] = window.matchMedia(query);
+            if (!Grid.WATCHERS[query]) {
+                Grid.WATCHERS[query] = window.matchMedia(query);
             }
 
-            const watcher = Grid.WATCHERS[size];
+            const watcher = Grid.WATCHERS[query];
 
             // Attach a handler that watches for the change, saving a
             // references to it so we can remove it later
@@ -154,7 +159,14 @@ export default class Grid extends React.Component<
         // We go through the component and remove all of the listeners
         // that this Grid attached.
         for (const size of VALID_GRID_SIZES) {
-            const watcher = Grid.WATCHERS[size];
+            // Skip sizes that aren't defined
+            if (!spec[size]) {
+                continue;
+            }
+
+            const {query} = spec[size];
+            const watcher = Grid.WATCHERS[query];
+
             if (watcher) {
                 const handler = this.watchHandlers[size];
                 watcher.removeListener(handler);
@@ -185,7 +197,7 @@ class GridContext extends React.Component<{
     spec: GridSpec,
 
     // The Row components that will make up the grid
-    children: React.ChildrenArray<Row>,
+    children: React.Node,
 }> {
     static childContextTypes = gridContextTypes;
 

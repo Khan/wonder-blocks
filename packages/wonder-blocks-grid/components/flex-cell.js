@@ -9,11 +9,11 @@ import type {GridSize} from "../util/types.js";
 
 type Props = {
     /** Should this cell be shown on a Small Grid? */
-    small?: boolean,
+    small: boolean,
     /** Should this cell be shown on a Medium Grid? */
-    medium?: boolean,
+    medium: boolean,
     /** Should this cell be shown on a Large Grid? */
-    large?: boolean,
+    large: boolean,
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `gridSize` and `totalColumns` and should

@@ -33,11 +33,11 @@ import type {GridSize} from "../util/types.js";
  */
 export default class Row extends React.Component<{
     /** Should this row be shown on a Small Grid? */
-    small?: boolean,
+    small: boolean,
     /** Should this row be shown on a Medium Grid? */
-    medium?: boolean,
+    medium: boolean,
     /** Should this row be shown on a Large Grid? */
-    large?: boolean,
+    large: boolean,
     /**
      * The child components to populate inside the row. Typically this will be
      * a mixture of [Cell](#cell), [FlexCell](#flexcell), and
@@ -52,6 +52,14 @@ export default class Row extends React.Component<{
               gridSize: GridSize,
               totalColumns: number,
           }) => React.Node),
+    /**
+     * Make the cell contents flush with the row. Removes the margins and
+     * gutters and adds their spacing as paddings to the cells. Margin
+     * spacing gets added as padding to the first and last cell inside the
+     * row. Gutter spacing gets added to the right-hand-side of all cells,
+     * except for the last one, as padding.
+     */
+    flush: boolean,
     /** The styling to apply to the row. */
     style?: any,
 }> {
@@ -60,12 +68,15 @@ export default class Row extends React.Component<{
         small: false,
         medium: false,
         large: false,
+        flush: false,
     };
 
     render() {
-        const {style, children} = this.props;
+        const {style, flush, children} = this.props;
         const {gridSize, gridSpec} = this.context;
-        const {marginWidth, hasMaxWidth, totalColumns} = gridSpec[gridSize];
+        const {marginWidth, gutterWidth, hasMaxWidth, totalColumns} = gridSpec[
+            gridSize
+        ];
         const shouldDisplay = matchesSize(this.props, gridSize);
 
         // Don't render the row if it's been disabled at this size
@@ -88,33 +99,72 @@ export default class Row extends React.Component<{
         // that is still visible.
         const filteredContents = [];
         let hasVisibleCell = false;
+        let lastCell;
 
         for (const item of contents) {
             if (
-                !item.type ||
-                !item.props ||
-                !item.type.shouldDisplay ||
-                (typeof item.type.shouldDisplay === "function" &&
-                    item.type.shouldDisplay(item.props, gridSize))
+                typeof item === "object" &&
+                (!item.type ||
+                    !item.props ||
+                    !item.type.shouldDisplay ||
+                    (typeof item.type.shouldDisplay === "function" &&
+                        item.type.shouldDisplay(item.props, gridSize)))
             ) {
-                if (hasVisibleCell) {
+                // Figure out if we need to try and insert a gutter in-between
+                // cells. If the contents are flush then we don't insert any.
+                if (hasVisibleCell && !flush) {
                     filteredContents.push(
                         <Gutter key={`gutter-${filteredContents.length}`} />,
                     );
                 }
 
-                filteredContents.push(item);
+                let newItem: Object = item;
+
+                // If the contents are flush then we insert in new padding to
+                // the cell to implement the first margin and the gutter spacing.
+                if (flush) {
+                    newItem = React.cloneElement(newItem, {
+                        style: [
+                            typeof item.props === "object" &&
+                                item.props &&
+                                item.props.style,
+                            {
+                                paddingLeft: lastCell ? 0 : marginWidth,
+                                paddingRight: gutterWidth,
+                            },
+                        ],
+                    });
+
+                    lastCell = newItem;
+                }
+
+                filteredContents.push(newItem);
 
                 hasVisibleCell = true;
             }
         }
 
+        // For the last cell we also add in the final margin spacing.
+        if (lastCell) {
+            const lastCellPos = filteredContents.indexOf(lastCell);
+            filteredContents[lastCellPos] = React.cloneElement(lastCell, {
+                style: [
+                    lastCell.props.style,
+                    {
+                        paddingRight: marginWidth,
+                    },
+                ],
+            });
+        }
+
+        // If the contents are flush then we need to make sure that we don't
+        // insert the margin spacing.
         return (
             <View style={[styles.rowWrap, style]}>
                 <View style={[styles.row, hasMaxWidth && styles.rowMaxWidth]}>
-                    <FixedWidthCell width={marginWidth} />
+                    {!flush && <FixedWidthCell width={marginWidth} />}
                     {filteredContents}
-                    <FixedWidthCell width={marginWidth} />
+                    {!flush && <FixedWidthCell width={marginWidth} />}
                 </View>
             </View>
         );

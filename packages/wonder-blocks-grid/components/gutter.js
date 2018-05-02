@@ -22,11 +22,11 @@ import FixedWidthCell from "./fixed-width-cell.js";
  */
 export default class Gutter extends React.Component<{
     /** Should this gutter be shown on a Small Grid? */
-    small?: boolean,
+    small: boolean,
     /** Should this gutter be shown on a Medium Grid? */
-    medium?: boolean,
+    medium: boolean,
     /** Should this gutter be shown on a Large Grid? */
-    large?: boolean,
+    large: boolean,
 }> {
     static contextTypes = gridContextTypes;
     static defaultProps = {
