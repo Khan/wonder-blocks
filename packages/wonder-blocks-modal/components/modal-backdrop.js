@@ -70,9 +70,108 @@ export default class ModalBackdrop extends React.Component<Props> {
 
         return (
             <View style={styles.modalPositioner} onClick={this._handleClick}>
-                {clonedChildren}
+                {/* To ensure that tab wrapping happens inside the modal area,
+                  * even if the modal is mounted at the start/end of the
+                  * document (end is likely in practice!), we add focusable
+                  * sentinel nodes. That way, tabbing out of the modal is more
+                  * likely to hit a sentinel node. They're not critical to
+                  * focus wrapping, though; we're resilient to any kind of focus
+                  * shift, whether they hit the sentinels or not! */}
+                <div tabIndex="0" />
+                <FocusTrap>{clonedChildren}</FocusTrap>
+                <div tabIndex="0" />
             </View>
         );
+    }
+}
+
+/**
+ * This component ensures that focus stays within itself. If the user uses Tab
+ * at the end of the modal, or Shift-Tab at the start of the modal, then this
+ * component wraps focus to the start/end respectively.
+ *
+ * Adapted from the WAI-ARIA dialog behavior example.
+ * https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/dialog-modal/dialog.html
+ */
+class FocusTrap extends React.Component<{children: React.Node}> {
+    _lastNodeFocusedInRoot: ?Node = null;
+    _ignoreFocusChanges: boolean = false;
+
+    componentDidMount() {
+        window.addEventListener("focus", this._handleGlobalFocus, true);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("focus", this._handleGlobalFocus, true);
+    }
+
+    _getRootNode(): Node {
+        return (ReactDOM.findDOMNode(this): any);
+    }
+
+    _tryToFocus(node: Node) {
+        if (typeof node.focus !== "function") {
+            return;
+        }
+
+        this._ignoreFocusChanges = true;
+        try {
+            node.focus();
+        } catch (e) {}
+        this._ignoreFocusChanges = false;
+
+        return document.activeElement === node;
+    }
+
+    _focusFirstElementIn(currentParent: Node) {
+        const children = currentParent.childNodes;
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            if (this._tryToFocus(child) || this._focusFirstElementIn(child)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    _focusLastElementIn(currentParent: Node) {
+        const children = currentParent.childNodes;
+        for (let i = children.length - 1; i >= 0; i--) {
+            const child = children[i];
+            if (this._tryToFocus(child) || this._focusLastElementIn(child)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    _handleGlobalFocus = (e: FocusEvent) => {
+        if (this._ignoreFocusChanges) {
+            return;
+        }
+
+        const target = e.target;
+        if (!(target instanceof Node)) {
+            // Sometimes focus events trigger on the document itself. Ignore!
+            return;
+        }
+
+        const root = this._getRootNode();
+        if (root.contains(target)) {
+            console.log("still in");
+            this._lastNodeFocusedInRoot = target;
+        } else {
+            console.log("got out!");
+            this._focusFirstElementIn(root);
+            if (document.activeElement === this._lastNodeFocusedInRoot) {
+                this._focusLastElementIn(root);
+            }
+            this._lastNodeFocusedInRoot = document.activeElement;
+        }
+    };
+
+    render() {
+        return this.props.children;
     }
 }
 
