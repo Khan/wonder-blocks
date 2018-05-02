@@ -74,6 +74,10 @@ export default class StandardModal extends React.Component<Props> {
 
         // Generate a unique ID for this modal. Math.random() isn't great, but
         // collisions on the same page should be pretty unlikely.
+        //
+        // TODO(mdr): Once we add snapshot testing, will this break it? We might
+        //     need to figure out how to seed the PRNG, or mock Math.random, or
+        //     find a different approach altogether.
         const modalId = Math.random()
             .toString(36)
             .substr(2);
