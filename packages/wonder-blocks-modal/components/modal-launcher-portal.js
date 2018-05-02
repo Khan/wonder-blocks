@@ -1,10 +1,13 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
 import {View} from "wonder-blocks-core";
 
+import type {ModalElement} from "../util/types.js";
+
 type Props = {
-    children: React.Node,
+    children: ModalElement,
 };
 
 /**
@@ -31,17 +34,8 @@ export default class ModalLauncherPortal extends React.Component<Props> {
         destination.setAttribute("data-modal-launcher-portal", "");
         root.appendChild(destination);
 
-        // We'll also wrap the children in a wrapper node, so that we can
-        // accept `React.Node` instead of `React.Element`.
-        //
-        // NOTE(mdr): Once we upgrade to React 16, we'll no longer need this
-        //     wrapper node!
-        const wrapper = (
-            <View data-modal-launcher-portal>{this.props.children}</View>
-        );
-
         // Render the modal into the destination node.
-        ReactDOM.render(wrapper, destination);
+        ReactDOM.render(this.props.children, destination);
 
         // Save the destination node, so we can remove it on unmount.
         this._destination = destination;

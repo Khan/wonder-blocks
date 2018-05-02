@@ -5,21 +5,47 @@ import {StyleSheet, css} from "aphrodite";
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
+import ModalCloseButton from "./modal-close-button.js";
+
 type Props = {
     /** The left-hand column's content. */
     leftContent: React.Node,
 
     /** The right-hand column's content. */
     rightContent: React.Node,
+
+    /**
+     * Called when the close button is clicked.
+     *
+     * If you're using `ModalLauncher`, you probably shouldn't use this prop!
+     * Instead, to listen for when the modal closes, add an `onClose` handler
+     * to the `ModalLauncher`.
+     *
+     * This defaults to a no-op via `defaultProps`. (When used in a
+     * `ModalLauncher`, we'll automatically add an extra listener here via
+     * `cloneElement`, so that the `ModalLauncher` can listen for close button
+     * clicks too.)
+     */
+    onClickCloseButton: () => void,
 };
 
 /**
  * A two-column modal layout.
  */
 export default class TwoColumnModal extends React.Component<Props> {
+    static defaultProps = {
+        onClickCloseButton: () => {},
+    };
+
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.closeButton}>
+                    <ModalCloseButton
+                        color="light"
+                        onClick={this.props.onClickCloseButton}
+                    />
+                </View>
                 <View style={[styles.column, styles.leftColumn]}>
                     {this.props.leftContent}
                 </View>
@@ -36,6 +62,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         alignItems: "stretch",
+        position: "relative",
 
         width: "86.72%",
         height: "60.42%",
@@ -43,6 +70,12 @@ const styles = StyleSheet.create({
 
         borderRadius: 4,
         overflow: "hidden",
+    },
+
+    closeButton: {
+        position: "absolute",
+        left: 4,
+        top: 8,
     },
 
     column: {

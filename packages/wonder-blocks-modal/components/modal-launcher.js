@@ -5,6 +5,7 @@ import {View} from "wonder-blocks-core";
 
 import ModalLauncherPortal from "./modal-launcher-portal.js";
 import ModalBackdrop from "./modal-backdrop.js";
+import type {ModalElement} from "../util/types.js";
 
 type Props = {
     /**
@@ -20,7 +21,7 @@ type Props = {
      * Note: Don't call `closeModal` while rendering! It should be used to
      * respond to user intearction, like `onClick`.
      */
-    modal: React.Node | (({closeModal: () => void}) => React.Node),
+    modal: ModalElement | (({closeModal: () => void}) => ModalElement),
 
     /**
      * Use the children-as-function pattern to pass a openModal function for
@@ -33,10 +34,10 @@ type Props = {
     children: ({openModal: () => void}) => React.Node,
 
     /**
-     * If the parent needs to be notified when the modal is closed use
-     * this prop.  Do not use `onClose` on the modals themselves as this
-     * is used by ModalNavigator to determine when to remove the modal
-     * the backdrop from the screen.
+     * If the parent needs to be notified when the modal is closed, use
+     * this prop. You probably want to use this instead of `onClickCloseButton`
+     * on the modals themselves, since this will capture a more complete set of
+     * close events.
      */
     onClose?: () => void,
 };
@@ -96,7 +97,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
-                        <ModalBackdrop onClickBackdrop={this._closeModal}>
+                        <ModalBackdrop onCloseModal={this._closeModal}>
                             {this._renderModal()}
                         </ModalBackdrop>
                     </ModalLauncherPortal>
