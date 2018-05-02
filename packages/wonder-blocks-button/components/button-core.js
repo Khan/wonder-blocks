@@ -82,8 +82,6 @@ const sharedStyles = StyleSheet.create({
         position: "relative",
         height: 40,
         margin: 0,
-        paddingTop: 4,
-        paddingBottom: 4,
         paddingLeft: 16,
         paddingRight: 16,
         border: "none",
@@ -216,8 +214,8 @@ const _generateStyles = (color, kind, light) => {
             default: {
                 background: "none",
                 color: color,
-                paddingLeft: 0,
-                paddingRight: 0,
+                paddingLeft: 4,
+                paddingRight: 4,
             },
             focus: {
                 borderColor: color,
@@ -236,8 +234,8 @@ const _generateStyles = (color, kind, light) => {
             default: {
                 background: "none",
                 color: Color.white,
-                paddingLeft: 0,
-                paddingRight: 0,
+                paddingLeft: 4,
+                paddingRight: 4,
             },
             focus: {
                 color: Color.white,
