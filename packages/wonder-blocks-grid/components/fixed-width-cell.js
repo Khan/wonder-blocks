@@ -117,7 +117,7 @@ export default class FixedWidthCell extends React.Component<Props> {
         }
 
         return (
-            <View style={[styles.cellFixed, flexBasis(width), style]}>
+            <View style={[styles.cellFixed, flexBasis(width), {width}, style]}>
                 {contents}
             </View>
         );

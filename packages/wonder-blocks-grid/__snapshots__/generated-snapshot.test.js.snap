@@ -34,6 +34,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "margin": "0 auto",
             },
             "display": "flex",
+            "height": "100%",
             "maxWidth": 1120,
             "width": "100%",
           }
@@ -49,6 +50,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -129,6 +131,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "WebkitFlexBasis": 32,
               "flexBasis": 32,
               "flexShrink": 0,
+              "width": 32,
             }
           }
         />
@@ -153,6 +156,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "flexShrink": 0,
               "height": 100,
               "padding": 5,
+              "width": 100,
             }
           }
         >
@@ -201,6 +205,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "WebkitFlexBasis": 32,
               "flexBasis": 32,
               "flexShrink": 0,
+              "width": 32,
             }
           }
         />
@@ -225,6 +230,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "flexShrink": 0,
               "height": 100,
               "padding": 5,
+              "width": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
             }
           }
         >
@@ -273,6 +279,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "WebkitFlexBasis": 32,
               "flexBasis": 32,
               "flexShrink": 0,
+              "width": 32,
             }
           }
         />
@@ -297,6 +304,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "flexShrink": 0,
               "height": 100,
               "padding": 5,
+              "width": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
             }
           }
         >
@@ -366,6 +374,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -412,6 +421,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "margin": "0 auto",
             },
             "display": "flex",
+            "height": "100%",
             "maxWidth": 1120,
             "width": "100%",
           }
@@ -427,6 +437,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -453,6 +464,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -479,6 +491,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "margin": "0 auto",
             },
             "display": "flex",
+            "height": "100%",
             "maxWidth": 1120,
             "width": "100%",
           }
@@ -494,6 +507,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -519,6 +533,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -546,6 +561,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "margin": "0 auto",
             },
             "display": "flex",
+            "height": "100%",
             "maxWidth": 1120,
             "width": "100%",
           }
@@ -561,6 +577,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -574,6 +591,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "flexShrink": 0,
+              "width": "calc((100% - 352px - 48px) * 0.25 + 64px)",
             }
           }
         >
@@ -589,6 +607,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 32,
               "flexBasis": 32,
               "flexShrink": 0,
+              "width": 32,
             }
           }
         />
@@ -609,6 +628,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -634,6 +654,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "margin": "0 auto",
             },
             "display": "flex",
+            "height": "100%",
             "maxWidth": 1120,
             "width": "100%",
           }
@@ -649,6 +670,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
@@ -662,6 +684,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "flexShrink": 0,
+              "width": "calc((100% - 352px - 48px) * 0.25 + 64px)",
             }
           }
         >
@@ -685,6 +708,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 32,
               "flexBasis": 32,
               "flexShrink": 0,
+              "width": 32,
             }
           }
         />
@@ -737,6 +761,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "WebkitFlexBasis": 24,
               "flexBasis": 24,
               "flexShrink": 0,
+              "width": 24,
             }
           }
         />
