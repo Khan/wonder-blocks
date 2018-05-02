@@ -87,4 +87,39 @@ describe("ModalLauncher", () => {
         //     tests?
         expect(document.querySelector("[data-modal-child]")).toBeFalsy();
     });
+
+    test("Disable scrolling when the modal is open", () => {
+        let savedCloseModal = () => {
+            throw new Error(`closeModal wasn't saved`);
+        };
+
+        // Rather than test this rigorously, we'll just check that a
+        // ScrollDisabler is present, and trust ScrollDisabler to do its job.
+        const wrapper = shallow(
+            <ModalLauncher
+                modal={({closeModal}) => {
+                    savedCloseModal = closeModal;
+                    return <div data-modal-child />;
+                }}
+            >
+                {({openModal}) => <button onClick={openModal} />}
+            </ModalLauncher>,
+        );
+
+        // When the modal isn't open yet, there should be no ScrollDisabler.
+        expect(wrapper.find("ScrollDisabler")).toHaveLength(0);
+
+        // Launch the modal.
+        wrapper.find("button").simulate("click");
+
+        // Now that the modal is open, there should be a ScrollDisabler.
+        expect(wrapper.find("ScrollDisabler")).toHaveLength(1);
+
+        // Close the modal.
+        savedCloseModal();
+        wrapper.update();
+
+        // Now that the modal is closed, there should be no ScrollDisabler.
+        expect(wrapper.find("ScrollDisabler")).toHaveLength(0);
+    });
 });
