@@ -57,7 +57,7 @@ const standardModal = ({closeModal}) => (
 );
 
 const twoColumnModal = ({closeModal}) => <TwoColumnModal
-    leftContent={
+    sidebar={
         <View>
             <Title style={styles.title}>Left column</Title>
             <Body>
@@ -68,7 +68,7 @@ const twoColumnModal = ({closeModal}) => <TwoColumnModal
             </Body>
         </View>
     }
-    rightContent={
+    contents={
         <View>
             <Title style={styles.title}>Right column</Title>
             <Body>
@@ -81,14 +81,13 @@ const twoColumnModal = ({closeModal}) => <TwoColumnModal
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est.
             </Body>
-            {/* TODO(mdr): Use Wonder Blocks Button. */}
-            <button
-                onClick={closeModal}
-                style={{marginTop: 16}}
-            >
-                Close modal
-            </button>
         </View>
+    }
+    footer={
+        // TODO(mdr): Use Wonder Blocks Button.
+        <button onClick={closeModal}>
+            Close modal
+        </button>
     }
 />;
 

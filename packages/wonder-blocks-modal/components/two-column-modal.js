@@ -4,15 +4,13 @@ import {StyleSheet, css} from "aphrodite";
 
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
+import {Grid, Row, Cell, FlexCell, GRID_MODAL_SPEC} from "wonder-blocks-grid";
 
 import ModalCloseButton from "./modal-close-button.js";
 
 type Props = {
-    /** The left-hand column's content. */
-    leftContent: React.Node,
-
-    /** The right-hand column's content. */
-    rightContent: React.Node,
+    /** The sidebar column's content. */
+    sidebar?: React.Node,
 
     /**
      * Called when the close button is clicked.
@@ -27,6 +25,15 @@ type Props = {
      * clicks too.)
      */
     onClickCloseButton: () => void,
+
+    /** The footer to show under the main column's content. */
+    footer?: React.Node,
+
+    /** The main column's content. */
+    contents: React.Node,
+
+    /** Should the sidebar be made smaller? (e.g. 1 column wide) */
+    smallSidebar: boolean,
 };
 
 /**
@@ -35,22 +42,64 @@ type Props = {
 export default class TwoColumnModal extends React.Component<Props> {
     static defaultProps = {
         onClickCloseButton: () => {},
+        smallSidebar: false,
     };
 
     render() {
+        const {sidebar, footer, contents, smallSidebar} = this.props;
+
+        const sidebarView = smallSidebar ? (
+            <Cell
+                smCols={4}
+                largeCols={1}
+                style={[styles.column, styles.bgSidebar, styles.bgSidebarSmall]}
+            >
+                {sidebar}
+            </Cell>
+        ) : (
+            <FlexCell style={[styles.column, styles.bgSidebar]}>
+                <View style={styles.sidebar}>{sidebar}</View>
+            </FlexCell>
+        );
+
         return (
-            <View style={styles.container}>
+            <View
+                style={[
+                    styles.container,
+                    !sidebar && styles.containerNoSidebar,
+                ]}
+            >
+                <Grid spec={GRID_MODAL_SPEC}>
+                    <Row flush>
+                        {sidebar && sidebarView}
+                        <FlexCell
+                            style={[
+                                styles.column,
+                                styles.bgContents,
+                                !sidebar && styles.bgContentsNoSidebar,
+                            ]}
+                        >
+                            <View
+                                style={[
+                                    styles.contents,
+                                    smallSidebar && styles.contentsSmall,
+                                    !!footer && styles.contentsHasFooter,
+                                    !sidebar && styles.contentsNoSidebar,
+                                ]}
+                            >
+                                {contents}
+                            </View>
+                            {footer && (
+                                <View style={styles.footer}>{footer}</View>
+                            )}
+                        </FlexCell>
+                    </Row>
+                </Grid>
                 <View style={styles.closeButton}>
                     <ModalCloseButton
-                        color="light"
+                        color={sidebar ? "light" : "dark"}
                         onClick={this.props.onClickCloseButton}
                     />
-                </View>
-                <View style={[styles.column, styles.leftColumn]}>
-                    {this.props.leftContent}
-                </View>
-                <View style={[styles.column, styles.rightColumn]}>
-                    {this.props.rightContent}
                 </View>
             </View>
         );
@@ -59,9 +108,7 @@ export default class TwoColumnModal extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     container: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "stretch",
+        margin: "0 auto",
         position: "relative",
 
         width: "86.72%",
@@ -78,32 +125,85 @@ const styles = StyleSheet.create({
         top: 8,
     },
 
-    column: {
-        boxSizing: "border-box",
-        flex: "0 0 50%",
+    containerNoSidebar: {
+        minHeight: "auto",
+    },
 
-        // TODO(mdr): Some call sites probably won't want built-in padding. How
-        //     should we handle that possibility?
+    column: {
         paddingTop: 64,
         paddingBottom: 64,
+        minHeight: 464,
+        flex: "1 1 50%",
+        boxSizing: "border-box",
     },
 
-    leftColumn: {
+    bgSidebar: {
         background: Color.darkBlue,
         color: Color.white,
-
-        // TODO(mdr): Some call sites probably won't want built-in padding. How
-        //     should we handle that possibility?
-        paddingLeft: 64,
-        paddingRight: 52,
     },
 
-    rightColumn: {
-        background: Color.white,
+    bgSidebarSmall: {
+        flex: "0",
+    },
 
-        // TODO(mdr): Some call sites probably won't want built-in padding. How
-        //     should we handle that possibility?
-        paddingLeft: 52,
-        paddingRight: 64,
+    bgContents: {
+        background: Color.white,
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+    },
+
+    bgContentsNoSidebar: {
+        minHeight: "auto",
+        display: "block",
+    },
+
+    sidebar: {
+        marginRight: 32,
+    },
+
+    contents: {
+        marginLeft: 64,
+        overflow: "auto",
+        flex: "1 0 0",
+        maxWidth: 472,
+    },
+
+    contentsHasFooter: {
+        paddingBottom: 48,
+    },
+
+    contentsNoSidebar: {
+        marginLeft: 0,
+        maxWidth: "auto",
+    },
+
+    contentsSmall: {
+        margin: "0 auto",
+    },
+
+    footer: {
+        flex: "0 0 auto",
+        boxSizing: "border-box",
+        minHeight: 64,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingTop: 8,
+        paddingBottom: 8,
+
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end",
+
+        borderTopStyle: "solid",
+        borderTopColor: Color.offBlack16,
+        borderTopWidth: 1,
+
+        backgroundColor: Color.white,
+        width: "100%",
+        position: "absolute",
+        left: 0,
+        bottom: 0,
     },
 });

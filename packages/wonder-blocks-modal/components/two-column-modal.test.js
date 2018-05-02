@@ -9,8 +9,8 @@ describe("TwoColumnModal", () => {
         const onClickCloseButton = jest.fn();
         const wrapper = shallow(
             <TwoColumnModal
-                leftContent="Left content"
-                rightContent="Right content"
+                sidebar="Sidebar"
+                contents="Contents"
                 onClickCloseButton={onClickCloseButton}
             />,
         );
