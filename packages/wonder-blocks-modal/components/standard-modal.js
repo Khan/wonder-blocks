@@ -11,6 +11,7 @@ import {
 } from "wonder-blocks-typography";
 
 import ModalCloseButton from "./modal-close-button.js";
+import {smOrSmaller} from "../util/util.js";
 
 type Props = {
     /**
@@ -114,6 +115,15 @@ const styles = StyleSheet.create({
         background: Color.white,
         borderRadius: 4,
         overflow: "hidden",
+
+        // On mobile, we consume the full screen size.
+        [smOrSmaller]: {
+            width: "100%",
+            height: "100%",
+            maxWidth: "none",
+            maxHeight: "none",
+            borderRadius: 0,
+        },
     },
 
     titlebar: {
@@ -132,6 +142,13 @@ const styles = StyleSheet.create({
         borderBottomStyle: "solid",
         borderBottomColor: Color.offBlack16,
         borderBottomWidth: 1,
+
+        // On mobile, the titlebar is more compact.
+        [smOrSmaller]: {
+            minHeight: 56,
+            paddingTop: 4,
+            paddingBottom: 4,
+        },
     },
 
     content: {
