@@ -10,12 +10,9 @@ import ModalCloseButton from "./modal-close-button.js";
 import ModalFooter from "./modal-footer.js";
 
 /**
- * A two-column modal layout.
+ * A one-column modal layout.
  */
-export default class TwoColumnModal extends React.Component<{
-    /** The sidebar column's content. */
-    sidebar: React.Node,
-
+export default class OneColumnModal extends React.Component<{
     /**
      * Called when the close button is clicked.
      *
@@ -30,57 +27,27 @@ export default class TwoColumnModal extends React.Component<{
      */
     onClickCloseButton: () => void,
 
-    /** The footer to show under the main column's content. */
+    /** The footer to show under the contents. */
     footer?: React.Node,
 
-    /** The main column's content. */
+    /** The contents of the modal. */
     content: React.Node,
-
-    /** Should the sidebar be made smaller? (e.g. 1 column wide) */
-    smallSidebar: boolean,
 }> {
     static defaultProps = {
         onClickCloseButton: () => {},
-        smallSidebar: false,
     };
 
-    renderSidebar(sidebar: React.Node, smallSidebar: boolean) {
-        if (smallSidebar) {
-            return (
-                <Cell
-                    smCols={4}
-                    largeCols={1}
-                    style={[
-                        styles.column,
-                        styles.bgSidebar,
-                        styles.bgSidebarSmall,
-                    ]}
-                >
-                    {sidebar}
-                </Cell>
-            );
-        }
-
-        return (
-            <FlexCell style={[styles.column, styles.bgSidebar]}>
-                <View style={styles.sidebar}>{sidebar}</View>
-            </FlexCell>
-        );
-    }
-
     render() {
-        const {sidebar, footer, content, smallSidebar} = this.props;
+        const {footer, content} = this.props;
 
         return (
             <View style={styles.container}>
                 <Grid spec={GRID_MODAL_SPEC}>
                     <Row flush>
-                        {this.renderSidebar(sidebar, smallSidebar)}
                         <FlexCell style={[styles.column, styles.bgContents]}>
                             <View
                                 style={[
                                     styles.contents,
-                                    smallSidebar && styles.contentsSmall,
                                     footer && styles.contentsHasFooter,
                                 ]}
                             >
@@ -96,7 +63,7 @@ export default class TwoColumnModal extends React.Component<{
                 </Grid>
                 <View style={styles.closeButton}>
                     <ModalCloseButton
-                        color="light"
+                        color="dark"
                         onClick={this.props.onClickCloseButton}
                     />
                 </View>
@@ -110,13 +77,10 @@ const styles = StyleSheet.create({
         margin: "0 auto",
         position: "relative",
 
-        width: "86.72%",
+        width: "64.65%",
 
         borderRadius: 4,
         overflow: "hidden",
-
-        // For sidebar
-        minHeight: 464,
     },
 
     closeButton: {
@@ -130,54 +94,21 @@ const styles = StyleSheet.create({
         paddingBottom: 64,
         flex: "1 1 50%",
         boxSizing: "border-box",
-
-        // For sidebar
-        minHeight: 464,
-    },
-
-    bgSidebar: {
-        background: Color.darkBlue,
-        color: Color.white,
-    },
-
-    bgSidebarSmall: {
-        flex: "0",
     },
 
     bgContents: {
         background: Color.white,
         position: "relative",
         flexDirection: "column",
-
-        // For sidebar
-        display: "flex",
-    },
-
-    sidebar: {
-        marginRight: 32,
     },
 
     contents: {
         overflow: "auto",
         flex: "1 0 0",
-
-        // For sidebar
-        marginLeft: 64,
-        maxWidth: 472,
     },
 
     contentsHasFooter: {
         paddingBottom: 48,
-    },
-
-    contentsSmall: {
-        // Center the contents when the sidebar is small
-        margin: "0 auto",
-
-        // Add in some extra padding to the contents to
-        // simulate the extra gutters used for spacing
-        paddingLeft: 64,
-        paddingRight: 32,
     },
 
     footer: {

@@ -30,6 +30,7 @@ module.exports = {
             ignore: [
                 "**/components/modal-backdrop.js",
                 "**/components/modal-close-button.js",
+                "**/components/modal-footer.js",
                 "**/components/modal-launcher-portal.js",
             ],
         },

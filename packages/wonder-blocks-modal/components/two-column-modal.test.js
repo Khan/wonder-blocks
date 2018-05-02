@@ -10,7 +10,7 @@ describe("TwoColumnModal", () => {
         const wrapper = shallow(
             <TwoColumnModal
                 sidebar="Sidebar"
-                contents="Contents"
+                content="Contents"
                 onClickCloseButton={onClickCloseButton}
             />,
         );
