@@ -3,7 +3,6 @@
 exports[`wonder-blocks-grid example 1 1`] = `
 <div
   className=""
-  onClick={undefined}
   style={
     Object {
       "background": "#21242c",
@@ -12,12 +11,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
 >
   <div
     className=""
-    onClick={undefined}
     style={Object {}}
   >
     <div
       className=""
-      onClick={undefined}
       style={
         Object {
           "alignItems": "center",
@@ -27,7 +24,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
     >
       <div
         className=""
-        onClick={undefined}
         style={
           Object {
             "@media (min-width: 1168px)": Object {
@@ -41,7 +37,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
       >
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -54,7 +49,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "@media (max-width: 767px)": Object {
@@ -99,7 +93,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
           <br />
           <div
             className=""
-            onClick={undefined}
             style={
               Object {
                 "textAlign": "right",
@@ -121,7 +114,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 32,
@@ -134,7 +126,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "@media (max-width: 767px)": Object {
@@ -171,7 +162,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
           <br />
           <div
             className=""
-            onClick={undefined}
             style={
               Object {
                 "textAlign": "center",
@@ -193,7 +183,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 32,
@@ -206,7 +195,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "@media (max-width: 767px)": Object {
@@ -243,7 +231,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
           <br />
           <div
             className=""
-            onClick={undefined}
             style={
               Object {
                 "textAlign": "center",
@@ -265,7 +252,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 32,
@@ -278,7 +264,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "@media (max-width: 767px)": Object {
@@ -302,7 +287,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         >
           <div
             className=""
-            onClick={undefined}
             style={Object {}}
           >
             <span
@@ -335,7 +319,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
             <br />
             <div
               className=""
-              onClick={undefined}
               style={
                 Object {
                   "textAlign": "right",
@@ -358,7 +341,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -378,7 +360,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
 exports[`wonder-blocks-grid example 2 1`] = `
 <div
   className=""
-  onClick={undefined}
   style={
     Object {
       "background": "#f7f8fa",
@@ -387,12 +368,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
 >
   <div
     className=""
-    onClick={undefined}
     style={Object {}}
   >
     <div
       className=""
-      onClick={undefined}
       style={
         Object {
           "alignItems": "center",
@@ -405,7 +384,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
     >
       <div
         className=""
-        onClick={undefined}
         style={
           Object {
             "@media (min-width: 1168px)": Object {
@@ -419,7 +397,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
       >
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -432,7 +409,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "color": "#ffffff",
@@ -445,7 +421,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -460,7 +435,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
     </div>
     <div
       className=""
-      onClick={undefined}
       style={
         Object {
           "alignItems": "center",
@@ -472,7 +446,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
     >
       <div
         className=""
-        onClick={undefined}
         style={
           Object {
             "@media (min-width: 1168px)": Object {
@@ -486,7 +459,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
       >
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -499,7 +471,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "color": "#ffffff",
@@ -511,7 +482,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -526,7 +496,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
     </div>
     <div
       className=""
-      onClick={undefined}
       style={
         Object {
           "alignItems": "center",
@@ -539,7 +508,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
     >
       <div
         className=""
-        onClick={undefined}
         style={
           Object {
             "@media (min-width: 1168px)": Object {
@@ -553,7 +521,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
       >
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -566,7 +533,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
@@ -581,7 +547,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 32,
@@ -594,14 +559,12 @@ exports[`wonder-blocks-grid example 2 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={Object {}}
         >
           Beginner / Points to Apprentice
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -616,7 +579,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
     </div>
     <div
       className=""
-      onClick={undefined}
       style={
         Object {
           "alignItems": "center",
@@ -627,7 +589,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
     >
       <div
         className=""
-        onClick={undefined}
         style={
           Object {
             "@media (min-width: 1168px)": Object {
@@ -641,7 +602,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
       >
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,
@@ -654,7 +614,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
@@ -677,7 +636,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 32,
@@ -690,7 +648,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         />
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "flexGrow": 1,
@@ -699,7 +656,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         >
           <div
             className=""
-            onClick={undefined}
             style={
               Object {
                 "background": "#ffffff",
@@ -713,7 +669,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
           </div>
           <div
             className=""
-            onClick={undefined}
             style={
               Object {
                 "background": "#ffffff",
@@ -729,7 +684,6 @@ exports[`wonder-blocks-grid example 2 1`] = `
         </div>
         <div
           className=""
-          onClick={undefined}
           style={
             Object {
               "MsFlexBasis": 24,

@@ -12,9 +12,9 @@ export default class BodySerif extends Component<Props> {
     };
 
     render() {
-        const {tag, style, children} = this.props;
+        const {id, tag, style, children} = this.props;
         return (
-            <Text tag={tag} style={[styles.BodySerif, style]}>
+            <Text id={id} tag={tag} style={[styles.BodySerif, style]}>
                 {children}
             </Text>
         );
