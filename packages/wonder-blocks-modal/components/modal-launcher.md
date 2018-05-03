@@ -4,6 +4,7 @@ const {View} = require("wonder-blocks-core");
 const {Title, Body} = require("wonder-blocks-typography");
 const ModalLauncher = require("./modal-launcher.js").default;
 const TwoColumnModal = require("./two-column-modal.js").default;
+const {smOrSmaller} = require("../util/util.js");
 
 const styles = StyleSheet.create({
     example: {
@@ -22,6 +23,11 @@ const styles = StyleSheet.create({
         paddingLeft: 32,
         paddingRight: 32,
         maxWidth: 544,
+
+        [smOrSmaller]: {
+            paddingLeft: 16,
+            paddingRight: 16,
+        },
     },
 });
 
