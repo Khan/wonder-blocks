@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import Color from "wonder-blocks-color";
@@ -35,6 +36,26 @@ export default class ModalBackdrop extends React.Component<Props> {
             this.props.onCloseModal();
         }
     };
+
+    componentDidMount() {
+        // Focus the last button in the modal, on the assumption that it'll be
+        // a sensible default action.
+        //
+        // TODO(mdr): Not sure how robust this is; or whether we'll sometimes
+        //     want the default to be something in the modal content, or a
+        //     different button, or something else.
+        const node: HTMLElement = (ReactDOM.findDOMNode(this): any);
+        if (!node) {
+            return;
+        }
+
+        const buttons = node.querySelectorAll("button");
+        const lastButton = buttons[buttons.length - 1];
+        if (!lastButton) {
+            return;
+        }
+        lastButton.focus();
+    }
 
     render() {
         const children = this.props.children;

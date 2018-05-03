@@ -165,4 +165,20 @@ describe("ModalBackdrop", () => {
             expect(customOnClickCloseButton).toHaveBeenCalled();
         },
     );
+
+    test("On mount, we focus the last button in the modal", () => {
+        const wrapper = mount(
+            <ModalBackdrop onCloseModal={() => {}}>
+                <div>
+                    <button />
+                    <button />
+                    <button data-last-button />
+                </div>
+            </ModalBackdrop>,
+        );
+
+        const focusedElement: HTMLElement = (document.activeElement: any);
+        expect(focusedElement).toBeTruthy();
+        expect(focusedElement.hasAttribute("data-last-button")).toBe(true);
+    });
 });
