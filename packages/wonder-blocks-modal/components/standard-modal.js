@@ -11,6 +11,7 @@ import {
 } from "wonder-blocks-typography";
 
 import ModalCloseButton from "./modal-close-button.js";
+import {smOrSmaller, generateUniqueId} from "../util/util.js";
 
 type Props = {
     /**
@@ -58,9 +59,28 @@ type Props = {
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
+    /** A unique HTML ID for the title element. */
+    _titleId: string;
+
     static defaultProps = {
         onClickCloseButton: () => {},
     };
+
+    constructor(props: Props) {
+        super(props);
+
+        // Generate a unique ID for this modal.
+        //
+        // TODO(mdr): Once we add snapshot tests for modals, we'll need to
+        //     ensure that this function is deterministic, perhaps by mocking
+        //     it during the snapshot test.
+        const modalId = generateUniqueId();
+
+        // Use that unique ID number to generate unique ID strings for this
+        // modal's elements.
+        const idPrefix = `wonder-blocks-standard-modal-${modalId}`;
+        this._titleId = `${idPrefix}-title`;
+    }
 
     _renderTitleAndSubtitle() {
         const {title, subtitle} = this.props;
@@ -68,18 +88,22 @@ export default class StandardModal extends React.Component<Props> {
         if (subtitle) {
             return (
                 <View>
-                    <HeadingSmall>{title}</HeadingSmall>
+                    <HeadingSmall id={this._titleId}>{title}</HeadingSmall>
                     <LabelSmall>{subtitle}</LabelSmall>
                 </View>
             );
         } else {
-            return <HeadingMedium>{title}</HeadingMedium>;
+            return <HeadingMedium id={this._titleId}>{title}</HeadingMedium>;
         }
     }
 
     render() {
         return (
-            <View style={styles.container}>
+            <View
+                style={styles.container}
+                role="dialog"
+                aria-labelledby={this._titleId}
+            >
                 <View style={styles.titlebar}>
                     <View style={styles.closeButton}>
                         <ModalCloseButton
@@ -114,6 +138,15 @@ const styles = StyleSheet.create({
         background: Color.white,
         borderRadius: 4,
         overflow: "hidden",
+
+        // On mobile, we consume the full screen size.
+        [smOrSmaller]: {
+            width: "100%",
+            height: "100%",
+            maxWidth: "none",
+            maxHeight: "none",
+            borderRadius: 0,
+        },
     },
 
     titlebar: {
@@ -132,6 +165,13 @@ const styles = StyleSheet.create({
         borderBottomStyle: "solid",
         borderBottomColor: Color.offBlack16,
         borderBottomWidth: 1,
+
+        // On mobile, the titlebar is more compact.
+        [smOrSmaller]: {
+            minHeight: 56,
+            paddingTop: 4,
+            paddingBottom: 4,
+        },
     },
 
     content: {

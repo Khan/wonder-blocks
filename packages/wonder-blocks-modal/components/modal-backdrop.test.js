@@ -165,4 +165,69 @@ describe("ModalBackdrop", () => {
             expect(customOnClickCloseButton).toHaveBeenCalled();
         },
     );
+
+    test("On mount, we focus the last button in the modal", () => {
+        const wrapper = mount(
+            <ModalBackdrop onCloseModal={() => {}}>
+                <div>
+                    <button />
+                    <button />
+                    <button data-last-button />
+                </div>
+            </ModalBackdrop>,
+        );
+
+        const lastButton = wrapper.find("[data-last-button]").getDOMNode();
+        expect(document.activeElement).toBe(lastButton);
+    });
+
+    // TODO(mdr): I haven't figured out how to actually simulate tab keystrokes
+    //     or focus events in a way that JSDOM will recognize, so triggering the
+    //     global focus handler isn't feasible. I had to do manual testing
+    //     instead :( Here's what I had, though!
+    test.skip("Tabbing inside the modal wraps around", () => {
+        const wrapper = mount(
+            <div>
+                <button data-button-id="A" />
+                <ModalBackdrop onCloseModal={() => {}}>
+                    <div>
+                        <button data-button-id="1" />
+                        <button data-button-id="2" />
+                        <button data-button-id="3" />
+                    </div>
+                </ModalBackdrop>
+                <button data-button-id="Z" />
+            </div>,
+        );
+
+        const buttonA = wrapper.find('[data-button-id="A"]').getDOMNode();
+        const button1 = wrapper.find('[data-button-id="1"]').getDOMNode();
+        const button2 = wrapper.find('[data-button-id="2"]').getDOMNode();
+        const button3 = wrapper.find('[data-button-id="3"]').getDOMNode();
+        const buttonZ = wrapper.find('[data-button-id="Z"]').getDOMNode();
+
+        // First, go forward. Confirm that, when we get to button Z, we wrap
+        // back to button 1. (I wish we could just simulate tab keypresses!
+        // Instead, we depend on the implementation detail that _which_ node you
+        // exit from determines where you'll end up.)
+        button1.focus();
+        expect(document.activeElement).toBe(button1);
+        button2.focus();
+        expect(document.activeElement).toBe(button2);
+        button3.focus();
+        expect(document.activeElement).toBe(button3);
+        buttonZ.focus();
+        expect(document.activeElement).toBe(button1);
+
+        // Then, go backward. Confirm that, when we get to button A, we wrap
+        // back to button 3.
+        button3.focus();
+        expect(document.activeElement).toBe(button3);
+        button2.focus();
+        expect(document.activeElement).toBe(button2);
+        button1.focus();
+        expect(document.activeElement).toBe(button1);
+        buttonA.focus();
+        expect(document.activeElement).toBe(button3);
+    });
 });

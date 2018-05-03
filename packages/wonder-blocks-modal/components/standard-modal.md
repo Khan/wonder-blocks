@@ -5,6 +5,7 @@ const {StyleSheet, css} = require("aphrodite");
 const {View} = require("wonder-blocks-core");
 const {Title, Body} = require("wonder-blocks-typography");
 const StandardModal = require("./standard-modal.js").default;
+const {smOrSmaller} = require("../util/util.js");
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -21,7 +22,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        padding: 32,
 
         position: "absolute",
         left: 0,
@@ -37,6 +37,11 @@ const styles = StyleSheet.create({
         paddingLeft: 32,
         paddingRight: 32,
         maxWidth: 544,
+
+        [smOrSmaller]: {
+            paddingLeft: 16,
+            paddingRight: 16,
+        },
     },
 });
 
@@ -68,6 +73,7 @@ const {StyleSheet, css} = require("aphrodite");
 const {View} = require("wonder-blocks-core");
 const {Title, Body} = require("wonder-blocks-typography");
 const StandardModal = require("./standard-modal.js").default;
+const {smOrSmaller} = require("../util/util.js");
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -84,7 +90,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        padding: 32,
 
         position: "absolute",
         left: 0,
@@ -100,6 +105,11 @@ const styles = StyleSheet.create({
         paddingLeft: 32,
         paddingRight: 32,
         maxWidth: 544,
+
+        [smOrSmaller]: {
+            paddingLeft: 16,
+            paddingRight: 16,
+        },
     },
 });
 
