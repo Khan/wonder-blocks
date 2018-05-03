@@ -94,7 +94,13 @@ export default class ModalBackdrop extends React.Component<Props> {
  * https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/dialog-modal/dialog.html
  */
 class FocusTrap extends React.Component<{children: React.Node}> {
-    _lastNodeFocusedInRoot: ?Node = null;
+    /** The most recent node _inside this component_ to receive focus. */
+    _lastNodeFocusedInModal: ?Node = null;
+
+    /**
+     * Whether we're currently applying programmatic focus, and should therefore
+     * ignore focus change events.
+     */
     _ignoreFocusChanges: boolean = false;
 
     componentDidMount() {
@@ -105,10 +111,12 @@ class FocusTrap extends React.Component<{children: React.Node}> {
         window.removeEventListener("focus", this._handleGlobalFocus, true);
     }
 
-    _getRootNode(): Node {
+    /** Get the outermost DOM node of our children. */
+    _getModalRoot(): Node {
         return (ReactDOM.findDOMNode(this): any);
     }
 
+    /** Try to focus the given node. Return true iff successful. */
     _tryToFocus(node: Node) {
         if (typeof node.focus !== "function") {
             return;
@@ -123,6 +131,12 @@ class FocusTrap extends React.Component<{children: React.Node}> {
         return document.activeElement === node;
     }
 
+    /**
+     * Focus the first focusable descendant of the given node.
+     *
+     * Return true if we succeed. Or, if the given node has no focusable
+     * descendants, return false.
+     */
     _focusFirstElementIn(currentParent: Node) {
         const children = currentParent.childNodes;
         for (let i = 0; i < children.length; i++) {
@@ -134,6 +148,12 @@ class FocusTrap extends React.Component<{children: React.Node}> {
         return false;
     }
 
+    /**
+     * Focus the last focusable descendant of the given node.
+     *
+     * Return true if we succeed. Or, if the given node has no focusable
+     * descendants, return false.
+     */
     _focusLastElementIn(currentParent: Node) {
         const children = currentParent.childNodes;
         for (let i = children.length - 1; i >= 0; i--) {
@@ -145,7 +165,10 @@ class FocusTrap extends React.Component<{children: React.Node}> {
         return false;
     }
 
+    /** This method is called when any node on the page is focused. */
     _handleGlobalFocus = (e: FocusEvent) => {
+        // If we're busy applying our own programmatic focus, we ignore focus
+        // changes, to avoid an infinite loop.
         if (this._ignoreFocusChanges) {
             return;
         }
@@ -156,17 +179,30 @@ class FocusTrap extends React.Component<{children: React.Node}> {
             return;
         }
 
-        const root = this._getRootNode();
-        if (root.contains(target)) {
-            console.log("still in");
-            this._lastNodeFocusedInRoot = target;
+        const modalRoot = this._getModalRoot();
+        if (modalRoot.contains(target)) {
+            // If the newly focused node is inside the modal, we just keep track
+            // of that.
+            this._lastNodeFocusedInModal = target;
         } else {
-            console.log("got out!");
-            this._focusFirstElementIn(root);
-            if (document.activeElement === this._lastNodeFocusedInRoot) {
-                this._focusLastElementIn(root);
+            // If the newly focused node is outside the modal, we try refocusing
+            // the first focusable node of the modal. (This could be the user
+            // pressing Tab on the last node of the modal, or focus escaping in
+            // some other way.)
+            this._focusFirstElementIn(modalRoot);
+
+            // But, if it turns out that the first focusable node of the modal
+            // was what we were previously focusing, then this is probably the
+            // user pressing Shift-Tab on the first node, wanting to go to the
+            // end. So, we instead try focusing the last focusable node of the
+            // modal.
+            if (document.activeElement === this._lastNodeFocusedInModal) {
+                this._focusLastElementIn(modalRoot);
             }
-            this._lastNodeFocusedInRoot = document.activeElement;
+
+            // Focus should now be inside the modal, so record the newly-focused
+            // node as the last node focused in the modal.
+            this._lastNodeFocusedInModal = document.activeElement;
         }
     };
 
