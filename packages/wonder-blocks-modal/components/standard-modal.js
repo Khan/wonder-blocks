@@ -11,7 +11,7 @@ import {
 } from "wonder-blocks-typography";
 
 import ModalCloseButton from "./modal-close-button.js";
-import {smOrSmaller} from "../util/util.js";
+import {smOrSmaller, generateUniqueId} from "../util/util.js";
 
 type Props = {
     /**
@@ -72,15 +72,12 @@ export default class StandardModal extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
 
-        // Generate a unique ID for this modal. Math.random() isn't great, but
-        // collisions on the same page should be pretty unlikely.
+        // Generate a unique ID for this modal.
         //
-        // TODO(mdr): Once we add snapshot testing, will this break it? We might
-        //     need to figure out how to seed the PRNG, or mock Math.random, or
-        //     find a different approach altogether.
-        const modalId = Math.random()
-            .toString(36)
-            .substr(2);
+        // TODO(mdr): Once we add snapshot tests for modals, we'll need to
+        //     ensure that this function is deterministic, perhaps by mocking
+        //     it during the snapshot test.
+        const modalId = generateUniqueId();
 
         // Use that unique ID number to generate unique ID strings for this
         // modal's elements.
