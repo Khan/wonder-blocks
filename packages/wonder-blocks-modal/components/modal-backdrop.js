@@ -71,13 +71,15 @@ export default class ModalBackdrop extends React.Component<Props> {
 
         return (
             <View style={styles.modalPositioner} onClick={this._handleClick}>
-                {/* To ensure that tab wrapping happens inside the modal area,
-                  * even if the modal is mounted at the start/end of the
-                  * document (end is likely in practice!), we add focusable
-                  * sentinel nodes. That way, tabbing out of the modal is more
-                  * likely to hit a sentinel node. They're not critical to
-                  * focus wrapping, though; we're resilient to any kind of focus
-                  * shift, whether they hit the sentinels or not! */}
+                {/* When you press Tab on the last focusable node of the
+                  * document, some browsers will move your tab focus outside of
+                  * the document. But we want to capture that as a focus event,
+                  * and move focus back into the modal! So, we add focusable
+                  * sentinel nodes. That way, tabbing out of the modal should
+                  * take you to a sentinel node, rather than taking you out of
+                  * the document. These sentinels aren't critical to focus
+                  * wrapping, though; we're resilient to any kind of focus
+                  * shift, whether it's to the sentinels or somewhere else! */}
                 <div tabIndex="0" />
                 <FocusTrap>{clonedChildren}</FocusTrap>
                 <div tabIndex="0" />
