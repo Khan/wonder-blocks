@@ -5,6 +5,7 @@ import {View} from "wonder-blocks-core";
 
 import ModalLauncherPortal from "./modal-launcher-portal.js";
 import ModalBackdrop from "./modal-backdrop.js";
+import ScrollDisabler from "./scroll-disabler.js";
 import type {ModalElement} from "../util/types.js";
 
 type Props = {
@@ -105,6 +106,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {this.state.opened && (
                     <ModalLauncherKeypressListener onClose={this._closeModal} />
                 )}
+                {this.state.opened && <ScrollDisabler />}
             </View>
         );
     }
