@@ -3,11 +3,11 @@
 exports[`wonder-blocks-typography example 1 1`] = `
 <div
   className=""
-  onClick={undefined}
   style={Object {}}
 >
   <h1
     className=""
+    id="example-Title"
     style={
       Object {
         "@media (max-width: 1023px)": Object {
@@ -32,6 +32,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </h1>
   <h2
     className=""
+    id="example-HeadingLarge"
     style={
       Object {
         "@media (max-width: 1023px)": Object {
@@ -56,6 +57,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </h2>
   <h3
     className=""
+    id="example-HeadingMedium"
     style={
       Object {
         "@media (max-width: 1023px)": Object {
@@ -80,6 +82,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </h3>
   <h4
     className=""
+    id="example-HeadingSmall"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -98,6 +101,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </h4>
   <h4
     className=""
+    id="example-HeadingXSmall"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -118,6 +122,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </h4>
   <span
     className=""
+    id="example-BodySerifBlock"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -134,6 +139,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-BodySerif"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -150,6 +156,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-BodyMonospace"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -166,6 +173,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-Body"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -182,6 +190,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-LabelLarge"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -198,6 +207,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-LabelMedium"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -214,6 +224,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-LabelSmall"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -230,6 +241,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-LabelXSmall"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -246,6 +258,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-Tagline"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -262,6 +275,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-Caption"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -278,6 +292,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
   </span>
   <span
     className=""
+    id="example-Footnote"
     style={
       Object {
         "MozOsxFontSmoothing": "grayscale",
@@ -298,6 +313,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
 exports[`wonder-blocks-typography example 2 1`] = `
 <h1
   className=""
+  id={undefined}
   style={
     Object {
       "@media (max-width: 1023px)": Object {

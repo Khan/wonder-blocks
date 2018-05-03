@@ -11,9 +11,8 @@ export type StyleType<T: Object> = any; // eslint-disable-line no-unused-vars
 
 export type Props = {
     style?: any,
-    tag?: string,
     children?: any,
-    onClick?: (e: SyntheticEvent<HTMLDivElement>) => mixed,
+    [otherProp: string]: any,
 };
 
 export type TextTag = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

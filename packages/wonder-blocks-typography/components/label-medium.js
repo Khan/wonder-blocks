@@ -12,9 +12,9 @@ export default class LabelMedium extends Component<Props> {
     };
 
     render() {
-        const {tag, style, children} = this.props;
+        const {id, tag, style, children} = this.props;
         return (
-            <Text tag={tag} style={[styles.LabelMedium, style]}>
+            <Text id={id} tag={tag} style={[styles.LabelMedium, style]}>
                 {children}
             </Text>
         );
