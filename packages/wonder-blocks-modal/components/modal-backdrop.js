@@ -113,7 +113,13 @@ class FocusTrap extends React.Component<{children: React.Node}> {
 
     /** Get the outermost DOM node of our children. */
     _getModalRoot(): Node {
-        return (ReactDOM.findDOMNode(this): any);
+        const modalRoot = ReactDOM.findDOMNode(this);
+        if (!modalRoot) {
+            throw new Error(
+                "Assertion error: modal root should exist after mount",
+            );
+        }
+        return modalRoot;
     }
 
     /** Try to focus the given node. Return true iff successful. */
