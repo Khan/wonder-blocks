@@ -62,9 +62,6 @@ export default class StandardModal extends React.Component<Props> {
     /** A unique HTML ID for the title element. */
     _titleId: string;
 
-    /** A unique HTML ID for the subtitle element. */
-    _subtitleId: string;
-
     static defaultProps = {
         onClickCloseButton: () => {},
     };
@@ -83,7 +80,6 @@ export default class StandardModal extends React.Component<Props> {
         // modal's elements.
         const idPrefix = `wonder-blocks-standard-modal-${modalId}`;
         this._titleId = `${idPrefix}-title`;
-        this._subtitleId = `${idPrefix}-title`;
     }
 
     _renderTitleAndSubtitle() {
@@ -93,7 +89,7 @@ export default class StandardModal extends React.Component<Props> {
             return (
                 <View>
                     <HeadingSmall id={this._titleId}>{title}</HeadingSmall>
-                    <LabelSmall id={this._subtitleId}>{subtitle}</LabelSmall>
+                    <LabelSmall>{subtitle}</LabelSmall>
                 </View>
             );
         } else {
@@ -107,10 +103,6 @@ export default class StandardModal extends React.Component<Props> {
                 style={styles.container}
                 role="dialog"
                 aria-labelledby={this._titleId}
-                // TODO(mdr): Is the subtitle a reliable "description" of the
-                //     modal? Or is it often used to convey more specific
-                //     information?
-                aria-describedby={this._subtitleId}
             >
                 <View style={styles.titlebar}>
                     <View style={styles.closeButton}>
