@@ -28,6 +28,7 @@ module.exports = {
             content: "packages/wonder-blocks-modal/docs.md",
             components: "packages/wonder-blocks-modal/components/*.js",
             ignore: [
+                "**/components/focus-trap.js",
                 "**/components/modal-backdrop.js",
                 "**/components/modal-close-button.js",
                 "**/components/modal-launcher-portal.js",
