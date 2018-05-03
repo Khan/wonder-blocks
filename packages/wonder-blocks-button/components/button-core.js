@@ -3,15 +3,13 @@ import React from "react";
 import {StyleSheet, css} from "aphrodite";
 
 import {LabelLarge} from "wonder-blocks-typography";
-import {processStyleList} from "../../wonder-blocks-core/util/util.js";
 import Color, {mix, fade} from "wonder-blocks-color";
-import type {ValidTints} from "wonder-blocks-color";
-import type {SharedProps} from "../types.js";
+import type {SharedProps} from "./button.js";
 
 type Props = SharedProps & {
-    hovered?: boolean,
-    focused?: boolean,
-    pressed?: boolean,
+    hovered: boolean,
+    focused: boolean,
+    pressed: boolean,
 };
 
 export default class ButtonCore extends React.Component<Props> {
@@ -25,41 +23,27 @@ export default class ButtonCore extends React.Component<Props> {
             hovered,
             focused,
             pressed,
+            children,
         } = this.props;
 
-        const buttonStyles = _generateStyles(
-            color || Color.blue,
-            kind || "primary",
-            !!light,
-        );
+        const buttonStyles = _generateStyles(color, kind, light);
 
-        if (disabled) {
-            return (
-                <button
-                    className={css(
-                        sharedStyles.shared,
-                        sharedStyles.disabled,
-                        size === "small" && sharedStyles.small,
-                        buttonStyles.default,
-                        buttonStyles.disabled,
-                    )}
-                    disabled
-                >
-                    <LabelLarge>{this.props.children}</LabelLarge>
-                </button>
-            );
-        }
         return (
             <button
                 className={css(
                     sharedStyles.shared,
-                    size === "small" && sharedStyles.small,
+                    disabled && sharedStyles.disabled,
                     buttonStyles.default,
-                    pressed && buttonStyles.active,
-                    (hovered || focused) && !pressed && buttonStyles.focus,
+                    disabled && buttonStyles.disabled,
+                    !disabled &&
+                        (pressed
+                            ? buttonStyles.active
+                            : (hovered || focused) && buttonStyles.focus),
+                    size === "small" && sharedStyles.small,
                 )}
+                disabled={disabled}
             >
-                <LabelLarge>{this.props.children}</LabelLarge>
+                <LabelLarge>{children}</LabelLarge>
             </button>
         );
     }
@@ -80,24 +64,6 @@ const sharedStyles = StyleSheet.create({
     disabled: {
         cursor: "auto",
     },
-    focusRing: {
-        position: "absolute",
-        boxSizing: "border-box",
-        top: -3,
-        left: -3,
-        width: "calc(100% + 6px)",
-        height: "calc(100% + 6px)",
-        borderStyle: "solid",
-        borderWidth: 2,
-        borderColor: Color.blue,
-        borderRadius: 7,
-    },
-    focusRingRed: {
-        borderColor: Color.red,
-    },
-    focusRingLight: {
-        borderColor: Color.white,
-    },
     small: {
         height: 32,
     },
@@ -111,13 +77,14 @@ const _generateStyles = (color, kind, light) => {
         return styles[buttonType];
     }
 
-    let newStyles = {};
+    const {white, white64, offBlack32, offBlack50} = Color;
 
-    if (kind === "primary" && !light) {
+    let newStyles = {};
+    if (kind === "primary") {
         newStyles = {
             default: {
-                background: color,
-                color: Color.white,
+                background: light ? white : color,
+                color: light ? color : white,
             },
             focus: {
                 ":before": {
@@ -127,143 +94,81 @@ const _generateStyles = (color, kind, light) => {
                     left: -3,
                     right: -3,
                     bottom: -3,
-                    borderColor: color,
+                    borderColor: light ? white : color,
                     borderWidth: 2,
                     borderStyle: "solid",
                     borderRadius: 7,
                 },
             },
             active: {
-                background: mix(Color.offBlack32, color),
-                color: mix(fade(color, 0.32), Color.white),
+                background: light
+                    ? mix(fade(color, 0.32), white)
+                    : mix(offBlack32, color),
+                color: light
+                    ? mix(offBlack32, color)
+                    : mix(fade(color, 0.32), white),
             },
             disabled: {
-                background: Color.offBlack32,
-                color: Color.white64,
+                background: light ? white64 : offBlack32,
+                color: light ? color : white64,
             },
         };
-    } else if (kind === "primary" && light) {
-        newStyles = {
-            default: {
-                background: Color.white,
-                color: color,
-            },
-            focus: {
-                ":before": {
-                    content: "''",
-                    position: "absolute",
-                    top: -3,
-                    left: -3,
-                    right: -3,
-                    bottom: -3,
-                    borderColor: Color.white,
-                    borderWidth: 2,
-                    borderStyle: "solid",
-                    borderRadius: 7,
-                },
-            },
-            active: {
-                background: mix(fade(color, 0.32), Color.white),
-                color: mix(Color.offBlack32, color),
-            },
-            disabled: {
-                background: Color.white64,
-                color: color,
-            },
-        };
-    } else if (kind === "secondary" && !light) {
+    } else if (kind === "secondary") {
         newStyles = {
             default: {
                 background: "none",
-                color: color,
-                borderColor: Color.offBlack50,
+                color: light ? white : color,
+                borderColor: light ? white64 : offBlack50,
                 borderStyle: "solid",
                 borderWidth: 1,
             },
             focus: {
-                background: Color.white,
-                borderColor: color,
+                background: light ? color : white,
+                borderColor: light ? white : color,
                 borderWidth: 2,
                 paddingLeft: 14,
                 paddingRight: 14,
             },
             active: {
-                background: mix(fade(color, 0.32), Color.white),
-                color: mix(Color.offBlack32, color),
-                borderColor: mix(Color.offBlack32, color),
+                background: light
+                    ? mix(offBlack32, color)
+                    : mix(fade(color, 0.32), white),
+                color: light
+                    ? mix(fade(color, 0.32), white)
+                    : mix(offBlack32, color),
+                borderColor: light
+                    ? mix(fade(color, 0.32), white)
+                    : mix(offBlack32, color),
             },
             disabled: {
-                color: Color.offBlack32,
-                borderColor: Color.offBlack32,
+                color: light ? mix(white, fade(color, 0.32)) : offBlack32,
+                borderColor: light ? mix(white, fade(color, 0.32)) : offBlack32,
             },
         };
-    } else if (kind === "secondary" && light) {
+    } else if (kind === "tertiary") {
         newStyles = {
             default: {
                 background: "none",
-                color: Color.white,
-                borderColor: Color.white64,
-                borderStyle: "solid",
-                borderWidth: 1,
-            },
-            focus: {
-                color: Color.white,
-                borderColor: Color.white,
-                borderWidth: 2,
-                paddingLeft: 14,
-                paddingRight: 14,
-            },
-            active: {
-                background: mix(Color.offBlack32, color),
-                color: mix(fade(color, 0.32), Color.white),
-                borderColor: mix(fade(color, 0.32), Color.white),
-            },
-            disabled: {
-                color: mix(Color.white, fade(color, 0.32)),
-                borderColor: mix(Color.white, fade(color, 0.32)),
-            },
-        };
-    } else if (kind === "tertiary" && !light) {
-        newStyles = {
-            default: {
-                background: "none",
-                color: color,
+                color: light ? white : color,
                 paddingLeft: 4,
                 paddingRight: 4,
             },
             focus: {
-                borderColor: color,
+                borderColor: light ? white : color,
                 borderStyle: "solid",
                 borderWidth: 2,
             },
             active: {
-                color: mix(Color.offBlack32, color),
+                color: light
+                    ? mix(fade(color, 0.32), white)
+                    : mix(offBlack32, color),
             },
             disabled: {
-                color: Color.offBlack32,
+                color: light ? mix(Color.white, fade(color, 0.32)) : offBlack32,
             },
         };
-    } else if (kind === "tertiary" && light) {
-        newStyles = {
-            default: {
-                background: "none",
-                color: Color.white,
-                paddingLeft: 4,
-                paddingRight: 4,
-            },
-            focus: {
-                color: Color.white,
-                borderColor: Color.white,
-                borderStyle: "solid",
-                borderWidth: 2,
-            },
-            active: {
-                color: mix(fade(color, 0.32), Color.white),
-            },
-            disabled: {
-                color: mix(Color.white, fade(color, 0.32)),
-            },
-        };
+    } else {
+        throw "Button kind not recognized";
     }
 
     styles[buttonType] = StyleSheet.create(newStyles);

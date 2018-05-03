@@ -1,9 +1,87 @@
 // @flow
 import React from "react";
-import {StyleSheet, css} from "aphrodite";
+
+import Color from "wonder-blocks-color";
+import type {ValidTints} from "wonder-blocks-color";
 import ButtonCore from "./button-core.js";
 
-import type {SharedProps} from "../types.js";
+export type SharedProps = {
+    /**
+     * Text to appear on the button.
+     */
+    children: string,
+
+    /**
+     * An icon, displayed to the left of the title.
+     */
+    icon?: string,
+
+    /**
+     * If true, replaces the contents with a spinner.
+     */
+    // TODO(yejia): Implement once spinner is implemented.
+    // spinner: boolean,
+
+    /**
+     * The color of the button, either blue or red.
+     */
+    color: ValidTints,
+
+    /**
+     * The kind of the button, either primary, secondary, or tertiary.
+     *
+     * In default state:
+     * - Primary buttons have background colors
+     * - Secondary buttons have a border and no background color
+     * - Tertiary buttons have no background or border
+     */
+    kind: "primary" | "secondary" | "tertiary",
+
+    /**
+     * Whether the button is on a dark/colored background.
+     *
+     * Sets primary button background color to white, and secondary and
+     * tertiary button title to color.
+     */
+    light: boolean,
+
+    /**
+     * The size of the button. "default" = height: 40; "small" = height: 32
+     */
+    size: "default" | "small",
+
+    /**
+     * Whether the button is disabled.
+     */
+    disabled: boolean,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
+     * Callback that will be fired regardless of whether the button uses a URL
+     * or an onClick handler.
+     *
+     * This callback can be used for firing BigBingo conversions.
+     */
+    // onAction: () => void,
+
+    /**
+     * The content of the modal, appearing between the titlebar and footer.
+     */
+    style?: any,
+    // TODO(yejia): use this if ADR #47 has been implemented
+    /*
+    style?: Style<Exact<{
+        width?: number | string
+        position: Position,
+        ...MarginStyles,
+        ...FlexItemStyles,
+    }>>,
+    */
+};
 
 type Props = SharedProps & {
     /**
@@ -39,30 +117,27 @@ type Props = SharedProps & {
 };
 
 export default class Button extends React.Component<Props> {
+    static defaultProps = {
+        color: Color.blue,
+        kind: "primary",
+        light: false,
+        size: "default",
+        disabled: false,
+    };
+
     render() {
+        const {onClick, href, children} = this.props;
         return (
-            <div
-                onClick={this.props.onClick && this.props.onClick}
-                href={this.props.href && this.props.href}
-            >
+            <div onClick={onClick} href={href}>
                 <ButtonCore
-                    icon={this.props.icon ? this.props.icon : undefined}
-                    // spinner={this.props.spinner} // TODO
-                    color={this.props.color ? this.props.color : undefined}
-                    kind={this.props.kind ? this.props.kind : undefined}
-                    light={this.props.light ? this.props.light : undefined}
-                    size={this.props.size ? this.props.size : undefined}
-                    disabled={
-                        this.props.disabled ? this.props.disabled : undefined
-                    }
-                    testId={this.props.testId}
-                    style={this.props.style ? this.props.style : undefined}
+                    {...this.props}
+                    hovered={false}
+                    focused={false}
+                    pressed={false}
                 >
-                    {this.props.children}
+                    {children}
                 </ButtonCore>
             </div>
         );
     }
 }
-
-const styles = StyleSheet.create({});

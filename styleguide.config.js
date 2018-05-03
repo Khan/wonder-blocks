@@ -37,6 +37,7 @@ module.exports = {
             name: "Button",
             content: "packages/wonder-blocks-button/docs.md",
             components: "packages/wonder-blocks-button/components/*.js",
+            ignore: ["**/components/button-core.js"],
         },
     ],
 
