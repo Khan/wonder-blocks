@@ -24,3 +24,17 @@ const styles = StyleSheet.create({
     </Text>
 </View>
 ```
+
+Other props can be passed through `View` or `Text`, as if they were normal tags.
+
+```js
+<View>
+    <View onClick={() => alert("Clicked!")}>
+        Click me!
+    </View>
+
+    <Text aria-hidden>
+        This text is hidden from screen readers.
+    </Text>
+</View>
+```

@@ -9,7 +9,7 @@ import View from "./components/view.js";
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
         const {StyleSheet} = require("aphrodite");
-        
+
         const styles = StyleSheet.create({
             container: {
                 padding: 32,
@@ -20,12 +20,25 @@ describe("wonder-blocks-core", () => {
                 fontSize: 24,
             },
         });
-        
-        const example = <View style={styles.container}>
-            <Text style={styles.text}>
-                Hello, world!
-            </Text>
-        </View>
+
+        const example = (
+            <View style={styles.container}>
+                <Text style={styles.text}>Hello, world!</Text>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const example = (
+            <View>
+                <View onClick={() => alert("Clicked!")}>Click me!</View>
+
+                <Text aria-hidden>
+                    This text is hidden from screen readers.
+                </Text>
+            </View>
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
