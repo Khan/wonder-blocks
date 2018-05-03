@@ -6,6 +6,7 @@ import {StyleSheet} from "aphrodite";
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
+import FocusTrap from "./focus-trap.js";
 import type {ModalElement} from "../util/types.js";
 
 type Props = {
@@ -70,7 +71,18 @@ export default class ModalBackdrop extends React.Component<Props> {
 
         return (
             <View style={styles.modalPositioner} onClick={this._handleClick}>
-                {clonedChildren}
+                {/* When you press Tab on the last focusable node of the
+                  * document, some browsers will move your tab focus outside of
+                  * the document. But we want to capture that as a focus event,
+                  * and move focus back into the modal! So, we add focusable
+                  * sentinel nodes. That way, tabbing out of the modal should
+                  * take you to a sentinel node, rather than taking you out of
+                  * the document. These sentinels aren't critical to focus
+                  * wrapping, though; we're resilient to any kind of focus
+                  * shift, whether it's to the sentinels or somewhere else! */}
+                <div tabIndex="0" />
+                <FocusTrap>{clonedChildren}</FocusTrap>
+                <div tabIndex="0" />
             </View>
         );
     }
