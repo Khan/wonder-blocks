@@ -23,7 +23,7 @@ const exampleModal = (
 //     necessary for this one-off wrapper.
 function ModalWrapper(props: {children: React.Element<*>}) {
     const {children, ...otherProps} = props;
-    return React.cloneElement(props.children, otherProps);
+    return React.cloneElement(children, otherProps);
 }
 
 describe("ModalBackdrop", () => {

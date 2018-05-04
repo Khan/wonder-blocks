@@ -25,19 +25,6 @@ type Props = {
  * `onClickCloseButton` prop is already provided, the two are merged.
  */
 export default class ModalBackdrop extends React.Component<Props> {
-    /**
-     * When the user clicks on the gray backdrop area (i.e., the click came
-     * _directly_ from the positioner, not bubbled up from its children), close
-     * the modal.
-     */
-    _handleClick = (e: SyntheticEvent<>) => {
-        // Was the lowest-level click target (`e.target`) the positioner element
-        // (`e.currentTarget`)?
-        if (e.target === e.currentTarget) {
-            this.props.onCloseModal();
-        }
-    };
-
     componentDidMount() {
         // Focus the last button in the modal, on the assumption that it'll be
         // a sensible default action.
@@ -57,6 +44,19 @@ export default class ModalBackdrop extends React.Component<Props> {
         }
         lastButton.focus();
     }
+
+    /**
+     * When the user clicks on the gray backdrop area (i.e., the click came
+     * _directly_ from the positioner, not bubbled up from its children), close
+     * the modal.
+     */
+    _handleClick = (e: SyntheticEvent<>) => {
+        // Was the lowest-level click target (`e.target`) the positioner element
+        // (`e.currentTarget`)?
+        if (e.target === e.currentTarget) {
+            this.props.onCloseModal();
+        }
+    };
 
     render() {
         const children = this.props.children;
