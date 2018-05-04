@@ -4,11 +4,7 @@ import propTypes from "prop-types";
 import type {GridSize} from "./types.js";
 
 export const matchesSize = (
-    {
-        small,
-        medium,
-        large,
-    }: {small?: boolean, medium?: boolean, large?: boolean},
+    {small, medium, large}: {small: boolean, medium: boolean, large: boolean},
     gridSize: GridSize,
 ) =>
     (!small && !medium && !large) ||
