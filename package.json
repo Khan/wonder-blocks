@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
-    "lint": "eslint --config ./eslint/eslintrc packages/wonder-blocks-modal",
+    "lint": "eslint --config ./eslint/eslintrc packages",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",

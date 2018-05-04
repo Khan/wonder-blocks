@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {flexBasis, gridContextTypes} from "../util/utils.js";
+import {gridContextTypes} from "../util/utils.js";
 import FlexCell from "./flex-cell.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 

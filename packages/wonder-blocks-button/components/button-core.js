@@ -168,7 +168,7 @@ const _generateStyles = (color, kind, light) => {
             },
         };
     } else {
-        throw "Button kind not recognized";
+        throw new Error("Button kind not recognized");
     }
 
     styles[buttonType] = StyleSheet.create(newStyles);
