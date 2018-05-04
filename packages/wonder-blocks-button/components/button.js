@@ -61,14 +61,6 @@ export type SharedProps = {
     testId?: string,
 
     /**
-     * Callback that will be fired regardless of whether the button uses a URL
-     * or an onClick handler.
-     *
-     * This callback can be used for firing BigBingo conversions.
-     */
-    // onAction: () => void,
-
-    /**
      * The content of the modal, appearing between the titlebar and footer.
      */
     style?: any,
