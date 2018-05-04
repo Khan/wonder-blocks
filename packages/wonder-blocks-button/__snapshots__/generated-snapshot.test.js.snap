@@ -1,0 +1,1898 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-button example 1 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_r594hu"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_r594hu-o_O-focus_653n95"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_r594hu-o_O-active_ggw6ry"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_r594hu-o_O-disabled_1w7pcko"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_nhzqyc"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_nhzqyc-o_O-focus_1tokxmj"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_nhzqyc-o_O-active_1r3agrx"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_nhzqyc-o_O-disabled_1rke1mr"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1hnxdow"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1hnxdow-o_O-focus_1xgwdxn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1hnxdow-o_O-active_1udmvi8"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_1hnxdow-o_O-disabled_ehqzfp"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`wonder-blocks-button example 2 1`] = `
+<table
+  style={
+    Object {
+      "background": "#1865f2",
+      "color": "#ffffff",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1imy9aa"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1imy9aa-o_O-focus_1a3epdz"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1imy9aa-o_O-active_rhtw9a"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_1imy9aa-o_O-disabled_1bghbg4"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1shc7ui"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1shc7ui-o_O-focus_gvewhn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1shc7ui-o_O-active_1bd05sv"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_1shc7ui-o_O-disabled_1rprq5f"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_t7qze6"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_t7qze6-o_O-focus_pqzh2t"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_t7qze6-o_O-active_169x9f6"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_t7qze6-o_O-disabled_1p0v4sy"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`wonder-blocks-button example 3 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_tdur71"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_tdur71-o_O-focus_1aqalti"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_tdur71-o_O-active_o202oj"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_tdur71-o_O-disabled_1w7pcko"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_jnoznf"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_jnoznf-o_O-focus_oj5g4"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_jnoznf-o_O-active_16aybtn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_jnoznf-o_O-disabled_1rke1mr"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1mhrujj"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1mhrujj-o_O-focus_flt1z8"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1mhrujj-o_O-active_esl9fv"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_1mhrujj-o_O-disabled_ehqzfp"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`wonder-blocks-button example 4 1`] = `
+<table
+  style={
+    Object {
+      "background": "#d92916",
+      "color": "#ffffff",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_d2y3ot"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_d2y3ot-o_O-focus_1a3epdz"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_d2y3ot-o_O-active_1h9ov83"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_d2y3ot-o_O-disabled_qkki4b"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1shc7ui"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1shc7ui-o_O-focus_cyoct0"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1shc7ui-o_O-active_yk48z8"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_1shc7ui-o_O-disabled_1rprq5f"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_t7qze6"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_t7qze6-o_O-focus_pqzh2t"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_t7qze6-o_O-active_pekw78"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_t7qze6-o_O-disabled_1p0v4sy"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`wonder-blocks-button example 5 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_r594hu-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_r594hu-o_O-focus_653n95-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_r594hu-o_O-active_ggw6ry-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_r594hu-o_O-disabled_1w7pcko-o_O-small_xwkmkn"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_nhzqyc-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_nhzqyc-o_O-focus_1tokxmj-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_nhzqyc-o_O-active_1r3agrx-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_nhzqyc-o_O-disabled_1rke1mr-o_O-small_xwkmkn"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1hnxdow-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1hnxdow-o_O-focus_1xgwdxn-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-default_1hnxdow-o_O-active_1udmvi8-o_O-small_xwkmkn"
+        disabled={false}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className="shared_19p4hc7-o_O-disabled_mqm918-o_O-default_1hnxdow-o_O-disabled_ehqzfp-o_O-small_xwkmkn"
+        disabled={true}
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
