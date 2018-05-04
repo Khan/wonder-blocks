@@ -1,8 +1,10 @@
 // @flow
 import React from "react";
 
+import {View} from "wonder-blocks-core";
 import Color from "wonder-blocks-color";
 import type {ValidTints} from "wonder-blocks-color";
+import ClickableBehavior from "./clickable-behavior.js";
 import ButtonCore from "./button-core.js";
 
 export type SharedProps = {
@@ -105,7 +107,7 @@ type Props = SharedProps & {
      * Note: onClick is optional if href is present, but must be defined if
      * href is not
      */
-    onClick?: (e: SyntheticEvent<MouseEvent | TouchEvent>) => void,
+    onClick?: (e: SyntheticEvent<>) => void,
 };
 
 export default class Button extends React.Component<Props> {
@@ -118,18 +120,23 @@ export default class Button extends React.Component<Props> {
     };
 
     render() {
-        const {onClick, href, children} = this.props;
+        const {onClick, href, children, ...sharedProps} = this.props;
         return (
-            <div onClick={onClick} href={href}>
-                <ButtonCore
-                    {...this.props}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                >
-                    {children}
-                </ButtonCore>
-            </div>
+            <ClickableBehavior
+                disabled={sharedProps.disabled}
+                onClick={onClick}
+                href={href}
+            >
+                {(state, handlers) => {
+                    return (
+                        <View {...handlers} style={{display: "inline-block"}}>
+                            <ButtonCore {...sharedProps} href={href} {...state}>
+                                {children}
+                            </ButtonCore>
+                        </View>
+                    );
+                }}
+            </ClickableBehavior>
         );
     }
 }

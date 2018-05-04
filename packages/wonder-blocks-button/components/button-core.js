@@ -10,6 +10,7 @@ type Props = SharedProps & {
     hovered: boolean,
     focused: boolean,
     pressed: boolean,
+    href?: string,
 };
 
 export default class ButtonCore extends React.Component<Props> {
@@ -24,12 +25,14 @@ export default class ButtonCore extends React.Component<Props> {
             focused,
             pressed,
             children,
+            href,
+            style,
         } = this.props;
 
         const buttonStyles = _generateStyles(color, kind, light);
-
+        const Tag = href ? "a" : "button";
         return (
-            <button
+            <Tag
                 className={css(
                     sharedStyles.shared,
                     disabled && sharedStyles.disabled,
@@ -41,10 +44,11 @@ export default class ButtonCore extends React.Component<Props> {
                             : (hovered || focused) && buttonStyles.focus),
                     size === "small" && sharedStyles.small,
                 )}
+                href={href}
                 disabled={disabled}
             >
                 <LabelLarge>{children}</LabelLarge>
-            </button>
+            </Tag>
         );
     }
 }
@@ -52,14 +56,17 @@ export default class ButtonCore extends React.Component<Props> {
 const sharedStyles = StyleSheet.create({
     shared: {
         position: "relative",
+        display: "inline-flex",
+        alignItems: "center",
         height: 40,
-        margin: 0,
         paddingLeft: 16,
         paddingRight: 16,
         border: "none",
         borderRadius: 4,
         cursor: "pointer",
         outline: "none",
+        textDecoration: "none",
+        boxSizing: "border-box",
     },
     disabled: {
         cursor: "auto",
