@@ -129,11 +129,14 @@ export default class Button extends React.Component<Props> {
             >
                 {(state, handlers) => {
                     return (
-                        <View {...handlers} style={{display: "inline-block"}}>
-                            <ButtonCore {...sharedProps} href={href} {...state}>
-                                {children}
-                            </ButtonCore>
-                        </View>
+                        <ButtonCore
+                            {...sharedProps}
+                            {...state}
+                            {...handlers}
+                            href={href}
+                        >
+                            {children}
+                        </ButtonCore>
                     );
                 }}
             </ClickableBehavior>

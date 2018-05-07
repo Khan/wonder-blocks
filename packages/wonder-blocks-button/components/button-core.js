@@ -5,28 +5,33 @@ import {StyleSheet, css} from "aphrodite";
 import {LabelLarge} from "wonder-blocks-typography";
 import Color, {mix, fade} from "wonder-blocks-color";
 import type {SharedProps} from "./button.js";
+import type {Handlers} from "./clickable-behavior.js";
 
-type Props = SharedProps & {
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
-    href?: string,
-};
+type Props = SharedProps &
+    Handlers & {
+        hovered: boolean,
+        focused: boolean,
+        pressed: boolean,
+        href?: string,
+    };
 
 export default class ButtonCore extends React.Component<Props> {
     render() {
         const {
+            children,
+            icon,
             color,
             kind,
             light,
             size,
+            testId,
+            style,
             disabled,
             hovered,
             focused,
             pressed,
-            children,
             href,
-            style,
+            ...handlers
         } = this.props;
 
         const buttonStyles = _generateStyles(color, kind, light);
@@ -46,6 +51,8 @@ export default class ButtonCore extends React.Component<Props> {
                 )}
                 href={href}
                 disabled={disabled}
+                data-test-id={testId}
+                {...handlers}
             >
                 <LabelLarge>{children}</LabelLarge>
             </Tag>
