@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";

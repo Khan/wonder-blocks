@@ -42,7 +42,7 @@ export default class Text extends React.Component<Props> {
         const styleAttributes = processStyleList([
             styles.text,
             isHeader && styles.header,
-            this.props.style,
+            style,
         ]);
 
         return (
@@ -51,7 +51,7 @@ export default class Text extends React.Component<Props> {
                 style={styleAttributes.style}
                 className={styleAttributes.className}
             >
-                {this.props.children}
+                {children}
             </Tag>
         );
     }

@@ -20,13 +20,13 @@ import * as ReactDOM from "react-dom";
  */
 export default class FocusTrap extends React.Component<{children: React.Node}> {
     /** The most recent node _inside this component_ to receive focus. */
-    _lastNodeFocusedInModal: ?Node = null;
+    _lastNodeFocusedInModal: ?Node;
 
     /**
      * Whether we're currently applying programmatic focus, and should therefore
      * ignore focus change events.
      */
-    _ignoreFocusChanges: boolean = false;
+    _ignoreFocusChanges: boolean;
 
     componentDidMount() {
         window.addEventListener("focus", this._handleGlobalFocus, true);
@@ -35,6 +35,9 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
     componentWillUnmount() {
         window.removeEventListener("focus", this._handleGlobalFocus, true);
     }
+
+    _lastNodeFocusedInModal = null;
+    _ignoreFocusChanges = false;
 
     /** Get the outermost DOM node of our children. */
     _getModalRoot(): Node {
@@ -56,7 +59,9 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
         this._ignoreFocusChanges = true;
         try {
             node.focus();
-        } catch (e) {}
+        } catch (e) {
+            // ignore error
+        }
         this._ignoreFocusChanges = false;
 
         return document.activeElement === node;
