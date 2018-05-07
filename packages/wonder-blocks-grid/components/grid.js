@@ -2,7 +2,6 @@
 import * as React from "react";
 import {View} from "wonder-blocks-core";
 
-import styles from "../util/styles.js";
 import {GRID_DEFAULT_SPEC, VALID_GRID_SIZES} from "../util/specs.js";
 import {gridContextTypes} from "../util/utils.js";
 
@@ -65,6 +64,10 @@ export default class Grid extends React.Component<
         size: GridSize,
     },
 > {
+    watchHandlers: {
+        [size: GridSize]: any,
+    };
+
     static WATCHERS: {
         [size: GridSize]: any,
     } = {};
@@ -72,10 +75,6 @@ export default class Grid extends React.Component<
     static defaultProps = {
         ssrSize: "large",
         spec: GRID_DEFAULT_SPEC,
-    };
-
-    watchHandlers: {
-        [size: GridSize]: any,
     };
 
     constructor(props: Props) {
@@ -140,16 +139,10 @@ export default class Grid extends React.Component<
         }
     }
 
-    isServerSide() {
-        return typeof window === "undefined" || !window.matchMedia;
-    }
-
     componentWillUnmount() {
         if (this.isServerSide()) {
             return;
         }
-
-        const {spec} = this.props;
 
         // We go through the component and remove all of the listeners
         // that this Grid attached.
@@ -161,6 +154,10 @@ export default class Grid extends React.Component<
                 delete this.watchHandlers[size];
             }
         }
+    }
+
+    isServerSide() {
+        return typeof window === "undefined" || !window.matchMedia;
     }
 
     render() {

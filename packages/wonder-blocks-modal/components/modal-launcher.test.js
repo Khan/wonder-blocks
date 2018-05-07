@@ -30,7 +30,7 @@ describe("ModalLauncher", () => {
         //     including `ModalLauncherPortal`, and that seems to be going
         //     beyond the scope of this test. Really we just want to check that
         //     this function receives a `closeModal` argument that works.
-        const modalFn = ({closeModal}) => {
+        const modalFn = ({closeModal}: {closeModal: () => void}) => {
             expect(opened).toBe(true);
             setImmediate(closeModal);
             return <div />;
