@@ -97,6 +97,8 @@ const keyCodes = {
 };
 
 export default class ClickableBehavior extends React.Component<Props, State> {
+    waitingForClick: boolean;
+
     static defaultProps = {
         disabled: false,
     };
@@ -110,8 +112,6 @@ export default class ClickableBehavior extends React.Component<Props, State> {
             pressed: false,
         };
     }
-
-    waitingForClick: boolean;
 
     handleClick = (e: SyntheticMouseEvent<>) => {
         if (this.props.onClick) {
@@ -185,7 +185,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     };
 
     render() {
-        const handlers = this.state.disabled
+        const handlers = this.props.disabled
             ? disabledHandlers
             : {
                   onClick: this.handleClick,

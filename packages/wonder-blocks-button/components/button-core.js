@@ -19,13 +19,13 @@ export default class ButtonCore extends React.Component<Props> {
     render() {
         const {
             children,
-            icon,
+            icon, // eslint-disable-line no-unused-vars
             color,
             kind,
             light,
             size,
             testId,
-            style,
+            style, // eslint-disable-line no-unused-vars
             disabled,
             hovered,
             focused,
