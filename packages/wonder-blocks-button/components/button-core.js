@@ -1,11 +1,12 @@
 // @flow
 import React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import {LabelLarge} from "wonder-blocks-typography";
 import Color, {mix, fade} from "wonder-blocks-color";
 import type {SharedProps} from "./button.js";
 import type {Handlers} from "./clickable-behavior.js";
+import {processStyleList} from "../../wonder-blocks-core/util/util.js";
 
 type Props = SharedProps &
     Handlers & {
@@ -36,19 +37,25 @@ export default class ButtonCore extends React.Component<Props> {
 
         const buttonStyles = _generateStyles(color, kind, light);
         const Tag = href ? "a" : "button";
+
+        const styleAttributes = processStyleList([
+            sharedStyles.shared,
+            disabled && sharedStyles.disabled,
+            buttonStyles.default,
+            disabled && buttonStyles.disabled,
+            !disabled &&
+                (pressed
+                    ? buttonStyles.active
+                    : (hovered || focused) && buttonStyles.focus),
+            size === "small" && sharedStyles.small,
+            overridableStyles,
+            style,
+        ]);
+
         return (
             <Tag
-                className={css(
-                    sharedStyles.shared,
-                    disabled && sharedStyles.disabled,
-                    buttonStyles.default,
-                    disabled && buttonStyles.disabled,
-                    !disabled &&
-                        (pressed
-                            ? buttonStyles.active
-                            : (hovered || focused) && buttonStyles.focus),
-                    size === "small" && sharedStyles.small,
-                )}
+                style={styleAttributes.style}
+                className={styleAttributes.className}
                 href={href}
                 disabled={disabled}
                 data-test-id={testId}
@@ -60,11 +67,15 @@ export default class ButtonCore extends React.Component<Props> {
     }
 }
 
+const overridableStyles = {
+    position: "relative",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+};
+
 const sharedStyles = StyleSheet.create({
     shared: {
-        position: "relative",
-        display: "inline-flex",
-        alignItems: "center",
         height: 40,
         paddingLeft: 16,
         paddingRight: 16,
