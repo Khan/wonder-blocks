@@ -63,7 +63,7 @@ type State = {
 };
 
 export type Handlers = {
-    // onClick: (e: SyntheticMouseEvent<>) => void,
+    onClick: (e: SyntheticMouseEvent<>) => void,
     onMouseEnter: () => void,
     onMouseLeave: () => void,
     onMouseDown: () => void,
