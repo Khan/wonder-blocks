@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 
-import {View} from "wonder-blocks-core";
 import Color from "wonder-blocks-color";
 import type {ValidTints} from "wonder-blocks-color";
 import ClickableBehavior from "./clickable-behavior.js";
