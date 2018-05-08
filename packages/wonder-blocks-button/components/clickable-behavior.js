@@ -77,7 +77,7 @@ export type Handlers = {
 };
 
 const disabledHandlers = {
-    // onClick: () => void 0,
+    onClick: () => void 0,
     onMouseEnter: () => void 0,
     onMouseLeave: () => void 0,
     onMouseDown: () => void 0,
@@ -116,7 +116,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     handleClick = (e: SyntheticMouseEvent<>) => {
         if (this.props.onClick) {
             this.waitingForClick = false;
-            // this.props.onClick(e);
+            this.props.onClick(e);
         }
     };
 
@@ -188,7 +188,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         const handlers = this.state.disabled
             ? disabledHandlers
             : {
-                  // onClick: this.handleClick,
+                  onClick: this.handleClick,
                   onMouseEnter: this.handleMouseEnter,
                   onMouseLeave: this.handleMouseLeave,
                   onMouseDown: this.handleMouseDown,
