@@ -39,10 +39,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -95,7 +95,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
             className=""
             style={
               Object {
-                "textAlign": "right",
+                "textAlign": "right !important",
               }
             }
           >
@@ -116,10 +116,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 32,
-              "MsFlexPreferredSize": 32,
-              "WebkitFlexBasis": 32,
-              "flexBasis": 32,
+              "MsFlexBasis": "32px !important",
+              "MsFlexPreferredSize": "32px !important",
+              "WebkitFlexBasis": "32px !important",
+              "flexBasis": "32px !important",
               "flexShrink": 0,
             }
           }
@@ -137,10 +137,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "@media (min-width: 768px) and (max-width: 1023px)": Object {
                 "background": "#00a60e",
               },
-              "MsFlexBasis": 100,
-              "MsFlexPreferredSize": 100,
-              "WebkitFlexBasis": 100,
-              "flexBasis": 100,
+              "MsFlexBasis": "100px !important",
+              "MsFlexPreferredSize": "100px !important",
+              "WebkitFlexBasis": "100px !important",
+              "flexBasis": "100px !important",
               "flexShrink": 0,
               "height": 100,
               "padding": 5,
@@ -164,7 +164,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
             className=""
             style={
               Object {
-                "textAlign": "center",
+                "textAlign": "center !important",
               }
             }
           >
@@ -185,10 +185,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 32,
-              "MsFlexPreferredSize": 32,
-              "WebkitFlexBasis": 32,
-              "flexBasis": 32,
+              "MsFlexBasis": "32px !important",
+              "MsFlexPreferredSize": "32px !important",
+              "WebkitFlexBasis": "32px !important",
+              "flexBasis": "32px !important",
               "flexShrink": 0,
             }
           }
@@ -206,10 +206,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "@media (min-width: 768px) and (max-width: 1023px)": Object {
                 "background": "#00a60e",
               },
-              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
-              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
-              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
-              "flexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px) !important",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px) !important",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px) !important",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px) !important",
               "flexShrink": 0,
               "height": 100,
               "padding": 5,
@@ -233,7 +233,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
             className=""
             style={
               Object {
-                "textAlign": "center",
+                "textAlign": "center !important",
               }
             }
           >
@@ -254,10 +254,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 32,
-              "MsFlexPreferredSize": 32,
-              "WebkitFlexBasis": 32,
-              "flexBasis": 32,
+              "MsFlexBasis": "32px !important",
+              "MsFlexPreferredSize": "32px !important",
+              "WebkitFlexBasis": "32px !important",
+              "flexBasis": "32px !important",
               "flexShrink": 0,
             }
           }
@@ -275,10 +275,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "@media (min-width: 768px) and (max-width: 1023px)": Object {
                 "background": "#00a60e",
               },
-              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
-              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
-              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
-              "flexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px) !important",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px) !important",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px) !important",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px) !important",
               "flexShrink": 0,
               "height": 100,
               "padding": 5,
@@ -321,7 +321,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               className=""
               style={
                 Object {
-                  "textAlign": "right",
+                  "textAlign": "right !important",
                 }
               }
             >
@@ -343,10 +343,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -362,7 +362,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
   className=""
   style={
     Object {
-      "background": "#f7f8fa",
+      "background": "#f7f8fa !important",
     }
   }
 >
@@ -375,10 +375,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "background": "#0a2a66",
-          "borderBottom": "1px solid rgba(255,255,255,0.64)",
+          "background": "#0a2a66 !important",
+          "borderBottom": "1px solid rgba(255,255,255,0.64) !important",
           "display": "flex",
-          "height": 64,
+          "height": "64px !important",
         }
       }
     >
@@ -399,10 +399,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -411,9 +411,9 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "color": "#ffffff",
+              "color": "#ffffff !important",
               "flexGrow": 1,
-              "textAlign": "center",
+              "textAlign": "center !important",
             }
           }
         >
@@ -423,10 +423,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -438,9 +438,9 @@ exports[`wonder-blocks-grid example 2 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "background": "#0a2a66",
+          "background": "#0a2a66 !important",
           "display": "flex",
-          "height": 136,
+          "height": "136px !important",
         }
       }
     >
@@ -461,10 +461,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -473,7 +473,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "color": "#ffffff",
+              "color": "#ffffff !important",
               "flexGrow": 1,
             }
           }
@@ -484,10 +484,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -499,10 +499,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "background": "#ffffff",
-          "borderBottom": "1px solid rgba(33,36,44,0.08)",
+          "background": "#ffffff !important",
+          "borderBottom": "1px solid rgba(33,36,44,0.08) !important",
           "display": "flex",
-          "height": 71,
+          "height": "71px !important",
         }
       }
     >
@@ -523,10 +523,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -535,10 +535,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-              "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px) !important",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px) !important",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px) !important",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px) !important",
               "flexShrink": 0,
             }
           }
@@ -549,10 +549,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 32,
-              "MsFlexPreferredSize": 32,
-              "WebkitFlexBasis": 32,
-              "flexBasis": 32,
+              "MsFlexBasis": "32px !important",
+              "MsFlexPreferredSize": "32px !important",
+              "WebkitFlexBasis": "32px !important",
+              "flexBasis": "32px !important",
               "flexShrink": 0,
             }
           }
@@ -567,10 +567,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -583,7 +583,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
         Object {
           "alignItems": "center",
           "display": "flex",
-          "padding": "17px 0",
+          "padding": "17px 0 !important",
         }
       }
     >
@@ -604,10 +604,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
@@ -616,10 +616,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-              "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px) !important",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px) !important",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px) !important",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px) !important",
               "flexShrink": 0,
             }
           }
@@ -638,10 +638,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 32,
-              "MsFlexPreferredSize": 32,
-              "WebkitFlexBasis": 32,
-              "flexBasis": 32,
+              "MsFlexBasis": "32px !important",
+              "MsFlexPreferredSize": "32px !important",
+              "WebkitFlexBasis": "32px !important",
+              "flexBasis": "32px !important",
               "flexShrink": 0,
             }
           }
@@ -658,10 +658,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
             className=""
             style={
               Object {
-                "background": "#ffffff",
-                "border": "1px solid rgba(33,36,44,0.08)",
-                "height": 360,
-                "padding": 24,
+                "background": "#ffffff !important",
+                "border": "1px solid rgba(33,36,44,0.08) !important",
+                "height": "360px !important",
+                "padding": "24px !important",
               }
             }
           >
@@ -671,11 +671,11 @@ exports[`wonder-blocks-grid example 2 1`] = `
             className=""
             style={
               Object {
-                "background": "#ffffff",
-                "border": "1px solid rgba(33,36,44,0.08)",
-                "height": 360,
-                "marginTop": 16,
-                "padding": 24,
+                "background": "#ffffff !important",
+                "border": "1px solid rgba(33,36,44,0.08) !important",
+                "height": "360px !important",
+                "marginTop": "16px !important",
+                "padding": "24px !important",
               }
             }
           >
@@ -686,10 +686,10 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": 24,
-              "MsFlexPreferredSize": 24,
-              "WebkitFlexBasis": 24,
-              "flexBasis": 24,
+              "MsFlexBasis": "24px !important",
+              "MsFlexPreferredSize": "24px !important",
+              "WebkitFlexBasis": "24px !important",
+              "flexBasis": "24px !important",
               "flexShrink": 0,
             }
           }
