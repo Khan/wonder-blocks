@@ -47,14 +47,18 @@ components.
 const {addStyle} = require("./util/add-style.js");
 const {StyleSheet} = require("aphrodite");
 
-const StyledInput = addStyle("input");
-
 const styles = StyleSheet.create({
+    // default style for all instances of StyledInput
     input: {
-        backgroundColor: "pink",
         fontSize: 30,
+    },
+    // style for a particular instance of StyledInput
+    pink: {
+        backgroundColor: "pink",
     },
 });
 
-<StyledInput style={styles.input} type="text" placeholder="hello, world"/>;
+const StyledInput = addStyle("input", styles.input);
+
+<StyledInput style={styles.pink} type="text" placeholder="hello, world"/>;
 ```

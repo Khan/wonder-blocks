@@ -52,3 +52,17 @@ exports[`wonder-blocks-core example 2 1`] = `
   </span>
 </div>
 `;
+
+exports[`wonder-blocks-core example 3 1`] = `
+<input
+  className=""
+  placeholder="hello, world"
+  style={
+    Object {
+      "backgroundColor": "pink",
+      "fontSize": 30,
+    }
+  }
+  type="text"
+/>
+`;
