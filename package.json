@@ -15,8 +15,7 @@
     "styleguidist": "styleguidist server",
     "build:styleguidist": "styleguidist build",
     "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
-    "pretty-quick": "pretty-quick --staged",
-    "build": "webpack"
+    "pretty-quick": "pretty-quick --staged"
   },
   "author": "",
   "license": "MIT",

@@ -12,8 +12,6 @@ module.exports = function(subPkgRoot) {
         : [];
 
     return {
-        // TODO(kevinb): build both dev and prod
-        mode: "development",
         entry: "./index.js",
         output: {
             libraryTarget: "commonjs2",
