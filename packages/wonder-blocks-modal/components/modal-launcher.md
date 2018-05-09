@@ -6,6 +6,7 @@ const {View} = require("wonder-blocks-core");
 const {Title, Body} = require("wonder-blocks-typography");
 const ModalLauncher = require("./modal-launcher.js").default;
 const TwoColumnModal = require("./two-column-modal.js").default;
+const OneColumnModal = require("./one-column-modal.js").default;
 const {smOrSmaller} = require("../util/util.js");
 
 const styles = StyleSheet.create({
@@ -20,16 +21,7 @@ const styles = StyleSheet.create({
 
     modalContent: {
         margin: "0 auto",
-        marginTop: 40,
-        marginBottom: 40,
-        paddingLeft: 32,
-        paddingRight: 32,
         maxWidth: 544,
-
-        [smOrSmaller]: {
-            paddingLeft: 16,
-            paddingRight: 16,
-        },
     },
 });
 
@@ -66,9 +58,9 @@ const standardModal = ({closeModal}) => (
 );
 
 const twoColumnModal = ({closeModal}) => <TwoColumnModal
-    leftContent={
+    sidebar={
         <View>
-            <Title style={styles.title}>Left column</Title>
+            <Title style={styles.title}>Sidebar</Title>
             <Body>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                 do eiusmod tempor incididunt ut labore et dolore magna
@@ -77,9 +69,44 @@ const twoColumnModal = ({closeModal}) => <TwoColumnModal
             </Body>
         </View>
     }
-    rightContent={
+    content={
         <View>
-            <Title style={styles.title}>Right column</Title>
+            <Title style={styles.title}>Contents</Title>
+            <View>
+                <label>
+                    <LabelSmall>Username:</LabelSmall>
+                    <input type="text" />
+                </label>
+            </View>
+            <View>
+                <label>
+                    <LabelSmall>Password:</LabelSmall>
+                    <input type="password" />
+                </label>
+            </View>
+            <View>
+                {/* TODO(mdr): Use Wonder Blocks Button. */}
+                <button
+                    onClick={closeModal}
+                    style={{marginTop: 16}}
+                >
+                    Go back
+                </button>
+                <button
+                    onClick={() => alert("Just kidding, no-op!")}
+                    style={{marginTop: 16}}
+                >
+                    Log in
+                </button>
+            </View>
+        </View>
+    }
+/>;
+
+const oneColumnModal = ({closeModal}) => <OneColumnModal
+    content={
+        <View>
+            <Title style={styles.title}>Title</Title>
             <View>
                 <label>
                     <LabelSmall>Username:</LabelSmall>
@@ -118,6 +145,9 @@ const twoColumnModal = ({closeModal}) => <TwoColumnModal
     </ModalLauncher>
     <ModalLauncher modal={twoColumnModal}>
         {({openModal}) => <button onClick={openModal}>Two-column modal</button>}
+    </ModalLauncher>
+    <ModalLauncher modal={oneColumnModal}>
+        {({openModal}) => <button onClick={openModal}>One-column modal</button>}
     </ModalLauncher>
 </View>;
 ```

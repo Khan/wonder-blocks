@@ -30,13 +30,33 @@ module.exports = {
         {
             name: "Modal",
             content: "packages/wonder-blocks-modal/docs.md",
-            components: "packages/wonder-blocks-modal/components/*.js",
-            ignore: [
-                "**/components/focus-trap.js",
-                "**/components/modal-backdrop.js",
-                "**/components/modal-close-button.js",
-                "**/components/modal-launcher-portal.js",
-                "**/components/scroll-disabler.js",
+            sections: [
+                {
+                    name: "Launcher",
+                    components: [
+                        "packages/wonder-blocks-modal/components/modal-launcher.js",
+                    ],
+                },
+                {
+                    name: "Modals",
+                    components: [
+                        "packages/wonder-blocks-modal/components/standard-modal.js",
+                        "packages/wonder-blocks-modal/components/two-column-modal.js",
+                        "packages/wonder-blocks-modal/components/one-column-modal.js",
+                    ],
+                },
+                {
+                    name: "Building Blocks",
+                    content: "packages/wonder-blocks-modal/building-blocks.md",
+                    components: [
+                        "packages/wonder-blocks-modal/components/modal-dialog.js",
+                        "packages/wonder-blocks-modal/components/modal-content-pane.js",
+                        "packages/wonder-blocks-modal/components/modal-content.js",
+                        "packages/wonder-blocks-modal/components/modal-title-bar.js",
+                        "packages/wonder-blocks-modal/components/modal-header.js",
+                        "packages/wonder-blocks-modal/components/modal-footer.js",
+                    ],
+                },
             ],
         },
         {

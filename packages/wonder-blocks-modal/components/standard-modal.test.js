@@ -6,18 +6,10 @@ import StandardModal from "./standard-modal.js";
 
 describe("StandardModal", () => {
     test("Clicking the close button triggers `onClickCloseButton`", () => {
-        const onClickCloseButton = jest.fn();
         const wrapper = shallow(
-            <StandardModal
-                title="Title"
-                content="Content"
-                footer="Footer"
-                onClickCloseButton={onClickCloseButton}
-            />,
+            <StandardModal title="Title" content="Content" footer="Footer" />,
         );
 
-        expect(onClickCloseButton).not.toHaveBeenCalled();
-        wrapper.find("ModalCloseButton").simulate("click");
-        expect(onClickCloseButton).toHaveBeenCalled();
+        expect(wrapper.find("ModalCloseButton").exists()).toBeFalsy();
     });
 });
