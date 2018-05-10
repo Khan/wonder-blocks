@@ -6,6 +6,8 @@ exports[`wonder-blocks-core example 1 1`] = `
   style={
     Object {
       "backgroundColor": "plum",
+      "display": "flex",
+      "flexDirection": "column",
       "padding": 32,
     }
   }
@@ -29,12 +31,22 @@ exports[`wonder-blocks-core example 1 1`] = `
 exports[`wonder-blocks-core example 2 1`] = `
 <div
   className=""
-  style={Object {}}
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+    }
+  }
 >
   <div
     className=""
     onClick={[Function]}
-    style={Object {}}
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+      }
+    }
   >
     Click me!
   </div>

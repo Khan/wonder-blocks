@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
         backgroundSize: "20px 20px",
         backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
 
-        display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
@@ -86,7 +85,6 @@ const styles = StyleSheet.create({
         backgroundSize: "20px 20px",
         backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
 
-        display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",

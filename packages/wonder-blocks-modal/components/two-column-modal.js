@@ -64,7 +64,6 @@ export default class TwoColumnModal extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     container: {
-        display: "flex",
         flexDirection: "row",
         alignItems: "stretch",
         position: "relative",

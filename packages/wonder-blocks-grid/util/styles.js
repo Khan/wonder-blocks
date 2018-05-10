@@ -5,12 +5,12 @@ const WIDE_SCREEN = "@media (min-width: 1168px)";
 
 const styles = StyleSheet.create({
     rowWrap: {
-        display: "flex",
+        flexDirection: "row",
         alignItems: "center",
     },
 
     row: {
-        display: "flex",
+        flexDirection: "row",
         width: "100%",
     },
 
