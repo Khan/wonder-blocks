@@ -7,23 +7,41 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       Object {
         "alignItems": "center",
         "display": "flex",
-        "marginBottom": 8,
+        "marginBottom": 6,
       }
     }
   >
     <div
       style={
         Object {
-          "paddingRight": 10,
+          "paddingRight": 8,
           "textAlign": "right",
           "width": 250,
         }
       }
     >
-      xxxs
+      xxxSmall
       : 
       4
       px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 4,
+          }
+        }
+      />
     </div>
     <div
       style={
@@ -40,20 +58,71 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       Object {
         "alignItems": "center",
         "display": "flex",
-        "marginBottom": 8,
+        "marginBottom": 6,
       }
     }
   >
     <div
       style={
         Object {
-          "paddingRight": 10,
+          "paddingRight": 8,
           "textAlign": "right",
           "width": 250,
         }
       }
     >
-      xxs
+      xxSmall
+      : 
+      6
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 6,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 6,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      xSmall
       : 
       8
       px
@@ -61,9 +130,27 @@ exports[`wonder-blocks-spacing example 1 1`] = `
     <div
       style={
         Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 8,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
           "backgroundColor": "black",
           "height": 8,
-          "width": 8,
+          "width": 4,
         }
       }
     />
@@ -73,20 +160,20 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       Object {
         "alignItems": "center",
         "display": "flex",
-        "marginBottom": 8,
+        "marginBottom": 6,
       }
     }
   >
     <div
       style={
         Object {
-          "paddingRight": 10,
+          "paddingRight": 8,
           "textAlign": "right",
           "width": 250,
         }
       }
     >
-      s
+      small
       : 
       12
       px
@@ -94,9 +181,27 @@ exports[`wonder-blocks-spacing example 1 1`] = `
     <div
       style={
         Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 12,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
           "backgroundColor": "black",
           "height": 12,
-          "width": 12,
+          "width": 4,
         }
       }
     />
@@ -106,20 +211,20 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       Object {
         "alignItems": "center",
         "display": "flex",
-        "marginBottom": 8,
+        "marginBottom": 6,
       }
     }
   >
     <div
       style={
         Object {
-          "paddingRight": 10,
+          "paddingRight": 8,
           "textAlign": "right",
           "width": 250,
         }
       }
     >
-      m
+      medium
       : 
       16
       px
@@ -127,9 +232,27 @@ exports[`wonder-blocks-spacing example 1 1`] = `
     <div
       style={
         Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 16,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
           "backgroundColor": "black",
           "height": 16,
-          "width": 16,
+          "width": 4,
         }
       }
     />
@@ -139,20 +262,20 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       Object {
         "alignItems": "center",
         "display": "flex",
-        "marginBottom": 8,
+        "marginBottom": 6,
       }
     }
   >
     <div
       style={
         Object {
-          "paddingRight": 10,
+          "paddingRight": 8,
           "textAlign": "right",
           "width": 250,
         }
       }
     >
-      l
+      large
       : 
       24
       px
@@ -160,9 +283,27 @@ exports[`wonder-blocks-spacing example 1 1`] = `
     <div
       style={
         Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 24,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
           "backgroundColor": "black",
           "height": 24,
-          "width": 24,
+          "width": 4,
         }
       }
     />
@@ -172,20 +313,20 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       Object {
         "alignItems": "center",
         "display": "flex",
-        "marginBottom": 8,
+        "marginBottom": 6,
       }
     }
   >
     <div
       style={
         Object {
-          "paddingRight": 10,
+          "paddingRight": 8,
           "textAlign": "right",
           "width": 250,
         }
       }
     >
-      xl
+      xLarge
       : 
       32
       px
@@ -193,9 +334,27 @@ exports[`wonder-blocks-spacing example 1 1`] = `
     <div
       style={
         Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 32,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
           "backgroundColor": "black",
           "height": 32,
-          "width": 32,
+          "width": 4,
         }
       }
     />
@@ -205,20 +364,20 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       Object {
         "alignItems": "center",
         "display": "flex",
-        "marginBottom": 8,
+        "marginBottom": 6,
       }
     }
   >
     <div
       style={
         Object {
-          "paddingRight": 10,
+          "paddingRight": 8,
           "textAlign": "right",
           "width": 250,
         }
       }
     >
-      xxl
+      xxLarge
       : 
       48
       px
@@ -226,9 +385,27 @@ exports[`wonder-blocks-spacing example 1 1`] = `
     <div
       style={
         Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 48,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
           "backgroundColor": "black",
           "height": 48,
-          "width": 48,
+          "width": 4,
         }
       }
     />
@@ -238,20 +415,20 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       Object {
         "alignItems": "center",
         "display": "flex",
-        "marginBottom": 8,
+        "marginBottom": 6,
       }
     }
   >
     <div
       style={
         Object {
-          "paddingRight": 10,
+          "paddingRight": 8,
           "textAlign": "right",
           "width": 250,
         }
       }
     >
-      xxxl
+      xxxLarge
       : 
       64
       px
@@ -259,9 +436,27 @@ exports[`wonder-blocks-spacing example 1 1`] = `
     <div
       style={
         Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 64,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
           "backgroundColor": "black",
           "height": 64,
-          "width": 64,
+          "width": 4,
         }
       }
     />

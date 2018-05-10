@@ -16,13 +16,13 @@ describe("wonder-blocks-spacing", () => {
                         style={{
                             display: "flex",
                             alignItems: "center",
-                            marginBottom: Spacing.xxs,
+                            marginBottom: Spacing.xxSmall,
                         }}
                     >
                         <div
                             style={{
                                 width: 250,
-                                paddingRight: 10,
+                                paddingRight: Spacing.xSmall,
                                 textAlign: "right",
                             }}
                         >
@@ -30,8 +30,22 @@ describe("wonder-blocks-spacing", () => {
                         </div>
                         <div
                             style={{
+                                width: Spacing.xxxLarge,
+                                marginRight: Spacing.xSmall,
+                            }}
+                        >
+                            <div
+                                style={{
+                                    backgroundColor: "black",
+                                    width: Spacing[spaceName],
+                                    height: Spacing.xxxSmall,
+                                }}
+                            />
+                        </div>
+                        <div
+                            style={{
                                 backgroundColor: "black",
-                                width: Spacing[spaceName],
+                                width: Spacing.xxxSmall,
                                 height: Spacing[spaceName],
                             }}
                         />

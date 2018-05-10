@@ -1,15 +1,15 @@
 // @flow
 const Spacing = {
     // Named
-    xxxs: 4,
-    xxs: 6,
-    xxs: 8,
-    s: 12,
-    m: 16,
-    l: 24,
-    xl: 32,
-    xxl: 48,
-    xxxl: 64,
+    xxxSmall: 4,
+    xxSmall: 6,
+    xSmall: 8,
+    small: 12,
+    medium: 16,
+    large: 24,
+    xLarge: 32,
+    xxLarge: 48,
+    xxxLarge: 64,
 };
 
 export type VALID_PRIMARY_SPACING = 4 | 8 | 16 | 32 | 64;
