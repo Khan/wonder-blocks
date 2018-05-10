@@ -42,4 +42,31 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+    it("example 3", () => {
+        const {addStyle} = require("./index.js");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            // default style for all instances of StyledInput
+            input: {
+                fontSize: 30,
+            },
+            // style for a particular instance of StyledInput
+            pink: {
+                backgroundColor: "pink",
+            },
+        });
+
+        const StyledInput = addStyle("input", styles.input);
+
+        const example = (
+            <StyledInput
+                style={styles.pink}
+                type="text"
+                placeholder="hello, world"
+            />
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

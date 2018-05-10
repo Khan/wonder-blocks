@@ -1,9 +1,10 @@
 // @flow
 import React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import {LabelLarge} from "wonder-blocks-typography";
 import Color, {mix, fade} from "wonder-blocks-color";
+import {addStyle} from "wonder-blocks-core";
 import type {SharedProps} from "./button.js";
 
 type Props = SharedProps & {
@@ -11,6 +12,8 @@ type Props = SharedProps & {
     focused: boolean,
     pressed: boolean,
 };
+
+const StyledButton = addStyle("button");
 
 export default class ButtonCore extends React.Component<Props> {
     render() {
@@ -29,8 +32,8 @@ export default class ButtonCore extends React.Component<Props> {
         const buttonStyles = _generateStyles(color, kind, light);
 
         return (
-            <button
-                className={css(
+            <StyledButton
+                style={[
                     sharedStyles.shared,
                     disabled && sharedStyles.disabled,
                     buttonStyles.default,
@@ -40,11 +43,11 @@ export default class ButtonCore extends React.Component<Props> {
                             ? buttonStyles.active
                             : (hovered || focused) && buttonStyles.focus),
                     size === "small" && sharedStyles.small,
-                )}
+                ]}
                 disabled={disabled}
             >
                 <LabelLarge>{children}</LabelLarge>
-            </button>
+            </StyledButton>
         );
     }
 }
