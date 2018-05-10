@@ -43,8 +43,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
-        // This should actually be `import {addStyle} from "wonder-blocks-core"`
-        const {addStyle} = require("./util/add-style.js");
+        const {addStyle} = require("./index.js");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({

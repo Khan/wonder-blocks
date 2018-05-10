@@ -43,8 +43,7 @@ There's also an HOC that adds the same style prop to existing
 components.
 
 ```js
-// This should actually be `import {addStyle} from "wonder-blocks-core"`
-const {addStyle} = require("./util/add-style.js");
+const {addStyle} = require("./index.js");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
