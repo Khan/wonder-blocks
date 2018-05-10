@@ -3,7 +3,12 @@
 exports[`wonder-blocks-typography example 1 1`] = `
 <div
   className=""
-  style={Object {}}
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+    }
+  }
 >
   <h1
     className=""

@@ -125,8 +125,6 @@ export default class StandardModal extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     container: {
-        display: "flex",
-        flexDirection: "column",
         alignItems: "stretch",
 
         width: "93.75%",
@@ -159,7 +157,6 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         paddingBottom: 8,
 
-        display: "flex",
         flexDirection: "row",
         alignItems: "center",
 
@@ -189,7 +186,6 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         paddingBottom: 8,
 
-        display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",

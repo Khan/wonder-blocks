@@ -1,4 +1,3 @@
 docs/* linguist-generated
-**/__snapshots__/** linguist-generated
 package-lock.json linguist-generated
 **/generated-snapshot.test.js
