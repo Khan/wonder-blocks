@@ -29,7 +29,7 @@ describe("ModalPortal", () => {
             }
         };
 
-        const wrapper = mount(
+        mount(
             // We include an extra wrapper element here, just to extra confirm
             // that this _isn't_ part of the tree where the children get
             // mounted.

@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
@@ -39,7 +39,12 @@ export default class TwoColumnModal extends React.Component<Props> {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View
+                style={styles.container}
+                // TODO(mdr): How can we identify an appropriate aria-labelledby
+                //     node, if it's somewhere in the monolith of modal content?
+                role="dialog"
+            >
                 <View style={styles.closeButton}>
                     <ModalCloseButton
                         color="light"

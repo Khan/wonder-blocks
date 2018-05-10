@@ -9,6 +9,7 @@ type Props = {
     style?: any,
     tag: TextTag,
     children?: any,
+    [otherProp: string]: any,
 };
 
 const isHeaderRegex = /^h[1-6]$/;
@@ -35,18 +36,22 @@ export default class Text extends React.Component<Props> {
     };
 
     render() {
-        const isHeader = isHeaderRegex.test(this.props.tag);
-        const {className, style} = processStyleList([
+        const {children, style, tag: Tag, ...otherProps} = this.props;
+
+        const isHeader = isHeaderRegex.test(Tag);
+        const styleAttributes = processStyleList([
             styles.text,
             isHeader && styles.header,
-            this.props.style,
+            style,
         ]);
 
-        const Tag = this.props.tag;
-
         return (
-            <Tag style={style} className={className}>
-                {this.props.children}
+            <Tag
+                {...otherProps}
+                style={styleAttributes.style}
+                className={styleAttributes.className}
+            >
+                {children}
             </Tag>
         );
     }

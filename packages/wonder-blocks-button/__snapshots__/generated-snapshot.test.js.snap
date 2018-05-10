@@ -1,0 +1,2933 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-button example 1 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            ":before": Object {
+              "borderColor": "#1865f2",
+              "borderRadius": 7,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "bottom": -3,
+              "content": "''",
+              "left": -3,
+              "position": "absolute",
+              "right": -3,
+              "top": -3,
+            },
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#1b50b3",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#b5cefb",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "rgba(33,36,44,0.32)",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "rgba(255,255,255,0.64)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.50)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "borderColor": "#1865f2",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#b5cefb",
+            "border": "none",
+            "borderColor": "#1b50b3",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#1b50b3",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.32)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "rgba(33,36,44,0.32)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "#1865f2",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#1b50b3",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "rgba(33,36,44,0.32)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`wonder-blocks-button example 2 1`] = `
+<table
+  style={
+    Object {
+      "background": "#1865f2",
+      "color": "#ffffff",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            ":before": Object {
+              "borderColor": "#ffffff",
+              "borderRadius": 7,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "bottom": -3,
+              "content": "''",
+              "left": -3,
+              "position": "absolute",
+              "right": -3,
+              "top": -3,
+            },
+            "background": "#ffffff",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#b5cefb",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#1b50b3",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "rgba(255,255,255,0.64)",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#1865f2",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(255,255,255,0.64)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#1865f2",
+            "border": "none",
+            "borderColor": "#ffffff",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#1b50b3",
+            "border": "none",
+            "borderColor": "#b5cefb",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#b5cefb",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(255,255,255,0.32)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "rgba(255,255,255,0.32)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "#ffffff",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#b5cefb",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "rgba(255,255,255,0.32)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`wonder-blocks-button example 3 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#d92916",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            ":before": Object {
+              "borderColor": "#d92916",
+              "borderRadius": 7,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "bottom": -3,
+              "content": "''",
+              "left": -3,
+              "position": "absolute",
+              "right": -3,
+              "top": -3,
+            },
+            "background": "#d92916",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#9e271d",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#f3bbb4",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "rgba(33,36,44,0.32)",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "rgba(255,255,255,0.64)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.50)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#d92916",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "borderColor": "#d92916",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#d92916",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#f3bbb4",
+            "border": "none",
+            "borderColor": "#9e271d",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#9e271d",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.32)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "rgba(33,36,44,0.32)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#d92916",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "#d92916",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#d92916",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#9e271d",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "rgba(33,36,44,0.32)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`wonder-blocks-button example 4 1`] = `
+<table
+  style={
+    Object {
+      "background": "#d92916",
+      "color": "#ffffff",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#d92916",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            ":before": Object {
+              "borderColor": "#ffffff",
+              "borderRadius": 7,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "bottom": -3,
+              "content": "''",
+              "left": -3,
+              "position": "absolute",
+              "right": -3,
+              "top": -3,
+            },
+            "background": "#ffffff",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#d92916",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#f3bbb4",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#9e271d",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "rgba(255,255,255,0.64)",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#d92916",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(255,255,255,0.64)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#d92916",
+            "border": "none",
+            "borderColor": "#ffffff",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#9e271d",
+            "border": "none",
+            "borderColor": "#f3bbb4",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#f3bbb4",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(255,255,255,0.32)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "rgba(255,255,255,0.32)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "#ffffff",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#f3bbb4",
+            "cursor": "pointer",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "rgba(255,255,255,0.32)",
+            "cursor": "auto",
+            "height": 40,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`wonder-blocks-button example 5 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+      "textAlign": "center",
+    }
+  }
+>
+  <tr>
+    <th />
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Default
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Hovered/
+      <br />
+      Focused
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Active/
+      <br />
+      Pressed
+    </th>
+    <th
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+      Disabled
+    </th>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Primary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            ":before": Object {
+              "borderColor": "#1865f2",
+              "borderRadius": 7,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "bottom": -3,
+              "content": "''",
+              "left": -3,
+              "position": "absolute",
+              "right": -3,
+              "top": -3,
+            },
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#1b50b3",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#b5cefb",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "rgba(33,36,44,0.32)",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "rgba(255,255,255,0.64)",
+            "cursor": "auto",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Secondary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.50)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "borderColor": "#1865f2",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "#b5cefb",
+            "border": "none",
+            "borderColor": "#1b50b3",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "#1b50b3",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.32)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "color": "rgba(33,36,44,0.32)",
+            "cursor": "auto",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+  <tr
+    style={
+      Object {
+        "height": 60,
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    <th>
+      Tertiary
+    </th>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderColor": "#1865f2",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 2,
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={false}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "#1b50b3",
+            "cursor": "pointer",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+    <td>
+      <button
+        className=""
+        disabled={true}
+        style={
+          Object {
+            "background": "none",
+            "border": "none",
+            "borderRadius": 4,
+            "color": "rgba(33,36,44,0.32)",
+            "cursor": "auto",
+            "height": 32,
+            "margin": 0,
+            "outline": "none",
+            "paddingLeft": 4,
+            "paddingRight": 4,
+            "position": "relative",
+          }
+        }
+      >
+        <span
+          className=""
+          id={undefined}
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Label
+        </span>
+      </button>
+    </td>
+  </tr>
+</table>
+`;

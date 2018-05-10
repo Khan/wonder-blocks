@@ -3,7 +3,6 @@
 exports[`wonder-blocks-core example 1 1`] = `
 <div
   className=""
-  onClick={undefined}
   style={
     Object {
       "backgroundColor": "plum",
@@ -25,4 +24,45 @@ exports[`wonder-blocks-core example 1 1`] = `
     Hello, world!
   </span>
 </div>
+`;
+
+exports[`wonder-blocks-core example 2 1`] = `
+<div
+  className=""
+  style={Object {}}
+>
+  <div
+    className=""
+    onClick={[Function]}
+    style={Object {}}
+  >
+    Click me!
+  </div>
+  <span
+    aria-hidden={true}
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+      }
+    }
+  >
+    This text is hidden from screen readers.
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-core example 3 1`] = `
+<input
+  className=""
+  placeholder="hello, world"
+  style={
+    Object {
+      "backgroundColor": "pink",
+      "fontSize": 30,
+    }
+  }
+  type="text"
+/>
 `;

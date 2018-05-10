@@ -32,10 +32,18 @@ module.exports = {
             content: "packages/wonder-blocks-modal/docs.md",
             components: "packages/wonder-blocks-modal/components/*.js",
             ignore: [
+                "**/components/focus-trap.js",
                 "**/components/modal-backdrop.js",
                 "**/components/modal-close-button.js",
                 "**/components/modal-launcher-portal.js",
+                "**/components/scroll-disabler.js",
             ],
+        },
+        {
+            name: "Button",
+            content: "packages/wonder-blocks-button/docs.md",
+            components: "packages/wonder-blocks-button/components/*.js",
+            ignore: ["**/components/button-core.js"],
         },
     ],
 

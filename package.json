@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
+    "lint": "eslint --config ./eslint/eslintrc packages",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
@@ -19,6 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-core": "6.18.0",
+    "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
@@ -28,6 +30,13 @@
     "babylon": "^6.18.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-15": "^1.0.5",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "2.6.0",
+    "eslint-plugin-flowtype": "^2.25.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "2.3.1",
+    "eslint-plugin-react": "7.7.0",
+    "eslint-plugin-react-native-animation-linter": "0.1.1",
     "flow-bin": "0.53.0",
     "glob": "^7.1.2",
     "jest": "^22.4.2",
@@ -56,6 +65,7 @@
     }
   },
   "pre-commit": [
+    "lint",
     "test",
     "git-add-snapshot-tests",
     "pretty-quick"
