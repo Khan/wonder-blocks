@@ -9,7 +9,7 @@ import View from "./components/view.js";
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
         const {StyleSheet} = require("aphrodite");
-        
+
         const styles = StyleSheet.create({
             container: {
                 padding: 32,
@@ -20,32 +20,32 @@ describe("wonder-blocks-core", () => {
                 fontSize: 24,
             },
         });
-        
-        const example = <View style={styles.container}>
-            <Text style={styles.text}>
-                Hello, world!
-            </Text>
-        </View>
+
+        const example = (
+            <View style={styles.container}>
+                <Text style={styles.text}>Hello, world!</Text>
+            </View>
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const example = <View>
-            <View onClick={() => alert("Clicked!")}>
-                Click me!
+        const example = (
+            <View>
+                <View onClick={() => alert("Clicked!")}>Click me!</View>
+
+                <Text aria-hidden>
+                    This text is hidden from screen readers.
+                </Text>
             </View>
-        
-            <Text aria-hidden>
-                This text is hidden from screen readers.
-            </Text>
-        </View>
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
         const {addStyle} = require("./index.js");
         const {StyleSheet} = require("aphrodite");
-        
+
         const styles = StyleSheet.create({
             // default style for all instances of StyledInput
             input: {
@@ -56,10 +56,16 @@ describe("wonder-blocks-core", () => {
                 backgroundColor: "pink",
             },
         });
-        
+
         const StyledInput = addStyle("input", styles.input);
-        
-        const example = <StyledInput style={styles.pink} type="text" placeholder="hello, world"/>;
+
+        const example = (
+            <StyledInput
+                style={styles.pink}
+                type="text"
+                placeholder="hello, world"
+            />
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
