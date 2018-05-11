@@ -62,11 +62,7 @@ export default class ButtonCore extends React.Component<Props> {
                 href={href}
                 {...handlers}
             >
-                <LabelLarge
-                    style={[size === "small" && sharedStyles.smallFont]}
-                >
-                    {children}
-                </LabelLarge>
+                <LabelLarge>{children}</LabelLarge>
             </Tag>
         );
     }
@@ -93,9 +89,6 @@ const sharedStyles = StyleSheet.create({
     },
     small: {
         height: 32,
-    },
-    smallFont: {
-        fontSize: 14,
     },
 });
 
@@ -180,15 +173,15 @@ const _generateStyles = (color, kind, light) => {
             default: {
                 background: "none",
                 color: light ? white : color,
-                paddingLeft: 6,
-                paddingRight: 6,
+                paddingLeft: 4,
+                paddingRight: 4,
             },
             focus: {
                 borderColor: light ? white : color,
                 borderStyle: "solid",
                 borderWidth: 2,
-                paddingLeft: 4,
-                paddingRight: 4,
+                paddingLeft: 2,
+                paddingRight: 2,
             },
             active: {
                 color: light
