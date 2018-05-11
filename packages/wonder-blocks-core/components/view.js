@@ -1,25 +1,24 @@
 // @flow
 import React from "react";
+import {StyleSheet} from "aphrodite";
 
-import {processStyleList} from "../util/util.js";
+import {addStyle} from "../util/add-style.js";
 
 import type {Props} from "../util/types.js";
+
+const styles = StyleSheet.create({
+    default: {
+        display: "flex",
+        flexDirection: "column",
+    },
+});
+
+const StyledDiv = addStyle("div", styles.default);
 
 export default class View extends React.Component<Props> {
     props: Props;
 
     render() {
-        const {children, style, ...otherProps} = this.props;
-        const styleAttributes = processStyleList(style);
-
-        return (
-            <div
-                {...otherProps}
-                style={styleAttributes.style}
-                className={styleAttributes.className}
-            >
-                {children}
-            </div>
-        );
+        return <StyledDiv {...this.props} />;
     }
 }

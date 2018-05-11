@@ -68,10 +68,27 @@ exports[`wonder-blocks-button example 1 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_r594hu"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#1865f2",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -94,10 +111,39 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_r594hu-o_O-focus_653n95"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              ":before": Object {
+                "borderColor": "#1865f2",
+                "borderRadius": 7,
+                "borderStyle": "solid",
+                "borderWidth": 2,
+                "bottom": -3,
+                "content": "''",
+                "left": -3,
+                "position": "absolute",
+                "right": -3,
+                "top": -3,
+              },
+              "alignItems": "center",
+              "background": "#1865f2",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -120,10 +166,27 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_r594hu-o_O-active_ggw6ry"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#1b50b3",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#b5cefb",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -146,10 +209,27 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_r594hu-o_O-disabled_1w7pcko"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "rgba(33,36,44,0.32)",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "rgba(255,255,255,0.64)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -184,10 +264,30 @@ exports[`wonder-blocks-button example 1 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_nhzqyc"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(33,36,44,0.50)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -210,10 +310,30 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_nhzqyc-o_O-focus_1tokxmj"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "borderColor": "#1865f2",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -236,10 +356,30 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_nhzqyc-o_O-active_1r3agrx"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#b5cefb",
+              "border": "none",
+              "borderColor": "#1b50b3",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#1b50b3",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -262,10 +402,30 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_nhzqyc-o_O-disabled_1rke1mr"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(33,36,44,0.32)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -300,10 +460,27 @@ exports[`wonder-blocks-button example 1 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1hnxdow"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -326,10 +503,30 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1hnxdow-o_O-focus_1xgwdxn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "#1865f2",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -352,10 +549,27 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1hnxdow-o_O-active_1udmvi8"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1b50b3",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -378,10 +592,27 @@ exports[`wonder-blocks-button example 1 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_1hnxdow-o_O-disabled_ehqzfp"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -476,10 +707,27 @@ exports[`wonder-blocks-button example 2 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1imy9aa"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -502,10 +750,39 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1imy9aa-o_O-focus_1a3epdz"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              ":before": Object {
+                "borderColor": "#ffffff",
+                "borderRadius": 7,
+                "borderStyle": "solid",
+                "borderWidth": 2,
+                "bottom": -3,
+                "content": "''",
+                "left": -3,
+                "position": "absolute",
+                "right": -3,
+                "top": -3,
+              },
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -528,10 +805,27 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1imy9aa-o_O-active_rhtw9a"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#b5cefb",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1b50b3",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -554,10 +848,27 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_1imy9aa-o_O-disabled_1bghbg4"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "rgba(255,255,255,0.64)",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -592,10 +903,30 @@ exports[`wonder-blocks-button example 2 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1shc7ui"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(255,255,255,0.64)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -618,10 +949,30 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1shc7ui-o_O-focus_gvewhn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#1865f2",
+              "border": "none",
+              "borderColor": "#ffffff",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -644,10 +995,30 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1shc7ui-o_O-active_1bd05sv"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#1b50b3",
+              "border": "none",
+              "borderColor": "#b5cefb",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#b5cefb",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -670,10 +1041,30 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_1shc7ui-o_O-disabled_1rprq5f"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(255,255,255,0.32)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "rgba(255,255,255,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -708,10 +1099,27 @@ exports[`wonder-blocks-button example 2 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_t7qze6"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -734,10 +1142,30 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_t7qze6-o_O-focus_pqzh2t"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "#ffffff",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -760,10 +1188,27 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_t7qze6-o_O-active_169x9f6"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#b5cefb",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -786,10 +1231,27 @@ exports[`wonder-blocks-button example 2 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_t7qze6-o_O-disabled_1p0v4sy"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "rgba(255,255,255,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -883,10 +1345,27 @@ exports[`wonder-blocks-button example 3 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_tdur71"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#d92916",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -909,10 +1388,39 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_tdur71-o_O-focus_1aqalti"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              ":before": Object {
+                "borderColor": "#d92916",
+                "borderRadius": 7,
+                "borderStyle": "solid",
+                "borderWidth": 2,
+                "bottom": -3,
+                "content": "''",
+                "left": -3,
+                "position": "absolute",
+                "right": -3,
+                "top": -3,
+              },
+              "alignItems": "center",
+              "background": "#d92916",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -935,10 +1443,27 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_tdur71-o_O-active_o202oj"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#9e271d",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#f3bbb4",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -961,10 +1486,27 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_tdur71-o_O-disabled_1w7pcko"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "rgba(33,36,44,0.32)",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "rgba(255,255,255,0.64)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -999,10 +1541,30 @@ exports[`wonder-blocks-button example 3 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_jnoznf"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(33,36,44,0.50)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#d92916",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1025,10 +1587,30 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_jnoznf-o_O-focus_oj5g4"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "borderColor": "#d92916",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#d92916",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1051,10 +1633,30 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_jnoznf-o_O-active_16aybtn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#f3bbb4",
+              "border": "none",
+              "borderColor": "#9e271d",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#9e271d",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1077,10 +1679,30 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_jnoznf-o_O-disabled_1rke1mr"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(33,36,44,0.32)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1115,10 +1737,27 @@ exports[`wonder-blocks-button example 3 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1mhrujj"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#d92916",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1141,10 +1780,30 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1mhrujj-o_O-focus_flt1z8"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "#d92916",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#d92916",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1167,10 +1826,27 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1mhrujj-o_O-active_esl9fv"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#9e271d",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1193,10 +1869,27 @@ exports[`wonder-blocks-button example 3 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_1mhrujj-o_O-disabled_ehqzfp"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1291,10 +1984,27 @@ exports[`wonder-blocks-button example 4 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_d2y3ot"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#d92916",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1317,10 +2027,39 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_d2y3ot-o_O-focus_1a3epdz"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              ":before": Object {
+                "borderColor": "#ffffff",
+                "borderRadius": 7,
+                "borderStyle": "solid",
+                "borderWidth": 2,
+                "bottom": -3,
+                "content": "''",
+                "left": -3,
+                "position": "absolute",
+                "right": -3,
+                "top": -3,
+              },
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#d92916",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1343,10 +2082,27 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_d2y3ot-o_O-active_1h9ov83"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#f3bbb4",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#9e271d",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1369,10 +2125,27 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_d2y3ot-o_O-disabled_qkki4b"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "rgba(255,255,255,0.64)",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#d92916",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1407,10 +2180,30 @@ exports[`wonder-blocks-button example 4 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1shc7ui"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(255,255,255,0.64)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1433,10 +2226,30 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1shc7ui-o_O-focus_cyoct0"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#d92916",
+              "border": "none",
+              "borderColor": "#ffffff",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1459,10 +2272,30 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1shc7ui-o_O-active_yk48z8"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#9e271d",
+              "border": "none",
+              "borderColor": "#f3bbb4",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#f3bbb4",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1485,10 +2318,30 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_1shc7ui-o_O-disabled_1rprq5f"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(255,255,255,0.32)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "rgba(255,255,255,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1523,10 +2376,27 @@ exports[`wonder-blocks-button example 4 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_t7qze6"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1549,10 +2419,30 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_t7qze6-o_O-focus_pqzh2t"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "#ffffff",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1575,10 +2465,27 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_t7qze6-o_O-active_pekw78"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#f3bbb4",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1601,10 +2508,27 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_t7qze6-o_O-disabled_1p0v4sy"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "rgba(255,255,255,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1698,10 +2622,27 @@ exports[`wonder-blocks-button example 5 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_r594hu-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#1865f2",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1724,10 +2665,39 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_r594hu-o_O-focus_653n95-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              ":before": Object {
+                "borderColor": "#1865f2",
+                "borderRadius": 7,
+                "borderStyle": "solid",
+                "borderWidth": 2,
+                "bottom": -3,
+                "content": "''",
+                "left": -3,
+                "position": "absolute",
+                "right": -3,
+                "top": -3,
+              },
+              "alignItems": "center",
+              "background": "#1865f2",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1750,10 +2720,27 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_r594hu-o_O-active_ggw6ry-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#1b50b3",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#b5cefb",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1776,10 +2763,27 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_r594hu-o_O-disabled_1w7pcko-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "rgba(33,36,44,0.32)",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "rgba(255,255,255,0.64)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1814,10 +2818,30 @@ exports[`wonder-blocks-button example 5 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_nhzqyc-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(33,36,44,0.50)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1840,10 +2864,30 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_nhzqyc-o_O-focus_1tokxmj-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "borderColor": "#1865f2",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1866,10 +2910,30 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_nhzqyc-o_O-active_1r3agrx-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#b5cefb",
+              "border": "none",
+              "borderColor": "#1b50b3",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#1b50b3",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1892,10 +2956,30 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_nhzqyc-o_O-disabled_1rke1mr-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(33,36,44,0.32)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1930,10 +3014,27 @@ exports[`wonder-blocks-button example 5 1`] = `
       </th>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1hnxdow-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1956,10 +3057,30 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1hnxdow-o_O-focus_1xgwdxn-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "#1865f2",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -1982,10 +3103,27 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-default_1hnxdow-o_O-active_1udmvi8-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1b50b3",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""
@@ -2008,10 +3146,27 @@ exports[`wonder-blocks-button example 5 1`] = `
       </td>
       <td>
         <button
-          className="shared_ew9he-o_O-disabled_mqm918-o_O-default_1hnxdow-o_O-disabled_ehqzfp-o_O-small_xwkmkn"
+          className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.32)",
+              "cursor": "auto",
+              "display": "inline-flex",
+              "height": 32,
+              "outline": "none",
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
         >
           <span
             className=""

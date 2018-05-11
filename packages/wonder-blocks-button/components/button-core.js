@@ -1,9 +1,10 @@
 // @flow
 import React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import {LabelLarge} from "wonder-blocks-typography";
 import Color, {mix, fade} from "wonder-blocks-color";
+import {addStyle} from "wonder-blocks-core";
 import type {SharedProps} from "./button.js";
 import type {Handlers} from "./clickable-behavior.js";
 
@@ -14,6 +15,8 @@ type Props = SharedProps &
         pressed: boolean,
         href?: string,
     };
+
+const StyledButton = addStyle("button");
 
 export default class ButtonCore extends React.Component<Props> {
     render() {
@@ -30,15 +33,15 @@ export default class ButtonCore extends React.Component<Props> {
             hovered,
             focused,
             pressed,
-            href,
+            href, // eslint-disable-line no-unused-vars
             ...handlers
         } = this.props;
 
         const buttonStyles = _generateStyles(color, kind, light);
-        const Tag = href ? "a" : "button";
+
         return (
-            <Tag
-                className={css(
+            <StyledButton
+                style={[
                     sharedStyles.shared,
                     disabled && sharedStyles.disabled,
                     buttonStyles.default,
@@ -48,14 +51,13 @@ export default class ButtonCore extends React.Component<Props> {
                             ? buttonStyles.active
                             : (hovered || focused) && buttonStyles.focus),
                     size === "small" && sharedStyles.small,
-                )}
-                href={href}
+                ]}
                 disabled={disabled}
                 data-test-id={testId}
                 {...handlers}
             >
                 <LabelLarge>{children}</LabelLarge>
-            </Tag>
+            </StyledButton>
         );
     }
 }

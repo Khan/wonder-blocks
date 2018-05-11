@@ -1,0 +1,465 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-spacing example 1 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      xxxSmall
+      : 
+      4
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 4,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 4,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      xxSmall
+      : 
+      6
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 6,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 6,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      xSmall
+      : 
+      8
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 8,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 8,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      small
+      : 
+      12
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 12,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 12,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      medium
+      : 
+      16
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 16,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 16,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      large
+      : 
+      24
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 24,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 24,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      xLarge
+      : 
+      32
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 32,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 32,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      xxLarge
+      : 
+      48
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 48,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 48,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "marginBottom": 6,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "paddingRight": 8,
+          "textAlign": "right",
+          "width": 250,
+        }
+      }
+    >
+      xxxLarge
+      : 
+      64
+      px
+    </div>
+    <div
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 64,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "backgroundColor": "black",
+            "height": 4,
+            "width": 64,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "black",
+          "height": 64,
+          "width": 4,
+        }
+      }
+    />
+  </div>
+</div>
+`;
