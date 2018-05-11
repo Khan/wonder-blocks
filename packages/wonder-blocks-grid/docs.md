@@ -15,25 +15,27 @@ const styles = StyleSheet.create({
 	cell: {
 		height: 100,
 		padding: 5,
+	},
 
-		"@media (max-width: 767px)": {
-			background: Color.blue,
-		},
+	small: {
+		background: Color.blue,
+	},
 
-		"@media (min-width: 768px) and (max-width: 1023px)": {
-			background: Color.green,
-		},
+	medium: {
+		background: Color.green,
+	},
 
-		"@media (min-width: 1024px)": {
-			background: Color.gold,
-		},
+	large: {
+		background: Color.gold,
 	},
 });
+
+const cellStyles = [styles.cell, (size) => styles[size]];
 
 <View style={styles.background}>
 	<Grid>
 		<Row>
-			<FlexCell style={styles.cell}>
+			<FlexCell style={cellStyles}>
 				<Text>FlexCell</Text>
 				<br />
 				<br />
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
 					<Text>Gutter ⇢</Text>
 				</View>
 			</FlexCell>
-			<FixedWidthCell style={styles.cell} width={100}>
+			<FixedWidthCell style={cellStyles} width={100}>
 				<Text>FixedWidthCell (100px)</Text>
 				<br />
 				<br />
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
 					<Text>⇠ Gutters ⇢</Text>
 				</View>
 			</FixedWidthCell>
-			<Cell largeCols={2} style={styles.cell}>
+			<Cell largeCols={2} style={cellStyles}>
 				<Text>Cell (2 columns wide)</Text>
 				<br />
 				<br />
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
 					<Text>⇠ Gutters ⇢</Text>
 				</View>
 			</Cell>
-			<Cell smallCols={1} mediumCols={3} largeCols={5} style={styles.cell}>
+			<Cell smallCols={1} mediumCols={3} largeCols={5} style={cellStyles}>
 				{({cols}) => {
 					return (
 						<View>

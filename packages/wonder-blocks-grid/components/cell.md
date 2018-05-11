@@ -14,58 +14,60 @@ const styles = StyleSheet.create({
 	cell: {
 		height: 100,
 		padding: "5px 0",
+	},
 
-		"@media (max-width: 767px)": {
-			background: Color.blue,
-		},
+	small: {
+		background: Color.blue,
+	},
 
-		"@media (min-width: 768px) and (max-width: 1023px)": {
-			background: Color.green,
-		},
+	medium: {
+		background: Color.green,
+	},
 
-		"@media (min-width: 1024px)": {
-			background: Color.gold,
-		},
+	large: {
+		background: Color.gold,
 	},
 });
+
+const cellStyles = [styles.cell, (size) => styles[size]];
 
 <View style={styles.background}>
 	<Grid>
 		<Row>
-			<Cell cols={1} style={styles.cell}>
+			<Cell cols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell cols={1} style={styles.cell}>
+			<Cell cols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell cols={1} style={styles.cell}>
+			<Cell cols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell cols={1} style={styles.cell}>
+			<Cell cols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell mediumCols={1} largeCols={1} style={styles.cell}>
+			<Cell mediumCols={1} largeCols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell mediumCols={1} largeCols={1} style={styles.cell}>
+			<Cell mediumCols={1} largeCols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell mediumCols={1} largeCols={1} style={styles.cell}>
+			<Cell mediumCols={1} largeCols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell mediumCols={1} largeCols={1} style={styles.cell}>
+			<Cell mediumCols={1} largeCols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell largeCols={1} style={styles.cell}>
+			<Cell largeCols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell largeCols={1} style={styles.cell}>
+			<Cell largeCols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell largeCols={1} style={styles.cell}>
+			<Cell largeCols={1} style={cellStyles}>
 				1
 			</Cell>
-			<Cell largeCols={1} style={styles.cell}>
+			<Cell largeCols={1} style={cellStyles}>
 				1
 			</Cell>
 		</Row>

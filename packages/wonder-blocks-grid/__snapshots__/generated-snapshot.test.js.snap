@@ -62,15 +62,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 767px)": Object {
-                "background": "#1865f2",
-              },
-              "@media (min-width: 1024px)": Object {
-                "background": "#ffb100",
-              },
-              "@media (min-width: 768px) and (max-width: 1023px)": Object {
-                "background": "#00a60e",
-              },
+              "background": "#ffb100",
               "display": "flex",
               "flexDirection": "column",
               "flexGrow": 1,
@@ -145,18 +137,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 767px)": Object {
-                "background": "#1865f2",
-              },
-              "@media (min-width: 1024px)": Object {
-                "background": "#ffb100",
-              },
-              "@media (min-width: 768px) and (max-width: 1023px)": Object {
-                "background": "#00a60e",
-              },
               "MsFlexBasis": 100,
               "MsFlexPreferredSize": 100,
               "WebkitFlexBasis": 100,
+              "background": "#ffb100",
               "display": "flex",
               "flexBasis": 100,
               "flexDirection": "column",
@@ -220,18 +204,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 767px)": Object {
-                "background": "#1865f2",
-              },
-              "@media (min-width: 1024px)": Object {
-                "background": "#ffb100",
-              },
-              "@media (min-width: 768px) and (max-width: 1023px)": Object {
-                "background": "#00a60e",
-              },
               "MsFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
               "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
               "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
+              "background": "#ffb100",
               "display": "flex",
               "flexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
               "flexDirection": "column",
@@ -295,18 +271,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 767px)": Object {
-                "background": "#1865f2",
-              },
-              "@media (min-width: 1024px)": Object {
-                "background": "#ffb100",
-              },
-              "@media (min-width: 768px) and (max-width: 1023px)": Object {
-                "background": "#00a60e",
-              },
               "MsFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
               "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
               "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+              "background": "#ffb100",
               "display": "flex",
               "flexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
               "flexDirection": "column",
