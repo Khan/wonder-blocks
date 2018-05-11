@@ -16,6 +16,7 @@ type Props = SharedProps &
         href?: string,
     };
 
+const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 
 export default class ButtonCore extends React.Component<Props> {
@@ -33,31 +34,40 @@ export default class ButtonCore extends React.Component<Props> {
             hovered,
             focused,
             pressed,
-            href, // eslint-disable-line no-unused-vars
+            href,
             ...handlers
         } = this.props;
 
         const buttonStyles = _generateStyles(color, kind, light);
 
+        const defaultStyle = [
+            sharedStyles.shared,
+            disabled && sharedStyles.disabled,
+            buttonStyles.default,
+            disabled && buttonStyles.disabled,
+            !disabled &&
+                (pressed
+                    ? buttonStyles.active
+                    : (hovered || focused) && buttonStyles.focus),
+            size === "small" && sharedStyles.small,
+        ];
+
+        const Tag = href ? StyledAnchor : StyledButton;
+
         return (
-            <StyledButton
-                style={[
-                    sharedStyles.shared,
-                    disabled && sharedStyles.disabled,
-                    buttonStyles.default,
-                    disabled && buttonStyles.disabled,
-                    !disabled &&
-                        (pressed
-                            ? buttonStyles.active
-                            : (hovered || focused) && buttonStyles.focus),
-                    size === "small" && sharedStyles.small,
-                ]}
+            <Tag
+                style={[defaultStyle, style]}
                 disabled={disabled}
                 data-test-id={testId}
+                href={href}
                 {...handlers}
             >
-                <LabelLarge>{children}</LabelLarge>
-            </StyledButton>
+                <LabelLarge
+                    style={[size === "small" && sharedStyles.smallFont]}
+                >
+                    {children}
+                </LabelLarge>
+            </Tag>
         );
     }
 }
@@ -67,6 +77,7 @@ const sharedStyles = StyleSheet.create({
         position: "relative",
         display: "inline-flex",
         alignItems: "center",
+        justifyContent: "center",
         height: 40,
         paddingLeft: 16,
         paddingRight: 16,
@@ -82,6 +93,9 @@ const sharedStyles = StyleSheet.create({
     },
     small: {
         height: 32,
+    },
+    smallFont: {
+        fontSize: 14,
     },
 });
 
@@ -142,8 +156,8 @@ const _generateStyles = (color, kind, light) => {
                 background: light ? color : white,
                 borderColor: light ? white : color,
                 borderWidth: 2,
-                paddingLeft: 14,
-                paddingRight: 14,
+                paddingLeft: 15,
+                paddingRight: 15,
             },
             active: {
                 background: light
@@ -166,13 +180,15 @@ const _generateStyles = (color, kind, light) => {
             default: {
                 background: "none",
                 color: light ? white : color,
-                paddingLeft: 4,
-                paddingRight: 4,
+                paddingLeft: 6,
+                paddingRight: 6,
             },
             focus: {
                 borderColor: light ? white : color,
                 borderStyle: "solid",
                 borderWidth: 2,
+                paddingLeft: 4,
+                paddingRight: 4,
             },
             active: {
                 color: light

@@ -4,7 +4,6 @@ A `Button` is a clickable button element consisting of a `ClickableBehavior` (TO
 
 Blue ButtonCores:
 ```js
-const {View} = require("wonder-blocks-core");
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
@@ -208,7 +207,6 @@ const {blue, red, white, offWhite} = Color;
 
 Blue ButtonCores, Light:
 ```js
-const {View} = require("wonder-blocks-core");
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
@@ -412,7 +410,6 @@ const {blue, red, white, offWhite} = Color;
 
 Red ButtonCores:
 ```js
-const {View} = require("wonder-blocks-core");
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
@@ -616,7 +613,6 @@ const {blue, red, white, offWhite} = Color;
 
 Red ButtonCores, Light:
 ```js
-const {View} = require("wonder-blocks-core");
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
@@ -820,7 +816,6 @@ const {blue, red, white, offWhite} = Color;
 
 Blue ButtonCores, Small:
 ```js
-const {View} = require("wonder-blocks-core");
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 

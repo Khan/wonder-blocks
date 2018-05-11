@@ -7,7 +7,6 @@ import Button from "./components/button.js";
 
 describe("wonder-blocks-button", () => {
     it("example 1", () => {
-        const {View} = require("wonder-blocks-core");
         const Color = require("wonder-blocks-color").default;
         const ButtonCore = require("./components/button-core.js").default;
 
@@ -213,7 +212,6 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const {View} = require("wonder-blocks-core");
         const Color = require("wonder-blocks-color").default;
         const ButtonCore = require("./components/button-core.js").default;
 
@@ -421,7 +419,6 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
-        const {View} = require("wonder-blocks-core");
         const Color = require("wonder-blocks-color").default;
         const ButtonCore = require("./components/button-core.js").default;
 
@@ -627,7 +624,6 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
-        const {View} = require("wonder-blocks-core");
         const Color = require("wonder-blocks-color").default;
         const ButtonCore = require("./components/button-core.js").default;
 
@@ -833,7 +829,6 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
-        const {View} = require("wonder-blocks-core");
         const Color = require("wonder-blocks-color").default;
         const ButtonCore = require("./components/button-core.js").default;
 

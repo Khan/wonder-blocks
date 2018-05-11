@@ -53,7 +53,7 @@ type Props = {
     children: (state: State, handlers: Handlers) => React$Element<*>,
     disabled: boolean,
     href?: string,
-    onClick?: (e: SyntheticMouseEvent<>) => void,
+    onClick?: (e: SyntheticEvent<>) => void,
 };
 
 type State = {
@@ -67,12 +67,12 @@ export type Handlers = {
     onMouseEnter: () => void,
     onMouseLeave: () => void,
     onMouseDown: () => void,
-    onMouseUp: () => void,
+    onMouseUp: (e: SyntheticMouseEvent<>) => void,
     onTouchStart: () => void,
     onTouchEnd: () => void,
     onTouchCancel: () => void,
-    onKeyDown: (e: KeyboardEvent) => void,
-    onKeyUp: (e: KeyboardEvent) => void,
+    onKeyDown: (e: SyntheticKeyboardEvent<*>) => void,
+    onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
     onBlur: (e: SyntheticFocusEvent<*>) => void,
 };
 
@@ -98,6 +98,7 @@ const keyCodes = {
 
 export default class ClickableBehavior extends React.Component<Props, State> {
     waitingForClick: boolean;
+    keyboardClick: boolean;
 
     static defaultProps = {
         disabled: false,
@@ -116,7 +117,12 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     handleClick = (e: SyntheticMouseEvent<>) => {
         if (this.props.onClick) {
             this.waitingForClick = false;
-            this.props.onClick(e);
+            if (this.keyboardClick) {
+                e.preventDefault();
+                this.keyboardClick = false;
+            } else {
+                this.props.onClick(e);
+            }
         }
     };
 
@@ -136,7 +142,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         this.setState({pressed: true});
     };
 
-    handleMouseUp = () => {
+    handleMouseUp = (e: SyntheticMouseEvent<>) => {
         this.setState({pressed: false});
     };
 
@@ -154,7 +160,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         this.waitingForClick = true;
     };
 
-    handleKeyDown = (e: KeyboardEvent) => {
+    handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
         if (keyCode === keyCodes.tab) {
             this.setState({focused: false});
@@ -163,11 +169,12 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                 ? keyCode === keyCodes.enter
                 : keyCode === keyCodes.space
         ) {
+            this.keyboardClick = true;
             this.setState({pressed: true});
         }
     };
 
-    handleKeyUp = (e: KeyboardEvent) => {
+    handleKeyUp = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
         if (keyCode === keyCodes.tab) {
             this.setState({focused: true});
@@ -177,11 +184,22 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                 : keyCode === keyCodes.space
         ) {
             this.setState({pressed: false});
+            if (this.props.onClick) {
+                this.props.onClick(e);
+            }
+            this.maybeNavigate();
         }
     };
 
     handleBlur = (e: SyntheticFocusEvent<*>) => {
         this.setState({focused: false, pressed: false});
+    };
+
+    maybeNavigate = () => {
+        const {href} = this.props;
+        if (href) {
+            window.location.assign(href);
+        }
     };
 
     render() {

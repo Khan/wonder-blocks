@@ -121,11 +121,11 @@ describe("ClickableBehavior", () => {
             <ClickableBehavior
                 disabled={false}
                 onClick={(e) => onClick(e)}
-                href="www.khanacademy.org"
+                href="https://www.khanacademy.org"
             >
                 {(state, handlers) => {
                     return (
-                        <a href="www.khanacademy.org" {...handlers}>
+                        <a href="https://www.khanacademy.org" {...handlers}>
                             Label
                         </a>
                     );
@@ -167,6 +167,10 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
 
+        expect(onClick).not.toHaveBeenCalled();
+        button.simulate("click");
+        expect(onClick).not.toHaveBeenCalled();
+
         expect(button.state("hovered")).toEqual(false);
         button.simulate("mouseenter");
         expect(button.state("hovered")).toEqual(false);
@@ -185,6 +189,10 @@ describe("ClickableBehavior", () => {
         button.simulate("touchend");
         expect(button.state("pressed")).toEqual(false);
 
+        button.simulate("touchstart");
+        button.simulate("touchcancel");
+        expect(button.state("pressed")).toEqual(false);
+
         expect(button.state("focused")).toEqual(false);
         button.simulate("keyup", {keyCode: keyCodes.tab});
         expect(button.state("focused")).toEqual(false);
@@ -197,11 +205,18 @@ describe("ClickableBehavior", () => {
         button.simulate("keyup", {keyCode: keyCodes.space});
         expect(button.state("pressed")).toEqual(false);
 
+        button.simulate("keydown", {keyCode: keyCodes.space});
+        button.simulate("blur");
+        expect(button.state("pressed")).toEqual(false);
+
         const anchor = shallow(
-            <ClickableBehavior disabled={true} href="www.khanacademy.org">
+            <ClickableBehavior
+                disabled={true}
+                href="https://www.khanacademy.org"
+            >
                 {(state, handlers) => {
                     return (
-                        <a href="www.khanacademy.org" {...handlers}>
+                        <a href="https://www.khanacademy.org" {...handlers}>
                             Label
                         </a>
                     );
