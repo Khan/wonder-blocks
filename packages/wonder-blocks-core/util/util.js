@@ -3,14 +3,20 @@ import {css} from "aphrodite";
 
 import type {StyleType} from "./types.js";
 
-function flatten<T: Object>(list?: StyleType<T>): Array<T> {
+export type GridSize = "small" | "medium" | "large";
+
+function flatten<T: Object>(list?: StyleType<T>, gridSize: GridSize): Array<T> {
     const result: Array<T> = [];
+
+    if (typeof list === "function") {
+        list = list(gridSize);
+    }
 
     if (!list) {
         return result;
     } else if (Array.isArray(list)) {
         for (const item of list) {
-            result.push(...flatten(item));
+            result.push(...flatten(item, gridSize));
         }
     } else {
         result.push(list);
@@ -19,7 +25,10 @@ function flatten<T: Object>(list?: StyleType<T>): Array<T> {
     return result;
 }
 
-export function processStyleList<T: Object>(style?: StyleType<T>) {
+export function processStyleList<T: Object>(
+    style?: StyleType<T>,
+    gridSize: GridSize = "large",
+) {
     const stylesheetStyles = [];
     const inlineStyles = [];
 
@@ -30,7 +39,7 @@ export function processStyleList<T: Object>(style?: StyleType<T>) {
         };
     }
 
-    flatten(style).forEach((child: T) => {
+    flatten(style, gridSize).forEach((child: T) => {
         // Check for aphrodite internal property
         if ((child: any)._definition) {
             if (

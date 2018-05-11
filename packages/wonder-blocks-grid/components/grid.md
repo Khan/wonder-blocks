@@ -14,25 +14,27 @@ const styles = StyleSheet.create({
 	cell: {
 		height: 100,
 		padding: 5,
+	},
 
-		"@media (max-width: 767px)": {
-			background: Color.blue,
-		},
+	small: {
+		background: Color.blue,
+	},
 
-		"@media (min-width: 768px) and (max-width: 1023px)": {
-			background: Color.green,
-		},
+	medium: {
+		background: Color.green,
+	},
 
-		"@media (min-width: 1024px)": {
-			background: Color.gold,
-		},
+	large: {
+		background: Color.gold,
 	},
 });
+
+const cellStyles = [styles.cell, (size) => styles[size]];
 
 <View style={styles.background}>
 	<Grid>
 		<Row>
-			<FlexCell style={styles.cell}>
+			<FlexCell style={cellStyles}>
 				{({totalColumns, gridSize}) => (
 					<Text>
 						Grid Size: {gridSize} Total Columns: {totalColumns}
