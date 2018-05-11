@@ -12,7 +12,7 @@ const {smOrSmaller} = require("../util/util.js");
 const styles = StyleSheet.create({
     example: {
         padding: 32,
-        textAlign: "center",
+        alignItems: "center",
     },
 
     title: {

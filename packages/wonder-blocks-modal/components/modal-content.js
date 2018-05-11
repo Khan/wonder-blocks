@@ -33,6 +33,10 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         overflow: "auto",
+
+        // This helps to ensure that the paddingBottom is preserved when
+        // the contents start to overflow, this goes away on display: flex
+        display: "block",
     },
 
     content: {
