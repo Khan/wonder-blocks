@@ -5,7 +5,7 @@ import {shallow} from "enzyme";
 import StandardModal from "./standard-modal.js";
 
 describe("StandardModal", () => {
-    test("Clicking the close button triggers `onClickCloseButton`", () => {
+    test("Ensure the ModalCloseButton isn't inside.", () => {
         const wrapper = shallow(
             <StandardModal title="Title" content="Content" footer="Footer" />,
         );

@@ -5,11 +5,13 @@ import {StyleSheet} from "aphrodite";
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
-export default class ModalHeader extends React.Component<{
+type Props = {
     children: React.Node,
     style?: any,
     color: "light" | "dark",
-}> {
+};
+
+export default class ModalHeader extends React.Component<Props> {
     static defaultProps = {
         color: "dark",
     };
@@ -38,7 +40,6 @@ const styles = StyleSheet.create({
 
         display: "flex",
         flexDirection: "row",
-        overflow: "auto",
     },
 
     dark: {

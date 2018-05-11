@@ -6,12 +6,12 @@ import {View} from "wonder-blocks-core";
 
 import typeof ModalContentPane from "./modal-content-pane.js";
 
-export default class ModalDialog extends React.Component<{
-    children: React.ChildrenArray<React.Element<
-        ModalContentPane,
-    > | null | void>,
+type Props = {
+    children: React.ChildrenArray<?React.Element<ModalContentPane>>,
     style?: any,
-}> {
+};
+
+export default class ModalDialog extends React.Component<Props> {
     render() {
         const {style, children} = this.props;
         return (
@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
         overflow: "hidden",
 
         /*
-		// On mobile, we consume the full screen size.
-		[smOrSmaller]: {
-		    width: "100%",
-		    height: "100%",
-		    borderRadius: 0,
-		},
-		*/
+        // On mobile, we consume the full screen size.
+        [smOrSmaller]: {
+            width: "100%",
+            height: "100%",
+            borderRadius: 0,
+        },
+        */
     },
 });

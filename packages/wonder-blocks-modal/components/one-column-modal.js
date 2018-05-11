@@ -4,8 +4,6 @@ import {StyleSheet} from "aphrodite";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalContentPane from "./modal-content-pane.js";
-import ModalFooter from "./modal-footer.js";
-import ModalContent from "./modal-content.js";
 
 type Props = {
     /** The modal's content. */
@@ -45,10 +43,8 @@ export default class OneColumnModal extends React.Component<Props> {
                 <ModalContentPane
                     showCloseButton
                     onClickCloseButton={onClickCloseButton}
-                    content={<ModalContent>{content}</ModalContent>}
-                    footer={
-                        footer ? <ModalFooter>{footer}</ModalFooter> : undefined
-                    }
+                    content={content}
+                    footer={footer}
                 />
             </ModalDialog>
         );

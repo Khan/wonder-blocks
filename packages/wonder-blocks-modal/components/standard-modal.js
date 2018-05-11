@@ -4,8 +4,6 @@ import {StyleSheet} from "aphrodite";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalContentPane from "./modal-content-pane.js";
-import ModalHeader from "./modal-header.js";
-import ModalFooter from "./modal-footer.js";
 import ModalContent from "./modal-content.js";
 import ModalTitleBar from "./modal-title-bar.js";
 
@@ -81,20 +79,16 @@ export default class StandardModal extends React.Component<Props> {
                 <ModalContentPane
                     showCloseButton
                     onClickCloseButton={onClickCloseButton}
-                    titlebar={
+                    titleBar={
                         <ModalTitleBar
                             title={title}
                             subtitle={subtitle}
                             color={header ? "dark" : "light"}
                         />
                     }
-                    header={
-                        header ? <ModalHeader>{header}</ModalHeader> : undefined
-                    }
-                    content={<ModalContent>{content}</ModalContent>}
-                    footer={
-                        footer ? <ModalFooter>{footer}</ModalFooter> : undefined
-                    }
+                    header={header}
+                    content={content}
+                    footer={footer}
                 />
                 {preview ? (
                     <ModalContentPane

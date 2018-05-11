@@ -5,7 +5,7 @@ import {shallow} from "enzyme";
 import TwoColumnModal from "./two-column-modal.js";
 
 describe("TwoColumnModal", () => {
-    test("Has no ModalCloseButton as a direct child", () => {
+    test("Ensure the ModalCloseButton isn't inside.", () => {
         const wrapper = shallow(
             <TwoColumnModal sidebar="Sidebar" content="Contents" />,
         );

@@ -5,10 +5,12 @@ import {StyleSheet} from "aphrodite";
 import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
-export default class ModalFooter extends React.Component<{
+type Props = {
     children: React.Node,
     style?: any,
-}> {
+};
+
+export default class ModalFooter extends React.Component<Props> {
     render() {
         const {style, children} = this.props;
         return <View style={[styles.footer, style]}>{children}</View>;

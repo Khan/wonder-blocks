@@ -4,8 +4,6 @@ import {StyleSheet} from "aphrodite";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalContentPane from "./modal-content-pane.js";
-import ModalFooter from "./modal-footer.js";
-import ModalContent from "./modal-content.js";
 
 type Props = {
     /** The sidebar contents (which becomes the header on mobile screens). */
@@ -50,14 +48,12 @@ export default class TwoColumnModal extends React.Component<Props> {
                     color="dark"
                     onClickCloseButton={onClickCloseButton}
                     style={styles.column}
-                    content={<ModalContent>{sidebar}</ModalContent>}
+                    content={sidebar}
                 />
                 <ModalContentPane
                     style={styles.column}
-                    content={<ModalContent>{content}</ModalContent>}
-                    footer={
-                        footer ? <ModalFooter>{footer}</ModalFooter> : undefined
-                    }
+                    content={content}
+                    footer={footer}
                 />
             </ModalDialog>
         );

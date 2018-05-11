@@ -6,17 +6,16 @@ import Color from "wonder-blocks-color";
 import {View} from "wonder-blocks-core";
 
 import ModalCloseButton from "./modal-close-button.js";
+import ModalContent from "./modal-content.js";
+import ModalTitleBar from "./modal-title-bar.js";
+import ModalHeader from "./modal-header.js";
+import ModalFooter from "./modal-footer.js";
 
-import typeof ModalContent from "./modal-content.js";
-import typeof ModalTitleBar from "./modal-title-bar.js";
-import typeof ModalHeader from "./modal-header.js";
-import typeof ModalFooter from "./modal-footer.js";
-
-export default class ModalContentPane extends React.Component<{
-    content: React.Element<ModalContent>,
-    titlebar?: React.Element<ModalTitleBar>,
-    header?: React.Element<ModalHeader>,
-    footer?: React.Element<ModalFooter>,
+type Props = {
+    content: React.Element<typeof ModalContent> | React.Node,
+    titleBar?: React.Element<typeof ModalTitleBar>,
+    header?: React.Element<typeof ModalHeader> | React.Node,
+    footer?: React.Element<typeof ModalFooter> | React.Node,
     showCloseButton: boolean,
     color: "light" | "dark",
     style?: any,
@@ -34,7 +33,9 @@ export default class ModalContentPane extends React.Component<{
      * clicks too.)
      */
     onClickCloseButton: () => void,
-}> {
+};
+
+export default class ModalContentPane extends React.Component<Props> {
     static defaultProps = {
         showCloseButton: false,
         color: "light",
@@ -44,7 +45,7 @@ export default class ModalContentPane extends React.Component<{
     render() {
         const {
             content,
-            titlebar,
+            titleBar,
             header,
             footer,
             showCloseButton,
@@ -53,16 +54,30 @@ export default class ModalContentPane extends React.Component<{
             style,
         } = this.props;
 
-        const mainContent =
-            titlebar || footer
-                ? React.cloneElement(content, {
-                      style: [
-                          titlebar && styles.hasTitle,
-                          footer && styles.hasFooter,
-                          content.props.style,
-                      ],
-                  })
-                : content;
+        let mainContent =
+            content &&
+            typeof content === "object" &&
+            content.type === ModalContent ? (
+                ((content: any): React.Element<typeof ModalContent>)
+            ) : (
+                <ModalContent>{content}</ModalContent>
+            );
+
+        if (mainContent && (titleBar || footer || header)) {
+            mainContent = React.cloneElement(mainContent, {
+                header: header || mainContent.props.header,
+                style: [
+                    titleBar && styles.hasTitleBar,
+                    footer && styles.hasFooter,
+                    mainContent.props.style,
+                ],
+            });
+        }
+
+        // Figure out the background color that'll be behind the close button
+        // If a titlebar is specified then we use that, otherwise we use the
+        // default background color.
+        const topBackgroundColor = (titleBar && titleBar.props.color) || color;
 
         return (
             <View
@@ -72,19 +87,19 @@ export default class ModalContentPane extends React.Component<{
                     <View style={styles.closeButton}>
                         <ModalCloseButton
                             color={
-                                color === "dark" ||
-                                (titlebar && titlebar.props.color === "dark")
-                                    ? "light"
-                                    : "dark"
+                                topBackgroundColor === "dark" ? "light" : "dark"
                             }
                             onClick={onClickCloseButton}
                         />
                     </View>
                 )}
-                {titlebar}
-                {header}
+                {titleBar}
                 {mainContent}
-                {footer}
+                {!footer || footer.type === ModalFooter ? (
+                    footer
+                ) : (
+                    <ModalFooter>{footer}</ModalFooter>
+                )}
             </View>
         );
     }
@@ -111,7 +126,7 @@ const styles = StyleSheet.create({
         color: Color.white,
     },
 
-    hasTitle: {
+    hasTitleBar: {
         paddingTop: 32,
     },
 
