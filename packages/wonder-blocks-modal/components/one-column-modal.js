@@ -6,13 +6,10 @@ import ModalDialog from "./modal-dialog.js";
 import ModalContentPane from "./modal-content-pane.js";
 
 type Props = {
-    /** The sidebar contents (which becomes the header on mobile screens). */
-    sidebar: React.Node,
-
-    /** The main contents. */
+    /** The modal's content. */
     content: React.Node,
 
-    /** The optional footer to display beneath the content. */
+    /** The optional footer to display beneath the contents. */
     footer?: React.Node,
 
     /**
@@ -31,27 +28,21 @@ type Props = {
 };
 
 /**
- * A two-column modal layout.
+ * A one-column modal layout.
  */
-export default class TwoColumnModal extends React.Component<Props> {
+export default class OneColumnModal extends React.Component<Props> {
     static defaultProps = {
         onClickCloseButton: () => {},
     };
 
     render() {
-        const {onClickCloseButton, sidebar, content, footer} = this.props;
+        const {onClickCloseButton, content, footer} = this.props;
 
         return (
             <ModalDialog style={styles.wrapper}>
                 <ModalContentPane
                     showCloseButton
-                    color="dark"
                     onClickCloseButton={onClickCloseButton}
-                    style={styles.column}
-                    content={sidebar}
-                />
-                <ModalContentPane
-                    style={styles.column}
                     content={content}
                     footer={footer}
                 />
@@ -62,12 +53,6 @@ export default class TwoColumnModal extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     wrapper: {
-        width: "86.72%",
-        height: "60.42%",
-        minHeight: 464,
-    },
-
-    column: {
-        flex: "0 0 50%",
+        width: "64.65%",
     },
 });

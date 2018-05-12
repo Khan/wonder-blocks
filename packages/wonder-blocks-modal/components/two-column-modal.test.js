@@ -5,18 +5,11 @@ import {shallow} from "enzyme";
 import TwoColumnModal from "./two-column-modal.js";
 
 describe("TwoColumnModal", () => {
-    test("Clicking the close button triggers `onClickCloseButton`", () => {
-        const onClickCloseButton = jest.fn();
+    test("Ensure the ModalCloseButton isn't inside.", () => {
         const wrapper = shallow(
-            <TwoColumnModal
-                leftContent="Left content"
-                rightContent="Right content"
-                onClickCloseButton={onClickCloseButton}
-            />,
+            <TwoColumnModal sidebar="Sidebar" content="Contents" />,
         );
 
-        expect(onClickCloseButton).not.toHaveBeenCalled();
-        wrapper.find("ModalCloseButton").simulate("click");
-        expect(onClickCloseButton).toHaveBeenCalled();
+        expect(wrapper.find("ModalCloseButton").exists()).toBeFalsy();
     });
 });
