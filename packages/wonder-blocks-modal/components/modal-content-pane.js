@@ -17,6 +17,7 @@ type Props = {
     header?: React.Element<typeof ModalHeader> | React.Node,
     footer?: React.Element<typeof ModalFooter> | React.Node,
     showCloseButton: boolean,
+    scrollOverflow: boolean,
     color: "light" | "dark",
     style?: any,
 
@@ -38,6 +39,7 @@ type Props = {
 export default class ModalContentPane extends React.Component<Props> {
     static defaultProps = {
         showCloseButton: false,
+        scrollOverflow: true,
         color: "light",
         onClickCloseButton: () => {},
     };
@@ -49,6 +51,7 @@ export default class ModalContentPane extends React.Component<Props> {
             header,
             footer,
             showCloseButton,
+            scrollOverflow,
             onClickCloseButton,
             color,
             style,
@@ -63,12 +66,18 @@ export default class ModalContentPane extends React.Component<Props> {
                 <ModalContent>{content}</ModalContent>
             );
 
-        if (mainContent && (titleBar || footer || header)) {
+        if (mainContent) {
             mainContent = React.cloneElement(mainContent, {
+                scrollOverflow,
                 header: header || mainContent.props.header,
                 style: [
                     titleBar && styles.hasTitleBar,
                     footer && styles.hasFooter,
+                    showCloseButton &&
+                        !titleBar &&
+                        ((gridSize) =>
+                            gridSize === "small" &&
+                            styles.smallWithCloseButton),
                     mainContent.props.style,
                 ],
             });
@@ -84,7 +93,13 @@ export default class ModalContentPane extends React.Component<Props> {
                 style={[styles.wrapper, color === "dark" && styles.dark, style]}
             >
                 {showCloseButton && (
-                    <View style={styles.closeButton}>
+                    <View
+                        style={[
+                            styles.closeButton,
+                            (gridSize) =>
+                                gridSize === "small" && styles.smallCloseButton,
+                        ]}
+                    >
                         <ModalCloseButton
                             color={
                                 topBackgroundColor === "dark" ? "light" : "dark"
@@ -121,6 +136,11 @@ const styles = StyleSheet.create({
         top: 8,
     },
 
+    smallCloseButton: {
+        left: 0,
+        top: 4,
+    },
+
     dark: {
         background: Color.darkBlue,
         color: Color.white,
@@ -132,5 +152,9 @@ const styles = StyleSheet.create({
 
     hasFooter: {
         paddingBottom: 32,
+    },
+
+    smallWithCloseButton: {
+        paddingTop: 64,
     },
 });

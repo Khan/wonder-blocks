@@ -1,9 +1,14 @@
 // @flow
 import * as React from "react";
+import propTypes from "prop-types";
 import {StyleSheet} from "aphrodite";
+
+import {View} from "wonder-blocks-core";
+import Color from "wonder-blocks-color";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalContentPane from "./modal-content-pane.js";
+import ModalFooter from "./modal-footer.js";
 
 type Props = {
     /** The modal's content. */
@@ -27,6 +32,58 @@ type Props = {
     onClickCloseButton: () => void,
 };
 
+class ContentWrapper extends React.Component<Props> {
+    static defaultProps = {
+        onClickCloseButton: () => {},
+    };
+
+    static contextTypes = {
+        gridSize: propTypes.string,
+    };
+
+    render() {
+        const {onClickCloseButton, content, footer} = this.props;
+        const {gridSize} = this.context;
+
+        if (gridSize !== "small") {
+            return (
+                <View style={styles.contentWrapper}>
+                    <ModalContentPane
+                        showCloseButton
+                        onClickCloseButton={onClickCloseButton}
+                        content={content}
+                        footer={footer}
+                    />
+                </View>
+            );
+        }
+
+        return (
+            <View style={styles.contentFooterWrapper}>
+                <View
+                    style={[styles.contentWrapper, styles.smallContentWrapper]}
+                >
+                    <ModalContentPane
+                        showCloseButton
+                        onClickCloseButton={onClickCloseButton}
+                        content={content}
+                        scrollOverflow={false}
+                    />
+                </View>
+                {footer && (
+                    <View style={styles.smallFooter}>
+                        {!footer || footer.type === ModalFooter ? (
+                            footer
+                        ) : (
+                            <ModalFooter>{footer}</ModalFooter>
+                        )}
+                    </View>
+                )}
+            </View>
+        );
+    }
+}
+
 /**
  * A one-column modal layout.
  */
@@ -36,23 +93,42 @@ export default class OneColumnModal extends React.Component<Props> {
     };
 
     render() {
-        const {onClickCloseButton, content, footer} = this.props;
-
         return (
-            <ModalDialog style={styles.wrapper}>
-                <ModalContentPane
-                    showCloseButton
-                    onClickCloseButton={onClickCloseButton}
-                    content={content}
-                    footer={footer}
-                />
+            <ModalDialog
+                style={[
+                    styles.dialog,
+                    (gridSize) => gridSize !== "small" && styles.largeDialog,
+                ]}
+            >
+                <ContentWrapper {...this.props} />
             </ModalDialog>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
+    dialog: {
+        background: Color.white,
+    },
+
+    largeDialog: {
         width: "64.65%",
+    },
+
+    contentFooterWrapper: {
+        flexDirection: "column",
+    },
+
+    contentWrapper: {
+        flexDirection: "row",
+    },
+
+    smallContentWrapper: {
+        flexDirection: "column",
+        overflow: "auto",
+    },
+
+    smallFooter: {
+        minHeight: 64,
     },
 });

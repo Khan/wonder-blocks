@@ -75,7 +75,9 @@ export default class StandardModal extends React.Component<Props> {
         } = this.props;
 
         return (
-            <ModalDialog style={styles.wrapper}>
+            <ModalDialog
+                style={(gridSize) => gridSize !== "small" && styles.wrapper}
+            >
                 <ModalContentPane
                     showCloseButton
                     onClickCloseButton={onClickCloseButton}
@@ -90,18 +92,20 @@ export default class StandardModal extends React.Component<Props> {
                     content={content}
                     footer={footer}
                 />
-                {preview ? (
+                {preview && (
                     <ModalContentPane
                         color="dark"
-                        style={styles.preview}
+                        style={
+                            (styles.preview,
+                            (gridSize) =>
+                                gridSize === "small" && styles.smallPreview)
+                        }
                         content={
                             <ModalContent style={styles.previewContent}>
                                 {preview}
                             </ModalContent>
                         }
                     />
-                ) : (
-                    undefined
                 )}
             </ModalDialog>
         );
@@ -124,5 +128,9 @@ const styles = StyleSheet.create({
 
     previewContent: {
         padding: "0 64px 0 0",
+    },
+
+    smallPreview: {
+        display: "none",
     },
 });
