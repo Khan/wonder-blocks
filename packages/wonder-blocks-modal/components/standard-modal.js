@@ -2,16 +2,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "wonder-blocks-color";
-import {View} from "wonder-blocks-core";
-import {
-    HeadingMedium,
-    HeadingSmall,
-    LabelSmall,
-} from "wonder-blocks-typography";
-
-import ModalCloseButton from "./modal-close-button.js";
-import {smOrSmaller, generateUniqueId} from "../util/util.js";
+import ModalDialog from "./modal-dialog.js";
+import ModalContentPane from "./modal-content-pane.js";
+import ModalContent from "./modal-content.js";
+import ModalTitleBar from "./modal-title-bar.js";
 
 type Props = {
     /**
@@ -40,6 +34,13 @@ type Props = {
      */
     footer: React.Node,
 
+    header?: React.Node,
+
+    /**
+     * An optional preview area to show on the right-hand-side of the modal.
+     */
+    preview?: React.Node,
+
     /**
      * Called when the close button is clicked.
      *
@@ -59,159 +60,69 @@ type Props = {
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
-    /** A unique HTML ID for the title element. */
-    _titleId: string;
-
     static defaultProps = {
         onClickCloseButton: () => {},
     };
-
-    constructor(props: Props) {
-        super(props);
-
-        // Generate a unique ID for this modal.
-        //
-        // TODO(mdr): Once we add snapshot tests for modals, we'll need to
-        //     ensure that this function is deterministic, perhaps by mocking
-        //     it during the snapshot test.
-        const modalId = generateUniqueId();
-
-        // Use that unique ID number to generate unique ID strings for this
-        // modal's elements.
-        const idPrefix = `wonder-blocks-standard-modal-${modalId}`;
-        this._titleId = `${idPrefix}-title`;
-    }
-
-    _renderTitleAndSubtitle() {
-        const {title, subtitle} = this.props;
-
-        if (subtitle) {
-            return (
-                <View>
-                    <HeadingSmall id={this._titleId}>{title}</HeadingSmall>
-                    <LabelSmall>{subtitle}</LabelSmall>
-                </View>
-            );
-        } else {
-            return <HeadingMedium id={this._titleId}>{title}</HeadingMedium>;
-        }
-    }
-
     render() {
+        const {
+            onClickCloseButton,
+            title,
+            subtitle,
+            header,
+            footer,
+            content,
+            preview,
+        } = this.props;
+
         return (
-            <View
-                style={styles.container}
-                role="dialog"
-                aria-labelledby={this._titleId}
-            >
-                <View style={styles.titlebar}>
-                    <View style={styles.closeButton}>
-                        <ModalCloseButton
-                            color="dark"
-                            onClick={this.props.onClickCloseButton}
+            <ModalDialog style={styles.wrapper}>
+                <ModalContentPane
+                    showCloseButton
+                    onClickCloseButton={onClickCloseButton}
+                    titleBar={
+                        <ModalTitleBar
+                            title={title}
+                            subtitle={subtitle}
+                            color={header ? "dark" : "light"}
                         />
-                    </View>
-                    <View style={styles.titleAndSubtitle}>
-                        {this._renderTitleAndSubtitle()}
-                    </View>
-                    <View style={styles.titleBarSpacer} />
-                </View>
-                <View style={styles.content}>{this.props.content}</View>
-                <View style={styles.footer}>{this.props.footer}</View>
-            </View>
+                    }
+                    header={header}
+                    content={content}
+                    footer={footer}
+                />
+                {preview ? (
+                    <ModalContentPane
+                        color="dark"
+                        style={styles.preview}
+                        content={
+                            <ModalContent style={styles.previewContent}>
+                                {preview}
+                            </ModalContent>
+                        }
+                    />
+                ) : (
+                    undefined
+                )}
+            </ModalDialog>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: "stretch",
-
+    wrapper: {
         width: "93.75%",
         maxWidth: 960,
         height: "81.25%",
         minHeight: 200,
         maxHeight: 624,
-
-        background: Color.white,
-        borderRadius: 4,
-        overflow: "hidden",
-
-        // On mobile, we consume the full screen size.
-        [smOrSmaller]: {
-            width: "100%",
-            height: "100%",
-            maxWidth: "none",
-            minHeight: 0,
-            maxHeight: "none",
-            borderRadius: 0,
-        },
     },
 
-    titlebar: {
-        flex: "0 0 auto",
-        boxSizing: "border-box",
-        minHeight: 64,
-        paddingLeft: 4,
-        paddingRight: 4,
-        paddingTop: 8,
-        paddingBottom: 8,
-
-        flexDirection: "row",
-        alignItems: "center",
-
-        borderBottomStyle: "solid",
-        borderBottomColor: Color.offBlack16,
-        borderBottomWidth: 1,
-
-        // On mobile, the titlebar is more compact.
-        [smOrSmaller]: {
-            minHeight: 56,
-            paddingTop: 4,
-            paddingBottom: 4,
-        },
+    preview: {
+        maxWidth: 392,
+        flex: "1 0 auto",
     },
 
-    content: {
-        flex: "1 1 auto",
-        overflow: "auto",
-    },
-
-    footer: {
-        flex: "0 0 auto",
-        boxSizing: "border-box",
-        minHeight: 64,
-        paddingLeft: 16,
-        paddingRight: 16,
-        paddingTop: 8,
-        paddingBottom: 8,
-
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-
-        borderTopStyle: "solid",
-        borderTopColor: Color.offBlack16,
-        borderTopWidth: 1,
-    },
-
-    // This element is centered within the titlebar, despite the presence of
-    // the close button, because there's an additional right-hand spacer
-    // element that grows at the same rate.
-    titleAndSubtitle: {
-        flex: "0 1 auto",
-        textAlign: "center",
-    },
-
-    closeButton: {
-        flex: "1 0 0",
-    },
-
-    titleBarSpacer: {
-        flex: "1 0 0",
-
-        // When the modal gets small, provide some minimal space here, to
-        // prevent the text from running up against the edge.
-        minWidth: 16,
+    previewContent: {
+        padding: "0 64px 0 0",
     },
 });
