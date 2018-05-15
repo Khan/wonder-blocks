@@ -29,7 +29,7 @@ export default class ButtonCore extends React.Component<Props> {
             light,
             size,
             testId,
-            style, // eslint-disable-line no-unused-vars
+            style,
             disabled,
             hovered,
             focused,

@@ -2,6 +2,7 @@
 import React from "react";
 
 import LinkCore from "./link-core.js";
+import {ClickableBehavior} from "wonder-blocks-core";
 
 export type SharedProps = {
     /**
@@ -66,7 +67,7 @@ type Props = SharedProps & {
      * handler will have its preventDefault() and stopPropagation() methods
      * stubbed out.
      */
-    onClick?: (e: SyntheticEvent<MouseEvent | TouchEvent>) => void,
+    onClick?: (e: SyntheticEvent<>) => void,
 };
 
 export default class Link extends React.Component<Props> {
@@ -77,16 +78,22 @@ export default class Link extends React.Component<Props> {
     };
 
     render() {
-        const {children} = this.props;
+        const {onClick, href, children, ...sharedProps} = this.props;
         return (
-            <LinkCore
-                {...this.props}
-                hovered={false}
-                focused={false}
-                pressed={false}
-            >
-                {children}
-            </LinkCore>
+            <ClickableBehavior disabled={false} onClick={onClick} href={href}>
+                {(state, handlers) => {
+                    return (
+                        <LinkCore
+                            {...sharedProps}
+                            {...state}
+                            {...handlers}
+                            href={href}
+                        >
+                            {children}
+                        </LinkCore>
+                    );
+                }}
+            </ClickableBehavior>
         );
     }
 }

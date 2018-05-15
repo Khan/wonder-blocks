@@ -115,14 +115,13 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     }
 
     handleClick = (e: SyntheticMouseEvent<>) => {
-        if (this.props.onClick) {
+        if (this.keyboardClick && e) {
+            e.preventDefault();
+            this.keyboardClick = false;
+        } else if (this.props.onClick) {
             this.waitingForClick = false;
-            if (this.keyboardClick) {
-                e.preventDefault();
-                this.keyboardClick = false;
-            } else {
-                this.props.onClick(e);
-            }
+            this.props.onClick(e);
+            this.setState({focused: false});
         }
     };
 
@@ -143,7 +142,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     };
 
     handleMouseUp = (e: SyntheticMouseEvent<>) => {
-        this.setState({pressed: false});
+        this.setState({pressed: false, focused: false});
     };
 
     handleTouchStart = () => {
@@ -183,7 +182,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                 ? keyCode === keyCodes.enter
                 : keyCode === keyCodes.space
         ) {
-            this.setState({pressed: false});
+            this.setState({pressed: false, focused: true});
             if (this.props.onClick) {
                 this.props.onClick(e);
             }
