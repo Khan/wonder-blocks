@@ -69,6 +69,12 @@ module.exports = {
             content: "packages/wonder-blocks-link/docs.md",
             components: "packages/wonder-blocks-link/components/link.js",
         },
+        {
+            name: "IconButton",
+            content: "packages/wonder-blocks-icon-button/docs.md",
+            components:
+                "packages/wonder-blocks-icon-button/components/icon-button.js",
+        },
     ],
 
     // These values control our custom styles.
