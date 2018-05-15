@@ -3,6 +3,7 @@
 // edit packages/wonder-blocks-core/docs.md and run `npm run gen-snapshot-tests`.
 import React from "react";
 import renderer from "react-test-renderer";
+import ClickableBehavior from "./components/clickable-behavior.js";
 import Text from "./components/text.js";
 import View from "./components/view.js";
 

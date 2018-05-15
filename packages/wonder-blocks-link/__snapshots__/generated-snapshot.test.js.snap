@@ -19,12 +19,14 @@ exports[`wonder-blocks-link example 1 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#nonexistent-link"
             style={
               Object {
                 ":visited": Object {},
                 "color": "#1865f2",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }
@@ -45,11 +47,13 @@ exports[`wonder-blocks-link example 1 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#link"
             style={
               Object {
                 "color": "#1865f2",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "underline currentcolor solid",
               }
             }
@@ -70,11 +74,13 @@ exports[`wonder-blocks-link example 1 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#link"
             style={
               Object {
                 "color": "#1b50b3",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }
@@ -95,12 +101,14 @@ exports[`wonder-blocks-link example 1 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="https://khanacademy.org"
             style={
               Object {
                 ":visited": Object {},
                 "color": "#1865f2",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }
@@ -135,12 +143,14 @@ exports[`wonder-blocks-link example 2 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#nonexistent-link"
             style={
               Object {
                 ":visited": Object {},
                 "color": "#21242c",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }
@@ -161,11 +171,13 @@ exports[`wonder-blocks-link example 2 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#link"
             style={
               Object {
                 "color": "#1865f2",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "underline currentcolor solid",
               }
             }
@@ -186,11 +198,13 @@ exports[`wonder-blocks-link example 2 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#link"
             style={
               Object {
                 "color": "#1b50b3",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }
@@ -211,12 +225,14 @@ exports[`wonder-blocks-link example 2 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="https://khanacademy.org"
             style={
               Object {
                 ":visited": Object {},
                 "color": "#21242c",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }
@@ -251,12 +267,14 @@ exports[`wonder-blocks-link example 3 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#nonexistent-link"
             style={
               Object {
                 ":visited": Object {},
                 "color": "#ffffff",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }
@@ -277,11 +295,13 @@ exports[`wonder-blocks-link example 3 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#link"
             style={
               Object {
                 "color": "#ffffff",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "underline currentcolor solid",
               }
             }
@@ -302,11 +322,13 @@ exports[`wonder-blocks-link example 3 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#link"
             style={
               Object {
                 "color": "#b5cefb",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }
@@ -327,12 +349,14 @@ exports[`wonder-blocks-link example 3 1`] = `
            
           <a
             className=""
+            data-test-id={undefined}
             href="#link"
             style={
               Object {
                 ":visited": Object {},
                 "color": "#ffffff",
                 "cursor": "pointer",
+                "outline": "none",
                 "textDecoration": "none",
               }
             }

@@ -4,27 +4,32 @@ import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "wonder-blocks-core";
 import Color, {mix, fade} from "wonder-blocks-color";
+import type {ClickableHandlers} from "wonder-blocks-core";
 import type {SharedProps} from "./link.js";
 
-type Props = SharedProps & {
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
-    href: string,
-};
+type Props = SharedProps &
+    ClickableHandlers & {
+        hovered: boolean,
+        focused: boolean,
+        pressed: boolean,
+        href: string,
+    };
 
 const StyledAnchor = addStyle("a");
 export default class LinkCore extends React.Component<Props> {
     render() {
         const {
+            children,
+            caret, // eslint-disable-line no-unused-vars
             kind,
             light,
+            testId,
+            style,
             hovered,
             focused,
             pressed,
-            children,
             href,
-            style,
+            ...handlers
         } = this.props;
 
         const linkStyles = _generateStyles(kind, light);
@@ -38,7 +43,12 @@ export default class LinkCore extends React.Component<Props> {
         ];
 
         return (
-            <StyledAnchor style={[defaultStyles, style]} href={href}>
+            <StyledAnchor
+                style={[defaultStyles, style]}
+                data-test-id={testId}
+                href={href}
+                {...handlers}
+            >
                 {children}
             </StyledAnchor>
         );
@@ -51,6 +61,7 @@ const sharedStyles = StyleSheet.create({
     shared: {
         cursor: "pointer",
         textDecoration: "none",
+        outline: "none",
     },
 });
 

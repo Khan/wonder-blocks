@@ -2,8 +2,8 @@
 import React from "react";
 
 import Color from "wonder-blocks-color";
+import {ClickableBehavior} from "wonder-blocks-core";
 import type {ValidTints} from "wonder-blocks-color";
-import ClickableBehavior from "./clickable-behavior.js";
 import ButtonCore from "./button-core.js";
 
 export type SharedProps = {
