@@ -4,11 +4,11 @@ import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "wonder-blocks-core";
 import Color, {mix, fade} from "wonder-blocks-color";
-import type {Handlers} from "wonder-blocks-core";
+import type {ClickableHandlers} from "wonder-blocks-core";
 import type {SharedProps} from "./link.js";
 
 type Props = SharedProps &
-    Handlers & {
+    ClickableHandlers & {
         hovered: boolean,
         focused: boolean,
         pressed: boolean,

@@ -5,11 +5,11 @@ import {StyleSheet} from "aphrodite";
 import {LabelLarge} from "wonder-blocks-typography";
 import Color, {mix, fade} from "wonder-blocks-color";
 import {addStyle} from "wonder-blocks-core";
-import type {Handlers} from "wonder-blocks-core";
+import type {ClickableHandlers} from "wonder-blocks-core";
 import type {SharedProps} from "./button.js";
 
 type Props = SharedProps &
-    Handlers & {
+    ClickableHandlers & {
         hovered: boolean,
         focused: boolean,
         pressed: boolean,

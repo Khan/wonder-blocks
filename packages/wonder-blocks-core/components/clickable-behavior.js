@@ -50,7 +50,7 @@
 import React from "react";
 
 type Props = {
-    children: (state: State, handlers: Handlers) => React$Element<*>,
+    children: (state: State, handlers: ClickableHandlers) => React$Element<*>,
     disabled: boolean,
     href?: string,
     onClick?: (e: SyntheticEvent<>) => void,
@@ -62,7 +62,7 @@ type State = {
     pressed: boolean,
 };
 
-export type Handlers = {
+export type ClickableHandlers = {
     onClick: (e: SyntheticMouseEvent<>) => void,
     onMouseEnter: () => void,
     onMouseLeave: () => void,
@@ -115,13 +115,11 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     }
 
     handleClick = (e: SyntheticMouseEvent<>) => {
-        if (this.keyboardClick && e) {
+        if (this.keyboardClick) {
             e.preventDefault();
-            this.keyboardClick = false;
         } else if (this.props.onClick) {
             this.waitingForClick = false;
             this.props.onClick(e);
-            this.setState({focused: false});
         }
     };
 
@@ -186,6 +184,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
             if (this.props.onClick) {
                 this.props.onClick(e);
             }
+            this.keyboardClick = false;
             this.maybeNavigate();
         }
     };
