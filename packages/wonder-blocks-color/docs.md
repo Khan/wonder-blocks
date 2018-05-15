@@ -1,59 +1,6 @@
 ```js
-const ColoredTextWithBackground = ({
-    textColor,
-    backgroundColor,
-}) => (
-    <div
-        style={{
-            color: textColor,
-            backgroundColor: backgroundColor || Color.white,
-            padding: 10,
-        }}
-    >
-        Hello world!
-    </div>
-);
-
-const ColorWithName = ({
-    colorName,
-    color,
-}) => {
-    return (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                minHeight: 40,
-            }}
-        >
-            <div style={{width: 250, paddingRight: 10, textAlign: "right"}}>
-                {colorName}:
-            </div>
-            <div
-                style={{
-                    backgroundColor: color,
-                    width: 30,
-                    height: 30,
-                    marginRight: 10,
-                    border: `1px solid ${Color.offBlack}`,
-                }}
-            />
-            <ColoredTextWithBackground textColor={color} />
-            <ColoredTextWithBackground
-                textColor={color}
-                backgroundColor={Color.offWhite}
-            />
-            <ColoredTextWithBackground
-                textColor={color}
-                backgroundColor={Color.offBlack64}
-            />
-            <ColoredTextWithBackground
-                textColor={color}
-                backgroundColor={Color.darkBlue}
-            />
-        </div>
-    );
-};
+const ColoredTextWithBackground = require("./colored-text-with-background.js").default;
+const ColorWithName = require("./color-with-name.js").default;
 
 const Color = require("./index.js").default;
 
@@ -69,61 +16,8 @@ const Color = require("./index.js").default;
 ```
 
 ```js
-const ColoredTextWithBackground = ({
-    textColor,
-    backgroundColor,
-}) => (
-    <div
-        style={{
-            color: textColor,
-            backgroundColor: backgroundColor || Color.white,
-            padding: 10,
-        }}
-    >
-        Hello world!
-    </div>
-);
-
-const ColorWithName = ({
-    colorName,
-    color,
-}) => {
-    return (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                minHeight: 40,
-            }}
-        >
-            <div style={{width: 250, paddingRight: 10, textAlign: "right"}}>
-                {colorName}:
-            </div>
-            <div
-                style={{
-                    backgroundColor: color,
-                    width: 30,
-                    height: 30,
-                    marginRight: 10,
-                    border: `1px solid ${Color.offBlack}`,
-                }}
-            />
-            <ColoredTextWithBackground textColor={color} />
-            <ColoredTextWithBackground
-                textColor={color}
-                backgroundColor={Color.offWhite}
-            />
-            <ColoredTextWithBackground
-                textColor={color}
-                backgroundColor={Color.offBlack64}
-            />
-            <ColoredTextWithBackground
-                textColor={color}
-                backgroundColor={Color.darkBlue}
-            />
-        </div>
-    );
-};
+const ColoredTextWithBackground = require("./colored-text-with-background.js").default;
+const ColorWithName = require("./color-with-name.js").default;
 
 const {mix, fade} = require("./index.js");
 const Color = require("./index.js").default;

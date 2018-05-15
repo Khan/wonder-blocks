@@ -10,9 +10,9 @@ import type {SharedProps} from "./button.js";
 
 type Props = SharedProps &
     ClickableHandlers & {
-        hovered: boolean,
-        focused: boolean,
-        pressed: boolean,
+        hovered?: boolean,
+        focused?: boolean,
+        pressed?: boolean,
         href?: string,
     };
 

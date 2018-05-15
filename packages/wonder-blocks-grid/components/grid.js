@@ -6,7 +6,6 @@ import {GRID_DEFAULT_SPEC, VALID_GRID_SIZES} from "../util/specs.js";
 import {gridContextTypes} from "../util/utils.js";
 
 import type {GridSize, GridSpec} from "../util/types.js";
-import typeof Row from "./row.js";
 
 type Props = {
     /**
@@ -29,7 +28,7 @@ type Props = {
     spec: GridSpec,
 
     /** The `<Row>` components that will make up the grid */
-    children: React.ChildrenArray<Row>,
+    children: React.Node,
 };
 
 /**
@@ -182,7 +181,7 @@ class GridContext extends React.Component<{
     spec: GridSpec,
 
     // The Row components that will make up the grid
-    children: React.ChildrenArray<Row>,
+    children: React.Node,
 }> {
     static childContextTypes = gridContextTypes;
 

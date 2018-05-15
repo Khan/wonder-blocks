@@ -7,8 +7,6 @@ import {matchesSize, gridContextTypes} from "../util/utils.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 import Gutter from "./gutter.js";
 
-import type {GridSize} from "../util/types.js";
-
 /**
  * A Row holds all of the Cells that make up the contents of the grid. A row
  * also provides the margins on the sides and inserts the gutter spacing
@@ -46,12 +44,7 @@ export default class Row extends React.Component<{
      * Can also accept a function which receives the `gridSize` and
      * `totalColumns` and should return some React Nodes to render.
      */
-    children:
-        | React.Node
-        | (({
-              gridSize: GridSize,
-              totalColumns: number,
-          }) => React.Node),
+    children: React.Node,
     /** The styling to apply to the row. */
     style?: any,
 }> {

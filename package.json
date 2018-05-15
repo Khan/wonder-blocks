@@ -9,7 +9,7 @@
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
-    "test": "npm run flow && npm run gen-snapshot-tests && npm run jest",
+    "test": "npm run lint && npm run gen-snapshot-tests && npm run flow && npm run jest",
     "coverage": "SNAPSHOT_INLINE_APHRODITE=1 jest --coverage",
     "styleguidist": "styleguidist server",
     "build:styleguidist": "styleguidist build",
