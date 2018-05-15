@@ -163,10 +163,10 @@ export default class Grid extends React.Component<
 
     render() {
         // eslint-disable-next-line no-unused-vars
-        const {ssrSize, size, ...otherProps} = this.props;
+        const {ssrSize, size, children, ...otherProps} = this.props;
         return (
             <GridContext {...otherProps} size={this.state.size}>
-                {this.props.children}
+                {children}
             </GridContext>
         );
     }
@@ -200,7 +200,7 @@ class GridContext extends React.Component<{
         // TODO(jeresig): Switch to be a React.Fragment once we upgrade to
         // React 16.2+.
         // eslint-disable-next-line no-unused-vars
-        const {size, spec, ...otherProps} = this.props;
-        return <View {...otherProps}>{this.props.children}</View>;
+        const {size, spec, children, ...otherProps} = this.props;
+        return <View {...otherProps}>{children}</View>;
     }
 }
