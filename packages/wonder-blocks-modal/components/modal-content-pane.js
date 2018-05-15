@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         background: "white",
         boxSizing: "border-box",
+        height: "100%",
     },
 
     closeButton: {

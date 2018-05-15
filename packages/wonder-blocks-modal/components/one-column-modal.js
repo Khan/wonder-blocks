@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
 
     contentFooterWrapper: {
         flexDirection: "column",
+        height: "100%",
     },
 
     contentWrapper: {
