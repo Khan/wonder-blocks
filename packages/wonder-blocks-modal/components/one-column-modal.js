@@ -7,7 +7,7 @@ import {View} from "wonder-blocks-core";
 import Color from "wonder-blocks-color";
 
 import ModalDialog from "./modal-dialog.js";
-import ModalContentPane from "./modal-content-pane.js";
+import ModalPanel from "./modal-panel.js";
 import ModalFooter from "./modal-footer.js";
 
 type Props = {
@@ -48,7 +48,7 @@ class ContentWrapper extends React.Component<Props> {
         if (gridSize !== "small") {
             return (
                 <View style={styles.contentWrapper}>
-                    <ModalContentPane
+                    <ModalPanel
                         showCloseButton
                         onClickCloseButton={onClickCloseButton}
                         content={content}
@@ -63,7 +63,7 @@ class ContentWrapper extends React.Component<Props> {
                 <View
                     style={[styles.contentWrapper, styles.smallContentWrapper]}
                 >
-                    <ModalContentPane
+                    <ModalPanel
                         showCloseButton
                         onClickCloseButton={onClickCloseButton}
                         content={content}

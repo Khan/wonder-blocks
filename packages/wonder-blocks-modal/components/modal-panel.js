@@ -12,13 +12,27 @@ import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
 
 type Props = {
+    /**
+     * The main contents of the ModalPanel. All other parts of the panel
+     * are positioned around it.
+     */
     content: React.Element<typeof ModalContent> | React.Node,
+    /** A title bar (with optional subtitle) to show at the top of the panel. */
     titleBar?: React.Element<typeof ModalTitleBar>,
+    /** A header to show above the contents, but below the title bar. */
     header?: React.Element<typeof ModalHeader> | React.Node,
+    /** A footer to show beneath the contents. */
     footer?: React.Element<typeof ModalFooter> | React.Node,
+    /** Should a close button be shown on the panel? */
     showCloseButton: boolean,
+    /**
+     * Should the contents of the panel become scrollable should they
+     * become too tall?
+     */
     scrollOverflow: boolean,
+    /** The color of the panel (defaults to light). */
     color: "light" | "dark",
+    /** Any optional styling to apply to the panel. */
     style?: any,
 
     /**
@@ -36,7 +50,7 @@ type Props = {
     onClickCloseButton: () => void,
 };
 
-export default class ModalContentPane extends React.Component<Props> {
+export default class ModalPanel extends React.Component<Props> {
     static defaultProps = {
         showCloseButton: false,
         scrollOverflow: true,
@@ -68,8 +82,13 @@ export default class ModalContentPane extends React.Component<Props> {
 
         if (mainContent) {
             mainContent = React.cloneElement(mainContent, {
+                // Pass the scrollOverflow and header in to the main content
                 scrollOverflow,
                 header: header || mainContent.props.header,
+                // We override the styling of the main content to help position
+                // it if there is a title bar, footer, or close button being
+                // shown. We have to do this here as the ModalContent doesn't
+                // know about things being positioned around it.
                 style: [
                     titleBar && styles.hasTitleBar,
                     footer && styles.hasFooter,

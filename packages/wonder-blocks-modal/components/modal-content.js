@@ -7,9 +7,13 @@ import {View} from "wonder-blocks-core";
 import ModalHeader from "./modal-header.js";
 
 type Props = {
+    /** An optional header to display above the content. */
     header?: React.Element<typeof ModalHeader> | React.Node,
+    /** Should the content scroll on overflow, or just expand. */
     scrollOverflow: boolean,
+    /** The contents of the ModalContent */
     children: React.Node,
+    /** Optional styling to apply to the contents. */
     style?: any,
 };
 

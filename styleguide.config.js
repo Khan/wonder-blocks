@@ -50,7 +50,7 @@ module.exports = {
                     content: "packages/wonder-blocks-modal/building-blocks.md",
                     components: [
                         "packages/wonder-blocks-modal/components/modal-dialog.js",
-                        "packages/wonder-blocks-modal/components/modal-content-pane.js",
+                        "packages/wonder-blocks-modal/components/modal-panel.js",
                         "packages/wonder-blocks-modal/components/modal-content.js",
                         "packages/wonder-blocks-modal/components/modal-title-bar.js",
                         "packages/wonder-blocks-modal/components/modal-header.js",

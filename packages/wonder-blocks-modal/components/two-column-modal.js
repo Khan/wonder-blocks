@@ -8,7 +8,7 @@ import Color from "wonder-blocks-color";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalFooter from "./modal-footer.js";
-import ModalContentPane from "./modal-content-pane.js";
+import ModalPanel from "./modal-panel.js";
 
 type Props = {
     /** The sidebar contents (which becomes the header on mobile screens). */
@@ -51,14 +51,14 @@ class ContentWrapper extends React.Component<Props> {
         if (gridSize !== "small") {
             return (
                 <View style={styles.contentWrapper}>
-                    <ModalContentPane
+                    <ModalPanel
                         showCloseButton
                         color="dark"
                         onClickCloseButton={onClickCloseButton}
                         style={styles.column}
                         content={sidebar}
                     />
-                    <ModalContentPane
+                    <ModalPanel
                         style={styles.column}
                         content={content}
                         footer={footer}
@@ -72,7 +72,7 @@ class ContentWrapper extends React.Component<Props> {
                 <View
                     style={[styles.contentWrapper, styles.smallContentWrapper]}
                 >
-                    <ModalContentPane
+                    <ModalPanel
                         showCloseButton
                         color="dark"
                         onClickCloseButton={onClickCloseButton}
@@ -80,7 +80,7 @@ class ContentWrapper extends React.Component<Props> {
                         content={sidebar}
                         scrollOverflow={false}
                     />
-                    <ModalContentPane
+                    <ModalPanel
                         style={styles.smallColumn}
                         content={content}
                         scrollOverflow={false}
