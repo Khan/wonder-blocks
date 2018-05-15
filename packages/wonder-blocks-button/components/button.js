@@ -109,6 +109,23 @@ type Props = SharedProps & {
     onClick?: (e: SyntheticEvent<>) => void,
 };
 
+/**
+ * Reusable button component.
+ *
+ * Consisting of a [`ClickableBehavior`](#clickablebehavior) surrounding a
+ * `ButtonCore`. `ClickableBehavior` handles interactions and state changes.
+ * `ButtonCore` is a stateless component which displays the different states
+ * the `Button` can take.
+ *
+ * Example usage:
+ * ```jsx
+ * <Button
+ *     onClick={(e) => console.log("Hello, world!")}
+ * >
+ *     Label
+ * </Button>
+ * ```
+ */
 export default class Button extends React.Component<Props> {
     static defaultProps = {
         color: Color.blue,
