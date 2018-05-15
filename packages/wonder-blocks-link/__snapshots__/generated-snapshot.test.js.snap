@@ -1,0 +1,372 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-link example 1 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+    }
+  }
+>
+  <tbody>
+    <tr>
+      <th>
+        Default
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#nonexistent-link"
+            style={
+              Object {
+                ":visited": Object {},
+                "color": "#1865f2",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Hover/Focus
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#link"
+            style={
+              Object {
+                "color": "#1865f2",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "underline currentcolor solid",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Active/Press
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#link"
+            style={
+              Object {
+                "color": "#1b50b3",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Visited
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="https://khanacademy.org"
+            style={
+              Object {
+                ":visited": Object {},
+                "color": "#1865f2",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`wonder-blocks-link example 2 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+      "color": "rgba(33,36,44,0.64)",
+    }
+  }
+>
+  <tbody>
+    <tr>
+      <th>
+        Default
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#nonexistent-link"
+            style={
+              Object {
+                ":visited": Object {},
+                "color": "#21242c",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Hover/Focus
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#link"
+            style={
+              Object {
+                "color": "#1865f2",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "underline currentcolor solid",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Active/Press
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#link"
+            style={
+              Object {
+                "color": "#1b50b3",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Visited
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="https://khanacademy.org"
+            style={
+              Object {
+                ":visited": Object {},
+                "color": "#21242c",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`wonder-blocks-link example 3 1`] = `
+<table
+  style={
+    Object {
+      "background": "#0a2a66",
+      "color": "rgba(255,255,255,0.64)",
+    }
+  }
+>
+  <tbody>
+    <tr>
+      <th>
+        Default
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#nonexistent-link"
+            style={
+              Object {
+                ":visited": Object {},
+                "color": "#ffffff",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Hover/Focus
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#link"
+            style={
+              Object {
+                "color": "#ffffff",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "underline currentcolor solid",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Active/Press
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#link"
+            style={
+              Object {
+                "color": "#b5cefb",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Visited
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#link"
+            style={
+              Object {
+                ":visited": Object {},
+                "color": "#ffffff",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
