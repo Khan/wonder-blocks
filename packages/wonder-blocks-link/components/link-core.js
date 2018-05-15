@@ -30,7 +30,7 @@ export default class LinkCore extends React.Component<Props> {
         const linkStyles = _generateStyles(kind, light);
 
         const defaultStyles = [
-            sharedStyles,
+            sharedStyles.shared,
             !(hovered || focused || pressed) && linkStyles.default,
             pressed
                 ? linkStyles.active
@@ -47,10 +47,12 @@ export default class LinkCore extends React.Component<Props> {
 
 const styles = {};
 
-const sharedStyles = {
-    cursor: "pointer",
-    textDecoration: "none",
-};
+const sharedStyles = StyleSheet.create({
+    shared: {
+        cursor: "pointer",
+        textDecoration: "none",
+    },
+});
 
 const _generateStyles = (kind, light) => {
     const buttonType = kind + light.toString();
