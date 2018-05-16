@@ -53,6 +53,7 @@ type Props = {
     children: (state: State, handlers: ClickableHandlers) => React$Element<*>,
     disabled: boolean,
     href?: string,
+    clientSideNav?: boolean,
     onClick?: (e: SyntheticEvent<>) => void,
 };
 

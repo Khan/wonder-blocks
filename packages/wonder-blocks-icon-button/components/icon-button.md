@@ -26,21 +26,21 @@ const styles = StyleSheet.create({
 
 <View style={[styles.row]}>
     <IconButton
-    	icon={searchIcon}
-    	alt="search"
+        icon={searchIcon}
+        alt="search"
         onClick={console.log("hello")}
         style={[styles.sideMargins]}
     />
     <IconButton
-    	icon={searchIcon}
-    	alt="search"
+        icon={searchIcon}
+        alt="search"
         kind="secondary"
         onClick={console.log("hello")}
         style={[styles.sideMargins]}
     />
     <IconButton
-    	icon={searchIcon}
-    	alt="search"
+        icon={searchIcon}
+        alt="search"
         kind="tertiary"
         onClick={console.log("hello")}
         style={[styles.sideMargins]}

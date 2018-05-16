@@ -67,25 +67,45 @@ export type SharedProps = {
 
 type Props = SharedProps & {
     /**
-     * Function to call when the IconButton is clicked.
+     * URL to navigate to.
+     *
+     * Note: Either href or onClick must be defined
+     */
+    href?: string,
+
+    /**
+     * Whether to use client-side navigation.
+     *
+     * If the URL passed to href is local to the client-side, e.g.
+     * /math/algebra/eval-exprs, then use ReactRouter to do a client side
+     * navigation by doing history.push(this.props.href) using
+     * ReactRouter's history object
+     */
+    clientSideNav?: boolean,
+
+    /**
+     * Function to call when button is clicked.
      *
      * This callback should be used for things like marking BigBingo
      * conversions. It should NOT be used to redirect to a different URL or to
      * prevent navigation via e.preventDefault(). The event passed to this
      * handler will have its preventDefault() and stopPropagation() methods
      * stubbed out.
+     *
+     * Note: onClick is optional if href is present, but must be defined if
+     * href is not
      */
-    onClick: (e: SyntheticEvent<>) => void,
+    onClick?: (e: SyntheticEvent<>) => void,
 };
 
 /**
  * An IconButton is a button whose contents are an SVG image.
  *
  * To use, supply an onClick function, the path (string) of your SVG image, and
- * alt-text for your image. Optionally specify color (Wonder Blocks Blue or
- * Red), kind ("primary", "secondary", or "tertiary"), light (whether the
- * IconButton will be rendered on a dark background), disabled (whether the
- * button should be disabled), test ID, and custom styling.
+ * alt-text for your image. Optionally specify href (URL), clientSideNav, color
+ * Wonder Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"),
+ * light (whether the IconButton will be rendered on a dark background),
+ * disabled , test ID, and custom styling.
  *
  * ```js
  * <IconButton
@@ -95,7 +115,6 @@ type Props = SharedProps & {
  * />
  * ```
  * @version 1.0
- * @since 1.0
  */
 export default class IconButton extends React.Component<Props> {
     static defaultProps = {
@@ -106,11 +125,13 @@ export default class IconButton extends React.Component<Props> {
     };
 
     render() {
-        const {onClick, ...sharedProps} = this.props;
+        const {onClick, href, clientSideNav, ...sharedProps} = this.props;
         return (
             <ClickableBehavior
                 disabled={sharedProps.disabled}
+                href={href}
                 onClick={onClick}
+                clientSideNav={clientSideNav}
             >
                 {(state, handlers) => {
                     return (
@@ -118,6 +139,7 @@ export default class IconButton extends React.Component<Props> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
+                            href={href}
                         />
                     );
                 }}

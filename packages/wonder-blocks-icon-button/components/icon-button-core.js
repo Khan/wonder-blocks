@@ -9,11 +9,40 @@ import type {SharedProps} from "./icon-button.js";
 
 type Props = SharedProps &
     ClickableHandlers & {
+        /**
+         * Whether the IconButton is hovered.
+         *
+         * Same styling as focused. Refer to `ClickableBehavior` for more
+         * information on when this prop should be `true`.
+         */
         hovered: boolean,
+
+        /**
+         * Whether the IconButton is focused.
+         *
+         * Same styling as hvoered. Refer to `ClickableBehavior` for more
+         * information on when this prop should be `true`.
+         */
         focused: boolean,
+
+        /**
+         * Whether the IconButton is pressed.
+         *
+         * Refer to `ClickableBehavior` for more information on when this prop
+         * should be `true`.
+         */
         pressed: boolean,
+
+        /**
+         * URL to navigate to.
+         *
+         * Used to determine whether to render an `<a>` or `<button>` tag. Also
+         * passed in as the `<a>` tag's `href` if present.
+         */
+        href?: string,
     };
 
+const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 
 export default class IconButtonCore extends React.Component<Props> {
@@ -30,6 +59,7 @@ export default class IconButtonCore extends React.Component<Props> {
             hovered,
             focused,
             pressed,
+            href,
             ...handlers
         } = this.props;
 
@@ -46,12 +76,15 @@ export default class IconButtonCore extends React.Component<Props> {
                     : (hovered || focused) && buttonStyles.focus),
         ];
 
+        const Tag = href ? StyledAnchor : StyledButton;
+
         // TODO: Replace the SVG with an Icon component once that's done
         return (
-            <StyledButton
-                style={[sharedStyles.shared, defaultStyle, style]}
+            <Tag
+                style={[defaultStyle, style]}
                 disabled={disabled}
                 data-test-id={testId}
+                href={href}
                 {...handlers}
             >
                 <svg
@@ -64,7 +97,7 @@ export default class IconButtonCore extends React.Component<Props> {
                     <title>{alt}</title>
                     <path fill="currentColor" d={icon} />
                 </svg>
-            </StyledButton>
+            </Tag>
         );
     }
 }
