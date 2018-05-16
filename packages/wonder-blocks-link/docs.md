@@ -1,6 +1,9 @@
 **WARNING: Link is not finished, do not use!**
 
-A `Link` is a clickable link element consisting of a `ClickableBehavior` surrounding a `LinkCore`. `ClickableBehavior` handles interactions and state changes. `LinkCore` is a stateless component which displays the different states the `Link` can take.
+A `Link` is a clickable link element consisting of a [`ClickableBehavior`]
+(#clickable-behavior) surrounding a `LinkCore`. `ClickableBehavior` handles
+interactions and state changes. `LinkCore` is a stateless component which
+displays the different states the `Link` can take.
 
 LinkCores:
 ```js
@@ -39,7 +42,7 @@ const {offWhite} = Color;
                         hovered={true}
                         focused={false}
                         pressed={false}
-                        href="#link"
+                        href="#nonexistent-link"
                     >
                         Label
                     </LinkCore>,
@@ -57,25 +60,7 @@ const {offWhite} = Color;
                         hovered={false}
                         focused={false}
                         pressed={true}
-                        href="#link"
-                    >
-                        Label
-                    </LinkCore>,
-                    dolor sit amet, consectetur adipiscing elit.
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <th>Visited</th>
-            <td>
-                <p>
-                    Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={false}
-                        hovered={false}
-                        focused={false}
-                        pressed={false}
-                        href="https://khanacademy.org"
+                        href="#nonexistent-link"
                     >
                         Label
                     </LinkCore>,
@@ -86,6 +71,74 @@ const {offWhite} = Color;
     </tbody>
 </table>
 ```
+
+LinkCores, visited:
+```js
+const Color = require("wonder-blocks-color").default;
+const LinkCore = require("./components/link-core.js").default;
+
+const {offWhite} = Color;
+
+<table style={{background: offWhite}}>
+    <tbody>
+        <tr>
+            <th>Default</th>
+            <td>
+                <p>
+                    Lorem ipsum <LinkCore
+                        kind="primary"
+                        light={false}
+                        hovered={false}
+                        focused={false}
+                        pressed={false}
+                        href="#"
+                    >
+                        Label
+                    </LinkCore>,
+                    dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <th>Hover/Focus</th>
+            <td>
+                <p>
+                    Lorem ipsum <LinkCore
+                        kind="primary"
+                        light={false}
+                        hovered={true}
+                        focused={false}
+                        pressed={false}
+                        href="#"
+                    >
+                        Label
+                    </LinkCore>,
+                    dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <th>Active/Press</th>
+            <td>
+                <p>
+                    Lorem ipsum <LinkCore
+                        kind="primary"
+                        light={false}
+                        hovered={false}
+                        focused={false}
+                        pressed={true}
+                        href="#"
+                    >
+                        Label
+                    </LinkCore>,
+                    dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+```
+
 LinkCores, Secondary:
 ```js
 const Color = require("wonder-blocks-color").default;
@@ -123,7 +176,7 @@ const {offWhite, offBlack64} = Color;
                         hovered={true}
                         focused={false}
                         pressed={false}
-                        href="#link"
+                        href="#nonexistent-link"
                     >
                         Label
                     </LinkCore>,
@@ -141,25 +194,7 @@ const {offWhite, offBlack64} = Color;
                         hovered={false}
                         focused={false}
                         pressed={true}
-                        href="#link"
-                    >
-                        Label
-                    </LinkCore>,
-                    dolor sit amet, consectetur adipiscing elit.
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <th>Visited</th>
-            <td>
-                <p>
-                    Lorem ipsum <LinkCore
-                        kind="secondary"
-                        light={false}
-                        hovered={false}
-                        focused={false}
-                        pressed={false}
-                        href="https://khanacademy.org"
+                        href="#nonexistent-link"
                     >
                         Label
                     </LinkCore>,
@@ -234,27 +269,6 @@ const {white64, darkBlue} = Color;
                 </p>
             </td>
         </tr>
-        <tr>
-            <th>Visited</th>
-            <td>
-                <p>
-                    Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={true}
-                        hovered={false}
-                        focused={false}
-                        pressed={false}
-                        href="#link"
-                    >
-                        Label
-                    </LinkCore>,
-                    dolor sit amet, consectetur adipiscing elit.
-                </p>
-            </td>
-        </tr>
     </tbody>
 </table>
 ```
-
-### Usage
-TODO(yejia)

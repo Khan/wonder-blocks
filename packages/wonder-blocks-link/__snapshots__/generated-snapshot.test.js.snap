@@ -23,7 +23,9 @@ exports[`wonder-blocks-link example 1 1`] = `
             href="#nonexistent-link"
             style={
               Object {
-                ":visited": Object {},
+                ":visited": Object {
+                  "color": "#8755ee",
+                },
                 "color": "#1865f2",
                 "cursor": "pointer",
                 "outline": "none",
@@ -48,9 +50,12 @@ exports[`wonder-blocks-link example 1 1`] = `
           <a
             className=""
             data-test-id={undefined}
-            href="#link"
+            href="#nonexistent-link"
             style={
               Object {
+                ":visited": Object {
+                  "color": "#8755ee",
+                },
                 "color": "#1865f2",
                 "cursor": "pointer",
                 "outline": "none",
@@ -75,38 +80,13 @@ exports[`wonder-blocks-link example 1 1`] = `
           <a
             className=""
             data-test-id={undefined}
-            href="#link"
+            href="#nonexistent-link"
             style={
               Object {
+                ":visited": Object {
+                  "color": "#6645b0",
+                },
                 "color": "#1b50b3",
-                "cursor": "pointer",
-                "outline": "none",
-                "textDecoration": "none",
-              }
-            }
-          >
-            Label
-          </a>
-          , dolor sit amet, consectetur adipiscing elit.
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Visited
-      </th>
-      <td>
-        <p>
-          Lorem ipsum
-           
-          <a
-            className=""
-            data-test-id={undefined}
-            href="https://khanacademy.org"
-            style={
-              Object {
-                ":visited": Object {},
-                "color": "#1865f2",
                 "cursor": "pointer",
                 "outline": "none",
                 "textDecoration": "none",
@@ -124,6 +104,109 @@ exports[`wonder-blocks-link example 1 1`] = `
 `;
 
 exports[`wonder-blocks-link example 2 1`] = `
+<table
+  style={
+    Object {
+      "background": "#f7f8fa",
+    }
+  }
+>
+  <tbody>
+    <tr>
+      <th>
+        Default
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#"
+            style={
+              Object {
+                ":visited": Object {
+                  "color": "#8755ee",
+                },
+                "color": "#1865f2",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Hover/Focus
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#"
+            style={
+              Object {
+                ":visited": Object {
+                  "color": "#8755ee",
+                },
+                "color": "#1865f2",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "underline currentcolor solid",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Active/Press
+      </th>
+      <td>
+        <p>
+          Lorem ipsum
+           
+          <a
+            className=""
+            data-test-id={undefined}
+            href="#"
+            style={
+              Object {
+                ":visited": Object {
+                  "color": "#6645b0",
+                },
+                "color": "#1b50b3",
+                "cursor": "pointer",
+                "outline": "none",
+                "textDecoration": "none",
+              }
+            }
+          >
+            Label
+          </a>
+          , dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`wonder-blocks-link example 3 1`] = `
 <table
   style={
     Object {
@@ -147,7 +230,9 @@ exports[`wonder-blocks-link example 2 1`] = `
             href="#nonexistent-link"
             style={
               Object {
-                ":visited": Object {},
+                ":visited": Object {
+                  "color": "#8755ee",
+                },
                 "color": "#21242c",
                 "cursor": "pointer",
                 "outline": "none",
@@ -172,9 +257,12 @@ exports[`wonder-blocks-link example 2 1`] = `
           <a
             className=""
             data-test-id={undefined}
-            href="#link"
+            href="#nonexistent-link"
             style={
               Object {
+                ":visited": Object {
+                  "color": "#8755ee",
+                },
                 "color": "#1865f2",
                 "cursor": "pointer",
                 "outline": "none",
@@ -199,38 +287,13 @@ exports[`wonder-blocks-link example 2 1`] = `
           <a
             className=""
             data-test-id={undefined}
-            href="#link"
+            href="#nonexistent-link"
             style={
               Object {
+                ":visited": Object {
+                  "color": "#6645b0",
+                },
                 "color": "#1b50b3",
-                "cursor": "pointer",
-                "outline": "none",
-                "textDecoration": "none",
-              }
-            }
-          >
-            Label
-          </a>
-          , dolor sit amet, consectetur adipiscing elit.
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Visited
-      </th>
-      <td>
-        <p>
-          Lorem ipsum
-           
-          <a
-            className=""
-            data-test-id={undefined}
-            href="https://khanacademy.org"
-            style={
-              Object {
-                ":visited": Object {},
-                "color": "#21242c",
                 "cursor": "pointer",
                 "outline": "none",
                 "textDecoration": "none",
@@ -247,7 +310,7 @@ exports[`wonder-blocks-link example 2 1`] = `
 </table>
 `;
 
-exports[`wonder-blocks-link example 3 1`] = `
+exports[`wonder-blocks-link example 4 1`] = `
 <table
   style={
     Object {
@@ -271,7 +334,9 @@ exports[`wonder-blocks-link example 3 1`] = `
             href="#nonexistent-link"
             style={
               Object {
-                ":visited": Object {},
+                ":visited": Object {
+                  "color": "#ffffff",
+                },
                 "color": "#ffffff",
                 "cursor": "pointer",
                 "outline": "none",
@@ -299,6 +364,9 @@ exports[`wonder-blocks-link example 3 1`] = `
             href="#link"
             style={
               Object {
+                ":visited": Object {
+                  "color": "#ffffff",
+                },
                 "color": "#ffffff",
                 "cursor": "pointer",
                 "outline": "none",
@@ -326,35 +394,10 @@ exports[`wonder-blocks-link example 3 1`] = `
             href="#link"
             style={
               Object {
+                ":visited": Object {
+                  "color": "#b5cefb",
+                },
                 "color": "#b5cefb",
-                "cursor": "pointer",
-                "outline": "none",
-                "textDecoration": "none",
-              }
-            }
-          >
-            Label
-          </a>
-          , dolor sit amet, consectetur adipiscing elit.
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        Visited
-      </th>
-      <td>
-        <p>
-          Lorem ipsum
-           
-          <a
-            className=""
-            data-test-id={undefined}
-            href="#link"
-            style={
-              Object {
-                ":visited": Object {},
-                "color": "#ffffff",
                 "cursor": "pointer",
                 "outline": "none",
                 "textDecoration": "none",

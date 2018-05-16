@@ -31,7 +31,7 @@ const Color = {
     pink: "#fa50ae",
 };
 
-// Note: Only blue and red are valid tints for Buttons, Links, IconButtons. We
+// Note: Only blue and red are valid tints for Buttons IconButtons. We
 // explicitly export these as a type because flow does not allow const object
 // values as types.
 export type ValidTints = "#1865f2" | "#d92916";

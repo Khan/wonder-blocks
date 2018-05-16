@@ -215,11 +215,15 @@ describe("wonder-blocks-button", () => {
         const Color = require("wonder-blocks-color").default;
         const ButtonCore = require("./components/button-core.js").default;
 
-        const {blue, red, white, offWhite} = Color;
+        const {blue, darkBlue, white, offWhite} = Color;
 
         const example = (
             <table
-                style={{background: blue, color: white, textAlign: "center"}}
+                style={{
+                    background: darkBlue,
+                    color: white,
+                    textAlign: "center",
+                }}
             >
                 <thead>
                     <tr>
