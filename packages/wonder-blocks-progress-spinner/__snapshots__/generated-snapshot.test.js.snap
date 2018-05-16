@@ -42,7 +42,7 @@ exports[`wonder-blocks-progress-spinner example 1 1`] = `
       fill-rule="nonzero"
       style={
         Object {
-          "fill": "rgba(33,36,44,0.32)",
+          "fill": "rgba(33,36,44,0.16)",
         }
       }
     />
