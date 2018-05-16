@@ -20,7 +20,12 @@ export default class ModalHeader extends React.Component<Props> {
         const {style, color, children} = this.props;
         return (
             <View
-                style={[styles.header, color === "dark" && styles.dark, style]}
+                style={[
+                    styles.header,
+                    color === "dark" && styles.dark,
+                    (gridSize) => gridSize === "small" && styles.small,
+                    style,
+                ]}
             >
                 {children}
             </View>
@@ -45,5 +50,10 @@ const styles = StyleSheet.create({
     dark: {
         background: Color.darkBlue,
         color: Color.white,
+    },
+
+    small: {
+        paddingLeft: 16,
+        paddingRight: 16,
     },
 });

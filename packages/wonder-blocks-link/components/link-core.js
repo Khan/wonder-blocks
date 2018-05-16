@@ -17,6 +17,14 @@ type Props = SharedProps &
 
 const StyledAnchor = addStyle("a");
 export default class LinkCore extends React.Component<Props> {
+    static defaultProps = {
+        caret: false,
+        disabled: false,
+        hovered: false,
+        focused: false,
+        pressed: false,
+    };
+
     render() {
         const {
             children,
@@ -75,7 +83,8 @@ const _generateStyles = (kind, light) => {
         throw new Error("Secondary Light links are not supported");
     }
 
-    const {blue, white, offBlack, offBlack32} = Color;
+    const {blue, purple, white, offBlack, offBlack32} = Color;
+    const linkPurple = mix(fade(offBlack, 0.08), purple);
 
     const defaultTextColor =
         kind === "primary" ? (light ? white : blue) : offBlack;
@@ -83,15 +92,23 @@ const _generateStyles = (kind, light) => {
         default: {
             color: defaultTextColor,
             ":visited": {
-                // #TODO(yejia): Revisit once designs finalized
+                color: light ? defaultTextColor : linkPurple,
             },
         },
         focus: {
-            color: light ? white : blue,
             textDecoration: "underline currentcolor solid",
+            color: light ? white : blue,
+            ":visited": {
+                color: light ? white : linkPurple,
+            },
         },
         active: {
             color: light ? mix(fade(blue, 0.32), white) : mix(offBlack32, blue),
+            ":visited": {
+                color: light
+                    ? mix(fade(blue, 0.32), white)
+                    : mix(offBlack32, linkPurple),
+            },
         },
     };
 

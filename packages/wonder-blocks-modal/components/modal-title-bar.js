@@ -55,6 +55,7 @@ export default class ModalTitleBar extends React.Component<Props> {
                 style={[
                     styles.titlebar,
                     color === "dark" && styles.dark,
+                    (gridSize) => gridSize === "small" && styles.small,
                     style,
                 ]}
             >
@@ -83,15 +84,13 @@ const styles = StyleSheet.create({
         borderBottomStyle: "solid",
         borderBottomColor: Color.offBlack16,
         borderBottomWidth: 1,
+    },
 
-        // On mobile, the titlebar is more compact.
-        //[smOrSmaller]: {
-        //    minHeight: 56,
-        //    paddingTop: 4,
-        //    paddingBottom: 4,
-        //    paddingLeft: 64,
-        //    paddingRight: 16,
-        //},
+    // On mobile, the titlebar is more compact.
+    small: {
+        minHeight: 56,
+        paddingTop: 4,
+        paddingBottom: 4,
     },
 
     // This element is centered within the titlebar

@@ -6,7 +6,6 @@ import {GRID_DEFAULT_SPEC, VALID_GRID_SIZES} from "../util/specs.js";
 import {gridContextTypes} from "../util/utils.js";
 
 import type {GridSize, GridSpec} from "../util/types.js";
-import typeof Row from "./row.js";
 
 type Props = {
     /**
@@ -28,8 +27,8 @@ type Props = {
      */
     spec: GridSpec,
 
-    /** The `<Row>` components that will make up the grid */
-    children: React.ChildrenArray<Row>,
+    /** The contents of the grid */
+    children: React.Node,
 };
 
 /**
@@ -51,9 +50,7 @@ type Props = {
  *
  *  * `GRID_DEFAULT_SPEC` (the default)
  *  * `GRID_INTERNAL_SPEC` (for internal tools)
- *  * `GRID_MODAL_12_SPEC` (12-column Modals)
- *  * `GRID_MODAL_11_SPEC` (11-column Modals)
- *  * `GRID_MODAL_8_SPEC` (8-column Modals)
+ *  * `GRID_MODAL_SPEC` (for all modal dialogs)
  *
  * @version 1.0
  * @since 1.0
@@ -103,6 +100,10 @@ export default class Grid extends React.Component<
         this.watchHandlers = {};
 
         for (const size of VALID_GRID_SIZES) {
+            if (!spec[size]) {
+                continue;
+            }
+
             const {query} = spec[size];
 
             // Don't watch sizes that don't have an associated query
@@ -161,9 +162,11 @@ export default class Grid extends React.Component<
     }
 
     render() {
+        // eslint-disable-next-line no-unused-vars
+        const {ssrSize, size, children, ...otherProps} = this.props;
         return (
-            <GridContext size={this.state.size} spec={this.props.spec}>
-                {this.props.children}
+            <GridContext {...otherProps} size={this.state.size}>
+                {children}
             </GridContext>
         );
     }
@@ -181,8 +184,8 @@ class GridContext extends React.Component<{
     // the Grid component)
     spec: GridSpec,
 
-    // The Row components that will make up the grid
-    children: React.ChildrenArray<Row>,
+    // The components that will make up the grid
+    children: React.Node,
 }> {
     static childContextTypes = gridContextTypes;
 
@@ -196,6 +199,8 @@ class GridContext extends React.Component<{
     render() {
         // TODO(jeresig): Switch to be a React.Fragment once we upgrade to
         // React 16.2+.
-        return <View>{this.props.children}</View>;
+        // eslint-disable-next-line no-unused-vars
+        const {size, spec, children, ...otherProps} = this.props;
+        return <View {...otherProps}>{children}</View>;
     }
 }

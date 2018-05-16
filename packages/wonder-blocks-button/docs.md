@@ -1,6 +1,9 @@
-**WARNING: Button is not finished, do not use!**
+**WARNING: Client-side navigation is not yet implemented!**
 
-A `Button` is a clickable button element consisting of a `ClickableBehavior` (TODO(yejia)) surrounding a `ButtonCore`. `ClickableBehavior` handles interactions and state changes. `ButtonCore` is a stateless component which displays the different states the `Button` can take.
+A `Button` is a clickable button element consisting of a [`ClickableBehavior`]
+(#clickablebehavior) surrounding a `ButtonCore`. `ClickableBehavior` handles
+interactions and state changes. `ButtonCore` is a stateless component which
+displays the different states the `Button` can take.
 
 Blue ButtonCores:
 ```js
@@ -8,6 +11,31 @@ const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
+
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
+const defaultProps = {
+    kind: "primary",
+    size: "default",
+    color: blue,
+    light: false,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    disabled: false,
+};
 
 <table style={{background: offWhite, textAlign: "center"}}>
     <thead>
@@ -28,55 +56,34 @@ const {blue, red, white, offWhite} = Color;
             <th>Primary</th>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
+                    {...defaultProps}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={blue}
-                    light={false}
+                    {...defaultProps}
+                    {...handlers}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
                     disabled={true}
                 >
                     Label
@@ -87,55 +94,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Secondary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={blue}
-                    light={false}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -146,55 +136,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Tertiary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={blue}
-                    light={false}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -210,9 +183,34 @@ Blue ButtonCores, Light:
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
-const {blue, red, white, offWhite} = Color;
+const {blue, darkBlue, white, offWhite} = Color;
 
-<table style={{background: blue, color: white, textAlign: "center"}}>
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
+const defaultProps = {
+    kind: "primary",
+    size: "default",
+    color: blue,
+    light: true,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    disabled: false,
+};
+
+<table style={{background: darkBlue, color: white, textAlign: "center"}}>
     <thead>
         <tr>
             <th />
@@ -231,55 +229,34 @@ const {blue, red, white, offWhite} = Color;
             <th>Primary</th>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
+                    {...defaultProps}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={blue}
-                    light={true}
+                    {...defaultProps}
+                    {...handlers}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
                     disabled={true}
                 >
                     Label
@@ -290,55 +267,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Secondary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={blue}
-                    light={true}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -349,55 +309,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Tertiary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={blue}
-                    light={true}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={blue}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -415,6 +358,31 @@ const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
 
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
+const defaultProps = {
+    kind: "primary",
+    size: "default",
+    color: red,
+    light: false,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    disabled: false,
+};
+
 <table style={{background: offWhite, textAlign: "center"}}>
     <thead>
         <tr>
@@ -434,55 +402,34 @@ const {blue, red, white, offWhite} = Color;
             <th>Primary</th>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
+                    {...defaultProps}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={red}
-                    light={false}
+                    {...defaultProps}
+                    {...handlers}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
                     disabled={true}
                 >
                     Label
@@ -493,55 +440,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Secondary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={red}
-                    light={false}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -552,55 +482,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Tertiary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={red}
-                    light={false}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -617,6 +530,31 @@ const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
+
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
+const defaultProps = {
+    kind: "primary",
+    size: "default",
+    color: red,
+    light: true,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    disabled: false,
+};
 
 <table style={{background: red, color: white, textAlign: "center"}}>
     <thead>
@@ -637,55 +575,34 @@ const {blue, red, white, offWhite} = Color;
             <th>Primary</th>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
+                    {...defaultProps}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={red}
-                    light={true}
+                    {...defaultProps}
+                    {...handlers}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
                     disabled={true}
                 >
                     Label
@@ -696,55 +613,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Secondary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={red}
-                    light={true}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -755,55 +655,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Tertiary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={red}
-                    light={true}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="default"
-                    color={red}
-                    light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -820,6 +703,31 @@ const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
+
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
+const defaultProps = {
+    kind: "primary",
+    size: "small",
+    color: blue,
+    light: false,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    disabled: false,
+};
 
 <table style={{background: offWhite, textAlign: "center"}}>
     <thead>
@@ -840,55 +748,34 @@ const {blue, red, white, offWhite} = Color;
             <th>Primary</th>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
+                    {...defaultProps}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="small"
-                    color={blue}
-                    light={false}
+                    {...defaultProps}
+                    {...handlers}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
-                    kind="primary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
                     disabled={true}
                 >
                     Label
@@ -899,55 +786,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Secondary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="small"
-                    color={blue}
-                    light={false}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -958,55 +828,38 @@ const {blue, red, white, offWhite} = Color;
             <th>Tertiary</th>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="small"
-                    color={blue}
-                    light={false}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </ButtonCore>
             </td>
             <td>
                 <ButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    size="small"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -1016,6 +869,3 @@ const {blue, red, white, offWhite} = Color;
     </tbody>
 </table>
 ```
-
-### Usage
-TODO(yejia)
