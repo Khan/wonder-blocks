@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import Color from "./index.js";
+import Color from "./../index.js";
 
 type Props = {
     textColor: string,

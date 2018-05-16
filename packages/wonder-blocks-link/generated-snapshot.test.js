@@ -13,6 +13,20 @@ describe("wonder-blocks-link", () => {
 
         const {offWhite} = Color;
 
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
+
         const example = (
             <table style={{background: offWhite}}>
                 <tbody>
@@ -28,6 +42,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="#nonexistent-link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -47,6 +62,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="#link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -66,6 +82,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={true}
                                     href="#link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -85,6 +102,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="https://khanacademy.org"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -104,6 +122,20 @@ describe("wonder-blocks-link", () => {
 
         const {offWhite, offBlack64} = Color;
 
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
+
         const example = (
             <table style={{background: offWhite, color: offBlack64}}>
                 <tbody>
@@ -119,6 +151,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="#nonexistent-link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -138,6 +171,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="#link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -157,6 +191,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={true}
                                     href="#link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -176,6 +211,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="https://khanacademy.org"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -195,6 +231,20 @@ describe("wonder-blocks-link", () => {
 
         const {white64, darkBlue} = Color;
 
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
+
         const example = (
             <table style={{background: darkBlue, color: white64}}>
                 <tbody>
@@ -210,6 +260,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="#nonexistent-link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -229,6 +280,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="#link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -248,6 +300,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={true}
                                     href="#link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -267,6 +320,7 @@ describe("wonder-blocks-link", () => {
                                     focused={false}
                                     pressed={false}
                                     href="#link"
+                                    {...handlers}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur

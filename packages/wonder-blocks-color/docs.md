@@ -1,6 +1,6 @@
 ```js
-const ColoredTextWithBackground = require("./colored-text-with-background.js").default;
-const ColorWithName = require("./color-with-name.js").default;
+const ColoredTextWithBackground = require("./docutils/colored-text-with-background.js").default;
+const ColorWithName = require("./docutils/color-with-name.js").default;
 
 const Color = require("./index.js").default;
 
@@ -16,8 +16,8 @@ const Color = require("./index.js").default;
 ```
 
 ```js
-const ColoredTextWithBackground = require("./colored-text-with-background.js").default;
-const ColorWithName = require("./color-with-name.js").default;
+const ColoredTextWithBackground = require("./docutils/colored-text-with-background.js").default;
+const ColorWithName = require("./docutils/color-with-name.js").default;
 
 const {mix, fade} = require("./index.js");
 const Color = require("./index.js").default;

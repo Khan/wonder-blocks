@@ -13,6 +13,20 @@ describe("wonder-blocks-button", () => {
 
         const {blue, red, white, offWhite} = Color;
 
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
+
         const example = (
             <table style={{background: offWhite, textAlign: "center"}}>
                 <thead>
@@ -41,6 +55,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -55,6 +70,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -69,6 +85,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -83,6 +100,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -100,6 +118,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -114,6 +133,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -128,6 +148,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -142,6 +163,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -159,6 +181,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -173,6 +196,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -187,6 +211,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -201,6 +226,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -217,6 +243,20 @@ describe("wonder-blocks-button", () => {
         const ButtonCore = require("./components/button-core.js").default;
 
         const {blue, red, white, offWhite} = Color;
+
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
 
         const example = (
             <table
@@ -248,6 +288,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -262,6 +303,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -276,6 +318,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -290,6 +333,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -307,6 +351,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -321,6 +366,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -335,6 +381,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -349,6 +396,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -366,6 +414,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -380,6 +429,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -394,6 +444,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -408,6 +459,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -424,6 +476,20 @@ describe("wonder-blocks-button", () => {
         const ButtonCore = require("./components/button-core.js").default;
 
         const {blue, red, white, offWhite} = Color;
+
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
 
         const example = (
             <table style={{background: offWhite, textAlign: "center"}}>
@@ -453,6 +519,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -467,6 +534,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -481,6 +549,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -495,6 +564,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -512,6 +582,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -526,6 +597,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -540,6 +612,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -554,6 +627,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -571,6 +645,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -585,6 +660,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -599,6 +675,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -613,6 +690,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -629,6 +707,20 @@ describe("wonder-blocks-button", () => {
         const ButtonCore = require("./components/button-core.js").default;
 
         const {blue, red, white, offWhite} = Color;
+
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
 
         const example = (
             <table style={{background: red, color: white, textAlign: "center"}}>
@@ -658,6 +750,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -672,6 +765,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -686,6 +780,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -700,6 +795,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -717,6 +813,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -731,6 +828,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -745,6 +843,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -759,6 +858,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -776,6 +876,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -790,6 +891,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -804,6 +906,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -818,6 +921,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -834,6 +938,20 @@ describe("wonder-blocks-button", () => {
         const ButtonCore = require("./components/button-core.js").default;
 
         const {blue, red, white, offWhite} = Color;
+
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
 
         const example = (
             <table style={{background: offWhite, textAlign: "center"}}>
@@ -863,6 +981,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -877,6 +996,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -891,6 +1011,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -905,6 +1026,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -922,6 +1044,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -936,6 +1059,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -950,6 +1074,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -964,6 +1089,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -981,6 +1107,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -995,6 +1122,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -1009,6 +1137,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={true}
                                 disabled={false}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>
@@ -1023,6 +1152,7 @@ describe("wonder-blocks-button", () => {
                                 focused={false}
                                 pressed={false}
                                 disabled={true}
+                                {...handlers}
                             >
                                 Label
                             </ButtonCore>

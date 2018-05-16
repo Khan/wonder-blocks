@@ -9,6 +9,20 @@ const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
 
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
 <table style={{background: offWhite, textAlign: "center"}}>
     <thead>
         <tr>
@@ -36,6 +50,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -50,6 +65,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -64,6 +80,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -78,6 +95,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -95,6 +113,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -109,6 +128,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -123,6 +143,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -137,6 +158,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -154,6 +176,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -168,6 +191,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -182,6 +206,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -196,6 +221,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -211,6 +237,20 @@ const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
+
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
 
 <table style={{background: blue, color: white, textAlign: "center"}}>
     <thead>
@@ -239,6 +279,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -253,6 +294,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -267,6 +309,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -281,6 +324,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -298,6 +342,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -312,6 +357,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -326,6 +372,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -340,6 +387,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -357,6 +405,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -371,6 +420,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -385,6 +435,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -399,6 +450,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -414,6 +466,20 @@ const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
+
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
 
 <table style={{background: offWhite, textAlign: "center"}}>
     <thead>
@@ -442,6 +508,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -456,6 +523,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -470,6 +538,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -484,6 +553,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -501,6 +571,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -515,6 +586,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -529,6 +601,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -543,6 +616,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -560,6 +634,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -574,6 +649,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -588,6 +664,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -602,6 +679,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -617,6 +695,20 @@ const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
+
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
 
 <table style={{background: red, color: white, textAlign: "center"}}>
     <thead>
@@ -645,6 +737,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -659,6 +752,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -673,6 +767,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -687,6 +782,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -704,6 +800,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -718,6 +815,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -732,6 +830,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -746,6 +845,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -763,6 +863,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -777,6 +878,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -791,6 +893,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -805,6 +908,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -820,6 +924,20 @@ const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
 const {blue, red, white, offWhite} = Color;
+
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
 
 <table style={{background: offWhite, textAlign: "center"}}>
     <thead>
@@ -848,6 +966,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -862,6 +981,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -876,6 +996,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -890,6 +1011,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -907,6 +1029,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -921,6 +1044,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -935,6 +1059,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -949,6 +1074,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -966,6 +1092,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -980,6 +1107,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -994,6 +1122,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={true}
                     disabled={false}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>
@@ -1008,6 +1137,7 @@ const {blue, red, white, offWhite} = Color;
                     focused={false}
                     pressed={false}
                     disabled={true}
+                    {...handlers}
                 >
                     Label
                 </ButtonCore>

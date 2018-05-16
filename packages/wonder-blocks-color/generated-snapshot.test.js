@@ -7,9 +7,9 @@ import renderer from "react-test-renderer";
 
 describe("wonder-blocks-color", () => {
     it("example 1", () => {
-        const ColoredTextWithBackground = require("./colored-text-with-background.js")
+        const ColoredTextWithBackground = require("./docutils/colored-text-with-background.js")
             .default;
-        const ColorWithName = require("./color-with-name.js").default;
+        const ColorWithName = require("./docutils/color-with-name.js").default;
 
         const Color = require("./index.js").default;
 
@@ -28,9 +28,9 @@ describe("wonder-blocks-color", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const ColoredTextWithBackground = require("./colored-text-with-background.js")
+        const ColoredTextWithBackground = require("./docutils/colored-text-with-background.js")
             .default;
-        const ColorWithName = require("./color-with-name.js").default;
+        const ColorWithName = require("./docutils/color-with-name.js").default;
 
         const {mix, fade} = require("./index.js");
         const Color = require("./index.js").default;
