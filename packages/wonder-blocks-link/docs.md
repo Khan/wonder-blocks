@@ -12,6 +12,20 @@ const LinkCore = require("./components/link-core.js").default;
 
 const {offWhite} = Color;
 
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
 <table style={{background: offWhite}}>
     <tbody>
         <tr>
@@ -25,6 +39,7 @@ const {offWhite} = Color;
                         focused={false}
                         pressed={false}
                         href="#nonexistent-link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -43,6 +58,7 @@ const {offWhite} = Color;
                         focused={false}
                         pressed={false}
                         href="#nonexistent-link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -61,6 +77,7 @@ const {offWhite} = Color;
                         focused={false}
                         pressed={true}
                         href="#nonexistent-link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -79,6 +96,20 @@ const LinkCore = require("./components/link-core.js").default;
 
 const {offWhite} = Color;
 
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
 <table style={{background: offWhite}}>
     <tbody>
         <tr>
@@ -92,6 +123,7 @@ const {offWhite} = Color;
                         focused={false}
                         pressed={false}
                         href="#"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -110,6 +142,7 @@ const {offWhite} = Color;
                         focused={false}
                         pressed={false}
                         href="#"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -128,6 +161,7 @@ const {offWhite} = Color;
                         focused={false}
                         pressed={true}
                         href="#"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -146,6 +180,20 @@ const LinkCore = require("./components/link-core.js").default;
 
 const {offWhite, offBlack64} = Color;
 
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
 <table style={{background: offWhite, color: offBlack64}}>
     <tbody>
         <tr>
@@ -159,6 +207,7 @@ const {offWhite, offBlack64} = Color;
                         focused={false}
                         pressed={false}
                         href="#nonexistent-link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -177,6 +226,7 @@ const {offWhite, offBlack64} = Color;
                         focused={false}
                         pressed={false}
                         href="#nonexistent-link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -195,6 +245,7 @@ const {offWhite, offBlack64} = Color;
                         focused={false}
                         pressed={true}
                         href="#nonexistent-link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -213,6 +264,20 @@ const LinkCore = require("./components/link-core.js").default;
 
 const {white64, darkBlue} = Color;
 
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
 <table style={{background: darkBlue, color: white64}}>
     <tbody>
         <tr>
@@ -226,6 +291,7 @@ const {white64, darkBlue} = Color;
                         focused={false}
                         pressed={false}
                         href="#nonexistent-link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -244,6 +310,7 @@ const {white64, darkBlue} = Color;
                         focused={false}
                         pressed={false}
                         href="#link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,
@@ -262,6 +329,7 @@ const {white64, darkBlue} = Color;
                         focused={false}
                         pressed={true}
                         href="#link"
+                        {...handlers}
                     >
                         Label
                     </LinkCore>,

@@ -20,7 +20,19 @@ exports[`wonder-blocks-link example 1 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#nonexistent-link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -50,7 +62,19 @@ exports[`wonder-blocks-link example 1 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#nonexistent-link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -80,7 +104,19 @@ exports[`wonder-blocks-link example 1 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#nonexistent-link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -123,7 +159,19 @@ exports[`wonder-blocks-link example 2 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -153,7 +201,19 @@ exports[`wonder-blocks-link example 2 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -183,7 +243,19 @@ exports[`wonder-blocks-link example 2 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -227,7 +299,19 @@ exports[`wonder-blocks-link example 3 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#nonexistent-link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -257,7 +341,19 @@ exports[`wonder-blocks-link example 3 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#nonexistent-link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -287,7 +383,19 @@ exports[`wonder-blocks-link example 3 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#nonexistent-link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -331,7 +439,19 @@ exports[`wonder-blocks-link example 4 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#nonexistent-link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -361,7 +481,19 @@ exports[`wonder-blocks-link example 4 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
@@ -391,7 +523,19 @@ exports[`wonder-blocks-link example 4 1`] = `
           <a
             className=""
             data-test-id={undefined}
+            disabled={false}
             href="#link"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
                 ":visited": Object {
