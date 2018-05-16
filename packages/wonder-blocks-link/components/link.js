@@ -99,7 +99,13 @@ export default class Link extends React.Component<Props> {
     };
 
     render() {
-        const {onClick, href, children, ...sharedProps} = this.props;
+        const {
+            onClick,
+            href,
+            children,
+            clientSideNav,
+            ...sharedProps
+        } = this.props;
         return (
             <ClickableBehavior disabled={false} onClick={onClick} href={href}>
                 {(state, handlers) => {
@@ -109,6 +115,7 @@ export default class Link extends React.Component<Props> {
                             {...state}
                             {...handlers}
                             href={href}
+                            clientSideNav={clientSideNav}
                         >
                             {children}
                         </LinkCore>
