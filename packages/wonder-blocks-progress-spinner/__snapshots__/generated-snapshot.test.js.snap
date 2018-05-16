@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-progress-spinner example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "justifyContent": "center",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <svg
+    className=""
+    height={96}
+    style={
+      Object {
+        "animationDuration": "1.1s",
+        "animationIterationCount": "infinite",
+        "animationName": Object {
+          "0%": Object {
+            "transform": "rotate(0deg)",
+          },
+          "100%": Object {
+            "transform": "rotate(360deg)",
+          },
+          "50%": Object {
+            "transform": "rotate(180deg)",
+          },
+        },
+        "animationTimingFunction": "linear",
+      }
+    }
+    viewBox="0 0 96 96"
+    width={96}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      className=""
+      d="M88.38 46.91a3.818 3.818 0 1 1 7.602 0h.006c.008.362.012.725.012 1.09 0 26.51-21.49 48-48 48S0 74.51 0 48 21.49 0 48 0c.365 0 .728.004 1.09.012v.005a3.818 3.818 0 1 1 0 7.602v.032c-.362-.01-.725-.015-1.09-.015C25.708 7.636 7.636 25.708 7.636 48c0 22.292 18.072 40.364 40.364 40.364 22.292 0 40.364-18.072 40.364-40.364 0-.365-.005-.728-.015-1.09h.032z"
+      fill-rule="nonzero"
+      style={
+        Object {
+          "fill": "rgba(33,36,44,0.16)",
+        }
+      }
+    />
+  </svg>
+</div>
+`;
