@@ -85,8 +85,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -102,7 +104,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -142,8 +144,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -159,7 +163,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -187,8 +191,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -204,7 +210,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -232,8 +238,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -249,7 +257,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -292,8 +300,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -309,7 +319,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -340,8 +350,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 15,
               "paddingRight": 15,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -357,7 +369,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -388,8 +400,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -405,7 +419,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -436,8 +450,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -453,7 +469,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -493,8 +509,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -510,7 +528,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -527,13 +545,19 @@ exports[`wonder-blocks-button example 1 1`] = `
           href={undefined}
           style={
             Object {
+              ":after": Object {
+                "background": "#1865f2",
+                "borderRadius": 2,
+                "bottom": "calc(50% - 11px)",
+                "content": "''",
+                "height": 2,
+                "position": "absolute",
+                "width": "calc(100% - 8px)",
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
-              "borderColor": "#1865f2",
               "borderRadius": 4,
-              "borderStyle": "solid",
-              "borderWidth": 2,
               "boxSizing": "border-box",
               "color": "#1865f2",
               "cursor": "pointer",
@@ -541,8 +565,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
-              "paddingLeft": 2,
-              "paddingRight": 2,
+              "paddingBottom": 0,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -558,7 +584,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -586,8 +612,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -603,7 +631,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -631,8 +659,10 @@ exports[`wonder-blocks-button example 1 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -648,7 +678,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -666,7 +696,7 @@ exports[`wonder-blocks-button example 2 1`] = `
 <table
   style={
     Object {
-      "background": "#1865f2",
+      "background": "#0a2a66",
       "color": "#ffffff",
       "textAlign": "center",
     }
@@ -748,8 +778,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -765,7 +797,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -805,8 +837,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -822,7 +856,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -850,8 +884,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -867,7 +903,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -885,7 +921,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "background": "rgba(255,255,255,0.64)",
+              "background": "#6296f6",
               "border": "none",
               "borderRadius": 4,
               "boxSizing": "border-box",
@@ -895,8 +931,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -912,7 +950,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -955,8 +993,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -972,7 +1012,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -990,7 +1030,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "background": "#1865f2",
+              "background": "transparent",
               "border": "none",
               "borderColor": "#ffffff",
               "borderRadius": 4,
@@ -1003,8 +1043,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 15,
               "paddingRight": 15,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1020,7 +1062,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1051,8 +1093,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1068,7 +1112,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1088,19 +1132,21 @@ exports[`wonder-blocks-button example 2 1`] = `
               "alignItems": "center",
               "background": "none",
               "border": "none",
-              "borderColor": "rgba(255,255,255,0.32)",
+              "borderColor": "#6296f6",
               "borderRadius": 4,
               "borderStyle": "solid",
               "borderWidth": 1,
               "boxSizing": "border-box",
-              "color": "rgba(255,255,255,0.32)",
+              "color": "#6296f6",
               "cursor": "auto",
               "display": "inline-flex",
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1116,7 +1162,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1156,8 +1202,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1173,7 +1221,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1190,13 +1238,19 @@ exports[`wonder-blocks-button example 2 1`] = `
           href={undefined}
           style={
             Object {
+              ":after": Object {
+                "background": "#ffffff",
+                "borderRadius": 2,
+                "bottom": "calc(50% - 11px)",
+                "content": "''",
+                "height": 2,
+                "position": "absolute",
+                "width": "calc(100% - 8px)",
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
-              "borderColor": "#ffffff",
               "borderRadius": 4,
-              "borderStyle": "solid",
-              "borderWidth": 2,
               "boxSizing": "border-box",
               "color": "#ffffff",
               "cursor": "pointer",
@@ -1204,8 +1258,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
-              "paddingLeft": 2,
-              "paddingRight": 2,
+              "paddingBottom": 0,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1221,7 +1277,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1249,8 +1305,10 @@ exports[`wonder-blocks-button example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1266,7 +1324,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1288,14 +1346,16 @@ exports[`wonder-blocks-button example 2 1`] = `
               "border": "none",
               "borderRadius": 4,
               "boxSizing": "border-box",
-              "color": "rgba(255,255,255,0.32)",
+              "color": "#6296f6",
               "cursor": "auto",
               "display": "inline-flex",
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1311,7 +1371,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1410,8 +1470,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1427,7 +1489,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1467,8 +1529,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1484,7 +1548,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1512,8 +1576,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1529,7 +1595,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1557,8 +1623,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1574,7 +1642,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1617,8 +1685,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1634,7 +1704,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1665,8 +1735,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 15,
               "paddingRight": 15,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1682,7 +1754,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1713,8 +1785,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1730,7 +1804,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1761,8 +1835,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1778,7 +1854,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1818,8 +1894,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1835,7 +1913,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1852,13 +1930,19 @@ exports[`wonder-blocks-button example 3 1`] = `
           href={undefined}
           style={
             Object {
+              ":after": Object {
+                "background": "#d92916",
+                "borderRadius": 2,
+                "bottom": "calc(50% - 11px)",
+                "content": "''",
+                "height": 2,
+                "position": "absolute",
+                "width": "calc(100% - 8px)",
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
-              "borderColor": "#d92916",
               "borderRadius": 4,
-              "borderStyle": "solid",
-              "borderWidth": 2,
               "boxSizing": "border-box",
               "color": "#d92916",
               "cursor": "pointer",
@@ -1866,8 +1950,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
-              "paddingLeft": 2,
-              "paddingRight": 2,
+              "paddingBottom": 0,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1883,7 +1969,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1911,8 +1997,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1928,7 +2016,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -1956,8 +2044,10 @@ exports[`wonder-blocks-button example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -1973,7 +2063,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2073,8 +2163,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2090,7 +2182,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2130,8 +2222,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2147,7 +2241,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2175,8 +2269,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2192,7 +2288,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2210,7 +2306,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "background": "rgba(255,255,255,0.64)",
+              "background": "#e56d61",
               "border": "none",
               "borderRadius": 4,
               "boxSizing": "border-box",
@@ -2220,8 +2316,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2237,7 +2335,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2280,8 +2378,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2297,7 +2397,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2315,7 +2415,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "background": "#d92916",
+              "background": "transparent",
               "border": "none",
               "borderColor": "#ffffff",
               "borderRadius": 4,
@@ -2328,8 +2428,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 15,
               "paddingRight": 15,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2345,7 +2447,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2376,8 +2478,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2393,7 +2497,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2413,19 +2517,21 @@ exports[`wonder-blocks-button example 4 1`] = `
               "alignItems": "center",
               "background": "none",
               "border": "none",
-              "borderColor": "rgba(255,255,255,0.32)",
+              "borderColor": "#e56d61",
               "borderRadius": 4,
               "borderStyle": "solid",
               "borderWidth": 1,
               "boxSizing": "border-box",
-              "color": "rgba(255,255,255,0.32)",
+              "color": "#e56d61",
               "cursor": "auto",
               "display": "inline-flex",
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2441,7 +2547,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2481,8 +2587,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2498,7 +2606,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2515,13 +2623,19 @@ exports[`wonder-blocks-button example 4 1`] = `
           href={undefined}
           style={
             Object {
+              ":after": Object {
+                "background": "#ffffff",
+                "borderRadius": 2,
+                "bottom": "calc(50% - 11px)",
+                "content": "''",
+                "height": 2,
+                "position": "absolute",
+                "width": "calc(100% - 8px)",
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
-              "borderColor": "#ffffff",
               "borderRadius": 4,
-              "borderStyle": "solid",
-              "borderWidth": 2,
               "boxSizing": "border-box",
               "color": "#ffffff",
               "cursor": "pointer",
@@ -2529,8 +2643,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
-              "paddingLeft": 2,
-              "paddingRight": 2,
+              "paddingBottom": 0,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2546,7 +2662,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2574,8 +2690,10 @@ exports[`wonder-blocks-button example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2591,7 +2709,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2613,14 +2731,16 @@ exports[`wonder-blocks-button example 4 1`] = `
               "border": "none",
               "borderRadius": 4,
               "boxSizing": "border-box",
-              "color": "rgba(255,255,255,0.32)",
+              "color": "#e56d61",
               "cursor": "auto",
               "display": "inline-flex",
               "height": 40,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2636,7 +2756,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "display": "block",
                 "fontFamily": "Lato",
                 "fontSize": 16,
-                "fontWeight": 700,
+                "fontWeight": "bold",
                 "lineHeight": "20px",
               }
             }
@@ -2735,8 +2855,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2751,9 +2873,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -2792,8 +2914,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2808,9 +2932,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -2837,8 +2961,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2853,9 +2979,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -2882,8 +3008,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2898,9 +3026,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -2942,8 +3070,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -2958,9 +3088,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -2990,8 +3120,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 15,
               "paddingRight": 15,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -3006,9 +3138,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -3038,8 +3170,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -3054,9 +3188,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -3086,8 +3220,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 16,
               "paddingRight": 16,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -3102,9 +3238,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -3143,8 +3279,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -3159,9 +3297,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -3177,13 +3315,19 @@ exports[`wonder-blocks-button example 5 1`] = `
           href={undefined}
           style={
             Object {
+              ":after": Object {
+                "background": "#1865f2",
+                "borderRadius": 2,
+                "bottom": "calc(50% - 11px)",
+                "content": "''",
+                "height": 2,
+                "position": "absolute",
+                "width": "calc(100% - 8px)",
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
-              "borderColor": "#1865f2",
               "borderRadius": 4,
-              "borderStyle": "solid",
-              "borderWidth": 2,
               "boxSizing": "border-box",
               "color": "#1865f2",
               "cursor": "pointer",
@@ -3191,8 +3335,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
-              "paddingLeft": 2,
-              "paddingRight": 2,
+              "paddingBottom": 0,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -3207,9 +3353,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -3236,8 +3382,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -3252,9 +3400,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >
@@ -3281,8 +3429,10 @@ exports[`wonder-blocks-button example 5 1`] = `
               "height": 32,
               "justifyContent": "center",
               "outline": "none",
+              "paddingBottom": 0,
               "paddingLeft": 4,
               "paddingRight": 4,
+              "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
             }
@@ -3297,9 +3447,9 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
                 "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "lineHeight": "18px",
               }
             }
           >

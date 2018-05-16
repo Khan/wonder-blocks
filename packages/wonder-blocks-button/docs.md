@@ -1,6 +1,9 @@
 **WARNING: Button is not finished, do not use!**
 
-A `Button` is a clickable button element consisting of a `ClickableBehavior` (TODO(yejia)) surrounding a `ButtonCore`. `ClickableBehavior` handles interactions and state changes. `ButtonCore` is a stateless component which displays the different states the `Button` can take.
+A `Button` is a clickable button element consisting of a [`ClickableBehavior`]
+(#clickablebehavior) surrounding a `ButtonCore`. `ClickableBehavior` handles
+interactions and state changes. `ButtonCore` is a stateless component which
+displays the different states the `Button` can take.
 
 Blue ButtonCores:
 ```js
@@ -210,9 +213,9 @@ Blue ButtonCores, Light:
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
-const {blue, red, white, offWhite} = Color;
+const {blue, darkBlue, white, offWhite} = Color;
 
-<table style={{background: blue, color: white, textAlign: "center"}}>
+<table style={{background: darkBlue, color: white, textAlign: "center"}}>
     <thead>
         <tr>
             <th />
@@ -1016,6 +1019,3 @@ const {blue, red, white, offWhite} = Color;
     </tbody>
 </table>
 ```
-
-### Usage
-TODO(yejia)
