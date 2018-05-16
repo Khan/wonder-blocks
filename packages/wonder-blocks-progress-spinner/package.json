@@ -1,5 +1,5 @@
 {
-  "name": "wonder-blocks-modal",
+  "name": "wonder-blocks-progress-spinner",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -10,8 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "wonder-blocks-color": "../wonder-blocks-color",
-    "wonder-blocks-core": "../wonder-blocks-core",
-    "wonder-blocks-grid": "../wonder-blocks-grid",
-    "wonder-blocks-typography": "../wonder-blocks-typography"
+    "wonder-blocks-spacing": "../wonder-blocks-spacing",
+    "wonder-blocks-core": "../wonder-blocks-core"
   }
 }

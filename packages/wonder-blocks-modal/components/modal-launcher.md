@@ -7,7 +7,6 @@ const {Title, Body} = require("wonder-blocks-typography");
 const ModalLauncher = require("./modal-launcher.js").default;
 const TwoColumnModal = require("./two-column-modal.js").default;
 const OneColumnModal = require("./one-column-modal.js").default;
-const {smOrSmaller} = require("../util/util.js");
 
 const styles = StyleSheet.create({
     example: {

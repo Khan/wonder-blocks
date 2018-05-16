@@ -42,7 +42,7 @@ export const GRID_INTERNAL_SPEC: GridSpec = {
 };
 
 // The default used for modals
-export const GRID_MODAL_12_SPEC: GridSpec = {
+export const GRID_MODAL_SPEC: GridSpec = {
     small: {
         query: "(max-width: 767px)",
         totalColumns: 4,
@@ -52,38 +52,6 @@ export const GRID_MODAL_12_SPEC: GridSpec = {
     large: {
         query: "(min-width: 768px)",
         totalColumns: 12,
-        gutterWidth: Spacing.xLarge,
-        marginWidth: Spacing.xxLarge,
-    },
-};
-
-// The odd-sized modal
-export const GRID_MODAL_11_SPEC: GridSpec = {
-    small: {
-        query: "(max-width: 767px)",
-        totalColumns: 4,
-        gutterWidth: Spacing.medium,
-        marginWidth: Spacing.medium,
-    },
-    large: {
-        query: "(min-width: 768px)",
-        totalColumns: 11,
-        gutterWidth: Spacing.xLarge,
-        marginWidth: Spacing.xxLarge,
-    },
-};
-
-// Smaller modal
-export const GRID_MODAL_8_SPEC: GridSpec = {
-    small: {
-        query: "(max-width: 767px)",
-        totalColumns: 4,
-        gutterWidth: Spacing.medium,
-        marginWidth: Spacing.medium,
-    },
-    large: {
-        query: "(min-width: 768px)",
-        totalColumns: 8,
         gutterWidth: Spacing.xLarge,
         marginWidth: Spacing.xxLarge,
     },

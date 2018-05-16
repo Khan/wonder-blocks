@@ -28,6 +28,12 @@ module.exports = {
             components: "packages/wonder-blocks-core/components/*.js",
         },
         {
+            name: "ProgressSpinner",
+            content: "packages/wonder-blocks-progress-spinner/docs.md",
+            components:
+                "packages/wonder-blocks-progress-spinner/components/*.js",
+        },
+        {
             name: "Modal",
             content: "packages/wonder-blocks-modal/docs.md",
             sections: [
@@ -50,7 +56,7 @@ module.exports = {
                     content: "packages/wonder-blocks-modal/building-blocks.md",
                     components: [
                         "packages/wonder-blocks-modal/components/modal-dialog.js",
-                        "packages/wonder-blocks-modal/components/modal-content-pane.js",
+                        "packages/wonder-blocks-modal/components/modal-panel.js",
                         "packages/wonder-blocks-modal/components/modal-content.js",
                         "packages/wonder-blocks-modal/components/modal-title-bar.js",
                         "packages/wonder-blocks-modal/components/modal-header.js",

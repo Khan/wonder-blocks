@@ -3,7 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import ModalDialog from "./modal-dialog.js";
-import ModalContentPane from "./modal-content-pane.js";
+import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
 import ModalTitleBar from "./modal-title-bar.js";
 
@@ -75,8 +75,10 @@ export default class StandardModal extends React.Component<Props> {
         } = this.props;
 
         return (
-            <ModalDialog style={styles.wrapper}>
-                <ModalContentPane
+            <ModalDialog
+                style={(gridSize) => gridSize !== "small" && styles.wrapper}
+            >
+                <ModalPanel
                     showCloseButton
                     onClickCloseButton={onClickCloseButton}
                     titleBar={
@@ -90,18 +92,20 @@ export default class StandardModal extends React.Component<Props> {
                     content={content}
                     footer={footer}
                 />
-                {preview ? (
-                    <ModalContentPane
+                {preview && (
+                    <ModalPanel
                         color="dark"
-                        style={styles.preview}
+                        style={
+                            (styles.preview,
+                            (gridSize) =>
+                                gridSize === "small" && styles.smallPreview)
+                        }
                         content={
                             <ModalContent style={styles.previewContent}>
                                 {preview}
                             </ModalContent>
                         }
                     />
-                ) : (
-                    undefined
                 )}
             </ModalDialog>
         );
@@ -124,5 +128,9 @@ const styles = StyleSheet.create({
 
     previewContent: {
         padding: "0 64px 0 0",
+    },
+
+    smallPreview: {
+        display: "none",
     },
 });

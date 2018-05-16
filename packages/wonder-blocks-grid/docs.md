@@ -117,26 +117,12 @@ Additionally, the following grid size specs are also available:
 | ----- | ------- | ------ | ------ | -------------------------------------------- |
 | large | 12      | 32px   | 16px   | `min-width: 1px` (No maximum content width.) |
 
-**12-Column Modal (`GRID_MODAL_12_SPEC`)**
+**12-Column Modal (`GRID_MODAL_SPEC`)**
 
 | Size  | Columns | Gutter | Margin | Breakpoint                                     |
 | ----- | ------- | ------ | ------ | ---------------------------------------------- |
 | small | 4       | 16px   | 16px   | `max-width: 767px`                             |
 | large | 12      | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
-
-**11-Column Modal (`GRID_MODAL_11_SPEC`)**
-
-| Size  | Columns | Gutter | Margin | Breakpoint                                     |
-| ----- | ------- | ------ | ------ | ---------------------------------------------- |
-| small | 4       | 16px   | 16px   | `max-width: 767px`                             |
-| large | 11      | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
-
-**8-Column Modal (`GRID_MODAL_8_SPEC`)**
-
-| Size  | Columns | Gutter | Margin | Breakpoint                                     |
-| ----- | ------- | ------ | ------ | ---------------------------------------------- |
-| small | 4       | 16px   | 16px   | `max-width: 767px`                             |
-| large | 8       | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
 
 These breakpoints allow for a great level of flexibility in the design, constantly adjusting to the size of the viewport and working across mobile, tablet, and desktop devices. An example of this can be seen in this site mock-up:
 
