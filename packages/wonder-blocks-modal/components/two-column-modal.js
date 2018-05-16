@@ -1,9 +1,14 @@
 // @flow
 import * as React from "react";
+import propTypes from "prop-types";
 import {StyleSheet} from "aphrodite";
 
+import {View} from "wonder-blocks-core";
+import Color from "wonder-blocks-color";
+
 import ModalDialog from "./modal-dialog.js";
-import ModalContentPane from "./modal-content-pane.js";
+import ModalFooter from "./modal-footer.js";
+import ModalPanel from "./modal-panel.js";
 
 type Props = {
     /** The sidebar contents (which becomes the header on mobile screens). */
@@ -30,6 +35,71 @@ type Props = {
     onClickCloseButton: () => void,
 };
 
+class ContentWrapper extends React.Component<Props> {
+    static defaultProps = {
+        onClickCloseButton: () => {},
+    };
+
+    static contextTypes = {
+        gridSize: propTypes.string,
+    };
+
+    render() {
+        const {onClickCloseButton, sidebar, content, footer} = this.props;
+        const {gridSize} = this.context;
+
+        if (gridSize !== "small") {
+            return (
+                <View style={styles.contentWrapper}>
+                    <ModalPanel
+                        showCloseButton
+                        color="dark"
+                        onClickCloseButton={onClickCloseButton}
+                        style={styles.column}
+                        content={sidebar}
+                    />
+                    <ModalPanel
+                        style={styles.column}
+                        content={content}
+                        footer={footer}
+                    />
+                </View>
+            );
+        }
+
+        return (
+            <View style={styles.contentFooterWrapper}>
+                <View
+                    style={[styles.contentWrapper, styles.smallContentWrapper]}
+                >
+                    <ModalPanel
+                        showCloseButton
+                        color="dark"
+                        onClickCloseButton={onClickCloseButton}
+                        style={styles.smallColumn}
+                        content={sidebar}
+                        scrollOverflow={false}
+                    />
+                    <ModalPanel
+                        style={styles.smallColumn}
+                        content={content}
+                        scrollOverflow={false}
+                    />
+                </View>
+                {footer && (
+                    <View style={styles.smallFooter}>
+                        {!footer || footer.type === ModalFooter ? (
+                            footer
+                        ) : (
+                            <ModalFooter>{footer}</ModalFooter>
+                        )}
+                    </View>
+                )}
+            </View>
+        );
+    }
+}
+
 /**
  * A two-column modal layout.
  */
@@ -39,35 +109,52 @@ export default class TwoColumnModal extends React.Component<Props> {
     };
 
     render() {
-        const {onClickCloseButton, sidebar, content, footer} = this.props;
-
         return (
-            <ModalDialog style={styles.wrapper}>
-                <ModalContentPane
-                    showCloseButton
-                    color="dark"
-                    onClickCloseButton={onClickCloseButton}
-                    style={styles.column}
-                    content={sidebar}
-                />
-                <ModalContentPane
-                    style={styles.column}
-                    content={content}
-                    footer={footer}
-                />
+            <ModalDialog
+                style={(gridSize) =>
+                    gridSize === "small" ? styles.smallDialog : styles.dialog
+                }
+            >
+                <ContentWrapper {...this.props} />
             </ModalDialog>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
+    dialog: {
         width: "86.72%",
         height: "60.42%",
         minHeight: 464,
     },
 
+    smallDialog: {
+        background: Color.white,
+    },
+
     column: {
         flex: "0 0 50%",
+    },
+
+    smallColumn: {
+        flex: "0 0",
+    },
+
+    contentFooterWrapper: {
+        flexDirection: "column",
+        height: "100%",
+    },
+
+    contentWrapper: {
+        flexDirection: "row",
+    },
+
+    smallContentWrapper: {
+        flexDirection: "column",
+        overflow: "auto",
+    },
+
+    smallFooter: {
+        minHeight: 64,
     },
 });
