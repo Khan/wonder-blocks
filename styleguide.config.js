@@ -70,6 +70,11 @@ module.exports = {
             content: "packages/wonder-blocks-button/docs.md",
             components: "packages/wonder-blocks-button/components/button.js",
         },
+        {
+            name: "Link",
+            content: "packages/wonder-blocks-link/docs.md",
+            components: "packages/wonder-blocks-link/components/link.js",
+        },
     ],
 
     // These values control our custom styles.

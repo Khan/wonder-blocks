@@ -95,6 +95,46 @@ describe("ClickableBehavior", () => {
         expect(button.state("focused")).toEqual(false);
     });
 
+    it("enters focused state on key press after click", () => {
+        const onClick = jest.fn();
+        const button = shallow(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, handlers) => {
+                    return <button {...handlers}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
+        expect(button.state("focused")).toEqual(false);
+        button.simulate("keydown", {keyCode: keyCodes.space});
+        button.simulate("click", {preventDefault: jest.fn()});
+        button.simulate("keyup", {keyCode: keyCodes.space});
+        expect(button.state("focused")).toEqual(true);
+    });
+
+    it("exits focused state on click after key press", () => {
+        const onClick = jest.fn();
+        // Note: window.location.assign is not called, but jest logs an error
+        // if it's not stubbed out.
+        window.location.assign = jest.fn();
+
+        const button = shallow(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, handlers) => {
+                    return <button {...handlers}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
+        expect(button.state("focused")).toEqual(false);
+        button.simulate("keydown", {keyCode: keyCodes.space});
+        button.simulate("click", {preventDefault: jest.fn()});
+        button.simulate("keyup", {keyCode: keyCodes.space});
+        expect(button.state("focused")).toEqual(true);
+        button.simulate("mousedown");
+        button.simulate("click");
+        button.simulate("mouseup");
+        expect(button.state("focused")).toEqual(false);
+    });
+
     it("changes pressed state on only space key down/up if <button>", () => {
         const onClick = jest.fn();
         const button = shallow(
@@ -143,7 +183,7 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
     });
 
-    it("changes focused state blur", () => {
+    it("changes focused state on blur", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
