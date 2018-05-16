@@ -5,9 +5,19 @@ exports[`wonder-blocks-grid example 1 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "stretch",
       "background": "#21242c",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
@@ -15,8 +25,18 @@ exports[`wonder-blocks-grid example 1 1`] = `
     className=""
     style={
       Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
@@ -25,8 +45,17 @@ exports[`wonder-blocks-grid example 1 1`] = `
       style={
         Object {
           "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
@@ -37,10 +66,20 @@ exports[`wonder-blocks-grid example 1 1`] = `
             "@media (min-width: 1168px)": Object {
               "margin": "0 auto",
             },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "margin": 0,
             "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -51,10 +90,20 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -62,12 +111,21 @@ exports[`wonder-blocks-grid example 1 1`] = `
           className=""
           style={
             Object {
+              "alignItems": "stretch",
               "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexDirection": "column",
               "flexGrow": 1,
               "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
               "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -100,9 +158,19 @@ exports[`wonder-blocks-grid example 1 1`] = `
             className=""
             style={
               Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
                 "textAlign": "right",
+                "zIndex": 0,
               }
             }
           >
@@ -126,10 +194,20 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "MsFlexBasis": 32,
               "MsFlexPreferredSize": 32,
               "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 32,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -140,13 +218,22 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "MsFlexBasis": 100,
               "MsFlexPreferredSize": 100,
               "WebkitFlexBasis": 100,
+              "alignItems": "stretch",
               "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 100,
               "flexDirection": "column",
               "flexShrink": 0,
               "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
               "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -167,9 +254,19 @@ exports[`wonder-blocks-grid example 1 1`] = `
             className=""
             style={
               Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
                 "textAlign": "center",
+                "zIndex": 0,
               }
             }
           >
@@ -193,10 +290,20 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "MsFlexBasis": 32,
               "MsFlexPreferredSize": 32,
               "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 32,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -207,13 +314,22 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "MsFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
               "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
               "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
+              "alignItems": "stretch",
               "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
               "flexDirection": "column",
               "flexShrink": 0,
               "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
               "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -234,9 +350,19 @@ exports[`wonder-blocks-grid example 1 1`] = `
             className=""
             style={
               Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
                 "textAlign": "center",
+                "zIndex": 0,
               }
             }
           >
@@ -260,10 +386,20 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "MsFlexBasis": 32,
               "MsFlexPreferredSize": 32,
               "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 32,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -274,13 +410,22 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "MsFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
               "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
               "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+              "alignItems": "stretch",
               "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
               "flexDirection": "column",
               "flexShrink": 0,
               "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
               "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -288,8 +433,18 @@ exports[`wonder-blocks-grid example 1 1`] = `
             className=""
             style={
               Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
               }
             }
           >
@@ -325,9 +480,19 @@ exports[`wonder-blocks-grid example 1 1`] = `
               className=""
               style={
                 Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
                   "textAlign": "right",
+                  "zIndex": 0,
                 }
               }
             >
@@ -352,10 +517,20 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -370,9 +545,19 @@ exports[`wonder-blocks-grid example 2 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "stretch",
       "background": "#f7f8fa",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
@@ -380,8 +565,18 @@ exports[`wonder-blocks-grid example 2 1`] = `
     className=""
     style={
       Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
@@ -392,9 +587,18 @@ exports[`wonder-blocks-grid example 2 1`] = `
           "alignItems": "center",
           "background": "#0a2a66",
           "borderBottom": "1px solid rgba(255,255,255,0.64)",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "row",
           "height": 64,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
@@ -405,10 +609,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
             "@media (min-width: 1168px)": Object {
               "margin": "0 auto",
             },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "margin": 0,
             "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -419,10 +633,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -430,11 +654,21 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "color": "#ffffff",
               "display": "flex",
               "flexDirection": "column",
               "flexGrow": 1,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
               "textAlign": "center",
+              "zIndex": 0,
             }
           }
         >
@@ -447,10 +681,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -462,9 +706,18 @@ exports[`wonder-blocks-grid example 2 1`] = `
         Object {
           "alignItems": "center",
           "background": "#0a2a66",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "row",
           "height": 136,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
@@ -475,10 +728,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
             "@media (min-width: 1168px)": Object {
               "margin": "0 auto",
             },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "margin": 0,
             "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -489,10 +752,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -500,10 +773,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "color": "#ffffff",
               "display": "flex",
               "flexDirection": "column",
               "flexGrow": 1,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -516,10 +799,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -532,9 +825,18 @@ exports[`wonder-blocks-grid example 2 1`] = `
           "alignItems": "center",
           "background": "#ffffff",
           "borderBottom": "1px solid rgba(33,36,44,0.08)",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "row",
           "height": 71,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
@@ -545,10 +847,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
             "@media (min-width: 1168px)": Object {
               "margin": "0 auto",
             },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "margin": 0,
             "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -559,10 +871,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -573,10 +895,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -589,10 +921,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 32,
               "MsFlexPreferredSize": 32,
               "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 32,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -600,8 +942,18 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -614,10 +966,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -628,9 +990,17 @@ exports[`wonder-blocks-grid example 2 1`] = `
       style={
         Object {
           "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "padding": "17px 0",
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
@@ -641,10 +1011,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
             "@media (min-width: 1168px)": Object {
               "margin": "0 auto",
             },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "margin": 0,
             "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -655,10 +1035,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -669,10 +1059,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -693,10 +1093,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 32,
               "MsFlexPreferredSize": 32,
               "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 32,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
@@ -704,9 +1114,19 @@ exports[`wonder-blocks-grid example 2 1`] = `
           className=""
           style={
             Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexDirection": "column",
               "flexGrow": 1,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -714,12 +1134,21 @@ exports[`wonder-blocks-grid example 2 1`] = `
             className=""
             style={
               Object {
+                "alignItems": "stretch",
                 "background": "#ffffff",
                 "border": "1px solid rgba(33,36,44,0.08)",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
                 "height": 360,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
                 "padding": 24,
+                "position": "relative",
+                "zIndex": 0,
               }
             }
           >
@@ -729,13 +1158,22 @@ exports[`wonder-blocks-grid example 2 1`] = `
             className=""
             style={
               Object {
+                "alignItems": "stretch",
                 "background": "#ffffff",
                 "border": "1px solid rgba(33,36,44,0.08)",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
                 "height": 360,
+                "margin": 0,
                 "marginTop": 16,
+                "minHeight": 0,
+                "minWidth": 0,
                 "padding": 24,
+                "position": "relative",
+                "zIndex": 0,
               }
             }
           >
@@ -749,10 +1187,20 @@ exports[`wonder-blocks-grid example 2 1`] = `
               "MsFlexBasis": 24,
               "MsFlexPreferredSize": 24,
               "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
               "flexBasis": 24,
               "flexDirection": "column",
               "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         />
