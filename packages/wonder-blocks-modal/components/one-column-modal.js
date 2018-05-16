@@ -72,6 +72,7 @@ class ContentWrapper extends React.Component<Props> {
                 </View>
                 {footer && (
                     <View style={styles.smallFooter}>
+                        {/* $FlowFixMe(0.57): flow can't find 'type' on React$Portal */}
                         {!footer || footer.type === ModalFooter ? (
                             footer
                         ) : (

@@ -37,7 +37,7 @@
     "eslint-plugin-prettier": "2.3.1",
     "eslint-plugin-react": "7.7.0",
     "eslint-plugin-react-native-animation-linter": "0.1.1",
-    "flow-bin": "0.53.0",
+    "flow-bin": "0.57.3",
     "glob": "^7.1.2",
     "jest": "^22.4.2",
     "lerna": "^2.9.0",

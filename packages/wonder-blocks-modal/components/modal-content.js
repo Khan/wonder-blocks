@@ -32,6 +32,7 @@ export default class ModalContent extends React.Component<Props> {
                     scrollOverflow && styles.scrollOverflow,
                 ]}
             >
+                {/* $FlowFixMe(0.57): flow can't find 'type' on React$Portal */}
                 {!header || header.type === ModalHeader ? (
                     header
                 ) : (

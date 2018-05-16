@@ -129,6 +129,7 @@ export default class ModalPanel extends React.Component<Props> {
                 )}
                 {titleBar}
                 {mainContent}
+                {/* $FlowFixMe(0.57): flow can't find 'type' on React$Portal */}
                 {!footer || footer.type === ModalFooter ? (
                     footer
                 ) : (
