@@ -5,10 +5,19 @@ exports[`wonder-blocks-core example 1 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "stretch",
       "backgroundColor": "plum",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "padding": 32,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
@@ -33,8 +42,18 @@ exports[`wonder-blocks-core example 2 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
@@ -43,8 +62,18 @@ exports[`wonder-blocks-core example 2 1`] = `
     onClick={[Function]}
     style={
       Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >

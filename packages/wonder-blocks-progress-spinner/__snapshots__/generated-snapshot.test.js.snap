@@ -5,9 +5,19 @@ exports[`wonder-blocks-progress-spinner example 1 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
       "justifyContent": "center",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
