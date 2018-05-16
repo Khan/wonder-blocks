@@ -20,6 +20,13 @@ const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 
 export default class ButtonCore extends React.Component<Props> {
+    static defaultProps = {
+        disable: false,
+        hovered: false,
+        focused: false,
+        pressed: false,
+    };
+
     render() {
         const {
             children,
