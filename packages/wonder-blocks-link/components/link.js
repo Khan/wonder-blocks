@@ -19,7 +19,7 @@ export type SharedProps = {
      * Whether to display a caret after the text.
      */
     // TODO(yejia): Add once we have an Icon component
-    caret?: boolean,
+    caret: boolean,
 
     /**
      * Kind of Link. Note: Secondary light Links ar enot supported.

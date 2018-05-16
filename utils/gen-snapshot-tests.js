@@ -91,7 +91,8 @@ function generateTestFile(root, examples, componentFileMap) {
 
     const outPath = path.join(root, "generated-snapshot.test.js");
     fs.writeFileSync(outPath, data, "utf8");
-    console.log(`wrote ${outPath}`); // eslint-disable-line no-console
+    // eslint-disable-next-line no-console
+    console.log(`wrote ${outPath}`);
 }
 
 for (const section of styleguideConfig.sections) {
@@ -101,7 +102,8 @@ for (const section of styleguideConfig.sections) {
         .filter((token) => token.type === "code")
         .map((token) => token.text);
     if (examples.length === 0) {
-        console.warn(`no examples for section ${section.name}`); // eslint-disable-line no-console
+        // eslint-disable-next-line no-console
+        console.warn(`no examples for section ${section.name}`);
         continue;
     }
 
@@ -123,7 +125,9 @@ for (const section of styleguideConfig.sections) {
             generateTestFile(root, examples);
         }
     } else {
-        console.warn("no content for section: "); // eslint-disable-line no-console
-        console.warn(JSON.stringify(section)); // eslint-disable-line no-console
+        // eslint-disable-next-line no-console
+        console.warn("no content for section: ");
+        // eslint-disable-next-line no-console
+        console.warn(JSON.stringify(section));
     }
 }

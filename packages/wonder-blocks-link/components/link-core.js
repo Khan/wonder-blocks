@@ -18,6 +18,7 @@ type Props = SharedProps &
 const StyledAnchor = addStyle("a");
 export default class LinkCore extends React.Component<Props> {
     static defaultProps = {
+        caret: false,
         disabled: false,
         hovered: false,
         focused: false,
