@@ -64,16 +64,16 @@ type State = {
 
 export type ClickableHandlers = {
     onClick: (e: SyntheticMouseEvent<>) => void,
-    onMouseEnter?: () => void,
-    onMouseLeave?: () => void,
-    onMouseDown?: () => void,
-    onMouseUp?: (e: SyntheticMouseEvent<>) => void,
-    onTouchStart?: () => void,
-    onTouchEnd?: () => void,
-    onTouchCancel?: () => void,
-    onKeyDown?: (e: SyntheticKeyboardEvent<*>) => void,
-    onKeyUp?: (e: SyntheticKeyboardEvent<*>) => void,
-    onBlur?: (e: SyntheticFocusEvent<*>) => void,
+    onMouseEnter: () => void,
+    onMouseLeave: () => void,
+    onMouseDown: () => void,
+    onMouseUp: (e: SyntheticMouseEvent<>) => void,
+    onTouchStart: () => void,
+    onTouchEnd: () => void,
+    onTouchCancel: () => void,
+    onKeyDown: (e: SyntheticKeyboardEvent<*>) => void,
+    onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
+    onBlur: (e: SyntheticFocusEvent<*>) => void,
 };
 
 const disabledHandlers = {
