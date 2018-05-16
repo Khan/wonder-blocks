@@ -136,12 +136,19 @@ export default class Button extends React.Component<Props> {
     };
 
     render() {
-        const {onClick, href, children, ...sharedProps} = this.props;
+        const {
+            onClick,
+            href,
+            children,
+            clientSideNav,
+            ...sharedProps
+        } = this.props;
         return (
             <ClickableBehavior
                 disabled={sharedProps.disabled}
                 onClick={onClick}
                 href={href}
+                clientSideNav={clientSideNav}
             >
                 {(state, handlers) => {
                     return (
