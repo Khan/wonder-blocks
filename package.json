@@ -4,7 +4,6 @@
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
   "scripts": {
-    "install": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "lint": "eslint --config ./eslint/eslintrc packages",
     "postinstall": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "flow": "flow",
