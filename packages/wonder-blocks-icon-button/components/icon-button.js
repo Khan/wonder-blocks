@@ -111,7 +111,7 @@ type Props = SharedProps & {
  * <IconButton
  *     icon={anIcon}
  *     alt="An Icon"
- *     onClick={console.log("Hello, world!")}
+ *     onClick={(e) => console.log("Hello, world!")}
  * />
  * ```
  * @version 1.0

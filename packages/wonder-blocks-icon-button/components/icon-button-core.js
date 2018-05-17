@@ -81,20 +81,20 @@ export default class IconButtonCore extends React.Component<Props> {
         // TODO: Replace the SVG with an Icon component once that's done
         return (
             <Tag
-                style={[defaultStyle, style]}
-                disabled={disabled}
                 data-test-id={testId}
                 href={href}
+                disabled={disabled}
+                aria-label={alt}
+                style={[defaultStyle, style]}
                 {...handlers}
             >
                 <svg
                     role="img"
-                    aria-label={alt}
                     width="20px"
                     height="20px"
                     viewBox="0 0 9.8 9.8"
+                    aria-hidden="true"
                 >
-                    <title>{alt}</title>
                     <path fill="currentColor" d={icon} />
                 </svg>
             </Tag>

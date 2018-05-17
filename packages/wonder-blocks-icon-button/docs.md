@@ -1,4 +1,4 @@
-**WARNING: IconButton is not finished, do not use!**
+**WARNING: Client-side navigation is not yet implemented!**
 
 An `IconButton` is a clickable button component consisting of a `ClickableBehavior` surrounding an `IconButtonCore`. `ClickableBehavior` handles interactions and state changes. `IconButtonCore` is a stateless component which renders a `button` with an SVG image, with default, hovered/focused, active/pressed, and disabled styles depending on the `IconButton` state.
 
@@ -21,6 +21,32 @@ const searchIcon = `M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
 
 const {blue, darkBlue, white, offWhite} = Color;
 
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
+const defaultProps = {
+    kind: "primary",
+    icon: searchIcon,
+    alt: "search",
+    color: blue,
+    light: false,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    disabled: false,
+};
+
 <table style={{background: offWhite, textAlign: "center", borderCollapse: "collapse"}}>
     <thead>
         <tr>
@@ -40,58 +66,34 @@ const {blue, darkBlue, white, offWhite} = Color;
             <th>Primary</th>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
+                    {...defaultProps}
+                    {...handlers}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
+                    {...defaultProps}
+                    {...handlers}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
                     disabled={true}
                 >
                     Label
@@ -102,59 +104,38 @@ const {blue, darkBlue, white, offWhite} = Color;
             <th>Secondary</th>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -165,59 +146,38 @@ const {blue, darkBlue, white, offWhite} = Color;
             <th>Tertiary</th>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="tertiary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
+                    {...defaultProps}
+                    {...handlers}
+                    kind="secondary"
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="tertiary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
+                    kind="secondary"
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="tertiary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
+                    kind="secondary"
                     disabled={true}
                 >
                     Label
@@ -228,59 +188,38 @@ const {blue, darkBlue, white, offWhite} = Color;
             <th>Primary<br />(Light)</th>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
+                    {...defaultProps}
+                    {...handlers}
                     light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
+                    {...defaultProps}
+                    {...handlers}
                     light={true}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
+                    {...defaultProps}
+                    {...handlers}
                     light={true}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={blue}
+                    {...defaultProps}
+                    {...handlers}
                     light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -308,7 +247,33 @@ const searchIcon = `M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
     C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
     7.5 L4.25,7.5 Z`;
 
-const {blue, red, darkBlue, white, offWhite} = Color;
+const {red, darkBlue, white, offWhite} = Color;
+
+const handlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
+const defaultProps = {
+    kind: "primary",
+    icon: searchIcon,
+    alt: "search",
+    color: red,
+    light: false,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    disabled: false,
+};
 
 <table style={{background: offWhite, textAlign: "center", borderCollapse: "collapse"}}>
     <thead>
@@ -329,58 +294,34 @@ const {blue, red, darkBlue, white, offWhite} = Color;
             <th>Primary</th>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
+                    {...defaultProps}
+                    {...handlers}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
+                    {...defaultProps}
+                    {...handlers}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
                     disabled={true}
                 >
                     Label
@@ -391,59 +332,38 @@ const {blue, red, darkBlue, white, offWhite} = Color;
             <th>Secondary</th>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="secondary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
@@ -454,59 +374,38 @@ const {blue, red, darkBlue, white, offWhite} = Color;
             <th>Tertiary</th>
             <td>
                 <IconButtonCore
+                    {...defaultProps}
+                    {...handlers}
                     kind="tertiary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="tertiary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
+                    {...defaultProps}
+                    {...handlers}
+                    kind="secondary"
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="tertiary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
+                    {...defaultProps}
+                    {...handlers}
+                    kind="secondary"
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="tertiary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
-                    light={false}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
+                    {...defaultProps}
+                    {...handlers}
+                    kind="secondary"
                     disabled={true}
                 >
                     Label
@@ -517,59 +416,38 @@ const {blue, red, darkBlue, white, offWhite} = Color;
             <th>Primary<br />(Light)</th>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
+                    {...defaultProps}
+                    {...handlers}
                     light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
+                    {...defaultProps}
+                    {...handlers}
                     light={true}
                     hovered={true}
-                    focused={false}
-                    pressed={false}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
+                    {...defaultProps}
+                    {...handlers}
                     light={true}
-                    hovered={false}
-                    focused={false}
                     pressed={true}
-                    disabled={false}
                 >
                     Label
                 </IconButtonCore>
             </td>
             <td>
                 <IconButtonCore
-                    kind="primary"
-                    icon={searchIcon}
-                    alt="search"
-                    color={red}
+                    {...defaultProps}
+                    {...handlers}
                     light={true}
-                    hovered={false}
-                    focused={false}
-                    pressed={false}
                     disabled={true}
                 >
                     Label
