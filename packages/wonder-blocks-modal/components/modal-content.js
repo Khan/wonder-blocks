@@ -32,7 +32,8 @@ export default class ModalContent extends React.Component<Props> {
                     scrollOverflow && styles.scrollOverflow,
                 ]}
             >
-                {!header || header.type === ModalHeader ? (
+                {!header ||
+                (typeof header === "object" && header.type === ModalHeader) ? (
                     header
                 ) : (
                     <ModalHeader>{header}</ModalHeader>
