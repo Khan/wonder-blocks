@@ -70,7 +70,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -129,7 +128,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -200,7 +198,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -259,7 +256,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -330,7 +326,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -392,7 +387,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -454,7 +448,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -516,7 +509,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -590,7 +582,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -649,7 +640,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -717,7 +707,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -776,7 +765,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -907,7 +895,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -966,7 +953,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1037,7 +1023,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1096,7 +1081,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -1167,7 +1151,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1229,7 +1212,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1291,7 +1273,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1353,7 +1334,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -1427,7 +1407,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1486,7 +1465,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1554,7 +1532,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1613,7 +1590,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -1743,7 +1719,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1802,7 +1777,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1873,7 +1847,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -1932,7 +1905,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -2003,7 +1975,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2065,7 +2036,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2127,7 +2097,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2189,7 +2158,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -2263,7 +2231,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2322,7 +2289,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2390,7 +2356,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2449,7 +2414,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -2580,7 +2544,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2639,7 +2602,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2710,7 +2672,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2769,7 +2730,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -2840,7 +2800,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2902,7 +2861,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -2964,7 +2922,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3026,7 +2983,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -3100,7 +3056,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3159,7 +3114,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3227,7 +3181,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3286,7 +3239,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -3416,7 +3368,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3475,7 +3426,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3546,7 +3496,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3605,7 +3554,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -3676,7 +3624,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3738,7 +3685,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3800,7 +3746,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3862,7 +3807,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
@@ -3936,7 +3880,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -3995,7 +3938,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -4063,7 +4005,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={false}
           href={undefined}
           onBlur={[Function]}
@@ -4122,7 +4063,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         <button
           className=""
           data-test-id={undefined}
-          disable={false}
           disabled={true}
           href={undefined}
           onBlur={[Function]}
