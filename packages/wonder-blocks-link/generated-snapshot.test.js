@@ -61,7 +61,7 @@ describe("wonder-blocks-link", () => {
                                     hovered={true}
                                     focused={false}
                                     pressed={false}
-                                    href="#link"
+                                    href="#nonexistent-link"
                                     {...handlers}
                                 >
                                     Label
@@ -81,27 +81,7 @@ describe("wonder-blocks-link", () => {
                                     hovered={false}
                                     focused={false}
                                     pressed={true}
-                                    href="#link"
-                                    {...handlers}
-                                >
-                                    Label
-                                </LinkCore>, dolor sit amet, consectetur
-                                adipiscing elit.
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Visited</th>
-                        <td>
-                            <p>
-                                Lorem ipsum{" "}
-                                <LinkCore
-                                    kind="primary"
-                                    light={false}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={false}
-                                    href="https://khanacademy.org"
+                                    href="#nonexistent-link"
                                     {...handlers}
                                 >
                                     Label
@@ -117,6 +97,95 @@ describe("wonder-blocks-link", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
+        const Color = require("wonder-blocks-color").default;
+        const LinkCore = require("./components/link-core.js").default;
+
+        const {offWhite} = Color;
+
+        const handlers = {
+            onClick: () => void 0,
+            onMouseEnter: () => void 0,
+            onMouseLeave: () => void 0,
+            onMouseDown: () => void 0,
+            onMouseUp: () => void 0,
+            onTouchStart: () => void 0,
+            onTouchEnd: () => void 0,
+            onTouchCancel: () => void 0,
+            onKeyDown: () => void 0,
+            onKeyUp: () => void 0,
+            onBlur: () => void 0,
+        };
+
+        const example = (
+            <table style={{background: offWhite}}>
+                <tbody>
+                    <tr>
+                        <th>Default</th>
+                        <td>
+                            <p>
+                                Lorem ipsum{" "}
+                                <LinkCore
+                                    kind="primary"
+                                    light={false}
+                                    hovered={false}
+                                    focused={false}
+                                    pressed={false}
+                                    href="#"
+                                    {...handlers}
+                                >
+                                    Label
+                                </LinkCore>, dolor sit amet, consectetur
+                                adipiscing elit.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Hover/Focus</th>
+                        <td>
+                            <p>
+                                Lorem ipsum{" "}
+                                <LinkCore
+                                    kind="primary"
+                                    light={false}
+                                    hovered={true}
+                                    focused={false}
+                                    pressed={false}
+                                    href="#"
+                                    {...handlers}
+                                >
+                                    Label
+                                </LinkCore>, dolor sit amet, consectetur
+                                adipiscing elit.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Active/Press</th>
+                        <td>
+                            <p>
+                                Lorem ipsum{" "}
+                                <LinkCore
+                                    kind="primary"
+                                    light={false}
+                                    hovered={false}
+                                    focused={false}
+                                    pressed={true}
+                                    href="#"
+                                    {...handlers}
+                                >
+                                    Label
+                                </LinkCore>, dolor sit amet, consectetur
+                                adipiscing elit.
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
         const Color = require("wonder-blocks-color").default;
         const LinkCore = require("./components/link-core.js").default;
 
@@ -170,7 +239,7 @@ describe("wonder-blocks-link", () => {
                                     hovered={true}
                                     focused={false}
                                     pressed={false}
-                                    href="#link"
+                                    href="#nonexistent-link"
                                     {...handlers}
                                 >
                                     Label
@@ -190,27 +259,7 @@ describe("wonder-blocks-link", () => {
                                     hovered={false}
                                     focused={false}
                                     pressed={true}
-                                    href="#link"
-                                    {...handlers}
-                                >
-                                    Label
-                                </LinkCore>, dolor sit amet, consectetur
-                                adipiscing elit.
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Visited</th>
-                        <td>
-                            <p>
-                                Lorem ipsum{" "}
-                                <LinkCore
-                                    kind="secondary"
-                                    light={false}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={false}
-                                    href="https://khanacademy.org"
+                                    href="#nonexistent-link"
                                     {...handlers}
                                 >
                                     Label
@@ -225,7 +274,7 @@ describe("wonder-blocks-link", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const Color = require("wonder-blocks-color").default;
         const LinkCore = require("./components/link-core.js").default;
 
@@ -299,26 +348,6 @@ describe("wonder-blocks-link", () => {
                                     hovered={false}
                                     focused={false}
                                     pressed={true}
-                                    href="#link"
-                                    {...handlers}
-                                >
-                                    Label
-                                </LinkCore>, dolor sit amet, consectetur
-                                adipiscing elit.
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Visited</th>
-                        <td>
-                            <p>
-                                Lorem ipsum{" "}
-                                <LinkCore
-                                    kind="primary"
-                                    light={true}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={false}
                                     href="#link"
                                     {...handlers}
                                 >
