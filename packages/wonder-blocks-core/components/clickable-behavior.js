@@ -17,13 +17,13 @@
  * 2. Keydown (spacebar/enter) -> active state
  * 3. Keyup (spacebar/enter) -> focus state
  *
- * ClickableBehavior accepts a function as 'children' which is passed state and
- * an object containing event handlers. The 'children' function should return
- * a clickable React Element of some sort.
+ * `ClickableBehavior` accepts a function as `children` which is passed state
+ * and an object containing event handlers. The `children` function should
+ * return a clickable React Element of some sort.
  *
  * Example:
  *
- * ```
+ * ```js
  * class MyClickableComponent extends React.Component<Props> {
  *     render() {
  *         return <ClickableBehavior
@@ -44,22 +44,66 @@
  * }
  * ```
  *
- * This follows a pattern call 'Function as Child Components':
- * https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9
+ * This follows a pattern call [Function as Child Components]
+ * (https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
  */
 import React from "react";
 
 type Props = {
+    /**
+     * A function that returns the a React `Element`.
+     *
+     * The React `Element` returned should take in this component's state
+     * (`{hovered, focused, pressed}`) as props.
+     */
     children: (state: State, handlers: ClickableHandlers) => React$Element<*>,
+
+    /**
+     * Whether the component is disabled.
+     *
+     * If the component is disabled, this component will return handlers
+     * that do nothing.
+     */
     disabled: boolean,
+
+    /**
+     * A URL.
+     *
+     * If specified, we will assume the rendered component should react like an
+     * `<a>` tag and respond to enter/return key press. Otherwise, we will
+     * assume the rendered component should react like a `<button>` tag and
+     * respond to spacebar key press.
+     */
     href?: string,
+  
     clientSideNav?: boolean,
+
+    /**
+     * A function to be executed `onclick`.
+     */
     onClick?: (e: SyntheticEvent<>) => void,
 };
 
 type State = {
+    /**
+     * Whether the component is hovered.
+     *
+     * See component documentation for more details.
+     */
     hovered: boolean,
+
+    /**
+     * Whether the component is hovered.
+     *
+     * See component documentation for more details.
+     */
     focused: boolean,
+
+    /**
+     * Whether the component is hovered.
+     *
+     * See component documentation for more details.
+     */
     pressed: boolean,
 };
 
