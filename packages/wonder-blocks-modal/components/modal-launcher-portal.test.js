@@ -12,10 +12,11 @@ describe("ModalPortal", () => {
             if (element) {
                 // Find the nearest parent, disregarding nodes created by
                 // ModalLauncherPortal and by `ReactDOM.render`.
-                let parent = element.parentNode;
+                let parent = element.parentElement;
                 while (
-                    parent.hasAttribute("data-modal-launcher-portal") ||
-                    parent.hasAttribute("data-reactroot")
+                    parent &&
+                    (parent.hasAttribute("data-modal-launcher-portal") ||
+                        parent.hasAttribute("data-reactroot"))
                 ) {
                     parent = parent.parentNode;
                 }
