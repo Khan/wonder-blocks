@@ -2,7 +2,7 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {LabelLarge} from "wonder-blocks-typography";
+import {LabelLarge, LabelSmall} from "wonder-blocks-typography";
 import Color, {mix, fade} from "wonder-blocks-color";
 import {addStyle} from "wonder-blocks-core";
 import type {ClickableHandlers} from "wonder-blocks-core";
@@ -60,7 +60,7 @@ export default class ButtonCore extends React.Component<Props> {
         ];
 
         const Tag = href ? StyledAnchor : StyledButton;
-
+        const Label = size === "small" ? LabelSmall : LabelLarge;
         return (
             <Tag
                 style={[defaultStyle, style]}
@@ -69,7 +69,7 @@ export default class ButtonCore extends React.Component<Props> {
                 href={href}
                 {...handlers}
             >
-                <LabelLarge>{children}</LabelLarge>
+                <Label style={sharedStyles.text}>{children}</Label>
             </Tag>
         );
     }
@@ -82,6 +82,8 @@ const sharedStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         height: 40,
+        paddingTop: 0,
+        paddingBottom: 0,
         paddingLeft: 16,
         paddingRight: 16,
         border: "none",
@@ -96,6 +98,9 @@ const sharedStyles = StyleSheet.create({
     },
     small: {
         height: 32,
+    },
+    text: {
+        fontWeight: "bold",
     },
 });
 
@@ -139,7 +144,7 @@ const _generateStyles = (color, kind, light) => {
                     : mix(fade(color, 0.32), white),
             },
             disabled: {
-                background: light ? white64 : offBlack32,
+                background: light ? mix(fade(white, 0.32), color) : offBlack32,
                 color: light ? color : white64,
             },
         };
@@ -153,7 +158,7 @@ const _generateStyles = (color, kind, light) => {
                 borderWidth: 1,
             },
             focus: {
-                background: light ? color : white,
+                background: light ? "transparent" : white,
                 borderColor: light ? white : color,
                 borderWidth: 2,
                 paddingLeft: 15,
@@ -171,8 +176,8 @@ const _generateStyles = (color, kind, light) => {
                     : mix(offBlack32, color),
             },
             disabled: {
-                color: light ? mix(white, fade(color, 0.32)) : offBlack32,
-                borderColor: light ? mix(white, fade(color, 0.32)) : offBlack32,
+                color: light ? mix(fade(white, 0.32), color) : offBlack32,
+                borderColor: light ? mix(fade(white, 0.32), color) : offBlack32,
             },
         };
     } else if (kind === "tertiary") {
@@ -184,11 +189,15 @@ const _generateStyles = (color, kind, light) => {
                 paddingRight: 4,
             },
             focus: {
-                borderColor: light ? white : color,
-                borderStyle: "solid",
-                borderWidth: 2,
-                paddingLeft: 2,
-                paddingRight: 2,
+                ":after": {
+                    content: "''",
+                    position: "absolute",
+                    height: 2,
+                    width: "calc(100% - 8px)",
+                    bottom: "calc(50% - 11px)",
+                    background: light ? white : color,
+                    borderRadius: 2,
+                },
             },
             active: {
                 color: light
@@ -196,7 +205,7 @@ const _generateStyles = (color, kind, light) => {
                     : mix(offBlack32, color),
             },
             disabled: {
-                color: light ? mix(Color.white, fade(color, 0.32)) : offBlack32,
+                color: light ? mix(fade(white, 0.32), color) : offBlack32,
             },
         };
     } else {

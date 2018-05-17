@@ -74,6 +74,23 @@ type Props = SharedProps & {
     onClick?: (e: SyntheticEvent<>) => void,
 };
 
+/**
+ * Reusable link component.
+ *
+ * Consisting of a [`ClickableBehavior`](#clickablebehavior) surrounding a
+ * `LinkCore`. `ClickableBehavior` handles interactions and state changes.
+ * `LinkCore` is a stateless component which displays the different states
+ * the `Link` can take.
+ *
+ * Example usage:
+ * ```jsx
+ * <Link
+ *     href="https://khanacademy.org/"
+ * >
+ *     Label
+ * </Link>
+ * ```
+ */
 export default class Link extends React.Component<Props> {
     static defaultProps = {
         caret: false,
@@ -82,7 +99,13 @@ export default class Link extends React.Component<Props> {
     };
 
     render() {
-        const {onClick, href, children, ...sharedProps} = this.props;
+        const {
+            onClick,
+            href,
+            children,
+            clientSideNav,
+            ...sharedProps
+        } = this.props;
         return (
             <ClickableBehavior disabled={false} onClick={onClick} href={href}>
                 {(state, handlers) => {
@@ -92,6 +115,7 @@ export default class Link extends React.Component<Props> {
                             {...state}
                             {...handlers}
                             href={href}
+                            clientSideNav={clientSideNav}
                         >
                             {children}
                         </LinkCore>
