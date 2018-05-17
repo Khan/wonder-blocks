@@ -129,7 +129,8 @@ export default class ModalPanel extends React.Component<Props> {
                 )}
                 {titleBar}
                 {mainContent}
-                {!footer || footer.type === ModalFooter ? (
+                {!footer ||
+                (typeof footer === "object" && footer.type === ModalFooter) ? (
                     footer
                 ) : (
                     <ModalFooter>{footer}</ModalFooter>
