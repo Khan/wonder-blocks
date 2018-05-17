@@ -27,6 +27,16 @@ describe("wonder-blocks-link", () => {
             onBlur: () => void 0,
         };
 
+        const defaultProps = {
+            kind: "primary",
+            caret: false,
+            light: false,
+            hovered: false,
+            focused: false,
+            pressed: false,
+            href: "#nonexistent-link",
+        };
+
         const example = (
             <table style={{background: offWhite}}>
                 <tbody>
@@ -35,15 +45,7 @@ describe("wonder-blocks-link", () => {
                         <td>
                             <p>
                                 Lorem ipsum{" "}
-                                <LinkCore
-                                    kind="primary"
-                                    light={false}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={false}
-                                    href="#nonexistent-link"
-                                    {...handlers}
-                                >
+                                <LinkCore {...defaultProps} {...handlers}>
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
                                 adipiscing elit.
@@ -56,13 +58,9 @@ describe("wonder-blocks-link", () => {
                             <p>
                                 Lorem ipsum{" "}
                                 <LinkCore
-                                    kind="primary"
-                                    light={false}
-                                    hovered={true}
-                                    focused={false}
-                                    pressed={false}
-                                    href="#nonexistent-link"
+                                    {...defaultProps}
                                     {...handlers}
+                                    hovered={true}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -76,13 +74,9 @@ describe("wonder-blocks-link", () => {
                             <p>
                                 Lorem ipsum{" "}
                                 <LinkCore
-                                    kind="primary"
-                                    light={false}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={true}
-                                    href="#nonexistent-link"
+                                    {...defaultProps}
                                     {...handlers}
+                                    pressed={true}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -116,6 +110,16 @@ describe("wonder-blocks-link", () => {
             onBlur: () => void 0,
         };
 
+        const defaultProps = {
+            kind: "primary",
+            caret: false,
+            light: false,
+            hovered: false,
+            focused: false,
+            pressed: false,
+            href: "#",
+        };
+
         const example = (
             <table style={{background: offWhite}}>
                 <tbody>
@@ -124,15 +128,7 @@ describe("wonder-blocks-link", () => {
                         <td>
                             <p>
                                 Lorem ipsum{" "}
-                                <LinkCore
-                                    kind="primary"
-                                    light={false}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={false}
-                                    href="#"
-                                    {...handlers}
-                                >
+                                <LinkCore {...defaultProps} {...handlers}>
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
                                 adipiscing elit.
@@ -145,13 +141,9 @@ describe("wonder-blocks-link", () => {
                             <p>
                                 Lorem ipsum{" "}
                                 <LinkCore
-                                    kind="primary"
-                                    light={false}
-                                    hovered={true}
-                                    focused={false}
-                                    pressed={false}
-                                    href="#"
+                                    {...defaultProps}
                                     {...handlers}
+                                    hovered={true}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -165,13 +157,9 @@ describe("wonder-blocks-link", () => {
                             <p>
                                 Lorem ipsum{" "}
                                 <LinkCore
-                                    kind="primary"
-                                    light={false}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={true}
-                                    href="#"
+                                    {...defaultProps}
                                     {...handlers}
+                                    pressed={true}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -205,23 +193,25 @@ describe("wonder-blocks-link", () => {
             onBlur: () => void 0,
         };
 
+        const defaultProps = {
+            kind: "secondary",
+            caret: false,
+            light: false,
+            hovered: false,
+            focused: false,
+            pressed: false,
+            href: "#nonexistent-link",
+        };
+
         const example = (
-            <table style={{background: offWhite, color: offBlack64}}>
+            <table style={{background: offWhite}}>
                 <tbody>
                     <tr>
                         <th>Default</th>
                         <td>
                             <p>
                                 Lorem ipsum{" "}
-                                <LinkCore
-                                    kind="secondary"
-                                    light={false}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={false}
-                                    href="#nonexistent-link"
-                                    {...handlers}
-                                >
+                                <LinkCore {...defaultProps} {...handlers}>
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
                                 adipiscing elit.
@@ -234,13 +224,9 @@ describe("wonder-blocks-link", () => {
                             <p>
                                 Lorem ipsum{" "}
                                 <LinkCore
-                                    kind="secondary"
-                                    light={false}
-                                    hovered={true}
-                                    focused={false}
-                                    pressed={false}
-                                    href="#nonexistent-link"
+                                    {...defaultProps}
                                     {...handlers}
+                                    hovered={true}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -254,13 +240,9 @@ describe("wonder-blocks-link", () => {
                             <p>
                                 Lorem ipsum{" "}
                                 <LinkCore
-                                    kind="secondary"
-                                    light={false}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={true}
-                                    href="#nonexistent-link"
+                                    {...defaultProps}
                                     {...handlers}
+                                    pressed={true}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -294,6 +276,16 @@ describe("wonder-blocks-link", () => {
             onBlur: () => void 0,
         };
 
+        const defaultProps = {
+            kind: "primary",
+            caret: false,
+            light: true,
+            hovered: false,
+            focused: false,
+            pressed: false,
+            href: "#nonexistent-link",
+        };
+
         const example = (
             <table style={{background: darkBlue, color: white64}}>
                 <tbody>
@@ -302,15 +294,7 @@ describe("wonder-blocks-link", () => {
                         <td>
                             <p>
                                 Lorem ipsum{" "}
-                                <LinkCore
-                                    kind="primary"
-                                    light={true}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={false}
-                                    href="#nonexistent-link"
-                                    {...handlers}
-                                >
+                                <LinkCore {...defaultProps} {...handlers}>
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
                                 adipiscing elit.
@@ -323,13 +307,9 @@ describe("wonder-blocks-link", () => {
                             <p>
                                 Lorem ipsum{" "}
                                 <LinkCore
-                                    kind="primary"
-                                    light={true}
-                                    hovered={true}
-                                    focused={false}
-                                    pressed={false}
-                                    href="#link"
+                                    {...defaultProps}
                                     {...handlers}
+                                    hovered={true}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur
@@ -343,13 +323,9 @@ describe("wonder-blocks-link", () => {
                             <p>
                                 Lorem ipsum{" "}
                                 <LinkCore
-                                    kind="primary"
-                                    light={true}
-                                    hovered={false}
-                                    focused={false}
-                                    pressed={true}
-                                    href="#link"
+                                    {...defaultProps}
                                     {...handlers}
+                                    pressed={true}
                                 >
                                     Label
                                 </LinkCore>, dolor sit amet, consectetur

@@ -72,7 +72,9 @@ class ContentWrapper extends React.Component<Props> {
                 </View>
                 {footer && (
                     <View style={styles.smallFooter}>
-                        {!footer || footer.type === ModalFooter ? (
+                        {!footer ||
+                        (typeof footer === "object" &&
+                            footer.type === ModalFooter) ? (
                             footer
                         ) : (
                             <ModalFooter>{footer}</ModalFooter>

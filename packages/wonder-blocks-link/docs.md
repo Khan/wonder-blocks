@@ -26,6 +26,16 @@ const handlers = {
     onBlur: () => void 0,
 };
 
+const defaultProps = {
+    kind: "primary",
+    caret: false,
+    light: false,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    href: "#nonexistent-link",
+};
+
 <table style={{background: offWhite}}>
     <tbody>
         <tr>
@@ -33,12 +43,7 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={false}
-                        hovered={false}
-                        focused={false}
-                        pressed={false}
-                        href="#nonexistent-link"
+                        {...defaultProps}
                         {...handlers}
                     >
                         Label
@@ -52,13 +57,9 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={false}
-                        hovered={true}
-                        focused={false}
-                        pressed={false}
-                        href="#nonexistent-link"
+                        {...defaultProps}
                         {...handlers}
+                        hovered={true}
                     >
                         Label
                     </LinkCore>,
@@ -71,13 +72,9 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={false}
-                        hovered={false}
-                        focused={false}
-                        pressed={true}
-                        href="#nonexistent-link"
+                        {...defaultProps}
                         {...handlers}
+                        pressed={true}
                     >
                         Label
                     </LinkCore>,
@@ -110,6 +107,16 @@ const handlers = {
     onBlur: () => void 0,
 };
 
+const defaultProps = {
+    kind: "primary",
+    caret: false,
+    light: false,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    href: "#",
+};
+
 <table style={{background: offWhite}}>
     <tbody>
         <tr>
@@ -117,12 +124,7 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={false}
-                        hovered={false}
-                        focused={false}
-                        pressed={false}
-                        href="#"
+                        {...defaultProps}
                         {...handlers}
                     >
                         Label
@@ -136,13 +138,9 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={false}
-                        hovered={true}
-                        focused={false}
-                        pressed={false}
-                        href="#"
+                        {...defaultProps}
                         {...handlers}
+                        hovered={true}
                     >
                         Label
                     </LinkCore>,
@@ -155,13 +153,9 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={false}
-                        hovered={false}
-                        focused={false}
-                        pressed={true}
-                        href="#"
+                        {...defaultProps}
                         {...handlers}
+                        pressed={true}
                     >
                         Label
                     </LinkCore>,
@@ -194,19 +188,24 @@ const handlers = {
     onBlur: () => void 0,
 };
 
-<table style={{background: offWhite, color: offBlack64}}>
+const defaultProps = {
+    kind: "secondary",
+    caret: false,
+    light: false,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    href: "#nonexistent-link",
+};
+
+<table style={{background: offWhite}}>
     <tbody>
         <tr>
             <th>Default</th>
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="secondary"
-                        light={false}
-                        hovered={false}
-                        focused={false}
-                        pressed={false}
-                        href="#nonexistent-link"
+                        {...defaultProps}
                         {...handlers}
                     >
                         Label
@@ -220,13 +219,9 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="secondary"
-                        light={false}
-                        hovered={true}
-                        focused={false}
-                        pressed={false}
-                        href="#nonexistent-link"
+                        {...defaultProps}
                         {...handlers}
+                        hovered={true}
                     >
                         Label
                     </LinkCore>,
@@ -239,13 +234,9 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="secondary"
-                        light={false}
-                        hovered={false}
-                        focused={false}
-                        pressed={true}
-                        href="#nonexistent-link"
+                        {...defaultProps}
                         {...handlers}
+                        pressed={true}
                     >
                         Label
                     </LinkCore>,
@@ -278,6 +269,16 @@ const handlers = {
     onBlur: () => void 0,
 };
 
+const defaultProps = {
+    kind: "primary",
+    caret: false,
+    light: true,
+    hovered: false,
+    focused: false,
+    pressed: false,
+    href: "#nonexistent-link",
+};
+
 <table style={{background: darkBlue, color: white64}}>
     <tbody>
         <tr>
@@ -285,12 +286,7 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={true}
-                        hovered={false}
-                        focused={false}
-                        pressed={false}
-                        href="#nonexistent-link"
+                        {...defaultProps}
                         {...handlers}
                     >
                         Label
@@ -304,13 +300,9 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={true}
-                        hovered={true}
-                        focused={false}
-                        pressed={false}
-                        href="#link"
+                        {...defaultProps}
                         {...handlers}
+                        hovered={true}
                     >
                         Label
                     </LinkCore>,
@@ -323,13 +315,9 @@ const handlers = {
             <td>
                 <p>
                     Lorem ipsum <LinkCore
-                        kind="primary"
-                        light={true}
-                        hovered={false}
-                        focused={false}
-                        pressed={true}
-                        href="#link"
+                        {...defaultProps}
                         {...handlers}
+                        pressed={true}
                     >
                         Label
                     </LinkCore>,
