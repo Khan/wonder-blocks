@@ -41,7 +41,7 @@ class Parent extends React.Component {
         this.setState({show: true});
     }
 
-    handleChange(selection: any) {
+    handleChange(selection) {
         this.setState({selection});
         this.setState({show: false});
     }
