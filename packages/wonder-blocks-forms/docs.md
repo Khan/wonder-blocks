@@ -10,6 +10,9 @@
 ```
 
 ## Dropdown (start open)
+
+This example is still fully controlled.  Here the `show` prop acts to 
+override the initial value of the component's internal `show` state var.
 ```js
 <Dropdown 
     show={true}
@@ -22,6 +25,11 @@
 ```
 
 ## Dropdown (full controlled)
+
+This example full controls the Dropdown component to customize its behavior
+forcing users to make a selection before they can close.  It also, closes
+the dropdown when a user makes a selection instead of leaving it open like
+the other dropdowns.
 ```js
 class Parent extends React.Component {
     constructor(props) {
