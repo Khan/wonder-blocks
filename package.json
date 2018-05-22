@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --config ./eslint/eslintrc packages",
-    "postinstall": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
+    "postinstall": "for d in packages/*/ ; do (cd \"$d\" && npm install --ignore-scripts); done",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
