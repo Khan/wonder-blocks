@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import {StyleSheet} from "aphrodite";
+import {Link} from "react-router-dom";
 
 import {LabelLarge, LabelSmall} from "wonder-blocks-typography";
 import Color, {mix, fade} from "wonder-blocks-color";
@@ -13,16 +14,28 @@ type Props = SharedProps &
         hovered: boolean,
         focused: boolean,
         pressed: boolean,
-        href?: string,
     };
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
+const StyledLink = addStyle(Link);
 
 export default class ButtonCore extends React.Component<Props> {
-    render() {
+    getTag() {
+        const {href, clientNav} = this.props;
+        if (href) {
+            if (clientNav) {
+                return StyledLink;
+            } else {
+                return StyledAnchor;
+            }
+        } else {
+            return StyledButton;
+        }
+    }
+
+    getProps() {
         const {
-            children,
             icon, // eslint-disable-line no-unused-vars
             color,
             kind,
@@ -35,6 +48,7 @@ export default class ButtonCore extends React.Component<Props> {
             focused,
             pressed,
             href,
+            clientNav,
             ...handlers
         } = this.props;
 
@@ -52,16 +66,32 @@ export default class ButtonCore extends React.Component<Props> {
             size === "small" && sharedStyles.small,
         ];
 
-        const Tag = href ? StyledAnchor : StyledButton;
+        const props = {
+            style: [defaultStyle, style],
+            disabled,
+            "data-test-id": testId,
+            ...handlers,
+        };
+
+        if (href) {
+            if (clientNav) {
+                props.to = href;
+            } else {
+                props.href = href;
+            }
+        }
+
+        return props;
+    }
+
+    render() {
+        const {children, size} = this.props;
+
+        const Tag = this.getTag();
+        const props = this.getProps();
         const Label = size === "small" ? LabelSmall : LabelLarge;
         return (
-            <Tag
-                style={[defaultStyle, style]}
-                disabled={disabled}
-                data-test-id={testId}
-                href={href}
-                {...handlers}
-            >
+            <Tag {...props}>
                 <Label style={sharedStyles.text}>{children}</Label>
             </Tag>
         );

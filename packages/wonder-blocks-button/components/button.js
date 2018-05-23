@@ -1,10 +1,13 @@
 // @flow
-import React from "react";
+import * as React from "react";
+import {withRouter} from "react-router-dom";
 
 import Color from "wonder-blocks-color";
 import {ClickableBehavior} from "wonder-blocks-core";
 import type {ValidTints} from "wonder-blocks-color";
 import ButtonCore from "./button-core.js";
+
+const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
 
 export type SharedProps = {
     /**
@@ -62,6 +65,23 @@ export type SharedProps = {
     testId?: string,
 
     /**
+     * URL to navigate to.
+     *
+     * Note: Either href or onClick must be defined
+     */
+    href?: string,
+
+    /**
+     * Whether to use client-side navigation.
+     *
+     * If the URL passed to href is local to the client-side, e.g.
+     * /math/algebra/eval-exprs, then use ReactRouter to do a client side
+     * navigation by doing history.push(this.props.href) using
+     * ReactRouter's history object
+     */
+    clientNav?: boolean,
+
+    /**
      * The content of the modal, appearing between the titlebar and footer.
      */
     style?: any,
@@ -77,23 +97,6 @@ export type SharedProps = {
 };
 
 type Props = SharedProps & {
-    /**
-     * URL to navigate to.
-     *
-     * Note: Either href or onClick must be defined
-     */
-    href?: string,
-
-    /**
-     * Whether to use client-side navigation.
-     *
-     * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then use ReactRouter to do a client side
-     * navigation by doing history.push(this.props.href) using
-     * ReactRouter's history object
-     */
-    clientSideNav?: boolean,
-
     /**
      * Function to call when button is clicked.
      *
@@ -136,19 +139,17 @@ export default class Button extends React.Component<Props> {
     };
 
     render() {
-        const {
-            onClick,
-            href,
-            children,
-            clientSideNav,
-            ...sharedProps
-        } = this.props;
+        const {onClick, href, children, clientNav, ...sharedProps} = this.props;
+
+        const Behavior = clientNav
+            ? ClickableBehaviorWithRouter
+            : ClickableBehavior;
+
         return (
-            <ClickableBehavior
+            <Behavior
                 disabled={sharedProps.disabled}
                 onClick={onClick}
                 href={href}
-                clientSideNav={clientSideNav}
             >
                 {(state, handlers) => {
                     return (
@@ -156,13 +157,14 @@ export default class Button extends React.Component<Props> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
+                            clientNav={clientNav}
                             href={href}
                         >
                             {children}
                         </ButtonCore>
                     );
                 }}
-            </ClickableBehavior>
+            </Behavior>
         );
     }
 }

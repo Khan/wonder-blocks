@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint --config ./eslint/eslintrc packages",
     "postinstall": "for d in packages/*/ ; do (cd \"$d\" && npm install --ignore-scripts); done",
+    "build:all": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
@@ -52,12 +53,13 @@
     "unescape": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-blocks": "^1.0.0",
-    "webpack-cli": "^2.1.2"
+    "webpack-cli": "^2.1.3"
   },
   "dependencies": {
     "aphrodite": "^1.2.5",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "react-router-dom": "^4.2.2"
   },
   "jest": {
     "testRegex": ".test\\.jsx?$",

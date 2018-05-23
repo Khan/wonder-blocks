@@ -1,8 +1,11 @@
 // @flow
-import React from "react";
+import * as React from "react";
+import {withRouter} from "react-router-dom";
 
 import LinkCore from "./link-core.js";
 import {ClickableBehavior} from "wonder-blocks-core";
+
+const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
 
 export type SharedProps = {
     /**
@@ -37,6 +40,16 @@ export type SharedProps = {
     testId?: string,
 
     /**
+     * Whether to use client-side navigation.
+     *
+     * If the URL passed to href is local to the client-side, e.g.
+     * /math/algebra/eval-exprs, then use ReactRouter to do a client side
+     * navigation by doing history.push(this.props.href) using
+     * ReactRouter's history object
+     */
+    clientNav?: boolean,
+
+    /**
      * Custom styles.
      */
     style?: any,
@@ -52,16 +65,6 @@ export type SharedProps = {
 };
 
 type Props = SharedProps & {
-    /**
-     * Whether to use client-side navigation.
-     *
-     * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then use ReactRouter to do a client side
-     * navigation by doing history.push(this.props.href) using
-     * ReactRouter's history object
-     */
-    clientSideNav?: boolean,
-
     /**
      * Function to call when button is clicked.
      *
@@ -99,33 +102,28 @@ export default class Link extends React.Component<Props> {
     };
 
     render() {
-        const {
-            onClick,
-            href,
-            children,
-            clientSideNav,
-            ...sharedProps
-        } = this.props;
+        const {onClick, href, clientNav, children, ...sharedProps} = this.props;
+
+        const Behavior = clientNav
+            ? ClickableBehaviorWithRouter
+            : ClickableBehavior;
+
         return (
-            <ClickableBehavior
-                disabled={false}
-                onClick={onClick}
-                href={href}
-                clientSideNav={clientSideNav}
-            >
+            <Behavior disabled={false} onClick={onClick} href={href}>
                 {(state, handlers) => {
                     return (
                         <LinkCore
                             {...sharedProps}
                             {...state}
                             {...handlers}
+                            clientNav={clientNav}
                             href={href}
                         >
                             {children}
                         </LinkCore>
                     );
                 }}
-            </ClickableBehavior>
+            </Behavior>
         );
     }
 }

@@ -6,11 +6,11 @@ import {processStyleList} from "./util.js";
 
 import type {GridSize} from "./util.js";
 
-export function addStyle<T: Object>(
+export default function addStyle<T: Object>(
     Component: React.ComponentType<T> | string,
     defaultStyle?: any,
 ): React.ComponentType<T & {style: any}> {
-    function WrapperComponent(
+    function StyleComponent(
         props: T & {style: any},
         {gridSize}: {gridSize: GridSize},
     ) {
@@ -28,9 +28,9 @@ export function addStyle<T: Object>(
         );
     }
 
-    WrapperComponent.contextTypes = {
+    StyleComponent.contextTypes = {
         gridSize: propTypes.string,
     };
 
-    return WrapperComponent;
+    return StyleComponent;
 }

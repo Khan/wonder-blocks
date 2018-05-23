@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import {StyleSheet} from "aphrodite";
+import {Link} from "react-router-dom";
 
 import {addStyle} from "wonder-blocks-core";
 import Color, {mix, fade} from "wonder-blocks-color";
@@ -16,10 +17,11 @@ type Props = SharedProps &
     };
 
 const StyledAnchor = addStyle("a");
+const StyledLink = addStyle(Link);
+
 export default class LinkCore extends React.Component<Props> {
-    render() {
+    getProps() {
         const {
-            children,
             caret, // eslint-disable-line no-unused-vars
             kind,
             light,
@@ -29,6 +31,7 @@ export default class LinkCore extends React.Component<Props> {
             focused,
             pressed,
             href,
+            clientNav,
             ...handlers
         } = this.props;
 
@@ -42,16 +45,27 @@ export default class LinkCore extends React.Component<Props> {
                 : (hovered || focused) && linkStyles.focus,
         ];
 
-        return (
-            <StyledAnchor
-                style={[defaultStyles, style]}
-                data-test-id={testId}
-                href={href}
-                {...handlers}
-            >
-                {children}
-            </StyledAnchor>
-        );
+        const props = {
+            style: [defaultStyles, style],
+            "data-test-id": testId,
+            ...handlers,
+        };
+
+        if (clientNav) {
+            props.to = href;
+        } else {
+            props.href = href;
+        }
+
+        return props;
+    }
+
+    render() {
+        const {children, clientNav} = this.props;
+
+        const Tag = clientNav ? StyledLink : StyledAnchor;
+
+        return <Tag {...this.getProps()}>{children}</Tag>;
     }
 }
 

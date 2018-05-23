@@ -2,7 +2,7 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {addStyle} from "../util/add-style.js";
+import addStyle from "../util/add-style.js";
 
 import type {Props} from "../util/types.js";
 
