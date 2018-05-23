@@ -3,6 +3,7 @@
 // edit packages/wonder-blocks-forms/docs.md and run `npm run gen-snapshot-tests`.
 import React from "react";
 import renderer from "react-test-renderer";
+import DropdownCore from "./components/dropdown-core.js";
 import Dropdown from "./components/dropdown.js";
 
 describe("wonder-blocks-forms", () => {
@@ -34,7 +35,21 @@ describe("wonder-blocks-forms", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
-        class Parent extends React.Component {
+        const example = (
+            <Dropdown
+                items={[
+                    {label: "item 1", value: 1},
+                    {label: "item 2", value: 2},
+                    {label: "item 3", value: 3},
+                ]}
+                selection={1}
+            />
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
+        class CustomDropdown extends React.Component {
             constructor(props) {
                 super(props);
                 this.state = {
@@ -43,31 +58,23 @@ describe("wonder-blocks-forms", () => {
                 };
             }
 
-            handleOpen() {
+            handleHeaderClick() {
                 this.setState({show: true});
             }
 
-            handleClose() {
-                console.log("handle close");
-                this.setState({show: true});
-            }
-
-            handleChange(selection) {
-                this.setState({selection});
+            handleItemClick(item, index) {
+                this.setState({selection: index});
                 this.setState({show: false});
             }
 
             render() {
-                console.log(`show = ${this.state.show}`);
                 return (
-                    <Dropdown
-                        controlled={false}
+                    <DropdownCore
                         show={this.state.show}
                         selection={this.state.selection}
-                        onOpen={() => this.handleOpen()}
-                        onClose={() => this.handleClose()}
-                        onChange={(e, selection) =>
-                            this.handleChange(selection)
+                        onHeaderClick={() => this.handleHeaderClick()}
+                        onItemClick={(item, index) =>
+                            this.handleItemClick(item, index)
                         }
                         items={[
                             {label: "item 1", value: 1},
@@ -80,7 +87,7 @@ describe("wonder-blocks-forms", () => {
             }
         }
 
-        const example = <Parent />;
+        const example = <CustomDropdown />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

@@ -24,14 +24,29 @@ override the initial value of the component's internal `show` state var.
 />
 ```
 
-## Dropdown (full controlled)
+## Dropdown (initial selection)
 
-This example full controls the Dropdown component to customize its behavior
-forcing users to make a selection before they can close.  It also, closes
+This example is still fully controlled.  Here the `selection` prop acts to 
+override the initial value of the component's internal `selection` state var.
+```js
+<Dropdown 
+    items={[
+        {label: "item 1", value: 1},
+        {label: "item 2", value: 2},
+        {label: "item 3", value: 3},
+    ]}
+    selection={1}
+/>
+```
+
+## Dropdown (uncontrolled)
+
+This example uses DropdownCore to implement a dropdown with custom behavior.
+It forces users to make a selection before they can close it.  It also, closes
 the dropdown when a user makes a selection instead of leaving it open like
 the other dropdowns.
 ```js
-class Parent extends React.Component {
+class CustomDropdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,29 +55,21 @@ class Parent extends React.Component {
         };
     }
 
-    handleOpen() {
+    handleHeaderClick() {
         this.setState({show: true});
     }
 
-    handleClose() {
-        console.log("handle close");
-        this.setState({show: true});
-    }
-
-    handleChange(selection) {
-        this.setState({selection});
+    handleItemClick(item, index) {
+        this.setState({selection: index});
         this.setState({show: false});
     }
 
     render() {
-        console.log(`show = ${this.state.show}`);
-        return <Dropdown
-            controlled={false}
+        return <DropdownCore
             show={this.state.show}
             selection={this.state.selection}
-            onOpen={() => this.handleOpen()}
-            onClose={() => this.handleClose()}
-            onChange={(e, selection) => this.handleChange(selection)}
+            onHeaderClick={() => this.handleHeaderClick()}
+            onItemClick={(item, index) => this.handleItemClick(item, index)}
             items={[
                 {label: "item 1", value: 1},
                 {label: "item 2", value: 2},
@@ -73,5 +80,5 @@ class Parent extends React.Component {
     }
 }
 
-<Parent/>;
+<CustomDropdown/>;
 ```

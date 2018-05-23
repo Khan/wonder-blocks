@@ -1,20 +1,21 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
-import {View} from "wonder-blocks-core";
+import DropdownCore from "./dropdown-core.js";
+
+type Item = {
+    label: string,
+    value: any,
+};
 
 type Props = {
     onClose: () => void,
     onOpen: () => void,
-    onChange: (e: SyntheticEvent<>, value: string) => void,
+    onChange: (item: Item, index: number) => void,
     show: boolean,
     selection: ?any,
-    controlled: boolean,
-    items?: Array<{
-        label: string,
-        value: any,
-    }>,
+    items: Array<Item>,
+    style?: any,
 };
 
 type State = {
@@ -26,7 +27,7 @@ export default class Dropdown extends React.Component<Props, State> {
     static defaultProps = {
         onClose: () => {},
         onOpen: () => {},
-        onChange: (e: SyntheticEvent<>, value: string) => {},
+        onChange: (item: Item, index: number) => {},
         show: false,
         controlled: true,
         selection: null,
@@ -34,21 +35,26 @@ export default class Dropdown extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
+
+        // Note: props can be used to prime state.  This is a useful way of
+        // providing some customization out of the box, by allowing devs to
+        // set at least the initial state without having to use the uncontrolled
+        // version of the component.  There is one gotcha, updating props will
+        // not affect what the component renders.
         this.state = {
             show: props.show,
-            selection: null,
+            selection: props.selection,
         };
     }
 
     setState(props: any, callback?: any) {
-        if (this.props.controlled) {
-            super.setState(props, callback);
-        }
+        super.setState(props, callback);
     }
 
     handleHeaderClick = () => {
         const show = !this.state.show;
         this.setState({show});
+
         if (show) {
             this.props.onOpen();
         } else {
@@ -56,66 +62,24 @@ export default class Dropdown extends React.Component<Props, State> {
         }
     };
 
-    handleChange = (e: SyntheticEvent<>, value: any) => {
-        this.setState({selection: value});
-        // $FlowFixMe
-        this.props.onChange(e, value);
+    handleItemClick = (item: Item, index: number) => {
+        this.setState({selection: index});
+        this.props.onChange(item, index);
     };
 
     render() {
-        const show = this.props.controlled ? this.state.show : this.props.show;
-        const selection = this.props.controlled
-            ? this.state.selection
-            : this.props.selection;
-        const items = this.props.items;
+        const {show, selection} = this.state;
+        const {items, style} = this.props;
 
         return (
-            <View>
-                <View style={styles.header} onClick={this.handleHeaderClick}>
-                    {selection ? selection : "Click Me!"}
-                </View>
-                {show &&
-                    items && (
-                        <View>
-                            {items.map((item, i) => (
-                                <View
-                                    key={i}
-                                    style={[
-                                        styles.item,
-                                        selection === item.value &&
-                                            styles.selected,
-                                    ]}
-                                    onClick={(e) =>
-                                        this.handleChange(e, item.value)
-                                    }
-                                >
-                                    {item.label}
-                                </View>
-                            ))}
-                        </View>
-                    )}
-            </View>
+            <DropdownCore
+                show={show}
+                selection={selection}
+                items={items}
+                onHeaderClick={this.handleHeaderClick}
+                onItemClick={this.handleItemClick}
+                style={style}
+            />
         );
     }
 }
-
-const styles = StyleSheet.create({
-    header: {
-        width: 200,
-        border: "solid 1px blue",
-        borderRadius: 4,
-        fontSize: 20,
-        padding: 4,
-    },
-    item: {
-        fontSize: 20,
-        ":hover": {
-            background: "blue",
-            color: "white",
-        },
-    },
-    selected: {
-        background: "lightblue",
-        color: "black",
-    },
-});
