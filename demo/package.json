@@ -6,9 +6,11 @@
     "aphrodite": "^2.2.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "wonder-blocks-button": "../packages/wonder-blocks-button",
-    "wonder-blocks-core": "../packages/wonder-blocks-core"
+    "wonder-blocks-core": "../packages/wonder-blocks-core",
+    "wonder-blocks-typography": "../packages/wonder-blocks-typography"
   },
   "scripts": {
     "start": "react-scripts start",

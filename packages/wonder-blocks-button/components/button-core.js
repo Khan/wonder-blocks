@@ -35,6 +35,7 @@ export default class ButtonCore extends React.Component<Props> {
             focused,
             pressed,
             href,
+            tag,
             ...handlers
         } = this.props;
 
@@ -52,7 +53,7 @@ export default class ButtonCore extends React.Component<Props> {
             size === "small" && sharedStyles.small,
         ];
 
-        const Tag = href ? StyledAnchor : StyledButton;
+        const Tag = tag || (href ? StyledAnchor : StyledButton);
         const Label = size === "small" ? LabelSmall : LabelLarge;
         return (
             <Tag
@@ -60,6 +61,7 @@ export default class ButtonCore extends React.Component<Props> {
                 disabled={disabled}
                 data-test-id={testId}
                 href={href}
+                to={href}
                 {...handlers}
             >
                 <Label style={sharedStyles.text}>{children}</Label>
