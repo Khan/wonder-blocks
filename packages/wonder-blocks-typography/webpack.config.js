@@ -1,3 +1,3 @@
-const genWebpackConfig = require("../../gen-webpack-config.js");
+const genWebpackConfig = require("../../utils/gen-webpack-config.js");
 
 module.exports = genWebpackConfig(__dirname);

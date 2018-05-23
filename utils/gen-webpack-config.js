@@ -1,3 +1,11 @@
+/**
+ * This file is used by all packages/wonder-blocks-x/webpack.config.js files.
+ *
+ * It generates an appropriate webpack configuration for each package.  In
+ * particular it adds all dependencies from the specific package along with
+ * project level dependencies to the list of externals.  This causes webpack
+ * to not include those depedencies in the build file it generates.
+ */
 const path = require("path");
 
 module.exports = function(subPkgRoot) {

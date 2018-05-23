@@ -6,12 +6,14 @@
   "scripts": {
     "lint": "eslint --config ./eslint/eslintrc packages",
     "postinstall": "for d in packages/*/ ; do (cd \"$d\" && npm install --ignore-scripts); done",
+    "build:all": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
     "test": "npm run lint && npm run gen-snapshot-tests && npm run flow && npm run jest",
     "coverage": "SNAPSHOT_INLINE_APHRODITE=1 jest --coverage",
     "styleguidist": "styleguidist server",
+    "start": "npm run styleguidist",
     "build:styleguidist": "styleguidist build",
     "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
     "pretty-quick": "pretty-quick --staged"
