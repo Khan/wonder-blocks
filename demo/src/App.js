@@ -4,8 +4,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import {View} from "wonder-blocks-core";
 import {Body, Title} from "wonder-blocks-typography";
-import Button from "./components/button";
-import Link from "./components/link";
+import Button from "wonder-blocks-button";
+import Link from "wonder-blocks-link";
 
 class App extends Component {
     render() {

@@ -80,6 +80,11 @@ type Props = {
      * A function to be executed `onclick`.
      */
     onClick?: (e: SyntheticEvent<>) => void,
+
+    /**
+     * Passed in by withRouter it connected.
+     */
+    history?: any,
 };
 
 type State = {
@@ -237,9 +242,13 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     };
 
     maybeNavigate = () => {
-        const {href} = this.props;
+        const {history, href} = this.props;
         if (href) {
-            window.location.assign(href);
+            if (history) {
+                history.push(href);
+            } else {
+                window.location.assign(href);
+            }
         }
     };
 

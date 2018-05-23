@@ -71,7 +71,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -104,7 +103,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -130,7 +128,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -175,7 +172,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -201,7 +197,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -234,7 +229,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -260,7 +254,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -293,7 +286,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -331,7 +323,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -367,7 +358,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -393,7 +383,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -429,7 +418,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -455,7 +443,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -491,7 +478,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -517,7 +503,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -553,7 +538,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -591,7 +575,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -624,7 +607,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -650,7 +632,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -692,7 +673,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -718,7 +698,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -751,7 +730,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -777,7 +755,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -810,7 +787,6 @@ exports[`wonder-blocks-button example 1 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -908,7 +884,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -941,7 +916,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -967,7 +941,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1012,7 +985,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1038,7 +1010,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1071,7 +1042,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1097,7 +1067,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1130,7 +1099,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1168,7 +1136,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1204,7 +1171,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1230,7 +1196,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1266,7 +1231,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1292,7 +1256,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1328,7 +1291,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1354,7 +1316,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1390,7 +1351,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1428,7 +1388,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1461,7 +1420,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1487,7 +1445,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1529,7 +1486,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1555,7 +1511,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1588,7 +1543,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1614,7 +1568,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1647,7 +1600,6 @@ exports[`wonder-blocks-button example 2 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1744,7 +1696,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1777,7 +1728,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1803,7 +1753,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1848,7 +1797,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1874,7 +1822,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1907,7 +1854,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -1933,7 +1879,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1966,7 +1911,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2004,7 +1948,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2040,7 +1983,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2066,7 +2008,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2102,7 +2043,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2128,7 +2068,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2164,7 +2103,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2190,7 +2128,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2226,7 +2163,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2264,7 +2200,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2297,7 +2232,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2323,7 +2257,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2365,7 +2298,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2391,7 +2323,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2424,7 +2355,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2450,7 +2380,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2483,7 +2412,6 @@ exports[`wonder-blocks-button example 3 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2581,7 +2509,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2614,7 +2541,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2640,7 +2566,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2685,7 +2610,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2711,7 +2635,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2744,7 +2667,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2770,7 +2692,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2803,7 +2724,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2841,7 +2761,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2877,7 +2796,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2903,7 +2821,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2939,7 +2856,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -2965,7 +2881,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3001,7 +2916,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3027,7 +2941,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3063,7 +2976,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3101,7 +3013,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3134,7 +3045,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3160,7 +3070,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3202,7 +3111,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3228,7 +3136,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3261,7 +3168,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3287,7 +3193,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3320,7 +3225,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3417,7 +3321,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3450,7 +3353,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3476,7 +3378,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3521,7 +3422,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3547,7 +3447,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3580,7 +3479,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3606,7 +3504,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3639,7 +3536,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3677,7 +3573,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3713,7 +3608,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3739,7 +3633,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3775,7 +3668,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3801,7 +3693,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3837,7 +3728,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3863,7 +3753,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3899,7 +3788,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3937,7 +3825,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3970,7 +3857,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -3996,7 +3882,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -4038,7 +3923,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -4064,7 +3948,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -4097,7 +3980,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""
@@ -4123,7 +4005,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -4156,7 +4037,6 @@ exports[`wonder-blocks-button example 5 1`] = `
               "textDecoration": "none",
             }
           }
-          to={undefined}
         >
           <span
             className=""

@@ -44,7 +44,6 @@ exports[`wonder-blocks-link example 1 1`] = `
                 "textDecoration": "none",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
@@ -87,7 +86,6 @@ exports[`wonder-blocks-link example 1 1`] = `
                 "textDecoration": "underline currentcolor solid",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
@@ -130,7 +128,6 @@ exports[`wonder-blocks-link example 1 1`] = `
                 "textDecoration": "none",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
@@ -186,7 +183,6 @@ exports[`wonder-blocks-link example 2 1`] = `
                 "textDecoration": "none",
               }
             }
-            to="#"
           >
             Label
           </a>
@@ -229,7 +225,6 @@ exports[`wonder-blocks-link example 2 1`] = `
                 "textDecoration": "underline currentcolor solid",
               }
             }
-            to="#"
           >
             Label
           </a>
@@ -272,7 +267,6 @@ exports[`wonder-blocks-link example 2 1`] = `
                 "textDecoration": "none",
               }
             }
-            to="#"
           >
             Label
           </a>
@@ -328,7 +322,6 @@ exports[`wonder-blocks-link example 3 1`] = `
                 "textDecoration": "none",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
@@ -371,7 +364,6 @@ exports[`wonder-blocks-link example 3 1`] = `
                 "textDecoration": "underline currentcolor solid",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
@@ -414,7 +406,6 @@ exports[`wonder-blocks-link example 3 1`] = `
                 "textDecoration": "none",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
@@ -471,7 +462,6 @@ exports[`wonder-blocks-link example 4 1`] = `
                 "textDecoration": "none",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
@@ -514,7 +504,6 @@ exports[`wonder-blocks-link example 4 1`] = `
                 "textDecoration": "underline currentcolor solid",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
@@ -557,7 +546,6 @@ exports[`wonder-blocks-link example 4 1`] = `
                 "textDecoration": "none",
               }
             }
-            to="#nonexistent-link"
           >
             Label
           </a>
