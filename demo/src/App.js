@@ -3,10 +3,9 @@ import {StyleSheet} from "aphrodite";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import {View} from "wonder-blocks-core";
-// TODO(kevinb) add this code inside javascript/node_modules/wonder-blocks-button
-// TODO(kevinb) update the update-wonder-blocks-shims.js to handle this
-import Button from "./client-button";
-import {Title} from "wonder-blocks-typography";
+import {Body, Title} from "wonder-blocks-typography";
+import Button from "./components/button";
+import Link from "./components/link";
 
 class App extends Component {
     render() {
@@ -31,10 +30,14 @@ class App extends Component {
                         <Button style={styles.button} href="/bar" clientNav>
                             Bar
                         </Button>
-                        <Button style={styles.button} href="/" clientNav>
-                            Home
-                        </Button>
                     </View>
+                    <Body style={styles.body}>
+                        Click{" "}
+                        <Link href="/" clientNav>
+                            Home
+                        </Link>{" "}
+                        to return to the homepage.
+                    </Body>
                 </View>
             </BrowserRouter>
         );
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
     pinkSquare: {
         width: 500,
         height: 200,
-        background: "pink",
+        background: "#e0e0e0",
         padding: 16,
     },
     title: {
@@ -59,6 +62,9 @@ const styles = StyleSheet.create({
     button: {
         marginRight: 16,
         flex: 1,
+    },
+    body: {
+        marginTop: 16,
     },
 });
 

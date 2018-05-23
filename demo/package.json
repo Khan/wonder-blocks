@@ -10,6 +10,7 @@
     "react-scripts": "1.1.4",
     "wonder-blocks-button": "../packages/wonder-blocks-button",
     "wonder-blocks-core": "../packages/wonder-blocks-core",
+    "wonder-blocks-link": "../packages/wonder-blocks-link",
     "wonder-blocks-typography": "../packages/wonder-blocks-typography"
   },
   "scripts": {

@@ -29,6 +29,7 @@ export default class LinkCore extends React.Component<Props> {
             focused,
             pressed,
             href,
+            tag,
             ...handlers
         } = this.props;
 
@@ -42,15 +43,18 @@ export default class LinkCore extends React.Component<Props> {
                 : (hovered || focused) && linkStyles.focus,
         ];
 
+        const Tag = tag || StyledAnchor;
+
         return (
-            <StyledAnchor
+            <Tag
                 style={[defaultStyles, style]}
                 data-test-id={testId}
                 href={href}
+                to={href}
                 {...handlers}
             >
                 {children}
-            </StyledAnchor>
+            </Tag>
         );
     }
 }
@@ -62,6 +66,7 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
+        display: "inline",
     },
 });
 

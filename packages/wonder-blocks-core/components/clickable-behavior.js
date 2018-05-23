@@ -75,8 +75,6 @@ type Props = {
      * respond to spacebar key press.
      */
     href?: string,
-  
-    clientSideNav?: boolean,
 
     /**
      * A function to be executed `onclick`.
