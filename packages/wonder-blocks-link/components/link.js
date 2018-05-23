@@ -109,12 +109,7 @@ export default class Link extends React.Component<Props> {
             : ClickableBehavior;
 
         return (
-            <Behavior
-                disabled={false}
-                onClick={onClick}
-                href={href}
-                clientNav={clientNav}
-            >
+            <Behavior disabled={false} onClick={onClick} href={href}>
                 {(state, handlers) => {
                     return (
                         <LinkCore

@@ -39,7 +39,6 @@ exports[`wonder-blocks-link example 1 1`] = `
                 },
                 "color": "#1865f2",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "none",
               }
@@ -81,7 +80,6 @@ exports[`wonder-blocks-link example 1 1`] = `
                 },
                 "color": "#1865f2",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "underline currentcolor solid",
               }
@@ -123,7 +121,6 @@ exports[`wonder-blocks-link example 1 1`] = `
                 },
                 "color": "#1b50b3",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "none",
               }
@@ -178,7 +175,6 @@ exports[`wonder-blocks-link example 2 1`] = `
                 },
                 "color": "#1865f2",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "none",
               }
@@ -220,7 +216,6 @@ exports[`wonder-blocks-link example 2 1`] = `
                 },
                 "color": "#1865f2",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "underline currentcolor solid",
               }
@@ -262,7 +257,6 @@ exports[`wonder-blocks-link example 2 1`] = `
                 },
                 "color": "#1b50b3",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "none",
               }
@@ -317,7 +311,6 @@ exports[`wonder-blocks-link example 3 1`] = `
                 },
                 "color": "#21242c",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "none",
               }
@@ -359,7 +352,6 @@ exports[`wonder-blocks-link example 3 1`] = `
                 },
                 "color": "#1865f2",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "underline currentcolor solid",
               }
@@ -401,7 +393,6 @@ exports[`wonder-blocks-link example 3 1`] = `
                 },
                 "color": "#1b50b3",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "none",
               }
@@ -457,7 +448,6 @@ exports[`wonder-blocks-link example 4 1`] = `
                 },
                 "color": "#ffffff",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "none",
               }
@@ -499,7 +489,6 @@ exports[`wonder-blocks-link example 4 1`] = `
                 },
                 "color": "#ffffff",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "underline currentcolor solid",
               }
@@ -541,7 +530,6 @@ exports[`wonder-blocks-link example 4 1`] = `
                 },
                 "color": "#b5cefb",
                 "cursor": "pointer",
-                "display": "inline",
                 "outline": "none",
                 "textDecoration": "none",
               }

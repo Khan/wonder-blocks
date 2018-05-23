@@ -150,7 +150,6 @@ export default class Button extends React.Component<Props> {
                 disabled={sharedProps.disabled}
                 onClick={onClick}
                 href={href}
-                clientNav={clientNav}
             >
                 {(state, handlers) => {
                     return (
