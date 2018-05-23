@@ -1,12 +1,13 @@
 // @flow
 import * as React from "react";
+import {Link} from "react-router-dom";
 
-import Color from "wonder-blocks-color";
-import {ClickableBehavior} from "wonder-blocks-core";
-import type {ValidTints} from "wonder-blocks-color";
-import ButtonCore from "./button-core.js";
+import {addStyle} from "wonder-blocks-core";
+import Button from "wonder-blocks-button";
 
-export type SharedProps = {
+// TODO(kevinb): figure out `import type {Props} from "wonder-blocks-button"`
+
+type SharedProps = {
     /**
      * Text to appear on the button.
      */
@@ -26,7 +27,7 @@ export type SharedProps = {
     /**
      * The color of the button, either blue or red.
      */
-    color: ValidTints,
+    color: "blue" | "red",
 
     /**
      * The kind of the button, either primary, secondary, or tertiary.
@@ -61,8 +62,6 @@ export type SharedProps = {
      */
     testId?: string,
 
-    tag?: React.ComponentType<*>,
-
     /**
      * The content of the modal, appearing between the titlebar and footer.
      */
@@ -94,7 +93,7 @@ type Props = SharedProps & {
      * navigation by doing history.push(this.props.href) using
      * ReactRouter's history object
      */
-    clientSideNav?: boolean,
+    clientNav?: boolean,
 
     /**
      * Function to call when button is clicked.
@@ -111,60 +110,16 @@ type Props = SharedProps & {
     onClick?: (e: SyntheticEvent<>) => void,
 };
 
-/**
- * Reusable button component.
- *
- * Consisting of a [`ClickableBehavior`](#clickablebehavior) surrounding a
- * `ButtonCore`. `ClickableBehavior` handles interactions and state changes.
- * `ButtonCore` is a stateless component which displays the different states
- * the `Button` can take.
- *
- * Example usage:
- * ```jsx
- * <Button
- *     onClick={(e) => console.log("Hello, world!")}
- * >
- *     Label
- * </Button>
- * ```
- */
-export default class Button extends React.Component<Props> {
-    static defaultProps = {
-        color: Color.blue,
-        kind: "primary",
-        light: false,
-        size: "default",
-        disabled: false,
-    };
+const StyledLink = addStyle(Link);
 
+export default class ClientButton extends React.Component<Props> {
     render() {
-        const {
-            onClick,
-            href,
-            children,
-            clientSideNav,
-            ...sharedProps
-        } = this.props;
-        return (
-            <ClickableBehavior
-                disabled={sharedProps.disabled}
-                onClick={onClick}
-                href={href}
-                clientSideNav={clientSideNav}
-            >
-                {(state, handlers) => {
-                    return (
-                        <ButtonCore
-                            {...sharedProps}
-                            {...state}
-                            {...handlers}
-                            href={href}
-                        >
-                            {children}
-                        </ButtonCore>
-                    );
-                }}
-            </ClickableBehavior>
-        );
+        const {clientNav, href} = this.props;
+
+        if (clientNav && href) {
+            return <Button tag={StyledLink} {...this.props} />;
+        } else {
+            return <Button {...this.props} />;
+        }
     }
 }

@@ -4,8 +4,9 @@
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
   "scripts": {
-    "install": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "lint": "eslint --config ./eslint/eslintrc packages",
+    "postinstall": "for d in packages/*/ ; do (cd \"$d\" && npm install --ignore-scripts); done",
+    "build:all": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
@@ -22,6 +23,7 @@
     "babel-core": "6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.1",
+    "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -50,7 +52,8 @@
     "react-test-renderer": "^15.3.0",
     "unescape": "^1.0.1",
     "webpack": "^4.6.0",
-    "webpack-blocks": "^1.0.0"
+    "webpack-blocks": "^1.0.0",
+    "webpack-cli": "^2.1.3"
   },
   "dependencies": {
     "aphrodite": "^1.2.5",
