@@ -5,12 +5,12 @@ A `Button` is a clickable button element consisting of a [`ClickableBehavior`]
 interactions and state changes. `ButtonCore` is a stateless component which
 displays the different states the `Button` can take.
 
-Blue ButtonCores:
+Default ButtonCores:
 ```js
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
-const {blue, red, white, offWhite} = Color;
+const {white, offWhite} = Color;
 
 const handlers = {
     onClick: () => void 0,
@@ -29,7 +29,7 @@ const handlers = {
 const defaultProps = {
     kind: "primary",
     size: "default",
-    color: blue,
+    color: "default",
     light: false,
     hovered: false,
     focused: false,
@@ -178,12 +178,12 @@ const defaultProps = {
 </table>
 ```
 
-Blue ButtonCores, Light:
+Default ButtonCores, Light:
 ```js
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
-const {blue, darkBlue, white, offWhite} = Color;
+const {darkBlue, white, offWhite} = Color;
 
 const handlers = {
     onClick: () => void 0,
@@ -202,7 +202,7 @@ const handlers = {
 const defaultProps = {
     kind: "primary",
     size: "default",
-    color: blue,
+    color: "default",
     light: true,
     hovered: false,
     focused: false,
@@ -351,12 +351,12 @@ const defaultProps = {
 </table>
 ```
 
-Red ButtonCores:
+Destructive ButtonCores:
 ```js
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
-const {blue, red, white, offWhite} = Color;
+const {white, offWhite} = Color;
 
 const handlers = {
     onClick: () => void 0,
@@ -375,7 +375,7 @@ const handlers = {
 const defaultProps = {
     kind: "primary",
     size: "default",
-    color: red,
+    color: "destructive",
     light: false,
     hovered: false,
     focused: false,
@@ -524,12 +524,12 @@ const defaultProps = {
 </table>
 ```
 
-Red ButtonCores, Light:
+Destructive ButtonCores, Light:
 ```js
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
-const {blue, red, white, offWhite} = Color;
+const {darkBlue, white, offWhite} = Color;
 
 const handlers = {
     onClick: () => void 0,
@@ -548,7 +548,7 @@ const handlers = {
 const defaultProps = {
     kind: "primary",
     size: "default",
-    color: red,
+    color: "destructive",
     light: true,
     hovered: false,
     focused: false,
@@ -556,7 +556,7 @@ const defaultProps = {
     disabled: false,
 };
 
-<table style={{background: red, color: white, textAlign: "center"}}>
+<table style={{background: darkBlue, color: white, textAlign: "center"}}>
     <thead>
         <tr>
             <th />
@@ -702,7 +702,7 @@ Blue ButtonCores, Small:
 const Color = require("wonder-blocks-color").default;
 const ButtonCore = require("./components/button-core.js").default;
 
-const {blue, red, white, offWhite} = Color;
+const {white, offWhite} = Color;
 
 const handlers = {
     onClick: () => void 0,
@@ -721,7 +721,7 @@ const handlers = {
 const defaultProps = {
     kind: "primary",
     size: "small",
-    color: blue,
+    color: "default",
     light: false,
     hovered: false,
     focused: false,

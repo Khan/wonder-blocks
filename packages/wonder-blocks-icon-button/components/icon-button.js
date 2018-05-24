@@ -1,9 +1,7 @@
 // @flow
 import React from "react";
 
-import Color from "wonder-blocks-color";
 import {ClickableBehavior} from "wonder-blocks-core";
-import type {ValidTints} from "wonder-blocks-color";
 import IconButtonCore from "./icon-button-core.js";
 
 export type SharedProps = {
@@ -20,7 +18,7 @@ export type SharedProps = {
     /**
      * The color of the button, either blue or red.
      */
-    color: ValidTints,
+    color: "default" | "destructive",
 
     /**
      * The kind of the button, either primary, secondary, or tertiary.
@@ -118,7 +116,7 @@ type Props = SharedProps & {
  */
 export default class IconButton extends React.Component<Props> {
     static defaultProps = {
-        color: Color.blue,
+        color: "default",
         kind: "primary",
         light: false,
         disabled: false,
