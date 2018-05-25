@@ -36,7 +36,7 @@ describe("wonder-blocks-core", () => {
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
 
-                <Text aria-hidden>
+                <Text aria-hidden="true">
                     This text is hidden from screen readers.
                 </Text>
             </View>

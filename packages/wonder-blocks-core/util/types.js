@@ -9,12 +9,6 @@
 
 export type StyleType<T: Object> = any; // eslint-disable-line no-unused-vars
 
-export type Props = {
-    style?: any,
-    children?: any,
-    [otherProp: string]: any,
-};
-
 export type TextTag = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/roles#role_definitions
@@ -94,6 +88,7 @@ type roles = [
 ];
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
+// TODO(kevinb): figure out how to type ID ref lists
 export type AriaProps = {
     role?: roles,
     "aria-activedescendant"?: string, // ID
@@ -137,4 +132,10 @@ export type AriaProps = {
     "aria-valuemin"?: number,
     "aria-valuenow"?: number,
     "aria-valuetext"?: string,
+};
+
+export type Props = AriaProps & {
+    style?: any,
+    children?: any,
+    [otherProp: string]: any,
 };
