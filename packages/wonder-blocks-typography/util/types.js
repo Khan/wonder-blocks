@@ -1,8 +1,8 @@
 // @flow
-import type {TextTag} from "wonder-blocks-core";
+import type {AriaProps, TextTag} from "wonder-blocks-core";
 
 // TODO(kevinb): fix style type after upgrading flow
-export type Props = {
+export type Props = AriaProps & {
     style?: any,
     children?: string,
     id?: string,

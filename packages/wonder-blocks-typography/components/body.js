@@ -12,9 +12,9 @@ export default class Body extends Component<Props> {
     };
 
     render() {
-        const {id, tag, style, children} = this.props;
+        const {style, children, ...otherProps} = this.props;
         return (
-            <Text id={id} tag={tag} style={[styles.Body, style]}>
+            <Text {...otherProps} style={[styles.Body, style]}>
                 {children}
             </Text>
         );
