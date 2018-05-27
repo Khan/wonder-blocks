@@ -3,3 +3,4 @@ package-lock.json
 .prettierrc.json
 docs
 *.md
+manifest.json
