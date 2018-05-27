@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -6,7 +7,7 @@ import Button from "wonder-blocks-button";
 import {Title} from "wonder-blocks-typography";
 import {ModalLauncher, OneColumnModal} from "wonder-blocks-modal";
 
-class App extends React.Component {
+class App extends React.Component<*> {
     render() {
         const modal = (
             <OneColumnModal content={<Title>Hello, from modal</Title>} />
