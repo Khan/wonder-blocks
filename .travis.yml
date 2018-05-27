@@ -6,6 +6,7 @@ cache:
     - node_modules
 install:
   - npm install
+  - npm run build:all
   - npm install -g codecov
 script:
   - npm test
