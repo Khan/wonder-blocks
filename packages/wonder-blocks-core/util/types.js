@@ -87,43 +87,41 @@ type roles = [
     "window", // abstract role
 ];
 
+type IdRef = string;
+type IdRefList = IdRef | Array<IdRef>;
+
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
 // TODO(kevinb): figure out how to type ID ref lists
 export type AriaProps = {
     role?: roles,
-    "aria-activedescendant"?: string, // ID
+    "aria-activedescendant"?: IdRef,
     "aria-atomic"?: "false" | "true",
     "aria-autocomplete"?: "both" | "inline" | "list" | "none",
     "aria-busy"?: "true" | "false",
     "aria-checked"?: "false" | "mixed" | "true" | "undefined",
-    "aria-controls"?: string, // ID
+    "aria-controls"?: IdRefList,
     "aria-describedat"?: string, // URI
-    "aria-describedby"?: string, // ID
+    "aria-describedby"?: IdRefList,
     "aria-disabled"?: "false" | "true",
     "aria-dropeffect"?: "copy" | "execute" | "link" | "move" | "none" | "popup",
     "aria-expanded"?: "false" | "true" | "undefined",
-    "aria-flowto"?: string, // ID
+    "aria-flowto"?: IdRefList,
     "aria-grabbed"?: "false" | "true" | "undefined",
     "aria-haspopup"?: "false" | "true",
     "aria-hidden"?: "false" | "true",
     "aria-invalid"?: "grammar" | "false" | "spelling" | "true",
-    "aria-label"?: string, // ID
-    "aria-labelledby"?: string, // ID
+    "aria-label"?: string,
+    "aria-labelledby"?: IdRefList,
     "aria-level"?: number, // integer
     "aria-live"?: "assertive" | "off" | "polite",
     "aria-multiline"?: "false" | "true",
     "aria-multiselectable"?: "false" | "true",
     "aria-orientation"?: "horizontal" | "vertical",
-    "aria-owns"?: string, // ID
+    "aria-owns"?: IdRefList,
     "aria-posinset"?: number, // integer
     "aria-pressed"?: "false" | "mixed" | "true" | "undefined",
     "aria-readonly"?: "false" | "true",
-    "aria-relevant"?:
-        | "additions"
-        | "additions text"
-        | "all"
-        | "removals"
-        | "text",
+    "aria-relevant"?: void, // Not using aria-relevant is a best practice
     "aria-required"?: "false" | "true",
     "aria-selected"?: "false" | "true" | "undefined",
     "aria-setsize"?: number, // integer
