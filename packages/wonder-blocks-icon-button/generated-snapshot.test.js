@@ -24,7 +24,7 @@ describe("wonder-blocks-icon-button", () => {
             C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
             7.5 L4.25,7.5 Z`;
 
-        const {blue, darkBlue, white, offWhite} = Color;
+        const {darkBlue, white, offWhite} = Color;
 
         const handlers = {
             onClick: () => void 0,
@@ -44,7 +44,7 @@ describe("wonder-blocks-icon-button", () => {
             kind: "primary",
             icon: searchIcon,
             alt: "search",
-            color: blue,
+            color: "default",
             light: false,
             hovered: false,
             focused: false,
@@ -267,7 +267,7 @@ describe("wonder-blocks-icon-button", () => {
             C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
             7.5 L4.25,7.5 Z`;
 
-        const {red, darkBlue, white, offWhite} = Color;
+        const {darkBlue, white, offWhite} = Color;
 
         const handlers = {
             onClick: () => void 0,
@@ -287,7 +287,7 @@ describe("wonder-blocks-icon-button", () => {
             kind: "primary",
             icon: searchIcon,
             alt: "search",
-            color: red,
+            color: "destructive",
             light: false,
             hovered: false,
             focused: false,

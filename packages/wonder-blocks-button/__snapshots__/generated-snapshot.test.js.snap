@@ -2441,7 +2441,7 @@ exports[`wonder-blocks-button example 4 1`] = `
 <table
   style={
     Object {
-      "background": "#d92916",
+      "background": "#0a2a66",
       "color": "#ffffff",
       "textAlign": "center",
     }

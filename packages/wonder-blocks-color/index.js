@@ -31,9 +31,9 @@ const Color = {
     pink: "#fa50ae",
 };
 
-// Note: Only blue and red are valid tints for Buttons IconButtons. We
-// explicitly export these as a type because flow does not allow const object
-// values as types.
-export type ValidTints = "#1865f2" | "#d92916";
+const SemanticColor = {
+    controlDefault: Color.blue,
+    controlDestructive: Color.red,
+};
 
-export {Color as default, mix, fade};
+export {Color as default, SemanticColor, mix, fade};

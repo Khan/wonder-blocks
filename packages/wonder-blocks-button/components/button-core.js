@@ -3,7 +3,7 @@ import React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {LabelLarge, LabelSmall} from "wonder-blocks-typography";
-import Color, {mix, fade} from "wonder-blocks-color";
+import Color, {SemanticColor, mix, fade} from "wonder-blocks-color";
 import {addStyle} from "wonder-blocks-core";
 import type {ClickableHandlers} from "wonder-blocks-core";
 import type {SharedProps} from "./button.js";
@@ -38,7 +38,12 @@ export default class ButtonCore extends React.Component<Props> {
             ...handlers
         } = this.props;
 
-        const buttonStyles = _generateStyles(color, kind, light);
+        const buttonColor =
+            color === "destructive"
+                ? SemanticColor.controlDestructive
+                : SemanticColor.controlDefault;
+
+        const buttonStyles = _generateStyles(buttonColor, kind, light);
 
         const defaultStyle = [
             sharedStyles.shared,

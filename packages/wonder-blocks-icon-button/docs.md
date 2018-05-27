@@ -19,7 +19,7 @@ const searchIcon = `M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
     C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
     7.5 L4.25,7.5 Z`;
 
-const {blue, darkBlue, white, offWhite} = Color;
+const {darkBlue, white, offWhite} = Color;
 
 const handlers = {
     onClick: () => void 0,
@@ -39,7 +39,7 @@ const defaultProps = {
     kind: "primary",
     icon: searchIcon,
     alt: "search",
-    color: blue,
+    color: "default",
     light: false,
     hovered: false,
     focused: false,
@@ -247,7 +247,7 @@ const searchIcon = `M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
     C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
     7.5 L4.25,7.5 Z`;
 
-const {red, darkBlue, white, offWhite} = Color;
+const {darkBlue, white, offWhite} = Color;
 
 const handlers = {
     onClick: () => void 0,
@@ -267,7 +267,7 @@ const defaultProps = {
     kind: "primary",
     icon: searchIcon,
     alt: "search",
-    color: red,
+    color: "destructive",
     light: false,
     hovered: false,
     focused: false,
