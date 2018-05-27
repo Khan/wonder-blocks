@@ -7,6 +7,7 @@ cache:
 install:
   - npm install
   - npm run build:all
+  - cd demo && npm install && cd ..
   - npm install -g codecov
 script:
   - npm test
