@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "aphrodite": "^1.2.5",
+    "make-controllable": "0.0.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },

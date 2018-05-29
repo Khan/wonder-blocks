@@ -1,0 +1,300 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-forms example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onClick={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "border": "solid 1px blue",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "fontSize": 20,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 4,
+        "position": "relative",
+        "width": 200,
+        "zIndex": 0,
+      }
+    }
+  >
+    Click Me!
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-forms example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onClick={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "border": "solid 1px blue",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "fontSize": 20,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 4,
+        "position": "relative",
+        "width": 200,
+        "zIndex": 0,
+      }
+    }
+  >
+    Click Me!
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "border": "solid 1px blue",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 300,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          ":hover": Object {
+            "background": "blue",
+            "color": "white",
+          },
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "fontSize": 20,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      item 1
+    </div>
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          ":hover": Object {
+            "background": "blue",
+            "color": "white",
+          },
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "fontSize": 20,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      item 2
+    </div>
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          ":hover": Object {
+            "background": "blue",
+            "color": "white",
+          },
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "fontSize": 20,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      item 3
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-forms example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onClick={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "border": "solid 1px blue",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "fontSize": 20,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 4,
+        "position": "relative",
+        "width": 200,
+        "zIndex": 0,
+      }
+    }
+  >
+    item 2
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-forms example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onClick={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "border": "solid 1px blue",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "fontSize": 20,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 4,
+        "position": "relative",
+        "width": 200,
+        "zIndex": 0,
+      }
+    }
+  >
+    Click Me!
+  </div>
+</div>
+`;
