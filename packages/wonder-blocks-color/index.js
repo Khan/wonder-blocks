@@ -11,6 +11,7 @@ const Color = {
     green: "#00a60e",
     gold: "#ffb100",
     red: "#d92916",
+    lightRed: "#fd6c6e",
 
     // Neutral
     offBlack,
@@ -34,6 +35,7 @@ const Color = {
 const SemanticColor = {
     controlDefault: Color.blue,
     controlDestructive: Color.red,
+    struggling: Color.lightRed,
 };
 
 export {Color as default, SemanticColor, mix, fade};
