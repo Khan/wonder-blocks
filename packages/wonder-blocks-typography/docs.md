@@ -38,3 +38,12 @@ const styles = StyleSheet.create({
 
 <Title style={styles.blueText}>Blue Title</Title>
 ```
+
+## Accessibility
+
+The `role` and any `aria-` attribute can be set as props any of the typography
+components
+
+```js
+<Title aria-label="Accessible Title">Title</Title>
+```

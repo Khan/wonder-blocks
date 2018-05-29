@@ -3,9 +3,9 @@ import React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "../util/util.js";
-import type {TextTag} from "../util/types.js";
+import type {AriaProps, TextTag} from "../util/types.js";
 
-type Props = {
+type Props = AriaProps & {
     style?: any,
     tag: TextTag,
     children?: any,

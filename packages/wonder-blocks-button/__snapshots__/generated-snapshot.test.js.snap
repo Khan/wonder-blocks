@@ -107,7 +107,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -177,7 +176,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -235,7 +233,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -293,7 +290,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -366,7 +362,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -427,7 +422,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -488,7 +482,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -549,7 +542,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -619,7 +611,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -686,7 +677,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -744,7 +734,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -802,7 +791,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -932,7 +920,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1002,7 +989,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1060,7 +1046,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1118,7 +1103,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1191,7 +1175,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1252,7 +1235,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1313,7 +1295,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1374,7 +1355,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1444,7 +1424,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1511,7 +1490,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1569,7 +1547,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1627,7 +1604,6 @@ exports[`wonder-blocks-button example 2 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1756,7 +1732,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1826,7 +1801,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1884,7 +1858,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -1942,7 +1915,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2015,7 +1987,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2076,7 +2047,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2137,7 +2107,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2198,7 +2167,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2268,7 +2236,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2335,7 +2302,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2393,7 +2359,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2451,7 +2416,6 @@ exports[`wonder-blocks-button example 3 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2581,7 +2545,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2651,7 +2614,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2709,7 +2671,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2767,7 +2728,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2840,7 +2800,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2901,7 +2860,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -2962,7 +2920,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3023,7 +2980,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3093,7 +3049,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3160,7 +3115,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3218,7 +3172,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3276,7 +3229,6 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3405,7 +3357,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3475,7 +3426,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3533,7 +3483,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3591,7 +3540,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3664,7 +3612,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3725,7 +3672,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3786,7 +3732,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3847,7 +3792,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3917,7 +3861,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -3984,7 +3927,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -4042,7 +3984,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",
@@ -4100,7 +4041,6 @@ exports[`wonder-blocks-button example 5 1`] = `
         >
           <span
             className=""
-            id={undefined}
             style={
               Object {
                 "MozOsxFontSmoothing": "grayscale",

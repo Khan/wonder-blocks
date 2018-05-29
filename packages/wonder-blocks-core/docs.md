@@ -33,7 +33,7 @@ Other props can be passed through `View` or `Text`, as if they were normal tags.
         Click me!
     </View>
 
-    <Text aria-hidden>
+    <Text aria-hidden="true">
         This text is hidden from screen readers.
     </Text>
 </View>

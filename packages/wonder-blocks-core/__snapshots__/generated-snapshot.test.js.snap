@@ -80,7 +80,7 @@ exports[`wonder-blocks-core example 2 1`] = `
     Click me!
   </div>
   <span
-    aria-hidden={true}
+    aria-hidden="true"
     className=""
     style={
       Object {

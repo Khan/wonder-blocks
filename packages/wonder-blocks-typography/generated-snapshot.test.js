@@ -77,4 +77,9 @@ describe("wonder-blocks-typography", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+    it("example 3", () => {
+        const example = <Title aria-label="Accessible Title">Title</Title>;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

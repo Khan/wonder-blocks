@@ -328,7 +328,6 @@ exports[`wonder-blocks-typography example 1 1`] = `
 exports[`wonder-blocks-typography example 2 1`] = `
 <h1
   className=""
-  id={undefined}
   style={
     Object {
       "@media (max-width: 1023px)": Object {
@@ -351,5 +350,33 @@ exports[`wonder-blocks-typography example 2 1`] = `
   }
 >
   Blue Title
+</h1>
+`;
+
+exports[`wonder-blocks-typography example 3 1`] = `
+<h1
+  aria-label="Accessible Title"
+  className=""
+  style={
+    Object {
+      "@media (max-width: 1023px)": Object {
+        "fontSize": 28,
+        "lineHeight": "32px",
+      },
+      "@media (min-width: 1024px)": Object {
+        "fontSize": 36,
+        "lineHeight": "40px",
+      },
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Lato",
+      "fontWeight": 900,
+      "marginBottom": 0,
+      "marginTop": 0,
+    }
+  }
+>
+  Title
 </h1>
 `;
