@@ -8,6 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "../../node_modules/.bin/webpack"
   },
+  "devDependencies": {
+    "wonder-blocks-core": "../wonder-blocks-core",
+    "wonder-blocks-typography": "../wonder-blocks-typography"
+  },
   "author": "",
   "license": "MIT"
 }

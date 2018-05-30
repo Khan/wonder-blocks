@@ -7,87 +7,174 @@ import renderer from "react-test-renderer";
 
 describe("wonder-blocks-color", () => {
     it("example 1", () => {
-        const ColoredTextWithBackground = require("./docutils/colored-text-with-background.js")
-            .default;
-        const ColorWithName = require("./docutils/color-with-name.js").default;
+        const {StyleSheet} = require("aphrodite");
 
-        const Color = require("./index.js").default;
+        const {View} = require("wonder-blocks-core");
+        const Swatch = require("./docutils/swatch").default;
+
+        const Color = require("./index").default;
+
+        const styles = StyleSheet.create({
+            container: {
+                flexDirection: "column",
+                flexWrap: "wrap",
+                justifyContent: "flex-start",
+                height: 768,
+            },
+        });
 
         const example = (
-            <div>
-                {Object.keys(Color).map((colorName, idx) => (
-                    <ColorWithName
-                        key={idx}
-                        color={Color[colorName]}
-                        colorName={colorName}
-                    />
-                ))}
-            </div>
+            <View style={styles.container}>
+                <Swatch
+                    color={Color.blue}
+                    name="Blue"
+                    use="text"
+                    desc="Actionable. Used to indicate actionable items like links and buttons."
+                />
+                <Swatch
+                    color={Color.purple}
+                    name="Purple"
+                    use="text"
+                    desc="Used to indicate Mastery."
+                />
+                <Swatch
+                    color={Color.gold}
+                    name="Gold"
+                    segments={1}
+                    desc="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
+                />
+                <Swatch
+                    color={Color.green}
+                    name="Green"
+                    use="icon"
+                    desc="Affirmative. Used to indicate success states and correctness. Do not use for text."
+                />
+                <Swatch
+                    color={Color.red}
+                    name="Red"
+                    use="text"
+                    desc="Negative. Used for errors and destructive actions."
+                />
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const ColoredTextWithBackground = require("./docutils/colored-text-with-background.js")
-            .default;
-        const ColorWithName = require("./docutils/color-with-name.js").default;
+        const {StyleSheet} = require("aphrodite");
 
-        const {mix, fade} = require("./index.js");
-        const Color = require("./index.js").default;
-        const {white, offBlack, red} = Color;
+        const {View} = require("wonder-blocks-core");
+        const Swatch = require("./docutils/swatch").default;
+
+        const Color = require("./index").default;
+
+        const styles = StyleSheet.create({
+            container: {
+                flexDirection: "column",
+                flexWrap: "wrap",
+                justifyContent: "flex-start",
+                height: 768 + 256,
+            },
+        });
 
         const example = (
-            <div>
-                <p>
-                    Dynamically computed colors using the <code>fade</code> and{" "}
-                    <code>mix</code> methods from the color utilities.
-                </p>
-                <ColorWithName color={white} colorName="White" />
-                <ColorWithName
-                    color={mix(fade(red, 0.16), white)}
-                    colorName="White (Tinted) = White + 16% Tint"
+            <View style={styles.container}>
+                <Swatch
+                    color={Color.offBlack}
+                    name="Off-Black"
+                    use="text"
+                    desc="Primary text color. Can also used for links in lists."
                 />
-                <ColorWithName
-                    color={mix(fade(red, 0.32), white)}
-                    colorName="White (XTinted) = White + 32% Tint"
+                <Swatch
+                    color={Color.offBlack64}
+                    name="Off-Black 64%"
+                    use="text"
+                    desc="Secondary text color and modal backdrop color."
                 />
-                <ColorWithName
-                    color={mix(fade(red, 0.64), white)}
-                    colorName="White (XXTinted) = White + 64% Tint"
+                <Swatch
+                    color={Color.offBlack50}
+                    name="Off-Black 50%"
+                    desc="Fieldset borders"
+                    width={256}
+                    segments={1}
                 />
+                <Swatch
+                    color={Color.offBlack32}
+                    name="Off-Black 32%"
+                    desc="Disabled states"
+                    width={256}
+                    segments={1}
+                />
+                <Swatch
+                    color={Color.offBlack16}
+                    name="Off-Black 16%"
+                    desc="Hairline color"
+                    width={256}
+                    segments={1}
+                />
+                <Swatch
+                    color={Color.offBlack8}
+                    name="Off-Black 8%"
+                    desc="Shadow color"
+                    width={256}
+                    segments={1}
+                />
+                <Swatch
+                    color={Color.offWhite}
+                    name="Off-White"
+                    desc="Only used as a secondary background color"
+                    width={256}
+                    segments={1}
+                />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const {StyleSheet} = require("aphrodite");
 
-                <ColorWithName color={red} colorName="Tint" />
-                <ColorWithName
-                    color={mix(fade(white, 0.16), red)}
-                    colorName="Tint (Light) = Tint + 16% White"
-                />
-                <ColorWithName
-                    color={mix(fade(offBlack, 0.32), red)}
-                    colorName="Tint (Dark) = Tint + 32% Off-Black"
-                />
+        const {View} = require("wonder-blocks-core");
+        const Swatch = require("./docutils/swatch").default;
 
-                <ColorWithName
-                    color={mix(fade(mix(fade(offBlack, 0.32), red), 0.32), red)}
-                    colorName="Tint (Dark) on Tint = Tint + 32% (Tint + 32% Off-Black)"
-                />
-                <ColorWithName
-                    color={mix(
-                        fade(mix(fade(offBlack, 0.32), red), 0.16),
-                        white,
-                    )}
-                    colorName="Tint (Dark) on White = White + 16% (Tint + 32% Off-Black)"
-                />
+        const Color = require("./index").default;
 
-                <ColorWithName color={offBlack} colorName="Off-Black" />
-                <ColorWithName
-                    color={mix(fade(offBlack, 0.64), white)}
-                    colorName="Dark Gray"
+        const styles = StyleSheet.create({
+            container: {
+                flexDirection: "column",
+                flexWrap: "wrap",
+                justifyContent: "flex-start",
+                height: 768,
+            },
+        });
+
+        const example = (
+            <View style={styles.container}>
+                <Swatch
+                    color={Color.darkBlue}
+                    name="Dark Blue"
+                    segments={1}
+                    desc="Primary brand color. Can be used as a background color in headers and illustrative areas."
                 />
-                <ColorWithName
-                    color={mix(fade(offBlack, 0.32), white)}
-                    colorName="Light Gray"
+                <Swatch
+                    color={Color.teal}
+                    name="Teal"
+                    segments={1}
+                    desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
                 />
-            </div>
+                <Swatch
+                    color={Color.lightBlue}
+                    name="Light Blue"
+                    segments={1}
+                    desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
+                />
+                <Swatch
+                    color={Color.pink}
+                    name="Pink"
+                    segments={1}
+                    desc="Secondary brand color."
+                />
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
