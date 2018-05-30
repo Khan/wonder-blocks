@@ -124,6 +124,7 @@ const sharedStyles = StyleSheet.create({
     },
     text: {
         fontWeight: "bold",
+        pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
 });
 

@@ -30,6 +30,12 @@ class App extends Component {
                         <Button style={styles.button} href="/bar" clientNav>
                             Bar
                         </Button>
+                        <Button
+                            style={styles.button}
+                            href="https://khanacademy.org"
+                        >
+                            Khan Academy
+                        </Button>
                     </View>
                     <Body style={styles.body}>
                         Click{" "}

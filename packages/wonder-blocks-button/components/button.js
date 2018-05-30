@@ -1,13 +1,12 @@
 // @flow
 import * as React from "react";
-import {withRouter} from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Color from "wonder-blocks-color";
-import {ClickableBehavior} from "wonder-blocks-core";
-import type {ValidTints} from "wonder-blocks-color";
+import {getClickableBehavior} from "wonder-blocks-core";
 import ButtonCore from "./button-core.js";
 
-const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
+import type {ValidTints} from "wonder-blocks-color";
 
 export type SharedProps = {
     /**
@@ -138,15 +137,19 @@ export default class Button extends React.Component<Props> {
         disabled: false,
     };
 
+    static contextTypes = {router: PropTypes.any};
+
     render() {
         const {onClick, href, children, clientNav, ...sharedProps} = this.props;
 
-        const Behavior = clientNav
-            ? ClickableBehaviorWithRouter
-            : ClickableBehavior;
+        const ClickableBehavior = getClickableBehavior(
+            href,
+            clientNav,
+            this.context,
+        );
 
         return (
-            <Behavior
+            <ClickableBehavior
                 disabled={sharedProps.disabled}
                 onClick={onClick}
                 href={href}
@@ -164,7 +167,7 @@ export default class Button extends React.Component<Props> {
                         </ButtonCore>
                     );
                 }}
-            </Behavior>
+            </ClickableBehavior>
         );
     }
 }
