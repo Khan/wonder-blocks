@@ -19,7 +19,7 @@ describe("wonder-blocks-color", () => {
                 flexDirection: "column",
                 flexWrap: "wrap",
                 justifyContent: "flex-start",
-                height: 768,
+                height: 384,
             },
         });
 
@@ -27,33 +27,33 @@ describe("wonder-blocks-color", () => {
             <View style={styles.container}>
                 <Swatch
                     color={Color.blue}
-                    name="Blue"
+                    name="blue"
                     use="text"
                     desc="Actionable. Used to indicate actionable items like links and buttons."
                 />
                 <Swatch
                     color={Color.purple}
-                    name="Purple"
+                    name="purple"
                     use="text"
                     desc="Used to indicate Mastery."
                 />
                 <Swatch
-                    color={Color.gold}
-                    name="Gold"
-                    segments={1}
-                    desc="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
-                />
-                <Swatch
                     color={Color.green}
-                    name="Green"
-                    use="icon"
+                    name="green"
+                    use="icons"
                     desc="Affirmative. Used to indicate success states and correctness. Do not use for text."
                 />
                 <Swatch
                     color={Color.red}
-                    name="Red"
+                    name="red"
                     use="text"
                     desc="Negative. Used for errors and destructive actions."
+                />
+                <Swatch
+                    color={Color.gold}
+                    name="gold"
+                    segments={1}
+                    desc="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
                 />
             </View>
         );
@@ -73,7 +73,7 @@ describe("wonder-blocks-color", () => {
                 flexDirection: "column",
                 flexWrap: "wrap",
                 justifyContent: "flex-start",
-                height: 768 + 256,
+                height: 580,
             },
         });
 
@@ -81,49 +81,58 @@ describe("wonder-blocks-color", () => {
             <View style={styles.container}>
                 <Swatch
                     color={Color.offBlack}
-                    name="Off-Black"
+                    name="offBlack"
                     use="text"
                     desc="Primary text color. Can also used for links in lists."
                 />
                 <Swatch
                     color={Color.offBlack64}
-                    name="Off-Black 64%"
+                    name="offBlack64"
                     use="text"
                     desc="Secondary text color and modal backdrop color."
                 />
                 <Swatch
                     color={Color.offBlack50}
-                    name="Off-Black 50%"
+                    name="offBlack50"
                     desc="Fieldset borders"
-                    width={256}
                     segments={1}
                 />
                 <Swatch
                     color={Color.offBlack32}
-                    name="Off-Black 32%"
+                    name="offBlack32"
                     desc="Disabled states"
-                    width={256}
                     segments={1}
                 />
                 <Swatch
                     color={Color.offBlack16}
-                    name="Off-Black 16%"
+                    name="offBlack16"
                     desc="Hairline color"
-                    width={256}
                     segments={1}
                 />
                 <Swatch
                     color={Color.offBlack8}
-                    name="Off-Black 8%"
+                    name="offBlack8"
                     desc="Shadow color"
-                    width={256}
                     segments={1}
                 />
                 <Swatch
                     color={Color.offWhite}
-                    name="Off-White"
+                    name="offWhite"
                     desc="Only used as a secondary background color"
-                    width={256}
+                    segments={1}
+                />
+                <Swatch
+                    color={Color.darkBlue}
+                    name="white"
+                    desc="Primary background color and primary text color on colored backgrounds."
+                    use="text"
+                    segments={2}
+                />
+                <Swatch
+                    color={Color.darkBlue}
+                    name="white64"
+                    desc="Secondary text color on colored backgrounds, and hairline color on colored backgrounds"
+                    use="text"
                     segments={1}
                 />
             </View>
@@ -144,7 +153,7 @@ describe("wonder-blocks-color", () => {
                 flexDirection: "column",
                 flexWrap: "wrap",
                 justifyContent: "flex-start",
-                height: 768,
+                height: 384,
             },
         });
 
@@ -152,25 +161,25 @@ describe("wonder-blocks-color", () => {
             <View style={styles.container}>
                 <Swatch
                     color={Color.darkBlue}
-                    name="Dark Blue"
+                    name="darkBlue"
                     segments={1}
                     desc="Primary brand color. Can be used as a background color in headers and illustrative areas."
                 />
                 <Swatch
                     color={Color.teal}
-                    name="Teal"
+                    name="teal"
                     segments={1}
                     desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
                 />
                 <Swatch
                     color={Color.lightBlue}
-                    name="Light Blue"
+                    name="lightBlue"
                     segments={1}
                     desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
                 />
                 <Swatch
                     color={Color.pink}
-                    name="Pink"
+                    name="pink"
                     segments={1}
                     desc="Secondary brand color."
                 />

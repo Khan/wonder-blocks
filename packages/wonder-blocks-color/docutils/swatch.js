@@ -10,14 +10,18 @@ type Props = {
     color: string,
     name: string,
     desc: string,
-    use: "text" | "icon" | null,
-    width: 256 | 384,
+    use: "text" | "icons" | null,
+    width: 256,
     segments: 1 | 2 | 3,
+};
+
+const constants = {
+    segmentHeight: 64,
 };
 
 export default class Swatch extends React.Component<Props> {
     static defaultProps = {
-        width: 384,
+        width: 256,
         segments: 3,
         use: null,
     };
@@ -28,7 +32,7 @@ export default class Swatch extends React.Component<Props> {
         let content = null;
         if (use === "text") {
             content = "Aa";
-        } else if (use === "icon") {
+        } else if (use === "icons") {
             content = "💡";
         }
         return (
@@ -50,31 +54,63 @@ export default class Swatch extends React.Component<Props> {
             </View>
         );
     }
-    renderOneSegment() {
-        const {color} = this.props;
+    renderTwoSegments() {
+        const {color, use} = this.props;
 
+        let content = null;
+        if (use === "text") {
+            content = "Aa";
+        } else if (use === "icons") {
+            content = "💡";
+        }
+        return (
+            <View style={[styles.row, styles.border]}>
+                <View style={[styles.white, styles.box]} />
+                <View
+                    style={[
+                        styles.box,
+                        {background: color, color: Color.white},
+                    ]}
+                >
+                    <HeadingLarge>{content}</HeadingLarge>
+                </View>
+            </View>
+        );
+    }
+    renderOneSegment() {
+        const {color, use} = this.props;
+        let content = null;
+        if (use === "text") {
+            content = "Aa";
+        } else if (use === "icon") {
+            content = "💡";
+        }
         return (
             <View
                 style={[
                     styles.row,
                     styles.border,
-                    {background: color, height: 128},
+                    styles.box,
+                    {
+                        background: color,
+                        height: constants.segmentHeight,
+                        color: Color.white64,
+                    },
                 ]}
-            />
+            >
+                {use === "text" && <HeadingLarge>{content}</HeadingLarge>}
+            </View>
         );
     }
     render() {
-        const {color, name, desc, use, segments, width} = this.props;
-
+        const {name, desc, use, segments, width} = this.props;
         return (
             <View style={[styles.container, {width}]}>
                 {segments === 3 && this.renderThreeSegments()}
+                {segments === 2 && this.renderTwoSegments()}
                 {segments === 1 && this.renderOneSegment()}
                 <View style={[styles.row, styles.split]}>
-                    {/rgba/.test(color) && <LabelLarge>{name}</LabelLarge>}
-                    {!/rgba/.test(color) && (
-                        <LabelLarge>{`${name} (${color})`}</LabelLarge>
-                    )}
+                    <LabelLarge>{name}</LabelLarge>
                     {use === "text" && (
                         <LabelLarge>Text &amp; icons</LabelLarge>
                     )}
@@ -100,8 +136,8 @@ const styles = StyleSheet.create({
         overflow: "hidden",
     },
     box: {
-        width: 128,
-        height: 128,
+        width: 256,
+        height: constants.segmentHeight,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -114,7 +150,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     container: {
-        height: 256,
+        height: 192,
         color: Color.offBlack,
     },
 });
