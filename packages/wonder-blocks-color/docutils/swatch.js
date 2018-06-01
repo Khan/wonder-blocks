@@ -43,13 +43,13 @@ export default class Swatch extends React.Component<Props> {
                         {background: color, color: Color.white},
                     ]}
                 >
-                    <HeadingLarge>{content}</HeadingLarge>
+                    {content && <HeadingLarge>{content}</HeadingLarge>}
                 </View>
                 <View style={[styles.offWhite, styles.box, {color: color}]}>
-                    <HeadingLarge>{content}</HeadingLarge>
+                    {content && <HeadingLarge>{content}</HeadingLarge>}
                 </View>
                 <View style={[styles.white, styles.box, {color: color}]}>
-                    <HeadingLarge>{content}</HeadingLarge>
+                    {content && <HeadingLarge>{content}</HeadingLarge>}
                 </View>
             </View>
         );
@@ -72,7 +72,7 @@ export default class Swatch extends React.Component<Props> {
                         {background: color, color: Color.white},
                     ]}
                 >
-                    <HeadingLarge>{content}</HeadingLarge>
+                    {content && <HeadingLarge>{content}</HeadingLarge>}
                 </View>
             </View>
         );
@@ -98,7 +98,8 @@ export default class Swatch extends React.Component<Props> {
                     },
                 ]}
             >
-                {use === "text" && <HeadingLarge>{content}</HeadingLarge>}
+                {use === "text" &&
+                    content && <HeadingLarge>{content}</HeadingLarge>}
             </View>
         );
     }
