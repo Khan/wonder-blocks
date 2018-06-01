@@ -3,8 +3,6 @@ node_js:
   - stable
 install:
   - yarn install
-  - npm run build:all
-  - cd demo && npm install && cd ..
   - npm install -g codecov
 script:
   - npm test
