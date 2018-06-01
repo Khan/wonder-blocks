@@ -1,11 +1,11 @@
 {
+  "private": true,
   "name": "wonder-blocks",
   "version": "0.0.1",
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --config ./eslint/eslintrc packages",
-    "postinstall": "for d in packages/*/ ; do (cd \"$d\" && npm install --ignore-scripts); done",
     "build:all": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
@@ -43,7 +43,6 @@
     "flow-bin": "0.57.3",
     "glob": "^7.1.2",
     "jest": "^22.4.2",
-    "lerna": "^2.9.0",
     "marked": "^0.3.19",
     "pre-commit": "^1.2.2",
     "prettier": "^1.12.1",
@@ -61,6 +60,9 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "jest": {
     "testRegex": ".test\\.jsx?$",
     "setupTestFrameworkScriptFile": "./test-setup.js",

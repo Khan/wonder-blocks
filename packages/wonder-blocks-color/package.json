@@ -9,8 +9,8 @@
     "prepare": "../../node_modules/.bin/webpack"
   },
   "devDependencies": {
-    "wonder-blocks-core": "../wonder-blocks-core",
-    "wonder-blocks-typography": "../wonder-blocks-typography"
+    "wonder-blocks-core": "0.0.1",
+    "wonder-blocks-typography": "0.0.2"
   },
   "author": "",
   "license": "MIT"

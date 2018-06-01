@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - stable
 install:
-  - npm install
+  - yarn install
   - npm run build:all
   - cd demo && npm install && cd ..
   - npm install -g codecov
