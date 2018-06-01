@@ -93,7 +93,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -143,7 +142,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -193,7 +191,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -242,7 +239,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -259,7 +255,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       </span>
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -296,7 +291,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -383,7 +377,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -433,7 +426,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -483,7 +475,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -532,7 +523,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -549,7 +539,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       </span>
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -586,7 +575,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -673,7 +661,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -723,7 +710,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -773,7 +759,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -822,7 +807,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -839,7 +823,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       </span>
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -876,7 +859,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -963,7 +945,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1013,7 +994,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1063,7 +1043,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1112,7 +1091,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1129,7 +1107,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       </span>
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1166,7 +1143,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1256,7 +1232,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1293,7 +1268,6 @@ exports[`wonder-blocks-color example 1 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1406,7 +1380,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1456,7 +1429,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1506,7 +1478,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1555,7 +1526,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1572,7 +1542,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       </span>
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1609,7 +1578,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1696,7 +1664,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1746,7 +1713,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1796,7 +1762,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -1845,7 +1810,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1862,7 +1826,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       </span>
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1899,7 +1862,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1989,7 +1951,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2026,7 +1987,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2116,7 +2076,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2153,7 +2112,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2243,7 +2201,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2280,7 +2237,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2370,7 +2326,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2407,7 +2362,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2497,7 +2451,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2534,7 +2487,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2644,7 +2596,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       >
         <h2
           className=""
-          id={undefined}
           style={
             Object {
               "@media (max-width: 1023px)": Object {
@@ -2693,7 +2644,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2710,7 +2660,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       </span>
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2747,7 +2696,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2815,7 +2763,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <h2
         className=""
-        id={undefined}
         style={
           Object {
             "@media (max-width: 1023px)": Object {
@@ -2863,7 +2810,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2880,7 +2826,6 @@ exports[`wonder-blocks-color example 2 1`] = `
       </span>
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -2917,7 +2862,6 @@ exports[`wonder-blocks-color example 2 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -3033,7 +2977,6 @@ exports[`wonder-blocks-color example 3 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -3070,7 +3013,6 @@ exports[`wonder-blocks-color example 3 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -3160,7 +3102,6 @@ exports[`wonder-blocks-color example 3 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -3197,7 +3138,6 @@ exports[`wonder-blocks-color example 3 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -3287,7 +3227,6 @@ exports[`wonder-blocks-color example 3 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -3324,7 +3263,6 @@ exports[`wonder-blocks-color example 3 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -3414,7 +3352,6 @@ exports[`wonder-blocks-color example 3 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -3451,7 +3388,6 @@ exports[`wonder-blocks-color example 3 1`] = `
     >
       <span
         className=""
-        id={undefined}
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",

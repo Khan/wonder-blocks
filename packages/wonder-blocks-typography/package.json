@@ -11,7 +11,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "wonder-blocks-color": "../wonder-blocks-color",
     "wonder-blocks-core": "../wonder-blocks-core"
+  },
+  "devDependencies": {
+    "wonder-blocks-color": "../wonder-blocks-color"
   }
 }
