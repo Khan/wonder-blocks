@@ -1,30 +1,35 @@
-/**
- * This file is used by all packages/wonder-blocks-x/webpack.config.js files.
- *
- * It generates an appropriate webpack configuration for each package.  In
- * particular it adds all dependencies from the specific package along with
- * project level dependencies to the list of externals.  This causes webpack
- * to not include those depedencies in the build file it generates.
- */
+const fs = require("fs");
 const path = require("path");
 
-module.exports = function(subPkgRoot) {
-    const subPkgJson = require(path.join(subPkgRoot, "./package.json"));
+const packages = fs
+    .readdirSync(path.join(__dirname, "packages"))
+    .map((dir) => `./packages/${dir}`);
+
+const genWebpackConfig = function(subPkgRoot) {
+    const subPkgJson = require(path.join(
+        __dirname,
+        subPkgRoot,
+        "./package.json",
+    ));
     const subPkgDeps = subPkgJson.dependencies
         ? Object.keys(subPkgJson.dependencies)
         : [];
 
-    const rootPkgJson = require(path.join(subPkgRoot, "../../package.json"));
+    const rootPkgJson = require(path.join(
+        __dirname,
+        subPkgRoot,
+        "../../package.json",
+    ));
     const rootPkgDeps = rootPkgJson.dependencies
         ? Object.keys(rootPkgJson.dependencies)
         : [];
 
     return {
-        entry: "./index.js",
+        entry: `./${subPkgRoot}/index.js`,
         output: {
             libraryTarget: "commonjs2",
             filename: "dist/index.js",
-            path: subPkgRoot,
+            path: path.join(__dirname, subPkgRoot),
         },
         externals: [...rootPkgDeps, ...subPkgDeps],
         module: {
@@ -42,5 +47,8 @@ module.exports = function(subPkgRoot) {
             minimize: false,
         },
         node: {process: false},
+        mode: "production",
     };
 };
+
+module.exports = packages.map(genWebpackConfig);

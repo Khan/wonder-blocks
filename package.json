@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --config ./eslint/eslintrc packages",
-    "build:all": "for d in packages/*/ ; do (cd \"$d\" && npm install); done",
+    "build:all": "webpack",
+    "watch:all": "webpack -w",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
