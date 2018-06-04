@@ -1,22 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`wonder-blocks-spacing example 1 1`] = `
-<div>
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -26,48 +67,157 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 4,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 4,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -77,48 +227,157 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 6,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 6,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -128,48 +387,157 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 8,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 8,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -179,48 +547,157 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 12,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 12,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -230,48 +707,157 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 16,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 16,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -281,48 +867,157 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 24,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 24,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -332,48 +1027,157 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 32,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 32,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -383,48 +1187,157 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 48,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 48,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
   <div
+    className=""
     style={
       Object {
         "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
         "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "textAlign": "right",
           "width": 250,
+          "zIndex": 0,
         }
       }
     >
@@ -434,32 +1347,304 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       px
     </div>
     <div
+      className=""
       style={
         Object {
-          "marginRight": 8,
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 64,
+          "zIndex": 0,
         }
       }
     >
       <div
+        className=""
         style={
           Object {
+            "alignItems": "stretch",
             "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
             "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": 64,
+            "zIndex": 0,
           }
         }
       />
     </div>
     <div
+      className=""
       style={
         Object {
+          "MsFlexBasis": 8,
+          "MsFlexPreferredSize": 8,
+          "WebkitFlexBasis": 8,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 8,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
           "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
           "height": 64,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "width": 4,
+          "zIndex": 0,
         }
       }
     />
   </div>
+</div>
+`;
+
+exports[`wonder-blocks-spacing example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "solid 1px undefined",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "borderRadius": 4,
+        "fontSize": 24,
+        "height": 40,
+        "width": 100,
+      }
+    }
+  >
+    A
+  </button>
+  <div
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 12,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <button
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "borderRadius": 4,
+        "fontSize": 24,
+        "height": 40,
+        "width": 100,
+      }
+    }
+  >
+    B
+  </button>
+  <div
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 12,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <button
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "borderRadius": 4,
+        "fontSize": 24,
+        "height": 40,
+        "width": 100,
+      }
+    }
+  >
+    C
+  </button>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <button
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "borderRadius": 4,
+        "fontSize": 24,
+        "height": 40,
+        "width": 100,
+      }
+    }
+  >
+    Cancel
+  </button>
+  <div
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 12,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <button
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "borderRadius": 4,
+        "fontSize": 24,
+        "height": 40,
+        "width": 100,
+      }
+    }
+  >
+    Accept
+  </button>
 </div>
 `;
