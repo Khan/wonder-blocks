@@ -1,35 +1,32 @@
+/**
+ * This webpack config file return an array of webpack configs, one for each
+ * package in the packages/ folder.  This allows a single instance of webpack
+ * to build (or watch) all projects.
+ */
 const fs = require("fs");
 const path = require("path");
 
 const packages = fs
     .readdirSync(path.join(__dirname, "packages"))
-    .map((dir) => `./packages/${dir}`);
+    .map((dir) => path.join(__dirname, "packages", dir));
 
 const genWebpackConfig = function(subPkgRoot) {
-    const subPkgJson = require(path.join(
-        __dirname,
-        subPkgRoot,
-        "./package.json",
-    ));
+    const subPkgJson = require(path.join(subPkgRoot, "./package.json"));
     const subPkgDeps = subPkgJson.dependencies
         ? Object.keys(subPkgJson.dependencies)
         : [];
 
-    const rootPkgJson = require(path.join(
-        __dirname,
-        subPkgRoot,
-        "../../package.json",
-    ));
+    const rootPkgJson = require(path.join(subPkgRoot, "../../package.json"));
     const rootPkgDeps = rootPkgJson.dependencies
         ? Object.keys(rootPkgJson.dependencies)
         : [];
 
     return {
-        entry: `./${subPkgRoot}/index.js`,
+        entry: path.join(subPkgRoot, "index.js"),
         output: {
             libraryTarget: "commonjs2",
             filename: "dist/index.js",
-            path: path.join(__dirname, subPkgRoot),
+            path: path.join(subPkgRoot),
         },
         externals: [...rootPkgDeps, ...subPkgDeps],
         module: {

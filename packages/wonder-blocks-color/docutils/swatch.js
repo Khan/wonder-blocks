@@ -2,9 +2,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-const {View} = require("wonder-blocks-core");
-const {HeadingLarge, LabelLarge, Body} = require("wonder-blocks-typography");
-const Color = require("../index").default;
+import {View} from "wonder-blocks-core";
+import {HeadingLarge, LabelLarge, Body} from "wonder-blocks-typography";
+import Color from "../index.js";
 
 type Props = {
     color: string,
@@ -26,15 +26,21 @@ export default class Swatch extends React.Component<Props> {
         use: null,
     };
 
-    renderThreeSegments() {
-        const {color, use} = this.props;
-
-        let content = null;
+    getContent() {
+        const {use} = this.props;
         if (use === "text") {
-            content = "Aa";
+            return "Aa";
         } else if (use === "icons") {
-            content = "💡";
+            return "💡";
+        } else {
+            return null;
         }
+    }
+    renderThreeSegments() {
+        const {color} = this.props;
+
+        const content = this.getContent();
+
         return (
             <View style={[styles.row, styles.border]}>
                 <View
@@ -55,14 +61,10 @@ export default class Swatch extends React.Component<Props> {
         );
     }
     renderTwoSegments() {
-        const {color, use} = this.props;
+        const {color} = this.props;
 
-        let content = null;
-        if (use === "text") {
-            content = "Aa";
-        } else if (use === "icons") {
-            content = "💡";
-        }
+        const content = this.getContent();
+
         return (
             <View style={[styles.row, styles.border]}>
                 <View style={[styles.white, styles.box]} />
@@ -79,12 +81,9 @@ export default class Swatch extends React.Component<Props> {
     }
     renderOneSegment() {
         const {color, use} = this.props;
-        let content = null;
-        if (use === "text") {
-            content = "Aa";
-        } else if (use === "icon") {
-            content = "💡";
-        }
+
+        const content = this.getContent();
+
         return (
             <View
                 style={[
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     container: {
-        height: 192,
         color: Color.offBlack,
+        paddingBottom: 16,
     },
 });

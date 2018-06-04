@@ -10,16 +10,15 @@ describe("wonder-blocks-color", () => {
         const {StyleSheet} = require("aphrodite");
 
         const {View} = require("wonder-blocks-core");
-        const Swatch = require("./docutils/swatch").default;
+        const Swatch = require("./docutils/swatch.js").default;
 
-        const Color = require("./index").default;
+        const Color = require("./index.js").default;
 
         const styles = StyleSheet.create({
             container: {
-                flexDirection: "column",
-                flexWrap: "wrap",
-                justifyContent: "flex-start",
-                height: 384,
+                display: "grid",
+                gridTemplateColumns: "auto auto auto",
+                gridAutoFlow: "row",
             },
         });
 
@@ -38,6 +37,12 @@ describe("wonder-blocks-color", () => {
                     desc="Used to indicate Mastery."
                 />
                 <Swatch
+                    color={Color.gold}
+                    name="gold"
+                    segments={1}
+                    desc="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
+                />
+                <Swatch
                     color={Color.green}
                     name="green"
                     use="icons"
@@ -49,12 +54,6 @@ describe("wonder-blocks-color", () => {
                     use="text"
                     desc="Negative. Used for errors and destructive actions."
                 />
-                <Swatch
-                    color={Color.gold}
-                    name="gold"
-                    segments={1}
-                    desc="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
-                />
             </View>
         );
         const tree = renderer.create(example).toJSON();
@@ -64,16 +63,15 @@ describe("wonder-blocks-color", () => {
         const {StyleSheet} = require("aphrodite");
 
         const {View} = require("wonder-blocks-core");
-        const Swatch = require("./docutils/swatch").default;
+        const Swatch = require("./docutils/swatch.js").default;
 
-        const Color = require("./index").default;
+        const Color = require("./index.js").default;
 
         const styles = StyleSheet.create({
             container: {
-                flexDirection: "column",
-                flexWrap: "wrap",
-                justifyContent: "flex-start",
-                height: 580,
+                display: "grid",
+                gridTemplateColumns: "auto auto auto",
+                gridAutoFlow: "row",
             },
         });
 
@@ -144,16 +142,15 @@ describe("wonder-blocks-color", () => {
         const {StyleSheet} = require("aphrodite");
 
         const {View} = require("wonder-blocks-core");
-        const Swatch = require("./docutils/swatch").default;
+        const Swatch = require("./docutils/swatch.js").default;
 
-        const Color = require("./index").default;
+        const Color = require("./index.js").default;
 
         const styles = StyleSheet.create({
             container: {
-                flexDirection: "column",
-                flexWrap: "wrap",
-                justifyContent: "flex-start",
-                height: 384,
+                display: "grid",
+                gridTemplateColumns: "auto auto auto",
+                gridAutoFlow: "row",
             },
         });
 
@@ -166,14 +163,15 @@ describe("wonder-blocks-color", () => {
                     desc="Primary brand color. Can be used as a background color in headers and illustrative areas."
                 />
                 <Swatch
-                    color={Color.teal}
-                    name="teal"
+                    color={Color.lightBlue}
+                    name="lightBlue"
                     segments={1}
                     desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
                 />
+                <View style={{width: 256}} />
                 <Swatch
-                    color={Color.lightBlue}
-                    name="lightBlue"
+                    color={Color.teal}
+                    name="teal"
                     segments={1}
                     desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
                 />

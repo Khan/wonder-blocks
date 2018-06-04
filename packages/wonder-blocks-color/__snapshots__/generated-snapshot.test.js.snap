@@ -9,11 +9,10 @@ exports[`wonder-blocks-color example 1 1`] = `
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
-      "display": "flex",
+      "display": "grid",
       "flexDirection": "column",
-      "flexWrap": "wrap",
-      "height": 384,
-      "justifyContent": "flex-start",
+      "gridAutoFlow": "row",
+      "gridTemplateColumns": "auto auto auto",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -34,11 +33,11 @@ exports[`wonder-blocks-color example 1 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -318,11 +317,11 @@ exports[`wonder-blocks-color example 1 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -602,11 +601,136 @@ exports[`wonder-blocks-color example 1 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#ffb100",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        gold
+      </span>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
+        }
+      >
+        Used as an accent for celebratory moments. If using for icons, accompany with descriptive text.
+      </span>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -886,11 +1010,11 @@ exports[`wonder-blocks-color example 1 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -1159,131 +1283,6 @@ exports[`wonder-blocks-color example 1 1`] = `
       </span>
     </div>
   </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "color": "#21242c",
-        "display": "flex",
-        "flexDirection": "column",
-        "height": 192,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "width": 256,
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "center",
-          "background": "#ffb100",
-          "border": "solid 1px rgba(33,36,44,0.32)",
-          "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "rgba(255,255,255,0.64)",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 64,
-          "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "overflow": "hidden",
-          "padding": 0,
-          "position": "relative",
-          "width": 256,
-          "zIndex": 0,
-        }
-      }
-    />
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "margin": 0,
-          "marginBottom": 8,
-          "marginTop": 16,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-          }
-        }
-      >
-        gold
-      </span>
-    </div>
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "22px",
-          }
-        }
-      >
-        Used as an accent for celebratory moments. If using for icons, accompany with descriptive text.
-      </span>
-    </div>
-  </div>
 </div>
 `;
 
@@ -1296,11 +1295,10 @@ exports[`wonder-blocks-color example 2 1`] = `
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
-      "display": "flex",
+      "display": "grid",
       "flexDirection": "column",
-      "flexWrap": "wrap",
-      "height": 580,
-      "justifyContent": "flex-start",
+      "gridAutoFlow": "row",
+      "gridTemplateColumns": "auto auto auto",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1321,11 +1319,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -1605,11 +1603,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -1889,11 +1887,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -2014,11 +2012,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -2139,11 +2137,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -2264,11 +2262,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -2389,11 +2387,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -2514,11 +2512,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -2723,11 +2721,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -2890,11 +2888,10 @@ exports[`wonder-blocks-color example 3 1`] = `
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
-      "display": "flex",
+      "display": "grid",
       "flexDirection": "column",
-      "flexWrap": "wrap",
-      "height": 384,
-      "justifyContent": "flex-start",
+      "gridAutoFlow": "row",
+      "gridTemplateColumns": "auto auto auto",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -2915,11 +2912,11 @@ exports[`wonder-blocks-color example 3 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -3040,11 +3037,156 @@ exports[`wonder-blocks-color example 3 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#37c5fd",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        lightBlue
+      </span>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
+        }
+      >
+        Secondary brand color. This is only accessible on Dark Blue, so use lightly.
+      </span>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
@@ -3165,136 +3307,11 @@ exports[`wonder-blocks-color example 3 1`] = `
         "color": "#21242c",
         "display": "flex",
         "flexDirection": "column",
-        "height": 192,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "width": 256,
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "center",
-          "background": "#37c5fd",
-          "border": "solid 1px rgba(33,36,44,0.32)",
-          "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "rgba(255,255,255,0.64)",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 64,
-          "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "overflow": "hidden",
-          "padding": 0,
-          "position": "relative",
-          "width": 256,
-          "zIndex": 0,
-        }
-      }
-    />
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "margin": 0,
-          "marginBottom": 8,
-          "marginTop": 16,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-          }
-        }
-      >
-        lightBlue
-      </span>
-    </div>
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "22px",
-          }
-        }
-      >
-        Secondary brand color. This is only accessible on Dark Blue, so use lightly.
-      </span>
-    </div>
-  </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "color": "#21242c",
-        "display": "flex",
-        "flexDirection": "column",
-        "height": 192,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
+        "paddingBottom": 16,
         "position": "relative",
         "width": 256,
         "zIndex": 0,
