@@ -1,2332 +1,3424 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`wonder-blocks-color example 1 1`] = `
-<div>
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "grid",
+      "flexDirection": "column",
+      "gridAutoFlow": "row",
+      "gridTemplateColumns": "auto auto auto",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
+          "alignItems": "stretch",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      blue
-      :
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#1865f2",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#f7f8fa",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#1865f2",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#1865f2",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#1865f2",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#1865f2",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        blue
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Text & icons
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#1865f2",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#1865f2",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#1865f2",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Actionable. Used to indicate actionable items like links and buttons.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
+          "alignItems": "stretch",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      purple
-      :
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#9059ff",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#f7f8fa",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#9059ff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#9059ff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#9059ff",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#9059ff",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        purple
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Text & icons
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#9059ff",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#9059ff",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#9059ff",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Used to indicate Mastery.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      green
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#00a60e",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#00a60e",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#00a60e",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#00a60e",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#00a60e",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      gold
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffb100",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#ffb100",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#ffb100",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#ffb100",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#ffb100",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      red
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#d92916",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#d92916",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#d92916",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#d92916",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#d92916",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      offBlack
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#21242c",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#21242c",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#21242c",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#21242c",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#21242c",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      offBlack64
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "rgba(33,36,44,0.64)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "rgba(33,36,44,0.64)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "rgba(33,36,44,0.64)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "rgba(33,36,44,0.64)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      offBlack50
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.50)",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "rgba(33,36,44,0.50)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "rgba(33,36,44,0.50)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "rgba(33,36,44,0.50)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "rgba(33,36,44,0.50)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      offBlack32
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.32)",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "rgba(33,36,44,0.32)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "rgba(33,36,44,0.32)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "rgba(33,36,44,0.32)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "rgba(33,36,44,0.32)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      offBlack16
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.16)",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "rgba(33,36,44,0.16)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "rgba(33,36,44,0.16)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "rgba(33,36,44,0.16)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "rgba(33,36,44,0.16)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      offBlack8
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.08)",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "rgba(33,36,44,0.08)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "rgba(33,36,44,0.08)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "rgba(33,36,44,0.08)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "rgba(33,36,44,0.08)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      offWhite
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#f7f8fa",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#f7f8fa",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#f7f8fa",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#f7f8fa",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      white
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#ffffff",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#ffffff",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#ffffff",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#ffffff",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      white64
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(255,255,255,0.64)",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#ffb100",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
           "color": "rgba(255,255,255,0.64)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "rgba(255,255,255,0.64)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "rgba(255,255,255,0.64)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "rgba(255,255,255,0.64)",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      darkBlue
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#0a2a66",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        gold
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#0a2a66",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#0a2a66",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#0a2a66",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Used as an accent for celebratory moments. If using for icons, accompany with descriptive text.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
+          "alignItems": "stretch",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      teal
-      :
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#00a60e",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          💡
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#f7f8fa",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#00a60e",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          💡
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#00a60e",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          💡
+        </h2>
+      </div>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#00e5ae",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#00e5ae",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        green
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Icons
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#00e5ae",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#00e5ae",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#00e5ae",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Affirmative. Used to indicate success states and correctness. Do not use for text.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
+          "alignItems": "stretch",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      lightBlue
-      :
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#d92916",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#f7f8fa",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#d92916",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#d92916",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#37c5fd",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#37c5fd",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        red
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Text & icons
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#37c5fd",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#37c5fd",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#37c5fd",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-  </div>
-  <div
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-        "minHeight": 40,
-      }
-    }
-  >
-    <div
-      style={
-        Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      pink
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#fa50ae",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#fa50ae",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#fa50ae",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#fa50ae",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#fa50ae",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Negative. Used for errors and destructive actions.
+      </span>
     </div>
   </div>
 </div>
 `;
 
 exports[`wonder-blocks-color example 2 1`] = `
-<div>
-  <p>
-    Dynamically computed colors using the 
-    <code>
-      fade
-    </code>
-     and
-     
-    <code>
-      mix
-    </code>
-     methods from the color utilities.
-  </p>
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "grid",
+      "flexDirection": "column",
+      "gridAutoFlow": "row",
+      "gridTemplateColumns": "auto auto auto",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
+          "alignItems": "stretch",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      White
-      :
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#21242c",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#f7f8fa",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#ffffff",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        offBlack
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Text & icons
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#ffffff",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#ffffff",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#ffffff",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Primary text color. Can also used for links in lists.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
+          "alignItems": "stretch",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      White (Tinted) = White + 16% Tint
-      :
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "rgba(33,36,44,0.64)",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#f7f8fa",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "rgba(33,36,44,0.64)",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "rgba(33,36,44,0.64)",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f9ddda",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#f9ddda",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        offBlack64
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Text & icons
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#f9ddda",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#f9ddda",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#f9ddda",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Secondary text color and modal backdrop color.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      White (XTinted) = White + 32% Tint
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#f3bbb4",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "center",
+          "background": "rgba(33,36,44,0.50)",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#f3bbb4",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        offBlack50
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#f3bbb4",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#f3bbb4",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#f3bbb4",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Fieldset borders
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      White (XXTinted) = White + 64% Tint
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#e7766a",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "center",
+          "background": "rgba(33,36,44,0.32)",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#e7766a",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        offBlack32
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#e7766a",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#e7766a",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#e7766a",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Disabled states
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      Tint
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#d92916",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "center",
+          "background": "rgba(33,36,44,0.16)",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#d92916",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        offBlack16
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#d92916",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#d92916",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#d92916",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Hairline color
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      Tint (Light) = Tint + 16% White
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#df4b3b",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "center",
+          "background": "rgba(33,36,44,0.08)",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#df4b3b",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        offBlack8
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#df4b3b",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#df4b3b",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#df4b3b",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Shadow color
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      Tint (Dark) = Tint + 32% Off-Black
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#9e271d",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "center",
+          "background": "#f7f8fa",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#9e271d",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        offWhite
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#9e271d",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#9e271d",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#9e271d",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Only used as a secondary background color
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
+          "alignItems": "stretch",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Tint (Dark) on Tint = Tint + 32% (Tint + 32% Off-Black)
-      :
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#0a2a66",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 256,
+            "zIndex": 0,
+          }
+        }
+      >
+        <h2
+          className=""
+          style={
+            Object {
+              "@media (max-width: 1023px)": Object {
+                "fontSize": 24,
+                "lineHeight": "28px",
+              },
+              "@media (min-width: 1024px)": Object {
+                "fontSize": 28,
+                "lineHeight": "32px",
+              },
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontWeight": 700,
+              "marginBottom": 0,
+              "marginTop": 0,
+            }
+          }
+        >
+          Aa
+        </h2>
+      </div>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#c62818",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-          "color": "#c62818",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        white
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Text & icons
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#c62818",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#c62818",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#c62818",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Primary background color and primary text color on colored backgrounds.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
+          "alignItems": "center",
+          "background": "#0a2a66",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     >
-      Tint (Dark) on White = White + 16% (Tint + 32% Off-Black)
-      :
+      <h2
+        className=""
+        style={
+          Object {
+            "@media (max-width: 1023px)": Object {
+              "fontSize": 24,
+              "lineHeight": "28px",
+            },
+            "@media (min-width: 1024px)": Object {
+              "fontSize": 28,
+              "lineHeight": "32px",
+            },
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontWeight": 700,
+            "marginBottom": 0,
+            "marginTop": 0,
+          }
+        }
+      >
+        Aa
+      </h2>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#efdcdb",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        white64
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Text & icons
+      </span>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
+        }
+      >
+        Secondary text color on colored backgrounds, and hairline color on colored backgrounds
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-color example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "grid",
+      "flexDirection": "column",
+      "gridAutoFlow": "row",
+      "gridTemplateColumns": "auto auto auto",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#0a2a66",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#efdcdb",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        darkBlue
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#efdcdb",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#efdcdb",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#efdcdb",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Primary brand color. Can be used as a background color in headers and illustrative areas.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      Off-Black
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#21242c",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "center",
+          "background": "#37c5fd",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#21242c",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        lightBlue
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#21242c",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#21242c",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#21242c",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Secondary brand color. This is only accessible on Dark Blue, so use lightly.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      Dark Gray
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#717378",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "center",
+          "background": "#00e5ae",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#717378",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        teal
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#717378",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#717378",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#717378",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Secondary brand color. This is only accessible on Dark Blue, so use lightly.
+      </span>
     </div>
   </div>
   <div
+    className=""
     style={
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "#21242c",
         "display": "flex",
-        "minHeight": 40,
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingBottom": 16,
+        "position": "relative",
+        "width": 256,
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "paddingRight": 10,
-          "textAlign": "right",
-          "width": 250,
-        }
-      }
-    >
-      Light Gray
-      :
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#b8b9bb",
-          "border": "1px solid #21242c",
-          "height": 30,
-          "marginRight": 10,
-          "width": 30,
+          "alignItems": "center",
+          "background": "#fa50ae",
+          "border": "solid 1px rgba(33,36,44,0.32)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "rgba(255,255,255,0.64)",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 256,
+          "zIndex": 0,
         }
       }
     />
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#ffffff",
-          "color": "#b8b9bb",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "margin": 0,
+          "marginBottom": 8,
+          "marginTop": 16,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        pink
+      </span>
     </div>
     <div
+      className=""
       style={
         Object {
-          "backgroundColor": "#f7f8fa",
-          "color": "#b8b9bb",
-          "padding": 10,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "rgba(33,36,44,0.64)",
-          "color": "#b8b9bb",
-          "padding": 10,
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
         }
-      }
-    >
-      Hello world!
-    </div>
-    <div
-      style={
-        Object {
-          "backgroundColor": "#0a2a66",
-          "color": "#b8b9bb",
-          "padding": 10,
-        }
-      }
-    >
-      Hello world!
+      >
+        Secondary brand color.
+      </span>
     </div>
   </div>
 </div>

@@ -1,77 +1,182 @@
+## Product
+
+Use only accessible colors against appropriate backgrounds for links, buttons, and other navigational elements.
+
 ```js
-const ColoredTextWithBackground = require("./docutils/colored-text-with-background.js").default;
-const ColorWithName = require("./docutils/color-with-name.js").default;
+const {StyleSheet} = require("aphrodite");
+
+const {View} = require("wonder-blocks-core");
+const Swatch = require("./docutils/swatch.js").default;
 
 const Color = require("./index.js").default;
 
-<div>
-    {Object.keys(Color).map((colorName, idx) => (
-        <ColorWithName
-            key={idx}
-            color={Color[colorName]}
-            colorName={colorName}
-        />
-    ))}
-</div>
+const styles = StyleSheet.create({
+    container: {
+        display: "grid",
+        gridTemplateColumns: "auto auto auto",
+        gridAutoFlow: "row",
+    },
+});
+
+<View style={styles.container}>
+    <Swatch 
+        color={Color.blue}
+        name="blue" 
+        use="text"
+        desc="Actionable. Used to indicate actionable items like links and buttons."
+    />
+    <Swatch 
+        color={Color.purple} 
+        name="purple" 
+        use="text"
+        desc="Used to indicate Mastery."
+    />
+    <Swatch 
+        color={Color.gold} 
+        name="gold" 
+        segments={1}
+        desc="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
+    />
+    <Swatch 
+        color={Color.green} 
+        name="green" 
+        use="icons"
+        desc="Affirmative. Used to indicate success states and correctness. Do not use for text."
+    />
+    <Swatch 
+        color={Color.red} 
+        name="red" 
+        use="text"
+        desc="Negative. Used for errors and destructive actions."
+    />
+</View>
 ```
 
+## Neutral
+
+Used for text and chrome components
+
 ```js
-const ColoredTextWithBackground = require("./docutils/colored-text-with-background.js").default;
-const ColorWithName = require("./docutils/color-with-name.js").default;
+const {StyleSheet} = require("aphrodite");
 
-const {mix, fade} = require("./index.js");
+const {View} = require("wonder-blocks-core");
+const Swatch = require("./docutils/swatch.js").default;
+
 const Color = require("./index.js").default;
-const {white, offBlack, red} = Color;
 
-<div>
-    <p>
-        Dynamically computed colors using the <code>fade</code> and{" "}
-        <code>mix</code> methods from the color utilities.
-    </p>
-    <ColorWithName color={white} colorName="White" />
-    <ColorWithName
-        color={mix(fade(red, 0.16), white)}
-        colorName="White (Tinted) = White + 16% Tint"
-    />
-    <ColorWithName
-        color={mix(fade(red, 0.32), white)}
-        colorName="White (XTinted) = White + 32% Tint"
-    />
-    <ColorWithName
-        color={mix(fade(red, 0.64), white)}
-        colorName="White (XXTinted) = White + 64% Tint"
-    />
+const styles = StyleSheet.create({
+    container: {
+        display: "grid",
+        gridTemplateColumns: "auto auto auto",
+        gridAutoFlow: "row",
+    },
+});
 
-    <ColorWithName color={red} colorName="Tint" />
-    <ColorWithName
-        color={mix(fade(white, 0.16), red)}
-        colorName="Tint (Light) = Tint + 16% White"
+<View style={styles.container}>
+    <Swatch 
+        color={Color.offBlack}
+        name="offBlack" 
+        use="text"
+        desc="Primary text color. Can also used for links in lists."
     />
-    <ColorWithName
-        color={mix(fade(offBlack, 0.32), red)}
-        colorName="Tint (Dark) = Tint + 32% Off-Black"
+    <Swatch 
+        color={Color.offBlack64}
+        name="offBlack64" 
+        use="text"
+        desc="Secondary text color and modal backdrop color."
     />
+    <Swatch 
+        color={Color.offBlack50}
+        name="offBlack50" 
+        desc="Fieldset borders"
+        segments={1}
+    />
+    <Swatch 
+        color={Color.offBlack32}
+        name="offBlack32" 
+        desc="Disabled states"
+        segments={1}
+    />
+    <Swatch 
+        color={Color.offBlack16}
+        name="offBlack16" 
+        desc="Hairline color"
+        segments={1}
+    />
+    <Swatch 
+        color={Color.offBlack8}
+        name="offBlack8"
+        desc="Shadow color"
+        segments={1}
+    />
+    <Swatch 
+        color={Color.offWhite}
+        name="offWhite"
+        desc="Only used as a secondary background color"
+        segments={1}
+    />
+    <Swatch 
+        color={Color.darkBlue}
+        name="white"
+        desc="Primary background color and primary text color on colored backgrounds."
+        use="text"
+        segments={2}
+    />
+    <Swatch 
+        color={Color.darkBlue}
+        name="white64"
+        desc="Secondary text color on colored backgrounds, and hairline color on colored backgrounds"
+        use="text"
+        segments={1}
+    />
+</View>
+```
 
-    <ColorWithName
-        color={mix(fade(mix(fade(offBlack, 0.32), red), 0.32), red)}
-        colorName="Tint (Dark) on Tint = Tint + 32% (Tint + 32% Off-Black)"
-    />
-    <ColorWithName
-        color={mix(
-            fade(mix(fade(offBlack, 0.32), red), 0.16),
-            white,
-        )}
-        colorName="Tint (Dark) on White = White + 16% (Tint + 32% Off-Black)"
-    />
+## Brand
 
-    <ColorWithName color={offBlack} colorName="Off-Black" />
-    <ColorWithName
-        color={mix(fade(offBlack, 0.64), white)}
-        colorName="Dark Gray"
+Use for designing anything centered around Khan Academy as a brand. Secondary brand colors should only be used for decoration. Expanded brand palette used for illustrations.
+
+```js
+const {StyleSheet} = require("aphrodite");
+
+const {View} = require("wonder-blocks-core");
+const Swatch = require("./docutils/swatch.js").default;
+
+const Color = require("./index.js").default;
+
+const styles = StyleSheet.create({
+    container: {
+        display: "grid",
+        gridTemplateColumns: "auto auto auto",
+        gridAutoFlow: "row",
+    },
+});
+
+<View style={styles.container}>
+    <Swatch 
+        color={Color.darkBlue}
+        name="darkBlue"
+        segments={1}
+        desc="Primary brand color. Can be used as a background color in headers and illustrative areas."
     />
-    <ColorWithName
-        color={mix(fade(offBlack, 0.32), white)}
-        colorName="Light Gray"
+    <Swatch 
+        color={Color.lightBlue} 
+        name="lightBlue" 
+        segments={1}
+        desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
     />
-</div>
+    <View style={{width: 256}}></View>
+    <Swatch 
+        color={Color.teal} 
+        name="teal" 
+        segments={1}
+        desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
+    />
+    <Swatch 
+        color={Color.pink} 
+        name="pink" 
+        segments={1}
+        desc="Secondary brand color."
+    />
+</View>
 ```

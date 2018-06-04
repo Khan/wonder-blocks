@@ -5,8 +5,7 @@
   "main": "dist/index.js",
   "source": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "../../node_modules/.bin/webpack"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT"

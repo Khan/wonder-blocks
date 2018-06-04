@@ -5,8 +5,11 @@
   "main": "dist/index.js",
   "source": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "../../node_modules/.bin/webpack"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "wonder-blocks-core": "0.0.1",
+    "wonder-blocks-typography": "0.0.2"
   },
   "author": "",
   "license": "MIT"

@@ -5,14 +5,13 @@
   "main": "dist/index.js",
   "source": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "../../node_modules/.bin/webpack"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "wonder-blocks-color": "../wonder-blocks-color",
-    "wonder-blocks-spacing": "../wonder-blocks-spacing",
-    "wonder-blocks-core": "../wonder-blocks-core"
+    "wonder-blocks-color": "0.0.1",
+    "wonder-blocks-spacing": "0.0.1",
+    "wonder-blocks-core": "0.0.1"
   }
 }

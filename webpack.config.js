@@ -1,14 +1,16 @@
 /**
- * This file is used by all packages/wonder-blocks-x/webpack.config.js files.
- *
- * It generates an appropriate webpack configuration for each package.  In
- * particular it adds all dependencies from the specific package along with
- * project level dependencies to the list of externals.  This causes webpack
- * to not include those depedencies in the build file it generates.
+ * This webpack config file return an array of webpack configs, one for each
+ * package in the packages/ folder.  This allows a single instance of webpack
+ * to build (or watch) all projects.
  */
+const fs = require("fs");
 const path = require("path");
 
-module.exports = function(subPkgRoot) {
+const packages = fs
+    .readdirSync(path.join(__dirname, "packages"))
+    .map((dir) => path.join(__dirname, "packages", dir));
+
+const genWebpackConfig = function(subPkgRoot) {
     const subPkgJson = require(path.join(subPkgRoot, "./package.json"));
     const subPkgDeps = subPkgJson.dependencies
         ? Object.keys(subPkgJson.dependencies)
@@ -20,11 +22,11 @@ module.exports = function(subPkgRoot) {
         : [];
 
     return {
-        entry: "./index.js",
+        entry: path.join(subPkgRoot, "index.js"),
         output: {
             libraryTarget: "commonjs2",
             filename: "dist/index.js",
-            path: subPkgRoot,
+            path: path.join(subPkgRoot),
         },
         externals: [...rootPkgDeps, ...subPkgDeps],
         module: {
@@ -42,5 +44,8 @@ module.exports = function(subPkgRoot) {
             minimize: false,
         },
         node: {process: false},
+        mode: "production",
     };
 };
+
+module.exports = packages.map(genWebpackConfig);
