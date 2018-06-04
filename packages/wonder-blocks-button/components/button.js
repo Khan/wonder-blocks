@@ -31,6 +31,7 @@ export type SharedProps = {
      * The kind of the button, either primary, secondary, or tertiary.
      *
      * In default state:
+     *
      * - Primary buttons have background colors
      * - Secondary buttons have a border and no background color
      * - Tertiary buttons have no background or border
@@ -71,9 +72,12 @@ export type SharedProps = {
      * Whether to use client-side navigation.
      *
      * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then use ReactRouter to do a client side
-     * navigation by doing history.push(this.props.href) using
-     * ReactRouter's history object
+     * /math/algebra/eval-exprs, then it uses react-router-dom's Link
+     * component which handles the client-side navigation.
+     *
+     * NOTE: All URLs containing a protocol are considered external, e.g.
+     * https://khanacademy.org/math/algebra/eval-exprs will trigger a full
+     * page reload.
      */
     clientNav?: boolean,
 
@@ -142,7 +146,7 @@ export default class Button extends React.Component<Props> {
         const ClickableBehavior = getClickableBehavior(
             href,
             clientNav,
-            this.context,
+            this.context.router,
         );
 
         return (

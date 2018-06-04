@@ -1,5 +1,7 @@
 // @flow
 /**
+ * WARNING: Do not use this component directly, use getClickableBehavior instead.
+ *
  * Add hover, focus, and active status updates to a clickable component.
  *
  * Via mouse:
@@ -48,7 +50,6 @@
  * (https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
  */
 import React from "react";
-import {withRouter} from "react-router-dom";
 
 type Props = {
     /**
@@ -83,7 +84,7 @@ type Props = {
     onClick?: (e: SyntheticEvent<>) => void,
 
     /**
-     * Passed in by withRouter it connected.
+     * Passed in by withRouter HOC.
      */
     history?: any,
 };
@@ -271,39 +272,5 @@ export default class ClickableBehavior extends React.Component<Props, State> {
               };
         const {children} = this.props;
         return children && children(this.state, handlers);
-    }
-}
-
-function isExternalUrl(url: string) {
-    return /^https?:\/\//i.test(url);
-}
-
-const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
-
-/**
- * Returns either the default ClickableBehavior or a react-router aware version.
- *
- * Note: components which use getClickableBehavior must define:
- * static contextTypes = {router: PropTypes.any};
- */
-export function getClickableBehavior(
-    href?: string,
-    clientNav?: boolean,
-    context: {router: any},
-) {
-    if (!href) {
-        return ClickableBehavior;
-    } else if (isExternalUrl(href)) {
-        return ClickableBehavior;
-    } else if (clientNav != null) {
-        if (clientNav) {
-            return ClickableBehaviorWithRouter;
-        } else {
-            return ClickableBehavior;
-        }
-    } else if (context.router) {
-        return ClickableBehaviorWithRouter;
-    } else {
-        return ClickableBehavior;
     }
 }

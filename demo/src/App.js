@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+// @flow
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
@@ -7,11 +8,11 @@ import {Body, Title} from "wonder-blocks-typography";
 import Button from "wonder-blocks-button";
 import Link from "wonder-blocks-link";
 
-class App extends Component {
+class App extends React.Component<{}> {
     render() {
         return (
             <BrowserRouter>
-                <View style={styles.pinkSquare}>
+                <View style={styles.container}>
                     <Switch>
                         <Route path="/" exact>
                             <Title style={styles.title}>Demo App</Title>
@@ -51,8 +52,8 @@ class App extends Component {
 }
 
 const styles = StyleSheet.create({
-    pinkSquare: {
-        width: 500,
+    container: {
+        width: 600,
         height: 200,
         background: "#e0e0e0",
         padding: 16,
@@ -63,11 +64,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginRight: -16,
     },
     button: {
-        marginRight: 16,
-        flex: 1,
+        flexBasis: 180,
     },
     body: {
         marginTop: 16,
