@@ -1,5 +1,7 @@
 // @flow
 /**
+ * WARNING: Do not use this component directly, use getClickableBehavior instead.
+ *
  * Add hover, focus, and active status updates to a clickable component.
  *
  * Via mouse:
@@ -75,13 +77,16 @@ type Props = {
      * respond to spacebar key press.
      */
     href?: string,
-  
-    clientSideNav?: boolean,
 
     /**
      * A function to be executed `onclick`.
      */
     onClick?: (e: SyntheticEvent<>) => void,
+
+    /**
+     * Passed in by withRouter HOC.
+     */
+    history?: any,
 };
 
 type State = {
@@ -239,9 +244,13 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     };
 
     maybeNavigate = () => {
-        const {href} = this.props;
+        const {history, href} = this.props;
         if (href) {
-            window.location.assign(href);
+            if (history) {
+                history.push(href);
+            } else {
+                window.location.assign(href);
+            }
         }
     };
 

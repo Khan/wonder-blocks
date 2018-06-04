@@ -71,7 +71,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -116,6 +115,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -128,7 +128,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -185,6 +184,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -197,7 +197,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -242,6 +241,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -254,7 +254,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -299,6 +298,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -323,7 +323,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -371,6 +370,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -383,7 +383,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -431,6 +430,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -443,7 +443,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -491,6 +490,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -503,7 +503,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -551,6 +550,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -575,7 +575,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -620,6 +619,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -632,7 +632,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -686,6 +685,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -698,7 +698,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -743,6 +742,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -755,7 +755,6 @@ exports[`wonder-blocks-button example 1 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -800,6 +799,7 @@ exports[`wonder-blocks-button example 1 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -884,7 +884,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -929,6 +928,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -941,7 +941,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -998,6 +997,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1010,7 +1010,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1055,6 +1054,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1067,7 +1067,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1112,6 +1111,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1136,7 +1136,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1184,6 +1183,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1196,7 +1196,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1244,6 +1243,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1256,7 +1256,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1304,6 +1303,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1316,7 +1316,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1364,6 +1363,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1388,7 +1388,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1433,6 +1432,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1445,7 +1445,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1499,6 +1498,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1511,7 +1511,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1556,6 +1555,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1568,7 +1568,6 @@ exports[`wonder-blocks-button example 2 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1613,6 +1612,7 @@ exports[`wonder-blocks-button example 2 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1696,7 +1696,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1741,6 +1740,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1753,7 +1753,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1810,6 +1809,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1822,7 +1822,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1867,6 +1866,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1879,7 +1879,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1924,6 +1923,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -1948,7 +1948,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -1996,6 +1995,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2008,7 +2008,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2056,6 +2055,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2068,7 +2068,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2116,6 +2115,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2128,7 +2128,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2176,6 +2175,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2200,7 +2200,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2245,6 +2244,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2257,7 +2257,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2311,6 +2310,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2323,7 +2323,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2368,6 +2367,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2380,7 +2380,6 @@ exports[`wonder-blocks-button example 3 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2425,6 +2424,7 @@ exports[`wonder-blocks-button example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2509,7 +2509,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2554,6 +2553,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2566,7 +2566,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2623,6 +2622,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2635,7 +2635,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2680,6 +2679,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2692,7 +2692,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2737,6 +2736,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2761,7 +2761,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2809,6 +2808,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2821,7 +2821,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2869,6 +2868,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2881,7 +2881,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2929,6 +2928,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -2941,7 +2941,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -2989,6 +2988,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3013,7 +3013,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3058,6 +3057,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3070,7 +3070,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3124,6 +3123,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3136,7 +3136,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3181,6 +3180,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3193,7 +3193,6 @@ exports[`wonder-blocks-button example 4 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3238,6 +3237,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3321,7 +3321,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3366,6 +3365,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3378,7 +3378,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3435,6 +3434,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3447,7 +3447,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3492,6 +3491,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3504,7 +3504,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3549,6 +3548,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3573,7 +3573,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3621,6 +3620,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3633,7 +3633,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3681,6 +3680,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3693,7 +3693,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3741,6 +3740,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3753,7 +3753,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3801,6 +3800,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3825,7 +3825,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3870,6 +3869,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3882,7 +3882,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3936,6 +3935,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -3948,7 +3948,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={false}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -3993,6 +3992,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >
@@ -4005,7 +4005,6 @@ exports[`wonder-blocks-button example 5 1`] = `
           className=""
           data-test-id={undefined}
           disabled={true}
-          href={undefined}
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -4050,6 +4049,7 @@ exports[`wonder-blocks-button example 5 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "pointerEvents": "none",
               }
             }
           >

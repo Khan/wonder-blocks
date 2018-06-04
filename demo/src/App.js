@@ -1,49 +1,75 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import {View} from "wonder-blocks-core";
+import {Body, Title} from "wonder-blocks-typography";
 import Button from "wonder-blocks-button";
-import {Title} from "wonder-blocks-typography";
-import {ModalLauncher, OneColumnModal} from "wonder-blocks-modal";
+import Link from "wonder-blocks-link";
 
-class App extends React.Component<*> {
+class App extends React.Component<{}> {
     render() {
-        const modal = (
-            <OneColumnModal content={<Title>Hello, from modal</Title>} />
-        );
-
         return (
-            <View style={styles.pinkSquare}>
-                <View style={styles.content}>
-                    <Title>Hello, world!</Title>
+            <BrowserRouter>
+                <View style={styles.container}>
+                    <Switch>
+                        <Route path="/" exact>
+                            <Title style={styles.title}>Demo App</Title>
+                        </Route>
+                        <Route path="/foo">
+                            <Title style={styles.title}>Foo</Title>
+                        </Route>
+                        <Route path="/bar">
+                            <Title style={styles.title}>Bar</Title>
+                        </Route>
+                    </Switch>
+                    <View style={styles.buttonContainer}>
+                        <Button style={styles.button} href="/foo" clientNav>
+                            Foo
+                        </Button>
+                        <Button style={styles.button} href="/bar" clientNav>
+                            Bar
+                        </Button>
+                        <Button
+                            style={styles.button}
+                            href="https://khanacademy.org"
+                        >
+                            Khan Academy
+                        </Button>
+                    </View>
+                    <Body style={styles.body}>
+                        Click{" "}
+                        <Link href="/" clientNav>
+                            Home
+                        </Link>{" "}
+                        to return to the homepage.
+                    </Body>
                 </View>
-                <View style={styles.row}>
-                    <ModalLauncher modal={modal}>
-                        {({openModal}) => (
-                            <Button onClick={openModal}>Open modal</Button>
-                        )}
-                    </ModalLauncher>
-                </View>
-            </View>
+            </BrowserRouter>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    pinkSquare: {
-        width: 500,
+    container: {
+        width: 600,
         height: 200,
-        background: "pink",
-        borderRadius: 4,
+        background: "#e0e0e0",
         padding: 16,
     },
-    content: {
-        flex: 1,
+    title: {
+        marginBottom: 16,
     },
-    row: {
+    buttonContainer: {
         flexDirection: "row",
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
+    },
+    button: {
+        flexBasis: 180,
+    },
+    body: {
+        marginTop: 16,
     },
 });
 
