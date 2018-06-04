@@ -5,6 +5,7 @@
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
     "lint": "eslint --config ./eslint/eslintrc packages",
     "build:all": "webpack",
     "watch:all": "webpack -w",
