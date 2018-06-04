@@ -7,52 +7,92 @@ import renderer from "react-test-renderer";
 
 describe("wonder-blocks-spacing", () => {
     it("example 1", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("wonder-blocks-core");
         const Spacing = require("./index.js").default;
+        const {Strut} = require("./index.js");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                alignItems: "center",
+                marginBottom: Spacing.xxSmall,
+            },
+        });
 
         const example = (
-            <div>
+            <View>
                 {Object.keys(Spacing).map((spaceName, idx) => (
-                    <div
-                        key={idx}
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            marginBottom: Spacing.xxSmall,
-                        }}
-                    >
-                        <div
+                    <View key={idx} style={styles.row}>
+                        <View
                             style={{
                                 width: 250,
-                                paddingRight: Spacing.xSmall,
                                 textAlign: "right",
                             }}
                         >
                             {spaceName}: {Spacing[spaceName]}px
-                        </div>
-                        <div
-                            style={{
-                                width: Spacing.xxxLarge,
-                                marginRight: Spacing.xSmall,
-                            }}
-                        >
-                            <div
+                        </View>
+                        <Strut size={Spacing.xSmall} />
+                        <View style={{width: Spacing.xxxLarge}}>
+                            <View
                                 style={{
                                     backgroundColor: "black",
                                     width: Spacing[spaceName],
                                     height: Spacing.xxxSmall,
                                 }}
                             />
-                        </div>
-                        <div
+                        </View>
+                        <Strut size={Spacing.xSmall} />
+                        <View
                             style={{
                                 backgroundColor: "black",
                                 width: Spacing.xxxSmall,
                                 height: Spacing[spaceName],
                             }}
                         />
-                    </div>
+                    </View>
                 ))}
-            </div>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View, addStyle} = require("wonder-blocks-core");
+        const Color = require("wonder-blocks-color");
+        const Spacing = require("./index.js").default;
+        const {Spring, Strut} = require("./index.js");
+
+        // TODO(kevinb): replace with wonder-blocks-button once yarn workspaces land
+        const Button = addStyle("button");
+
+        const styles = StyleSheet.create({
+            container: {
+                flexDirection: "row",
+                border: `solid 1px ${Color.offBlack50}`,
+            },
+            button: {
+                fontSize: 24,
+                width: 100,
+                borderRadius: 4,
+                border: "none",
+                height: 40,
+            },
+        });
+
+        const example = (
+            <View style={styles.container}>
+                <Button style={styles.button}>A</Button>
+                <Strut size={Spacing.small} />
+                <Button style={styles.button}>B</Button>
+                <Strut size={Spacing.small} />
+                <Button style={styles.button}>C</Button>
+                <Spring />
+                <Button style={styles.button}>Cancel</Button>
+                <Strut size={Spacing.small} />
+                <Button style={styles.button}>Accept</Button>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
