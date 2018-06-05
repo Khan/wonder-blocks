@@ -1,0 +1,3521 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButtonCore kind:primary color:default size:default light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:default light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:default light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:default light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:default light:true disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#6296f6",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:default light:true focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:default light:true hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:default light:true pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:small light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:small light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:small light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:small light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:small light:true disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#6296f6",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:small light:true focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:small light:true hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:default size:small light:true pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:default light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:default light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:default light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:default light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#9e271d",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:default light:true disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#e56d61",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:default light:true focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:default light:true hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:default light:true pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#f3bbb4",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:small light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:small light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:small light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#9e271d",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#e56d61",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:small light:true focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:small light:true hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:primary color:destructive size:small light:true pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#f3bbb4",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:default size:default light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:default size:default light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:default size:default light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:default size:default light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:default size:small light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:default size:small light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:default size:small light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:destructive size:default light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:destructive size:default light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:destructive size:default light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:destructive size:default light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#9e271d",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:destructive size:small light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:destructive size:small light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:secondary color:destructive size:small light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#9e271d",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:default size:default light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:default size:default light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:default size:default light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:default size:default light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:default size:small light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:default size:small light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:default size:small light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:destructive size:default light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:destructive size:default light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:destructive size:default light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:destructive size:default light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="default"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#9e271d",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={true}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "auto",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:destructive size:small light:false focused 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:destructive size:small light:false hovered 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
+
+exports[`IconButtonCore kind:tertiary color:destructive size:small light:false pressed 1`] = `
+<button
+  aria-label="search"
+  className=""
+  data-test-id={undefined}
+  disabled={false}
+  href={undefined}
+  size="small"
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "boxSizing": "border-box",
+      "color": "#9e271d",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 40,
+      "justifyContent": "center",
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "width": 40,
+    }
+  }
+>
+  <svg
+    aria-hidden="true"
+    height="20px"
+    role="img"
+    viewBox="0 0 9.8 9.8"
+    width="20px"
+  >
+    <path
+      d="M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
+    6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,
+    8.8838835 9.94454365,9.3587572 9.65165045,9.65165045 C9.3587572,
+    9.94454365 8.8838835,9.94454365 8.59099025,9.65165045 L6.7196699,
+    7.7803301 C6.70573509,7.76639529 6.69246326,7.75204857 6.67985439,
+    7.73732912 C5.99121283,8.21804812 5.15353311,8.5 4.25,8.5 C1.90278981,
+    8.5 0,6.59721019 0,4.25 C0,1.90278981 1.90278981,0 4.25,0 C6.59721019,
+    0 8.5,1.90278981 8.5,4.25 C8.5,5.15353311 8.21804812,5.99121283
+    7.73732912,6.67985439 L7.73732912,6.67985439 Z M4.25,7.5 C6.04492544,
+    7.5 7.5,6.04492544 7.5,4.25 C7.5,2.45507456 6.04492544,1 4.25,1
+    C2.45507456,1 1,2.45507456 1,4.25 C1,6.04492544 2.45507456,7.5 4.25,
+    7.5 L4.25,7.5 Z"
+      fill="currentColor"
+    />
+  </svg>
+</button>
+`;
