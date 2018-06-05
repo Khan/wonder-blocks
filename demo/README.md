@@ -6,10 +6,15 @@ The purpose of this demo app is to:
   with styleguidist
 
 ## quick start
+In the parent directory run:
 ```
-cd ..
-npm run build:all
-cd demo
+npm run watch:all
+```
+This will create built versions of wonder-blocks components and will watch for
+any changes.  This makes testing changes as you play-test components easy.
+
+In a separate terminal run:
+```
 npm install
 npm start
 ```
