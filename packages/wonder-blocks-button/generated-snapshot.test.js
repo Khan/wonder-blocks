@@ -8,869 +8,238 @@ import Button from "./components/button.js";
 
 describe("wonder-blocks-button", () => {
     it("example 1", () => {
-        const Color = require("wonder-blocks-color").default;
-        const ButtonCore = require("./components/button-core.js").default;
+        const Button = require("./index.js").default;
+        const {View} = require("wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
 
-        const {white, offWhite} = Color;
-
-        const handlers = {
-            onClick: () => void 0,
-            onMouseEnter: () => void 0,
-            onMouseLeave: () => void 0,
-            onMouseDown: () => void 0,
-            onMouseUp: () => void 0,
-            onTouchStart: () => void 0,
-            onTouchEnd: () => void 0,
-            onTouchCancel: () => void 0,
-            onKeyDown: () => void 0,
-            onKeyUp: () => void 0,
-            onBlur: () => void 0,
-        };
-
-        const defaultProps = {
-            kind: "primary",
-            size: "default",
-            color: "default",
-            light: false,
-            hovered: false,
-            focused: false,
-            pressed: false,
-            disabled: false,
-        };
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            sideMargins: {
+                marginRight: 10,
+            },
+        });
 
         const example = (
-            <table style={{background: offWhite, textAlign: "center"}}>
-                <thead>
-                    <tr>
-                        <th />
-                        <th style={{width: 100}}>Default</th>
-                        <th style={{width: 100}}>
-                            Hovered/<br />Focused
-                        </th>
-                        <th style={{width: 100}}>
-                            Active/<br />Pressed
-                        </th>
-                        <th style={{width: 100}}>Disabled</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Primary</th>
-                        <td>
-                            <ButtonCore {...defaultProps} {...handlers}>
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Secondary</th>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Tertiary</th>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <View style={[styles.row]}>
+                <Button
+                    style={[styles.sideMargins]}
+                    onClick={(e) => console.log("Hello, world!")}
+                >
+                    Label
+                </Button>
+                <Button
+                    style={[styles.sideMargins]}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="secondary"
+                >
+                    Label
+                </Button>
+                <Button
+                    style={[styles.sideMargins]}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="tertiary"
+                >
+                    Label
+                </Button>
+                <Button
+                    style={[styles.sideMargins]}
+                    onClick={(e) => console.log("Hello, world!")}
+                    size="small"
+                >
+                    Label
+                </Button>
+            </View>
         );
+
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const Color = require("wonder-blocks-color").default;
-        const ButtonCore = require("./components/button-core.js").default;
-
-        const {darkBlue, white, offWhite} = Color;
-
-        const handlers = {
-            onClick: () => void 0,
-            onMouseEnter: () => void 0,
-            onMouseLeave: () => void 0,
-            onMouseDown: () => void 0,
-            onMouseUp: () => void 0,
-            onTouchStart: () => void 0,
-            onTouchEnd: () => void 0,
-            onTouchCancel: () => void 0,
-            onKeyDown: () => void 0,
-            onKeyUp: () => void 0,
-            onBlur: () => void 0,
-        };
-
-        const defaultProps = {
-            kind: "primary",
-            size: "default",
-            color: "default",
-            light: true,
-            hovered: false,
-            focused: false,
-            pressed: false,
-            disabled: false,
-        };
+        const Button = require("./index.js").default;
 
         const example = (
-            <table
-                style={{
-                    background: darkBlue,
-                    color: white,
-                    textAlign: "center",
-                }}
+            <Button
+                onClick={(e) => console.log("Hello, world!")}
+                href="#button-1"
             >
-                <thead>
-                    <tr>
-                        <th />
-                        <th style={{width: 100}}>Default</th>
-                        <th style={{width: 100}}>
-                            Hovered/<br />Focused
-                        </th>
-                        <th style={{width: 100}}>
-                            Active/<br />Pressed
-                        </th>
-                        <th style={{width: 100}}>Disabled</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Primary</th>
-                        <td>
-                            <ButtonCore {...defaultProps} {...handlers}>
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Secondary</th>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Tertiary</th>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                Label
+            </Button>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
-        const Color = require("wonder-blocks-color").default;
-        const ButtonCore = require("./components/button-core.js").default;
-
-        const {white, offWhite} = Color;
-
-        const handlers = {
-            onClick: () => void 0,
-            onMouseEnter: () => void 0,
-            onMouseLeave: () => void 0,
-            onMouseDown: () => void 0,
-            onMouseUp: () => void 0,
-            onTouchStart: () => void 0,
-            onTouchEnd: () => void 0,
-            onTouchCancel: () => void 0,
-            onKeyDown: () => void 0,
-            onKeyUp: () => void 0,
-            onBlur: () => void 0,
-        };
-
-        const defaultProps = {
-            kind: "primary",
-            size: "default",
-            color: "destructive",
-            light: false,
-            hovered: false,
-            focused: false,
-            pressed: false,
-            disabled: false,
-        };
+        const Button = require("./index.js").default;
 
         const example = (
-            <table style={{background: offWhite, textAlign: "center"}}>
-                <thead>
-                    <tr>
-                        <th />
-                        <th style={{width: 100}}>Default</th>
-                        <th style={{width: 100}}>
-                            Hovered/<br />Focused
-                        </th>
-                        <th style={{width: 100}}>
-                            Active/<br />Pressed
-                        </th>
-                        <th style={{width: 100}}>Disabled</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Primary</th>
-                        <td>
-                            <ButtonCore {...defaultProps} {...handlers}>
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Secondary</th>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Tertiary</th>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <Button
+                onClick={(e) => console.log("Hello, world!")}
+                disabled={true}
+            >
+                Label
+            </Button>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
-        const Color = require("wonder-blocks-color").default;
-        const ButtonCore = require("./components/button-core.js").default;
+        const Button = require("./index.js").default;
+        const {View} = require("wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
 
-        const {darkBlue, white, offWhite} = Color;
-
-        const handlers = {
-            onClick: () => void 0,
-            onMouseEnter: () => void 0,
-            onMouseLeave: () => void 0,
-            onMouseDown: () => void 0,
-            onMouseUp: () => void 0,
-            onTouchStart: () => void 0,
-            onTouchEnd: () => void 0,
-            onTouchCancel: () => void 0,
-            onKeyDown: () => void 0,
-            onKeyUp: () => void 0,
-            onBlur: () => void 0,
-        };
-
-        const defaultProps = {
-            kind: "primary",
-            size: "default",
-            color: "destructive",
-            light: true,
-            hovered: false,
-            focused: false,
-            pressed: false,
-            disabled: false,
-        };
+        const styles = StyleSheet.create({
+            row: {
+                display: "row",
+            },
+            wideButton: {
+                width: 200,
+            },
+            centerInDiv: {
+                display: "block",
+                margin: "0 auto",
+            },
+            sideMargins: {
+                marginRight: 10,
+            },
+        });
 
         const example = (
-            <table
-                style={{
-                    background: darkBlue,
-                    color: white,
-                    textAlign: "center",
-                }}
-            >
+            <table>
                 <thead>
                     <tr>
-                        <th />
-                        <th style={{width: 100}}>Default</th>
-                        <th style={{width: 100}}>
-                            Hovered/<br />Focused
-                        </th>
-                        <th style={{width: 100}}>
-                            Active/<br />Pressed
-                        </th>
-                        <th style={{width: 100}}>Disabled</th>
+                        <th style={{minWidth: "250px"}}>Styles</th>
+                        <th style={{width: "100%"}}>Buttons</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Primary</th>
-                        <td>
-                            <ButtonCore {...defaultProps} {...handlers}>
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Secondary</th>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Tertiary</th>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 5", () => {
-        const Color = require("wonder-blocks-color").default;
-        const ButtonCore = require("./components/button-core.js").default;
-
-        const {white, offWhite} = Color;
-
-        const handlers = {
-            onClick: () => void 0,
-            onMouseEnter: () => void 0,
-            onMouseLeave: () => void 0,
-            onMouseDown: () => void 0,
-            onMouseUp: () => void 0,
-            onTouchStart: () => void 0,
-            onTouchEnd: () => void 0,
-            onTouchCancel: () => void 0,
-            onKeyDown: () => void 0,
-            onKeyUp: () => void 0,
-            onBlur: () => void 0,
-        };
-
-        const defaultProps = {
-            kind: "primary",
-            size: "small",
-            color: "default",
-            light: false,
-            hovered: false,
-            focused: false,
-            pressed: false,
-            disabled: false,
-        };
-
-        const example = (
-            <table style={{background: offWhite, textAlign: "center"}}>
-                <thead>
                     <tr>
-                        <th />
-                        <th style={{width: 100}}>Default</th>
-                        <th style={{width: 100}}>
-                            Hovered/<br />Focused
-                        </th>
-                        <th style={{width: 100}}>
-                            Active/<br />Pressed
-                        </th>
-                        <th style={{width: 100}}>Disabled</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Primary</th>
+                        <td>width: '200px'</td>
                         <td>
-                            <ButtonCore {...defaultProps} {...handlers}>
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                hovered={true}
+                            <Button
+                                onClick={(e) => console.log("Hello, world!")}
+                                style={[styles.wideButton]}
                             >
                                 Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
+                            </Button>
                         </td>
                     </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Secondary</th>
+                    <tr>
+                        <td>width: '75%'</td>
                         <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
+                            <Button
+                                onClick={(e) => console.log("Hello, world!")}
+                                style={{width: "75%"}}
                             >
                                 Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
-                        </td>
-                        <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="secondary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
+                            </Button>
                         </td>
                     </tr>
-                    <tr style={{height: 60, verticalAlign: "middle"}}>
-                        <th>Tertiary</th>
+                    <tr>
+                        <td>display: 'block', margin: '0 auto'</td>
                         <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
+                            <Button
+                                onClick={(e) => console.log("Hello, world!")}
+                                style={[styles.centerInDiv]}
                             >
                                 Label
-                            </ButtonCore>
+                            </Button>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>flexGrow: 1</td>
                         <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                hovered={true}
-                            >
-                                Label
-                            </ButtonCore>
+                            <div style={{display: "flex"}}>
+                                <Button
+                                    onClick={(e) =>
+                                        console.log("Hello, world!")
+                                    }
+                                    style={{flexGrow: 1}}
+                                >
+                                    Label
+                                </Button>
+                            </div>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>flexShrink: 2, width: '300px'</td>
                         <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                pressed={true}
-                            >
-                                Label
-                            </ButtonCore>
+                            <div style={{display: "flex"}}>
+                                <Button
+                                    onClick={(e) =>
+                                        console.log("Hello, world!")
+                                    }
+                                    style={[
+                                        {flexShrink: 2, width: "300px"},
+                                        styles.sideMargins,
+                                    ]}
+                                >
+                                    Label
+                                </Button>
+                                <div
+                                    onClick={(e) =>
+                                        console.log("Hello, world!")
+                                    }
+                                    style={{
+                                        width: "100%",
+                                        background: "#eee",
+                                        textAlign: "center",
+                                        lineHeight: "40px",
+                                    }}
+                                >
+                                    Not a button
+                                </div>
+                            </div>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>alignSelf: 'flex-end'</td>
                         <td>
-                            <ButtonCore
-                                {...defaultProps}
-                                {...handlers}
-                                kind="tertiary"
-                                disabled={true}
-                            >
-                                Label
-                            </ButtonCore>
+                            <div style={{display: "flex"}}>
+                                <Button
+                                    onClick={(e) =>
+                                        console.log("Hello, world!")
+                                    }
+                                    style={[
+                                        {alignSelf: "flex-end"},
+                                        styles.sideMargins,
+                                    ]}
+                                >
+                                    Label
+                                </Button>
+                                <div
+                                    onClick={(e) =>
+                                        console.log("Hello, world!")
+                                    }
+                                    style={{
+                                        background: "#eee",
+                                        textAlign: "center",
+                                        lineHeight: "100px",
+                                        height: "100px",
+                                        padding: "0px 4px",
+                                    }}
+                                >
+                                    Not a button
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>justifySelf: 'flex-end'</td>
+                        <td>
+                            <div style={{display: "flex"}}>
+                                <div style={{display: "grid", width: "100%"}}>
+                                    <Button
+                                        onClick={(e) =>
+                                            console.log("Hello, world!")
+                                        }
+                                        style={{justifySelf: "flex-end"}}
+                                    >
+                                        Label
+                                    </Button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
