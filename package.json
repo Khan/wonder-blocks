@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
     "lint": "eslint --config ./eslint/eslintrc packages",
-    "build:all": "webpack",
+    "build:all": "webpack && node utils/copy-flow-source.js",
     "watch:all": "webpack -w",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
@@ -43,6 +43,7 @@
     "eslint-plugin-react": "7.7.0",
     "eslint-plugin-react-native-animation-linter": "0.1.1",
     "flow-bin": "0.57.3",
+    "flow-copy-source": "^2.0.0",
     "glob": "^7.1.2",
     "jest": "^22.4.2",
     "marked": "^0.3.19",
