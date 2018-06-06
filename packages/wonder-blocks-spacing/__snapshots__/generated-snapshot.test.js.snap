@@ -1469,7 +1469,7 @@ exports[`wonder-blocks-spacing example 2 1`] = `
   style={
     Object {
       "alignItems": "stretch",
-      "border": "solid 1px undefined",
+      "border": "solid 1px rgba(33,36,44,0.50)",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",

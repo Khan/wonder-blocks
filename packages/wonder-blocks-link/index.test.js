@@ -13,6 +13,20 @@ describe("Link", () => {
     });
 });
 
+const defaultHandlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onBlur: () => void 0,
+};
+
 describe("LinkCore", () => {
     for (const kind of ["primary", "secondary"]) {
         for (const href of ["#", "#non-existent-link"]) {
@@ -40,6 +54,7 @@ describe("LinkCore", () => {
                                     caret={false}
                                     light={light}
                                     {...stateProps}
+                                    {...defaultHandlers}
                                 >
                                     Click me
                                 </LinkCore>,

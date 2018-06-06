@@ -5,6 +5,17 @@ exports[`ButtonCore kind:primary color:default size:default light:false disabled
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -52,6 +63,17 @@ exports[`ButtonCore kind:primary color:default size:default light:false focused 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -111,6 +133,17 @@ exports[`ButtonCore kind:primary color:default size:default light:false hovered 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -170,6 +203,17 @@ exports[`ButtonCore kind:primary color:default size:default light:false pressed 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -217,6 +261,17 @@ exports[`ButtonCore kind:primary color:default size:default light:true disabled 
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -264,6 +319,17 @@ exports[`ButtonCore kind:primary color:default size:default light:true focused 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -323,6 +389,17 @@ exports[`ButtonCore kind:primary color:default size:default light:true hovered 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -382,6 +459,17 @@ exports[`ButtonCore kind:primary color:default size:default light:true pressed 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -429,6 +517,17 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -476,6 +575,17 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -535,6 +645,17 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -594,6 +715,17 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -641,6 +773,17 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -688,6 +831,17 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -747,6 +901,17 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -806,6 +971,17 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -853,6 +1029,17 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false disa
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -900,6 +1087,17 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false focu
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -959,6 +1157,17 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false hove
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -1018,6 +1227,17 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false pres
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1065,6 +1285,17 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true disab
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1112,6 +1343,17 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true focus
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -1171,6 +1413,17 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true hover
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -1230,6 +1483,17 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true press
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1277,6 +1541,17 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1324,6 +1599,17 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -1383,6 +1669,17 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -1442,6 +1739,17 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1489,6 +1797,17 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1536,6 +1855,17 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -1595,6 +1925,17 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":before": Object {
@@ -1654,6 +1995,17 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1701,6 +2053,17 @@ exports[`ButtonCore kind:secondary color:default size:default light:false disabl
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1751,6 +2114,17 @@ exports[`ButtonCore kind:secondary color:default size:default light:false focuse
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1801,6 +2175,17 @@ exports[`ButtonCore kind:secondary color:default size:default light:false hovere
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1851,6 +2236,17 @@ exports[`ButtonCore kind:secondary color:default size:default light:false presse
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1901,6 +2297,17 @@ exports[`ButtonCore kind:secondary color:default size:default light:true disable
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -1951,6 +2358,17 @@ exports[`ButtonCore kind:secondary color:default size:default light:true focused
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2001,6 +2419,17 @@ exports[`ButtonCore kind:secondary color:default size:default light:true hovered
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2051,6 +2480,17 @@ exports[`ButtonCore kind:secondary color:default size:default light:true pressed
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2101,6 +2541,17 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2151,6 +2602,17 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2201,6 +2663,17 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2251,6 +2724,17 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2301,6 +2785,17 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2351,6 +2846,17 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2401,6 +2907,17 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2451,6 +2968,17 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2501,6 +3029,17 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false di
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2551,6 +3090,17 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false fo
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2601,6 +3151,17 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false ho
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2651,6 +3212,17 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false pr
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2701,6 +3273,17 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true dis
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2751,6 +3334,17 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true foc
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2801,6 +3395,17 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true hov
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2851,6 +3456,17 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true pre
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2901,6 +3517,17 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -2951,6 +3578,17 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3001,6 +3639,17 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3051,6 +3700,17 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3101,6 +3761,17 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3151,6 +3822,17 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3201,6 +3883,17 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3251,6 +3944,17 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3301,6 +4005,17 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false disable
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3348,6 +4063,17 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false focused
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -3404,6 +4130,17 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false hovered
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -3460,6 +4197,17 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false pressed
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3507,6 +4255,17 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true disabled
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3554,6 +4313,17 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true focused 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -3610,6 +4380,17 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true hovered 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -3666,6 +4447,17 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true pressed 
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3713,6 +4505,17 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3760,6 +4563,17 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -3816,6 +4630,17 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -3872,6 +4697,17 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3919,6 +4755,17 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -3966,6 +4813,17 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4022,6 +4880,17 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4078,6 +4947,17 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -4125,6 +5005,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false dis
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -4172,6 +5063,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false foc
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4228,6 +5130,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false hov
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4284,6 +5197,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false pre
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -4331,6 +5255,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true disa
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -4378,6 +5313,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true focu
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4434,6 +5380,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true hove
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4490,6 +5447,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true pres
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -4537,6 +5505,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -4584,6 +5563,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4640,6 +5630,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4696,6 +5697,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -4743,6 +5755,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
   className=""
   data-test-id={undefined}
   disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
@@ -4790,6 +5813,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4846,6 +5880,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       ":after": Object {
@@ -4902,6 +5947,17 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
   className=""
   data-test-id={undefined}
   disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "alignItems": "center",
