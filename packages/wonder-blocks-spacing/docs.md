@@ -58,7 +58,7 @@ is uncompressible and occupies a fixed amount of space specified by its `size` p
 ```js
 const {StyleSheet} = require("aphrodite");
 const {View, addStyle} = require("wonder-blocks-core");
-const Color = require("wonder-blocks-color");
+const Color = require("wonder-blocks-color").default;
 const Spacing = require("./index.js").default;
 const {Spring, Strut} = require("./index.js");
 

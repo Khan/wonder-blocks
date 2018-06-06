@@ -7,6 +7,17 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -60,6 +71,17 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -117,6 +139,17 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -174,6 +207,17 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -227,6 +271,17 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -280,6 +335,17 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -337,6 +403,17 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -394,6 +471,17 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -447,6 +535,17 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -500,6 +599,17 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -557,6 +667,17 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -614,6 +735,17 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -667,6 +799,17 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -720,6 +863,17 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -777,6 +931,17 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -834,6 +999,17 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -887,6 +1063,17 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -940,6 +1127,17 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -997,6 +1195,17 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1054,6 +1263,17 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1107,6 +1327,17 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1160,6 +1391,17 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1217,6 +1459,17 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1274,6 +1527,17 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1327,6 +1591,17 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -1380,6 +1655,17 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -1437,6 +1723,17 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -1494,6 +1791,17 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -1547,6 +1855,17 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -1600,6 +1919,17 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -1657,6 +1987,17 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -1714,6 +2055,17 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -1767,6 +2119,17 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1820,6 +2183,17 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1877,6 +2251,17 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1934,6 +2319,17 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -1987,6 +2383,17 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2040,6 +2447,17 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2097,6 +2515,17 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2154,6 +2583,17 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2207,6 +2647,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -2260,6 +2711,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -2317,6 +2779,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -2374,6 +2847,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -2427,6 +2911,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2480,6 +2975,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2537,6 +3043,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2594,6 +3111,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2647,6 +3175,17 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -2700,6 +3239,17 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -2757,6 +3307,17 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -2814,6 +3375,17 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -2867,6 +3439,17 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2920,6 +3503,17 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -2977,6 +3571,17 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -3034,6 +3639,17 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -3087,6 +3703,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -3140,6 +3767,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -3197,6 +3835,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -3254,6 +3903,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="default"
   style={
     Object {
@@ -3307,6 +3967,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   data-test-id={undefined}
   disabled={true}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -3360,6 +4031,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -3417,6 +4099,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
@@ -3474,6 +4167,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
   data-test-id={undefined}
   disabled={false}
   href={undefined}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   size="small"
   style={
     Object {
