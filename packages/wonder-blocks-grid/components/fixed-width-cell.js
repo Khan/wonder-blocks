@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
-import {View} from "wonder-blocks-core";
+import {View, MediaLayoutWrapper} from "wonder-blocks-core";
 
 import styles from "../util/styles.js";
-import {flexBasis, gridContextTypes} from "../util/utils.js";
+import {flexBasis} from "../util/utils.js";
 
-import type {GridSize} from "../util/types.js";
+import type {MediaSize, MediaSpec} from "wonder-blocks-core";
 
 type Props = {
     /** The width of this cell on a Small Grid (in pixels, %, or other). */
@@ -15,21 +15,31 @@ type Props = {
     /** The width of this cell on a Large Grid (in pixels, %, or other). */
     largeWidth?: number | string,
     /** The default width of the cell (in pixels, %, or other). */
-    width?: number | string | ((size: GridSize) => number | string),
+    width?: number | string | ((size: MediaSize) => number | string),
     /**
      * The child components to populate inside the cell. Can also accept a
-     * function which receives the `gridSize`, `totalColumns`, and cell
+     * function which receives the `mediaSize`, `totalColumns`, and cell
      * `width` and should return some React Nodes to render.
      */
     children?:
         | React.Node
         | (({
-              gridSize: GridSize,
+              mediaSize: MediaSize,
               totalColumns: number,
               width: number | string,
           }) => React.Node),
     /** The styling to apply to the cell. */
     style?: any,
+    /**
+     * The size of the media layout being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSize: MediaSize,
+    /**
+     * The current media layout spec being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSpec: MediaSpec,
 };
 
 /**
@@ -54,8 +64,7 @@ type Props = {
  * @version 1.0
  * @since 1.0
  */
-export default class FixedWidthCell extends React.Component<Props> {
-    static contextTypes = gridContextTypes;
+class FixedWidthCell extends React.Component<Props> {
     static defaultProps = {
         smallWidth: 0,
         mediumWidth: 0,
@@ -65,7 +74,7 @@ export default class FixedWidthCell extends React.Component<Props> {
 
     static getWidth(
         {smallWidth, mediumWidth, largeWidth, width}: Props,
-        gridSize: GridSize,
+        mediaSize: MediaSize,
     ) {
         // If no option was specified then we just return undefined,
         // components may handle this case differently.
@@ -73,14 +82,14 @@ export default class FixedWidthCell extends React.Component<Props> {
         // specified and find the one that matches our current grid size.
         if (!smallWidth && !mediumWidth && !largeWidth && !width) {
             return undefined;
-        } else if (smallWidth && gridSize === "small") {
+        } else if (smallWidth && mediaSize === "small") {
             return smallWidth;
-        } else if (mediumWidth && gridSize === "medium") {
+        } else if (mediumWidth && mediaSize === "medium") {
             return mediumWidth;
-        } else if (largeWidth && gridSize === "large") {
+        } else if (largeWidth && mediaSize === "large") {
             return largeWidth;
         } else if (typeof width === "function") {
-            return width(gridSize);
+            return width(mediaSize);
         } else if (width) {
             return width;
         }
@@ -90,14 +99,13 @@ export default class FixedWidthCell extends React.Component<Props> {
         return null;
     }
 
-    static shouldDisplay(props: Props, gridSize: GridSize) {
-        return !!FixedWidthCell.getWidth(props, gridSize);
+    static shouldDisplay(props: Props, mediaSize: MediaSize) {
+        return !!FixedWidthCell.getWidth(props, mediaSize);
     }
 
     render() {
-        const {children, style} = this.props;
-        const {gridSize, gridSpec} = this.context;
-        const width = FixedWidthCell.getWidth(this.props, gridSize);
+        const {children, style, mediaSize, mediaSpec} = this.props;
+        const width = FixedWidthCell.getWidth(this.props, mediaSize);
 
         // If no width is ever specified then we error out.
         if (width === undefined) {
@@ -109,11 +117,11 @@ export default class FixedWidthCell extends React.Component<Props> {
 
         let contents = children;
 
-        // If the contents are a function then we call it with the gridSize,
+        // If the contents are a function then we call it with the mediaSize,
         // totalColumns, and width properties and render the return value.
         if (typeof contents === "function") {
-            const {totalColumns} = gridSpec[gridSize];
-            contents = contents({gridSize, totalColumns, width});
+            const {totalColumns} = mediaSpec[mediaSize];
+            contents = contents({mediaSize, totalColumns, width});
         }
 
         return (
@@ -123,3 +131,5 @@ export default class FixedWidthCell extends React.Component<Props> {
         );
     }
 }
+
+export default MediaLayoutWrapper(FixedWidthCell);

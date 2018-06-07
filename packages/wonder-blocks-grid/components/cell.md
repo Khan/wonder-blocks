@@ -4,6 +4,7 @@ A row inside of a grid containing many Cells. Each cell has a column width of 1 
 
 ```jsx
 const Color = require("wonder-blocks-color").default;
+const {MediaLayout} = require("wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
 const cellStyles = [styles.cell, (size) => styles[size]];
 
 <View style={styles.background}>
-	<Grid>
+	<MediaLayout>
 		<Row>
 			<Cell cols={1} style={cellStyles}>
 				1
@@ -71,6 +72,6 @@ const cellStyles = [styles.cell, (size) => styles[size]];
 				1
 			</Cell>
 		</Row>
-	</Grid>
+	</MediaLayout>
 </View>;
 ```

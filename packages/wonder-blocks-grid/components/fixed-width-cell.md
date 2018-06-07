@@ -4,6 +4,7 @@ A row inside of a grid containing a FixedWidthCell and a FlexCell. The FixedWidt
 
 ```jsx
 const Color = require("wonder-blocks-color").default;
+const {MediaLayout} = require("wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.background}>
-	<Grid>
+	<MediaLayout>
 		<Row>
 			<FixedWidthCell style={styles.cell} width={200}>
 				<Text>FixedWidthCell (200px)</Text>
@@ -28,6 +29,6 @@ const styles = StyleSheet.create({
 				<Text>FlexCell</Text>
 			</FlexCell>
 		</Row>
-	</Grid>
+	</MediaLayout>
 </View>;
 ```

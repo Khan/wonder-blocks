@@ -1,9 +1,9 @@
 // @flow
 
-export type GridSize = "small" | "medium" | "large";
+export type MediaSize = "small" | "medium" | "large";
 
-export type GridSpec = {
-    [sizeName: GridSize]: {
+export type MediaSpec = {
+    [sizeName: MediaSize]: {
         /** The query to use to match the viewport against. */
         query: string,
         /** The total number of columns to use for the layout. */

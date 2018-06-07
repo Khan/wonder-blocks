@@ -23,7 +23,7 @@ export default class ModalHeader extends React.Component<Props> {
                 style={[
                     styles.header,
                     color === "dark" && styles.dark,
-                    (gridSize) => gridSize === "small" && styles.small,
+                    (mediaSize) => mediaSize === "small" && styles.small,
                     style,
                 ]}
             >

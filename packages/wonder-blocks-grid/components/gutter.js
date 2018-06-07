@@ -1,8 +1,12 @@
 // @flow
 import * as React from "react";
 
-import {matchesSize, gridContextTypes} from "../util/utils.js";
+import {MediaLayoutWrapper} from "wonder-blocks-core";
+
+import {matchesSize} from "../util/utils.js";
 import FixedWidthCell from "./fixed-width-cell.js";
+
+import type {MediaSize, MediaSpec} from "wonder-blocks-core";
 
 /**
  * Gutter is a form of [FixedWidthCell](#fixedwidthcell) whose width is set based on the size
@@ -20,15 +24,24 @@ import FixedWidthCell from "./fixed-width-cell.js";
  * @version 1.0
  * @since 1.0
  */
-export default class Gutter extends React.Component<{
+class Gutter extends React.Component<{
     /** Should this gutter be shown on a Small Grid? */
     small?: boolean,
     /** Should this gutter be shown on a Medium Grid? */
     medium?: boolean,
     /** Should this gutter be shown on a Large Grid? */
     large?: boolean,
+    /**
+     * The size of the media layout being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSize: MediaSize,
+    /**
+     * The current media layout spec being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSpec: MediaSpec,
 }> {
-    static contextTypes = gridContextTypes;
     static defaultProps = {
         small: false,
         medium: false,
@@ -36,9 +49,9 @@ export default class Gutter extends React.Component<{
     };
 
     render() {
-        const {gridSize, gridSpec} = this.context;
-        const {gutterWidth} = gridSpec[gridSize];
-        const shouldDisplay = matchesSize(this.props, gridSize);
+        const {mediaSize, mediaSpec} = this.props;
+        const {gutterWidth} = mediaSpec[mediaSize];
+        const shouldDisplay = matchesSize(this.props, mediaSize);
 
         if (!shouldDisplay) {
             return null;
@@ -47,3 +60,5 @@ export default class Gutter extends React.Component<{
         return <FixedWidthCell width={gutterWidth} />;
     }
 }
+
+export default MediaLayoutWrapper(Gutter);

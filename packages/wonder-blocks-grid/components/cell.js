@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
 
-import {gridContextTypes} from "../util/utils.js";
+import {MediaLayoutWrapper} from "wonder-blocks-core";
 import FlexCell from "./flex-cell.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 
-import type {GridSize} from "../util/types.js";
+import type {MediaSize, MediaSpec} from "wonder-blocks-core";
 
 type Props = {
     /** The number of columns this cell should span on a Small Grid. */
@@ -15,21 +15,31 @@ type Props = {
     /** The number of columns this cell should span on a Large Grid. */
     largeCols?: number,
     /** The number of columns this should should span by default. */
-    cols?: number | ((size: GridSize) => number),
+    cols?: number | ((size: MediaSize) => number),
     /**
      * The child components to populate inside the cell. Can also accept a
-     * function which receives the `gridSize`, `totalColumns`, and cell
+     * function which receives the `mediaSize`, `totalColumns`, and cell
      * `width` and should return some React Nodes to render.
      */
     children:
         | React.Node
         | (({
-              gridSize: GridSize,
+              mediaSize: MediaSize,
               totalColumns: number,
               cols: number,
           }) => React.Node),
     /** The styling to apply to the cell. */
     style?: any,
+    /**
+     * The size of the media layout being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSize: MediaSize,
+    /**
+     * The current media layout spec being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSpec: MediaSpec,
 };
 
 /**
@@ -52,8 +62,7 @@ type Props = {
  * @version 1.0
  * @since 1.0
  */
-export default class Cell extends React.Component<Props> {
-    static contextTypes = gridContextTypes;
+class Cell extends React.Component<Props> {
     static defaultProps = {
         smallCols: 0,
         mediumCols: 0,
@@ -63,7 +72,7 @@ export default class Cell extends React.Component<Props> {
 
     static getCols(
         {smallCols, mediumCols, largeCols, cols}: Props,
-        gridSize: GridSize,
+        mediaSize: MediaSize,
     ) {
         // If no option was specified then we just return undefined,
         // components may handle this case differently.
@@ -71,14 +80,14 @@ export default class Cell extends React.Component<Props> {
         // specified and find the one that matches our current grid size.
         if (!smallCols && !mediumCols && !largeCols && !cols) {
             return undefined;
-        } else if (smallCols && gridSize === "small") {
+        } else if (smallCols && mediaSize === "small") {
             return smallCols;
-        } else if (mediumCols && gridSize === "medium") {
+        } else if (mediumCols && mediaSize === "medium") {
             return mediumCols;
-        } else if (largeCols && gridSize === "large") {
+        } else if (largeCols && mediaSize === "large") {
             return largeCols;
         } else if (typeof cols === "function") {
-            return cols(gridSize);
+            return cols(mediaSize);
         } else if (cols) {
             return cols;
         }
@@ -88,18 +97,17 @@ export default class Cell extends React.Component<Props> {
         return null;
     }
 
-    static shouldDisplay(props: Props, gridSize: GridSize) {
-        const cols = Cell.getCols(props, gridSize);
+    static shouldDisplay(props: Props, mediaSize: MediaSize) {
+        const cols = Cell.getCols(props, mediaSize);
         return cols !== null && cols !== 0;
     }
 
     render() {
-        const {children, style} = this.props;
-        const {gridSize, gridSpec} = this.context;
+        const {children, style, mediaSize, mediaSpec} = this.props;
         // Get the settings for this particular size of grid
-        const {totalColumns, gutterWidth, marginWidth} = gridSpec[gridSize];
+        const {totalColumns, gutterWidth, marginWidth} = mediaSpec[mediaSize];
 
-        const cols = Cell.getCols(this.props, gridSize);
+        const cols = Cell.getCols(this.props, mediaSize);
 
         // If no columns are specified then we assume we're rendering
         // a flexible-width cell (flex: grow)
@@ -113,7 +121,7 @@ export default class Cell extends React.Component<Props> {
         if (cols > totalColumns) {
             throw new Error(
                 `Specified columns ${cols} is greater than the maximum ` +
-                    `${totalColumns} at the ${gridSize} grid size.`,
+                    `${totalColumns} at the ${mediaSize} grid size.`,
             );
         }
 
@@ -136,10 +144,10 @@ export default class Cell extends React.Component<Props> {
 
         let contents = children;
 
-        // If the contents are a function then we call it with the gridSize,
+        // If the contents are a function then we call it with the mediaSize,
         // totalColumns, and cols properties and render the return value.
         if (typeof contents === "function") {
-            contents = contents({gridSize, totalColumns, cols});
+            contents = contents({mediaSize, totalColumns, cols});
         }
 
         // Render a fixed-width cell (flex-basis: size, flex-shrink: 0)
@@ -151,3 +159,5 @@ export default class Cell extends React.Component<Props> {
         );
     }
 }
+
+export default MediaLayoutWrapper(Cell);

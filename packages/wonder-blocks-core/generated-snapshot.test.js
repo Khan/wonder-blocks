@@ -5,6 +5,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import ClickableBehavior from "./components/clickable-behavior.js";
+import MediaLayout from "./components/media-layout.js";
 import Text from "./components/text.js";
 import View from "./components/view.js";
 
