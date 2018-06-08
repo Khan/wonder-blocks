@@ -7,8 +7,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "wonder-blocks-core": "0.0.1"
+  },
   "devDependencies": {
-    "wonder-blocks-core": "0.0.1",
     "wonder-blocks-color": "0.0.1"
   },
   "author": "",
