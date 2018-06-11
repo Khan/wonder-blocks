@@ -2,14 +2,14 @@
 
 import Spacing from "wonder-blocks-spacing";
 
-import type {GridSize, GridSpec} from "./types.js";
+import type {MediaSize, MediaSpec} from "./types.js";
 
-// All possible valid grid sizes
-export const VALID_GRID_SIZES: Array<GridSize> = ["small", "medium", "large"];
+// All possible valid media sizes
+export const VALID_MEDIA_SIZES: Array<MediaSize> = ["small", "medium", "large"];
 
-// The default spec for the grid component, currently available in
+// The default spec for media layout, currently available in
 // three different settings (roughly mobile, tablet, and desktop).
-export const GRID_DEFAULT_SPEC: GridSpec = {
+export const MEDIA_DEFAULT_SPEC: MediaSpec = {
     small: {
         query: "(max-width: 767px)",
         totalColumns: 4,
@@ -32,7 +32,7 @@ export const GRID_DEFAULT_SPEC: GridSpec = {
 };
 
 // Used for internal tools
-export const GRID_INTERNAL_SPEC: GridSpec = {
+export const MEDIA_INTERNAL_SPEC: MediaSpec = {
     large: {
         query: "(min-width: 1px)",
         totalColumns: 12,
@@ -42,7 +42,7 @@ export const GRID_INTERNAL_SPEC: GridSpec = {
 };
 
 // The default used for modals
-export const GRID_MODAL_SPEC: GridSpec = {
+export const MEDIA_MODAL_SPEC: MediaSpec = {
     small: {
         query: "(max-width: 767px)",
         totalColumns: 4,

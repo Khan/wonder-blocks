@@ -4,6 +4,7 @@ A row inside of a grid containing 3 FlexCells. The two Gutters are inserted auto
 
 ```jsx
 const Color = require("wonder-blocks-color").default;
+const {MediaLayout} = require("wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.background}>
-	<Grid>
+	<MediaLayout>
 		<Row>
 			<FlexCell style={styles.cell}>
 				<Text>FlexCell</Text>
@@ -31,6 +32,6 @@ const styles = StyleSheet.create({
 				<Text>FlexCell</Text>
 			</FlexCell>
 		</Row>
-	</Grid>
+	</MediaLayout>
 </View>;
 ```

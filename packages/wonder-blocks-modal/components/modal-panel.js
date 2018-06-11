@@ -94,8 +94,8 @@ export default class ModalPanel extends React.Component<Props> {
                     footer && styles.hasFooter,
                     showCloseButton &&
                         !titleBar &&
-                        ((gridSize) =>
-                            gridSize === "small" &&
+                        ((mediaSize) =>
+                            mediaSize === "small" &&
                             styles.smallWithCloseButton),
                     mainContent.props.style,
                 ],
@@ -115,8 +115,9 @@ export default class ModalPanel extends React.Component<Props> {
                     <View
                         style={[
                             styles.closeButton,
-                            (gridSize) =>
-                                gridSize === "small" && styles.smallCloseButton,
+                            (mediaSize) =>
+                                mediaSize === "small" &&
+                                styles.smallCloseButton,
                         ]}
                     >
                         <ModalCloseButton

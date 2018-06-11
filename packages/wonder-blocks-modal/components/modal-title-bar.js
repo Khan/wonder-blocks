@@ -55,7 +55,7 @@ export default class ModalTitleBar extends React.Component<Props> {
                 style={[
                     styles.titlebar,
                     color === "dark" && styles.dark,
-                    (gridSize) => gridSize === "small" && styles.small,
+                    (mediaSize) => mediaSize === "small" && styles.small,
                     style,
                 ]}
             >

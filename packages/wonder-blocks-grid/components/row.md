@@ -4,6 +4,7 @@ A row inside of a grid containing two [FlexCells](#flexcell). The row has some s
 
 ```jsx
 const Color = require("wonder-blocks-color").default;
+const {MediaLayout} = require("wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.background}>
-	<Grid>
+	<MediaLayout>
 		<Row style={styles.row}>
 			<FlexCell style={styles.cell}>
 				<Text>FlexCell</Text>
@@ -34,6 +35,6 @@ const styles = StyleSheet.create({
 				<Text>FlexCell</Text>
 			</FlexCell>
 		</Row>
-	</Grid>
+	</MediaLayout>
 </View>;
 ```

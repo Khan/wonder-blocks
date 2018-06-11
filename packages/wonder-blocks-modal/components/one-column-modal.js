@@ -1,14 +1,15 @@
 // @flow
 import * as React from "react";
-import propTypes from "prop-types";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "wonder-blocks-core";
+import {View, MediaLayoutWrapper} from "wonder-blocks-core";
 import Color from "wonder-blocks-color";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalFooter from "./modal-footer.js";
+
+import type {MediaSize} from "wonder-blocks-core";
 
 type Props = {
     /** The modal's content. */
@@ -28,8 +29,15 @@ type Props = {
      * `ModalLauncher`, we'll automatically add an extra listener here via
      * `cloneElement`, so that the `ModalLauncher` can listen for close button
      * clicks too.)
+     * @ignore
      */
-    onClickCloseButton: () => void,
+    onClickCloseButton?: () => void,
+
+    /**
+     * The size of the media layout being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSize: MediaSize,
 };
 
 class ContentWrapper extends React.Component<Props> {
@@ -37,15 +45,10 @@ class ContentWrapper extends React.Component<Props> {
         onClickCloseButton: () => {},
     };
 
-    static contextTypes = {
-        gridSize: propTypes.string,
-    };
-
     render() {
-        const {onClickCloseButton, content, footer} = this.props;
-        const {gridSize} = this.context;
+        const {onClickCloseButton, content, footer, mediaSize} = this.props;
 
-        if (gridSize !== "small") {
+        if (mediaSize !== "small") {
             return (
                 <View style={styles.contentWrapper}>
                     <ModalPanel
@@ -89,7 +92,7 @@ class ContentWrapper extends React.Component<Props> {
 /**
  * A one-column modal layout.
  */
-export default class OneColumnModal extends React.Component<Props> {
+class OneColumnModal extends React.Component<Props> {
     static defaultProps = {
         onClickCloseButton: () => {},
     };
@@ -99,7 +102,7 @@ export default class OneColumnModal extends React.Component<Props> {
             <ModalDialog
                 style={[
                     styles.dialog,
-                    (gridSize) => gridSize !== "small" && styles.largeDialog,
+                    (mediaSize) => mediaSize !== "small" && styles.largeDialog,
                 ]}
             >
                 <ContentWrapper {...this.props} />
@@ -107,6 +110,8 @@ export default class OneColumnModal extends React.Component<Props> {
         );
     }
 }
+
+export default MediaLayoutWrapper(OneColumnModal);
 
 const styles = StyleSheet.create({
     dialog: {

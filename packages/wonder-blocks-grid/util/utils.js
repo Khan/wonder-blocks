@@ -1,7 +1,5 @@
 // @flow
-import propTypes from "prop-types";
-
-import type {GridSize} from "./types.js";
+import type {MediaSize} from "./types.js";
 
 export const matchesSize = (
     {
@@ -9,12 +7,12 @@ export const matchesSize = (
         medium,
         large,
     }: {small?: boolean, medium?: boolean, large?: boolean},
-    gridSize: GridSize,
+    mediaSize: MediaSize,
 ) =>
     (!small && !medium && !large) ||
-    (small && gridSize === "small") ||
-    (medium && gridSize === "medium") ||
-    (large && gridSize === "large");
+    (small && mediaSize === "small") ||
+    (medium && mediaSize === "medium") ||
+    (large && mediaSize === "large");
 
 export const flexBasis = (size: number | string) => {
     return {
@@ -23,9 +21,4 @@ export const flexBasis = (size: number | string) => {
         WebkitFlexBasis: size,
         flexBasis: size,
     };
-};
-
-export const gridContextTypes = {
-    gridSize: propTypes.string,
-    gridSpec: propTypes.object,
 };

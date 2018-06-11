@@ -34,6 +34,9 @@ type Props = {
      */
     footer: React.Node,
 
+    /**
+     * An optional header to display above the contents but below the title bar.
+     */
     header?: React.Node,
 
     /**
@@ -52,6 +55,7 @@ type Props = {
      * `ModalLauncher`, we'll automatically add an extra listener here via
      * `cloneElement`, so that the `ModalLauncher` can listen for close button
      * clicks too.)
+     * @ignore
      */
     onClickCloseButton: () => void,
 };
@@ -76,7 +80,7 @@ export default class StandardModal extends React.Component<Props> {
 
         return (
             <ModalDialog
-                style={(gridSize) => gridSize !== "small" && styles.wrapper}
+                style={(mediaSize) => mediaSize !== "small" && styles.wrapper}
             >
                 <ModalPanel
                     showCloseButton
@@ -97,8 +101,8 @@ export default class StandardModal extends React.Component<Props> {
                         color="dark"
                         style={
                             (styles.preview,
-                            (gridSize) =>
-                                gridSize === "small" && styles.smallPreview)
+                            (mediaSize) =>
+                                mediaSize === "small" && styles.smallPreview)
                         }
                         content={
                             <ModalContent style={styles.previewContent}>

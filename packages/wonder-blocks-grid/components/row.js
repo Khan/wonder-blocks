@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
-import {View} from "wonder-blocks-core";
+import {View, MediaLayoutWrapper} from "wonder-blocks-core";
 
 import styles from "../util/styles.js";
-import {matchesSize, gridContextTypes} from "../util/utils.js";
+import {matchesSize} from "../util/utils.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 import Gutter from "./gutter.js";
 
-import type {GridSize} from "../util/types.js";
+import type {MediaSize, MediaSpec} from "wonder-blocks-core";
 
 /**
  * A Row holds all of the Cells that make up the contents of the grid. A row
@@ -31,7 +31,7 @@ import type {GridSize} from "../util/types.js";
  * @version 1.0
  * @since 1.0
  */
-export default class Row extends React.Component<{
+class Row extends React.Component<{
     /** Should this row be shown on a Small Grid? */
     small?: boolean,
     /** Should this row be shown on a Medium Grid? */
@@ -43,19 +43,28 @@ export default class Row extends React.Component<{
      * a mixture of [Cell](#cell), [FlexCell](#flexcell), and
      * [FixedWidthCells](#fixedwidthcell), but it can also include any elements
      * that could fit in a [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
-     * Can also accept a function which receives the `gridSize` and
+     * Can also accept a function which receives the `mediaSize` and
      * `totalColumns` and should return some React Nodes to render.
      */
     children:
         | React.Node
         | (({
-              gridSize: GridSize,
+              mediaSize: MediaSize,
               totalColumns: number,
           }) => React.Node),
     /** The styling to apply to the row. */
     style?: any,
+    /**
+     * The size of the media layout being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSize: MediaSize,
+    /**
+     * The current media layout spec being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSpec: MediaSpec,
 }> {
-    static contextTypes = gridContextTypes;
     static defaultProps = {
         small: false,
         medium: false,
@@ -63,10 +72,9 @@ export default class Row extends React.Component<{
     };
 
     render() {
-        const {style, children} = this.props;
-        const {gridSize, gridSpec} = this.context;
-        const {marginWidth, hasMaxWidth, totalColumns} = gridSpec[gridSize];
-        const shouldDisplay = matchesSize(this.props, gridSize);
+        const {style, mediaSize, mediaSpec, children} = this.props;
+        const {marginWidth, hasMaxWidth, totalColumns} = mediaSpec[mediaSize];
+        const shouldDisplay = matchesSize(this.props, mediaSize);
 
         // Don't render the row if it's been disabled at this size
         if (!shouldDisplay) {
@@ -75,10 +83,10 @@ export default class Row extends React.Component<{
 
         let contents = children;
 
-        // If the contents are a function then we call it with the gridSize and
+        // If the contents are a function then we call it with the mediaSize and
         // totalColumns properties and render the return value.
         if (typeof contents === "function") {
-            contents = contents({gridSize, totalColumns});
+            contents = contents({mediaSize, totalColumns});
         }
 
         contents = React.Children.toArray(contents);
@@ -95,7 +103,7 @@ export default class Row extends React.Component<{
                 !item.props ||
                 !item.type.shouldDisplay ||
                 (typeof item.type.shouldDisplay === "function" &&
-                    item.type.shouldDisplay(item.props, gridSize))
+                    item.type.shouldDisplay(item.props, mediaSize))
             ) {
                 if (hasVisibleCell) {
                     filteredContents.push(
@@ -120,3 +128,5 @@ export default class Row extends React.Component<{
         );
     }
 }
+
+export default MediaLayoutWrapper(Row);
