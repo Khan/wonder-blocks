@@ -1,14 +1,15 @@
 // @flow
 import * as React from "react";
-import propTypes from "prop-types";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "wonder-blocks-core";
+import {View, MediaLayoutWrapper} from "wonder-blocks-core";
 import Color from "wonder-blocks-color";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalFooter from "./modal-footer.js";
 import ModalPanel from "./modal-panel.js";
+
+import type {MediaSize} from "wonder-blocks-core";
 
 type Props = {
     /** The sidebar contents (which becomes the header on mobile screens). */
@@ -31,8 +32,15 @@ type Props = {
      * `ModalLauncher`, we'll automatically add an extra listener here via
      * `cloneElement`, so that the `ModalLauncher` can listen for close button
      * clicks too.)
+     * @ignore
      */
-    onClickCloseButton: () => void,
+    onClickCloseButton?: () => void,
+
+    /**
+     * The size of the media layout being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSize: MediaSize,
 };
 
 class ContentWrapper extends React.Component<Props> {
@@ -40,15 +48,16 @@ class ContentWrapper extends React.Component<Props> {
         onClickCloseButton: () => {},
     };
 
-    static contextTypes = {
-        gridSize: propTypes.string,
-    };
-
     render() {
-        const {onClickCloseButton, sidebar, content, footer} = this.props;
-        const {gridSize} = this.context;
+        const {
+            onClickCloseButton,
+            sidebar,
+            content,
+            footer,
+            mediaSize,
+        } = this.props;
 
-        if (gridSize !== "small") {
+        if (mediaSize !== "small") {
             return (
                 <View style={styles.contentWrapper}>
                     <ModalPanel
@@ -105,7 +114,7 @@ class ContentWrapper extends React.Component<Props> {
 /**
  * A two-column modal layout.
  */
-export default class TwoColumnModal extends React.Component<Props> {
+class TwoColumnModal extends React.Component<Props> {
     static defaultProps = {
         onClickCloseButton: () => {},
     };
@@ -113,8 +122,8 @@ export default class TwoColumnModal extends React.Component<Props> {
     render() {
         return (
             <ModalDialog
-                style={(gridSize) =>
-                    gridSize === "small" ? styles.smallDialog : styles.dialog
+                style={(mediaSize) =>
+                    mediaSize === "small" ? styles.smallDialog : styles.dialog
                 }
             >
                 <ContentWrapper {...this.props} />
@@ -122,6 +131,8 @@ export default class TwoColumnModal extends React.Component<Props> {
         );
     }
 }
+
+export default MediaLayoutWrapper(TwoColumnModal);
 
 const styles = StyleSheet.create({
     dialog: {

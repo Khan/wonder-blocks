@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
-import {View} from "wonder-blocks-core";
+import {View, MediaLayoutWrapper} from "wonder-blocks-core";
 
 import styles from "../util/styles.js";
-import {matchesSize, gridContextTypes} from "../util/utils.js";
+import {matchesSize} from "../util/utils.js";
 
-import type {GridSize} from "../util/types.js";
+import type {MediaSize, MediaSpec} from "wonder-blocks-core";
 
 type Props = {
     /** Should this cell be shown on a Small Grid? */
@@ -16,17 +16,27 @@ type Props = {
     large?: boolean,
     /**
      * The child components to populate inside the cell. Can also accept a
-     * function which receives the `gridSize` and `totalColumns` and should
+     * function which receives the `mediaSize` and `totalColumns` and should
      * return some React Nodes to render.
      */
     children:
         | React.Node
         | (({
-              gridSize: GridSize,
+              mediaSize: MediaSize,
               totalColumns: number,
           }) => React.Node),
     /** The styling to apply to the cell. */
     style?: any,
+    /**
+     * The size of the media layout being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSize: MediaSize,
+    /**
+     * The current media layout spec being used. Populated by MediaLayoutWrapper.
+     * @ignore
+     */
+    mediaSpec: MediaSpec,
 };
 
 /**
@@ -44,35 +54,35 @@ type Props = {
  * @version 1.0
  * @since 1.0
  */
-export default class FlexCell extends React.Component<Props> {
-    static contextTypes = gridContextTypes;
+class FlexCell extends React.Component<Props> {
     static defaultProps = {
         small: false,
         medium: false,
         large: false,
     };
 
-    static shouldDisplay(props: Props, gridSize: GridSize) {
-        return matchesSize(props, gridSize);
+    static shouldDisplay(props: Props, mediaSize: MediaSize) {
+        return matchesSize(props, mediaSize);
     }
 
     render() {
-        const {children, style} = this.props;
-        const {gridSize, gridSpec} = this.context;
+        const {children, style, mediaSize, mediaSpec} = this.props;
 
-        if (!FlexCell.shouldDisplay(this.props, gridSize)) {
+        if (!FlexCell.shouldDisplay(this.props, mediaSize)) {
             return null;
         }
 
         let contents = children;
 
-        // If the contents are a function then we call it with the gridSize and
+        // If the contents are a function then we call it with the mediaSize and
         // totalColumns properties and render the return value.
         if (typeof contents === "function") {
-            const {totalColumns} = gridSpec[gridSize];
-            contents = contents({gridSize, totalColumns});
+            const {totalColumns} = mediaSpec[mediaSize];
+            contents = contents({mediaSize, totalColumns});
         }
 
         return <View style={[styles.cellGrow, style]}>{contents}</View>;
     }
 }
+
+export default MediaLayoutWrapper(FlexCell);

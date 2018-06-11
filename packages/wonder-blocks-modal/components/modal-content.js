@@ -41,7 +41,7 @@ export default class ModalContent extends React.Component<Props> {
                 <View
                     style={[
                         styles.content,
-                        (gridSize) => gridSize === "small" && styles.small,
+                        (mediaSize) => mediaSize === "small" && styles.small,
                         style,
                     ]}
                 >

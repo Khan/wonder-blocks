@@ -7,14 +7,13 @@ import renderer from "react-test-renderer";
 import Cell from "./components/cell.js";
 import FixedWidthCell from "./components/fixed-width-cell.js";
 import FlexCell from "./components/flex-cell.js";
-import Grid from "./components/grid.js";
 import Gutter from "./components/gutter.js";
 import Row from "./components/row.js";
 
 describe("wonder-blocks-grid", () => {
     it("example 1", () => {
         const Color = require("wonder-blocks-color").default;
-        const {View, Text} = require("wonder-blocks-core");
+        const {View, Text, MediaLayout} = require("wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -23,7 +22,7 @@ describe("wonder-blocks-grid", () => {
             },
 
             cell: {
-                height: 100,
+                height: 150,
                 padding: 5,
             },
 
@@ -44,7 +43,7 @@ describe("wonder-blocks-grid", () => {
 
         const example = (
             <View style={styles.background}>
-                <Grid>
+                <MediaLayout>
                     <Row>
                         <FlexCell style={cellStyles}>
                             <Text>FlexCell</Text>
@@ -99,7 +98,7 @@ describe("wonder-blocks-grid", () => {
                             }}
                         </Cell>
                     </Row>
-                </Grid>
+                </MediaLayout>
             </View>
         );
         const tree = renderer.create(example).toJSON();
@@ -107,11 +106,11 @@ describe("wonder-blocks-grid", () => {
     });
     it("example 2", () => {
         const Color = require("wonder-blocks-color").default;
-        const {View, Text} = require("wonder-blocks-core");
+        const {View, Text, MediaLayout} = require("wonder-blocks-core");
 
         const example = (
             <View style={{background: Color.offWhite}}>
-                <Grid>
+                <MediaLayout>
                     <Row
                         style={{
                             background: Color.darkBlue,
@@ -247,7 +246,7 @@ describe("wonder-blocks-grid", () => {
                     >
                         <Cell>Angles</Cell>
                     </Row>
-                </Grid>
+                </MediaLayout>
             </View>
         );
         const tree = renderer.create(example).toJSON();

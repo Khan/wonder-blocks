@@ -1,11 +1,15 @@
 // @flow
-import ClickableBehavior from "./components/clickable-behavior.js";
-import Text from "./components/text.js";
-import View from "./components/view.js";
-import addStyle from "./util/add-style.js";
-import getClickableBehavior from "./util/get-clickable-behavior.js";
-import type {ClickableHandlers} from "./components/clickable-behavior.js";
-import type {AriaProps, TextTag} from "./util/types.js";
+export {default as ClickableBehavior} from "./components/clickable-behavior.js";
+export {default as MediaLayout} from "./components/media-layout.js";
+export {default as Text} from "./components/text.js";
+export {default as View} from "./components/view.js";
+export {default as addStyle} from "./util/add-style.js";
+export {
+    default as getClickableBehavior,
+} from "./util/get-clickable-behavior.js";
+export * from "./util/specs.js";
+export {MediaLayoutWrapper} from "./util/util.js";
 
-export {ClickableBehavior, Text, View, addStyle, getClickableBehavior};
-export type {AriaProps, ClickableHandlers, TextTag};
+import type {ClickableHandlers} from "./components/clickable-behavior.js";
+import type {AriaProps, TextTag, MediaSize, MediaSpec} from "./util/types.js";
+export type {AriaProps, ClickableHandlers, TextTag, MediaSize, MediaSpec};

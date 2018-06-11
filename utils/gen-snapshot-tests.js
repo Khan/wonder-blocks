@@ -115,7 +115,9 @@ for (const section of styleguideConfig.sections) {
                 const componentFileMap = {};
                 for (const file of files) {
                     const src = fs.readFileSync(file, "utf8");
-                    const match = src.match(/export default class ([^ ]+)/);
+                    const match =
+                        src.match(/export default class \s*(\w+)/) ||
+                        src.match(/export default \s*\w+\(\s*(\w+)/);
                     componentFileMap[match[1]] = file;
                 }
 

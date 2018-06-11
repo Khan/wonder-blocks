@@ -1,6 +1,6 @@
 **Example:**
 
-A row inside of a grid containing one [FlexCells](#flexcell). The FlexCell displays details about the current size and columns in the grid (resize the browser to see it change).
+A row inside of a MediaLayout containing one [FlexCells](#flexcell). The FlexCell displays details about the current size and columns in the MediaLayout (resize the browser to see it change).
 
 ```jsx
 const Color = require("wonder-blocks-color").default;
@@ -32,16 +32,16 @@ const styles = StyleSheet.create({
 const cellStyles = [styles.cell, (size) => styles[size]];
 
 <View style={styles.background}>
-	<Grid>
+	<MediaLayout>
 		<Row>
 			<FlexCell style={cellStyles}>
-				{({totalColumns, gridSize}) => (
+				{({totalColumns, mediaSize}) => (
 					<Text>
-						Grid Size: {gridSize} Total Columns: {totalColumns}
+						Layout Size: {mediaSize} Total Columns: {totalColumns}
 					</Text>
 				)}
 			</FlexCell>
 		</Row>
-	</Grid>
+	</MediaLayout>
 </View>;
 ```
