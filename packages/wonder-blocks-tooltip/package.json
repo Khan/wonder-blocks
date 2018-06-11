@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "@khanacademy/wonder-blocks-tooltip",
+  "version": "0.0.1",
+  "design": "v1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "",
+  "main": "dist/index.js",
+  "source": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react-popper": "^1.0.0-beta.6",
+    "@khanacademy/wonder-blocks-color": "^1.0.0",
+    "@khanacademy/wonder-blocks-core": "^1.0.0",
+    "@khanacademy/wonder-blocks-typography": "^1.0.0"
+  }
+}
