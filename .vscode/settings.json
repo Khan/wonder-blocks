@@ -1,0 +1,12 @@
+{
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [
+        80
+    ],
+    "eslint.autoFixOnSave": true,
+    "eslint.enable": true,
+    "files.trimTrailingWhitespace": true,
+    "flow.useNPMPackagedFlow": true,
+    "javascript.validate.enable": false,
+}

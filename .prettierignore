@@ -1,6 +1,3 @@
-package.json
-package-lock.json
-.prettierrc.json
-docs
+*.json
 *.md
-manifest.json
+docs
