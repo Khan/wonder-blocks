@@ -3,6 +3,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import type {ModalElement} from "../util/types.js";
+import {ModalLauncherPortalAttributeName} from "../util/constants.js";
 
 type Props = {
     children: ModalElement,
@@ -29,7 +30,7 @@ export default class ModalLauncherPortal extends React.Component<Props> {
         // The data attribute is used in unit tests, to identify which
         // ancestors of `children` were created by `ModalLauncherPortal`.
         const destination = document.createElement("div");
-        destination.setAttribute("data-modal-launcher-portal", "");
+        destination.setAttribute(ModalLauncherPortalAttributeName, "");
         root.appendChild(destination);
 
         // Render the modal into the destination node.
