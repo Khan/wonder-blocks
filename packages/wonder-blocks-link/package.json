@@ -1,6 +1,8 @@
 {
+  "private": true,
   "name": "wonder-blocks-link",
   "version": "0.0.1",
+  "design": "v1",
   "description": "Link component for Wonder Blocks design system.",
   "main": "dist/index.js",
   "source": "index.js",
