@@ -85,6 +85,7 @@ module.exports = {
 
     // These values control our custom styles.
     template: {
+        favicon: "favicon.ico",
         head: {
             links: [
                 {
@@ -101,7 +102,23 @@ module.exports = {
             base: '"Lato", sans-serif',
         },
     },
+    title: "Wonder Blocks",
     styles: {
+        StyleGuide: {
+            sidebar: {
+                width: "initial",
+            },
+        },
+        Logo: {
+            logo: {
+                background: "no-repeat url('logo.png')",
+                backgroundPosition: "0 0.25em",
+                paddingLeft: 40,
+                minHeight: "calc(32px + 0.5em)",
+                display: "flex",
+                alignItems: "center",
+            },
+        },
         Playground: {
             preview: {
                 // Apply Lato to example areas.
@@ -112,7 +129,7 @@ module.exports = {
                 overflow: "auto",
 
                 // Allow the preview content to grow to the full size, using
-                // absolute-positioning, and left/right/top/bottom all set to 0.
+                // absolute--positioning, and left/right/top/bottom all set to 0.
                 position: "relative",
             },
         },
