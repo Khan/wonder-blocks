@@ -1,6 +1,7 @@
 {
   "name": "wonder-blocks-color",
   "version": "0.0.1",
+  "design": "v2",
   "description": "",
   "main": "dist/index.js",
   "source": "index.js",
