@@ -20,3 +20,4 @@ comment:
 
 ignore:
   - "gen-snapshot-tests.js"
+  - "packages/**/dist/index.js"

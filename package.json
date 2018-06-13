@@ -74,7 +74,13 @@
     "setupTestFrameworkScriptFile": "./test-setup.js",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
-    }
+    },
+    "collectCoverageFrom": [
+      "packages/**/*.js",
+      "!packages/**/dist/index.js",
+      "!<rootDir>/node_modules/",
+      "!packages/**/node_modules/"
+    ]
   },
   "pre-commit": [
     "lint",
