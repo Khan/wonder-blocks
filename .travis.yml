@@ -13,4 +13,5 @@ install:
   - yarn global add codecov
 script:
   - yarn test
-  - yarn run coverage && codecov
+# TODO(kevinb) re-enable coverage after switching to circleci
+# - yarn run coverage && codecov
