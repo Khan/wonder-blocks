@@ -1,6 +1,7 @@
 {
   "name": "wonder-blocks-core",
   "version": "0.0.1",
+  "design": "v1",
   "description": "",
   "main": "dist/index.js",
   "source": "index.js",

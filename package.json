@@ -12,13 +12,14 @@
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
-    "test": "npm run lint && npm run gen-snapshot-tests && npm run flow && npm run jest",
+    "test": "yarn run lint && yarn run gen-snapshot-tests && yarn run build:all && yarn run flow && yarn run jest",
     "coverage": "SNAPSHOT_INLINE_APHRODITE=1 jest --coverage",
     "styleguidist": "styleguidist server",
-    "start": "npm run styleguidist",
+    "start": "yarn run styleguidist",
     "build:styleguidist": "styleguidist build",
     "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
-    "pretty-quick": "pretty-quick --staged"
+    "pretty-quick": "pretty-quick --staged",
+    "publish": "git diff --stat --exit-code HEAD && yarn build:all && lerna publish"
   },
   "author": "",
   "license": "MIT",
@@ -45,6 +46,7 @@
     "flow-bin": "0.57.3",
     "glob": "^7.1.2",
     "jest": "^22.4.2",
+    "lerna": "^2.11.0",
     "marked": "^0.3.19",
     "pre-commit": "^1.2.2",
     "prettier": "^1.12.1",
@@ -72,7 +74,13 @@
     "setupTestFrameworkScriptFile": "./test-setup.js",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
-    }
+    },
+    "collectCoverageFrom": [
+      "packages/**/*.js",
+      "!packages/**/dist/index.js",
+      "!<rootDir>/node_modules/",
+      "!packages/**/node_modules/"
+    ]
   },
   "pre-commit": [
     "lint",

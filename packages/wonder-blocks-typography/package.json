@@ -1,6 +1,7 @@
 {
   "name": "wonder-blocks-typography",
   "version": "0.0.2",
+  "design": "v2",
   "description": "Typography components for Wonder Blocks design system.",
   "main": "dist/index.js",
   "source": "index.js",
