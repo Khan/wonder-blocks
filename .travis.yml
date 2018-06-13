@@ -7,9 +7,9 @@ cache:
     - node_modules
 install:
   - yarn install
-  - npm run build:all
-  - cd demo && npm install && cd ..
-  - npm install -g codecov
+  - yarn run build:all
+  - cd demo && yarn install && cd ..
+  - yarn global add codecov
 script:
-  - npm test
-  - npm run coverage && codecov
+  - yarn test
+  - yarn run coverage && codecov
