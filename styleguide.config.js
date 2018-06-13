@@ -129,7 +129,7 @@ module.exports = {
                 overflow: "auto",
 
                 // Allow the preview content to grow to the full size, using
-                // absolute--positioning, and left/right/top/bottom all set to 0.
+                // absolute-positioning, and left/right/top/bottom all set to 0.
                 position: "relative",
             },
         },
