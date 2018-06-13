@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
 
-import {MediaLayoutWrapper} from "wonder-blocks-core";
+import {MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
 import FlexCell from "./flex-cell.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 
-import type {MediaSize, MediaSpec} from "wonder-blocks-core";
+import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     /** The number of columns this cell should span on a Small Grid. */

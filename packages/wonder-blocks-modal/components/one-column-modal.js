@@ -2,14 +2,14 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, MediaLayoutWrapper} from "wonder-blocks-core";
-import Color from "wonder-blocks-color";
+import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalFooter from "./modal-footer.js";
 
-import type {MediaSize} from "wonder-blocks-core";
+import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     /** The modal's content. */

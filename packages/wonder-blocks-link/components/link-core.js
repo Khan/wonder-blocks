@@ -3,9 +3,9 @@ import React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 
-import {addStyle} from "wonder-blocks-core";
-import Color, {mix, fade} from "wonder-blocks-color";
-import type {ClickableHandlers} from "wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./link.js";
 
 type Props = SharedProps &

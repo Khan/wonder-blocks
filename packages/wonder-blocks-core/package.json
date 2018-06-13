@@ -1,7 +1,10 @@
 {
-  "name": "wonder-blocks-core",
+  "name": "@khanacademy/wonder-blocks-core",
   "version": "0.0.1",
   "design": "v1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "",
   "main": "dist/index.js",
   "source": "index.js",

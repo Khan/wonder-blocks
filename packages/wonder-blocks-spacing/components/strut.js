@@ -6,7 +6,7 @@
  */
 import * as React from "react";
 
-import {View} from "wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     size: number,

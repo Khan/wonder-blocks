@@ -3,8 +3,8 @@
 A row inside of a grid containing a FixedWidthCell and a FlexCell. The FixedWidthCell remains at a given size regardless of the viewport size and the FlexCell constantly re-adjusts as the browser is re-sized.
 
 ```jsx
-const Color = require("wonder-blocks-color").default;
-const {MediaLayout} = require("wonder-blocks-core");
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {MediaLayout} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({

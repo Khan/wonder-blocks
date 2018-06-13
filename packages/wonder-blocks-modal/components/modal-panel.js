@@ -2,8 +2,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "wonder-blocks-color";
-import {View} from "wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 import ModalCloseButton from "./modal-close-button.js";
 import ModalContent from "./modal-content.js";

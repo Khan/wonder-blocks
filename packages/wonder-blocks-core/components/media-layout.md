@@ -3,7 +3,7 @@
 A row inside of a MediaLayout containing one [FlexCells](#flexcell). The FlexCell displays details about the current size and columns in the MediaLayout (resize the browser to see it change).
 
 ```jsx
-const Color = require("wonder-blocks-color").default;
+const Color = require("@khanacademy/wonder-blocks-color").default;
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({

@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 import ModalHeader from "./modal-header.js";
 

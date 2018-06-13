@@ -2,9 +2,13 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color, {SemanticColor, mix, fade} from "wonder-blocks-color";
-import {addStyle} from "wonder-blocks-core";
-import type {ClickableHandlers} from "wonder-blocks-core";
+import Color, {
+    SemanticColor,
+    mix,
+    fade,
+} from "@khanacademy/wonder-blocks-color";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./icon-button.js";
 
 type Props = SharedProps &

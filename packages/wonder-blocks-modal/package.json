@@ -1,8 +1,11 @@
 {
   "private": true,
-  "name": "wonder-blocks-modal",
+  "name": "@khanacademy/wonder-blocks-modal",
   "version": "0.0.1",
   "design": "v1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "",
   "main": "dist/index.js",
   "source": "index.js",
@@ -12,9 +15,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "wonder-blocks-color": "0.0.1",
-    "wonder-blocks-core": "0.0.1",
-    "wonder-blocks-grid": "0.0.1",
-    "wonder-blocks-typography": "0.0.2"
+    "@khanacademy/wonder-blocks-color": "0.0.1",
+    "@khanacademy/wonder-blocks-core": "0.0.1",
+    "@khanacademy/wonder-blocks-grid": "0.0.1",
+    "@khanacademy/wonder-blocks-typography": "0.0.2"
   }
 }

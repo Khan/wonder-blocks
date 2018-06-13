@@ -1,6 +1,6 @@
 // @flow
 
-import Spacing from "wonder-blocks-spacing";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {MediaSize, MediaSpec} from "./types.js";
 

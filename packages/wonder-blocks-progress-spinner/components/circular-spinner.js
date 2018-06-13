@@ -2,8 +2,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, addStyle} from "wonder-blocks-core";
-import Color from "wonder-blocks-color";
+import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
 
 const heights = {
     xsmall: 16,

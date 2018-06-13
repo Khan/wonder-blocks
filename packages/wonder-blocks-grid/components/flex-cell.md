@@ -3,8 +3,8 @@
 A few rows inside of a grid containing 1, 2, and then 3 FlexCells. Note how they distribute evenly and always take up the available space while still respecting gutters and margins.
 
 ```jsx
-const Color = require("wonder-blocks-color").default;
-const {MediaLayout} = require("wonder-blocks-core");
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {MediaLayout} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({

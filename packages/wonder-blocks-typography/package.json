@@ -1,7 +1,10 @@
 {
-  "name": "wonder-blocks-typography",
+  "name": "@khanacademy/wonder-blocks-typography",
   "version": "0.0.2",
   "design": "v2",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Typography components for Wonder Blocks design system.",
   "main": "dist/index.js",
   "source": "index.js",
@@ -11,9 +14,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "wonder-blocks-core": "0.0.1"
+    "@khanacademy/wonder-blocks-core": "0.0.1"
   },
   "devDependencies": {
-    "wonder-blocks-color": "0.0.1"
+    "@khanacademy/wonder-blocks-color": "0.0.1"
   }
 }
