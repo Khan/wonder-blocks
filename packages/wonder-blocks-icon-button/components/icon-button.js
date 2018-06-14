@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 
-import {ClickableBehavior} from "wonder-blocks-core";
+import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import IconButtonCore from "./icon-button-core.js";
 
 export type SharedProps = {

@@ -1,8 +1,11 @@
 {
   "private": true,
-  "name": "wonder-blocks-spacing",
+  "name": "@khanacademy/wonder-blocks-spacing",
   "version": "0.0.1",
   "design": "v1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "",
   "main": "dist/index.js",
   "source": "index.js",
@@ -10,10 +13,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "wonder-blocks-core": "0.0.1"
+    "@khanacademy/wonder-blocks-core": "0.0.1"
   },
   "devDependencies": {
-    "wonder-blocks-color": "0.0.1"
+    "@khanacademy/wonder-blocks-color": "0.0.1"
   },
   "author": "",
   "license": "MIT"

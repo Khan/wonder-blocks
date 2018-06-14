@@ -1,6 +1,6 @@
 Primary, secondary, and tertiary IconButton examples:
 ```js
-const {View} = require("wonder-blocks-core");
+const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 const searchIcon = `M7.73732912,6.67985439 C7.75204857,6.69246326 7.76639529,
     6.70573509 7.7803301,6.7196699 L9.65165045,8.59099025 C9.94454365,

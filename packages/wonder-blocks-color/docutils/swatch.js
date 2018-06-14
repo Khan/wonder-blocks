@@ -2,8 +2,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "wonder-blocks-core";
-import {HeadingLarge, LabelLarge, Body} from "wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    HeadingLarge,
+    LabelLarge,
+    Body,
+} from "@khanacademy/wonder-blocks-typography";
 import Color from "../index.js";
 
 type Props = {

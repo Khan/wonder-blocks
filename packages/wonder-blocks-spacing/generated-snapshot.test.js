@@ -8,7 +8,7 @@ import renderer from "react-test-renderer";
 describe("wonder-blocks-spacing", () => {
     it("example 1", () => {
         const {StyleSheet} = require("aphrodite");
-        const {View} = require("wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("./index.js").default;
         const {Strut} = require("./index.js");
 
@@ -59,8 +59,8 @@ describe("wonder-blocks-spacing", () => {
     });
     it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
-        const {View, addStyle} = require("wonder-blocks-core");
-        const Color = require("wonder-blocks-color").default;
+        const {View, addStyle} = require("@khanacademy/wonder-blocks-core");
+        const Color = require("@khanacademy/wonder-blocks-color").default;
         const Spacing = require("./index.js").default;
         const {Spring, Strut} = require("./index.js");
 

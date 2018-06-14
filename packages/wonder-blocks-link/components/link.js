@@ -2,7 +2,7 @@
 import * as React from "react";
 
 import LinkCore from "./link-core.js";
-import {getClickableBehavior} from "wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 export type SharedProps = {
     /**

@@ -2,7 +2,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 
-import {getClickableBehavior} from "wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import ButtonCore from "./button-core.js";
 
 export type SharedProps = {

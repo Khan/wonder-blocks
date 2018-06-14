@@ -3,8 +3,8 @@ The Grid system is a collection of building-block primitives which you can use t
 It's sometimes easiest to just see an example of how it works, like in the following demo. Try resizing your browser and see how to layout changes based on the width of the viewport (some columns will change in size, some will disappear entirely).
 
 ```jsx
-const Color = require("wonder-blocks-color").default;
-const {View, Text, MediaLayout} = require("wonder-blocks-core");
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {View, Text, MediaLayout} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -108,8 +108,8 @@ Currently Grid sizes are defined entirely by the [MediaLayout](#medialayout) com
 See the [MediaLayout](#medialayout) component for more details. The layout breakpoints allow for a great level of flexibility in the design, constantly adjusting to the size of the viewport and working across mobile, tablet, and desktop devices. An example of this can be seen in this site mock-up:
 
 ```jsx
-const Color = require("wonder-blocks-color").default;
-const {View, Text, MediaLayout} = require("wonder-blocks-core");
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {View, Text, MediaLayout} = require("@khanacademy/wonder-blocks-core");
 
 <View style={{background: Color.offWhite}}>
 	<MediaLayout>

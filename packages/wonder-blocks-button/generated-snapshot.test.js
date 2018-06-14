@@ -9,7 +9,7 @@ import Button from "./components/button.js";
 describe("wonder-blocks-button", () => {
     it("example 1", () => {
         const Button = require("./index.js").default;
-        const {View} = require("wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -86,7 +86,7 @@ describe("wonder-blocks-button", () => {
     });
     it("example 4", () => {
         const Button = require("./index.js").default;
-        const {View} = require("wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({

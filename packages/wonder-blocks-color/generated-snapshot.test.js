@@ -9,7 +9,7 @@ describe("wonder-blocks-color", () => {
     it("example 1", () => {
         const {StyleSheet} = require("aphrodite");
 
-        const {View} = require("wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const Swatch = require("./docutils/swatch.js").default;
 
         const Color = require("./index.js").default;
@@ -62,7 +62,7 @@ describe("wonder-blocks-color", () => {
     it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
 
-        const {View} = require("wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const Swatch = require("./docutils/swatch.js").default;
 
         const Color = require("./index.js").default;
@@ -141,7 +141,7 @@ describe("wonder-blocks-color", () => {
     it("example 3", () => {
         const {StyleSheet} = require("aphrodite");
 
-        const {View} = require("wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const Swatch = require("./docutils/swatch.js").default;
 
         const Color = require("./index.js").default;

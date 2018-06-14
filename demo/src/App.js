@@ -3,10 +3,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import {View} from "wonder-blocks-core";
-import {Body, Title} from "wonder-blocks-typography";
-import Button from "wonder-blocks-button";
-import Link from "wonder-blocks-link";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 
 class App extends React.Component<{}> {
     render() {

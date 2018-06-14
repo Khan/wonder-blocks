@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {View} from "wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 import ModalLauncherPortal from "./modal-launcher-portal.js";
 import ModalBackdrop from "./modal-backdrop.js";
