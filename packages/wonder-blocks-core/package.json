@@ -11,6 +11,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-core": "^1.0.0"
+  },
   "author": "",
   "license": "MIT"
 }
