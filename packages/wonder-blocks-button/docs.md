@@ -1,7 +1,7 @@
 Primary, secondary, tertiary, and small button examples:
 ```js
 const Button = require("./index.js").default;
-const {View} = require("wonder-blocks-core");
+const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -60,7 +60,7 @@ const Button = require("./index.js").default;
 Button examples, `style` specified (Support width, position, margin, and flex styles):
 ```js
 const Button = require("./index.js").default;
-const {View} = require("wonder-blocks-core");
+const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({

@@ -3,8 +3,8 @@
 A row inside of a grid containing 3 FlexCells. The two Gutters are inserted automatically between the three FlexCells.
 
 ```jsx
-const Color = require("wonder-blocks-color").default;
-const {MediaLayout} = require("wonder-blocks-core");
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {MediaLayout} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({

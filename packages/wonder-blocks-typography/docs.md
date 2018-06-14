@@ -1,5 +1,5 @@
 ```js
-const {View} = require("wonder-blocks-core");
+const {View} = require("@khanacademy/wonder-blocks-core");
 
 // NOTE(mdr): I added an `id` attribute to each of these tags, to ensure that
 //     they all pass the `id` attribute correctly. This fact will be saved in
@@ -27,7 +27,7 @@ const {View} = require("wonder-blocks-core");
 You can change the color of text with the `style` prop:
 
 ```js
-const Color = require("wonder-blocks-color").default;
+const Color = require("@khanacademy/wonder-blocks-color").default;
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({

@@ -1,6 +1,6 @@
 // @flow
 import React, {Component} from "react";
-import {Text} from "wonder-blocks-core";
+import {Text} from "@khanacademy/wonder-blocks-core";
 
 import styles from "../util/styles.js";
 

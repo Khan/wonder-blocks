@@ -2,7 +2,7 @@ Spacing is a collection of simple names assigned to specific dimensions. These a
 
 ```js
 const {StyleSheet} = require("aphrodite");
-const {View} = require("wonder-blocks-core");
+const {View} = require("@khanacademy/wonder-blocks-core");
 const Spacing = require("./index.js").default;
 const {Strut} = require("./index.js");
 
@@ -57,8 +57,8 @@ is uncompressible and occupies a fixed amount of space specified by its `size` p
 
 ```js
 const {StyleSheet} = require("aphrodite");
-const {View, addStyle} = require("wonder-blocks-core");
-const Color = require("wonder-blocks-color").default;
+const {View, addStyle} = require("@khanacademy/wonder-blocks-core");
+const Color = require("@khanacademy/wonder-blocks-color").default;
 const Spacing = require("./index.js").default;
 const {Spring, Strut} = require("./index.js");
 

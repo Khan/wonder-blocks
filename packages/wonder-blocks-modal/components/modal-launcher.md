@@ -2,8 +2,8 @@ Once the modal is launched, tab focus wraps inside the modal content. Pressing T
 
 ```js
 const {StyleSheet, css} = require("aphrodite");
-const {View} = require("wonder-blocks-core");
-const {Title, Body} = require("wonder-blocks-typography");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
 const ModalLauncher = require("./modal-launcher.js").default;
 const TwoColumnModal = require("./two-column-modal.js").default;
 const OneColumnModal = require("./one-column-modal.js").default;

@@ -12,8 +12,12 @@ import Row from "./components/row.js";
 
 describe("wonder-blocks-grid", () => {
     it("example 1", () => {
-        const Color = require("wonder-blocks-color").default;
-        const {View, Text, MediaLayout} = require("wonder-blocks-core");
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {
+            View,
+            Text,
+            MediaLayout,
+        } = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -105,8 +109,12 @@ describe("wonder-blocks-grid", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const Color = require("wonder-blocks-color").default;
-        const {View, Text, MediaLayout} = require("wonder-blocks-core");
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {
+            View,
+            Text,
+            MediaLayout,
+        } = require("@khanacademy/wonder-blocks-core");
 
         const example = (
             <View style={{background: Color.offWhite}}>

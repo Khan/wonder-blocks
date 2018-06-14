@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {MediaLayout, MEDIA_MODAL_SPEC} from "wonder-blocks-core";
+import {MediaLayout, MEDIA_MODAL_SPEC} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     children: React.Node,

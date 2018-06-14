@@ -23,7 +23,7 @@ import Title from "./components/title.js";
 
 describe("wonder-blocks-typography", () => {
     it("example 1", () => {
-        const {View} = require("wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         // NOTE(mdr): I added an `id` attribute to each of these tags, to ensure that
         //     they all pass the `id` attribute correctly. This fact will be saved in
@@ -64,7 +64,7 @@ describe("wonder-blocks-typography", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const Color = require("wonder-blocks-color").default;
+        const Color = require("@khanacademy/wonder-blocks-color").default;
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({

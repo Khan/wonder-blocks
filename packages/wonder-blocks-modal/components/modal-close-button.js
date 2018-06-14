@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
 
-import Color from "wonder-blocks-color";
+import Color from "@khanacademy/wonder-blocks-color";
 
 type Props = {
     /**

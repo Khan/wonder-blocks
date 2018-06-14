@@ -3,8 +3,8 @@
 A row inside of a grid containing many Cells. Each cell has a column width of 1 and will display at different sizes of the viewport (always matching the number of available columns).
 
 ```jsx
-const Color = require("wonder-blocks-color").default;
-const {MediaLayout} = require("wonder-blocks-core");
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {MediaLayout} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
