@@ -15,7 +15,7 @@
     "@khanacademy/wonder-blocks-core": "^1.0.1"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.0.0"
+    "@khanacademy/wonder-blocks-color": "^1.0.1"
   },
   "author": "",
   "license": "MIT"
