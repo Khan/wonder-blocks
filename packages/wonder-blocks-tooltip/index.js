@@ -1,4 +1,4 @@
 // @flow
-import TooltipPortal from "./components/tooltip-portal.js";
+import Tooltip from "./components/tooltip.js";
 
-export {TooltipPortal};
+export {Tooltip};

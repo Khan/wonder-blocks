@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-tooltip example 1 1`] = `
+<div>
+  <div />
+  <div
+    style={
+      Object {
+        "border": "1px solid",
+        "height": 100,
+        "margin": 10,
+        "overflow": "auto",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "height": "200vh",
+        }
+      }
+    >
+      <div />
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      onClick={[Function]}
+    >
+      Click here!
+    </button>
+  </div>
+</div>
+`;
