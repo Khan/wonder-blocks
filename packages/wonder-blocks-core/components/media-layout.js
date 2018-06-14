@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import View from "./view.js";
 
 import {MEDIA_DEFAULT_SPEC, VALID_MEDIA_SIZES} from "../util/specs.js";
 import {mediaContextTypes} from "../util/util.js";
