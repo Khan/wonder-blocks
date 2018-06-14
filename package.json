@@ -19,7 +19,7 @@
     "build:styleguidist": "styleguidist build",
     "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
     "pretty-quick": "pretty-quick --staged",
-    "publish": "git diff --stat --exit-code HEAD && yarn build:all && lerna publish --only-explicit-updates"
+    "publish": "git diff --stat --exit-code HEAD && yarn build:all && lerna publish"
   },
   "author": "",
   "license": "MIT",
