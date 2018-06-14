@@ -1,7 +1,6 @@
 {
-  "private": true,
   "name": "@khanacademy/wonder-blocks-spacing",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "design": "v1",
   "publishConfig": {
     "access": "public"
