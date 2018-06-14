@@ -1,8 +1,7 @@
 ```js
 const {StyleSheet} = require("aphrodite");
-const {Text} = require("@khanacademy/wonder-blocks-core");
+const {Text, View} = require("@khanacademy/wonder-blocks-core");
 const Color = require("@khanacademy/wonder-blocks-color").default;
-const CircularSpinner = require("./circular-spinner.js").default;
 
 const styles = StyleSheet.create({
     contents: {

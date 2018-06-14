@@ -4,6 +4,7 @@ A row inside of a MediaLayout containing one [FlexCells](#flexcell). The FlexCel
 
 ```jsx
 const Color = require("@khanacademy/wonder-blocks-color").default;
+const {Row, FlexCell} = require("@khanacademy/wonder-blocks-grid");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({

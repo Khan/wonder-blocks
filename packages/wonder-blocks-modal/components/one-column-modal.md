@@ -2,7 +2,6 @@
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-const OneColumnModal = require("./one-column-modal.js").default;
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -61,7 +60,6 @@ const styles = StyleSheet.create({
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-const OneColumnModal = require("./one-column-modal.js").default;
 
 const styles = StyleSheet.create({
     previewSizer: {
