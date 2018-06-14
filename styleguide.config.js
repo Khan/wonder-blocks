@@ -3,6 +3,7 @@ const {createConfig, babel, postcss} = require("webpack-blocks");
 module.exports = {
     webpackConfig: createConfig([babel(), postcss()]),
     styleguideDir: "docs",
+    assetsDir: "static",
     sections: [
         {
             name: "Typography",
@@ -85,6 +86,7 @@ module.exports = {
 
     // These values control our custom styles.
     template: {
+        favicon: "favicon.ico",
         head: {
             links: [
                 {
@@ -101,7 +103,23 @@ module.exports = {
             base: '"Lato", sans-serif',
         },
     },
+    title: "Wonder Blocks",
     styles: {
+        StyleGuide: {
+            sidebar: {
+                width: "initial",
+            },
+        },
+        Logo: {
+            logo: {
+                background: "no-repeat url('logo.png')",
+                backgroundPosition: "0 0.25em",
+                paddingLeft: 40,
+                minHeight: "calc(32px + 0.5em)",
+                display: "flex",
+                alignItems: "center",
+            },
+        },
         Playground: {
             preview: {
                 // Apply Lato to example areas.
