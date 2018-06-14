@@ -3,6 +3,7 @@ const {createConfig, babel, postcss} = require("webpack-blocks");
 module.exports = {
     webpackConfig: createConfig([babel(), postcss()]),
     styleguideDir: "docs",
+    assetsDir: "static",
     sections: [
         {
             name: "Typography",
