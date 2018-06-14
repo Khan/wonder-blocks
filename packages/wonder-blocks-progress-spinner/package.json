@@ -17,6 +17,6 @@
   "dependencies": {
     "@khanacademy/wonder-blocks-color": "^1.0.0",
     "@khanacademy/wonder-blocks-core": "^1.0.0",
-    "@khanacademy/wonder-blocks-spacing": "^0.0.1"
+    "@khanacademy/wonder-blocks-spacing": "^1.0.0"
   }
 }
