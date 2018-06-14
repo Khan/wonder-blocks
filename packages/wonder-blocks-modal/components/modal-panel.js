@@ -58,6 +58,39 @@ export default class ModalPanel extends React.Component<Props> {
         onClickCloseButton: () => {},
     };
 
+    maybeRenderCloseButton() {
+        const {
+            showCloseButton,
+            onClickCloseButton,
+            color,
+            titleBar,
+        } = this.props;
+
+        if (!showCloseButton) {
+            return null;
+        }
+
+        // Figure out the background color that'll be behind the close button
+        // If a titlebar is specified then we use that, otherwise we use the
+        // default background color.
+        const topBackgroundColor = (titleBar && titleBar.props.color) || color;
+
+        return (
+            <View
+                style={[
+                    styles.closeButton,
+                    (mediaSize) =>
+                        mediaSize === "small" && styles.smallCloseButton,
+                ]}
+            >
+                <ModalCloseButton
+                    color={topBackgroundColor === "dark" ? "light" : "dark"}
+                    onClick={onClickCloseButton}
+                />
+            </View>
+        );
+    }
+
     render() {
         const {
             content,
@@ -66,7 +99,6 @@ export default class ModalPanel extends React.Component<Props> {
             footer,
             showCloseButton,
             scrollOverflow,
-            onClickCloseButton,
             color,
             style,
         } = this.props;
@@ -102,34 +134,13 @@ export default class ModalPanel extends React.Component<Props> {
             });
         }
 
-        // Figure out the background color that'll be behind the close button
-        // If a titlebar is specified then we use that, otherwise we use the
-        // default background color.
-        const topBackgroundColor = (titleBar && titleBar.props.color) || color;
-
         return (
             <View
                 style={[styles.wrapper, color === "dark" && styles.dark, style]}
             >
-                {showCloseButton && (
-                    <View
-                        style={[
-                            styles.closeButton,
-                            (mediaSize) =>
-                                mediaSize === "small" &&
-                                styles.smallCloseButton,
-                        ]}
-                    >
-                        <ModalCloseButton
-                            color={
-                                topBackgroundColor === "dark" ? "light" : "dark"
-                            }
-                            onClick={onClickCloseButton}
-                        />
-                    </View>
-                )}
                 {titleBar}
                 {mainContent}
+                {this.maybeRenderCloseButton()}
                 {!footer ||
                 (typeof footer === "object" && footer.type === ModalFooter) ? (
                     footer
