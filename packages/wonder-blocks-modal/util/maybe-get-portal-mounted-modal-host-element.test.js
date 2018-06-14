@@ -17,7 +17,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
         const result = maybeGetPortalMountedModalHostElement(candidateElement);
 
         // Assert
-        expect(result).toBe(null);
+        expect(result).toBeFalsy();
     });
 
     test("when candidate is not hosted in a modal portal, returns null", () => {
@@ -36,7 +36,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
         const result = maybeGetPortalMountedModalHostElement(candidateElement);
 
         // Assert
-        expect(result).toBe(null);
+        expect(result).toBeFalsy();
         expect(candidateElement).not.toBe(null);
     });
 
@@ -64,10 +64,12 @@ describe("maybeGetPortalMountedModalHostElement", () => {
             const candidateElement = wrapper.find("button")[0];
 
             // Act
-            const result = maybeGetPortalMountedModalHostElement(candidateElement);
+            const result = maybeGetPortalMountedModalHostElement(
+                candidateElement,
+            );
 
             // Assert
-            expect(result).toBe(null);
+            expect(result).toBeFalsy();
             expect(candidateElement).not.toBe(null);
         });
 
@@ -109,7 +111,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                     );
 
                     // Assert
-                    expect(result).not.toBe(null);
+                    expect(result).toBeTruthy();
 
                     const modalPortalElement = result && result.parentElement;
                     expect(modalPortalElement).not.toBe(null);
