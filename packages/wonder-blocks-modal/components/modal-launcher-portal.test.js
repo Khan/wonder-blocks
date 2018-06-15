@@ -3,6 +3,7 @@ import React from "react";
 import {mount} from "enzyme";
 
 import ModalLauncherPortal from "./modal-launcher-portal.js";
+import {ModalLauncherPortalAttributeName} from "../util/constants.js";
 
 describe("ModalPortal", () => {
     test("Mounts its children in document.body", (done) => {
@@ -15,7 +16,7 @@ describe("ModalPortal", () => {
                 let parent = element.parentElement;
                 while (
                     parent &&
-                    (parent.hasAttribute("data-modal-launcher-portal") ||
+                    (parent.hasAttribute(ModalLauncherPortalAttributeName) ||
                         parent.hasAttribute("data-reactroot"))
                 ) {
                     parent = parent.parentNode;
