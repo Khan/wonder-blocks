@@ -4,13 +4,11 @@
 // edit packages/wonder-blocks-progress-spinner/docs.md and run `npm run gen-snapshot-tests`.
 import React from "react";
 import renderer from "react-test-renderer";
-import CircularSpinner from "./components/circular-spinner.js";
+import ProgressSpinner from "./components/progress-spinner.js";
 
 describe("wonder-blocks-progress-spinner", () => {
     it("example 1", () => {
-        const {CircularSpinner} = require("./index.js");
-
-        const example = <CircularSpinner />;
+        const example = <ProgressSpinner />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

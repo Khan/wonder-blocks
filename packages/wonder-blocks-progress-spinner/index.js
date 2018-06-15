@@ -1,2 +1,2 @@
 // @flow
-export {default as CircularSpinner} from "./components/circular-spinner.js";
+export {default} from "./components/progress-spinner.js";
