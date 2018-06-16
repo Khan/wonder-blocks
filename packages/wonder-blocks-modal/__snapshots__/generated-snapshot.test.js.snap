@@ -1,0 +1,3267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-modal example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 32,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      onClick={[Function]}
+    >
+      Standard modal
+    </button>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      onClick={[Function]}
+    >
+      Two-column modal
+    </button>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      onClick={[Function]}
+    >
+      One-column modal
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": "81.25%",
+          "margin": 0,
+          "maxHeight": 624,
+          "maxWidth": 960,
+          "minHeight": 200,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "93.75%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "background": "white",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flex": "1 1 auto",
+            "flexDirection": "column",
+            "height": "100%",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgba(33,36,44,0.16)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 auto",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 64,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 8,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": "1",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "center",
+                "zIndex": 0,
+              }
+            }
+          >
+            <h3
+              className=""
+              id="wb-modal-title"
+              style={
+                Object {
+                  "@media (max-width: 1023px)": Object {
+                    "fontSize": 22,
+                    "lineHeight": "26px",
+                  },
+                  "@media (min-width: 1024px)": Object {
+                    "fontSize": 24,
+                    "lineHeight": "28px",
+                  },
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato",
+                  "fontWeight": 700,
+                  "marginBottom": 0,
+                  "marginTop": 0,
+                }
+              }
+            >
+              Title
+            </h3>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "flex": 1,
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "overflow": "auto",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 64,
+                "paddingBottom": 32,
+                "paddingTop": 32,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": "0 auto",
+                  "maxWidth": 544,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "left": 4,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 8,
+              "zIndex": 0,
+            }
+          }
+        >
+          <button
+            aria-label="Close modal"
+            className="button_wdpcqp-o_O-dark_tzddsx"
+            onClick={[Function]}
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderTopColor": "rgba(33,36,44,0.16)",
+              "borderTopStyle": "solid",
+              "borderTopWidth": 1,
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 auto",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+              "margin": 0,
+              "minHeight": 64,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              type="button"
+            >
+              Button (no-op)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": "81.25%",
+          "margin": 0,
+          "maxHeight": 624,
+          "maxWidth": 960,
+          "minHeight": 200,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "93.75%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "background": "white",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flex": "1 1 auto",
+            "flexDirection": "column",
+            "height": "100%",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgba(33,36,44,0.16)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 auto",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 64,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 8,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": "1",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "center",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <h4
+                className=""
+                id="wb-modal-title"
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 20,
+                    "fontWeight": 700,
+                    "lineHeight": "24px",
+                    "marginBottom": 0,
+                    "marginTop": 0,
+                  }
+                }
+              >
+                Title
+              </h4>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 14,
+                    "fontWeight": 400,
+                    "lineHeight": "18px",
+                  }
+                }
+              >
+                Wow, look at all this content!
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "flex": 1,
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "overflow": "auto",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 64,
+                "paddingBottom": 32,
+                "paddingTop": 32,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+              </span>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </span>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "left": 4,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 8,
+              "zIndex": 0,
+            }
+          }
+        >
+          <button
+            aria-label="Close modal"
+            className="button_wdpcqp-o_O-dark_tzddsx"
+            onClick={[Function]}
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderTopColor": "rgba(33,36,44,0.16)",
+              "borderTopStyle": "solid",
+              "borderTopWidth": 1,
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 auto",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+              "margin": 0,
+              "minHeight": 64,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              type="button"
+            >
+              Button (no-op)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": "81.25%",
+          "margin": 0,
+          "maxHeight": 624,
+          "maxWidth": 960,
+          "minHeight": 200,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "93.75%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "background": "white",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flex": "1 1 auto",
+            "flexDirection": "column",
+            "height": "100%",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "rgba(33,36,44,0.16)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 auto",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 64,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 8,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": "1",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "center",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <h4
+                className=""
+                id="wb-modal-title"
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 20,
+                    "fontWeight": 700,
+                    "lineHeight": "24px",
+                    "marginBottom": 0,
+                    "marginTop": 0,
+                  }
+                }
+              >
+                Title
+              </h4>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 14,
+                    "fontWeight": 400,
+                    "lineHeight": "18px",
+                  }
+                }
+              >
+                Wow, look at all this content!
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "flex": 1,
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "overflow": "auto",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 64,
+                "paddingBottom": 32,
+                "paddingTop": 32,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+              </span>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </span>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "left": 4,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 8,
+              "zIndex": 0,
+            }
+          }
+        >
+          <button
+            aria-label="Close modal"
+            className="button_wdpcqp-o_O-dark_tzddsx"
+            onClick={[Function]}
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderTopColor": "rgba(33,36,44,0.16)",
+              "borderTopStyle": "solid",
+              "borderTopWidth": 1,
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 auto",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+              "margin": 0,
+              "minHeight": 64,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              type="button"
+            >
+              Button (no-op)
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "background": "#0a2a66",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "display": "flex",
+            "flex": "1 1 auto",
+            "flexDirection": "column",
+            "height": "100%",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "flex": 1,
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "overflow": "auto",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": "0 64px 0 0",
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+              </span>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </span>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": "81.25%",
+          "margin": 0,
+          "maxHeight": 624,
+          "maxWidth": 960,
+          "minHeight": 200,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "93.75%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "background": "white",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flex": "1 1 auto",
+            "flexDirection": "column",
+            "height": "100%",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#0a2a66",
+              "borderBottomColor": "rgba(255,255,255,0.64)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "display": "flex",
+              "flex": "0 0 auto",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 64,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 8,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": "1",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "center",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <h4
+                className=""
+                id="wb-modal-title"
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 20,
+                    "fontWeight": 700,
+                    "lineHeight": "24px",
+                    "marginBottom": 0,
+                    "marginTop": 0,
+                  }
+                }
+              >
+                Title
+              </h4>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 14,
+                    "fontWeight": 400,
+                    "lineHeight": "18px",
+                  }
+                }
+              >
+                Wow, look at all this content!
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "flex": 1,
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "overflow": "auto",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "background": "#0a2a66",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "color": "#ffffff",
+                "display": "flex",
+                "flex": "0 0 auto",
+                "flexDirection": "row",
+                "margin": 0,
+                "maxHeight": 108,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingBottom": 8,
+                "paddingLeft": 64,
+                "paddingRight": 64,
+                "paddingTop": 8,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </span>
+            </div>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 64,
+                "paddingBottom": 32,
+                "paddingTop": 32,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+              </span>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </span>
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": 400,
+                    "lineHeight": "22px",
+                  }
+                }
+              >
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "left": 4,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 8,
+              "zIndex": 0,
+            }
+          }
+        >
+          <button
+            aria-label="Close modal"
+            className="button_wdpcqp-o_O-light_1lslapz"
+            onClick={[Function]}
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderTopColor": "rgba(33,36,44,0.16)",
+              "borderTopStyle": "solid",
+              "borderTopWidth": 1,
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 auto",
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+              "margin": 0,
+              "minHeight": 64,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 8,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              type="button"
+            >
+              Button (no-op)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": "60.42%",
+          "margin": 0,
+          "minHeight": 464,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "86.72%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#0a2a66",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "display": "flex",
+              "flex": "0 0 50%",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 64,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h1
+                  className=""
+                  style={
+                    Object {
+                      "@media (max-width: 1023px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "@media (min-width: 1024px)": Object {
+                        "fontSize": 36,
+                        "lineHeight": "40px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontWeight": 900,
+                      "marginBottom": 16,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Sidebar
+                </h1>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "left": 4,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "absolute",
+                "top": 8,
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              aria-label="Close modal"
+              className="button_wdpcqp-o_O-light_1lslapz"
+              onClick={[Function]}
+              type="button"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "white",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 50%",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 64,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h1
+                  className=""
+                  style={
+                    Object {
+                      "@media (max-width: 1023px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "@media (min-width: 1024px)": Object {
+                        "fontSize": 36,
+                        "lineHeight": "40px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontWeight": 900,
+                      "marginBottom": 16,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Contents
+                </h1>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": "60.42%",
+          "margin": 0,
+          "minHeight": 464,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "86.72%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#0a2a66",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "display": "flex",
+              "flex": "0 0 50%",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 64,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h1
+                  className=""
+                  style={
+                    Object {
+                      "@media (max-width: 1023px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "@media (min-width: 1024px)": Object {
+                        "fontSize": 36,
+                        "lineHeight": "40px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontWeight": 900,
+                      "marginBottom": 16,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Sidebar
+                </h1>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "left": 4,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "absolute",
+                "top": 8,
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              aria-label="Close modal"
+              className="button_wdpcqp-o_O-light_1lslapz"
+              onClick={[Function]}
+              type="button"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "white",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 50%",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 64,
+                  "paddingBottom": 32,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h1
+                  className=""
+                  style={
+                    Object {
+                      "@media (max-width: 1023px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "@media (min-width: 1024px)": Object {
+                        "fontSize": 36,
+                        "lineHeight": "40px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontWeight": 900,
+                      "marginBottom": 16,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Contents
+                </h1>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderTopColor": "rgba(33,36,44,0.16)",
+                "borderTopStyle": "solid",
+                "borderTopWidth": 1,
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": "0 0 auto",
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+                "margin": 0,
+                "minHeight": 64,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <button>
+                Sample Button
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 8 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "background": "#ffffff",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "64.65%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "white",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "1 1 auto",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 64,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h1
+                  className=""
+                  style={
+                    Object {
+                      "@media (max-width: 1023px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "@media (min-width: 1024px)": Object {
+                        "fontSize": 36,
+                        "lineHeight": "40px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontWeight": 900,
+                      "marginBottom": 16,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Title
+                </h1>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "left": 4,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "absolute",
+                "top": 8,
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              aria-label="Close modal"
+              className="button_wdpcqp-o_O-dark_tzddsx"
+              onClick={[Function]}
+              type="button"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "background": "#ffffff",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "64.65%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "white",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "1 1 auto",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 64,
+                  "paddingBottom": 32,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h1
+                  className=""
+                  style={
+                    Object {
+                      "@media (max-width: 1023px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "@media (min-width: 1024px)": Object {
+                        "fontSize": 36,
+                        "lineHeight": "40px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontWeight": 900,
+                      "marginBottom": 16,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Title
+                </h1>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "left": 4,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "absolute",
+                "top": 8,
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              aria-label="Close modal"
+              className="button_wdpcqp-o_O-dark_tzddsx"
+              onClick={[Function]}
+              type="button"
+            >
+              ×
+            </button>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderTopColor": "rgba(33,36,44,0.16)",
+                "borderTopStyle": "solid",
+                "borderTopWidth": 1,
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": "0 0 auto",
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+                "margin": 0,
+                "minHeight": 64,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <button>
+                Sample Button
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
