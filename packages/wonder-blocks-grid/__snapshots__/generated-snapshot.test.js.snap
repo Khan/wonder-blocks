@@ -1209,3 +1209,2090 @@ exports[`wonder-blocks-grid example 2 1`] = `
   </div>
 </div>
 `;
+
+exports[`wonder-blocks-grid example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "background": "#21242c",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": "5px 0",
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          1
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-grid example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "background": "#21242c",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 200,
+              "MsFlexPreferredSize": 200,
+              "WebkitFlexBasis": 200,
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 200,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FixedWidthCell (200px)
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-grid example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "background": "#21242c",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-grid example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "background": "#21242c",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-grid example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "background": "#21242c",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#ffffff",
+          "border": "1px solid #ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "16px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 32,
+              "MsFlexPreferredSize": 32,
+              "WebkitFlexBasis": 32,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 32,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            FlexCell
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

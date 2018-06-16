@@ -107,3 +107,178 @@ exports[`wonder-blocks-core example 3 1`] = `
   type="text"
 />
 `;
+
+exports[`wonder-blocks-core example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "background": "#21242c",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "@media (min-width: 1168px)": Object {
+              "margin": "0 auto",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "maxWidth": 1120,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#ffb100",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "height": 100,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 5,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+              }
+            }
+          >
+            Layout Size: 
+            large
+             Total Columns:
+             
+            12
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 24,
+              "MsFlexPreferredSize": 24,
+              "WebkitFlexBasis": 24,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 24,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
