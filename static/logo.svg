@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Wonder Blocks logo</title>
+    <g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#7ED321" x="0" y="0" width="300" height="300"></rect>
+        <circle fill="#D0021B" cx="150" cy="150" r="75"></circle>
+        <rect fill="#4A90E2" x="0" y="0" width="150" height="150"></rect>
+        <rect fill="#F8E71C" x="150" y="0" width="150" height="150"></rect>
+        <circle fill="#4A90E2" cx="225.5" cy="75.5" r="37.5"></circle>
+        <circle fill="#F8E71C" cx="75.5" cy="75.5" r="37.5"></circle>
+    </g>
+</svg>
