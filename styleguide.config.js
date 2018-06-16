@@ -112,8 +112,9 @@ module.exports = {
         },
         Logo: {
             logo: {
-                background: "no-repeat url('logo.png')",
+                background: "no-repeat url('logo.svg')",
                 backgroundPosition: "0 0.25em",
+                backgroundSize: 32,
                 paddingLeft: 40,
                 minHeight: "calc(32px + 0.5em)",
                 display: "flex",
