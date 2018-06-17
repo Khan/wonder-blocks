@@ -55,7 +55,7 @@ const _generateSVG = (size, light) => {
             viewBox={`0 0 ${height} ${height}`}
             style={styles.loadingSpinner}
         >
-            <StyledPath style={{fill: color}} fill-rule="nonzero" d={path} />
+            <StyledPath style={{fill: color}} fillRule="nonzero" d={path} />
         </StyledSVG>
     );
 
