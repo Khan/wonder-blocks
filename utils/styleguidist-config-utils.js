@@ -20,7 +20,7 @@ function getComponentFilesFromSection(section) {
     // 3. A list of file paths (not globs)
     if (typeof section.components === "string") {
         return glob.sync(section.components, {ignore: ignored});
-    } else if (typeof section.compontents === "function") {
+    } else if (typeof section.components === "function") {
         return section.components();
     } else {
         return section.components || [];
