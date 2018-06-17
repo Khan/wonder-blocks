@@ -6,6 +6,11 @@ module.exports = {
     assetsDir: "static",
     sections: [
         {
+            private: true,
+            name: "Wonder Blocks Documentation",
+            description: "This section only appears to developers. If you want to include content that only appears in the development server, add `private: true` to the section configuration in `styleguide.config.js`."
+        },
+        {
             name: "Typography",
             content: "packages/wonder-blocks-typography/docs.md",
             components: "packages/wonder-blocks-typography/components/*.js",
@@ -23,7 +28,7 @@ module.exports = {
             content: "packages/wonder-blocks-layout/docs.md",
         },
         {
-            name: "Grid (Prototype)",
+            name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",
         },
