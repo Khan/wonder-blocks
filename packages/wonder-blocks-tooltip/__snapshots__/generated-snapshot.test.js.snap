@@ -50,3 +50,378 @@ exports[`wonder-blocks-tooltip example 1 1`] = `
   </div>
 </div>
 `;
+
+exports[`wonder-blocks-tooltip example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    id="tooltipanchor-justtext-status"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "backgroundColor": "lightgray",
+        "marginBottom": 8,
+      }
+    }
+  >
+    No anchor
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+      }
+    }
+  >
+    This is a string without any other elements
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    id="tooltipanchor-textelement-status"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "backgroundColor": "lightgray",
+        "marginBottom": 8,
+      }
+    }
+  >
+    No anchor
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+      }
+    }
+  >
+    Something we want to anchor
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    id="tooltipanchor-interactive-status"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "backgroundColor": "lightgray",
+        "marginBottom": 8,
+      }
+    }
+  >
+    Anchor is inactive
+  </span>
+  <a
+    href="#tooltip"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+        }
+      }
+    >
+      Another thing
+    </span>
+  </a>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    id="tooltipanchor-embedded-status"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "backgroundColor": "lightgray",
+        "marginBottom": 8,
+      }
+    }
+  >
+    Anchor is inactive
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+      }
+    }
+  >
+    Some text with this
+     
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "border": "solid 1px red",
+        }
+      }
+    >
+      anchor
+    </span>
+     
+    in the middle
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    id="tooltipanchor-complex-status"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "backgroundColor": "lightgray",
+        "marginBottom": 8,
+      }
+    }
+  >
+    Anchor is inactive
+  </span>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+        }
+      }
+    >
+      Some rich content with a focusable component.
+    </span>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+        }
+      }
+    >
+      We want the tooltip to show when the input is focused but not require the whole content to be focusable.
+    </span>
+    <input
+      type="text"
+    />
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    id="tooltipanchor-nofocusivity-status"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "backgroundColor": "lightgray",
+        "marginBottom": 8,
+      }
+    }
+  >
+    Anchor is inactive
+  </span>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+        }
+      }
+    >
+      Some rich content with a focusable component.
+    </span>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+        }
+      }
+    >
+      We want the tooltip to show when the input is focused but not require the whole content to be focusable.
+    </span>
+    <input
+      type="text"
+    />
+  </div>
+</div>
+`;
