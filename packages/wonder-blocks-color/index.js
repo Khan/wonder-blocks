@@ -18,6 +18,7 @@ const Color = {
     offBlack50: fade(offBlack, 0.5),
     offBlack32: fade(offBlack, 0.32),
     offBlack16: fade(offBlack, 0.16),
+    offBlack10: fade(offBlack, 0.1),
     offBlack8: fade(offBlack, 0.08),
 
     offWhite: "#f7f8fa",
