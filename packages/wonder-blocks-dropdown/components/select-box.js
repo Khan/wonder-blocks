@@ -51,8 +51,8 @@ export default class SelectBox extends React.Component<Props> {
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
-        // TODO: should ButtonCore be exposed so we can use that to make this
-        // custom button-like opener?
+        // TODO(sophie): should ButtonCore be public so we can use that to make
+        // this custom button-like opener?
 
         const textStyles = [
             isPlaceholder
@@ -73,6 +73,7 @@ export default class SelectBox extends React.Component<Props> {
                     const {hovered, focused, pressed} = state;
                     return (
                         <StyledButton
+                            role="menu"
                             style={[
                                 styles.shared,
                                 stateStyles.default,

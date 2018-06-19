@@ -75,6 +75,7 @@ describe("wonder-blocks-dropdown", () => {
                 <Strut size={8} />
 
                 <MultiSelectMenu
+                    displaySelectShortcuts={true}
                     items={[
                         {
                             label: "Anesu",

@@ -6,7 +6,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import Spacing, {Strut} from "@khanacademy/wonder-blocks-spacing";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     View,
@@ -27,10 +27,10 @@ type SelectProps = {
      */
     label: string,
     /**
-     * Callback for when this item is pressed. Passes value of the item.
+     * Callback for when this item is pressed. Passes value of the item and the
+     * new selection state of the item.
      */
-    // TODO: maybe pass new state value as well
-    onToggle: (value: string) => void,
+    onToggle: (value: string, selectionState: boolean) => void,
     /**
      * Whether this item is selected.
      */
@@ -50,8 +50,8 @@ type SelectProps = {
      * Whether this menu item is disabled. A disabled item may not be selected.
      */
     disabled?: boolean,
-    // TODO: figure out href, clientNav, onClick stuff
-    // onClick?: () => void,
+    // TODO(sophie): figure out href, clientNav, onClick stuff
+    onClick?: (value: string, selectionState: boolean) => void,
     /**
      * Custom styles.
      */
@@ -76,7 +76,7 @@ const Check = (props: CheckProps) => {
             role="img"
             width="16px"
             height="16px"
-            viewBox="0 0 9.8 9.8"
+            viewBox="0 0 11.8 11.8"
             aria-hidden="true"
         >
             {selected && (
@@ -141,7 +141,7 @@ export default class SelectItem extends React.Component<SelectProps> {
         return (
             <ClickableBehavior
                 disabled={disabled}
-                onClick={() => onToggle(value)}
+                onClick={() => onToggle(value, !selected)}
             >
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
@@ -159,14 +159,19 @@ export default class SelectItem extends React.Component<SelectProps> {
 
                     return (
                         <StyledLink style={allStyles} {...handlers}>
-                            <View style={[styles.itemContainer]}>
+                            <View
+                                style={[styles.itemContainer]}
+                                role="menuitemcheckbox"
+                                aria-checked={selected ? "true" : "false"}
+                            >
                                 {variant === "check" ? (
                                     <Check selected={selected} {...state} />
                                 ) : (
                                     <Checkbox selected={selected} {...state} />
                                 )}
-                                {false && <Strut size={Spacing.xSmall} />}
-                                <LabelLarge>{label}</LabelLarge>
+                                <LabelLarge style={styles.label}>
+                                    {label}
+                                </LabelLarge>
                             </View>
                         </StyledLink>
                     );
@@ -180,6 +185,10 @@ const styles = StyleSheet.create({
     shared: {
         color: offBlack,
         cursor: "pointer",
+    },
+
+    label: {
+        paddingLeft: Spacing.xSmall,
     },
 
     // hover and focus states
@@ -197,7 +206,7 @@ const styles = StyleSheet.create({
     // disabled state
     disabled: {
         color: offBlack32,
-        cursor: "auto",
+        cursor: "default",
     },
 
     itemContainer: {
@@ -205,5 +214,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         height: 40,
         padding: 8,
+        whiteSpace: "nowrap",
     },
 });

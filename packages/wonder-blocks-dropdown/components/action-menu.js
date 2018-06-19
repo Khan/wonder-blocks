@@ -33,6 +33,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
 
         return (
             <Button
+                role="menu"
                 color={"default"}
                 disabled={disabled}
                 kind={"tertiary"}
@@ -52,7 +53,7 @@ type ActionItemProps = {
     label: string,
     /** Callback to perform the action. */
     onClick: () => void,
-    // TODO:incorporate
+    // TODO(sophie):incorporate
     selected?: boolean,
 };
 

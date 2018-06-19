@@ -31,7 +31,7 @@ type ActionProps = {
      * checks or checkboxes.
      */
     indent?: boolean,
-    // TODO: figure out href, clientNav, onClick stuff
+    // TODO(sophie): figure out href, clientNav, onClick stuff
     onClick: () => void,
     /**
      * Custom styles.
@@ -71,7 +71,10 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     return (
                         <StyledLink style={allStyles} {...handlers}>
-                            <View style={[styles.itemContainer]}>
+                            <View
+                                style={[styles.itemContainer]}
+                                role="menuitem"
+                            >
                                 {indent && <Strut size={Spacing.medium} />}
                                 <LabelLarge>{label}</LabelLarge>
                             </View>
@@ -104,7 +107,7 @@ const styles = StyleSheet.create({
     // disabled state
     disabled: {
         color: offBlack32,
-        cursor: "auto",
+        cursor: "default",
     },
 
     itemContainer: {
@@ -112,5 +115,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         height: 40,
         padding: "8px 16px",
+        whiteSpace: "nowrap",
     },
 });

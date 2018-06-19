@@ -4,9 +4,11 @@
 
 import * as React from "react";
 
+import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
+import SeparatorItem from "./separator-item.js";
 
 type SelectItemProps = {
     /** Whether this item is disabled. Default false. */
@@ -17,8 +19,6 @@ type SelectItemProps = {
     selected: boolean,
     /** Value of this item. Treat as a key. */
     value: string,
-    // TODO: figure this out
-    // onClick: () => void,
 };
 
 type MenuProps = {
@@ -38,20 +38,17 @@ type MenuProps = {
      * For example, if selectItemType is "student" and there are two students
      * selected, the SelectBox would display "2 students"
      */
-    // TODO: add abstraction to selectbox?
     selectItemType: string,
 
     /**
      * Whether to display shortcuts for Select All and Select None.
      */
-    // TODO: implement
     displaySelectShortcuts?: boolean,
 
     /**
      * Optional placeholder for the opening component when there are no items
      * selected.
      */
-    // TODO: incorporate
     placeholder?: string,
 
     /**
@@ -96,7 +93,6 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
         disabled: false,
         displaySelectShortcuts: false,
         light: false,
-        placeholder: "",
     };
 
     constructor(props: MenuProps) {
@@ -115,20 +111,20 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
         }));
     }
 
-    handleSelected(selectedValue: string) {
+    handleSelected(selectedValue: string, selectionState: boolean) {
         const {selected} = this.state;
         const {onChange} = this.props;
 
         let newValues = selected || [];
 
-        if (newValues.includes(selectedValue)) {
+        if (selectionState) {
+            newValues = [...newValues, selectedValue];
+        } else {
             const location = newValues.indexOf(selectedValue);
             newValues = [
                 ...newValues.slice(0, location),
                 ...newValues.slice(location + 1),
             ];
-        } else {
-            newValues = [...newValues, selectedValue];
         }
 
         this.setState({
@@ -138,21 +134,39 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
         onChange(newValues.sort());
     }
 
+    handleSelectAll() {
+        const allValues = this.props.items.map((item) => item.value);
+        this.setState({
+            selected: allValues,
+        });
+    }
+
+    handleSelectNone() {
+        this.setState({
+            selected: [],
+        });
+    }
+
     render() {
         const {
             alignment,
+            displaySelectShortcuts,
             disabled,
             items,
             light,
             // onChange,
-            // placeholder,
+            placeholder,
             selectItemType,
             style,
         } = this.props;
 
         const {open, selected} = this.state;
 
-        const menuText = `${selected.length} ${selectItemType}`;
+        // TODO(sophie): figure out how to configure plurals for i18n
+        const menuText =
+            selected.length === 0 && placeholder
+                ? placeholder
+                : `${selected.length} ${selectItemType}`;
 
         const opener = (
             <SelectBox
@@ -170,7 +184,9 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
-                    onToggle={(v) => this.handleSelected(v)}
+                    onToggle={(value, state) =>
+                        this.handleSelected(value, state)
+                    }
                     selected={selected.includes(item.value)}
                     value={item.value}
                     // onClick={item.onClick}
@@ -178,6 +194,32 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
                 />
             );
         });
+
+        if (displaySelectShortcuts) {
+            // TODO(sophie): translate for i18n
+            const selectAll = (
+                <ActionItem
+                    label={`Select all (${items.length})`}
+                    disabled={items.length === selected.length}
+                    indent={true}
+                    onClick={() => this.handleSelectAll()}
+                />
+            );
+
+            const selectNone = (
+                <ActionItem
+                    label={"Select none"}
+                    disabled={selected.length === 0}
+                    indent={true}
+                    onClick={() => this.handleSelectNone()}
+                />
+            );
+
+            const separator = <SeparatorItem />;
+
+            // Add options at beginning, add a separator
+            menuItems.unshift([selectAll, selectNone, separator]);
+        }
 
         return (
             <DropdownCore

@@ -31,7 +31,7 @@ type DropdownCoreProps = {
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    // TODO: make this work
+    // TODO(sophie): make this work
     alignment?: "left" | "right",
     /**
      * Optional styling to add.

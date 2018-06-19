@@ -7,7 +7,7 @@ import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
 
-//TODO: dedupe
+//TODO(sophie): dedupe with def in multi-select-menu
 type SelectItemProps = {
     /** Whether this item is disabled. Default false. */
     disabled?: boolean,
@@ -17,8 +17,6 @@ type SelectItemProps = {
     selected: boolean,
     /** Value of this item. Treat as a key. */
     value: string,
-    // TODO: figure this out
-    // onClick: () => void,
 };
 
 type MenuProps = {
@@ -105,6 +103,7 @@ export default class SingleSelectMenu extends React.Component<
         const {onChange} = this.props;
 
         this.setState({
+            open: false, // close the menu upon selection
             selected: selectedValue,
         });
 
@@ -124,8 +123,11 @@ export default class SingleSelectMenu extends React.Component<
 
         const {selected, open} = this.state;
 
-        // TODO: display displayText instead of value
-        const menuText = `${selected ? selected : placeholder}`;
+        const menuText = `${
+            selected
+                ? items.filter((item) => item.value === selected)[0].label
+                : placeholder
+        }`;
 
         const opener = (
             <SelectBox
@@ -143,7 +145,7 @@ export default class SingleSelectMenu extends React.Component<
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
-                    onToggle={(v) => this.handleSelected(v)}
+                    onToggle={(value, state) => this.handleSelected(value)}
                     selected={this.state.selected === item.value}
                     value={item.value}
                     // onClick={item.onClick}
