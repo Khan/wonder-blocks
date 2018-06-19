@@ -12,7 +12,6 @@ export type StyleType<T: Object> = any; // eslint-disable-line no-unused-vars
 export type TextTag = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/roles#role_definitions
-// abstract role
 type roles =
     | "alert"
     | "alertdialog"
@@ -85,6 +84,7 @@ type roles =
     | "treegrid"
     | "treeitem"
     | "widget" // abstract role
+    // abstract role
     | "window";
 
 type IdRef = string;
