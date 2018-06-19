@@ -1,14 +1,17 @@
 // @flow
 import * as React from "react";
-import * as Popper from "react-popper";
+import {Popper} from "react-popper";
 
-import TooltipPortal from "./tooltip-portal.js";
+import {Text as WbText} from "@khanacademy/wonder-blocks-core";
+
+import TooltipPortalMounter from "./tooltip-portal-mounter";
+import TooltipAnchor from "./tooltip-anchor.js";
 
 type Props = {|
     // The content for anchoring the tooltip.
     // This component will be used to position the tooltip.
     // TODO(somewhatabstract): Limit to a single component
-    children: React.Element<any>,
+    children: React.Element<any> | string,
 
     // The content to render in the tooltip.
     // TODO(somewhatabstract): Update to allow TooltipContent
@@ -18,7 +21,7 @@ type Props = {|
 |};
 
 type State = {
-    refAnchor: null | Text | Element,
+    refAnchor: ?HTMLElement,
 };
 
 export default class Tooltip extends React.Component<Props, State> {
@@ -37,13 +40,22 @@ export default class Tooltip extends React.Component<Props, State> {
         return data;
     }
 
-    refAnchor(ref: ?HTMLDivElement) {
+    _refAnchor(ref: ?Element) {
         if (ref && ref !== this.state.refAnchor) {
-            this.setState({refAnchor: ref});
+            this.setState({refAnchor: ((ref: any): HTMLElement)});
         }
     }
 
-    render() {
+    _renderAnchorElement() {
+        const {children} = this.props;
+        if (typeof children === "string") {
+            return <WbText>{children}</WbText>;
+        } else {
+            return children;
+        }
+    }
+
+    _renderPortalContent(): React.Element<typeof Popper> {
         const content = (
             <div>
                 <div>{this.props.content}</div>
@@ -55,55 +67,50 @@ export default class Tooltip extends React.Component<Props, State> {
                 <div>{this.props.content}</div>
             </div>
         );
+        console.log(this.state.refAnchor);
         return (
-            <div ref={(r) => this.refAnchor(r)}>
-                {this.state.refAnchor && (
-                    <Popper.Manager>
-                        <div>
-                            <Popper.Reference>
-                                {({ref}) => (
-                                    // TODO(somewhatabstract): Use a render prop for tooltip so that we can get a ref to the anchored things without wrapping them.
-                                    <div ref={ref}>{this.props.children}</div>
-                                )}
-                            </Popper.Reference>
-                            <TooltipPortal anchorElement={this.state.refAnchor}>
-                                <Popper.Popper
-                                    placement="left"
-                                    modifiers={{
-                                        preventOverflow: {enabled: false},
-                                        kacustom: {
-                                            enabled: true,
-                                            fn: (data) => this.kacustom(data),
-                                        },
-                                    }}
-                                >
-                                    {({
-                                        ref,
-                                        outOfBoundaries,
-                                        style,
-                                        placement,
-                                        arrowProps,
-                                    }) => (
-                                        <div
-                                            data-placement={placement}
-                                            ref={ref}
-                                            style={{
-                                                ...style,
-                                                pointerEvents: "none",
-                                                backgroundColor: outOfBoundaries
-                                                    ? "red"
-                                                    : "purple",
-                                            }}
-                                        >
-                                            {content}
-                                        </div>
-                                    )}
-                                </Popper.Popper>
-                            </TooltipPortal>
-                        </div>
-                    </Popper.Manager>
+            <Popper
+                referenceElement={this.state.refAnchor}
+                placement="left"
+                modifiers={{
+                    kacustom: {
+                        enabled: true,
+                        fn: (data) => this.kacustom(data),
+                    },
+                }}
+            >
+                {({
+                    ref,
+                    outOfBoundaries,
+                    style,
+                    placement,
+                    arrowProps,
+                }) => (
+                    <div
+                        data-placement={placement}
+                        ref={ref}
+                        style={{
+                            ...style,
+                            pointerEvents: "none",
+                            backgroundColor: outOfBoundaries
+                                ? "red"
+                                : "purple",
+                        }}
+                    >
+                        {content}
+                    </div>
                 )}
-            </div>
+            </Popper>
+        );
+    }
+
+    render() {
+        return (
+            <TooltipAnchor onStateChanged={(a) => {}} anchorRef={r => this._refAnchor(r)}>
+                <TooltipPortalMounter portalContent={this._renderPortalContent()}>
+                    {this._renderAnchorElement()}
+                </TooltipPortalMounter>
+            </TooltipAnchor>
         );
     }
 }

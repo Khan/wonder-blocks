@@ -11,14 +11,14 @@ import {
 } from "@khanacademy/wonder-blocks-modal";
 
 import {TooltipPortalAttributeName} from "../util/constants.js";
-import TooltipPortal from "./tooltip-portal.js";
+import TooltipPortalMounter from "./tooltip-portal-mounter";
 
 type PortalMountTesterProps = {|
     refChild: (Element | ?React.Component<*, *>) => mixed,
 |};
 
 type PortalMountTesterState = {
-    anchor: null | Element | Text,
+    anchor: ?Element,
 };
 
 /**
@@ -37,20 +37,18 @@ class PortalMountTester extends React.Component<
     updateAnchorRef(node) {
         if (node) {
             const element = ReactDOM.findDOMNode(node);
-            if (this.state.anchor !== element) {
+            if (this.state.anchor !== element && !(element instanceof Text)) {
                 this.setState({anchor: element});
             }
         }
     }
 
     render() {
+        const portalContent = <View ref={(r) => this.props.refChild(r)} />;
         return (
-            <View>
+            <TooltipPortalMounter portalContent={portalContent}>
                 <View ref={(r) => this.updateAnchorRef(r)}>Anchor</View>
-                <TooltipPortal anchorElement={this.state.anchor}>
-                    <View ref={(r) => this.props.refChild(r)} />
-                </TooltipPortal>
-            </View>
+            </TooltipPortalMounter>
         );
     }
 }

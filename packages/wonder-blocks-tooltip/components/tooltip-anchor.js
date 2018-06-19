@@ -5,20 +5,21 @@
  */
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {Text as WbText} from "@khanacademy/wonder-blocks-core";
+
+import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 
 // NOTE(somewhatabstract): Jest snapshots don't like findDOMNode, so we need to
 // detect that.
 const _isJest = typeof jest !== "undefined";
 
 type Props = {|
-    // The node that will be the tooltip anchor.
-    // This must be a single element. Text is not supported.
-    children: React.Element<any> | string,
+    // The content for anchoring the tooltip.
+    // This must be a single element or string.
+    children: React.Element<typeof TooltipPortalMounter>,
 
     // Callback to be invoked whenever the anchor changes state from active to
     // inactive or vice-versa.
-    onStateChanged: (active: boolean) => void,
+    onStateChanged: (active: boolean) => mixed,
 
     // Callback to be invoked when the anchored content is mounted.
     // This provides a reference to the anchored content, which can then be
@@ -31,7 +32,7 @@ type Props = {|
     // receive focus or contains an element that can.
     // Use good judgement when overriding this value, the tooltip content should
     // be accessible via keyboard in all circumstances where the tooltip would
-    // appear using the mouse, so very those usecases.
+    // appear using the mouse, so very those use-cases.
     forceAnchorFocusivity?: boolean,
 |};
 
@@ -113,7 +114,7 @@ export default class TooltipAnchor extends React.Component<Props> {
             // use pointer devices nor assistive technology like screen readers.
             anchorNode.setAttribute("tabindex", "0");
         } else if (currentTabIndex) {
-            anchorNode.setAttribute("tabindex", undefined);
+            anchorNode.removeAttribute("tabindex");
         }
     }
 
@@ -149,14 +150,6 @@ export default class TooltipAnchor extends React.Component<Props> {
     }
 
     render() {
-        const {children} = this.props;
-
-        // If we are just rendering a string, we need to wrap it in something
-        // to which we can anchor.
-        if (typeof children === "string") {
-            return <WbText>{children}</WbText>;
-        } else {
-            return this.props.children;
-        }
+        return this.props.children;
     }
 }

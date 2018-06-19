@@ -6,17 +6,17 @@ import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-
 
 import {TooltipPortalAttributeName} from "../util/constants.js";
 
-type Props = {|
-    // TODO(somewhatabstract): Tell the portal where to mount directly
-    // rather than have it figure it out.
-    // The element that the tooltip is anchored against.
-    // This is used to determine where to mount the tooltip portal so that
-    // it sits within the same stacking context as the anchor element.
-    anchorElement: null | Element | Text,
+// NOTE(somewhatabstract): Jest snapshots don't like findDOMNode, so we need to
+// detect that.
+const _isJest = typeof jest !== "undefined";
 
+type Props = {|
     // The tooltip that will be rendered in the portal.
-    // TODO(somewhatabstract): Update to stronger types (i.e. Element(typeof TooltipCore))
-    children: React.Element<any>,
+    portalContent: React.Element<*>,
+
+    // The child element to be rendered within the main React tree.
+    // This is the component to which the tooltip is anchored.
+    children: React.Element<*>,
 |};
 
 /**
@@ -29,7 +29,7 @@ type Props = {|
  *
  * TODO(somewhatabstract): Update with a react portal once upgraded to React 16?
  */
-export default class TooltipPortal extends React.Component<Props> {
+export default class TooltipPortalMounter extends React.Component<Props> {
     _destination: ?Node;
 
     /**
@@ -41,13 +41,11 @@ export default class TooltipPortal extends React.Component<Props> {
     }
 
     /**
-     * If our anchorElement updated, our root may have too, so let's check
+     * If our mountElement updated, our root may have too, so let's check
      * that!
      */
     componentDidUpdate(prevProps: Props) {
-        if (this.props.anchorElement !== prevProps.anchorElement) {
-            this._doMount();
-        }
+        this._doMount();
     }
 
     /**
@@ -59,7 +57,15 @@ export default class TooltipPortal extends React.Component<Props> {
     }
 
     _doMount() {
-        const root = this._getRoot();
+        // NOTE(somewhatabstract): Jest doesn't like ReactDOM.findDOMNode so if
+        // our snapshot tests are running, let's just not get the reference.
+        // This isn't ideal; I wonder if we should return a newly created DOM
+        // element just for jest.
+        const anchorNode = _isJest ? null : ReactDOM.findDOMNode(this);
+        const modalHost =
+            anchorNode && maybeGetPortalMountedModalHostElement(anchorNode);
+
+        const root = modalHost || document.body;
         if (root) {
             // If we are already mounted, let's see if we need to remount.
             if (this._destination) {
@@ -87,10 +93,13 @@ export default class TooltipPortal extends React.Component<Props> {
         // Render the tooltip into the destination node.
         // We have to render the subtree like this so that everything works as expected.
         // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
-        ReactDOM.unstable_renderSubtreeIntoContainer(
-            this,
-            this.props.children,
-            destination);
+        // ReactDOM.unstable_renderSubtreeIntoContainer(
+        //     this,
+        //     this.props.portalContent,
+        //     destination,
+        // );
+
+        ReactDOM.render(this.props.portalContent, destination);
 
         // Save the destination node, so we can remove it on unmount.
         this._destination = destination;
@@ -110,30 +119,7 @@ export default class TooltipPortal extends React.Component<Props> {
         destination.parentNode.removeChild(destination);
     }
 
-    _getRoot() {
-        if (!this.props.anchorElement) {
-            return null;
-        }
-
-        // See if we're in a modal portal.
-        const modalPortal = maybeGetPortalMountedModalHostElement(
-            this.props.anchorElement,
-        );
-
-        // If not in a modal or we have no anchor element yet,
-        // we'll mount in document.body.
-        // Note that we have to mount somewhere, or we won't get called
-        // with componentDidUpdate when our anchor changes.
-        // And if that doesn't exist, we have a problem.
-        const root = modalPortal || document.body;
-        if (!root) {
-            throw new Error("can't mount tooltip without a document.body");
-        }
-
-        return root;
-    }
-
     render() {
-        return null;
+        return this.props.children;
     }
 }
