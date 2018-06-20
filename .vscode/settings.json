@@ -5,4 +5,5 @@
     "files.trimTrailingWhitespace": true,
     "flow.useNPMPackagedFlow": true,
     "javascript.validate.enable": false,
+    "coverage-gutters.lcovname": "./coverage/lcov.info"
 }
