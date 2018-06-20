@@ -28,7 +28,8 @@ type SelectProps = {
     label: string,
     /**
      * Callback for when this item is pressed. Passes value of the item and the
-     * new selection state of the item.
+     * new selection state of the item. Should be handled by an implementation
+     * of Menu.
      */
     onToggle: (value: string, selectionState: boolean) => void,
     /**
@@ -46,12 +47,15 @@ type SelectProps = {
      * state.
      */
     variant: "check" | "checkbox",
+    // TODO(sophie): figure out href, clientNav, onClick stuff
+    /**
+     * Optional client-supplied callback when this item is called.
+     */
+    onClick?: (selectionState: boolean) => void,
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
      */
     disabled?: boolean,
-    // TODO(sophie): figure out href, clientNav, onClick stuff
-    onClick?: (value: string, selectionState: boolean) => void,
     /**
      * Custom styles.
      */
@@ -72,20 +76,22 @@ const Check = (props: CheckProps) => {
     const {selected, pressed, hovered, focused} = props;
 
     return (
-        <svg
-            role="img"
-            width="16px"
-            height="16px"
-            viewBox="0 0 11.8 11.8"
-            aria-hidden="true"
-        >
-            {selected && (
-                <path
-                    fill={pressed || hovered || focused ? white : offBlack}
-                    d={checkIcon}
-                />
-            )}
-        </svg>
+        <View style={styles.checkWrapper}>
+            <svg
+                role="img"
+                width="16px"
+                height="16px"
+                viewBox="0 0 11.8 11.8"
+                aria-hidden="true"
+            >
+                {selected && (
+                    <path
+                        fill={pressed || hovered || focused ? white : offBlack}
+                        d={checkIcon}
+                    />
+                )}
+            </svg>
+        </View>
     );
 };
 
@@ -98,37 +104,43 @@ const Checkbox = (props: CheckProps) => {
     const bgColor = selected && !(pressed || hovered || focused) ? blue : white;
 
     return (
-        <svg
-            role="img"
-            width="16px"
-            height="16px"
-            viewBox="0 0 11.8 11.8"
-            aria-hidden="true"
-            style={{backgroundColor: bgColor}}
+        <View
+            style={
+                (styles.checkWrapper,
+                !(selected || pressed || hovered || focused) && styles.checkbox)
+            }
         >
-            {selected && (
-                <path
-                    fill={
-                        hovered || focused ? blue : pressed ? activeBlue : white
-                    }
-                    d={checkIcon}
-                />
-            )}
-        </svg>
+            <svg
+                role="img"
+                width="16px"
+                height="16px"
+                viewBox="0 0 11.8 11.8"
+                aria-hidden="true"
+                style={{backgroundColor: bgColor}}
+            >
+                {selected && (
+                    <path
+                        fill={
+                            hovered || focused
+                                ? blue
+                                : pressed
+                                    ? activeBlue
+                                    : white
+                        }
+                        d={checkIcon}
+                    />
+                )}
+            </svg>
+        </View>
     );
 };
 
 export default class SelectItem extends React.Component<SelectProps> {
-    static defaultProps = {
-        disabled: false,
-        onClick: () => void 0,
-    };
-
     render() {
         const {
             disabled,
             label,
-            // onClick,
+            onClick,
             onToggle,
             selected,
             style,
@@ -141,7 +153,12 @@ export default class SelectItem extends React.Component<SelectProps> {
         return (
             <ClickableBehavior
                 disabled={disabled}
-                onClick={() => onToggle(value, !selected)}
+                onClick={() => {
+                    onToggle(value, !selected);
+                    if (onClick) {
+                        onClick(!selected);
+                    }
+                }}
             >
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
@@ -183,6 +200,7 @@ export default class SelectItem extends React.Component<SelectProps> {
 
 const styles = StyleSheet.create({
     shared: {
+        background: white,
         color: offBlack,
         cursor: "pointer",
     },
@@ -213,7 +231,22 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         height: 40,
-        padding: 8,
+        paddingLeft: 8,
+        paddingRight: 16,
         whiteSpace: "nowrap",
+    },
+
+    checkWrapper: {
+        height: 16,
+        width: 16,
+        boxSizing: "border-box",
+    },
+
+    checkbox: {
+        height: 16,
+        width: 16,
+        borderColor: offBlack32,
+        borderStyle: "solid",
+        borderWidth: 1,
     },
 });

@@ -3,6 +3,7 @@
 // items to be selected.
 
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
@@ -10,22 +11,15 @@ import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
 import SeparatorItem from "./separator-item.js";
 
-type SelectItemProps = {
-    /** Whether this item is disabled. Default false. */
-    disabled?: boolean,
-    /** Display text of the item. */
-    label: string,
-    /** Initial selection state of this item. */
-    selected: boolean,
-    /** Value of this item. Treat as a key. */
-    value: string,
-};
+import type {SelectItemProps, SeparatorProps} from "../utils/types.js";
 
-type MenuProps = {
+type ItemProps = SelectItemProps | SeparatorProps;
+
+type Props = {
     /**
      * The items in this menu.
      */
-    items: Array<SelectItemProps>,
+    items: Array<ItemProps>,
 
     /**
      * Callback for when the selection of the menu changes. Parameter is an
@@ -87,7 +81,7 @@ type State = {
     selected: Array<string>,
 };
 
-export default class MultiSelectMenu extends React.Component<MenuProps, State> {
+export default class MultiSelectMenu extends React.Component<Props, State> {
     static defaultProps = {
         alignment: "left",
         disabled: false,
@@ -95,13 +89,15 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
         light: false,
     };
 
-    constructor(props: MenuProps) {
+    constructor(props: Props) {
         super(props);
         this.state = {
             open: false,
             selected: props.items
-                .filter((item) => item.selected)
-                .map((item) => item.value),
+                .filter((item) => item.type === "select" && item.selected)
+                // item.type should always be "select" because we filter for it
+                // checking again to satisfy flow
+                .map((item) => (item.type === "select" ? item.value : "")),
         };
     }
 
@@ -115,16 +111,12 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
         const {selected} = this.state;
         const {onChange} = this.props;
 
-        let newValues = selected || [];
+        const newValues = selected || [];
 
         if (selectionState) {
-            newValues = [...newValues, selectedValue];
+            newValues.push(selectedValue);
         } else {
-            const location = newValues.indexOf(selectedValue);
-            newValues = [
-                ...newValues.slice(0, location),
-                ...newValues.slice(location + 1),
-            ];
+            newValues.splice(newValues.indexOf(selectedValue), 1);
         }
 
         this.setState({
@@ -135,7 +127,10 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
     }
 
     handleSelectAll() {
-        const allValues = this.props.items.map((item) => item.value);
+        const allValues = this.props.items
+            .filter((item) => item.type === "select")
+            // adding another check to satisfy flow
+            .map((item) => (item.type === "select" ? item.value : ""));
         this.setState({
             selected: allValues,
         });
@@ -154,7 +149,6 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
             disabled,
             items,
             light,
-            // onChange,
             placeholder,
             selectItemType,
             style,
@@ -179,17 +173,19 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
         );
 
         const menuItems = items.map((item, index) => {
-            return (
+            return item.type === "separator" ? (
+                <SeparatorItem key={index} />
+            ) : (
                 <SelectItem
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
+                    onClick={item.onClick}
                     onToggle={(value, state) =>
                         this.handleSelected(value, state)
                     }
                     selected={selected.includes(item.value)}
                     value={item.value}
-                    // onClick={item.onClick}
                     variant={"checkbox"}
                 />
             );
@@ -215,7 +211,7 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
                 />
             );
 
-            const separator = <SeparatorItem />;
+            const separator = <SeparatorItem key={"selectOptSep"} />;
 
             // Add options at beginning, add a separator
             menuItems.unshift([selectAll, selectNone, separator]);
@@ -227,8 +223,16 @@ export default class MultiSelectMenu extends React.Component<MenuProps, State> {
                 items={menuItems}
                 open={open}
                 opener={opener}
-                style={style}
+                style={[styles.menuTopSpace, style]}
             />
         );
     }
 }
+
+const styles = StyleSheet.create({
+    // This is to add extra space on top of the menu options to separate the
+    // options from the opener component.
+    menuTopSpace: {
+        top: 48,
+    },
+});

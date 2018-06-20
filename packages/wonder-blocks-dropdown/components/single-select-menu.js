@@ -2,28 +2,22 @@
 // A menu that consists of action items
 
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
+import SeparatorItem from "./separator-item.js";
 
-//TODO(sophie): dedupe with def in multi-select-menu
-type SelectItemProps = {
-    /** Whether this item is disabled. Default false. */
-    disabled?: boolean,
-    /** Display text of the item. */
-    label: string,
-    /** Initial selection state of this item. */
-    selected: boolean,
-    /** Value of this item. Treat as a key. */
-    value: string,
-};
+import type {SelectItemProps, SeparatorProps} from "../utils/types.js";
 
-type MenuProps = {
+type ItemProps = SelectItemProps | SeparatorProps;
+
+type Props = {
     /**
      * The items in this menu.
      */
-    items: Array<SelectItemProps>,
+    items: Array<ItemProps>,
 
     /**
      * Callback for when the selection of the menu changes. Parameter is the
@@ -56,7 +50,7 @@ type MenuProps = {
     disabled?: boolean,
 
     /**
-     * Optional styling to add.
+     * Optional styling to add to dropdown.
      */
     style?: any,
 };
@@ -73,23 +67,22 @@ type State = {
     selected: string,
 };
 
-export default class SingleSelectMenu extends React.Component<
-    MenuProps,
-    State,
-> {
+export default class SingleSelectMenu extends React.Component<Props, State> {
     static defaultProps = {
         alignment: "left",
         disabled: false,
         light: false,
     };
 
-    constructor(props: MenuProps) {
+    constructor(props: Props) {
         super(props);
         this.state = {
             open: false,
             selected: props.items
-                .filter((item) => item.selected)
-                .map((item) => item.value)[0],
+                .filter((item) => item.type === "select" && item.selected)
+                // item.type should always be "select" because we filter for it
+                // checking again to satisfy flow
+                .map((item) => (item.type === "select" ? item.value : ""))[0],
         };
     }
 
@@ -123,11 +116,8 @@ export default class SingleSelectMenu extends React.Component<
 
         const {selected, open} = this.state;
 
-        const menuText = `${
-            selected
-                ? items.filter((item) => item.value === selected)[0].label
-                : placeholder
-        }`;
+        // TODO: use display label instead
+        const menuText = `${selected ? selected : placeholder}`;
 
         const opener = (
             <SelectBox
@@ -140,7 +130,9 @@ export default class SingleSelectMenu extends React.Component<
         );
 
         const menuItems = items.map((item, index) => {
-            return (
+            return item.type === "separator" ? (
+                <SeparatorItem key={index} />
+            ) : (
                 <SelectItem
                     disabled={item.disabled}
                     key={item.value}
@@ -148,7 +140,6 @@ export default class SingleSelectMenu extends React.Component<
                     onToggle={(value, state) => this.handleSelected(value)}
                     selected={this.state.selected === item.value}
                     value={item.value}
-                    // onClick={item.onClick}
                     variant={"check"}
                 />
             );
@@ -156,12 +147,20 @@ export default class SingleSelectMenu extends React.Component<
 
         return (
             <DropdownCore
+                alignment={alignment}
                 items={menuItems}
                 open={open}
                 opener={opener}
-                alignment={alignment}
-                style={style}
+                style={[styles.menuTopSpace, style]}
             />
         );
     }
 }
+
+const styles = StyleSheet.create({
+    // This is to add extra space on top of the menu options to separate the
+    // options from the opener component.
+    menuTopSpace: {
+        top: 48,
+    },
+});

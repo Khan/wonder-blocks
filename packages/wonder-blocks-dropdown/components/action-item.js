@@ -6,7 +6,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import Spacing, {Strut} from "@khanacademy/wonder-blocks-spacing";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     View,
@@ -43,7 +43,6 @@ const StyledLink = addStyle("a");
 
 export default class ActionItem extends React.Component<ActionProps> {
     static defaultProps = {
-        disabled: false,
         indent: false,
         onClick: () => void 0,
     };
@@ -75,7 +74,9 @@ export default class ActionItem extends React.Component<ActionProps> {
                                 style={[styles.itemContainer]}
                                 role="menuitem"
                             >
-                                {indent && <Strut size={Spacing.medium} />}
+                                {indent && (
+                                    <View style={{width: Spacing.medium}} />
+                                )}
                                 <LabelLarge>{label}</LabelLarge>
                             </View>
                         </StyledLink>
@@ -88,6 +89,7 @@ export default class ActionItem extends React.Component<ActionProps> {
 
 const styles = StyleSheet.create({
     shared: {
+        background: white,
         color: offBlack,
         cursor: "pointer",
     },
@@ -113,6 +115,7 @@ const styles = StyleSheet.create({
     itemContainer: {
         flexDirection: "row",
         alignItems: "center",
+        display: "flex",
         height: 40,
         padding: "8px 16px",
         whiteSpace: "nowrap",

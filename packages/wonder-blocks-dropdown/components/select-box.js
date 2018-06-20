@@ -13,7 +13,7 @@ const StyledButton = addStyle("button");
 
 const {blue, white, offBlack16, offBlack32, offBlack50} = Color;
 
-type Props = {
+type SelectBoxProps = {
     /**
      * Display text in the SelectBox.
      */
@@ -39,7 +39,7 @@ type Props = {
     onClick: () => void,
 };
 
-export default class SelectBox extends React.Component<Props> {
+export default class SelectBox extends React.Component<SelectBoxProps> {
     static defaultProps = {
         disabled: false,
         light: false,
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
+        whiteSpace: "nowrap",
     },
 
     textDisabled: {

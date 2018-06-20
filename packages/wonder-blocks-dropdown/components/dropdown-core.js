@@ -8,12 +8,6 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-// import ActionItem from "./action-item.js";
-// import SelectItem from "./select-item.js";
-// import SeparatorItem from "./separator-item.js";
-//
-// type MenuItem = ActionItem | SelectItem | SeparatorItem;
-
 type DropdownCoreProps = {
     /**
      * Items for the menu.
@@ -31,10 +25,9 @@ type DropdownCoreProps = {
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    // TODO(sophie): make this work
     alignment?: "left" | "right",
     /**
-     * Optional styling to add.
+     * Optional styling to add to dropdown menu.
      */
     style?: any,
 };
@@ -45,26 +38,40 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
     };
 
     render() {
-        const {
-            // alignment,
-            items,
-            open,
-            opener,
-            style,
-        } = this.props;
+        const {alignment, items, open, opener, style} = this.props;
 
         return (
-            <View style={style}>
+            <View
+                style={[
+                    styles.menuWrapper,
+                    alignment === "right" && styles.rightAlign,
+                ]}
+            >
                 {opener}
-                {open &&
-                    items && <View style={[styles.dropdown]}>{items}</View>}
+                {items && (
+                    <View
+                        style={[styles.dropdown, !open && styles.hide, style]}
+                    >
+                        {items}
+                    </View>
+                )}
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    menuWrapper: {
+        alignItems: "flex-start",
+    },
+
+    rightAlign: {
+        alignItems: "flex-end",
+    },
+
     dropdown: {
+        backgroundColor: Color.white,
+        position: "absolute",
         borderRadius: 4,
         marginTop: Spacing.xxxSmall,
         marginBottom: Spacing.xxxSmall,
@@ -72,5 +79,13 @@ const styles = StyleSheet.create({
         paddingBottom: Spacing.xxxSmall,
         border: `solid 1px ${Color.offBlack16}`,
         boxShadow: `0px 8px 8px 0px ${Color.offBlack10}`,
+        top: 40,
+        // NOTE: This is the z-index of the currently existing menus in the
+        // webapp. Perhaps wonderblocks will design a z-index hierarchy?
+        zIndex: 1000,
+    },
+
+    hide: {
+        display: "none",
     },
 });

@@ -3,7 +3,6 @@ one item or multiple items.
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
-const {Strut} = require("@khanacademy/wonder-blocks-spacing");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -16,25 +15,47 @@ const styles = StyleSheet.create({
     darkBackgroundWrapper: {
         background: "black",
         padding: 10,
+    },
+    strutLike: {
+        width: 8,
     }
 });
-
 <View style={[styles.row]}>
     <ActionMenu
         items={[
             {
+                type: "action",
                 label: "Action 1",
                 onClick: () => console.log("Trigger action 1")
             },
             {
+                type: "action",
                 label: "Action 2",
                 disabled: true,
                 onClick: () => console.log("Trigger action 2")
             },
+            {
+                type: "separator",
+            },
+            {
+                type: "select",
+                label: "Toggle action 1",
+                onClick: (state) => console.log(`action 1 ${state.toString()}`),
+                selected: false,
+                value: "action 1"
+            },
+            {
+                type: "select",
+                label: "Toggle action",
+                onClick: (state) => console.log(`action 2 ${state.toString()}`),
+                selected: true,
+                value: "action 2"
+            },
         ]}
         menuText={"Action menu"}
+        containsSelectionOptions={true}
     />
-    <Strut size={8} />
+    <View style={[styles.strutLike]} />
 
     <SelectBox
         light={false}
@@ -43,7 +64,7 @@ const styles = StyleSheet.create({
     >
         Selecting
     </SelectBox>
-    <Strut size={8} />
+    <View style={[styles.strutLike]} />
     <View style={[styles.darkBackgroundWrapper]}>
         <SelectBox
             light={true}
@@ -53,31 +74,36 @@ const styles = StyleSheet.create({
             Selecting
         </SelectBox>
     </View>
-    <Strut size={8} />
+    <View style={[styles.strutLike]} />
     <SelectBox disabled={true} onClick={() => console.log("error error!!")}>
         Selecting
     </SelectBox>
-    <Strut size={8} />
+    <View style={[styles.strutLike]} />
 
     <MultiSelectMenu
+        alignment={"right"}
         displaySelectShortcuts={true}
         items={[
             {
+                type: "select",
                 label: "Anesu",
                 selected: false,
                 value: "anesu"
             },
             {
+                type: "select",
                 label: "Jennie",
                 selected: true,
                 value: "jennie"
             },
             {
+                type: "select",
                 label: "Mary",
                 selected: true,
                 value: "mary"
             },
             {
+                type: "select",
                 label: "Sophie",
                 selected: false,
                 value: "sophie"
@@ -86,29 +112,36 @@ const styles = StyleSheet.create({
         onChange={(s) => console.log(s)}
         selectItemType={"interns"}
     />
-    <Strut size={8} />
+    <View style={[styles.strutLike]} />
 
-    <SingleSelectMenu
-        placeholder={"Choose a fruit"}
-        items={[
-            {
-                label: "Banana",
-                selected: false,
-                value: "banana"
-            },
-            {
-                label: "Apple",
-                selected: false,
-                value: "apple"
-            },
-            {
-                label: "Grape",
-                selected: false,
-                value: "grape"
-            },
-        ]}
-        onChange={(s) => console.log(s)}
-    />
+    <View style={[styles.darkBackgroundWrapper]}>
+        <SingleSelectMenu
+            items={[
+                {
+                    type: "select",
+                    label: "Banana",
+                    selected: false,
+                    value: "banana"
+                },
+                {
+                    type: "select",
+                    label: "Apple",
+                    selected: false,
+                    value: "apple"
+                },
+                {
+                    type: "select",
+                    label: "Grape",
+                    selected: false,
+                    value: "grape"
+                },
+            ]}
+            light={true}
+            onChange={(s) => console.log(s)}
+            placeholder={"Choose a fruit"}
+        />
+    </View>
 
 </View>
+
 ```

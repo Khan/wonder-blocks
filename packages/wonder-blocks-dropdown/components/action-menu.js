@@ -7,6 +7,14 @@ import Button from "@khanacademy/wonder-blocks-button";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
+import SelectItem from "./select-item.js";
+import SeparatorItem from "./separator-item.js";
+
+import type {
+    ActionItemProps,
+    SelectItemProps,
+    SeparatorProps,
+} from "../utils/types.js";
 
 type OpenerProps = {
     /**
@@ -46,22 +54,13 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
     }
 }
 
-type ActionItemProps = {
-    /** Whether this item is disabled. Default false. */
-    disabled?: boolean,
-    /** Display text of the item. */
-    label: string,
-    /** Callback to perform the action. */
-    onClick: () => void,
-    // TODO(sophie):incorporate
-    selected?: boolean,
-};
+type ItemProps = ActionItemProps | SelectItemProps | SeparatorProps;
 
-type ActionMenuProps = {
+type MenuProps = {
     /**
      * The items in this menu.
      */
-    items: Array<ActionItemProps>,
+    items: Array<ItemProps>,
 
     /**
      * Text for the opener of this menu.
@@ -75,7 +74,10 @@ type ActionMenuProps = {
     alignment?: "left" | "right",
 
     /**
-     * TODO. Defaults to false.
+     * If the menu contains an item that has selection state, we need to indent
+     * all non-selected items to have the text labels left-aligned.
+     * This is technically a function of whether at least one item is of type
+     * ActionItemWithSelectionProps.
      */
     containsSelectionOptions?: boolean,
 
@@ -96,23 +98,30 @@ type State = {
      * Whether or not menu is open.
      */
     open: boolean,
+
+    /**
+     * Array of the values of the selected elements.
+     */
+    selected: Array<string>,
 };
 
-export default class ActionMenu extends React.Component<
-    ActionMenuProps,
-    State,
-> {
+export default class ActionMenu extends React.Component<MenuProps, State> {
     static defaultProps = {
         alignment: "left",
         containsSelectionOptions: false,
         disabled: false,
     };
 
-    constructor(props: ActionMenuProps) {
+    constructor(props: MenuProps) {
         super(props);
 
         this.state = {
             open: false,
+            selected: props.items
+                .filter((item) => item.type === "select" && item.selected)
+                // item.type should always be "select" because we filter for it
+                // checking again to satisfy flow
+                .map((item) => (item.type === "select" ? item.value : "")),
         };
     }
 
@@ -122,15 +131,33 @@ export default class ActionMenu extends React.Component<
         }));
     }
 
+    handleSelectItem(selectedValue: string, newSelectedState: boolean) {
+        const {selected} = this.state;
+
+        const newValues = selected || [];
+
+        if (newSelectedState) {
+            newValues.push(selectedValue);
+        } else {
+            newValues.splice(newValues.indexOf(selectedValue), 1);
+        }
+
+        this.setState({
+            selected: newValues,
+        });
+    }
+
     render() {
         const {
             items,
+            containsSelectionOptions,
             menuText,
             alignment,
-            containsSelectionOptions,
             disabled,
             style,
         } = this.props;
+
+        const {open, selected} = this.state;
 
         const opener = (
             <ActionMenuOpener
@@ -142,22 +169,41 @@ export default class ActionMenu extends React.Component<
         );
 
         const menuItems = items.map((item, index) => {
-            return (
-                <ActionItem
-                    disabled={item.disabled}
-                    key={item.label}
-                    indent={containsSelectionOptions}
-                    label={item.label}
-                    onClick={item.onClick}
-                />
-            );
+            if (item.type === "separator") {
+                return <SeparatorItem key={index} />;
+            } else if (item.type === "select") {
+                return (
+                    <SelectItem
+                        disabled={item.disabled}
+                        key={index}
+                        label={item.label}
+                        onClick={item.onClick}
+                        onToggle={(value, state) =>
+                            this.handleSelectItem(value, state)
+                        }
+                        selected={selected.includes(item.label)}
+                        value={item.label}
+                        variant={"check"}
+                    />
+                );
+            } else if (item.type === "action") {
+                return (
+                    <ActionItem
+                        disabled={item.disabled}
+                        key={index}
+                        indent={containsSelectionOptions}
+                        label={item.label}
+                        onClick={item.onClick}
+                    />
+                );
+            }
         });
 
         return (
             <DropdownCore
                 alignment={alignment}
                 items={menuItems}
-                open={this.state.open}
+                open={open}
                 opener={opener}
                 style={style}
             />
