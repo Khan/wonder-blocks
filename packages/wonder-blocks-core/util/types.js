@@ -12,80 +12,80 @@ export type StyleType<T: Object> = any; // eslint-disable-line no-unused-vars
 export type TextTag = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/roles#role_definitions
-type roles = [
-    "alert",
-    "alertdialog",
-    "application",
-    "article",
-    "banner",
-    "button",
-    "checkbox",
-    "columnheader",
-    "combobox",
-    "command", // abstract role
-    "complementary",
-    "composite", // abstract role
-    "contentinfo",
-    "dialog",
-    "directory",
-    "document",
-    "form",
-    "grid",
-    "gridcell",
-    "group",
-    "heading",
-    "img",
-    "input", // abstract role
-    "landmark", // abstract role
-    "link",
-    "list",
-    "listbox",
-    "listitem",
-    "log",
-    "main",
-    "marquee",
-    "math",
-    "menu",
-    "menubar",
-    "menuitem",
-    "menuitemcheckbox",
-    "menuitemradio",
-    "navigation",
-    "note",
-    "option",
-    "presentation",
-    "progressbar",
-    "radio",
-    "radiogroup",
-    "range", // abstract role
-    "region",
-    "reletype", // abstract role
-    "row",
-    "rowgroup",
-    "rowheader",
-    "scrollbar",
-    "search",
-    "section", // abstract role
-    "sectionhead", // abstract role
-    "select", // abstract role
-    "separator",
-    "slider",
-    "spinbutton",
-    "status",
-    "structure", // abstract role
-    "tab",
-    "tablist",
-    "tabpanel",
-    "textbox",
-    "timer",
-    "toolbar",
-    "tooltip",
-    "tree",
-    "treegrid",
-    "treeitem",
-    "widget", // abstract role
-    "window", // abstract role
-];
+type roles =
+    | "alert"
+    | "alertdialog"
+    | "application"
+    | "article"
+    | "banner"
+    | "button"
+    | "checkbox"
+    | "columnheader"
+    | "combobox"
+    | "command" // abstract role
+    | "complementary"
+    | "composite" // abstract role
+    | "contentinfo"
+    | "dialog"
+    | "directory"
+    | "document"
+    | "form"
+    | "grid"
+    | "gridcell"
+    | "group"
+    | "heading"
+    | "img"
+    | "input" // abstract role
+    | "landmark" // abstract role
+    | "link"
+    | "list"
+    | "listbox"
+    | "listitem"
+    | "log"
+    | "main"
+    | "marquee"
+    | "math"
+    | "menu"
+    | "menubar"
+    | "menuitem"
+    | "menuitemcheckbox"
+    | "menuitemradio"
+    | "navigation"
+    | "note"
+    | "option"
+    | "presentation"
+    | "progressbar"
+    | "radio"
+    | "radiogroup"
+    | "range" // abstract role
+    | "region"
+    | "reletype" // abstract role
+    | "row"
+    | "rowgroup"
+    | "rowheader"
+    | "scrollbar"
+    | "search"
+    | "section" // abstract role
+    | "sectionhead" // abstract role
+    | "select" // abstract role
+    | "separator"
+    | "slider"
+    | "spinbutton"
+    | "status"
+    | "structure" // abstract role
+    | "tab"
+    | "tablist"
+    | "tabpanel"
+    | "textbox"
+    | "timer"
+    | "toolbar"
+    | "tooltip"
+    | "tree"
+    | "treegrid"
+    | "treeitem"
+    | "widget" // abstract role
+    // abstract role
+    | "window";
 
 type IdRef = string;
 type IdRefList = IdRef | Array<IdRef>;
