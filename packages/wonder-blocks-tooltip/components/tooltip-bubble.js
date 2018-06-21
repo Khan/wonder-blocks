@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import {Popper} from "react-popper";
-import {visibilityModifierDefaultConfig} from "../util/visibility-modifier.js";
+import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
 
 import type {PopperChildrenProps} from "react-popper";
 
