@@ -210,8 +210,8 @@ for (const section of styleguideConfig.sections) {
         // Let's add some info!
         const currentDescription = section.description;
         const lines = [
-            info.prototype ? "***PROTOTYPE***" : null,
-            `**${info.name}**@${info.lastRelease}`,
+            `${info.name}@${info.lastRelease}`,
+            info.prototype ? "**PROTOTYPE**" : null,
             `Design Specification: **${info.design}**\n`,
             currentDescription,
         ];
