@@ -35,6 +35,12 @@ function writeStyleguideConfig(filepath, config) {
         ``,
         `module.exports = {`,
     ];
+
+    // Here, we strip some properties that we want to override.
+    // If we want to replace them, only if they exist, then we also
+    // add a replacement value inside this loop.
+    // If we want to set the value, even if it never existed in the original
+    // code, then we set it later.
     Object.entries(config).forEach((entry) => {
         // HACK(somewhatabstract): We can't just output the webpackConfig
         // because we executed some things when we loaded it. We could write a
@@ -57,6 +63,8 @@ function writeStyleguideConfig(filepath, config) {
         }
     });
     // Let's specify the production server port.
+    // This is something we want to set even if the original config didn't
+    // contain it, so we set it here outside of the loop.
     lines.push(`    serverPort: 6061,`);
     lines.push("};\n");
 
