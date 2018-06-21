@@ -166,6 +166,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleClick = (e: SyntheticMouseEvent<>) => {
         if (this.keyboardClick) {
+            this.keyboardClick = false;
             e.preventDefault();
         } else if (this.props.onClick) {
             this.waitingForClick = false;
@@ -234,7 +235,6 @@ export default class ClickableBehavior extends React.Component<Props, State> {
             if (this.props.onClick) {
                 this.props.onClick(e);
             }
-            this.keyboardClick = false;
             this.maybeNavigate();
         }
     };
