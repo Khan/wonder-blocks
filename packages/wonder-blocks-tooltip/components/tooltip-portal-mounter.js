@@ -13,7 +13,7 @@ const _isJest = typeof jest !== "undefined";
 
 type Props = {|
     // The tooltip that will be rendered in the portal.
-    portalContent: ?React.Element<typeof TooltipBubble>,
+    bubble: ?React.Element<typeof TooltipBubble>,
 
     // The child element to be rendered within the main React tree.
     // This is the component to which the tooltip is anchored.
@@ -53,8 +53,8 @@ export default class TooltipPortalMounter extends React.Component<Props> {
     }
 
     _doMount() {
-        const {portalContent} = this.props;
-        if (!this._rendered || !portalContent) {
+        const {bubble} = this.props;
+        if (!this._rendered || !bubble) {
             return;
         }
 
@@ -94,11 +94,7 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         // Render the tooltip into the destination node.
         // We have to render the subtree like this so that everything works as expected.
         // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
-        ReactDOM.unstable_renderSubtreeIntoContainer(
-            this,
-            portalContent,
-            destination,
-        );
+        ReactDOM.unstable_renderSubtreeIntoContainer(this, bubble, destination);
 
         // Save the destination node, so we can remove it on unmount.
         this._destination = destination;
@@ -130,9 +126,9 @@ export default class TooltipPortalMounter extends React.Component<Props> {
     }
 
     render() {
-        const {children, portalContent} = this.props;
+        const {children, bubble} = this.props;
         this._rendered = true;
-        if (portalContent) {
+        if (bubble) {
             this._timeoutDoMount();
         } else {
             this._timeoutDoUnmount();

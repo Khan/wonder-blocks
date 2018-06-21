@@ -13,7 +13,7 @@ type Props = {|
     children: React.Element<any> | string,
 
     // The content to render in the tooltip.
-    // TODO(somewhatabstract): Update to allow TooltipContent
+    // TODO(somewhatabstract): Update to allow TooltipContent or string
     content: string,
 
     // TODO(somewhatabstract): Add other props per spec
@@ -25,19 +25,6 @@ type State = {|
 
 export default class Tooltip extends React.Component<Props, State> {
     state = {anchorElement: null};
-
-    kacustom(data: any) {
-        // If the hide modifier already hid us against the viewport,
-        // we don't have to do anything.
-        if (data.hide) {
-            return;
-        } else {
-            // TODO(somewhatabstract): This is where we would look to do two things.
-            // - Custom hiding based on visibility against any and all scroll parents.
-            // - Custom prevent overflowing based on remaining visibility the amount of the element clipped by any and all parents
-        }
-        return data;
-    }
 
     _updateAnchorElement(ref: ?Element) {
         if (ref && ref !== this.state.anchorElement) {
@@ -54,9 +41,7 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPortalContent(
-        active: boolean,
-    ): ?React.Element<typeof TooltipBubble> {
+    _renderBubble(active: boolean): ?React.Element<typeof TooltipBubble> {
         if (!active) {
             return null;
         }
@@ -71,9 +56,7 @@ export default class Tooltip extends React.Component<Props, State> {
         return (
             <TooltipAnchor anchorRef={(r) => this._updateAnchorElement(r)}>
                 {(active) => (
-                    <TooltipPortalMounter
-                        portalContent={this._renderPortalContent(active)}
-                    >
+                    <TooltipPortalMounter bubble={this._renderBubble(active)}>
                         {this._renderAnchorElement()}
                     </TooltipPortalMounter>
                 )}

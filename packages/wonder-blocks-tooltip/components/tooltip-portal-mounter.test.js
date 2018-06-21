@@ -45,7 +45,7 @@ class PortalMountTester extends React.Component<
     }
 
     render() {
-        const portalContent = (
+        const bubble = (
             <TooltipBubble
                 ref={(r) => this.props.refChild(r)}
                 anchorElement={this.state.anchor}
@@ -54,7 +54,7 @@ class PortalMountTester extends React.Component<
             </TooltipBubble>
         );
         return (
-            <TooltipPortalMounter portalContent={portalContent}>
+            <TooltipPortalMounter bubble={bubble}>
                 <View ref={(r) => this.updateAnchorRef(r)}>Anchor</View>
             </TooltipPortalMounter>
         );
