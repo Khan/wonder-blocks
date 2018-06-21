@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
-import {Popper} from "react-popper";
 
 import {Text as WbText} from "@khanacademy/wonder-blocks-core";
 
 import TooltipPortalMounter from "./tooltip-portal-mounter";
 import TooltipAnchor from "./tooltip-anchor.js";
+import TooltipBubble from "./tooltip-bubble.js";
 
 type Props = {|
     // The content for anchoring the tooltip.
@@ -20,11 +20,11 @@ type Props = {|
 |};
 
 type State = {|
-    refAnchor: ?HTMLElement,
+    anchorElement: ?HTMLElement,
 |};
 
 export default class Tooltip extends React.Component<Props, State> {
-    state = {refAnchor: null};
+    state = {anchorElement: null};
 
     kacustom(data: any) {
         // If the hide modifier already hid us against the viewport,
@@ -39,9 +39,9 @@ export default class Tooltip extends React.Component<Props, State> {
         return data;
     }
 
-    _refAnchor(ref: ?Element) {
-        if (ref && ref !== this.state.refAnchor) {
-            this.setState({refAnchor: ((ref: any): HTMLElement)});
+    _updateAnchorElement(ref: ?Element) {
+        if (ref && ref !== this.state.anchorElement) {
+            this.setState({anchorElement: ((ref: any): HTMLElement)});
         }
     }
 
@@ -54,63 +54,26 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPortalContent(active: boolean): ?React.Element<typeof Popper> {
+    _renderPortalContent(
+        active: boolean,
+    ): ?React.Element<typeof TooltipBubble> {
         if (!active) {
             return null;
         }
-        const content = (
-            <div>
-                <div>{this.props.content}</div>
-                <div>{this.props.content}</div>
-                <div>{this.props.content}</div>
-                <div>{this.props.content}</div>
-                <div>{this.props.content}</div>
-                <div>{this.props.content}</div>
-                <div>{this.props.content}</div>
-            </div>
-        );
         return (
-            <Popper
-                referenceElement={this.state.refAnchor}
-                placement="left"
-                modifiers={{
-                    preventOverflow: {boundariesElement: 'viewport'},
-                    kacustom: {
-                        enabled: true,
-                        fn: (data) => this.kacustom(data),
-                    },
-                }}
-            >
-                {({
-                    ref,
-                    outOfBoundaries,
-                    style,
-                    placement,
-                    arrowProps,
-                }) => (
-                    <div
-                        data-placement={placement}
-                        ref={ref}
-                        style={{
-                            ...style,
-                            pointerEvents: "none",
-                            backgroundColor: outOfBoundaries
-                                ? "red"
-                                : "purple",
-                        }}
-                    >
-                        {content}
-                    </div>
-                )}
-            </Popper>
+            <TooltipBubble anchorElement={this.state.anchorElement}>
+                {this.props.content}
+            </TooltipBubble>
         );
     }
 
     render() {
         return (
-            <TooltipAnchor anchorRef={r => this._refAnchor(r)}>
+            <TooltipAnchor anchorRef={(r) => this._updateAnchorElement(r)}>
                 {(active) => (
-                    <TooltipPortalMounter portalContent={this._renderPortalContent(active)}>
+                    <TooltipPortalMounter
+                        portalContent={this._renderPortalContent(active)}
+                    >
                         {this._renderAnchorElement()}
                     </TooltipPortalMounter>
                 )}

@@ -5,6 +5,7 @@ import * as ReactDOM from "react-dom";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
 import {TooltipPortalAttributeName} from "../util/constants.js";
+import TooltipBubble from "./tooltip-bubble.js";
 
 // NOTE(somewhatabstract): Jest snapshots don't like findDOMNode, so we need to
 // detect that.
@@ -12,7 +13,7 @@ const _isJest = typeof jest !== "undefined";
 
 type Props = {|
     // The tooltip that will be rendered in the portal.
-    portalContent: ?React.Element<*>,
+    portalContent: ?React.Element<typeof TooltipBubble>,
 
     // The child element to be rendered within the main React tree.
     // This is the component to which the tooltip is anchored.
@@ -132,7 +133,7 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         const {children, portalContent} = this.props;
         this._rendered = true;
         if (portalContent) {
-             this._timeoutDoMount();
+            this._timeoutDoMount();
         } else {
             this._timeoutDoUnmount();
         }

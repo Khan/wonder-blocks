@@ -1,4 +1,4 @@
 // @flow
-describe("TooltipAnchor", () => {
+describe("TooltipBubble", () => {
     test("TODO", () => {});
 });

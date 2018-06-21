@@ -2,27 +2,17 @@
 
 exports[`wonder-blocks-tooltip example 1 1`] = `
 <div>
-  <div
+  <span
     className=""
     style={
       Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
       }
     }
   >
-    Anchor
-  </div>
+    Some text
+  </span>
   <div
     style={
       Object {
@@ -40,27 +30,17 @@ exports[`wonder-blocks-tooltip example 1 1`] = `
         }
       }
     >
-      <div
+      <span
         className=""
         style={
           Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
           }
         }
       >
-        Anchor
-      </div>
+        Some text
+      </span>
     </div>
   </div>
   <div

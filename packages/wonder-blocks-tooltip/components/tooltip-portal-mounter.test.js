@@ -11,14 +11,15 @@ import {
 } from "@khanacademy/wonder-blocks-modal";
 
 import {TooltipPortalAttributeName} from "../util/constants.js";
-import TooltipPortalMounter from "./tooltip-portal-mounter";
+import TooltipPortalMounter from "./tooltip-portal-mounter.js";
+import TooltipBubble from "./tooltip-bubble.js";
 
 type PortalMountTesterProps = {|
     refChild: (Element | ?React.Component<*, *>) => mixed,
 |};
 
 type PortalMountTesterState = {
-    anchor: ?Element,
+    anchor: ?HTMLElement,
 };
 
 /**
@@ -37,14 +38,21 @@ class PortalMountTester extends React.Component<
     updateAnchorRef(node) {
         if (node) {
             const element = ReactDOM.findDOMNode(node);
-            if (this.state.anchor !== element && !(element instanceof Text)) {
-                this.setState({anchor: element});
+            if (this.state.anchor !== element) {
+                this.setState({anchor: ((element: any): ?HTMLElement)});
             }
         }
     }
 
     render() {
-        const portalContent = <View ref={(r) => this.props.refChild(r)} />;
+        const portalContent = (
+            <TooltipBubble
+                ref={(r) => this.props.refChild(r)}
+                anchorElement={this.state.anchor}
+            >
+                Tooltip!
+            </TooltipBubble>
+        );
         return (
             <TooltipPortalMounter portalContent={portalContent}>
                 <View ref={(r) => this.updateAnchorRef(r)}>Anchor</View>
@@ -53,7 +61,7 @@ class PortalMountTester extends React.Component<
     }
 }
 
-describe("TooltipPortal", () => {
+describe("TooltipPortalMounter", () => {
     test("When not in modal, mounts its children in document.body", (done) => {
         // Once the child mounts, check that it was mounted directly-ish into
         // `document.body`, and finish the test.
@@ -142,10 +150,9 @@ describe("TooltipPortal", () => {
                 done();
             }
         };
-
         const wrapper = mount(<PortalMountTester refChild={childrenRef} />);
 
         postMount = true;
-        wrapper.unmount();
+        setTimeout(() => wrapper.unmount(), 0);
     });
 });
