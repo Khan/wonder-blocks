@@ -102,7 +102,19 @@ function removePrivateSections(sections) {
     return sections;
 }
 
+/**
+ * This uses the section content and component paths to try and determine a
+ * wonder blocks package folder path. If it can, it returns that path,
+ * otherwise it returns null.
+ *
+ * We use the path later to load the package.json and glean some details about
+ * the package.
+ */
 function maybeGetPackagePathForSection(section) {
+
+    // This takes a single file path and tries to find a wonder-blocks-*
+    // folder (we assume that such folders are any folders under the packages
+    // directory).
     const getPackageDirFromPath = (filepath) => {
         if (!filepath) {
             return null;
@@ -113,10 +125,13 @@ function maybeGetPackagePathForSection(section) {
             if (parentPath) {
                 const parentName = path.basename(parentPath);
                 if (parentName === "packages") {
+                    // We found the path we want.
                     return filepath;
                 } else if (parentName === parentPath) {
+                    // We should stop searching or we'll get in an infinite loop
                     break;
                 } else {
+                    // Let's keep looking further up the file hierarchy.
                     filepath = parentPath;
                 }
             }
@@ -139,7 +154,11 @@ function maybeGetPackagePathForSection(section) {
     return null;
 }
 
-function getVersionInfoForSection(section) {
+/**
+ * Given a section, see if we can extract some information about a wonder
+ * blocks package from it.
+ */
+function maybeGetPackageInfoForSection(section) {
     const pathForSection = maybeGetPackagePathForSection(section);
     if (!pathForSection) {
         // We can't help you.
@@ -162,46 +181,6 @@ function getVersionInfoForSection(section) {
     }
 }
 
-function genStyleguideProdConfig() {
-    if (!process.env.PULL_REQUEST) {
-        // We iterate over the configuration and remove private sections.
-        styleguideConfig.sections = removePrivateSections(
-            styleguideConfig.sections,
-        );
-    }
-
-    // Then we go one more time at the root level and augment the sections with
-    // some additional version information.
-    for (const section of styleguideConfig.sections) {
-        const info = getVersionInfoForSection(section);
-        if (info) {
-            // eslint-disable-next-line no-console
-            console.log(
-                `Adding package information for ${
-                    section.name
-                }: ${JSON.stringify(info)}`,
-            );
-            // Let's add some info!
-            const currentDescription = section.description;
-            const lines = [
-                info.prototype ? "***PROTOTYPE***" : null,
-                `Package: **${info.name}**`,
-                `Design Specification: **${info.design}**`,
-                `Last released @ **${info.lastRelease}**\n`,
-                currentDescription,
-            ];
-            section.description = lines.filter((l) => !!l).join("  \n");
-        } else {
-            // eslint-disable-next-line no-console
-            console.log(`No package information found for ${section.name}`);
-        }
-    }
-
-    // Finally, we output the results.
-    // We assume we're being run from the root.
-    writeStyleguideConfig("./styleguide.prod.config.js", styleguideConfig);
-}
-
 /**
  *
  *
@@ -209,4 +188,42 @@ function genStyleguideProdConfig() {
  *
  *
  */
-genStyleguideProdConfig();
+// See https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
+if (!process.env.PULL_REQUEST) {
+    // If we're not a pull request, then let's strip private sections.
+    // We iterate over the configuration and remove private sections.
+    styleguideConfig.sections = removePrivateSections(
+        styleguideConfig.sections,
+    );
+}
+
+// Then we go one more time at the root level and augment the sections with
+// some additional version information.
+for (const section of styleguideConfig.sections) {
+    const info = maybeGetPackageInfoForSection(section);
+    if (info) {
+        // eslint-disable-next-line no-console
+        console.log(
+            `Adding package information for ${
+                section.name
+            }: ${JSON.stringify(info)}`,
+        );
+        // Let's add some info!
+        const currentDescription = section.description;
+        const lines = [
+            info.prototype ? "***PROTOTYPE***" : null,
+            `**${info.name}**`,
+            `Design Specification: **${info.design}**`,
+            `Last released @ **${info.lastRelease}**\n`,
+            currentDescription,
+        ];
+        section.description = lines.filter((l) => !!l).join("  \n");
+    } else {
+        // eslint-disable-next-line no-console
+        console.log(`No package information found for ${section.name}`);
+    }
+}
+
+// Finally, we output the results.
+// We assume we're being run from the root.
+writeStyleguideConfig("./styleguide.prod.config.js", styleguideConfig);
