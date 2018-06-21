@@ -111,7 +111,6 @@ function removePrivateSections(sections) {
  * the package.
  */
 function maybeGetPackagePathForSection(section) {
-
     // This takes a single file path and tries to find a wonder-blocks-*
     // folder (we assume that such folders are any folders under the packages
     // directory).
@@ -190,15 +189,15 @@ function maybeGetPackageInfoForSection(section) {
  */
 // See https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
 if (!process.env.PULL_REQUEST) {
-    // If we're not a pull request, then let's strip private sections.
-    // We iterate over the configuration and remove private sections.
+    // If we're not a pull request, then let's iterate over the configuration
+    // and remove private sections.
     styleguideConfig.sections = removePrivateSections(
         styleguideConfig.sections,
     );
 }
 
-// Then we go one more time at the root level and augment the sections with
-// some additional version information.
+// Here we process the root level sections and augment their descriptions
+// with some additional package information.
 for (const section of styleguideConfig.sections) {
     const info = maybeGetPackageInfoForSection(section);
     if (info) {
@@ -212,9 +211,8 @@ for (const section of styleguideConfig.sections) {
         const currentDescription = section.description;
         const lines = [
             info.prototype ? "***PROTOTYPE***" : null,
-            `**${info.name}**`,
-            `Design Specification: **${info.design}**`,
-            `Last released @ **${info.lastRelease}**\n`,
+            `**${info.name}**@${info.lastRelease}`,
+            `Design Specification: **${info.design}**\n`,
             currentDescription,
         ];
         section.description = lines.filter((l) => !!l).join("  \n");
