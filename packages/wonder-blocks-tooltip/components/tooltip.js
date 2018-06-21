@@ -10,7 +10,6 @@ import TooltipAnchor from "./tooltip-anchor.js";
 type Props = {|
     // The content for anchoring the tooltip.
     // This component will be used to position the tooltip.
-    // TODO(somewhatabstract): Limit to a single component
     children: React.Element<any> | string,
 
     // The content to render in the tooltip.

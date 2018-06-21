@@ -20,11 +20,7 @@ describe("wonder-blocks-tooltip", () => {
             ModalLauncher,
         } = require("@khanacademy/wonder-blocks-modal");
 
-        const tooltip = (
-            <Tooltip content={"Some long text"}>
-                <View>Anchor</View>
-            </Tooltip>
-        );
+        const tooltip = <Tooltip content={"Some long text"}>Some text</Tooltip>;
 
         const scrollyContent = (
             <div
