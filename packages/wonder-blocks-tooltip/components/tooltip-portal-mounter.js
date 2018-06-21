@@ -12,7 +12,7 @@ const _isJest = typeof jest !== "undefined";
 
 type Props = {|
     // The tooltip that will be rendered in the portal.
-    portalContent: React.Element<*>,
+    portalContent: ?React.Element<*>,
 
     // The child element to be rendered within the main React tree.
     // This is the component to which the tooltip is anchored.
@@ -31,32 +31,32 @@ type Props = {|
  */
 export default class TooltipPortalMounter extends React.Component<Props> {
     _destination: ?Node;
-
-    /**
-     * When we mount, we also mount our children into a new child of
-     * `document.body`.
-     */
-    componentDidMount() {
-        this._doMount();
-    }
-
-    /**
-     * If our mountElement updated, our root may have too, so let's check
-     * that!
-     */
-    componentDidUpdate(prevProps: Props) {
-        this._doMount();
-    }
+    _timeoutId: ?number;
+    _rendered: boolean;
 
     /**
      * When we unmount, we also unmount our children, and the new child of
      * `document.body` we created.
      */
     componentWillUnmount() {
+        this._clearMountTimeout();
         this._doUnmount();
     }
 
+    _clearMountTimeout() {
+        const timeoutId = this._timeoutId;
+        this._timeoutId = undefined;
+        if (timeoutId != null) {
+            clearTimeout(timeoutId);
+        }
+    }
+
     _doMount() {
+        const {portalContent} = this.props;
+        if (!this._rendered || !portalContent) {
+            return;
+        }
+
         // NOTE(somewhatabstract): Jest doesn't like ReactDOM.findDOMNode so if
         // our snapshot tests are running, let's just not get the reference.
         // This isn't ideal; I wonder if we should return a newly created DOM
@@ -93,13 +93,11 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         // Render the tooltip into the destination node.
         // We have to render the subtree like this so that everything works as expected.
         // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
-        // ReactDOM.unstable_renderSubtreeIntoContainer(
-        //     this,
-        //     this.props.portalContent,
-        //     destination,
-        // );
-
-        ReactDOM.render(this.props.portalContent, destination);
+        ReactDOM.unstable_renderSubtreeIntoContainer(
+            this,
+            portalContent,
+            destination,
+        );
 
         // Save the destination node, so we can remove it on unmount.
         this._destination = destination;
@@ -111,6 +109,7 @@ export default class TooltipPortalMounter extends React.Component<Props> {
             return;
         }
 
+        this._destination = null;
         ReactDOM.unmountComponentAtNode(destination);
 
         if (!destination.parentNode) {
@@ -119,7 +118,24 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         destination.parentNode.removeChild(destination);
     }
 
+    _timeoutDoMount() {
+        this._clearMountTimeout();
+        this._timeoutId = setTimeout(() => this._doMount(), 0);
+    }
+
+    _timeoutDoUnmount() {
+        this._clearMountTimeout();
+        this._timeoutId = setTimeout(() => this._doUnmount(), 0);
+    }
+
     render() {
-        return this.props.children;
+        const {children, portalContent} = this.props;
+        this._rendered = true;
+        if (portalContent) {
+             this._timeoutDoMount();
+        } else {
+            this._timeoutDoUnmount();
+        }
+        return children;
     }
 }

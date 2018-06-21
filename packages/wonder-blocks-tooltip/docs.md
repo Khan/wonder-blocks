@@ -19,7 +19,7 @@ const {StandardModal, ModalLauncher} = require("@khanacademy/wonder-blocks-modal
 
 const tooltip = (
     <Tooltip content={"Some long text"}>
-        <View>Anchor</View>
+        Some text
     </Tooltip>
 );
 

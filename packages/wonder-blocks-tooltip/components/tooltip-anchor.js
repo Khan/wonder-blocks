@@ -13,13 +13,9 @@ import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 const _isJest = typeof jest !== "undefined";
 
 type Props = {|
-    // The content for anchoring the tooltip.
-    // This must be a single element or string.
-    children: React.Element<typeof TooltipPortalMounter>,
-
-    // Callback to be invoked whenever the anchor changes state from active to
-    // inactive or vice-versa.
-    onStateChanged: (active: boolean) => mixed,
+    // A method that renders the content for anchoring the tooltip.
+    // This must return a TooltipPortalMounter component.
+    children: (active: boolean) => React.Element<typeof TooltipPortalMounter>,
 
     // Callback to be invoked when the anchored content is mounted.
     // This provides a reference to the anchored content, which can then be
@@ -36,13 +32,21 @@ type Props = {|
     forceAnchorFocusivity?: boolean,
 |};
 
-export default class TooltipAnchor extends React.Component<Props> {
+type State = {|
+    active: boolean,
+|};
+
+export default class TooltipAnchor extends React.Component<Props, State> {
     _anchorNode: ?Element;
     _focused: boolean;
     _hovered: boolean;
 
     static defaultProps = {
         forceAnchorFocusivity: true,
+    };
+
+    state = {
+        active: false,
     };
 
     componentDidMount() {
@@ -78,8 +82,13 @@ export default class TooltipAnchor extends React.Component<Props> {
         }
     }
 
-    componentDidUpdate() {
-        this._updateFocusivity();
+    componentDidUpdate(prevProps: Props) {
+        if (
+            prevProps.forceAnchorFocusivity !== this.props.forceAnchorFocusivity
+            || prevProps.children !== this.props.children
+        ) {
+            this._updateFocusivity();
+        }
     }
 
     componentWillUnmount() {
@@ -113,14 +122,14 @@ export default class TooltipAnchor extends React.Component<Props> {
             // we can show the tooltip for visually impaired users that don't
             // use pointer devices nor assistive technology like screen readers.
             anchorNode.setAttribute("tabindex", "0");
-        } else if (currentTabIndex) {
+        } else if (!forceAnchorFocusivity && currentTabIndex) {
             anchorNode.removeAttribute("tabindex");
         }
     }
 
     _updateActiveState(hovered: boolean, focused: boolean) {
         // Take a snapshot of the old and new state.
-        const oldState = !!(this._hovered || this._focused);
+        const oldState = this.state.active;
         const newState = !!(hovered || focused);
 
         // Update our stored values.
@@ -129,7 +138,7 @@ export default class TooltipAnchor extends React.Component<Props> {
 
         // If we changed state, call our subscriber and let them know.
         if (oldState !== newState) {
-            this.props.onStateChanged(newState);
+            this.setState({active: newState});
         }
     }
 
@@ -150,6 +159,6 @@ export default class TooltipAnchor extends React.Component<Props> {
     }
 
     render() {
-        return this.props.children;
+        return this.props.children(this.state.active);
     }
 }

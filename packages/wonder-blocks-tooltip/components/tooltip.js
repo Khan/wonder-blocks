@@ -20,9 +20,9 @@ type Props = {|
     // TODO(somewhatabstract): Add other props per spec
 |};
 
-type State = {
+type State = {|
     refAnchor: ?HTMLElement,
-};
+|};
 
 export default class Tooltip extends React.Component<Props, State> {
     state = {refAnchor: null};
@@ -55,7 +55,10 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPortalContent(): React.Element<typeof Popper> {
+    _renderPortalContent(active: boolean): ?React.Element<typeof Popper> {
+        if (!active) {
+            return null;
+        }
         const content = (
             <div>
                 <div>{this.props.content}</div>
@@ -67,12 +70,12 @@ export default class Tooltip extends React.Component<Props, State> {
                 <div>{this.props.content}</div>
             </div>
         );
-        console.log(this.state.refAnchor);
         return (
             <Popper
                 referenceElement={this.state.refAnchor}
                 placement="left"
                 modifiers={{
+                    preventOverflow: {boundariesElement: 'viewport'},
                     kacustom: {
                         enabled: true,
                         fn: (data) => this.kacustom(data),
@@ -106,10 +109,12 @@ export default class Tooltip extends React.Component<Props, State> {
 
     render() {
         return (
-            <TooltipAnchor onStateChanged={(a) => {}} anchorRef={r => this._refAnchor(r)}>
-                <TooltipPortalMounter portalContent={this._renderPortalContent()}>
-                    {this._renderAnchorElement()}
-                </TooltipPortalMounter>
+            <TooltipAnchor anchorRef={r => this._refAnchor(r)}>
+                {(active) => (
+                    <TooltipPortalMounter portalContent={this._renderPortalContent(active)}>
+                        {this._renderAnchorElement()}
+                    </TooltipPortalMounter>
+                )}
             </TooltipAnchor>
         );
     }
