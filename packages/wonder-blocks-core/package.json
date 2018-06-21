@@ -14,6 +14,11 @@
   "dependencies": {
     "@khanacademy/wonder-blocks-spacing": "^1.0.0"
   },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "^15.3.2",
+    "react-router-dom": "^4.2.2"
+  },
   "author": "",
   "license": "MIT"
 }
