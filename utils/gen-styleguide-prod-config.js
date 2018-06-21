@@ -16,8 +16,11 @@
  */
 const fs = require("fs");
 const path = require("path");
+const process = require("process");
 
-const {getComponentFilesFromSection} =  require("./styleguidist-config-utils.js");
+const {
+    getComponentFilesFromSection,
+} = require("./styleguidist-config-utils.js");
 
 const styleguideConfig = require("../styleguide.config.js");
 
@@ -32,14 +35,16 @@ function writeStyleguideConfig(filepath, config) {
         ``,
         `module.exports = {`,
     ];
-    Object.entries(config).forEach(entry => {
+    Object.entries(config).forEach((entry) => {
         // HACK(somewhatabstract): We can't just output the webpackConfig
         // because we executed some things when we loaded it. We could write a
         // whole thing that reads the text and parses things out, but we don't
         // need to. We'll just recreate the executed property here.
         switch (entry[0]) {
             case "webpackConfig":
-                lines.push("    webpackConfig: createConfig([babel(), postcss()]),");
+                lines.push(
+                    "    webpackConfig: createConfig([babel(), postcss()]),",
+                );
                 break;
 
             case "serverPort":
@@ -72,22 +77,25 @@ function removePrivateSections(sections) {
         const sectionIndex = i - 1;
         if (sections[sectionIndex].private) {
             // eslint-disable-next-line no-console
-            console.log(`Removing private section ${sections[sectionIndex].name}`);
+            console.log(
+                `Removing private section ${sections[sectionIndex].name}`,
+            );
 
             // If the section is private, we presume all content of the section is
             // private too.
             sections.splice(sectionIndex, 1);
         } else {
             // And now, we move into the chilren of the section and repeat.
-            sections[sectionIndex].sections =
-                removePrivateSections(sections[sectionIndex].sections);
+            sections[sectionIndex].sections = removePrivateSections(
+                sections[sectionIndex].sections,
+            );
         }
     }
     return sections;
 }
 
 function maybeGetPackagePathForSection(section) {
-    const getPackageDirFromPath = filepath => {
+    const getPackageDirFromPath = (filepath) => {
         if (!filepath) {
             return null;
         }
@@ -107,7 +115,7 @@ function maybeGetPackagePathForSection(section) {
         } while (filepath);
 
         return null;
-    }
+    };
 
     if (section.content) {
         return getPackageDirFromPath(section.content);
@@ -116,7 +124,7 @@ function maybeGetPackagePathForSection(section) {
         const files = getComponentFilesFromSection(section);
         if (files.length) {
             return getPackageDirFromPath(files[0]);
-        };
+        }
     }
 
     // We get here, we got nothing.
@@ -147,8 +155,12 @@ function getVersionInfoForSection(section) {
 }
 
 function genStyleguideProdConfig() {
-    // We iterate over the configuration and remove private sections.
-    styleguideConfig.sections = removePrivateSections(styleguideConfig.sections);
+    if (!process.env.PULL_REQUEST) {
+        // We iterate over the configuration and remove private sections.
+        styleguideConfig.sections = removePrivateSections(
+            styleguideConfig.sections,
+        );
+    }
 
     // Then we go one more time at the root level and augment the sections with
     // some additional version information.
@@ -156,7 +168,11 @@ function genStyleguideProdConfig() {
         const info = getVersionInfoForSection(section);
         if (info) {
             // eslint-disable-next-line no-console
-            console.log(`Adding package information for ${section.name}: ${JSON.stringify(info)}`);
+            console.log(
+                `Adding package information for ${
+                    section.name
+                }: ${JSON.stringify(info)}`,
+            );
             // Let's add some info!
             const currentDescription = section.description;
             const lines = [
@@ -166,7 +182,7 @@ function genStyleguideProdConfig() {
                 `Last released @ **${info.lastRelease}**\n`,
                 currentDescription,
             ];
-            section.description = lines.filter(l => !!l).join("  \n");
+            section.description = lines.filter((l) => !!l).join("  \n");
         } else {
             // eslint-disable-next-line no-console
             console.log(`No package information found for ${section.name}`);
