@@ -12,7 +12,6 @@ describe("wonder-blocks-spacing", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("./index.js").default;
-        const {Strut} = require("./index.js");
 
         const styles = StyleSheet.create({
             row: {
@@ -34,8 +33,12 @@ describe("wonder-blocks-spacing", () => {
                         >
                             {spaceName}: {Spacing[spaceName]}px
                         </View>
-                        <Strut size={Spacing.xSmall} />
-                        <View style={{width: Spacing.xxxLarge}}>
+                        <View style={{width: Spacing.xSmall}} />
+                        <View
+                            style={{
+                                width: Spacing.xxxLarge,
+                            }}
+                        >
                             <View
                                 style={{
                                     backgroundColor: "black",
@@ -44,7 +47,7 @@ describe("wonder-blocks-spacing", () => {
                                 }}
                             />
                         </View>
-                        <Strut size={Spacing.xSmall} />
+                        <View style={{width: Spacing.xSmall}} />
                         <View
                             style={{
                                 backgroundColor: "black",
@@ -54,46 +57,6 @@ describe("wonder-blocks-spacing", () => {
                         />
                     </View>
                 ))}
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 2", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View, addStyle} = require("@khanacademy/wonder-blocks-core");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const Spacing = require("./index.js").default;
-        const {Spring, Strut} = require("./index.js");
-
-        // TODO(kevinb): replace with wonder-blocks-button once yarn workspaces land
-        const Button = addStyle("button");
-
-        const styles = StyleSheet.create({
-            container: {
-                flexDirection: "row",
-                border: `solid 1px ${Color.offBlack50}`,
-            },
-            button: {
-                fontSize: 24,
-                width: 100,
-                borderRadius: 4,
-                border: "none",
-                height: 40,
-            },
-        });
-
-        const example = (
-            <View style={styles.container}>
-                <Button style={styles.button}>A</Button>
-                <Strut size={Spacing.small} />
-                <Button style={styles.button}>B</Button>
-                <Strut size={Spacing.small} />
-                <Button style={styles.button}>C</Button>
-                <Spring />
-                <Button style={styles.button}>Cancel</Button>
-                <Strut size={Spacing.small} />
-                <Button style={styles.button}>Accept</Button>
             </View>
         );
         const tree = renderer.create(example).toJSON();
