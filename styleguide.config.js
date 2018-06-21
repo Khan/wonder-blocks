@@ -19,6 +19,10 @@ module.exports = {
             content: "packages/wonder-blocks-spacing/docs.md",
         },
         {
+            name: "Layout",
+            content: "packages/wonder-blocks-layout/docs.md",
+        },
+        {
             name: "Grid (Prototype)",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",
