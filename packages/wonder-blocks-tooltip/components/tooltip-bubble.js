@@ -44,7 +44,8 @@ export default class TooltipBubble extends React.Component<Props> {
         return (
             <Popper
                 referenceElement={anchorElement}
-                placement="left"
+                //TODO(somewhatabstract): Expose placement as a prop
+                placement="bottom"
                 modifiers={{
                     wbVisibility: visibilityModifierDefaultConfig,
                     flip: {behavior: "clockwise"},

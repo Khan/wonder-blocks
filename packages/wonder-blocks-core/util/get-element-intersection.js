@@ -94,7 +94,7 @@ function getElementIntersectionAgainstParent(
 
 /**
  * Determines if a given element intersects with the visible bounds of its
- * scroll parents, or the bounds of a given element.
+ * scroll parents, or the bounds of a specific element.
  */
 export default function getElementIntersection(
     element: Element,

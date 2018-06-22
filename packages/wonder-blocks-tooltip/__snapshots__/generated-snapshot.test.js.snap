@@ -1,18 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`wonder-blocks-tooltip example 1 1`] = `
-<div>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-      }
+<span
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
     }
-  >
-    Some text
-  </span>
+  }
+>
+  Some text
+</span>
+`;
+
+exports[`wonder-blocks-tooltip example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  Some text
+  <input />
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 3 1`] = `
+<div>
   <div
     style={
       Object {
@@ -39,34 +67,60 @@ exports[`wonder-blocks-tooltip example 1 1`] = `
           }
         }
       >
-        Some text
+        This is a big long piece of text with a 
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "color": "red",
+          }
+        }
+      >
+        tooltip
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+          }
+        }
+      >
+         in the middle.
       </span>
     </div>
   </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
+  }
+>
+  <button
+    onClick={[Function]}
   >
-    <button
-      onClick={[Function]}
-    >
-      Click here!
-    </button>
-  </div>
+    Click here!
+  </button>
 </div>
 `;

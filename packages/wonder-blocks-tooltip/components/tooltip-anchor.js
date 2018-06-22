@@ -67,6 +67,10 @@ export default class TooltipAnchor extends React.Component<Props, State> {
         this._anchorNode = anchorNode;
         this._updateFocusivity();
         if (anchorNode) {
+            // TODO(somewhatabstract): Detect ESC key to deactivate
+            // TODO(somewhatabstract): Work out how to allow pointer to go over
+            // the tooltip content to keep it active.
+
             anchorNode.addEventListener("focusin", () => this._handleFocusIn());
             anchorNode.addEventListener("focusout", () =>
                 this._handleFocusOut(),
@@ -84,8 +88,9 @@ export default class TooltipAnchor extends React.Component<Props, State> {
 
     componentDidUpdate(prevProps: Props) {
         if (
-            prevProps.forceAnchorFocusivity !== this.props.forceAnchorFocusivity
-            || prevProps.children !== this.props.children
+            prevProps.forceAnchorFocusivity !==
+                this.props.forceAnchorFocusivity ||
+            prevProps.children !== this.props.children
         ) {
             this._updateFocusivity();
         }

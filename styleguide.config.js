@@ -90,14 +90,7 @@ module.exports = {
             name: "Tooltip",
             content: "packages/wonder-blocks-tooltip/docs.md",
             components: "packages/wonder-blocks-tooltip/components/tooltip.js",
-            sections: [
-                {
-                    name: "Internal Components",
-                    components:
-                        "packages/wonder-blocks-tooltip/components/tooltip-anchor.js",
-                }
-            ]
-        }
+        },
     ],
 
     // These values control our custom styles.
