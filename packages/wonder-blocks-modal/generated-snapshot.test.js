@@ -6,6 +6,9 @@
 //   2. Run `yarn run gen-snapshot-tests`.
 import React from "react";
 import renderer from "react-test-renderer";
+
+// Mock react-dom as jest doesn't like findDOMNode.
+jest.mock("react-dom");
 import ModalLauncher from "./components/modal-launcher.js";
 import StandardModal from "./components/standard-modal.js";
 import TwoColumnModal from "./components/two-column-modal.js";

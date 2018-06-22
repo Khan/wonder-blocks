@@ -7,6 +7,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
+// Mock react-dom as jest doesn't like findDOMNode.
+jest.mock("react-dom");
+
 describe("wonder-blocks-color", () => {
     it("example 1", () => {
         const {StyleSheet} = require("aphrodite");
