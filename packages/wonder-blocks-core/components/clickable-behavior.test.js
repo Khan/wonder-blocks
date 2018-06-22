@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import {mount, shallow} from "enzyme";
+import {shallow} from "enzyme";
 
 import ClickableBehavior from "./clickable-behavior.js";
 
@@ -273,7 +273,7 @@ describe("ClickableBehavior", () => {
 
     it("has onClick triggered just once per click by various means", () => {
         const onClick = jest.fn();
-        const button = mount(
+        const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
@@ -284,23 +284,23 @@ describe("ClickableBehavior", () => {
 
         button.simulate("mousedown");
         button.simulate("mouseup");
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(onClick).toHaveBeenCalledTimes(1);
 
         // Order of DOM events is different for space vs. enter
         button.simulate("keydown", {keyCode: keyCodes.space});
         button.simulate("keyup", {keyCode: keyCodes.space});
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(onClick).toHaveBeenCalledTimes(2);
 
         button.simulate("keydown", {keyCode: keyCodes.enter});
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         button.simulate("keyup", {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(3);
 
         button.simulate("touchstart", {keyCode: keyCodes.space});
         button.simulate("touchend", {keyCode: keyCodes.space});
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(onClick).toHaveBeenCalledTimes(4);
     });
 });
