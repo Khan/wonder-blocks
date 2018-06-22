@@ -70,22 +70,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -137,22 +133,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -230,22 +222,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -297,22 +285,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -390,22 +374,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -457,22 +437,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -550,22 +526,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -617,22 +589,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -710,22 +678,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -777,22 +741,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -870,22 +830,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -937,22 +893,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1030,22 +982,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1097,22 +1045,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1190,22 +1134,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1257,22 +1197,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1350,22 +1286,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1417,22 +1349,18 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": 8,
-          "MsFlexPreferredSize": 8,
-          "WebkitFlexBasis": 8,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 8,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1460,191 +1388,5 @@ exports[`wonder-blocks-spacing example 1 1`] = `
       }
     />
   </div>
-</div>
-`;
-
-exports[`wonder-blocks-spacing example 2 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "border": "solid 1px rgba(33,36,44,0.50)",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "row",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <button
-    className=""
-    style={
-      Object {
-        "border": "none",
-        "borderRadius": 4,
-        "fontSize": 24,
-        "height": 40,
-        "width": 100,
-      }
-    }
-  >
-    A
-  </button>
-  <div
-    className=""
-    style={
-      Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexBasis": 12,
-        "flexDirection": "column",
-        "flexShrink": 0,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  />
-  <button
-    className=""
-    style={
-      Object {
-        "border": "none",
-        "borderRadius": 4,
-        "fontSize": 24,
-        "height": 40,
-        "width": 100,
-      }
-    }
-  >
-    B
-  </button>
-  <div
-    className=""
-    style={
-      Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexBasis": 12,
-        "flexDirection": "column",
-        "flexShrink": 0,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  />
-  <button
-    className=""
-    style={
-      Object {
-        "border": "none",
-        "borderRadius": 4,
-        "fontSize": 24,
-        "height": 40,
-        "width": 100,
-      }
-    }
-  >
-    C
-  </button>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "flexGrow": 1,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  />
-  <button
-    className=""
-    style={
-      Object {
-        "border": "none",
-        "borderRadius": 4,
-        "fontSize": 24,
-        "height": 40,
-        "width": 100,
-      }
-    }
-  >
-    Cancel
-  </button>
-  <div
-    className=""
-    style={
-      Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexBasis": 12,
-        "flexDirection": "column",
-        "flexShrink": 0,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  />
-  <button
-    className=""
-    style={
-      Object {
-        "border": "none",
-        "borderRadius": 4,
-        "fontSize": 24,
-        "height": 40,
-        "width": 100,
-      }
-    }
-  >
-    Accept
-  </button>
 </div>
 `;
