@@ -44,6 +44,9 @@ function generateTestFile(root, examples, componentFileMap) {
         "//   2. Run `yarn run gen-snapshot-tests`.",
         `import React from "react";`,
         `import renderer from "react-test-renderer";`,
+        ``,
+        `// Mock react-dom as jest doesn't like findDOMNode.`,
+        `jest.mock("react-dom");`,
     ];
 
     const modName = root.split("/")[1];

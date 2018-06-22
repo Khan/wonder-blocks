@@ -6,6 +6,9 @@
 //   2. Run `yarn run gen-snapshot-tests`.
 import React from "react";
 import renderer from "react-test-renderer";
+
+// Mock react-dom as jest doesn't like findDOMNode.
+jest.mock("react-dom");
 import Tooltip from "./components/tooltip.js";
 
 describe("wonder-blocks-tooltip", () => {

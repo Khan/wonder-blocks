@@ -6,6 +6,9 @@
 //   2. Run `yarn run gen-snapshot-tests`.
 import React from "react";
 import renderer from "react-test-renderer";
+
+// Mock react-dom as jest doesn't like findDOMNode.
+jest.mock("react-dom");
 import BodyMonospace from "./components/body-monospace.js";
 import BodySerifBlock from "./components/body-serif-block.js";
 import BodySerif from "./components/body-serif.js";

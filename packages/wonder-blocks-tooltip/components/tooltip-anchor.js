@@ -8,10 +8,6 @@ import * as ReactDOM from "react-dom";
 
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 
-// NOTE(somewhatabstract): Jest snapshots don't like findDOMNode, so we need to
-// detect that.
-const _isJest = typeof jest !== "undefined";
-
 type Props = {|
     // A method that renders the content for anchoring the tooltip.
     // This must return a TooltipPortalMounter component.
@@ -50,11 +46,7 @@ export default class TooltipAnchor extends React.Component<Props, State> {
     };
 
     componentDidMount() {
-        // NOTE(somewhatabstract): Jest doesn't like ReactDOM.findDOMNode so if
-        // our snapshot tests are running, let's just not get the reference.
-        // This isn't ideal; I wonder if we should return a newly created DOM
-        // element just for jest.
-        const anchorNode = _isJest ? null : ReactDOM.findDOMNode(this);
+        const anchorNode = ReactDOM.findDOMNode(this);
 
         // This should never happen, but we have this check here to make flow
         // happy and ensure that if this does happen, we'll know about it.

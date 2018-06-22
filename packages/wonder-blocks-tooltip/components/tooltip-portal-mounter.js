@@ -7,10 +7,6 @@ import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-
 import {TooltipPortalAttributeName} from "../util/constants.js";
 import TooltipBubble from "./tooltip-bubble.js";
 
-// NOTE(somewhatabstract): Jest snapshots don't like findDOMNode, so we need to
-// detect that.
-const _isJest = typeof jest !== "undefined";
-
 type Props = {|
     // The tooltip that will be rendered in the portal.
     bubble: ?React.Element<typeof TooltipBubble>,
@@ -58,11 +54,7 @@ export default class TooltipPortalMounter extends React.Component<Props> {
             return;
         }
 
-        // NOTE(somewhatabstract): Jest doesn't like ReactDOM.findDOMNode so if
-        // our snapshot tests are running, let's just not get the reference.
-        // This isn't ideal; I wonder if we should return a newly created DOM
-        // element just for jest.
-        const anchorNode = _isJest ? null : ReactDOM.findDOMNode(this);
+        const anchorNode = ReactDOM.findDOMNode(this);
         const modalHost =
             anchorNode && maybeGetPortalMountedModalHostElement(anchorNode);
 
