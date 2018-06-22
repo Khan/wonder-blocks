@@ -8,17 +8,17 @@ export type AxisIntersection =
     /**
      * The item is partly or fully within the bounds.
      */
-    "within" |
+    | "within"
 
     /**
      * The item is outside the starting bounds.
      */
-    "before" |
+    | "before"
 
     /**
      * The item is outside the ending bounds.
      */
-    "after";
+    | "after";
 
 /**
  * Indicates the visibility of an item on the horizontal and vertical axes.
@@ -48,18 +48,14 @@ const FullIntersection: Intersection = {
 function getAxisIntersection(
     intersectingRect: ClientRect | DOMRect,
     boundsRect: ClientRect | DOMRect,
-    axis: "vertical"|"horizontal",
+    axis: "vertical" | "horizontal",
 ): AxisIntersection {
-    const start = rect => (axis === "horizontal")
-            ? rect.left
-            : rect.top;
-    const end = rect => (axis === "horizontal")
-        ? rect.right
-        : rect.bottom;
+    const start = (rect) => (axis === "horizontal" ? rect.left : rect.top);
+    const end = (rect) => (axis === "horizontal" ? rect.right : rect.bottom);
 
     if (end(intersectingRect) <= start(boundsRect)) {
         return "before";
-    } else if (start(intersectingRect) + Number.EPSILON >= end(boundsRect)) {
+    } else if (start(intersectingRect) >= end(boundsRect)) {
         return "after";
     } else {
         return "within";
@@ -72,15 +68,14 @@ function getAxisIntersection(
  * could obscure the given `element`.
  */
 function getElementIntersectionAgainstParent(
-    element: Element,
+    intersectingRect: ClientRect | DOMRect,
     boundsElement: Element,
 ): Intersection {
-    if (!element || !boundsElement) {
+    if (!boundsElement) {
         return UndeterminedIntersection;
     }
 
     const boundsRect = boundsElement.getBoundingClientRect();
-    const intersectingRect = element.getBoundingClientRect();
 
     const horizontal = getAxisIntersection(
         intersectingRect,
@@ -110,15 +105,22 @@ export default function getElementIntersection(
         return UndeterminedIntersection;
     }
 
+    const intersectingRect = element.getBoundingClientRect();
     // If we're looking against a single boundary element, then we just do that.
     if (boundsElement) {
-        return getElementIntersectionAgainstParent(element, boundsElement);
+        return getElementIntersectionAgainstParent(
+            intersectingRect,
+            boundsElement,
+        );
     }
 
     // Otherwise, we enumerate the scroll parents and test against those.
     for (const scrollParent of enumerateScrollAncestors(element)) {
+        if (scrollParent === document.documentElement) {
+            break;
+        }
         const intersection = getElementIntersectionAgainstParent(
-            element,
+            intersectingRect,
             scrollParent,
         );
         if (
@@ -130,6 +132,6 @@ export default function getElementIntersection(
         }
     }
 
-    // If we got here, every parent says the element is visible.
+    // If we got here, the element is within the bounds of its parents.
     return FullIntersection;
 }

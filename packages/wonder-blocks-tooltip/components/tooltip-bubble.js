@@ -1,4 +1,5 @@
 // @flow
+import {css, StyleSheet} from "aphrodite";
 import * as React from "react";
 import {Popper} from "react-popper";
 import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
@@ -30,11 +31,8 @@ export default class TooltipBubble extends React.Component<Props> {
             <div
                 data-placement={placement}
                 ref={ref}
-                style={{
-                    ...style,
-                    pointerEvents: "none",
-                    ...(outOfBoundaries ? {display: "none"} : {}),
-                }}
+                className={css(styles.bubble, outOfBoundaries && styles.hide)}
+                style={style}
             >
                 {children}
             </div>
@@ -48,12 +46,30 @@ export default class TooltipBubble extends React.Component<Props> {
                 referenceElement={anchorElement}
                 placement="left"
                 modifiers={{
-                    preventOverflow: {boundariesElement: "viewport"},
                     wbVisibility: visibilityModifierDefaultConfig,
+                    flip: {behavior: "clockwise"},
+                    preventOverflow: {boundariesElement: "viewport"},
                 }}
             >
-                {(p) => this._renderContent(p)}
+                {(props) => this._renderContent(props)}
             </Popper>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    bubble: {
+        pointerEvents: "none",
+    },
+    /**
+     * The hide style ensures that the bounds of the bubble stay unchanged.
+     * This is because popper.js calculates the bubble position based off its
+     * bounds and if we stopped rendering it entirely, it wouldn't know where to
+     * place it when it reappeared.
+     */
+    hide: {
+        opacity: 0,
+        backgroundColor: "transparent",
+        color: "transparent",
+    },
+});

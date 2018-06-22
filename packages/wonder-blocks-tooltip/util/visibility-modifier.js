@@ -12,24 +12,59 @@ import {getElementIntersection} from "@khanacademy/wonder-blocks-core";
  * The function that implements the modifier.
  */
 function visibilityModifierFn(data: any) {
-    // If something (such as the default hide modifier) already hid us against
-    // the viewport, we don't have to do anything.
-    if (!data.hide) {
-        const anchorElement = data.instance.reference;
-        const {horizontal, vertical} = getElementIntersection(anchorElement);
+    const anchorElement = data.instance.reference;
+    const {horizontal, vertical} = getElementIntersection(anchorElement);
 
-        // If we're hidden, we mimic what the built-in hide method does,
-        // and set the hide flag and the OOB attribute.
-        if (horizontal !== "within" || vertical !== "within") {
-            data.hide = true;
-            data.attributes['x-out-of-boundaries'] = '';
-        } else {
-            data.hide = false;
-            data.attributes['x-out-of-boundaries'] = false;
+    let hide = horizontal !== "within" && vertical !== "within";
+    if (!hide) {
+        // Before we assume we're visible let's check to see if something else
+        // is obscuring us.  Here we make the assumption that if our topleft and
+        // bottomright corners are covered by something, we're not visible.
+        // There are ways that this can still not work, such as different
+        // elements only covering those points and the remainder being visible,
+        // or if some covering element has none for pointer-events style, but
+        // those edge cases shouldn't bother the main usages for this method.
+
+        // NOTE: If the anchor element has `pointer-events: none`, we're always
+        // going to end up hiding, so, you know, probably don't do that.
+        const intersectingRect = anchorElement.getBoundingClientRect();
+        const topLeftElement = document.elementFromPoint(
+            intersectingRect.left,
+            intersectingRect.top,
+        );
+        // The bottom right corner is one less than the bounds, otherwise we
+        // can end up getting the parent of the anchor, rather than the anchor
+        // itself.
+        const bottomRightElement = document.elementFromPoint(
+            intersectingRect.right - 1,
+            intersectingRect.bottom - 1,
+        );
+        if (
+            topLeftElement !== anchorElement &&
+            bottomRightElement !== anchorElement
+        ) {
+            // Are we before or after?
+            hide = true;
         }
-        // TODO(somewhatabstract): This is where we would look to do two things..
-        // - Custom prevent overflowing based on remaining visibility the amount of the element clipped by any and all parents
     }
+
+    // If we're hidden, we mimic what the built-in hide method does,
+    // and set the hide flag and the OOB attribute.
+    if (hide) {
+        if (data.hide) {
+            return data;
+        }
+        data.hide = true;
+        data.attributes["x-out-of-boundaries"] = "";
+    } else {
+        // Avoid unnecessary DOM access if visibility hasn't changed
+        if (!data.hide) {
+            return data;
+        }
+        data.hide = false;
+        data.attributes["x-out-of-boundaries"] = false;
+    }
+
     // Always have to return the data object to ensure the modifier chain
     // in popper.js is unbroken.
     return data;
