@@ -16,6 +16,15 @@ type Props = {|
     // TODO(somewhatabstract): Update to allow TooltipContent or string
     content: string,
 
+    // When true, the child element will be given tabindex=0
+    // to make it keyboard focusable. This value defaults to true. One might set
+    // this to false in circumstances where the wrapped component already can
+    // receive focus or contains an element that can.
+    // Use good judgement when overriding this value, the tooltip content should
+    // be accessible via keyboard in all circumstances where the tooltip would
+    // appear using the mouse, so very those use-cases.
+    forceAnchorFocusivity?: boolean,
+
     // TODO(somewhatabstract): Add other props per spec
 |};
 
@@ -24,6 +33,10 @@ type State = {|
 |};
 
 export default class Tooltip extends React.Component<Props, State> {
+    static defaultProps = {
+        forceAnchorFocusivity: true,
+    };
+
     state = {anchorElement: null};
 
     _updateAnchorElement(ref: ?Element) {
@@ -53,8 +66,12 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     render() {
+        const {forceAnchorFocusivity} = this.props;
         return (
-            <TooltipAnchor anchorRef={(r) => this._updateAnchorElement(r)}>
+            <TooltipAnchor
+                forceAnchorFocusivity={forceAnchorFocusivity}
+                anchorRef={(r) => this._updateAnchorElement(r)}
+            >
                 {(active) => (
                     <TooltipPortalMounter bubble={this._renderBubble(active)}>
                         {this._renderAnchorElement()}
