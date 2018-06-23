@@ -6,6 +6,19 @@ import {mount} from "enzyme";
 import enumerateScrollAncestors from "./enumerate-scroll-ancestors.js";
 
 describe("enumerateScrollAncestors", () => {
+    test("@@iterator() method returns iterator", () => {
+        // Arrange
+        const enumerator = enumerateScrollAncestors((null: any));
+
+        // Act
+        // Flow doesn't want us to index  $FlowFixMe
+        const result = enumerator[Symbol.iterator]();
+
+        // Assert
+        expect(result).not.toBeUndefined();
+        expect(result).toBe(result[Symbol.iterator]());
+    });
+
     test("if passed an invalid parameter, yields nothing", () => {
         // Arrange
         const param = (("this is not an element": any): Element);

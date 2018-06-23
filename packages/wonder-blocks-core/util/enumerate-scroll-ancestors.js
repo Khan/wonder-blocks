@@ -25,15 +25,16 @@ const scroll = function(node: Element) {
 // defining it (tried handling this in other ways, but it just won't work).
 // So, we need this and the additional FlowFixMe a few lines down on the
 // iterator property itself. $FlowFixMe
-class ScrollAnswersIterator implements Iterator<Element> {
+class ScrollAncestorsIterator implements Iterator<Element> {
     done: boolean = false;
     parentElement: ?Element;
 
     constructor(element: Element) {
         if (!(element instanceof HTMLElement)) {
             this.done = true;
+        } else {
+            this.parentElement = element.parentElement;
         }
-        this.parentElement = element.parentElement;
     }
 
     //$FlowFixMe: Computed property keys are not allowed by flow at the moment
@@ -85,7 +86,7 @@ export default function enumerateScrollAncestors(
     element: Element,
 ): Iterable<Element> {
     return Object.defineProperty({}, Symbol.iterator, {
-        value: () => new ScrollAnswersIterator(element),
+        value: () => new ScrollAncestorsIterator(element),
         writable: false,
     });
 }

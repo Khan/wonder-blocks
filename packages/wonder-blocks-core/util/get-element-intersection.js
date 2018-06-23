@@ -71,10 +71,6 @@ function getElementIntersectionAgainstParent(
     intersectingRect: ClientRect | DOMRect,
     boundsElement: Element,
 ): Intersection {
-    if (!boundsElement) {
-        return UndeterminedIntersection;
-    }
-
     const boundsRect = boundsElement.getBoundingClientRect();
 
     const horizontal = getAxisIntersection(
@@ -116,9 +112,6 @@ export default function getElementIntersection(
 
     // Otherwise, we enumerate the scroll parents and test against those.
     for (const scrollParent of enumerateScrollAncestors(element)) {
-        if (scrollParent === document.documentElement) {
-            break;
-        }
         const intersection = getElementIntersectionAgainstParent(
             intersectingRect,
             scrollParent,
