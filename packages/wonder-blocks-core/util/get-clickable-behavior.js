@@ -28,7 +28,7 @@ export default function getClickableBehavior(
     /**
      * router object added to the React context object by react-router-dom.
      */
-    router: any,
+    router?: any,
 ) {
     if (!href) {
         return ClickableBehavior;
