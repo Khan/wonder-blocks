@@ -6,6 +6,9 @@
 //   2. Run `yarn run gen-snapshot-tests`.
 import React from "react";
 import renderer from "react-test-renderer";
+
+// Mock react-dom as jest doesn't like findDOMNode.
+jest.mock("react-dom");
 import Cell from "./components/cell.js";
 import FixedWidthCell from "./components/fixed-width-cell.js";
 import FlexCell from "./components/flex-cell.js";
