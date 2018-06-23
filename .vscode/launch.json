@@ -14,9 +14,7 @@
                 "--runInBand",
                 "${file}"
             ],
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen"
+            "cwd": "${workspaceFolder}"
         },
 
         // This is for debugging node scripts.
