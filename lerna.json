@@ -3,6 +3,14 @@
   "packages": [
     "packages/*"
   ],
+  "command": {
+    "publish": {
+      "ignore": [
+        "*.test.js",
+        "*.md"
+      ]
+    }
+  },
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true
