@@ -47,8 +47,8 @@ export function processStyleList<T: Object>(
         // Check for aphrodite internal property
         if ((child: any)._definition) {
             if (
-                typeof process !== "undefined" &&
-                process.env.SNAPSHOT_INLINE_APHRODITE
+                typeof global !== "undefined" &&
+                global.SNAPSHOT_INLINE_APHRODITE
             ) {
                 inlineStyles.push(child._definition);
             } else {

@@ -11,9 +11,9 @@
     "watch:all": "webpack -w",
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
-    "jest": "SNAPSHOT_INLINE_APHRODITE=1 jest",
+    "jest": "jest",
     "test": "yarn run lint && yarn run gen-snapshot-tests && yarn run build:all && yarn run flow && yarn run jest",
-    "build:coverage": "SNAPSHOT_INLINE_APHRODITE=1 jest --coverage",
+    "build:coverage": "yarn run jest --coverage",
     "coverage": "yarn run build:coverage && open coverage/lcov-report/index.html",
     "styleguidist": "styleguidist server",
     "start": "yarn run styleguidist",
@@ -71,6 +71,9 @@
     "packages/*"
   ],
   "jest": {
+    "globals": {
+      "SNAPSHOT_INLINE_APHRODITE": true
+    },
     "testRegex": ".test\\.jsx?$",
     "setupTestFrameworkScriptFile": "./test-setup.js",
     "transform": {
