@@ -1,19 +1,19 @@
 {
-	// See http://go.microsoft.com/fwlink/?LinkId=827846
-	// for the documentation about the extensions.json format
-	"recommendations": [
-		// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+    // See http://go.microsoft.com/fwlink/?LinkId=827846
+    // for the documentation about the extensions.json format
+    "recommendations": [
+        // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
 
-		// Coverage Gutters for code coverage inside editor
-		"ryanluker.vscode-coverage-gutters",
+        // Coverage Gutters for code coverage inside editor
+        "ryanluker.vscode-coverage-gutters",
 
-		// ESLint for eslint error and suppression support
-		"dbaeumer.vscode-eslint",
+        // ESLint for eslint error and suppression support
+        "dbaeumer.vscode-eslint",
 
-		// GitLens because it is awesome
-		"eamodio.gitlens",
+        // GitLens because it is awesome
+        "eamodio.gitlens",
 
-		// FlowType for flow support
-		"flowtype.flow-for-vscode",
-	]
+        // FlowType for flow support
+        "flowtype.flow-for-vscode",
+    ]
 }
