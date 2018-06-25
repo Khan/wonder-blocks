@@ -9,9 +9,12 @@ import {default as PopperJS} from "popper.js";
 import {getElementIntersection} from "@khanacademy/wonder-blocks-core";
 
 function isObscurred(anchorElement: any) {
-    // TODO(somewhatabstract): We need to be smarter in this algorithm and
+    // TODO(somewhatabstract): We should be smarter in this algorithm and
     // actually look at the intersection of the elements doing the obscurring
-    // just as we already do with our scroll parent intersections.
+    // just as we already do with our scroll parent intersections. That way we
+    // can not only check that the entire element is obscurred, but think about
+    // partial obscurement so we can move the tooltip bubble when it's anchor
+    // point is not visible.
 
     // Before we assume we're visible let's check to see if something else
     // is obscuring us.  Here we make the assumption that if our topleft and
