@@ -11,4 +11,5 @@ export {MediaLayoutWrapper} from "./util/util.js";
 
 import type {ClickableHandlers} from "./components/clickable-behavior.js";
 import type {AriaProps, TextTag, MediaSize, MediaSpec} from "./util/types.js";
-export type {AriaProps, ClickableHandlers, TextTag, MediaSize, MediaSpec};
+import type {Intersection} from "./util/get-element-intersection.js";
+export type {AriaProps, ClickableHandlers, Intersection, TextTag, MediaSize, MediaSpec};
