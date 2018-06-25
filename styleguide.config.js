@@ -33,6 +33,16 @@ module.exports = {
             components: "packages/wonder-blocks-core/components/*.js",
         },
         {
+            name: "Dropdown",
+            content: "packages/wonder-blocks-dropdown/docs.md",
+            components: [
+                "packages/wonder-blocks-dropdown/components/action-menu.js",
+                "packages/wonder-blocks-dropdown/components/single-select-menu.js",
+                "packages/wonder-blocks-dropdown/components/multi-select-menu.js",
+                "packages/wonder-blocks-dropdown/components/select-box.js",
+            ],
+        },
+        {
             name: "ProgressSpinner",
             content: "packages/wonder-blocks-progress-spinner/docs.md",
             components:
