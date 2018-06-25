@@ -33,6 +33,7 @@ type State = {|
 |};
 
 export default class TooltipAnchor extends React.Component<Props, State> {
+    _weSetFocusivity: ?boolean;
     _anchorNode: ?Element;
     _focused: boolean;
     _hovered: boolean;
@@ -119,8 +120,14 @@ export default class TooltipAnchor extends React.Component<Props, State> {
             // we can show the tooltip for visually impaired users that don't
             // use pointer devices nor assistive technology like screen readers.
             anchorNode.setAttribute("tabindex", "0");
+            this._weSetFocusivity = true;
         } else if (!forceAnchorFocusivity && currentTabIndex) {
-            anchorNode.removeAttribute("tabindex");
+            // We may not be forcing it, but we also want to ensure that if we
+            // did before, we remove it.
+            if (this._weSetFocusivity) {
+                anchorNode.removeAttribute("tabindex");
+                this._weSetFocusivity = false;
+            }
         }
     }
 
