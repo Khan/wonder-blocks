@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-tooltip example 1 1`] = `
+<span
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+    }
+  }
+>
+  Some text
+</span>
+`;
+
+exports[`wonder-blocks-tooltip example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  Some text
+  <input />
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 3 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "border": "1px solid",
+        "height": 100,
+        "margin": 10,
+        "overflow": "auto",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "height": "200vh",
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+          }
+        }
+      >
+        This is a big long piece of text with a 
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "color": "red",
+          }
+        }
+      >
+        tooltip
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+          }
+        }
+      >
+         in the middle.
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    onClick={[Function]}
+  >
+    Click here!
+  </button>
+</div>
+`;
