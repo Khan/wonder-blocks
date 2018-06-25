@@ -1,0 +1,19 @@
+{
+  "name": "@khanacademy/wonder-blocks-dropdown",
+  "version": "0.0.1",
+  "design": "v1",
+  "description": "Dropdown menu variants for Wonder Blocks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@khanacademy/wonder-blocks-button": "0.0.2",
+    "@khanacademy/wonder-blocks-color": "^1.0.0",
+    "@khanacademy/wonder-blocks-core": "^1.0.0",
+    "@khanacademy/wonder-blocks-spacing": "^1.0.0",
+    "@khanacademy/wonder-blocks-typography": "^1.0.0"
+  }
+}
