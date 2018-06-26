@@ -6,7 +6,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     View,
@@ -47,10 +47,10 @@ type SelectProps = {
 
     /**
      * Callback for when this item is pressed to change its selection state.
-     * Passes value of the item and the new selection state of the item. Should
+     * Passes value of the item, its label, and its new selection state. Should
      * be handled by an implementation of Menu.
      */
-    onToggle: (value: string, selectionState: boolean) => void,
+    onToggle: (value: string, label: string, selectionState: boolean) => void,
 
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
@@ -77,7 +77,7 @@ const Check = (props: CheckProps) => {
     const {selected, pressed, hovered, focused} = props;
 
     return (
-        <View>
+        <View style={[styles.checkContainer]}>
             <svg
                 role="img"
                 width="16px"
@@ -107,6 +107,7 @@ const Checkbox = (props: CheckProps) => {
     return (
         <View
             style={[
+                styles.checkContainer,
                 styles.checkbox,
                 !selected && styles.borderedCheckbox,
                 !selected &&
@@ -157,7 +158,7 @@ export default class SelectItem extends React.Component<SelectProps> {
             <ClickableBehavior
                 disabled={disabled}
                 onClick={() => {
-                    onToggle(value, !selected);
+                    onToggle(value, label, !selected);
                     if (onClick) {
                         onClick(!selected);
                     }
@@ -187,7 +188,8 @@ export default class SelectItem extends React.Component<SelectProps> {
                                 ) : (
                                     <Checkbox selected={selected} {...state} />
                                 )}
-                                <LabelLarge style={styles.label}>
+                                <Strut size={8} />
+                                <LabelLarge style={[styles.label]}>
                                     {label}
                                 </LabelLarge>
                             </View>
@@ -211,7 +213,9 @@ const styles = StyleSheet.create({
     },
 
     label: {
-        paddingLeft: Spacing.xSmall,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     // hover and focus states
@@ -241,9 +245,15 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
     },
 
+    checkContainer: {
+        // Semantically, this are the constants for a small-sized icon
+        height: 16,
+        width: 16,
+        minHeight: 16,
+        minWidth: 16,
+    },
+
     checkbox: {
-        height: Spacing.medium,
-        width: Spacing.medium,
         borderRadius: 3,
     },
 

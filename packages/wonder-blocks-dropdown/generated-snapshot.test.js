@@ -12,6 +12,7 @@ import ActionItem from "./components/action-item.js";
 import SelectItem from "./components/select-item.js";
 import SeparatorItem from "./components/separator-item.js";
 import SelectBox from "./components/select-box.js";
+import SingleSelectMenu from "./components/single-select-menu.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
@@ -202,6 +203,135 @@ describe("wonder-blocks-dropdown", () => {
                 </SelectBox>
             </View>
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            sideMargins: {
+                marginRight: 10,
+            },
+            darkBackgroundWrapper: {
+                background: "black",
+                padding: 10,
+            },
+            strutLike: {
+                width: 8,
+            },
+        });
+        const example = (
+            <View style={[styles.row]}>
+                <SingleSelectMenu
+                    items={[
+                        {
+                            type: "select",
+                            label: "Banana wrapped in a peel ",
+                            selected: false,
+                            value: "banana",
+                        },
+                        {
+                            type: "select",
+                            label: "Apple",
+                            selected: false,
+                            value: "apple",
+                        },
+                        {
+                            type: "select",
+                            label: "Grape",
+                            selected: false,
+                            value: "grape",
+                        },
+                    ]}
+                    light={false}
+                    onChange={(s) => console.log(s)}
+                    placeholder={"Choose a juice"}
+                    style={{
+                        width: 170,
+                        maxWidth: 170,
+                    }}
+                />
+
+                <View style={[styles.strutLike]} />
+
+                <View style={[styles.darkBackgroundWrapper]}>
+                    <SingleSelectMenu
+                        items={[
+                            {
+                                type: "select",
+                                label: "Banana juice!!!",
+                                selected: false,
+                                value: "banana",
+                            },
+                            {
+                                type: "select",
+                                label: "Apple juice!!!",
+                                selected: false,
+                                value: "apple",
+                            },
+                            {
+                                type: "select",
+                                label: "Grape juice!!!",
+                                selected: false,
+                                value: "grape",
+                            },
+                        ]}
+                        light={true}
+                        onChange={(s) => console.log(s)}
+                        placeholder={"Choose a fruit"}
+                    />
+                </View>
+            </View>
+        );
+
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+        const example = (
+            <View style={[styles.row]}>
+                <SingleSelectMenu
+                    items={[
+                        {
+                            type: "select",
+                            label: "Banana",
+                            selected: false,
+                            value: "banana",
+                        },
+                        {
+                            type: "select",
+                            label: "Apple",
+                            selected: false,
+                            value: "apple",
+                        },
+                        {
+                            type: "select",
+                            label: "Grape",
+                            selected: false,
+                            value: "grape",
+                        },
+                    ]}
+                    disabled={true}
+                    light={false}
+                    onChange={(s) => console.log(s)}
+                    placeholder={"Choose a fruit"}
+                />
+            </View>
+        );
+
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
