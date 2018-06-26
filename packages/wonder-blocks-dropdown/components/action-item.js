@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         border: "none",
+        outline: "none",
         flexDirection: "row",
         alignItems: "center",
         display: "flex",

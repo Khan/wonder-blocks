@@ -205,6 +205,7 @@ const styles = StyleSheet.create({
         color: offBlack,
         cursor: "pointer",
         border: "none",
+        outline: "none",
     },
 
     label: {
