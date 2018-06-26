@@ -68,11 +68,6 @@ type ActionProps = {
      * href is not
      */
     onClick?: () => void,
-
-    /**
-     * Custom styles.
-     */
-    style?: any,
 };
 
 const StyledAnchor = addStyle("a");
@@ -99,15 +94,7 @@ export default class ActionItem extends React.Component<ActionProps> {
     }
 
     render() {
-        const {
-            clientNav,
-            disabled,
-            href,
-            indent,
-            label,
-            onClick,
-            style,
-        } = this.props;
+        const {clientNav, disabled, href, indent, label, onClick} = this.props;
 
         const ClickableBehavior = getClickableBehavior(
             href,
@@ -136,7 +123,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                     ];
 
                     const props = {
-                        style: [defaultStyle, style],
+                        style: [defaultStyle],
                         disabled,
                         ...handlers,
                     };

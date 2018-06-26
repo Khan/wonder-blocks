@@ -46,9 +46,9 @@ type SelectProps = {
     variant: "check" | "checkbox",
 
     /**
-     * Callback for when this item is pressed. Passes value of the item and the
-     * new selection state of the item. Should be handled by an implementation
-     * of Menu.
+     * Callback for when this item is pressed to change its selection state.
+     * Passes value of the item and the new selection state of the item. Should
+     * be handled by an implementation of Menu.
      */
     onToggle: (value: string, selectionState: boolean) => void,
 
@@ -61,14 +61,9 @@ type SelectProps = {
      * Optional client-supplied callback when this item is called.
      */
     onClick?: (selectionState: boolean) => void,
-
-    /**
-     * Custom styles.
-     */
-    style?: any,
 };
 
-const StyledLink = addStyle("a");
+const StyledButton = addStyle("button");
 
 type CheckProps = {
     selected: boolean,
@@ -82,12 +77,12 @@ const Check = (props: CheckProps) => {
     const {selected, pressed, hovered, focused} = props;
 
     return (
-        <View style={styles.checkWrapper}>
+        <View>
             <svg
                 role="img"
                 width="16px"
                 height="16px"
-                viewBox="0 0 11.8 11.8"
+                viewBox="-1 0 12 12"
                 aria-hidden="true"
             >
                 {selected && (
@@ -101,7 +96,7 @@ const Check = (props: CheckProps) => {
     );
 };
 
-// TODO: getting replaced with a variant from Choice
+// TODO: replace with Choice component once it's implemented
 const Checkbox = (props: CheckProps) => {
     const {selected, pressed, hovered, focused} = props;
 
@@ -111,20 +106,23 @@ const Checkbox = (props: CheckProps) => {
 
     return (
         <View
-            style={
-                (styles.checkWrapper,
-                !(selected || pressed || hovered || focused) && styles.checkbox)
-            }
+            style={[
+                styles.checkbox,
+                !selected && styles.borderedCheckbox,
+                !selected &&
+                    (pressed || hovered || focused) &&
+                    styles.invertBackground,
+            ]}
         >
-            <svg
-                role="img"
-                width="16px"
-                height="16px"
-                viewBox="0 0 11.8 11.8"
-                aria-hidden="true"
-                style={{backgroundColor: bgColor}}
-            >
-                {selected && (
+            {selected && (
+                <svg
+                    role="img"
+                    width="16px"
+                    height="16px"
+                    viewBox="-2 -1 14 14"
+                    aria-hidden="true"
+                    style={{backgroundColor: bgColor, borderRadius: 3}}
+                >
                     <path
                         fill={
                             hovered || focused
@@ -135,8 +133,8 @@ const Checkbox = (props: CheckProps) => {
                         }
                         d={checkIcon}
                     />
-                )}
-            </svg>
+                </svg>
+            )}
         </View>
     );
 };
@@ -149,7 +147,6 @@ export default class SelectItem extends React.Component<SelectProps> {
             onClick,
             onToggle,
             selected,
-            style,
             value,
             variant,
         } = this.props;
@@ -178,10 +175,8 @@ export default class SelectItem extends React.Component<SelectProps> {
                                 : (hovered || focused) && styles.focus),
                     ];
 
-                    const allStyles = [defaultStyle, style];
-
                     return (
-                        <StyledLink style={allStyles} {...handlers}>
+                        <StyledButton style={[defaultStyle]} {...handlers}>
                             <View
                                 style={[styles.itemContainer]}
                                 role="menuitemcheckbox"
@@ -196,7 +191,7 @@ export default class SelectItem extends React.Component<SelectProps> {
                                     {label}
                                 </LabelLarge>
                             </View>
-                        </StyledLink>
+                        </StyledButton>
                     );
                 }}
             </ClickableBehavior>
@@ -209,6 +204,7 @@ const styles = StyleSheet.create({
         background: white,
         color: offBlack,
         cursor: "pointer",
+        border: "none",
     },
 
     label: {
@@ -242,17 +238,20 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
     },
 
-    checkWrapper: {
-        height: 16,
-        width: 16,
-        boxSizing: "border-box",
-    },
-
     checkbox: {
         height: 16,
         width: 16,
+        borderRadius: 3,
+    },
+
+    borderedCheckbox: {
         borderColor: offBlack32,
         borderStyle: "solid",
         borderWidth: 1,
+    },
+
+    invertBackground: {
+        backgroundColor: white,
+        borderColor: mix(fade(blue, 0.32), white),
     },
 });
