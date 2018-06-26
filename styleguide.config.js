@@ -93,6 +93,7 @@ module.exports = {
                 "packages/wonder-blocks-dropdown/components/action-item.js",
                 "packages/wonder-blocks-dropdown/components/select-item.js",
                 "packages/wonder-blocks-dropdown/components/separator-item.js",
+                "packages/wonder-blocks-dropdown/components/select-box.js",
             ],
         },
     ],
