@@ -6,36 +6,52 @@ import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import {
+    View,
+    addStyle,
+    getClickableBehavior,
+} from "@khanacademy/wonder-blocks-core";
 
 const StyledButton = addStyle("button");
 
 const {blue, white, offBlack16, offBlack32, offBlack50} = Color;
+
+const caretDown = `M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z`;
 
 type SelectBoxProps = {
     /**
      * Display text in the SelectBox.
      */
     children: string,
+
     /**
      * Whether the SelectBox opener is disabled. If disabled, disallows
      * interaction. Default false.
      */
     disabled?: boolean,
+
     /**
      * Whether the displayed text is a placeholder, determined by the creator
      * of this component. A placeholder has more faded text colors and styles.
      */
     isPlaceholder?: boolean,
+
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
      */
     light?: boolean,
+
     /**
      * Callback for when the SelectBox is pressed.
      */
     onClick: () => void,
+
+    /**
+     * Custom style. Mostly used for preferred width of this select box.
+     */
+    style?: any,
 };
 
 export default class SelectBox extends React.Component<SelectBoxProps> {
@@ -45,21 +61,41 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
         isPlaceholder: false,
     };
 
+    // TODO(sophie): replace with Icon component
+    renderCaret() {
+        return (
+            <svg
+                role="img"
+                aria-hidden={true}
+                width={16}
+                height={16}
+                viewBox={`0 0 16 16`}
+            >
+                <path d={caretDown} />
+            </svg>
+        );
+    }
+
     render() {
-        const {children, disabled, isPlaceholder, light, onClick} = this.props;
+        const {
+            children,
+            disabled,
+            isPlaceholder,
+            light,
+            onClick,
+            style,
+        } = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
         // TODO(sophie): should ButtonCore be public so we can use that to make
         // this custom button-like opener?
 
-        const textStyles = [
-            isPlaceholder
-                ? disabled
-                    ? styles.placeholderDisabled
-                    : styles.placeholder
-                : disabled && styles.textDisabled,
-        ];
+        const textColor = isPlaceholder
+            ? disabled
+                ? styles.placeholderDisabled
+                : styles.placeholder
+            : disabled && styles.textDisabled;
 
         return (
             <ClickableBehavior disabled={disabled} onClick={onClick}>
@@ -78,12 +114,17 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                                         ? stateStyles.active
                                         : (hovered || focused) &&
                                           stateStyles.focus),
+                                style,
                             ]}
                             {...handlers}
                         >
-                            <LabelMedium style={textStyles}>
+                            <LabelMedium style={[textColor]}>
                                 {children}
                             </LabelMedium>
+                            <View style={[styles.spacing]} />
+                            <View style={[styles.caretWrapper]}>
+                                {this.renderCaret()}
+                            </View>
                         </StyledButton>
                     );
                 }}
@@ -97,12 +138,12 @@ const styles = StyleSheet.create({
         position: "relative",
         display: "inline-flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
         height: 40,
         marginTop: 4,
         marginBottom: 4,
         paddingLeft: 16,
-        paddingRight: 16,
+        paddingRight: 12,
         border: "none",
         borderRadius: 4,
         cursor: "pointer",
@@ -122,6 +163,11 @@ const styles = StyleSheet.create({
 
     placeholderDisabled: {
         color: offBlack16,
+    },
+
+    // consider using Strut
+    spacing: {
+        width: 8,
     },
 });
 
@@ -161,11 +207,11 @@ const _generateStyles = (light, hovered, focused, pressed) => {
                 borderColor: blue,
                 borderStyle: "solid",
                 borderWidth: 2,
-                // These values are default padding (16) minus 1, because
+                // These values are default padding (16 and 12) minus 1, because
                 // changing the borderWidth to 2 messes up the button width
                 // and causes it to move a couple pixels. This fixes that.
                 paddingLeft: 15,
-                paddingRight: 15,
+                paddingRight: 11,
             },
             active: {
                 background: mix(fade(blue, 0.32), white),

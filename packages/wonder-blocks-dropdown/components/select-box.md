@@ -1,4 +1,5 @@
 ### Example: Regular and light select box versions
+These select boxes also have specified widths.
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
     <SelectBox
         isPlaceholder={false}
         onClick={() => console.log("regular selectbox selected")}
+        style={{width: 200}}
     >
         Regular selectbox
     </SelectBox>
@@ -29,6 +31,7 @@ const styles = StyleSheet.create({
             light={true}
             isPlaceholder={false}
             onClick={() => console.log("light selectbox selected")}
+            style={{width: 150}}
         >
             Light version
         </SelectBox>
@@ -37,6 +40,8 @@ const styles = StyleSheet.create({
 ```
 
 ### Example: Selectbox with a placeholder
+Caret color will be fixed with incorporation of Icon element.
+This one does not have a specified width.
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -55,6 +60,8 @@ const styles = StyleSheet.create({
 ```
 
 ### Example: Disabled select box
+Caret color will be fixed with incorporation of Icon element.
+This one does not have a specified width.
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
