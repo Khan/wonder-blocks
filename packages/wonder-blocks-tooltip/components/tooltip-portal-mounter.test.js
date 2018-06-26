@@ -19,6 +19,7 @@ import type {Placement} from "../util/types.js";
 type PortalMountTesterProps = {|
     refChild: (Element | ?React.Component<*, *>) => mixed,
     placement: Placement,
+    hasBubble: boolean,
 |};
 
 type PortalMountTesterState = {
@@ -32,6 +33,10 @@ class PortalMountTester extends React.Component<
     PortalMountTesterProps,
     PortalMountTesterState,
 > {
+    static defaultProps = {
+        hasBubble: true,
+    };
+
     constructor() {
         super();
     }
@@ -48,7 +53,7 @@ class PortalMountTester extends React.Component<
     }
 
     render() {
-        const bubble = (
+        const bubble = this.props.hasBubble ? (
             <TooltipBubble
                 placement={this.props.placement}
                 ref={(r) => this.props.refChild(r)}
@@ -56,7 +61,7 @@ class PortalMountTester extends React.Component<
             >
                 Tooltip!
             </TooltipBubble>
-        );
+        ) : null;
         return (
             <TooltipPortalMounter bubble={bubble}>
                 <View ref={(r) => this.updateAnchorRef(r)}>Anchor</View>
@@ -147,21 +152,61 @@ describe("TooltipPortalMounter", () => {
     });
 
     test("Children unmount when the portal unmounts", (done) => {
+        // Arrange
         let postMount = false;
+        const arrangeAct = (assert) => {
+            const wrapper = mount(
+                <PortalMountTester placement="left" refChild={assert} />,
+            );
+
+            // Act
+            setTimeout(() => wrapper.unmount(), 0);
+        };
 
         // Once the child unmounts, check that it wasn't too early (i.e.
         // check that unmounted is true), and finish the test.
-        const childrenRef = (element) => {
+        const andAssert = (element) => {
+            if (!postMount) {
+                postMount = true;
+                return;
+            }
+
+            // Assert
             if (!element) {
                 expect(postMount).toBe(true);
                 done();
             }
         };
-        const wrapper = mount(
-            <PortalMountTester placement="left" refChild={childrenRef} />,
-        );
 
-        postMount = true;
-        setTimeout(() => wrapper.unmount(), 0);
+        arrangeAct(andAssert);
+    });
+
+    test("bubble prop is null, unmounts on timeout", (done) => {
+        // Arrange
+        let postMount = false;
+        const arrangeAct = (assert) => {
+            const wrapper = mount(
+                <PortalMountTester placement="left" refChild={assert} />,
+            );
+
+            setTimeout(() => wrapper.setProps({hasBubble: false}), 0);
+        };
+
+        // Once the child unmounts, check that it wasn't too early (i.e.
+        // check that unmounted is true), and finish the test.
+        const andAssert = (element) => {
+            if (!postMount) {
+                postMount = true;
+                return;
+            }
+
+            // Assert
+            if (!element) {
+                expect(postMount).toBe(true);
+                done();
+            }
+        };
+
+        arrangeAct(andAssert);
     });
 });
