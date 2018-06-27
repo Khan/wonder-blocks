@@ -145,6 +145,30 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
     }
   }
 >
+  <div
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
   <span
     className=""
     style={
@@ -202,6 +226,30 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
   >
     Title text!
   </h4>
+  <div
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
   <span
     className=""
     style={
@@ -257,6 +305,30 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
   >
     Body text title!
   </span>
+  <div
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
   <span
     className=""
     style={
