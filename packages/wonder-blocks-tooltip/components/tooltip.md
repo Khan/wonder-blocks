@@ -1,14 +1,14 @@
-### Text anchor & text tooltip
+### Text anchor & text tooltip & placement right
 
 ```js
 const React = require("react");
 
-<Tooltip content={"The tooltip text"}>
+<Tooltip content={"I'm on the right!"} placement="right">
     Some text
 </Tooltip>
 ```
 
-### Complex anchor & text tooltip
+### Complex anchor & text tooltip & placement default (top)
 
 In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus.
 
@@ -16,7 +16,7 @@ In this example, we're no longer forcing the anchor root to be focusable, since 
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
 
-<Tooltip forceAnchorFocusivity={false} content={"The tooltip text"}>
+<Tooltip forceAnchorFocusivity={false} content={"I'm at the top!"}>
     <View>
         Some text
         <input />
@@ -24,7 +24,7 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 </Tooltip>
 ```
 
-### Substring anchor in scrollable parent
+### Substring anchor in scrollable parent & placement bottom
 
 ```js
 const React = require("react");
@@ -34,7 +34,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
     <div style={{height: 100, overflow: "auto", border: "1px solid", margin: 10,}}>
         <div style={{height: "200vh"}}>
             <Text>This is a big long piece of text with a </Text>
-            <Tooltip content={"Some long text"}>
+            <Tooltip content={"I'm on the bottom!"} placement={"bottom"}>
                 <Text style={{color: "red"}}>tooltip</Text>
             </Tooltip>
             <Text> in the middle.</Text>
@@ -43,7 +43,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
 </div>
 ```
 
-### Tooltip in a modal
+### Tooltip in a modal & placement left
 
 ```js
 const React = require("react");
@@ -53,11 +53,9 @@ const {StandardModal, ModalLauncher} = require("@khanacademy/wonder-blocks-modal
 const scrollyContent = (
      <div style={{height: 100, overflow: "auto", border: "1px solid", margin: 10,}}>
         <div style={{height: "200vh"}}>
-            <Text>This is a big long piece of text with a </Text>
-            <Tooltip content={"Some long text"}>
+            <Tooltip content={"I'm on the left!"} placement="left">
                 <Text style={{color: "red"}}>tooltip</Text>
             </Tooltip>
-            <Text> in the middle.</Text>
         </div>
      </div>
 );

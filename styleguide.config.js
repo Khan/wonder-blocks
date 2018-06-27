@@ -103,6 +103,15 @@ module.exports = {
                 "packages/wonder-blocks-tooltip/components/tooltip.js",
                 "packages/wonder-blocks-tooltip/components/tooltip-content.js",
             ],
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-tooltip/components/tooltip-arrow.js",
+                    ],
+                },
+            ],
         },
     ],
 

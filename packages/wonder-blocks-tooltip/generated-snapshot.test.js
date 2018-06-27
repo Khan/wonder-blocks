@@ -11,13 +11,16 @@ import renderer from "react-test-renderer";
 jest.mock("react-dom");
 import Tooltip from "./components/tooltip.js";
 import TooltipContent from "./components/tooltip-content.js";
+import TooltipArrow from "./components/tooltip-arrow.js";
 
 describe("wonder-blocks-tooltip", () => {
     it("example 1", () => {
         const React = require("react");
 
         const example = (
-            <Tooltip content={"The tooltip text"}>Some text</Tooltip>
+            <Tooltip content={"I'm on the right!"} placement="right">
+                Some text
+            </Tooltip>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
@@ -27,7 +30,7 @@ describe("wonder-blocks-tooltip", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
-            <Tooltip forceAnchorFocusivity={false} content={"The tooltip text"}>
+            <Tooltip forceAnchorFocusivity={false} content={"I'm at the top!"}>
                 <View>
                     Some text
                     <input />
@@ -53,7 +56,10 @@ describe("wonder-blocks-tooltip", () => {
                 >
                     <div style={{height: "200vh"}}>
                         <Text>This is a big long piece of text with a </Text>
-                        <Tooltip content={"Some long text"}>
+                        <Tooltip
+                            content={"I'm on the bottom!"}
+                            placement={"bottom"}
+                        >
                             <Text style={{color: "red"}}>tooltip</Text>
                         </Tooltip>
                         <Text> in the middle.</Text>
@@ -82,11 +88,9 @@ describe("wonder-blocks-tooltip", () => {
                 }}
             >
                 <div style={{height: "200vh"}}>
-                    <Text>This is a big long piece of text with a </Text>
-                    <Tooltip content={"Some long text"}>
+                    <Tooltip content={"I'm on the left!"} placement="left">
                         <Text style={{color: "red"}}>tooltip</Text>
                     </Tooltip>
-                    <Text> in the middle.</Text>
                 </div>
             </div>
         );
@@ -138,6 +142,52 @@ describe("wonder-blocks-tooltip", () => {
                 <Body>Body text content!</Body>
                 <LabelSmall>And LabelSmall!</LabelSmall>
             </TooltipContent>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
+        const example = (
+            <div style={{display: "flex", flexDirection: "column"}}>
+                <TooltipArrow placement="top" />
+                <div style={{backgroundColor: "red", width: 24, height: 4}} />
+            </div>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 9", () => {
+        const example = (
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row-reverse",
+                    justifyContent: "flex-end",
+                }}
+            >
+                <TooltipArrow placement="right" />
+                <div style={{backgroundColor: "red", width: 4, height: 24}} />
+            </div>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 10", () => {
+        const example = (
+            <div style={{display: "flex", flexDirection: "column-reverse"}}>
+                <TooltipArrow placement="bottom" />
+                <div style={{backgroundColor: "red", width: 24, height: 4}} />
+            </div>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 11", () => {
+        const example = (
+            <div style={{display: "flex", flexDirection: "row"}}>
+                <TooltipArrow placement="left" />
+                <div style={{backgroundColor: "red", width: 4, height: 24}} />
+            </div>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
