@@ -16,23 +16,20 @@ import TooltipBubble from "./tooltip-bubble.js";
 
 import type {Placement} from "../util/types.js";
 
-type PortalMountTesterProps = {|
+type TestHarnessProps = {|
     refChild: (Element | ?React.Component<*, *>) => mixed,
     placement: Placement,
     hasBubble: boolean,
 |};
 
-type PortalMountTesterState = {
+type TestHarnessState = {
     anchor: ?HTMLElement,
 };
 
 /**
  * Simple wrapper to wire up a TooltipPortal.
  */
-class PortalMountTester extends React.Component<
-    PortalMountTesterProps,
-    PortalMountTesterState,
-> {
+class TestHarness extends React.Component<TestHarnessProps, TestHarnessState> {
     static defaultProps = {
         hasBubble: true,
     };
@@ -53,18 +50,18 @@ class PortalMountTester extends React.Component<
     }
 
     render() {
-        const bubble = this.props.hasBubble ? (
-            <TooltipBubble
-                placement={this.props.placement}
-                ref={(r) => this.props.refChild(r)}
-                anchorElement={this.state.anchor}
-            >
-                Tooltip!
-            </TooltipBubble>
-        ) : null;
+        const anchor = <View ref={(r) => this.updateAnchorRef(r)}>Anchor</View>;
         return (
-            <TooltipPortalMounter bubble={bubble}>
-                <View ref={(r) => this.updateAnchorRef(r)}>Anchor</View>
+            <TooltipPortalMounter anchor={anchor}>
+                {this.props.hasBubble ? (
+                    <TooltipBubble
+                        placement={this.props.placement}
+                        ref={(r) => this.props.refChild(r)}
+                        anchorElement={this.state.anchor}
+                    >
+                        Tooltip!
+                    </TooltipBubble>
+                ) : null}
             </TooltipPortalMounter>
         );
     }
@@ -106,7 +103,7 @@ describe("TooltipPortalMounter", () => {
             // that this _isn't_ part of the tree where the portal children get
             // mounted.
             <div data-this-should-not-contain-the-portal-children>
-                <PortalMountTester placement="bottom" refChild={childrenRef} />
+                <TestHarness placement="bottom" refChild={childrenRef} />
             </div>,
         );
     });
@@ -134,10 +131,7 @@ describe("TooltipPortalMounter", () => {
                 footer="Footer"
                 content={
                     <View>
-                        <PortalMountTester
-                            placement="top"
-                            refChild={childrenRef}
-                        />
+                        <TestHarness placement="top" refChild={childrenRef} />
                     </View>
                 }
             />
@@ -156,7 +150,7 @@ describe("TooltipPortalMounter", () => {
         let postMount = false;
         const arrangeAct = (assert) => {
             const wrapper = mount(
-                <PortalMountTester placement="left" refChild={assert} />,
+                <TestHarness placement="left" refChild={assert} />,
             );
 
             // Act
@@ -186,7 +180,7 @@ describe("TooltipPortalMounter", () => {
         let postMount = false;
         const arrangeAct = (assert) => {
             const wrapper = mount(
-                <PortalMountTester placement="left" refChild={assert} />,
+                <TestHarness placement="left" refChild={assert} />,
             );
 
             setTimeout(() => wrapper.setProps({hasBubble: false}), 0);

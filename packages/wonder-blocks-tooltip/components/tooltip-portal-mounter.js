@@ -8,12 +8,12 @@ import {TooltipPortalAttributeName} from "../util/constants.js";
 import TooltipBubble from "./tooltip-bubble.js";
 
 type Props = {|
-    // The tooltip that will be rendered in the portal.
-    bubble: ?React.Element<typeof TooltipBubble>,
-
     // The child element to be rendered within the main React tree.
     // This is the component to which the tooltip is anchored.
-    children: React.Element<*>,
+    anchor: React.Element<*>,
+
+    // The tooltip that will be rendered in the portal.
+    children: ?React.Element<typeof TooltipBubble>,
 |};
 
 /**
@@ -49,8 +49,8 @@ export default class TooltipPortalMounter extends React.Component<Props> {
     }
 
     _doMount() {
-        const {bubble} = this.props;
-        if (!this._rendered || !bubble) {
+        const {children} = this.props;
+        if (!this._rendered || !children) {
             return;
         }
 
@@ -86,7 +86,11 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         // Render the tooltip into the destination node.
         // We have to render the subtree like this so that everything works as expected.
         // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
-        ReactDOM.unstable_renderSubtreeIntoContainer(this, bubble, destination);
+        ReactDOM.unstable_renderSubtreeIntoContainer(
+            this,
+            children,
+            destination,
+        );
 
         // Save the destination node, so we can remove it on unmount.
         this._destination = destination;
@@ -118,13 +122,13 @@ export default class TooltipPortalMounter extends React.Component<Props> {
     }
 
     render() {
-        const {children, bubble} = this.props;
+        const {children, anchor} = this.props;
         this._rendered = true;
-        if (bubble) {
+        if (children) {
             this._timeoutDoMount();
         } else {
             this._timeoutDoUnmount();
         }
-        return children;
+        return anchor;
     }
 }
