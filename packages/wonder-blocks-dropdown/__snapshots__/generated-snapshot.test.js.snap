@@ -968,12 +968,14 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     style={
       Object {
         "alignItems": "center",
+        "backgroundColor": "#ffffff",
         "border": "none",
         "borderColor": "rgba(33,36,44,0.50)",
         "borderRadius": 4,
         "borderStyle": "solid",
         "borderWidth": 1,
         "boxSizing": "border-box",
+        "color": "#21242c",
         "cursor": "pointer",
         "display": "inline-flex",
         "height": 40,
@@ -989,6 +991,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         "width": 200,
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -1101,12 +1104,14 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     style={
       Object {
         "alignItems": "center",
+        "backgroundColor": "#ffffff",
         "border": "none",
         "borderColor": "rgba(33,36,44,0.50)",
         "borderRadius": 4,
         "borderStyle": "solid",
         "borderWidth": 1,
         "boxSizing": "border-box",
+        "color": "#21242c",
         "cursor": "pointer",
         "display": "inline-flex",
         "height": 40,
@@ -1122,6 +1127,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         "width": 150,
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -1254,9 +1260,11 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       style={
         Object {
           "alignItems": "center",
+          "backgroundColor": "#ffffff",
           "border": "none",
           "borderRadius": 4,
           "boxSizing": "border-box",
+          "color": "#21242c",
           "cursor": "pointer",
           "display": "inline-flex",
           "height": 40,
@@ -1271,6 +1279,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "whiteSpace": "nowrap",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -1383,12 +1392,14 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
     style={
       Object {
         "alignItems": "center",
+        "backgroundColor": "#ffffff",
         "border": "none",
         "borderColor": "rgba(33,36,44,0.16)",
         "borderRadius": 4,
         "borderStyle": "solid",
         "borderWidth": 1,
         "boxSizing": "border-box",
+        "color": "#21242c",
         "cursor": "auto",
         "display": "inline-flex",
         "height": 40,
@@ -1403,6 +1414,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         "whiteSpace": "nowrap",
       }
     }
+    tabIndex={-1}
   >
     <span
       className=""

@@ -15,7 +15,7 @@ import {
 
 const StyledButton = addStyle("button");
 
-const {blue, white, offBlack16, offBlack32, offBlack50} = Color;
+const {blue, white, offBlack, offBlack16, offBlack32, offBlack50} = Color;
 
 const caretDown = `M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z`;
@@ -121,6 +121,10 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                                 style,
                             ]}
                             {...handlers}
+                            // If disabled, set tabIndex to -1 to have tab
+                            // navigation skip the item. Otherwise, insert it
+                            // based on natural location.
+                            tabIndex={disabled ? -1 : 0}
                         >
                             <LabelMedium style={[textStyles]}>
                                 {children}
@@ -146,6 +150,8 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
+        color: offBlack,
+        backgroundColor: white,
         height: 40,
         marginTop: Spacing.xxxSmall,
         marginBottom: Spacing.xxxSmall,
