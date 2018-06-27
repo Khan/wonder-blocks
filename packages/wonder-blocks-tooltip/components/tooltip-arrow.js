@@ -96,6 +96,10 @@ export default class TooltipArrow extends React.Component<Props> {
             height,
             width,
         } = this._calculateDimensionsFromPlacement();
+
+        // TODO(somewhatabstract): Use unique IDs!
+        const dropShadowFilterId = `tooltip-dropshadow-${placement}`;
+
         return (
             <svg
                 className={css(styles.arrow, styles[`arrow-${placement}`])}
@@ -115,7 +119,7 @@ export default class TooltipArrow extends React.Component<Props> {
                   * same side will yield ID conflicts... but at least they'll
                   * be the same filter, so it doesn't matter which one we
                   * reference, so long as it's for the correct side. */}
-                <filter id={`tooltip-dropshadow-${placement}`} height="150%">
+                <filter id={dropShadowFilterId} height="150%">
                     <feOffset
                         dx={Spacing.xSmall}
                         dy={Spacing.xSmall}
@@ -151,7 +155,7 @@ export default class TooltipArrow extends React.Component<Props> {
                     fill={Colors.white}
                     points={points.join(" ")}
                     stroke={Colors.offBlack16}
-                    filter={`url(#tooltip-dropshadow-${placement})`}
+                    filter={`url(#${dropShadowFilterId})`}
                 />
             </svg>
         );
