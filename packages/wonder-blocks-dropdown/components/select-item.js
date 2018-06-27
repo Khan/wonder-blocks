@@ -236,14 +236,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         height: 40,
-        paddingLeft: 8,
-        paddingRight: 16,
+        paddingLeft: Spacing.xSmall,
+        paddingRight: Spacing.medium,
         whiteSpace: "nowrap",
     },
 
     checkbox: {
-        height: 16,
-        width: 16,
+        height: Spacing.medium,
+        width: Spacing.medium,
         borderRadius: 3,
     },
 

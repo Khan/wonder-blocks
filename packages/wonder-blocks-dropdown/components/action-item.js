@@ -160,8 +160,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         height: 40,
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: Spacing.medium,
+        paddingRight: Spacing.medium,
         whiteSpace: "nowrap",
     },
 
