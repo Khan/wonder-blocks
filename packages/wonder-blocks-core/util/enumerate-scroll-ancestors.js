@@ -1,23 +1,27 @@
 // @flow
-// Utility for finding the scroll ancestors of a child
-// Inspired by https://github.com/olahol/scrollparent.js
-// with modifications to make a generator that returns a sequence of all scroll
-// ancestors.
-// Also modified for our standards (and commented a bit).
-const style = function(node: Element, prop) {
+/**
+ * Utility for finding the scroll ancestors of a child
+ *
+ * Inspired by https://github.com/olahol/scrollparent.js
+ * with modifications to make an iterator that returns a sequence of all scroll
+ * ancestors.
+ *
+ * Also modified for our standards (and commented a bit).
+ */
+const getElementStyle = function(node: Element, prop) {
     return getComputedStyle(node).getPropertyValue(prop);
 };
 
-const overflow = function(node: Element) {
+const getElementOverflow = function(node: Element) {
     return (
-        style(node, "overflow") +
-        style(node, "overflow-y") +
-        style(node, "overflow-x")
+        getElementStyle(node, "overflow") +
+        getElementStyle(node, "overflow-y") +
+        getElementStyle(node, "overflow-x")
     );
 };
 
-const scroll = function(node: Element) {
-    return /(auto|scroll)/.test(overflow(node));
+const canScroll = function(node: Element) {
+    return /(auto|scroll)/.test(getElementOverflow(node));
 };
 
 // NOTE(somewhatabstract): Flow includes the @@iterator value in the Iterator
@@ -53,21 +57,22 @@ class ScrollAncestorsIterator implements Iterator<Element> {
             scrollCandidate = this.parentElement;
             this.parentElement =
                 this.parentElement && this.parentElement.parentElement;
-        } while (scrollCandidate && !scroll(scrollCandidate));
+        } while (scrollCandidate && !canScroll(scrollCandidate));
 
         if (!scrollCandidate) {
-            // If we don't have a scroll candidate, we're done iterating.
+            // If we don't have a scroll candidate, we'll definitely be done
+            // iterating by the next call to next().
             // So let's remember that.
             this.done = true;
 
-            // If we don't have a documentElement, we are done on this
-            // iteration.
+            // If we don't have a documentElement, we are actually done right
+            // now, rather than on the next call.
             if (!document.documentElement) {
                 return {done: true};
             }
 
-            // Otherwise, we have a documentElement, this is our penultimate
-            // iteration.
+            // Otherwise, as we have a documentElement, this is our penultimate
+            // iteration .
             return {
                 done: false,
                 value: (document.documentElement: Element),
@@ -87,6 +92,6 @@ export default function enumerateScrollAncestors(
 ): Iterable<Element> {
     return Object.defineProperty({}, Symbol.iterator, {
         value: () => new ScrollAncestorsIterator(element),
-        writable: false,
+        writable: true,
     });
 }

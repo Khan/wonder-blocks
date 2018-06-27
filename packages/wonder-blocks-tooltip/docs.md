@@ -1,9 +1,11 @@
-Tooltips should be used to help describe an on screen object.
+Use a tooltip to help describe an on screen object.
 
 Tooltips:
 
 - contain text
-- may contain small graphic elements to complement the text
-- do not include actions
+- (optional) contain small graphic elements to complement the text
+- appear on hover or focus (for non-assistive tech keyboard users)
+- must have a tail that points to a parent object
+- DO NOT include actions
 
-For more rich content see Popovers, for taking action on an object, see Snackbars.
+For more rich content see Popovers, for taking action on an object, see Snackbars (proposed).

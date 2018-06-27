@@ -15,6 +15,10 @@ describe("enumerateScrollAncestors", () => {
         const result = enumerator[Symbol.iterator]();
 
         // Assert
+        // By asserting the the result is equal to the return value of
+        // the iterator property inside itself, we can assume we have an
+        // iterator, as subsequent tests will verify that the iterator
+        // is working correctly.
         expect(result).not.toBeUndefined();
         expect(result).toBe(result[Symbol.iterator]());
     });
