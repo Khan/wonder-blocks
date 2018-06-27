@@ -13,6 +13,7 @@ import {
 import {TooltipPortalAttributeName} from "../util/constants.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 import TooltipBubble from "./tooltip-bubble.js";
+import TooltipContent from "./tooltip-content.js";
 
 import type {Placement} from "../util/types.js";
 
@@ -59,7 +60,7 @@ class TestHarness extends React.Component<TestHarnessProps, TestHarnessState> {
                         ref={(r) => this.props.refChild(r)}
                         anchorElement={this.state.anchor}
                     >
-                        Tooltip!
+                        <TooltipContent>Tooltip!</TooltipContent>
                     </TooltipBubble>
                 ) : null}
             </TooltipPortalMounter>

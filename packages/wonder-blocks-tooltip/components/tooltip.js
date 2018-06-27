@@ -6,17 +6,22 @@ import {Text} from "@khanacademy/wonder-blocks-core";
 import TooltipPortalMounter from "./tooltip-portal-mounter";
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
+import TooltipContent from "./tooltip-content.js";
 
 import type {Placement} from "../util/types.js";
+import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {|
     // The content for anchoring the tooltip.
     // This component will be used to position the tooltip.
     children: React.Element<any> | string,
 
+    // The title of the tooltip.
+    // Optional.
+    title?: string | React.Element<Typography>,
+
     // The content to render in the tooltip.
-    // TODO(somewhatabstract): Update to allow TooltipContent or string
-    content: string,
+    content: string | React.Element<typeof TooltipContent>,
 
     // When true, the child element will be given tabindex=0
     // to make it keyboard focusable. This value defaults to true. One might set
@@ -64,8 +69,19 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
+    _renderBubbleContent() {
+        const {title, content} = this.props;
+        if (typeof content === "string") {
+            return <TooltipContent title={title}>{content}</TooltipContent>;
+        } else if (title) {
+            return React.cloneElement(content, {title});
+        } else {
+            return content;
+        }
+    }
+
     render() {
-        const {forceAnchorFocusivity, placement, content} = this.props;
+        const {forceAnchorFocusivity, placement} = this.props;
         return (
             <TooltipAnchor
                 forceAnchorFocusivity={forceAnchorFocusivity}
@@ -80,7 +96,7 @@ export default class Tooltip extends React.Component<Props, State> {
                                 }
                                 anchorElement={this.state.anchorElement}
                             >
-                                {content}
+                                {this._renderBubbleContent()}
                             </TooltipBubble>
                         ) : null}
                     </TooltipPortalMounter>

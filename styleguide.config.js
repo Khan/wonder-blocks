@@ -99,7 +99,10 @@ module.exports = {
         {
             name: "Tooltip",
             content: "packages/wonder-blocks-tooltip/docs.md",
-            components: "packages/wonder-blocks-tooltip/components/tooltip.js",
+            components: [
+                "packages/wonder-blocks-tooltip/components/tooltip.js",
+                "packages/wonder-blocks-tooltip/components/tooltip-content.js",
+            ],
         },
     ],
 

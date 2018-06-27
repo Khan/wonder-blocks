@@ -5,6 +5,7 @@ import {mount} from "enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import TooltipBubble from "./tooltip-bubble.js";
+import TooltipContent from "./tooltip-content.js";
 
 /**
  * A little wrapper for the TooltipBubble so that we can provide an anchor
@@ -23,12 +24,6 @@ class BubbleTest extends React.Component<*, {ref: ?HTMLElement}> {
     }
 
     render() {
-        const resultRef = (((
-            <View ref={(ref) => this.props.resultRef(ref)}>
-                This is a pretend string with a ref so we can detect it being
-                rendered
-            </View>
-        ): any): string);
         return (
             <View>
                 <View ref={(ref) => this.updateRef(ref)}>Anchor</View>
@@ -36,7 +31,10 @@ class BubbleTest extends React.Component<*, {ref: ?HTMLElement}> {
                     placement={this.props.placement}
                     anchorElement={this.state.ref}
                 >
-                    {resultRef}
+                    <TooltipContent ref={(ref) => this.props.resultRef(ref)}>
+                        This is a pretend string with a ref so we can detect it
+                        being rendered
+                    </TooltipContent>
                 </TooltipBubble>
             </View>
         );

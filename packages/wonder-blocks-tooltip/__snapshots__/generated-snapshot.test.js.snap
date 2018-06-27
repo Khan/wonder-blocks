@@ -124,3 +124,170 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
   </button>
 </div>
 `;
+
+exports[`wonder-blocks-tooltip example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Just the content
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Title text!
+  </h4>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Some content in my content
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Body text title!
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Body text content!
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    And LabelSmall!
+  </span>
+</div>
+`;
