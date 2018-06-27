@@ -1,8 +1,12 @@
 // @flow
 /**
  * A modifier for use with popper.js or react-popper.
+ *
  * This looks at the scroll parents of the reference element to determine
  * overall visibility.
+ *
+ * See https://popper.js.org/popper-documentation.html#modifiers for more
+ * details on popper.js modifiers.
  */
 import {default as PopperJS} from "popper.js";
 
@@ -29,6 +33,7 @@ function visibilityModifierFn(data: any) {
     // If we're hidden, we mimic what the built-in hide method does,
     // and set the hide flag and the OOB attribute with appropriate
     // short-circuiting.
+    // https://github.com/FezVrasta/popper.js/blob/08c5d6010346bf9df06e9f81a54fa6c2c51e3639/packages/popper/src/modifiers/hide.js#L29-L42
     if (hide) {
         if (data.hide) {
             return data;

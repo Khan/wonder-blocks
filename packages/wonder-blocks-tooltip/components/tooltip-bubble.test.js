@@ -2,6 +2,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {mount} from "enzyme";
+
+import {View} from "@khanacademy/wonder-blocks-core";
 import TooltipBubble from "./tooltip-bubble.js";
 
 /**
@@ -22,21 +24,21 @@ class BubbleTest extends React.Component<*, {ref: ?HTMLElement}> {
 
     render() {
         const resultRef = (((
-            <div ref={(ref) => this.props.resultRef(ref)}>
+            <View ref={(ref) => this.props.resultRef(ref)}>
                 This is a pretend string with a ref so we can detect it being
                 rendered
-            </div>
+            </View>
         ): any): string);
         return (
-            <div>
-                <div ref={(ref) => this.updateRef(ref)}>Anchor</div>
+            <View>
+                <View ref={(ref) => this.updateRef(ref)}>Anchor</View>
                 <TooltipBubble
                     placement={this.props.placement}
                     anchorElement={this.state.ref}
                 >
                     {resultRef}
                 </TooltipBubble>
-            </div>
+            </View>
         );
     }
 }
@@ -51,9 +53,9 @@ describe("TooltipBubble", () => {
         // Arrange
         const arrange = (actAssert) => {
             const nodes = (
-                <div>
+                <View>
                     <BubbleTest placement={"bottom"} resultRef={actAssert} />
-                </div>
+                </View>
             );
             mount(nodes);
         };

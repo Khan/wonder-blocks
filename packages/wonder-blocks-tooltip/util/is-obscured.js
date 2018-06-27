@@ -24,6 +24,10 @@ export default function isObscured(element: Element) {
 
     // NOTE: If the anchor element has `pointer-events: none`, we're always
     // going to end up hiding, so, you know, probably don't do that.
+    // We're not explicitly checking for that CSS since it's a corner-case and
+    // would impact perf of the regular cases if we were always checking it.
+    // TODO(somewhatabstract): Consider how we might mitigate the pointer-events
+    // issue and make this call more robust.
     const anchorRect = element.getBoundingClientRect();
     const style =
         ((element: any).currentStyle: ?CSSStyleDeclaration) ||
