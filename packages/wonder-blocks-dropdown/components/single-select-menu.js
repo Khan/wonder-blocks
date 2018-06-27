@@ -102,16 +102,22 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
 
     handleSelected(selectedValue: string, selectedLabel: string) {
         const {onChange} = this.props;
-
-        this.setState({
-            open: false, // close the menu upon selection
-            selected: {
-                value: selectedValue,
-                label: selectedLabel,
-            },
-        });
-
-        onChange(selectedValue);
+        const {selected} = this.state;
+        // If selected value was the same, don't call the onChange callback.
+        if (selected && selectedValue === selected.value) {
+            this.setState({
+                open: false, // close the menu upon selection
+            });
+        } else {
+            this.setState({
+                open: false, // close the menu upon selection
+                selected: {
+                    value: selectedValue,
+                    label: selectedLabel,
+                },
+            });
+            onChange(selectedValue);
+        }
     }
 
     render() {

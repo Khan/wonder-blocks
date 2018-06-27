@@ -103,18 +103,6 @@ const styles = StyleSheet.create({
                 selected: false,
                 value: "banana"
             },
-            {
-                type: "select",
-                label: "Apple",
-                selected: false,
-                value: "apple"
-            },
-            {
-                type: "select",
-                label: "Grape",
-                selected: false,
-                value: "grape"
-            },
         ]}
         disabled={true}
         light={false}

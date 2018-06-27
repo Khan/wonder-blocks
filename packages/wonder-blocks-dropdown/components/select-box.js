@@ -126,7 +126,7 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                             <LabelMedium style={[textStyles]}>
                                 {children}
                             </LabelMedium>
-                            <Strut size={8} />
+                            <View style={[styles.spacing]} />
                             <View style={[styles.caretWrapper]}>
                                 {this.renderCaret()}
                             </View>

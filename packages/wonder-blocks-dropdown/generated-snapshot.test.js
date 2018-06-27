@@ -311,18 +311,6 @@ describe("wonder-blocks-dropdown", () => {
                             selected: false,
                             value: "banana",
                         },
-                        {
-                            type: "select",
-                            label: "Apple",
-                            selected: false,
-                            value: "apple",
-                        },
-                        {
-                            type: "select",
-                            label: "Grape",
-                            selected: false,
-                            value: "grape",
-                        },
                     ]}
                     disabled={true}
                     light={false}

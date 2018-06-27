@@ -6,7 +6,6 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     View,
@@ -188,7 +187,7 @@ export default class SelectItem extends React.Component<SelectProps> {
                                 ) : (
                                     <Checkbox selected={selected} {...state} />
                                 )}
-                                <Strut size={8} />
+                                <View style={[styles.spacing]} />
                                 <LabelLarge style={[styles.label]}>
                                     {label}
                                 </LabelLarge>
@@ -266,5 +265,9 @@ const styles = StyleSheet.create({
     invertBackground: {
         backgroundColor: white,
         borderColor: mix(fade(blue, 0.32), white),
+    },
+
+    spacing: {
+        minWidth: 8,
     },
 });
