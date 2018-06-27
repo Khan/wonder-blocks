@@ -86,6 +86,11 @@ module.exports = {
             components:
                 "packages/wonder-blocks-icon-button/components/icon-button.js",
         },
+        {
+            name: "Toolbar",
+            content: "packages/wonder-blocks-toolbar/docs.md",
+            components: "packages/wonder-blocks-toolbar/components/toolbar.js",
+        },
     ],
 
     // These values control our custom styles.

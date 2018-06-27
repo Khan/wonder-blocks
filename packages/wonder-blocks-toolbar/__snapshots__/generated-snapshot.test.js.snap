@@ -1,0 +1,2073 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-toolbar example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <svg
+        height="24px"
+        role="img"
+        width="24px"
+      >
+        <path
+          d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
+          fill="rgba(33, 36, 44, 0.5)"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    >
+      Counting with small numbers
+    </span>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    >
+      Counting with small numbers
+    </span>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <button
+        className=""
+        data-test-id={undefined}
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "center",
+            "outline": "none",
+            "paddingBottom": 0,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 0,
+            "position": "relative",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "pointerEvents": "none",
+            }
+          }
+        >
+          Next Video
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <svg
+        height="24px"
+        role="img"
+        width="24px"
+      >
+        <path
+          d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
+          fill="rgba(33, 36, 44, 0.5)"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk"
+      id="wb-toolbar-title"
+    >
+      Exercise Title
+    </span>
+    <span
+      className="subtitle_mlf31i"
+    >
+      0 of 7 questions answered
+    </span>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <a
+        href="#"
+      >
+        Go to exercise
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    />
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span>
+        7 questions
+      </span>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <button
+        className=""
+        data-test-id={undefined}
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "center",
+            "outline": "none",
+            "paddingBottom": 0,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 0,
+            "position": "relative",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "pointerEvents": "none",
+            }
+          }
+        >
+          Start exercise
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    />
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span>
+        7 questions
+      </span>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <button
+        className=""
+        data-test-id={undefined}
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "none",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.50)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "boxSizing": "border-box",
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "center",
+            "outline": "none",
+            "paddingBottom": 0,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 0,
+            "position": "relative",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "pointerEvents": "none",
+            }
+          }
+        >
+          Try again
+        </span>
+      </button>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <button
+        className=""
+        data-test-id={undefined}
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "center",
+            "outline": "none",
+            "paddingBottom": 0,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 0,
+            "position": "relative",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "pointerEvents": "none",
+            }
+          }
+        >
+          Next exercise
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    />
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "marginRight": 12,
+            }
+          }
+        >
+          Get 5 of 7 questions to level up to Familiar
+        </span>
+        <span
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "column",
+              "justifyContent": "center",
+              "margin": 3,
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "backgroundColor": "#00a60e",
+                "border": "2px solid #00a60e",
+                "borderRadius": "50%",
+                "display": "inline-block",
+                "height": 4,
+                "width": 4,
+              }
+            }
+          />
+        </span>
+         
+        <span
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "column",
+              "justifyContent": "center",
+              "margin": 3,
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "backgroundColor": "#00a60e",
+                "border": "2px solid #00a60e",
+                "borderRadius": "50%",
+                "display": "inline-block",
+                "height": 4,
+                "width": 4,
+              }
+            }
+          />
+        </span>
+        <span
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "column",
+              "justifyContent": "center",
+              "margin": 3,
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "backgroundColor": "#00a60e",
+                "border": "2px solid #00a60e",
+                "borderRadius": "50%",
+                "display": "inline-block",
+                "height": 8,
+                "width": 8,
+              }
+            }
+          />
+        </span>
+        <span
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "column",
+              "justifyContent": "center",
+              "margin": 3,
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "backgroundColor": "white",
+                "border": "2px solid rgba(33, 36, 44, 0.2)",
+                "borderRadius": "50%",
+                "display": "inline-block",
+                "height": 4,
+                "width": 4,
+              }
+            }
+          />
+        </span>
+         
+        <span
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "column",
+              "justifyContent": "center",
+              "margin": 3,
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "backgroundColor": "white",
+                "border": "2px solid rgba(33, 36, 44, 0.2)",
+                "borderRadius": "50%",
+                "display": "inline-block",
+                "height": 4,
+                "width": 4,
+              }
+            }
+          />
+        </span>
+         
+        <span
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "column",
+              "justifyContent": "center",
+              "margin": 3,
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "backgroundColor": "white",
+                "border": "2px solid rgba(33, 36, 44, 0.2)",
+                "borderRadius": "50%",
+                "display": "inline-block",
+                "height": 4,
+                "width": 4,
+              }
+            }
+          />
+        </span>
+         
+        <span
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "column",
+              "justifyContent": "center",
+              "margin": 3,
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "backgroundColor": "white",
+                "border": "2px solid rgba(33, 36, 44, 0.2)",
+                "borderRadius": "50%",
+                "display": "inline-block",
+                "height": 4,
+                "width": 4,
+              }
+            }
+          />
+        </span>
+      </span>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <button
+        className=""
+        data-test-id={undefined}
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "center",
+            "outline": "none",
+            "paddingBottom": 0,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 0,
+            "position": "relative",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "pointerEvents": "none",
+            }
+          }
+        >
+          Next question
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <svg
+        height="24px"
+        role="img"
+        width="24px"
+      >
+        <path
+          d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
+          fill="rgba(33, 36, 44, 0.5)"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk"
+      id="wb-toolbar-title"
+    >
+      Patterns of migration and communal bird-feeding given the serious situation of things that will make this string long and obnoxious
+    </span>
+    <span
+      className="subtitle_mlf31i"
+    >
+      1 of 14 questions answered
+    </span>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <a
+        href="#"
+      >
+        Go to exercise
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 8 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <svg
+        height="24px"
+        role="img"
+        width="24px"
+      >
+        <path
+          d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
+          fill="rgba(33, 36, 44, 0.5)"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    >
+      Title
+    </span>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    />
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 8,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <button
+        className=""
+        data-test-id={undefined}
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#1865f2",
+            "border": "none",
+            "borderRadius": 4,
+            "boxSizing": "border-box",
+            "color": "#ffffff",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "center",
+            "outline": "none",
+            "paddingBottom": 0,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 0,
+            "position": "relative",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "pointerEvents": "none",
+            }
+          }
+        >
+          Next Video
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 10 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "backgroundColor": "#0a2a66",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxShadow": "0 1px 0 0 rgba(255, 255, 255, 0.64)",
+      "boxSizing": "border-box",
+      "color": "white",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <svg
+        height="24px"
+        role="img"
+        width="24px"
+      >
+        <path
+          d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
+          fill="white"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    >
+      Title
+    </span>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 11 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 48,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    />
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 12 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 0,
+      "minHeight": 64,
+      "minWidth": 0,
+      "padding": 8,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": "75%",
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "textAlign": "center",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+      id="wb-toolbar-title"
+    />
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+</div>
+`;
