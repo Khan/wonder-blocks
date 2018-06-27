@@ -36,15 +36,15 @@ const styles = StyleSheet.create({
     <View style={[styles.strutLike]} />
 
     <View style={[styles.row]}>
-        <SelectItem label={"Item 1"} selected={true} value={"1"} variant={"check"} onToggle={(v, s) => console.log(`would now be ${s.toString()}`)} />
+        <SelectItem label={"Item 1"} selected={true} value={"1"} variant={"check"} onToggle={(v, l, s) => console.log(`would now be ${s.toString()}`)} />
         <View style={[styles.strutLike]} />
-        <SelectItem label={"Item 2"} selected={false} value={"2"} variant={"check"} onToggle={(v, s) => console.log(`would now be ${s.toString()}`)} />
+        <SelectItem label={"Item 2"} selected={false} value={"2"} variant={"check"} onToggle={(v, l, s) => console.log(`would now be ${s.toString()}`)} />
         <View style={[styles.strutLike]} />
-        <SelectItem label={"Item 3"} selected={true} value={"3"} variant={"checkbox"} onToggle={(v, s) => console.log(`would now be ${s.toString()}`)} />
+        <SelectItem label={"Item 3"} selected={true} value={"3"} variant={"checkbox"} onToggle={(v, l, s) => console.log(`would now be ${s.toString()}`)} />
         <View style={[styles.strutLike]} />
-        <SelectItem label={"Item 4"} selected={false} value={"4"} variant={"checkbox"} onToggle={(v, s) => console.log(`would now be ${s.toString()}`)} />
+        <SelectItem label={"Item 4"} selected={false} value={"4"} variant={"checkbox"} onToggle={(v, l, s) => console.log(`would now be ${s.toString()}`)} />
         <View style={[styles.strutLike]} />
-        <SelectItem label={"Item 5"} selected={false} disabled={true} value={"5"} variant={"checkbox"} onToggle={(v, s) => console.log(`would now be ${s.toString()}`)} />
+        <SelectItem label={"Item 5"} selected={false} disabled={true} value={"5"} variant={"checkbox"} onToggle={(v, l, s) => console.log(`would now be ${s.toString()}`)} />
     </View>
 </View>
 

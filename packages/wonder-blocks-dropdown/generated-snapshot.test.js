@@ -69,7 +69,7 @@ describe("wonder-blocks-dropdown", () => {
                         selected={true}
                         value={"1"}
                         variant={"check"}
-                        onToggle={(v, s) =>
+                        onToggle={(v, l, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -79,7 +79,7 @@ describe("wonder-blocks-dropdown", () => {
                         selected={false}
                         value={"2"}
                         variant={"check"}
-                        onToggle={(v, s) =>
+                        onToggle={(v, l, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -89,7 +89,7 @@ describe("wonder-blocks-dropdown", () => {
                         selected={true}
                         value={"3"}
                         variant={"checkbox"}
-                        onToggle={(v, s) =>
+                        onToggle={(v, l, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -99,7 +99,7 @@ describe("wonder-blocks-dropdown", () => {
                         selected={false}
                         value={"4"}
                         variant={"checkbox"}
-                        onToggle={(v, s) =>
+                        onToggle={(v, l, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -110,7 +110,7 @@ describe("wonder-blocks-dropdown", () => {
                         disabled={true}
                         value={"5"}
                         variant={"checkbox"}
-                        onToggle={(v, s) =>
+                        onToggle={(v, l, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
