@@ -60,31 +60,25 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderBubble(active: boolean): ?React.Element<typeof TooltipBubble> {
-        if (!active) {
-            return null;
-        }
-        const {placement} = this.props;
-        return (
-            <TooltipBubble
-                placement={placement || Tooltip.defaultProps.placement}
-                anchorElement={this.state.anchorElement}
-            >
-                {this.props.content}
-            </TooltipBubble>
-        );
-    }
-
     render() {
-        const {forceAnchorFocusivity} = this.props;
+        const {forceAnchorFocusivity, placement, content} = this.props;
         return (
             <TooltipAnchor
                 forceAnchorFocusivity={forceAnchorFocusivity}
                 anchorRef={(r) => this._updateAnchorElement(r)}
             >
                 {(active) => (
-                    <TooltipPortalMounter bubble={this._renderBubble(active)}>
-                        {this._renderAnchorElement()}
+                    <TooltipPortalMounter anchor={this._renderAnchorElement()}>
+                        {active ? (
+                            <TooltipBubble
+                                placement={
+                                    placement || Tooltip.defaultProps.placement
+                                }
+                                anchorElement={this.state.anchorElement}
+                            >
+                                {content}
+                            </TooltipBubble>
+                        ) : null}
                     </TooltipPortalMounter>
                 )}
             </TooltipAnchor>
