@@ -137,6 +137,8 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
     }
 }
 
+const buttonRadius = 4;
+
 const styles = StyleSheet.create({
     // TODO: Dedupe with Button styles
     shared: {
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         paddingRight: 12,
         border: "none",
-        borderRadius: 4,
+        borderRadius: buttonRadius,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -180,9 +182,6 @@ const styles = StyleSheet.create({
 
     caretWrapper: {
         minWidth: 16,
-        ":after": {
-            clear: "both",
-        },
     },
 
     spacing: {
@@ -191,6 +190,11 @@ const styles = StyleSheet.create({
 });
 
 const _generateStyles = (light, hovered, focused, pressed) => {
+    const focusRingGap = 1;
+    const focusRingWidth = 2;
+    const focusRingOutset = focusRingGap + focusRingWidth;
+    const focusRingRadius = buttonRadius + focusRingOutset;
+
     let newStyles = {};
     if (light) {
         newStyles = {
@@ -198,14 +202,14 @@ const _generateStyles = (light, hovered, focused, pressed) => {
                 ":before": {
                     content: "''",
                     position: "absolute",
-                    top: -3,
-                    left: -3,
-                    right: -3,
-                    bottom: -3,
+                    top: -focusRingOutset,
+                    left: -focusRingOutset,
+                    right: -focusRingOutset,
+                    bottom: -focusRingOutset,
                     borderColor: white,
                     borderStyle: "solid",
-                    borderWidth: 2,
-                    borderRadius: 7,
+                    borderWidth: focusRingWidth,
+                    borderRadius: focusRingRadius,
                 },
             },
             active: {
@@ -225,7 +229,7 @@ const _generateStyles = (light, hovered, focused, pressed) => {
             focus: {
                 borderColor: blue,
                 borderStyle: "solid",
-                borderWidth: 2,
+                borderWidth: focusRingWidth,
                 // These values are default padding (16 and 12) minus 1, because
                 // changing the borderWidth to 2 messes up the button width
                 // and causes it to move a couple pixels. This fixes that.

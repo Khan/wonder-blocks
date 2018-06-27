@@ -1,5 +1,6 @@
-### Example: Regular and light select box versions
+### Example: Regular and placeholder select box versions
 These select boxes also have specified widths.
+TODO(sophie): Caret color on the placeholder box will be fixed with incorporation of Icon element.
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -9,10 +10,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-    },
-    darkBackgroundWrapper: {
-        background: "black",
-        padding: 10,
     },
 });
 <View style={[styles.row]}>
@@ -24,36 +21,44 @@ const styles = StyleSheet.create({
         Regular selectbox
     </SelectBox>
     <Strut size={8} />
+    <SelectBox
+        isPlaceholder={true}
+        onClick={() => console.log("Selected")}             
+        style={{width: 150}}
+    >
+        Placeholder
+    </SelectBox>
+</View>;
+```
+
+### Example: Select box on a dark background
+This one does not have a specified width.
+
+```js
+const Color = require("@khanacademy/wonder-blocks-color");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+console.log(Color);
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    darkBackgroundWrapper: {
+        backgroundColor: Color.default.darkBlue,
+        padding: 10,
+    },
+});
+<View style={[styles.row]}>
     <View style={[styles.darkBackgroundWrapper]}>
         <SelectBox
             light={true}
             isPlaceholder={false}
             onClick={() => console.log("light selectbox selected")}
-            style={{width: 150}}
         >
             Light version
         </SelectBox>
     </View>
-</View>;
-```
-
-### Example: Selectbox with a placeholder
-TODO(sophie): Caret color will be fixed with incorporation of Icon element.
-This one does not have a specified width.
-
-```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-    },
-});
-<View style={[styles.row]}>
-    <SelectBox isPlaceholder={true} onClick={() => console.log("Selected")}>
-        Placeholder
-    </SelectBox>
 </View>;
 ```
 

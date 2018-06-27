@@ -130,10 +130,6 @@ describe("wonder-blocks-dropdown", () => {
             row: {
                 flexDirection: "row",
             },
-            darkBackgroundWrapper: {
-                background: "black",
-                padding: 10,
-            },
         });
         const example = (
             <View style={[styles.row]}>
@@ -145,38 +141,44 @@ describe("wonder-blocks-dropdown", () => {
                     Regular selectbox
                 </SelectBox>
                 <Strut size={8} />
-                <View style={[styles.darkBackgroundWrapper]}>
-                    <SelectBox
-                        light={true}
-                        isPlaceholder={false}
-                        onClick={() => console.log("light selectbox selected")}
-                        style={{width: 150}}
-                    >
-                        Light version
-                    </SelectBox>
-                </View>
+                <SelectBox
+                    isPlaceholder={true}
+                    onClick={() => console.log("Selected")}
+                    style={{width: 150}}
+                >
+                    Placeholder
+                </SelectBox>
             </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
+        const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
+        console.log(Color);
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
             },
+            darkBackgroundWrapper: {
+                backgroundColor: Color.default.darkBlue,
+                padding: 10,
+            },
         });
         const example = (
             <View style={[styles.row]}>
-                <SelectBox
-                    isPlaceholder={true}
-                    onClick={() => console.log("Selected")}
-                >
-                    Placeholder
-                </SelectBox>
+                <View style={[styles.darkBackgroundWrapper]}>
+                    <SelectBox
+                        light={true}
+                        isPlaceholder={false}
+                        onClick={() => console.log("light selectbox selected")}
+                    >
+                        Light version
+                    </SelectBox>
+                </View>
             </View>
         );
         const tree = renderer.create(example).toJSON();
