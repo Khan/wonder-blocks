@@ -5,6 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {
     View,
@@ -91,11 +92,14 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
         // TODO(sophie): should ButtonCore be public so we can use that to make
         // this custom button-like opener?
 
-        const textColor = isPlaceholder
-            ? disabled
-                ? styles.placeholderDisabled
-                : styles.placeholder
-            : disabled && styles.textDisabled;
+        const textStyles = [
+            styles.text,
+            isPlaceholder
+                ? disabled
+                    ? styles.placeholderDisabled
+                    : styles.placeholder
+                : disabled && styles.textDisabled,
+        ];
 
         return (
             <ClickableBehavior disabled={disabled} onClick={onClick}>
@@ -118,7 +122,7 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                             ]}
                             {...handlers}
                         >
-                            <LabelMedium style={[textColor]}>
+                            <LabelMedium style={[textStyles]}>
                                 {children}
                             </LabelMedium>
                             <View style={[styles.spacing]} />
@@ -134,14 +138,18 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
 }
 
 const styles = StyleSheet.create({
+    // TODO: Dedupe with Button styles
     shared: {
         position: "relative",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
         height: 40,
-        marginTop: 4,
-        marginBottom: 4,
+        marginTop: Spacing.xxxSmall,
+        marginBottom: Spacing.xxxSmall,
+        // This asymmetry arises from the Icon on the right side, which has
+        // extra padding built in. To have the component look more balanced,
+        // we need to take off some paddingRight here.
         paddingLeft: 16,
         paddingRight: 12,
         border: "none",
@@ -165,9 +173,20 @@ const styles = StyleSheet.create({
         color: offBlack16,
     },
 
-    // consider using Strut
+    text: {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+    },
+
+    caretWrapper: {
+        minWidth: 16,
+        ":after": {
+            clear: "both",
+        },
+    },
+
     spacing: {
-        width: 8,
+        minWidth: Spacing.xSmall,
     },
 });
 

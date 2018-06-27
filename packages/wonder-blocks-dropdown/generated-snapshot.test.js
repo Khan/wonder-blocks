@@ -123,6 +123,7 @@ describe("wonder-blocks-dropdown", () => {
     });
     it("example 2", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Strut} = require("@khanacademy/wonder-blocks-spacing");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -132,9 +133,6 @@ describe("wonder-blocks-dropdown", () => {
             darkBackgroundWrapper: {
                 background: "black",
                 padding: 10,
-            },
-            strutLike: {
-                width: 8,
             },
         });
         const example = (
@@ -146,7 +144,7 @@ describe("wonder-blocks-dropdown", () => {
                 >
                     Regular selectbox
                 </SelectBox>
-                <View style={[styles.strutLike]} />
+                <Strut size={8} />
                 <View style={[styles.darkBackgroundWrapper]}>
                     <SelectBox
                         light={true}

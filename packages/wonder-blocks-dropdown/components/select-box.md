@@ -3,6 +3,7 @@ These select boxes also have specified widths.
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
+const {Strut} = require("@khanacademy/wonder-blocks-spacing");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -13,9 +14,6 @@ const styles = StyleSheet.create({
         background: "black",
         padding: 10,
     },
-    strutLike: {
-        width: 8,
-    }
 });
 <View style={[styles.row]}>
     <SelectBox
@@ -25,7 +23,7 @@ const styles = StyleSheet.create({
     >
         Regular selectbox
     </SelectBox>
-    <View style={[styles.strutLike]} />
+    <Strut size={8} />
     <View style={[styles.darkBackgroundWrapper]}>
         <SelectBox
             light={true}
@@ -40,7 +38,7 @@ const styles = StyleSheet.create({
 ```
 
 ### Example: Selectbox with a placeholder
-Caret color will be fixed with incorporation of Icon element.
+TODO(sophie): Caret color will be fixed with incorporation of Icon element.
 This one does not have a specified width.
 
 ```js
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
 ```
 
 ### Example: Disabled select box
-Caret color will be fixed with incorporation of Icon element.
+TODO(sophie): Caret color will be fixed with incorporation of Icon element.
 This one does not have a specified width.
 
 ```js

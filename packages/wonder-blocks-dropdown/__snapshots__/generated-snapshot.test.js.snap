@@ -1001,6 +1001,8 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "fontSize": 16,
           "fontWeight": 400,
           "lineHeight": "20px",
+          "overflow": "hidden",
+          "textOverflow": "ellipsis",
         }
       }
     >
@@ -1018,10 +1020,9 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "flexDirection": "column",
           "margin": 0,
           "minHeight": 0,
-          "minWidth": 0,
+          "minWidth": 8,
           "padding": 0,
           "position": "relative",
-          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1030,6 +1031,9 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       className=""
       style={
         Object {
+          ":after": Object {
+            "clear": "both",
+          },
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1038,7 +1042,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "flexDirection": "column",
           "margin": 0,
           "minHeight": 0,
-          "minWidth": 0,
+          "minWidth": 16,
           "padding": 0,
           "position": "relative",
           "zIndex": 0,
@@ -1063,18 +1067,22 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     className=""
     style={
       Object {
+        "MsFlexBasis": 8,
+        "MsFlexPreferredSize": 8,
+        "WebkitFlexBasis": 8,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 8,
         "flexDirection": "column",
+        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 8,
         "zIndex": 0,
       }
     }
@@ -1146,6 +1154,8 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
           }
         }
       >
@@ -1163,10 +1173,9 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
             "flexDirection": "column",
             "margin": 0,
             "minHeight": 0,
-            "minWidth": 0,
+            "minWidth": 8,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1175,6 +1184,9 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         className=""
         style={
           Object {
+            ":after": Object {
+              "clear": "both",
+            },
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -1183,7 +1195,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
             "flexDirection": "column",
             "margin": 0,
             "minHeight": 0,
-            "minWidth": 0,
+            "minWidth": 16,
             "padding": 0,
             "position": "relative",
             "zIndex": 0,
@@ -1278,6 +1290,8 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "fontSize": 16,
           "fontWeight": 400,
           "lineHeight": "20px",
+          "overflow": "hidden",
+          "textOverflow": "ellipsis",
         }
       }
     >
@@ -1295,10 +1309,9 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "flexDirection": "column",
           "margin": 0,
           "minHeight": 0,
-          "minWidth": 0,
+          "minWidth": 8,
           "padding": 0,
           "position": "relative",
-          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1307,6 +1320,9 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       className=""
       style={
         Object {
+          ":after": Object {
+            "clear": "both",
+          },
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1315,7 +1331,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "flexDirection": "column",
           "margin": 0,
           "minHeight": 0,
-          "minWidth": 0,
+          "minWidth": 16,
           "padding": 0,
           "position": "relative",
           "zIndex": 0,
@@ -1409,6 +1425,8 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "fontSize": 16,
           "fontWeight": 400,
           "lineHeight": "20px",
+          "overflow": "hidden",
+          "textOverflow": "ellipsis",
         }
       }
     >
@@ -1426,10 +1444,9 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "flexDirection": "column",
           "margin": 0,
           "minHeight": 0,
-          "minWidth": 0,
+          "minWidth": 8,
           "padding": 0,
           "position": "relative",
-          "width": 8,
           "zIndex": 0,
         }
       }
@@ -1438,6 +1455,9 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       className=""
       style={
         Object {
+          ":after": Object {
+            "clear": "both",
+          },
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1446,7 +1466,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "flexDirection": "column",
           "margin": 0,
           "minHeight": 0,
-          "minWidth": 0,
+          "minWidth": 16,
           "padding": 0,
           "position": "relative",
           "zIndex": 0,
