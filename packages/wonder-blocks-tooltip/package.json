@@ -15,6 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "react-popper": "^1.0.0-beta.6",
     "@khanacademy/wonder-blocks-color": "^1.0.2",
     "@khanacademy/wonder-blocks-core": "^1.0.2",
     "@khanacademy/wonder-blocks-modal": "^0.0.3",
