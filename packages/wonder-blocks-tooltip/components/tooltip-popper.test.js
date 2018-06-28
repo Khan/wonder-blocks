@@ -5,13 +5,13 @@ import {mount} from "enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import TooltipBubble from "./tooltip-bubble.js";
-import TooltipContent from "./tooltip-content.js";
+import TooltipPopper from "./tooltip-popper.js";
 
 /**
- * A little wrapper for the TooltipBubble so that we can provide an anchor
+ * A little wrapper for the TooltipPopper so that we can provide an anchor
  * element reference and test that the children get rendered.
  */
-class BubbleTest extends React.Component<*, {ref: ?HTMLElement}> {
+class TestHarness extends React.Component<*, {ref: ?HTMLElement}> {
     state = {
         ref: null,
     };
@@ -24,25 +24,25 @@ class BubbleTest extends React.Component<*, {ref: ?HTMLElement}> {
     }
 
     render() {
+        const fakeBubble = (((
+            <View ref={(ref) => this.props.resultRef(ref)}>Fake bubble</View>
+        ): any): React.Element<typeof TooltipBubble>);
         return (
             <View>
                 <View ref={(ref) => this.updateRef(ref)}>Anchor</View>
-                <TooltipBubble
+                <TooltipPopper
                     placement={this.props.placement}
                     anchorElement={this.state.ref}
                 >
-                    <TooltipContent ref={(ref) => this.props.resultRef(ref)}>
-                        This is a pretend string with a ref so we can detect it
-                        being rendered
-                    </TooltipContent>
-                </TooltipBubble>
+                    {(props) => fakeBubble}
+                </TooltipPopper>
             </View>
         );
     }
 }
 
-describe("TooltipBubble", () => {
-    // The TooltipBubble component is just a wrapper around react-popper.
+describe("TooltipPopper", () => {
+    // The TooltipPopper component is just a wrapper around react-popper.
     // PopperJS requires full visual rendering and we don't do that here as
     // we're not in a browser.
     // So, let's do a test that we at least render the content how we expect
@@ -52,7 +52,7 @@ describe("TooltipBubble", () => {
         const arrange = (actAssert) => {
             const nodes = (
                 <View>
-                    <BubbleTest placement={"bottom"} resultRef={actAssert} />
+                    <TestHarness placement={"bottom"} resultRef={actAssert} />
                 </View>
             );
             mount(nodes);

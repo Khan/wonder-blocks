@@ -7,6 +7,7 @@ import TooltipPortalMounter from "./tooltip-portal-mounter";
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
+import TooltipPopper from "./tooltip-popper.js";
 
 import type {Placement} from "../util/types.js";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
@@ -80,8 +81,28 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
+    _renderPopper(active: boolean) {
+        if (!active) {
+            return null;
+        }
+
+        const {placement} = this.props;
+        return (
+            <TooltipPopper
+                anchorElement={this.state.anchorElement}
+                placement={placement || Tooltip.defaultProps.placement}
+            >
+                {(props) => (
+                    <TooltipBubble popperProps={props}>
+                        {this._renderBubbleContent()}
+                    </TooltipBubble>
+                )}
+            </TooltipPopper>
+        );
+    }
+
     render() {
-        const {forceAnchorFocusivity, placement} = this.props;
+        const {forceAnchorFocusivity} = this.props;
         return (
             <TooltipAnchor
                 forceAnchorFocusivity={forceAnchorFocusivity}
@@ -89,16 +110,7 @@ export default class Tooltip extends React.Component<Props, State> {
             >
                 {(active) => (
                     <TooltipPortalMounter anchor={this._renderAnchorElement()}>
-                        {active ? (
-                            <TooltipBubble
-                                placement={
-                                    placement || Tooltip.defaultProps.placement
-                                }
-                                anchorElement={this.state.anchorElement}
-                            >
-                                {this._renderBubbleContent()}
-                            </TooltipBubble>
-                        ) : null}
+                        {this._renderPopper(active)}
                     </TooltipPortalMounter>
                 )}
             </TooltipAnchor>
