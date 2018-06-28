@@ -15,6 +15,8 @@ type Props = {
     popperArrowProps?: PopperArrowProps,
 };
 
+// TODO(somewhatabstract): Replace this really basic unique ID work with
+// something SSR-friendly and more robust.
 let tempIdCounter = 0;
 export default class TooltipArrow extends React.Component<Props> {
     _lastRef: ?HTMLElement;
