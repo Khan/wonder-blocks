@@ -8,6 +8,24 @@ import {mount} from "enzyme";
 import isObscured from "./is-obscured.js";
 
 describe("isObscured", () => {
+    let ogElementFromPoint = null;
+    beforeEach(() => {
+        // Some tests will want to mock this, so let's ensure we can reset it
+        ogElementFromPoint = document.elementFromPoint;
+    });
+
+    afterEach(() => {
+        if (ogElementFromPoint) {
+            //eslint-disable-next-line no-console
+            console.log("Resetting elementFromPoint");
+            const og = ogElementFromPoint;
+            ogElementFromPoint = null;
+            // Reset the document method to avoid side-effects.
+            // Flow doesn't like us doing this to the document $FlowFixMe
+            document.elementFromPoint = og;
+        }
+    });
+
     test("element is null, throws", () => {
         // Arrange
         const element = ((null: any): Element);
@@ -33,7 +51,6 @@ describe("isObscured", () => {
         const actAndAssert = (ref) => {
             const element = ((ReactDOM.findDOMNode(ref): any): Element);
 
-            const ogElementFromPoint = document.elementFromPoint;
             // When not obscurred, elementFromPoint should return the element.
             // Flow doesn't like us doing this to the document $FlowFixMe
             document.elementFromPoint = jest.fn().mockReturnValue(element);
@@ -43,9 +60,6 @@ describe("isObscured", () => {
 
             // Assert
             expect(result).toBeFalsy();
-            // Reset the document method to avoid side-effects.
-            // Flow doesn't like us doing this to the document $FlowFixMe
-            document.elementFromPoint = ogElementFromPoint;
             done();
         };
 
@@ -70,7 +84,6 @@ describe("isObscured", () => {
             const otherElement = ((ReactDOM.findDOMNode(
                 otherRef,
             ): any): Element);
-            const ogElementFromPoint = document.elementFromPoint;
             // When not obscurred, elementFromPoint should return the element.
             // So let's return the element for one corner but not the other.
             // Flow doesn't like us doing this to the document $FlowFixMe
@@ -84,9 +97,6 @@ describe("isObscured", () => {
 
             // Assert
             expect(result).toBeFalsy();
-            // Reset the document method to avoid side-effects.
-            // Flow doesn't like us doing this to the document $FlowFixMe
-            document.elementFromPoint = ogElementFromPoint;
             done();
         };
 
@@ -113,7 +123,6 @@ describe("isObscured", () => {
             const otherElement = ((ReactDOM.findDOMNode(
                 otherRef,
             ): any): Element);
-            const ogElementFromPoint = document.elementFromPoint;
             // When not obscurred, elementFromPoint should return the element.
             // Flow doesn't like us doing this to the document $FlowFixMe
             document.elementFromPoint = jest.fn().mockReturnValue(otherElement);
@@ -123,9 +132,80 @@ describe("isObscured", () => {
 
             // Assert
             expect(result).toBeTruthy();
-            // Reset the document method to avoid side-effects.
+            done();
+        };
+
+        arrange(actAndAssert);
+    });
+
+    test("element is not obscured, but elementFromPoint returns parent or child, returns false", (done) => {
+        // Arrange
+        let parentRef = null;
+        let elementRef = null;
+        let childRef = null;
+        const arrange = (tryActAndAssert) => {
+            const nodes = (
+                <View>
+                    <View
+                        ref={(ref) => {
+                            parentRef = ref;
+                            tryActAndAssert();
+                        }}
+                    >
+                        <View
+                            ref={(ref) => {
+                                elementRef = ref;
+                                tryActAndAssert();
+                            }}
+                        >
+                            <View
+                                ref={(ref) => {
+                                    childRef = ref;
+                                    tryActAndAssert();
+                                }}
+                            >
+                                Child
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            );
+            mount(nodes);
+        };
+
+        const actAndAssert = () => {
+            if (!elementRef || !parentRef || !childRef) {
+                // We're not ready to act or assert yet.
+                // We need all three refs to be in.
+                return;
+            }
+
+            const element = ((ReactDOM.findDOMNode(elementRef): any): Element);
+            expect(element).toBeTruthy();
+
+            const parentElement = ((ReactDOM.findDOMNode(
+                parentRef,
+            ): any): Element);
+            expect(parentElement).toBeTruthy();
+
+            const childElement = ((ReactDOM.findDOMNode(
+                childRef,
+            ): any): Element);
+            expect(childElement).toBeTruthy();
+
+            // When not obscurred, elementFromPoint should return the element.
+            // So let's return the element for one corner but not the other.
             // Flow doesn't like us doing this to the document $FlowFixMe
-            document.elementFromPoint = ogElementFromPoint;
+            document.elementFromPoint = jest
+                .fn()
+                .mockImplementationOnce(() => parentElement)
+                .mockImplementationOnce(() => childElement);
+
+            // Act
+            const result = isObscured(element);
+
+            // Assert
+            expect(result).toBeFalsy();
             done();
         };
 
