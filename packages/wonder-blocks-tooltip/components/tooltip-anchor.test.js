@@ -23,9 +23,9 @@ describe("TooltipAnchor", () => {
     test("on mount, subscribes to focus and hover events", () => {
         // Arrange
         const getFakeTooltipPortalMounter = (active) =>
-            (((
-                <View id="anchor">{active ? "true" : "false"}</View>
-            ): any): React.Element<typeof TooltipPortalMounter>);
+            ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                typeof TooltipPortalMounter,
+            >);
         const nodes = (
             <View>
                 <TooltipAnchor anchorRef={() => {}}>
@@ -64,9 +64,9 @@ describe("TooltipAnchor", () => {
     test("on unmount, unsubscribes from focus and hover events", () => {
         // Arrange
         const getFakeTooltipPortalMounter = (active) =>
-            (((
-                <View id="anchor">{active ? "true" : "false"}</View>
-            ): any): React.Element<typeof TooltipPortalMounter>);
+            ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                typeof TooltipPortalMounter,
+            >);
         const nodes = (
             <View>
                 <TooltipAnchor anchorRef={() => {}}>
@@ -222,6 +222,9 @@ describe("TooltipAnchor", () => {
 
             const actAndAssert = (ref) => {
                 // Act
+                const tabindex = ref && ref.getAttribute("tabindex");
+                expect(tabindex).toBe("0");
+
                 // Need to do a timeout so that the mount can return and the
                 // wrapper can change the force prop to false.
                 setTimeout(() => {
@@ -278,9 +281,9 @@ describe("TooltipAnchor", () => {
         // Arrange
         const arrange = (actAndAssert) => {
             const getFakeTooltipPortalMounter = (active) =>
-                (((
-                    <View id="anchor">{active ? "true" : "false"}</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
+                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                    typeof TooltipPortalMounter,
+                >);
             const nodes = (
                 <View>
                     <TooltipAnchor anchorRef={actAndAssert}>
@@ -318,7 +321,7 @@ describe("TooltipAnchor", () => {
             const arrange = (actAndAssert) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
-                        <View id="anchor">{active ? "true" : "false"}</View>
+                        <View>{active ? "true" : "false"}</View>
                     ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
@@ -352,7 +355,7 @@ describe("TooltipAnchor", () => {
             const arrange = (actAndAssert) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
-                        <View id="anchor">{active ? "true" : "false"}</View>
+                        <View>{active ? "true" : "false"}</View>
                     ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
@@ -386,9 +389,9 @@ describe("TooltipAnchor", () => {
         // Arrange
         const arrange = (actAndAssert) => {
             const getFakeTooltipPortalMounter = (active) =>
-                (((
-                    <View id="anchor">{active ? "true" : "false"}</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
+                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                    typeof TooltipPortalMounter,
+                >);
             const nodes = (
                 <View>
                     <TooltipAnchor anchorRef={actAndAssert}>
@@ -422,7 +425,7 @@ describe("TooltipAnchor", () => {
             const arrange = (actAndAssert) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
-                        <View id="anchor">{active ? "true" : "false"}</View>
+                        <View>{active ? "true" : "false"}</View>
                     ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
@@ -456,7 +459,7 @@ describe("TooltipAnchor", () => {
             const arrange = (actAndAssert) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
-                        <View id="anchor">{active ? "true" : "false"}</View>
+                        <View>{active ? "true" : "false"}</View>
                     ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
