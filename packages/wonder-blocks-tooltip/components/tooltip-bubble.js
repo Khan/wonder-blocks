@@ -32,6 +32,11 @@ export default class TooltipBubble extends React.Component<Props> {
             //  arrowProps,
         } = childrenProps;
 
+        // Here we take the props provided to us by popper.js and use them
+        // to position ourselves. We don't use a View because the ref callback
+        // for the react-popper integration expects an HTMLElement and coercing
+        // a View ref to the right type is a lot of extra lifting for little
+        // gain over just using a div.
         return (
             <div
                 data-placement={placement}

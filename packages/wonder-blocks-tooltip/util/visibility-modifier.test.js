@@ -1,7 +1,6 @@
 // @flow
 import Popper from "popper.js";
 import * as Core from "@khanacademy/wonder-blocks-core";
-//import isObscured from "./is-obscured.js";
 import visibilityModifierDefaultConfig from "./visibility-modifier.js";
 import isObscured from "./is-obscured.js";
 
@@ -27,17 +26,10 @@ describe("Visibility PopperJS Modifier", () => {
         // For all these tests, we don't need real elements, just things that
         // look like real elements. We'll fake some known dimensions and verify
         // that the results return what we want.
-        describe("Obscured by one or more scroll parents", () => {
-            test("Obscured horizontally only, is not visible", () => {
+        describe("obscured by one or more scroll parents", () => {
+            test("obscured horizontally only, is not visible", () => {
                 // Arrange
-                const psuedoAnchorElement = {
-                    getBoundingClientRect: () => ({
-                        top: 0,
-                        left: 0,
-                        right: 100,
-                        bottom: 100,
-                    }),
-                };
+                const psuedoAnchorElement = {};
                 const data = {
                     instance: {reference: psuedoAnchorElement},
                     attributes: {},
@@ -57,16 +49,9 @@ describe("Visibility PopperJS Modifier", () => {
                 expect(result.attributes["x-out-of-boundaries"]).toBe("");
             });
 
-            test("Obscured vertically only, is not visible", () => {
+            test("obscured vertically only, is not visible", () => {
                 // Arrange
-                const psuedoAnchorElement = {
-                    getBoundingClientRect: () => ({
-                        top: 0,
-                        left: 0,
-                        right: 100,
-                        bottom: 100,
-                    }),
-                };
+                const psuedoAnchorElement = {};
                 const data = {
                     instance: {reference: psuedoAnchorElement},
                     attributes: {
@@ -88,16 +73,9 @@ describe("Visibility PopperJS Modifier", () => {
                 expect(result.attributes["x-out-of-boundaries"]).toBe("");
             });
 
-            test("Obscured totally, is not visible", () => {
+            test("obscured totally, is not visible", () => {
                 // Arrange
-                const psuedoAnchorElement = {
-                    getBoundingClientRect: () => ({
-                        top: 0,
-                        left: 0,
-                        right: 100,
-                        bottom: 100,
-                    }),
-                };
+                const psuedoAnchorElement = {};
                 const data = {
                     instance: {reference: psuedoAnchorElement},
                     attributes: {},
@@ -118,21 +96,21 @@ describe("Visibility PopperJS Modifier", () => {
             });
         });
 
-        test("Obscured by fixed or absolute components, is not visible", () => {
+        test("obscured by fixed or absolute components, is not visible", () => {
             // Arrange
-            const psuedoAnchorElement = {
-                getBoundingClientRect: () => ({
-                    top: 0,
-                    left: 0,
-                    right: 100,
-                    bottom: 100,
-                }),
-            };
+            const psuedoAnchorElement = {};
             const data = {
                 instance: {reference: psuedoAnchorElement},
                 attributes: {},
                 hide: false,
             };
+
+            // Here we are setting things up so that none of our scroll parents
+            // are hiding our anchor element, but some fixed or absolute thing
+            // is hiding the anchor element. This simulates a situation where
+            // some fixed/absolute/sticky thing is covering our anchor even
+            // though it would overwise be visible within its scroll parents.
+
             // Flow doesn't know this is a jest mock $FlowFixMe
             Core.getElementIntersection.mockReturnValue({
                 horizontal: "within",
@@ -149,16 +127,9 @@ describe("Visibility PopperJS Modifier", () => {
             expect(result.attributes["x-out-of-boundaries"]).toBe("");
         });
 
-        test("Not obscured by parent nor fixed/absolute positioning", () => {
+        test("not obscured by parent nor fixed/absolute positioning", () => {
             // Arrange
-            const psuedoAnchorElement = {
-                getBoundingClientRect: () => ({
-                    top: 0,
-                    left: 0,
-                    right: 100,
-                    bottom: 100,
-                }),
-            };
+            const psuedoAnchorElement = {};
             const data = {
                 instance: {reference: psuedoAnchorElement},
                 attributes: {
