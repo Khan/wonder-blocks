@@ -12,6 +12,7 @@ jest.mock("react-dom");
 import ActionItem from "./components/action-item.js";
 import SelectItem from "./components/select-item.js";
 import SeparatorItem from "./components/separator-item.js";
+import SelectBox from "./components/select-box.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
@@ -117,6 +118,91 @@ describe("wonder-blocks-dropdown", () => {
             </View>
         );
 
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Strut} = require("@khanacademy/wonder-blocks-spacing");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+        const example = (
+            <View style={[styles.row]}>
+                <SelectBox
+                    isPlaceholder={false}
+                    onClick={() => console.log("regular selectbox selected")}
+                    style={{width: 200}}
+                >
+                    Regular selectbox
+                </SelectBox>
+                <Strut size={8} />
+                <SelectBox
+                    isPlaceholder={true}
+                    onClick={() => console.log("Selected")}
+                    style={{width: 150}}
+                >
+                    Placeholder
+                </SelectBox>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const Color = require("@khanacademy/wonder-blocks-color");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        console.log(Color);
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            darkBackgroundWrapper: {
+                backgroundColor: Color.default.darkBlue,
+                padding: 10,
+            },
+        });
+        const example = (
+            <View style={[styles.row]}>
+                <View style={[styles.darkBackgroundWrapper]}>
+                    <SelectBox
+                        light={true}
+                        isPlaceholder={false}
+                        onClick={() => console.log("light selectbox selected")}
+                    >
+                        Light version
+                    </SelectBox>
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+        const example = (
+            <View style={[styles.row]}>
+                <SelectBox
+                    disabled={true}
+                    onClick={() => console.log("error error!!")}
+                >
+                    Disabled
+                </SelectBox>
+            </View>
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
