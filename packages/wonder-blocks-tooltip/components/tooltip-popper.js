@@ -16,6 +16,9 @@ import type {Placement} from "../util/types.js";
  * Equivalent to PopperChildrenProps from the react-popper package but provided
  * as our own type to abstract away react-popper so we can isolate it's
  * inclusion to this file.
+ *
+ * TODO(somewhatabstract): More carefully curate the props so that we can have
+ * idiomatic wonderblocks styles, for example.
  */
 export type PopperChildrenProps = PopperJSChildrenProps;
 
