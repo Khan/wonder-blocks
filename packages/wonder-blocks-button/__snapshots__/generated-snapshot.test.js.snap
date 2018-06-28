@@ -315,62 +315,141 @@ exports[`wonder-blocks-button example 2 1`] = `
 `;
 
 exports[`wonder-blocks-button example 3 1`] = `
-<button
+<div
   className=""
-  data-test-id={undefined}
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "alignItems": "center",
-      "background": "rgba(33,36,44,0.32)",
-      "border": "none",
-      "borderRadius": 4,
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
-      "color": "rgba(255,255,255,0.64)",
-      "cursor": "auto",
-      "display": "inline-flex",
-      "height": 40,
-      "justifyContent": "center",
-      "outline": "none",
-      "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 0,
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
       "position": "relative",
-      "textDecoration": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
 >
-  <span
+  <button
     className=""
+    data-test-id={undefined}
+    disabled={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato",
-        "fontSize": 16,
-        "fontWeight": "bold",
-        "lineHeight": "20px",
-        "pointerEvents": "none",
+        "alignItems": "center",
+        "background": "rgba(33,36,44,0.32)",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "rgba(255,255,255,0.64)",
+        "cursor": "auto",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
       }
     }
+    tabIndex={-1}
   >
-    Label
-  </span>
-</button>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
+        }
+      }
+    >
+      Label
+    </span>
+  </button>
+  <a
+    className=""
+    data-test-id={undefined}
+    disabled={true}
+    href="https://khanacademy.org"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "background": "rgba(33,36,44,0.32)",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "rgba(255,255,255,0.64)",
+        "cursor": "auto",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+      }
+    }
+    tabIndex={-1}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
+        }
+      }
+    >
+      Href button
+    </span>
+  </a>
+</div>
 `;
 
 exports[`wonder-blocks-button example 4 1`] = `
