@@ -57,6 +57,7 @@ exports[`wonder-blocks-button example 1 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -116,6 +117,7 @@ exports[`wonder-blocks-button example 1 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -172,6 +174,7 @@ exports[`wonder-blocks-button example 1 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -228,6 +231,7 @@ exports[`wonder-blocks-button example 1 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -288,6 +292,7 @@ exports[`wonder-blocks-button example 2 1`] = `
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -346,6 +351,7 @@ exports[`wonder-blocks-button example 3 1`] = `
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -434,6 +440,7 @@ exports[`wonder-blocks-button example 4 1`] = `
               "width": 200,
             }
           }
+          tabIndex={0}
         >
           <span
             className=""
@@ -497,6 +504,7 @@ exports[`wonder-blocks-button example 4 1`] = `
               "width": "75%",
             }
           }
+          tabIndex={0}
         >
           <span
             className=""
@@ -560,6 +568,7 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
+          tabIndex={0}
         >
           <span
             className=""
@@ -630,6 +639,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "textDecoration": "none",
               }
             }
+            tabIndex={0}
           >
             <span
               className=""
@@ -703,6 +713,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "width": "300px",
               }
             }
+            tabIndex={0}
           >
             <span
               className=""
@@ -788,6 +799,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "textDecoration": "none",
               }
             }
+            tabIndex={0}
           >
             <span
               className=""
@@ -881,6 +893,7 @@ exports[`wonder-blocks-button example 4 1`] = `
                   "textDecoration": "none",
                 }
               }
+              tabIndex={0}
             >
               <span
                 className=""

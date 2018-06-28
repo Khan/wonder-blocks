@@ -73,6 +73,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "whiteSpace": "nowrap",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -145,6 +146,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "whiteSpace": "nowrap",
         }
       }
+      tabIndex={-1}
     >
       <span
         className=""
@@ -216,6 +218,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "whiteSpace": "nowrap",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -287,6 +290,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "whiteSpace": "nowrap",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -370,6 +374,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "padding": 0,
         }
       }
+      tabIndex={0}
     >
       <div
         aria-checked="true"
@@ -495,6 +500,7 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
           "padding": 0,
         }
       }
+      tabIndex={0}
     >
       <div
         aria-checked="false"
@@ -612,6 +618,7 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
           "padding": 0,
         }
       }
+      tabIndex={0}
     >
       <div
         aria-checked="true"
@@ -746,6 +753,7 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
           "padding": 0,
         }
       }
+      tabIndex={0}
     >
       <div
         aria-checked="false"
@@ -859,6 +867,7 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
           "padding": 0,
         }
       }
+      tabIndex={-1}
     >
       <div
         aria-checked="false"
