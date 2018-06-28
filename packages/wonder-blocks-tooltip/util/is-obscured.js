@@ -60,6 +60,9 @@ export default function isObscured(element: Element) {
         anchorRight,
         anchorBottom,
     );
+    // TODO(somewhatabstract): Need to cater to the case where the viewport is
+    // zoomed such that both corners are off screen but the rest isn't.
+
     // To cope with us hitting a child of our anchor or a parent due to
     // borders and things, we do some descendancy checks. We're ok with
     // saying that we're visible if we hit a parent because we already
