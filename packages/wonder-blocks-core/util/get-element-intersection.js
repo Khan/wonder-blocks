@@ -25,15 +25,19 @@ export type Intersection = {|
     vertical: ?AxisIntersection,
 |};
 
-const UndeterminedIntersection: Intersection = Object.freeze({
-    horizontal: null,
-    vertical: null,
-});
+function UndeterminedIntersection() {
+    return {
+        horizontal: null,
+        vertical: null,
+    };
+}
 
-const FullIntersection: Intersection = Object.freeze({
-    horizontal: "within",
-    vertical: "within",
-});
+function FullIntersection() {
+    return {
+        horizontal: "within",
+        vertical: "within",
+    };
+}
 
 function getAxisIntersection(
     intersectingRect: ClientRect | DOMRect,
@@ -89,7 +93,7 @@ export default function getElementIntersection(
 ): Intersection {
     if (!element) {
         // An non-existant element is definitely not visible.
-        return UndeterminedIntersection;
+        return UndeterminedIntersection();
     }
 
     const intersectingRect = element.getBoundingClientRect();
@@ -122,5 +126,5 @@ export default function getElementIntersection(
     }
 
     // If we got here, the element is within the bounds of its parents.
-    return FullIntersection;
+    return FullIntersection();
 }
