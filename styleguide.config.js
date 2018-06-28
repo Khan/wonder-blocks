@@ -96,6 +96,10 @@ module.exports = {
                 "packages/wonder-blocks-dropdown/components/select-box.js",
             ],
         },
+        {
+            name: "Tooltip",
+            content: "packages/wonder-blocks-tooltip/docs.md",
+        },
     ],
 
     // These values control our custom styles.
