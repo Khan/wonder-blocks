@@ -962,6 +962,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
 >
   <button
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -1098,6 +1099,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
   />
   <button
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -1254,6 +1256,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
   >
     <button
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -1386,6 +1389,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
 >
   <button
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onKeyDown={[Function]}

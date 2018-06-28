@@ -108,6 +108,7 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                     const {hovered, focused, pressed} = state;
                     return (
                         <StyledButton
+                            disabled={disabled}
                             role="menu"
                             style={[
                                 styles.shared,
@@ -121,10 +122,6 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                                 style,
                             ]}
                             {...handlers}
-                            // If disabled, set tabIndex to -1 to have tab
-                            // navigation skip the item. Otherwise, insert it
-                            // based on natural location.
-                            tabIndex={disabled ? -1 : 0}
                         >
                             <LabelMedium style={[textStyles]}>
                                 {children}
