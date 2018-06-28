@@ -3,7 +3,10 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+
 import TooltipContent from "./tooltip-content.js";
 import TooltipArrow from "./tooltip-arrow.js";
 
@@ -50,7 +53,9 @@ export default class TooltipBubble extends React.Component<Props> {
                     styles[`content-${placement}`],
                 ]}
             >
-                {children}
+                <View style={styles.content}>
+                    {children}
+                </View>
                 <TooltipArrow
                     placement={placement}
                     popperArrowProps={arrowProps}
@@ -93,5 +98,14 @@ const styles = StyleSheet.create({
     },
     "content-left": {
         flexDirection: "row",
+    },
+
+    content: {
+        padding: "10px 16px 10px 16px",
+        maxWidth: 472,
+        borderRadius: Spacing.xxxSmall,
+        border: `solid 1px ${Colors.offBlack16}`,
+        backgroundColor: Colors.white,
+        boxShadow: `0 ${Spacing.xSmall}px ${Spacing.xSmall}px 0 ${Colors.offBlack8}`,
     },
 });
