@@ -1506,7 +1506,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
           }
         }
       >
-        I'm on the left!
+        I'm on the bottom with an arrow 50px in!
       </span>
     </div>
     <div
@@ -1671,7 +1671,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
           }
         }
       >
-        I'm on the left!
+        I'm hidden. So hidden. Shhhhh!
       </span>
     </div>
     <div

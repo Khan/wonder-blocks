@@ -154,7 +154,7 @@ const popperProps = {
 
 <View style={{height: 50, display: "flex", flexDirection: "row"}}>
     <TooltipBubble popperProps={popperProps}>
-        <TooltipContent>I'm on the left!</TooltipContent>
+        <TooltipContent>I'm on the bottom with an arrow 50px in!</TooltipContent>
     </TooltipBubble>
 </View>
 ```
@@ -186,7 +186,7 @@ const popperProps = {
 
 <View style={{height: 50}}>
     <TooltipBubble popperProps={popperProps}>
-        <TooltipContent>I'm on the left!</TooltipContent>
+        <TooltipContent>I'm hidden. So hidden. Shhhhh!</TooltipContent>
     </TooltipBubble>
 </View>
 ```
