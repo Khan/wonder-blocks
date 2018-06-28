@@ -4,7 +4,7 @@ TODO(sophie): Caret color on the placeholder box will be fixed with incorporatio
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
-const {Strut} = require("@khanacademy/wonder-blocks-spacing");
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     <Strut size={8} />
     <SelectBox
         isPlaceholder={true}
-        onClick={() => console.log("Selected")}             
+        onClick={() => console.log("Selected")}
         style={{width: 150}}
     >
         Placeholder
