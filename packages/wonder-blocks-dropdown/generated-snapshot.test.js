@@ -123,7 +123,7 @@ describe("wonder-blocks-dropdown", () => {
     });
     it("example 2", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Strut} = require("@khanacademy/wonder-blocks-spacing");
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
