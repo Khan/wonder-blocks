@@ -18,6 +18,45 @@ import Tagline from "./components/tagline.js";
 import Caption from "./components/caption.js";
 import Footnote from "./components/footnote.js";
 
+/**
+ * Typography components for headings or titles.
+ */
+export type Heading =
+    | typeof Title
+    | typeof HeadingLarge
+    | typeof HeadingMedium
+    | typeof HeadingSmall
+    | typeof HeadingXSmall;
+
+/**
+ * Typography components for representing body text.
+ */
+export type BodyText =
+    | typeof Body
+    | typeof BodySerif
+    | typeof BodySerifBlock
+    | typeof BodyMonospace;
+
+/**
+ * Typography components for labels.
+ */
+export type Label =
+    | typeof LabelLarge
+    | typeof LabelMedium
+    | typeof LabelSmall
+    | typeof LabelXSmall;
+
+/**
+ * All typography components.
+ */
+export type Typography =
+    | Heading
+    | BodyText
+    | Label
+    | typeof Tagline
+    | typeof Caption
+    | typeof Footnote;
+
 export {
     Title,
     HeadingLarge,

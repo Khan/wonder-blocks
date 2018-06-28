@@ -10,11 +10,11 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import Tooltip from "./components/tooltip.js";
+import TooltipContent from "./components/tooltip-content.js";
 
 describe("wonder-blocks-tooltip", () => {
     it("example 1", () => {
         const React = require("react");
-        const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <Tooltip content={"The tooltip text"}>Some text</Tooltip>
@@ -25,7 +25,6 @@ describe("wonder-blocks-tooltip", () => {
     it("example 2", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <Tooltip forceAnchorFocusivity={false} content={"The tooltip text"}>
@@ -41,7 +40,6 @@ describe("wonder-blocks-tooltip", () => {
     it("example 3", () => {
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
-        const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <div>
@@ -69,7 +67,6 @@ describe("wonder-blocks-tooltip", () => {
     it("example 4", () => {
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
-        const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
         const {
             StandardModal,
             ModalLauncher,
@@ -112,6 +109,35 @@ describe("wonder-blocks-tooltip", () => {
                     <button onClick={openModal}>Click here!</button>
                 )}
             </ModalLauncher>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
+        const example = <TooltipContent>Just the content</TooltipContent>;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const example = (
+            <TooltipContent title="Title text!">
+                Some content in my content
+            </TooltipContent>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
+        const {
+            Body,
+            LabelSmall,
+        } = require("@khanacademy/wonder-blocks-typography");
+
+        const example = (
+            <TooltipContent title={<Body>Body text title!</Body>}>
+                <Body>Body text content!</Body>
+                <LabelSmall>And LabelSmall!</LabelSmall>
+            </TooltipContent>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
