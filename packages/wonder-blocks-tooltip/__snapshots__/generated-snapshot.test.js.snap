@@ -755,3 +755,979 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
   />
 </div>
 `;
+
+exports[`wonder-blocks-tooltip example 12 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 50,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="top"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        I'm on the top!
+      </span>
+    </div>
+    <div
+      className="arrowContainer_jqq9v4-o_O-container-top_15ku1de"
+      data-placement="top"
+      style={
+        Object {
+          "left": 0,
+          "top": 0,
+        }
+      }
+    >
+      <svg
+        className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
+        height={12}
+        width={24}
+      >
+        <filter
+          height="150%"
+          id="tooltip-dropshadow-top"
+        >
+          <feOffset
+            dx={8}
+            dy={8}
+            result="offsetblur"
+          />
+          <feGaussianBlur
+            in="SourceAlpha"
+            stdDeviation={3}
+          />
+          <feComponentTransfer>
+            <feFuncA
+              slope={0.16}
+              type="linear"
+            />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode
+              in="SourceGraphic"
+            />
+          </feMerge>
+        </filter>
+        <polyline
+          fill="#ffffff"
+          points="0,0 12,12 24,0"
+          stroke="#ffffff"
+        />
+        <polyline
+          fill="#ffffff"
+          filter="url(#tooltip-dropshadow-top)"
+          points="0,0 12,12 24,0"
+          stroke="rgba(33,36,44,0.16)"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 13 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row-reverse",
+      "height": 50,
+      "justifyContent": "flex-end",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="right"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row-reverse",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        I'm on the right!
+      </span>
+    </div>
+    <div
+      className="arrowContainer_jqq9v4-o_O-container-right_8hn242"
+      data-placement="right"
+      style={
+        Object {
+          "left": 0,
+          "top": 0,
+        }
+      }
+    >
+      <svg
+        className="arrow_oo4scr-o_O-arrow-right_14846yz"
+        height={24}
+        width={12}
+      >
+        <filter
+          height="150%"
+          id="tooltip-dropshadow-right"
+        >
+          <feOffset
+            dx={8}
+            dy={8}
+            result="offsetblur"
+          />
+          <feGaussianBlur
+            in="SourceAlpha"
+            stdDeviation={3}
+          />
+          <feComponentTransfer>
+            <feFuncA
+              slope={0.16}
+              type="linear"
+            />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode
+              in="SourceGraphic"
+            />
+          </feMerge>
+        </filter>
+        <polyline
+          fill="#ffffff"
+          points="12,0 0,12 12,24"
+          stroke="#ffffff"
+        />
+        <polyline
+          fill="#ffffff"
+          filter="url(#tooltip-dropshadow-right)"
+          points="12,0 0,12 12,24"
+          stroke="rgba(33,36,44,0.16)"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 14 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column-reverse",
+      "height": 50,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="bottom"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column-reverse",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        I'm on the bottom!
+      </span>
+    </div>
+    <div
+      className="arrowContainer_jqq9v4-o_O-container-bottom_15ku1de"
+      data-placement="bottom"
+      style={
+        Object {
+          "left": 0,
+          "top": 0,
+        }
+      }
+    >
+      <svg
+        className="arrow_oo4scr-o_O-arrow-bottom_v72lrv"
+        height={12}
+        width={24}
+      >
+        <filter
+          height="150%"
+          id="tooltip-dropshadow-bottom"
+        >
+          <feOffset
+            dx={8}
+            dy={8}
+            result="offsetblur"
+          />
+          <feGaussianBlur
+            in="SourceAlpha"
+            stdDeviation={3}
+          />
+          <feComponentTransfer>
+            <feFuncA
+              slope={0.16}
+              type="linear"
+            />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode
+              in="SourceGraphic"
+            />
+          </feMerge>
+        </filter>
+        <polyline
+          fill="#ffffff"
+          points="0, 12 12,0 24,12"
+          stroke="#ffffff"
+        />
+        <polyline
+          fill="#ffffff"
+          filter="url(#tooltip-dropshadow-bottom)"
+          points="0, 12 12,0 24,12"
+          stroke="rgba(33,36,44,0.16)"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 15 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 50,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="left"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        I'm on the left!
+      </span>
+    </div>
+    <div
+      className="arrowContainer_jqq9v4-o_O-container-left_8hn242"
+      data-placement="left"
+      style={
+        Object {
+          "left": 0,
+          "top": 0,
+        }
+      }
+    >
+      <svg
+        className="arrow_oo4scr-o_O-arrow-left_sdqx8w"
+        height={24}
+        width={12}
+      >
+        <filter
+          height="150%"
+          id="tooltip-dropshadow-left"
+        >
+          <feOffset
+            dx={8}
+            dy={8}
+            result="offsetblur"
+          />
+          <feGaussianBlur
+            in="SourceAlpha"
+            stdDeviation={3}
+          />
+          <feComponentTransfer>
+            <feFuncA
+              slope={0.16}
+              type="linear"
+            />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode
+              in="SourceGraphic"
+            />
+          </feMerge>
+        </filter>
+        <polyline
+          fill="#ffffff"
+          points="0,0 12,12 0,24"
+          stroke="#ffffff"
+        />
+        <polyline
+          fill="#ffffff"
+          filter="url(#tooltip-dropshadow-left)"
+          points="0,0 12,12 0,24"
+          stroke="rgba(33,36,44,0.16)"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 16 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 50,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="top"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        I'm on the left!
+      </span>
+    </div>
+    <div
+      className="arrowContainer_jqq9v4-o_O-container-top_15ku1de"
+      data-placement="top"
+      style={
+        Object {
+          "left": 50,
+          "top": 0,
+        }
+      }
+    >
+      <svg
+        className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
+        height={12}
+        width={24}
+      >
+        <filter
+          height="150%"
+          id="tooltip-dropshadow-top"
+        >
+          <feOffset
+            dx={8}
+            dy={8}
+            result="offsetblur"
+          />
+          <feGaussianBlur
+            in="SourceAlpha"
+            stdDeviation={3}
+          />
+          <feComponentTransfer>
+            <feFuncA
+              slope={0.16}
+              type="linear"
+            />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode
+              in="SourceGraphic"
+            />
+          </feMerge>
+        </filter>
+        <polyline
+          fill="#ffffff"
+          points="0,0 12,12 24,0"
+          stroke="#ffffff"
+        />
+        <polyline
+          fill="#ffffff"
+          filter="url(#tooltip-dropshadow-top)"
+          points="0,0 12,12 24,0"
+          stroke="rgba(33,36,44,0.16)"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 17 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 50,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="top"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "transparent",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "color": "transparent",
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "opacity": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        I'm on the left!
+      </span>
+    </div>
+    <div
+      className="arrowContainer_jqq9v4-o_O-container-top_15ku1de"
+      data-placement="top"
+      style={
+        Object {
+          "left": 0,
+          "top": 0,
+        }
+      }
+    >
+      <svg
+        className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
+        height={12}
+        width={24}
+      >
+        <filter
+          height="150%"
+          id="tooltip-dropshadow-top"
+        >
+          <feOffset
+            dx={8}
+            dy={8}
+            result="offsetblur"
+          />
+          <feGaussianBlur
+            in="SourceAlpha"
+            stdDeviation={3}
+          />
+          <feComponentTransfer>
+            <feFuncA
+              slope={0.16}
+              type="linear"
+            />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode
+              in="SourceGraphic"
+            />
+          </feMerge>
+        </filter>
+        <polyline
+          fill="#ffffff"
+          points="0,0 12,12 24,0"
+          stroke="#ffffff"
+        />
+        <polyline
+          fill="#ffffff"
+          filter="url(#tooltip-dropshadow-top)"
+          points="0,0 12,12 24,0"
+          stroke="rgba(33,36,44,0.16)"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

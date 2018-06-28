@@ -109,6 +109,7 @@ module.exports = {
                     private: true,
                     components: [
                         "packages/wonder-blocks-tooltip/components/tooltip-arrow.js",
+                        "packages/wonder-blocks-tooltip/components/tooltip-bubble.js",
                     ],
                 },
             ],
