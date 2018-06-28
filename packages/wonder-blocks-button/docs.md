@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         style={[styles.sideMargins]}
         href={"https://khanacademy.org"}
         disabled={true}
-    >Href button</Button>
+    >Button with href</Button>
 </View>
 ```
 
