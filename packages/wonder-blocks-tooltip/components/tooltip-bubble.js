@@ -3,6 +3,7 @@ import {css, StyleSheet} from "aphrodite";
 import * as React from "react";
 import {Popper} from "react-popper";
 
+import TooltipContent from "./tooltip-content.js";
 import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
 
 import type {PopperChildrenProps} from "react-popper";
@@ -10,8 +11,7 @@ import type {Placement} from "../util/types.js";
 
 type Props = {|
     // The content to be shown in the bubble.
-    // TODO(somewhatabstract): Make this the TooltipContent type.
-    children: string,
+    children: React.Element<typeof TooltipContent>,
 
     // The element that anchors the tooltip bubble.
     // This is used to position the bubble.

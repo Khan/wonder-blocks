@@ -2,7 +2,6 @@
 
 ```js
 const React = require("react");
-const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 
 <Tooltip content={"The tooltip text"}>
     Some text
@@ -16,7 +15,6 @@ In this example, we're no longer forcing the anchor root to be focusable, since 
 ```js
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
-const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 
 <Tooltip forceAnchorFocusivity={false} content={"The tooltip text"}>
     <View>
@@ -31,7 +29,6 @@ const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 ```js
 const React = require("react");
 const {View, Text} = require("@khanacademy/wonder-blocks-core");
-const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 
 <div>
     <div style={{height: 100, overflow: "auto", border: "1px solid", margin: 10,}}>
@@ -51,7 +48,6 @@ const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 ```js
 const React = require("react");
 const {View, Text} = require("@khanacademy/wonder-blocks-core");
-const {Tooltip} = require("@khanacademy/wonder-blocks-tooltip");
 const {StandardModal, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
 
 const scrollyContent = (
