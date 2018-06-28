@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {Text as WbText} from "@khanacademy/wonder-blocks-core";
+import {Text} from "@khanacademy/wonder-blocks-core";
 
 import TooltipPortalMounter from "./tooltip-portal-mounter";
 import TooltipAnchor from "./tooltip-anchor.js";
@@ -52,9 +52,13 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderAnchorElement() {
+        // We need to make sure we can anchor on our content.
+        // If the content is just a string, we wrap it in a Text element
+        // so as not to affect styling or layout but still have an element
+        // to anchor to.
         const {children} = this.props;
         if (typeof children === "string") {
-            return <WbText>{children}</WbText>;
+            return <Text>{children}</Text>;
         } else {
             return children;
         }
