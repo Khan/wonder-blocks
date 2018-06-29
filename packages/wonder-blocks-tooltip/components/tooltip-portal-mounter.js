@@ -82,8 +82,6 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         this._destination = destination;
 
         // Render the tooltip into the destination node.
-        // We have to render the subtree like this so that everything works as expected.
-        // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
         this._renderChildren();
     }
 
@@ -116,6 +114,9 @@ export default class TooltipPortalMounter extends React.Component<Props> {
             ReactDOM.unmountComponentAtNode(this._destination);
         }
 
+        // We have to render the subtree like this so that everything works as
+        // expected.
+        // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
         ReactDOM.unstable_renderSubtreeIntoContainer(
             this,
             children,
