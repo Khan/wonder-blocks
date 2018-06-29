@@ -11,6 +11,7 @@ import renderer from "react-test-renderer";
 jest.mock("react-dom");
 import ClickableBehavior from "./components/clickable-behavior.js";
 import MediaLayout from "./components/media-layout.js";
+import NoSSR from "./components/no-ssr.js";
 import Text from "./components/text.js";
 import View from "./components/view.js";
 
@@ -122,6 +123,27 @@ describe("wonder-blocks-core", () => {
                     </Row>
                 </MediaLayout>
             </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
+        const example = (
+            <NoSSR
+                placeholder={() => (
+                    <View>
+                        This gets rendered on client and server for the first
+                        render call
+                    </View>
+                )}
+            >
+                {() => (
+                    <View>
+                        This is rendered only by the client for all but the
+                        first render.
+                    </View>
+                )}
+            </NoSSR>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
