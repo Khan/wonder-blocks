@@ -60,6 +60,10 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+"@babel/plugin-syntax-dynamic-import@7.0.0-beta.34":
+  version "7.0.0-beta.34"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-dynamic-import/-/plugin-syntax-dynamic-import-7.0.0-beta.34.tgz#05b1e58e4c3f412edb28aa0346c14c5f13c41b46"
+
 "@babel/template@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.44.tgz#f8832f4fdcee5d59bf515e595fc5106c529b394f"
@@ -91,6 +95,27 @@
     esutils "^2.0.2"
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
+
+"@khanacademy/wonder-blocks-button@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-blocks-button/-/wonder-blocks-button-0.0.2.tgz#50a7252fc0c040ed41cb3f3d592fb18aad5f7a67"
+  dependencies:
+    "@khanacademy/wonder-blocks-color" "^0.0.1"
+    "@khanacademy/wonder-blocks-typography" "^0.0.2"
+
+"@khanacademy/wonder-blocks-color@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-blocks-color/-/wonder-blocks-color-0.0.1.tgz#f8081635515c5efca89d3f540bb906e75a33a2c0"
+
+"@khanacademy/wonder-blocks-spacing@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-blocks-spacing/-/wonder-blocks-spacing-1.0.0.tgz#616078db6f40d81a405b089b4abd0cfb5de4dcf5"
+  dependencies:
+    "@khanacademy/wonder-blocks-core" "^1.0.1"
+
+"@khanacademy/wonder-blocks-typography@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-blocks-typography/-/wonder-blocks-typography-0.0.2.tgz#6fcb49f59f15a70793dfa6ac15e17eacfffb1d07"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1044,6 +1069,12 @@ babel-plugin-transform-decorators@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
     babel-types "^6.24.1"
+
+babel-plugin-transform-dynamic-import@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-dynamic-import/-/babel-plugin-transform-dynamic-import-2.0.0.tgz#b647ad73e5050964bdf74297587120f0e9e57703"
+  dependencies:
+    "@babel/plugin-syntax-dynamic-import" "7.0.0-beta.34"
 
 babel-plugin-transform-es2015-arrow-functions@^6.22.0:
   version "6.22.0"
