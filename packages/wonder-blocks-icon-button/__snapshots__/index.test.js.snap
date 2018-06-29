@@ -37,6 +37,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -105,6 +106,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -173,6 +175,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -237,6 +240,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -301,6 +305,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -369,6 +374,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -437,6 +443,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -501,6 +508,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -565,6 +573,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -633,6 +642,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -701,6 +711,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -765,6 +776,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -829,6 +841,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -897,6 +910,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -965,6 +979,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1029,6 +1044,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1093,6 +1109,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -1161,6 +1178,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1229,6 +1247,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1293,6 +1312,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1357,6 +1377,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -1425,6 +1446,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1493,6 +1515,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1557,6 +1580,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1621,6 +1645,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -1689,6 +1714,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1757,6 +1783,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1821,6 +1848,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -1885,6 +1913,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -1953,6 +1982,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2021,6 +2051,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2085,6 +2116,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2149,6 +2181,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -2217,6 +2250,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2285,6 +2319,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2349,6 +2384,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2413,6 +2449,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -2481,6 +2518,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2549,6 +2587,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2613,6 +2652,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2677,6 +2717,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -2745,6 +2786,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2813,6 +2855,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2877,6 +2920,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -2941,6 +2985,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -3009,6 +3054,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3077,6 +3123,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3141,6 +3188,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3205,6 +3253,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -3273,6 +3322,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3341,6 +3391,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3405,6 +3456,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3469,6 +3521,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -3537,6 +3590,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3605,6 +3659,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3669,6 +3724,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3733,6 +3789,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -3801,6 +3858,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3869,6 +3927,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3933,6 +3992,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -3997,6 +4057,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     aria-hidden="true"
@@ -4065,6 +4126,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -4133,6 +4195,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"
@@ -4197,6 +4260,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     aria-hidden="true"

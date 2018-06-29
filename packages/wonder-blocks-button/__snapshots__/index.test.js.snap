@@ -37,6 +37,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false disabled
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -107,6 +108,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false focused 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -177,6 +179,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false hovered 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -235,6 +238,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false pressed 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -293,6 +297,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true disabled 
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -363,6 +368,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true focused 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -433,6 +439,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true hovered 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -491,6 +498,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true pressed 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -549,6 +557,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -619,6 +628,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -689,6 +699,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -747,6 +758,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -805,6 +817,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -875,6 +888,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -945,6 +959,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1003,6 +1018,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1061,6 +1077,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false disa
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -1131,6 +1148,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false focu
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1201,6 +1219,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false hove
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1259,6 +1278,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false pres
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1317,6 +1337,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true disab
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -1387,6 +1408,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true focus
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1457,6 +1479,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true hover
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1515,6 +1538,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true press
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1573,6 +1597,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -1643,6 +1668,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1713,6 +1739,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1771,6 +1798,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1829,6 +1857,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -1899,6 +1928,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -1969,6 +1999,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2027,6 +2058,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2088,6 +2120,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false disabl
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -2149,6 +2182,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false focuse
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2210,6 +2244,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false hovere
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2271,6 +2306,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false presse
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2332,6 +2368,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true disable
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -2393,6 +2430,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true focused
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2454,6 +2492,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true hovered
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2515,6 +2554,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true pressed
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2576,6 +2616,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -2637,6 +2678,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2698,6 +2740,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2759,6 +2802,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2820,6 +2864,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -2881,6 +2926,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -2942,6 +2988,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3003,6 +3050,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3064,6 +3112,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false di
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -3125,6 +3174,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false fo
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3186,6 +3236,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false ho
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3247,6 +3298,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false pr
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3308,6 +3360,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true dis
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -3369,6 +3422,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true foc
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3430,6 +3484,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true hov
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3491,6 +3546,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true pre
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3552,6 +3608,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -3613,6 +3670,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3674,6 +3732,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3735,6 +3794,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3796,6 +3856,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -3857,6 +3918,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3918,6 +3980,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -3979,6 +4042,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4037,6 +4101,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false disable
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -4104,6 +4169,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false focused
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4171,6 +4237,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false hovered
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4229,6 +4296,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false pressed
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4287,6 +4355,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true disabled
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -4354,6 +4423,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true focused 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4421,6 +4491,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true hovered 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4479,6 +4550,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true pressed 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4537,6 +4609,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -4604,6 +4677,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4671,6 +4745,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4729,6 +4804,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4787,6 +4863,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -4854,6 +4931,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4921,6 +4999,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -4979,6 +5058,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5037,6 +5117,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false dis
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -5104,6 +5185,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false foc
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5171,6 +5253,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false hov
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5229,6 +5312,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false pre
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5287,6 +5371,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true disa
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -5354,6 +5439,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true focu
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5421,6 +5507,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true hove
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5479,6 +5566,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true pres
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5537,6 +5625,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -5604,6 +5693,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5671,6 +5761,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5729,6 +5820,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5787,6 +5879,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   <span
     className=""
@@ -5854,6 +5947,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5921,6 +6015,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
@@ -5979,6 +6074,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   <span
     className=""
