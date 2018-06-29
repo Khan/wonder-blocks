@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-// import * as ReactDOM from "react-dom";
 import * as ReactDOMServer from "react-dom/server";
 
 import {mount} from "enzyme";
@@ -28,6 +27,9 @@ describe("NoSSR", () => {
 
         const assert = () => {
             // Assert
+            // This was called from within the NoSSR children render prop.
+            // Therefore, if the placeholder has been called, it must have
+            // been called first.
             expect(mockPlaceholder).toHaveBeenCalledTimes(1);
             done();
         };
