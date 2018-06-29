@@ -69,7 +69,7 @@ describe("wonder-blocks-dropdown", () => {
                         selected={true}
                         value={"1"}
                         variant={"check"}
-                        onToggle={(v, l, s) =>
+                        onToggle={(v, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -79,7 +79,7 @@ describe("wonder-blocks-dropdown", () => {
                         selected={false}
                         value={"2"}
                         variant={"check"}
-                        onToggle={(v, l, s) =>
+                        onToggle={(v, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -89,7 +89,7 @@ describe("wonder-blocks-dropdown", () => {
                         selected={true}
                         value={"3"}
                         variant={"checkbox"}
-                        onToggle={(v, l, s) =>
+                        onToggle={(v, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -99,7 +99,7 @@ describe("wonder-blocks-dropdown", () => {
                         selected={false}
                         value={"4"}
                         variant={"checkbox"}
-                        onToggle={(v, l, s) =>
+                        onToggle={(v, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -207,85 +207,155 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
+        const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
+        const createReactClass = require("create-react-class");
 
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-            },
-            sideMargins: {
-                marginRight: 10,
-            },
-            darkBackgroundWrapper: {
-                background: "black",
-                padding: 10,
+                height: 180,
             },
             strutLike: {
                 width: 8,
             },
         });
-        const example = (
-            <View style={[styles.row]}>
-                <SingleSelectMenu
-                    items={[
-                        {
-                            type: "select",
-                            label: "Banana wrapped in a peel ",
-                            selected: false,
-                            value: "banana",
-                        },
-                        {
-                            type: "select",
-                            label: "Apple",
-                            selected: false,
-                            value: "apple",
-                        },
-                        {
-                            type: "select",
-                            label: "Grape",
-                            selected: false,
-                            value: "grape",
-                        },
-                    ]}
-                    light={false}
-                    onChange={(s) => console.log(s)}
-                    placeholder={"Choose a juice"}
-                    style={{
-                        width: 170,
-                        maxWidth: 170,
-                    }}
-                />
+        //$FlowFixMe
+        class ExampleWithPlaceholder extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedItem: null,
+                };
+            }
 
-                <View style={[styles.strutLike]} />
+            handleSelected(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedItem: selected,
+                });
+            }
 
-                <View style={[styles.darkBackgroundWrapper]}>
+            render() {
+                return (
                     <SingleSelectMenu
                         items={[
                             {
-                                type: "select",
-                                label: "Banana juice!!!",
-                                selected: false,
+                                label: "Banana wrapped in a peel",
                                 value: "banana",
                             },
                             {
-                                type: "select",
-                                label: "Apple juice!!!",
-                                selected: false,
+                                label: "Apple",
                                 value: "apple",
                             },
                             {
-                                type: "select",
-                                label: "Grape juice!!!",
-                                selected: false,
+                                label: "Grape",
                                 value: "grape",
                             },
                         ]}
-                        light={true}
-                        onChange={(s) => console.log(s)}
+                        light={false}
+                        onChange={(selected) => this.handleSelected(selected)}
                         placeholder={"Choose a fruit"}
+                        selectedItem={this.state.selectedItem}
+                        style={{
+                            width: 170,
+                            maxWidth: 170,
+                        }}
                     />
-                </View>
+                );
+            }
+        }
+        //$FlowFixMe
+        class ExampleWithStartingSelection extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedItem: "banana",
+                };
+            }
+
+            handleSelected(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedItem: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelectMenu
+                        items={[
+                            {
+                                label: "Banana juice!!!",
+                                value: "banana",
+                            },
+                            {
+                                disabled: true,
+                                label: "Apple juice!!!",
+                                value: "apple",
+                            },
+                            {
+                                label: "Grape juice!!!",
+                                value: "grape",
+                            },
+                        ]}
+                        onChange={(selected) => this.handleSelected(selected)}
+                        placeholder={"Choose a fruit"}
+                        selectedItem={this.state.selectedItem}
+                    />
+                );
+            }
+        }
+        //$FlowFixMe
+        class DisabledExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedItem: "banana",
+                };
+            }
+
+            handleSelected(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedItem: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelectMenu
+                        disabled={true}
+                        items={[
+                            {
+                                label: "Banana juice!!!",
+                                value: "banana",
+                            },
+                            {
+                                label: "Apple juice!!!",
+                                value: "apple",
+                            },
+                            {
+                                label: "Grape juice!!!",
+                                value: "grape",
+                            },
+                        ]}
+                        onChange={(selected) => this.handleSelected(selected)}
+                        placeholder={"Choose a fruit"}
+                        selectedItem={this.state.selectedItem}
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row]}>
+                <ExampleWithPlaceholder />
+                <View style={[styles.strutLike]} />
+                <ExampleWithStartingSelection />
+                <View style={[styles.strutLike]} />
+                <DisabledExample />
             </View>
         );
 
@@ -293,6 +363,8 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 6", () => {
+        const React = require("react");
+        const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -300,23 +372,62 @@ describe("wonder-blocks-dropdown", () => {
             row: {
                 flexDirection: "row",
             },
+            darkBackgroundWrapper: {
+                backgroundColor: Color.default.darkBlue,
+                width: 350,
+                height: 200,
+                paddingRight: 10,
+                paddingTop: 10,
+            },
         });
+        //$FlowFixMe
+        class LightRightAlignedExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedItem: null,
+                };
+            }
+
+            handleSelected(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedItem: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelectMenu
+                        items={[
+                            {
+                                label: "Regular milk tea with boba",
+                                value: "regular",
+                            },
+                            {
+                                label: "Wintermelon milk tea with boba",
+                                value: "wintermelon",
+                            },
+                            {
+                                label: "Taro milk tea, half sugar",
+                                value: "taro",
+                            },
+                        ]}
+                        light={true}
+                        onChange={(selected) => this.handleSelected(selected)}
+                        placeholder={"Boba order"}
+                        selectedItem={this.state.selectedItem}
+                        alignment={"right"}
+                    />
+                );
+            }
+        }
+
         const example = (
             <View style={[styles.row]}>
-                <SingleSelectMenu
-                    items={[
-                        {
-                            type: "select",
-                            label: "Banana",
-                            selected: false,
-                            value: "banana",
-                        },
-                    ]}
-                    disabled={true}
-                    light={false}
-                    onChange={(s) => console.log(s)}
-                    placeholder={"Choose a fruit"}
-                />
+                <View style={[styles.darkBackgroundWrapper]}>
+                    <LightRightAlignedExample />
+                </View>
             </View>
         );
 

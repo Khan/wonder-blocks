@@ -7,17 +7,23 @@ import {StyleSheet} from "aphrodite";
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
-import SeparatorItem from "./separator-item.js";
 
-import type {SelectItemProps, SeparatorProps} from "../utils/types.js";
-
-type ItemProps = SelectItemProps | SeparatorProps;
+export type SingleSelectItemProps = {
+    /** Whether this item is disabled. Default false. */
+    disabled?: boolean,
+    /** Display text of the item. */
+    label: string,
+    /** Value of this item. Treat as a key. */
+    value: string,
+    /** Optional extra callback. Passes whether this item is selected. */
+    onClick?: (selected: boolean) => void,
+};
 
 type Props = {
     /**
      * The items in this menu.
      */
-    items: Array<ItemProps>,
+    items: Array<SingleSelectItemProps>,
 
     /**
      * Callback for when the selection of the menu changes. Parameter is the
@@ -31,6 +37,11 @@ type Props = {
     placeholder: string,
 
     /**
+     * Value of the currently selected item for this menu.
+     */
+    selectedItem?: string,
+
+    /**
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
@@ -40,7 +51,6 @@ type Props = {
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
      */
-
     light?: boolean,
 
     /**
@@ -60,14 +70,6 @@ type State = {
      * Whether or not menu is open.
      */
     open: boolean,
-
-    /**
-     * The value and label of the selected element.
-     */
-    selected: {
-        value: string,
-        label: string,
-    },
 };
 
 export default class SingleSelectMenu extends React.Component<Props, State> {
@@ -80,17 +82,8 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        const selected = props.items.filter(
-            (item) => item.type === "select" && item.selected,
-        )[0];
-
         this.state = {
             open: false,
-            selected: selected && {
-                // have to check type again to appease flow
-                value: selected.type === "select" ? selected.value : "",
-                label: selected.type === "select" ? selected.label : "",
-            },
         };
     }
 
@@ -100,23 +93,14 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         }));
     }
 
-    handleSelected(selectedValue: string, selectedLabel: string) {
-        const {onChange} = this.props;
-        const {selected} = this.state;
-        // If selected value was the same, don't call the onChange callback.
-        if (selected && selectedValue === selected.value) {
-            this.setState({
-                open: false, // close the menu upon selection
-            });
-        } else {
-            this.setState({
-                open: false, // close the menu upon selection
-                selected: {
-                    value: selectedValue,
-                    label: selectedLabel,
-                },
-            });
-            onChange(selectedValue);
+    handleSelected(selectedValue: string) {
+        this.setState({
+            open: false, // close the menu upon selection
+        });
+
+        // Call callback if selection changes.
+        if (selectedValue !== this.props.selectedItem) {
+            this.props.onChange(selectedValue);
         }
     }
 
@@ -126,14 +110,18 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
             disabled,
             items,
             light,
-            // onChange,
             placeholder,
+            selectedItem,
             style,
         } = this.props;
 
-        const {selected, open} = this.state;
+        const {open} = this.state;
 
-        const menuText = `${selected ? selected.label : placeholder}`;
+        const menuText = `${
+            selectedItem
+                ? items.filter((item) => item.value === selectedItem)[0].label
+                : placeholder
+        }`;
 
         const opener = (
             <SelectBox
@@ -147,17 +135,13 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         );
 
         const menuItems = items.map((item, index) => {
-            return item.type === "separator" ? (
-                <SeparatorItem key={index} />
-            ) : (
+            return (
                 <SelectItem
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
-                    onToggle={(value, label, state) =>
-                        this.handleSelected(value, label)
-                    }
-                    selected={selected && selected.value === item.value}
+                    onToggle={(value, state) => this.handleSelected(value)}
+                    selected={selectedItem === item.value}
                     value={item.value}
                     variant={"check"}
                 />

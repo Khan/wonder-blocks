@@ -6,6 +6,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     View,
@@ -46,10 +47,10 @@ type SelectProps = {
 
     /**
      * Callback for when this item is pressed to change its selection state.
-     * Passes value of the item, its label, and its new selection state. Should
-     * be handled by an implementation of Menu.
+     * Passes value of the item and its new selection state. Should be handled
+     * by an implementation of Menu.
      */
-    onToggle: (value: string, label: string, selectionState: boolean) => void,
+    onToggle: (value: string, selectionState: boolean) => void,
 
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
@@ -157,7 +158,7 @@ export default class SelectItem extends React.Component<SelectProps> {
             <ClickableBehavior
                 disabled={disabled}
                 onClick={() => {
-                    onToggle(value, label, !selected);
+                    onToggle(value, !selected);
                     if (onClick) {
                         onClick(!selected);
                     }

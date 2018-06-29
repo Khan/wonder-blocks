@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
         position: "absolute",
         borderRadius: 4,
         marginTop: Spacing.xxxSmall,
-        marginBottom: Spacing.xxxSmall,
+        //TODO: is this necessary
+        // marginBottom: Spacing.xxxSmall,
         paddingTop: Spacing.xxxSmall,
         paddingBottom: Spacing.xxxSmall,
         border: `solid 1px ${Color.offBlack16}`,
