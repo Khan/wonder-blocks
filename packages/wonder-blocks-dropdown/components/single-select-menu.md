@@ -1,6 +1,8 @@
 The single select menu allows the selection of one item. Clients are
 responsible for keeping track of the selected item in the menu.
 
+TODO(sophie): keyboard navigation and dismissal
+
 The first menu has a starting placeholder and a set width.
 
 The second menu starts with a starting selected item. One of the items is
@@ -12,7 +14,6 @@ The third menu is disabled.
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
-const createReactClass = require("create-react-class");
 
 const styles = StyleSheet.create({
     row: {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
         width: 8,
     }
 });
-//$FlowFixMe
+
 class ExampleWithPlaceholder extends React.Component {
     constructor() {
         super();
@@ -66,7 +67,7 @@ class ExampleWithPlaceholder extends React.Component {
         />;
     }
 }
-//$FlowFixMe
+
 class ExampleWithStartingSelection extends React.Component {
     constructor() {
         super();
@@ -105,7 +106,7 @@ class ExampleWithStartingSelection extends React.Component {
         />;
     }
 }
-//$FlowFixMe
+
 class DisabledExample extends React.Component {
     constructor() {
         super();
@@ -155,7 +156,7 @@ class DisabledExample extends React.Component {
 
 ```
 
-this menu is on a dark background and is also right-aligned.
+This menu is on a dark background and is also right-aligned.
 
 ```js
 const React = require("react");
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
         paddingTop: 10,
     },
 });
-//$FlowFixMe
+
 class LightRightAlignedExample extends React.Component {
     constructor() {
         super();

@@ -9,6 +9,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 type DropdownCoreProps = {
+    // TODO(sophie): figure out how to type ActionItem | SelectItem | SeperatorItem inline
     /**
      * Items for the menu.
      */
@@ -77,9 +78,8 @@ const styles = StyleSheet.create({
         backgroundColor: Color.white,
         position: "absolute",
         borderRadius: 4,
+        // The space between the opener and the top of the menu
         marginTop: Spacing.xxxSmall,
-        //TODO: is this necessary
-        // marginBottom: Spacing.xxxSmall,
         paddingTop: Spacing.xxxSmall,
         paddingBottom: Spacing.xxxSmall,
         border: `solid 1px ${Color.offBlack16}`,

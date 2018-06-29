@@ -210,7 +210,6 @@ describe("wonder-blocks-dropdown", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
-        const createReactClass = require("create-react-class");
 
         const styles = StyleSheet.create({
             row: {
@@ -221,7 +220,7 @@ describe("wonder-blocks-dropdown", () => {
                 width: 8,
             },
         });
-        //$FlowFixMe
+
         class ExampleWithPlaceholder extends React.Component {
             constructor() {
                 super();
@@ -266,7 +265,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
-        //$FlowFixMe
+
         class ExampleWithStartingSelection extends React.Component {
             constructor() {
                 super();
@@ -307,7 +306,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
-        //$FlowFixMe
+
         class DisabledExample extends React.Component {
             constructor() {
                 super();
@@ -380,7 +379,7 @@ describe("wonder-blocks-dropdown", () => {
                 paddingTop: 10,
             },
         });
-        //$FlowFixMe
+
         class LightRightAlignedExample extends React.Component {
             constructor() {
                 super();
