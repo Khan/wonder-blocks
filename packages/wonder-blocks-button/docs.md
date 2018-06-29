@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         size="small"
     >Label</Button>
 </View>
-
 ```
 
 Button example, `href="#button-1"`:
@@ -50,11 +49,30 @@ const Button = require("./index.js").default;
 Disabled button example:
 ```js
 const Button = require("./index.js").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
 
-<Button
-    onClick={(e) => console.log("Hello, world!")}
-    disabled={true}
->Label</Button>
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    sideMargins: {
+        marginRight: 10,
+    }
+});
+
+<View style={[styles.row]}>
+    <Button
+        style={[styles.sideMargins]}
+        onClick={(e) => console.log("Hello, world!")}
+        disabled={true}
+    >Label</Button>
+    <Button
+        style={[styles.sideMargins]}
+        href={"https://khanacademy.org"}
+        disabled={true}
+    >Button with href</Button>
+</View>
 ```
 
 Button examples, `style` specified (Support width, position, margin, and flex styles):

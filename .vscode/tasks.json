@@ -1,0 +1,95 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        // Using the Quick Open (Cmd+P), these can be run by typing
+        // "task <task label>"
+        //
+        // Default build task.
+        // Shift+Cmd+B will run this.
+        {
+            "label": "build",
+            "type": "npm",
+            "script": "build:all",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        // This is the "yarn watch:all" task
+        {
+            "identifier": "watch",
+            "type": "npm",
+            "script": "watch:all",
+            "problemMatcher": [],
+            "group": "build",
+            "isBackground": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
+            }
+        },
+        // This is the "yarn start" task
+        {
+            "identifier": "start",
+            "type": "npm",
+            "script": "start",
+            "isBackground": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            },
+            "problemMatcher": [],
+            "group": "test"
+        },
+        // This combines the "watch" and "start" tasks.
+        // By running both, the dev server will properly update docs for a
+        // package when a dependency of that package is changed and rebuilt.
+        {
+            "label": "start dev server with watch",
+            "group": "test",
+            "dependsOn": [
+                "watch",
+                "start"
+            ],
+            "problemMatcher": []
+        },
+
+        // This is the default test task.
+        // This runs "yarn test"
+        {
+            "label": "run tests",
+            "type": "npm",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            },
+            "script": "test",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        // This task runs "yarn build:coverage" for updating coverage data.
+        {
+            "label": "refresh coverage",
+            "type": "npm",
+            "script": "build:coverage",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            }
+        }
+    ]
+}

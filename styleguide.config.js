@@ -87,9 +87,27 @@ module.exports = {
                 "packages/wonder-blocks-icon-button/components/icon-button.js",
         },
         {
+            name: "Dropdown",
+            content: "packages/wonder-blocks-dropdown/docs.md",
+            components: [
+                "packages/wonder-blocks-dropdown/components/action-item.js",
+                "packages/wonder-blocks-dropdown/components/select-item.js",
+                "packages/wonder-blocks-dropdown/components/separator-item.js",
+                "packages/wonder-blocks-dropdown/components/select-box.js",
+            ],
+        },
+        {
             name: "Toolbar",
             content: "packages/wonder-blocks-toolbar/docs.md",
             components: "packages/wonder-blocks-toolbar/components/toolbar.js",
+        },
+        {
+            name: "Tooltip",
+            content: "packages/wonder-blocks-tooltip/docs.md",
+            components: [
+                "packages/wonder-blocks-tooltip/components/tooltip.js",
+                "packages/wonder-blocks-tooltip/components/tooltip-content.js",
+            ],
         },
     ],
 

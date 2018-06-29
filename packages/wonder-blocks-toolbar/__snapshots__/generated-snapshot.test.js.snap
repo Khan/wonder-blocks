@@ -321,6 +321,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "textDecoration": "none",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
@@ -720,6 +721,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
             "textDecoration": "none",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
@@ -940,6 +942,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "textDecoration": "none",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
@@ -1016,6 +1019,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "textDecoration": "none",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
@@ -1414,6 +1418,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "textDecoration": "none",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
@@ -1939,6 +1944,7 @@ exports[`wonder-blocks-toolbar example 9 1`] = `
             "textDecoration": "none",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
