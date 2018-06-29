@@ -31,21 +31,16 @@ export default class TooltipPortalMounter extends React.Component<Props> {
     _timeoutId: ?number;
     _rendered: boolean;
 
+    componentDidUpdate() {
+        this._renderChildren();
+    }
+
     /**
      * When we unmount, we also unmount our children, and the new child of
      * `document.body` we created.
      */
     componentWillUnmount() {
-        this._clearMountTimeout();
         this._doUnmount();
-    }
-
-    _clearMountTimeout() {
-        const timeoutId = this._timeoutId;
-        this._timeoutId = undefined;
-        if (timeoutId != null) {
-            clearTimeout(timeoutId);
-        }
     }
 
     _doMount() {
@@ -83,17 +78,13 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         destination.setAttribute(TooltipPortalAttributeName, "");
         root.appendChild(destination);
 
+        // Save the destination node, so we can re-use it.
+        this._destination = destination;
+
         // Render the tooltip into the destination node.
         // We have to render the subtree like this so that everything works as expected.
         // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
-        ReactDOM.unstable_renderSubtreeIntoContainer(
-            this,
-            children,
-            destination,
-        );
-
-        // Save the destination node, so we can remove it on unmount.
-        this._destination = destination;
+        this._renderChildren();
     }
 
     _doUnmount() {
@@ -111,24 +102,31 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         destination.parentNode.removeChild(destination);
     }
 
-    _timeoutDoMount() {
-        this._clearMountTimeout();
-        this._timeoutId = setTimeout(() => this._doMount(), 0);
-    }
+    _renderChildren() {
+        if (!this._destination) {
+            this._doMount();
+            return;
+        }
 
-    _timeoutDoUnmount() {
-        this._clearMountTimeout();
-        this._timeoutId = setTimeout(() => this._doUnmount(), 0);
+        const {children} = this.props;
+        if (!children) {
+            this._doUnmount();
+            return;
+        } else {
+            ReactDOM.unmountComponentAtNode(this._destination);
+        }
+
+        ReactDOM.unstable_renderSubtreeIntoContainer(
+            this,
+            children,
+            this._destination,
+        );
     }
 
     render() {
-        const {children, anchor} = this.props;
+        const {anchor} = this.props;
+
         this._rendered = true;
-        if (children) {
-            this._timeoutDoMount();
-        } else {
-            this._timeoutDoUnmount();
-        }
         return anchor;
     }
 }
