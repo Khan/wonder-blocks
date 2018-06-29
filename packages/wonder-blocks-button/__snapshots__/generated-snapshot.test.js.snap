@@ -395,7 +395,6 @@ exports[`wonder-blocks-button example 3 1`] = `
     className=""
     data-test-id={undefined}
     disabled={true}
-    href="https://khanacademy.org"
     onBlur={[Function]}
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -446,7 +445,7 @@ exports[`wonder-blocks-button example 3 1`] = `
         }
       }
     >
-      Href button
+      Button with href
     </span>
   </a>
 </div>

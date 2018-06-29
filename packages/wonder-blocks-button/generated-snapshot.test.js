@@ -102,7 +102,7 @@ describe("wonder-blocks-button", () => {
                     href={"https://khanacademy.org"}
                     disabled={true}
                 >
-                    Href button
+                    Button with href
                 </Button>
             </View>
         );

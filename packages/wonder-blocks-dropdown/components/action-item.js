@@ -128,7 +128,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                         ...handlers,
                     };
 
-                    if (href) {
+                    if (!disabled && href) {
                         if (clientNav) {
                             props.to = href;
                         } else {
