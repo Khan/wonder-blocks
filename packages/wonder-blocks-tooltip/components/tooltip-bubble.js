@@ -53,9 +53,7 @@ export default class TooltipBubble extends React.Component<Props> {
                     styles[`content-${placement}`],
                 ]}
             >
-                <View style={styles.content}>
-                    {children}
-                </View>
+                <View style={styles.content}>{children}</View>
                 <TooltipArrow
                     placement={placement}
                     popperArrowProps={arrowProps}
@@ -101,11 +99,13 @@ const styles = StyleSheet.create({
     },
 
     content: {
-        padding: "10px 16px 10px 16px",
+        padding: "10px 16px",
         maxWidth: 472,
         borderRadius: Spacing.xxxSmall,
         border: `solid 1px ${Colors.offBlack16}`,
         backgroundColor: Colors.white,
-        boxShadow: `0 ${Spacing.xSmall}px ${Spacing.xSmall}px 0 ${Colors.offBlack8}`,
+        boxShadow: `0 ${Spacing.xSmall}px ${Spacing.xSmall}px 0 ${
+            Colors.offBlack8
+        }`,
     },
 });

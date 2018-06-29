@@ -778,7 +778,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
           "maxWidth": 472,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": "10px 16px 10px 16px",
+          "padding": "10px 16px",
           "position": "relative",
           "zIndex": 0,
         }
@@ -957,7 +957,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
           "maxWidth": 472,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": "10px 16px 10px 16px",
+          "padding": "10px 16px",
           "position": "relative",
           "zIndex": 0,
         }
@@ -1137,7 +1137,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
           "maxWidth": 472,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": "10px 16px 10px 16px",
+          "padding": "10px 16px",
           "position": "relative",
           "zIndex": 0,
         }
@@ -1293,7 +1293,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
           "maxWidth": 472,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": "10px 16px 10px 16px",
+          "padding": "10px 16px",
           "position": "relative",
           "zIndex": 0,
         }
@@ -1472,7 +1472,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
           "maxWidth": 472,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": "10px 16px 10px 16px",
+          "padding": "10px 16px",
           "position": "relative",
           "zIndex": 0,
         }
@@ -1654,7 +1654,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
           "maxWidth": 472,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": "10px 16px 10px 16px",
+          "padding": "10px 16px",
           "position": "relative",
           "zIndex": 0,
         }

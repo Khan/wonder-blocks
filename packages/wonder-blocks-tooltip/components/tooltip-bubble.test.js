@@ -77,8 +77,6 @@ describe("TooltipBubble", () => {
                     expect(contentElement).toBeDefined();
                     done();
                 }, 0);
-            } else {
-                done();
             }
         };
 
