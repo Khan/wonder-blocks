@@ -27,43 +27,75 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 ### Substring anchor in scrollable parent & placement bottom
 
 ```js
+const {StyleSheet} = require("aphrodite");
 const React = require("react");
-const {View, Text} = require("@khanacademy/wonder-blocks-core");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Body} = require("@khanacademy/wonder-blocks-typography");
 
-<div>
-    <div style={{height: 100, overflow: "auto", border: "1px solid", margin: 10,}}>
-        <div style={{height: "200vh"}}>
-            <Text>This is a big long piece of text with a </Text>
-            <Tooltip content={"I'm on the bottom!"} placement={"bottom"}>
-                <Text style={{color: "red"}}>tooltip</Text>
-            </Tooltip>
-            <Text> in the middle.</Text>
-        </div>
-    </div>
-</div>
+const styles = StyleSheet.create({
+    scrollbox: {
+        height: 100,
+        overflow: "auto",
+        border: "1px solid black",
+        margin: 10,
+    },
+    hostbox: {
+        minHeight: "200vh",
+    },
+});
+
+<View>
+    <View style={styles.scrollbox}>
+        <View style={styles.hostbox}>
+            <Body>
+                This is a big long piece of text with a
+                <Tooltip content={"I'm on the bottom!"} placement={"bottom"}>
+                    [tooltip]
+                </Tooltip>
+                <span> </span>in the middle.
+            </Body>
+        </View>
+    </View>
+</View>
 ```
 
 ### Tooltip in a modal & placement left
 
 ```js
+const {StyleSheet} = require("aphrodite");
 const React = require("react");
 const {View, Text} = require("@khanacademy/wonder-blocks-core");
 const {StandardModal, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
 
+const styles = StyleSheet.create({
+    scrollbox: {
+        height: 100,
+        overflow: "auto",
+        border: "1px solid black",
+        margin: 10,
+    },
+    hostbox: {
+        minHeight: "200vh",
+    },
+    modalbox: {
+        height: "200vh",
+    },
+});
+
 const scrollyContent = (
-     <div style={{height: 100, overflow: "auto", border: "1px solid", margin: 10,}}>
-        <div style={{height: "200vh"}}>
+     <View style={styles.scrollbox}>
+        <View style={styles.hostbox}>
             <Tooltip content={"I'm on the left!"} placement="left">
-                <Text style={{color: "red"}}>tooltip</Text>
+                tooltip
             </Tooltip>
-        </div>
-     </div>
+        </View>
+     </View>
 );
 
 const modalContent = (
-    <div style={{height: "200vh"}}>
+    <View style={styles.modalbox}>
         {scrollyContent}
-    </div>
+    </View>
 );
 
 const modal = (

@@ -1,8 +1,10 @@
 // @flow
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {css, StyleSheet} from "aphrodite";
 
 import Colors from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {Placement} from "../util/types.js";
@@ -14,16 +16,19 @@ type Props = {
 };
 
 export default class TooltipArrow extends React.Component<Props> {
-    lastRef: ?HTMLElement;
+    _lastRef: ?HTMLElement;
 
-    updateRef(ref: ?HTMLElement) {
+    updateRef(ref: ?(React.Component<*> | Element)) {
         const {popperArrowProps} = this.props;
         // We only want to update the popper's arrow reference if it is
         // actually changed. Otherwise, we end up in an endless loop of updates
         // as every render would trigger yet another render.
-        if (popperArrowProps && ref && ref !== this.lastRef) {
-            this.lastRef = ref;
-            popperArrowProps.ref(ref);
+        if (popperArrowProps && ref) {
+            const domNode = ReactDOM.findDOMNode(ref);
+            if (domNode instanceof HTMLElement && domNode !== this._lastRef) {
+                this._lastRef = domNode;
+                popperArrowProps.ref(domNode);
+            }
         }
     }
 
@@ -165,17 +170,17 @@ export default class TooltipArrow extends React.Component<Props> {
         const {placement, popperArrowProps} = this.props;
         const {style} = popperArrowProps || {};
         return (
-            <div
-                className={css(
+            <View
+                style={[
                     styles.arrowContainer,
                     styles[`container-${placement}`],
-                )}
-                style={style}
+                    style,
+                ]}
                 data-placement={placement}
                 ref={(r) => this.updateRef(r)}
             >
                 {this._renderArrow()}
-            </div>
+            </View>
         );
     }
 }

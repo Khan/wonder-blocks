@@ -40,21 +40,63 @@ exports[`wonder-blocks-tooltip example 2 1`] = `
 `;
 
 exports[`wonder-blocks-tooltip example 3 1`] = `
-<div>
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <div
+    className=""
     style={
       Object {
-        "border": "1px solid",
+        "alignItems": "stretch",
+        "border": "1px solid black",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
         "height": 100,
         "margin": 10,
+        "minHeight": 0,
+        "minWidth": 0,
         "overflow": "auto",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "height": "200vh",
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": "200vh",
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
@@ -64,33 +106,30 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
           }
         }
       >
-        This is a big long piece of text with a 
-      </span>
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "color": "red",
+        This is a big long piece of text with a
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+            }
           }
-        }
-      >
-        tooltip
-      </span>
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-          }
-        }
-      >
-         in the middle.
+        >
+          [tooltip]
+        </span>
+        <span>
+           
+        </span>
+        in the middle.
       </span>
     </div>
   </div>
@@ -374,9 +413,27 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
   }
 >
   <div
-    className="arrowContainer_jqq9v4-o_O-container-top_15ku1de"
+    className=""
     data-placement="top"
-    style={undefined}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 20,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "relative",
+        "width": 24,
+        "zIndex": 0,
+      }
+    }
   >
     <svg
       className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
@@ -445,9 +502,27 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
   }
 >
   <div
-    className="arrowContainer_jqq9v4-o_O-container-right_8hn242"
+    className=""
     data-placement="right"
-    style={undefined}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 24,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "relative",
+        "width": 20,
+        "zIndex": 0,
+      }
+    }
   >
     <svg
       className="arrow_oo4scr-o_O-arrow-right_14846yz"
@@ -515,9 +590,27 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
   }
 >
   <div
-    className="arrowContainer_jqq9v4-o_O-container-bottom_15ku1de"
+    className=""
     data-placement="bottom"
-    style={undefined}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 20,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "relative",
+        "width": 24,
+        "zIndex": 0,
+      }
+    }
   >
     <svg
       className="arrow_oo4scr-o_O-arrow-bottom_v72lrv"
@@ -585,9 +678,27 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
   }
 >
   <div
-    className="arrowContainer_jqq9v4-o_O-container-left_8hn242"
+    className=""
     data-placement="left"
-    style={undefined}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 24,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "relative",
+        "width": 20,
+        "zIndex": 0,
+      }
+    }
   >
     <svg
       className="arrow_oo4scr-o_O-arrow-left_sdqx8w"
