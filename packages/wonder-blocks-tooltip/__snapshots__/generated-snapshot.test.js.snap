@@ -40,21 +40,63 @@ exports[`wonder-blocks-tooltip example 2 1`] = `
 `;
 
 exports[`wonder-blocks-tooltip example 3 1`] = `
-<div>
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <div
+    className=""
     style={
       Object {
-        "border": "1px solid",
+        "alignItems": "stretch",
+        "border": "1px solid black",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
         "height": 100,
         "margin": 10,
+        "minHeight": 0,
+        "minWidth": 0,
         "overflow": "auto",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
   >
     <div
+      className=""
       style={
         Object {
-          "height": "200vh",
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": "200vh",
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
@@ -64,33 +106,30 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
           }
         }
       >
-        This is a big long piece of text with a 
-      </span>
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "color": "red",
+        This is a big long piece of text with a
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+            }
           }
-        }
-      >
-        tooltip
-      </span>
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-          }
-        }
-      >
-         in the middle.
+        >
+          [tooltip]
+        </span>
+        <span>
+           
+        </span>
+        in the middle.
       </span>
     </div>
   </div>
@@ -361,5 +400,358 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
   >
     And LabelSmall!
   </span>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 8 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="top"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 20,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "relative",
+        "width": 24,
+        "zIndex": 0,
+      }
+    }
+  >
+    <svg
+      className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
+      height={12}
+      width={24}
+    >
+      <filter
+        height="150%"
+        id="tooltip-dropshadow-top"
+      >
+        <feOffset
+          dx={8}
+          dy={8}
+          result="offsetblur"
+        />
+        <feGaussianBlur
+          in="SourceAlpha"
+          stdDeviation={3}
+        />
+        <feComponentTransfer>
+          <feFuncA
+            slope={0.16}
+            type="linear"
+          />
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode
+            in="SourceGraphic"
+          />
+        </feMerge>
+      </filter>
+      <polyline
+        fill="#ffffff"
+        points="0,0 12,12 24,0"
+        stroke="#ffffff"
+      />
+      <polyline
+        fill="#ffffff"
+        filter="url(#tooltip-dropshadow-top)"
+        points="0,0 12,12 24,0"
+        stroke="rgba(33,36,44,0.16)"
+      />
+    </svg>
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "red",
+        "height": 4,
+        "width": 24,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 9 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "row-reverse",
+      "justifyContent": "flex-end",
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="right"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 24,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "relative",
+        "width": 20,
+        "zIndex": 0,
+      }
+    }
+  >
+    <svg
+      className="arrow_oo4scr-o_O-arrow-right_14846yz"
+      height={24}
+      width={12}
+    >
+      <filter
+        height="150%"
+        id="tooltip-dropshadow-right"
+      >
+        <feOffset
+          dx={8}
+          dy={8}
+          result="offsetblur"
+        />
+        <feGaussianBlur
+          in="SourceAlpha"
+          stdDeviation={3}
+        />
+        <feComponentTransfer>
+          <feFuncA
+            slope={0.16}
+            type="linear"
+          />
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode
+            in="SourceGraphic"
+          />
+        </feMerge>
+      </filter>
+      <polyline
+        fill="#ffffff"
+        points="12,0 0,12 12,24"
+        stroke="#ffffff"
+      />
+      <polyline
+        fill="#ffffff"
+        filter="url(#tooltip-dropshadow-right)"
+        points="12,0 0,12 12,24"
+        stroke="rgba(33,36,44,0.16)"
+      />
+    </svg>
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "red",
+        "height": 24,
+        "width": 4,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 10 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column-reverse",
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="bottom"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 20,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "relative",
+        "width": 24,
+        "zIndex": 0,
+      }
+    }
+  >
+    <svg
+      className="arrow_oo4scr-o_O-arrow-bottom_v72lrv"
+      height={12}
+      width={24}
+    >
+      <filter
+        height="150%"
+        id="tooltip-dropshadow-bottom"
+      >
+        <feOffset
+          dx={8}
+          dy={8}
+          result="offsetblur"
+        />
+        <feGaussianBlur
+          in="SourceAlpha"
+          stdDeviation={3}
+        />
+        <feComponentTransfer>
+          <feFuncA
+            slope={0.16}
+            type="linear"
+          />
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode
+            in="SourceGraphic"
+          />
+        </feMerge>
+      </filter>
+      <polyline
+        fill="#ffffff"
+        points="0, 12 12,0 24,12"
+        stroke="#ffffff"
+      />
+      <polyline
+        fill="#ffffff"
+        filter="url(#tooltip-dropshadow-bottom)"
+        points="0, 12 12,0 24,12"
+        stroke="rgba(33,36,44,0.16)"
+      />
+    </svg>
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "red",
+        "height": 4,
+        "width": 24,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 11 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "row",
+    }
+  }
+>
+  <div
+    className=""
+    data-placement="left"
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 24,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "pointerEvents": "none",
+        "position": "relative",
+        "width": 20,
+        "zIndex": 0,
+      }
+    }
+  >
+    <svg
+      className="arrow_oo4scr-o_O-arrow-left_sdqx8w"
+      height={24}
+      width={12}
+    >
+      <filter
+        height="150%"
+        id="tooltip-dropshadow-left"
+      >
+        <feOffset
+          dx={8}
+          dy={8}
+          result="offsetblur"
+        />
+        <feGaussianBlur
+          in="SourceAlpha"
+          stdDeviation={3}
+        />
+        <feComponentTransfer>
+          <feFuncA
+            slope={0.16}
+            type="linear"
+          />
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode
+            in="SourceGraphic"
+          />
+        </feMerge>
+      </filter>
+      <polyline
+        fill="#ffffff"
+        points="0,0 12,12 0,24"
+        stroke="#ffffff"
+      />
+      <polyline
+        fill="#ffffff"
+        filter="url(#tooltip-dropshadow-left)"
+        points="0,0 12,12 0,24"
+        stroke="rgba(33,36,44,0.16)"
+      />
+    </svg>
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "red",
+        "height": 24,
+        "width": 4,
+      }
+    }
+  />
 </div>
 `;
