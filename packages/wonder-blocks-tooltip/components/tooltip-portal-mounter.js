@@ -28,7 +28,6 @@ type Props = {|
  */
 export default class TooltipPortalMounter extends React.Component<Props> {
     _destination: ?Node;
-    _timeoutId: ?number;
     _rendered: boolean;
 
     componentDidUpdate() {
