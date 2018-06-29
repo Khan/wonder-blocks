@@ -1,69 +1,61 @@
 // @flow
-import {css, StyleSheet} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {Popper} from "react-popper";
+import * as ReactDOM from "react-dom";
 
+import {View} from "@khanacademy/wonder-blocks-core";
 import TooltipContent from "./tooltip-content.js";
-import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
+import TooltipArrow from "./tooltip-arrow.js";
 
-import type {PopperChildrenProps} from "react-popper";
-import type {Placement} from "../util/types.js";
+import type {PopperChildrenProps} from "./tooltip-popper.js";
 
 type Props = {|
     // The content to be shown in the bubble.
     children: React.Element<typeof TooltipContent>,
 
-    // The element that anchors the tooltip bubble.
-    // This is used to position the bubble.
-    anchorElement: ?HTMLElement,
-
-    // Where should the bubble try to go with respect to its anchor.
-    placement: Placement,
+    // The props provided by TooltipPopper, which are used to position
+    // and manage the bubble contents.
+    popperProps: PopperChildrenProps,
 |};
 
 export default class TooltipBubble extends React.Component<Props> {
-    _renderContent(childrenProps: PopperChildrenProps) {
-        const {children} = this.props;
-        const {
-            ref,
-            outOfBoundaries,
-            style,
-            placement,
-            //  arrowProps,
-        } = childrenProps;
+    _lastRef: ?HTMLElement;
 
-        // Here we take the props provided to us by popper.js and use them
-        // to position ourselves. We don't use a View because the ref callback
-        // for the react-popper integration expects an HTMLElement and coercing
-        // a View ref to the right type is a lot of extra lifting for little
-        // gain over just using a div.
-        return (
-            <div
-                data-placement={placement}
-                ref={ref}
-                className={css(styles.bubble, outOfBoundaries && styles.hide)}
-                style={style}
-            >
-                {children}
-            </div>
-        );
+    _updateRef(ref: ?(React.Component<*> | Element)) {
+        const {popperProps} = this.props;
+        // We only want to update the popper's arrow reference if it is
+        // actually changed. Otherwise, we end up in an endless loop of updates
+        // as every render would trigger yet another render.
+        if (popperProps && ref) {
+            const domNode = ReactDOM.findDOMNode(ref);
+            if (domNode instanceof HTMLElement && domNode !== this._lastRef) {
+                this._lastRef = domNode;
+                popperProps.ref(domNode);
+            }
+        }
     }
 
     render() {
-        const {anchorElement, placement} = this.props;
+        const {children, popperProps} = this.props;
+        const {placement, outOfBoundaries, style, arrowProps} = popperProps;
+
         return (
-            <Popper
-                referenceElement={anchorElement}
-                //TODO(somewhatabstract): Expose placement as a prop
-                placement={placement}
-                modifiers={{
-                    wbVisibility: visibilityModifierDefaultConfig,
-                    flip: {behavior: "clockwise"},
-                    preventOverflow: {boundariesElement: "viewport"},
-                }}
+            <View
+                data-placement={placement}
+                ref={(r) => this._updateRef(r)}
+                style={[
+                    style,
+                    outOfBoundaries && styles.hide,
+                    styles.bubble,
+                    styles[`content-${placement}`],
+                ]}
             >
-                {(props) => this._renderContent(props)}
-            </Popper>
+                {children}
+                <TooltipArrow
+                    placement={placement}
+                    popperArrowProps={arrowProps}
+                />
+            </View>
         );
     }
 }
@@ -71,7 +63,9 @@ export default class TooltipBubble extends React.Component<Props> {
 const styles = StyleSheet.create({
     bubble: {
         pointerEvents: "none",
+        position: "absolute",
     },
+
     /**
      * The hide style ensures that the bounds of the bubble stay unchanged.
      * This is because popper.js calculates the bubble position based off its
@@ -79,8 +73,25 @@ const styles = StyleSheet.create({
      * place it when it reappeared.
      */
     hide: {
+        pointerEvents: "none",
         opacity: 0,
         backgroundColor: "transparent",
         color: "transparent",
+    },
+
+    /**
+     * Ensure the content and arrow are properly arranged.
+     */
+    "content-top": {
+        flexDirection: "column",
+    },
+    "content-right": {
+        flexDirection: "row-reverse",
+    },
+    "content-bottom": {
+        flexDirection: "column-reverse",
+    },
+    "content-left": {
+        flexDirection: "row",
     },
 });

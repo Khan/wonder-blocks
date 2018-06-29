@@ -5,7 +5,7 @@ import * as ReactDOM from "react-dom";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
 import {TooltipPortalAttributeName} from "../util/constants.js";
-import TooltipBubble from "./tooltip-bubble.js";
+import TooltipPopper from "./tooltip-popper.js";
 
 type Props = {|
     // The child element to be rendered within the main React tree.
@@ -13,7 +13,7 @@ type Props = {|
     anchor: React.Element<*>,
 
     // The tooltip that will be rendered in the portal.
-    children: ?React.Element<typeof TooltipBubble>,
+    children: ?React.Element<typeof TooltipPopper>,
 |};
 
 /**
@@ -71,8 +71,8 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         }
 
         // Create a new destination node, and add it to the root.
-        // The data attribute is used in unit tests, to identify which
-        // ancestors of `children` were created by `TooltipPortal`.
+        // The data attribute is to identify which the mounted portal in
+        // unit tests.
         const destination = document.createElement("div");
         destination.setAttribute(TooltipPortalAttributeName, "");
         root.appendChild(destination);
