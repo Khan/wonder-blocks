@@ -83,26 +83,49 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
     >
-      Counting with small numbers
-    </span>
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      >
+        Counting with small numbers
+      </span>
+    </div>
   </div>
   <div
     className=""
@@ -178,26 +201,49 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
     >
-      Counting with small numbers
-    </span>
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      >
+        Counting with small numbers
+      </span>
+    </div>
   </div>
   <div
     className=""
@@ -382,31 +428,54 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk"
-      id="wb-toolbar-title"
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
     >
-      Exercise Title
-    </span>
-    <span
-      className="subtitle_mlf31i"
-    >
-      0 of 7 questions answered
-    </span>
+      <span
+        className="title_djsolk"
+        id="wb-toolbar-title"
+      >
+        Exercise Title
+      </span>
+      <span
+        className="subtitle_mlf31i"
+      >
+        0 of 7 questions answered
+      </span>
+    </div>
   </div>
   <div
     className=""
@@ -509,24 +578,47 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
-    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      />
+    </div>
   </div>
   <div
     className=""
@@ -703,24 +795,47 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
-    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      />
+    </div>
   </div>
   <div
     className=""
@@ -976,24 +1091,47 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
-    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      />
+    </div>
   </div>
   <div
     className=""
@@ -1383,31 +1521,54 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk"
-      id="wb-toolbar-title"
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
     >
-      Patterns of migration and communal bird-feeding given the serious situation of things that will make this string long and obnoxious
-    </span>
-    <span
-      className="subtitle_mlf31i"
-    >
-      1 of 14 questions answered
-    </span>
+      <span
+        className="title_djsolk"
+        id="wb-toolbar-title"
+      >
+        Patterns of migration and communal bird-feeding given the serious situation of things that will make this string long and obnoxious
+      </span>
+      <span
+        className="subtitle_mlf31i"
+      >
+        1 of 14 questions answered
+      </span>
+    </div>
   </div>
   <div
     className=""
@@ -1542,26 +1703,49 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
     >
-      Title
-    </span>
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      >
+        Title
+      </span>
+    </div>
   </div>
   <div
     className=""
@@ -1637,24 +1821,47 @@ exports[`wonder-blocks-toolbar example 9 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
-    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      />
+    </div>
   </div>
   <div
     className=""
@@ -1842,26 +2049,49 @@ exports[`wonder-blocks-toolbar example 10 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
     >
-      Title
-    </span>
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      >
+        Title
+      </span>
+    </div>
   </div>
   <div
     className=""
@@ -1937,24 +2167,47 @@ exports[`wonder-blocks-toolbar example 11 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
-    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      />
+    </div>
   </div>
   <div
     className=""
@@ -2030,24 +2283,47 @@ exports[`wonder-blocks-toolbar example 12 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "flex",
+        "display": "block",
         "flexDirection": "column",
-        "justifyContent": "center",
+        "left": "50%",
         "margin": 0,
-        "maxWidth": "75%",
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "relative",
-        "textAlign": "center",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%);",
+        "width": "80%",
         "zIndex": 0,
       }
     }
   >
-    <span
-      className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
-      id="wb-toolbar-title"
-    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": "auto",
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "center",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className="title_djsolk-o_O-titleNoSubtitle_rnfkwd"
+        id="wb-toolbar-title"
+      />
+    </div>
   </div>
   <div
     className=""

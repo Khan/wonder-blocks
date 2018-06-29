@@ -110,38 +110,35 @@ export default class Toolbar extends React.Component<Props> {
                     size === "small" && sharedStyles.small,
                 ]}
             >
-                <View
-                    style={[
-                        sharedStyles.leftColumn,
-                        sharedStyles.verticalAlign,
-                    ]}
-                >
+                <View style={sharedStyles.verticalAlign}>
                     {closeButton}
                     {leftContent &&
                         leftContent.map((content, i) =>
                             this.renderContent(content, i.toString()),
                         )}
                 </View>
-                <View
-                    style={[
-                        sharedStyles.middleColumn,
-                        sharedStyles.verticalAlign,
-                    ]}
-                >
-                    <span
-                        id="wb-toolbar-title"
-                        className={css(
-                            sharedStyles.title,
-                            !subtitle && sharedStyles.titleNoSubtitle,
-                        )}
+                <View style={[sharedStyles.column]}>
+                    <View
+                        style={[
+                            sharedStyles.middleColumn,
+                            sharedStyles.verticalAlign,
+                        ]}
                     >
-                        {title}
-                    </span>
-                    {subtitle && (
-                        <span className={css(sharedStyles.subtitle)}>
-                            {subtitle}
+                        <span
+                            id="wb-toolbar-title"
+                            className={css(
+                                sharedStyles.title,
+                                !subtitle && sharedStyles.titleNoSubtitle,
+                            )}
+                        >
+                            {title}
                         </span>
-                    )}
+                        {subtitle && (
+                            <span className={css(sharedStyles.subtitle)}>
+                                {subtitle}
+                            </span>
+                        )}
+                    </View>
                 </View>
                 <View style={sharedStyles.rightColumn}>
                     {rightContent &&
@@ -162,6 +159,7 @@ const sharedStyles = StyleSheet.create({
         justifyContent: "space-between",
         minHeight: 64,
         padding: 8,
+        position: "relative",
         width: "100%",
     },
     small: {
@@ -172,9 +170,16 @@ const sharedStyles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
     },
-    leftColumn: {},
+    column: {
+        display: "block",
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%);",
+        width: "80%",
+    },
     middleColumn: {
-        maxWidth: "75%",
+        margin: "auto",
         textAlign: "center",
     },
     rightColumn: {
