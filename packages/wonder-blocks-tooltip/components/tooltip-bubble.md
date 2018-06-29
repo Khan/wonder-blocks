@@ -26,7 +26,11 @@ const popperProps = {
     outOfBoundaries: false,
 };
 
-<View style={{height: 50, flexDirection: "column"}}>
+/**
+ * NOTE: We give height because TooltipBubble is positioned absolute and due
+ * to aphrodite styles being "important" we can't override that.
+ */
+<View style={{height: 50}}>
     <TooltipBubble popperProps={popperProps}>
         <TooltipContent>I'm on the top!</TooltipContent>
     </TooltipBubble>
@@ -57,7 +61,11 @@ const popperProps = {
     outOfBoundaries: false,
 };
 
-<View style={{height: 50, flexDirection: "row-reverse", justifyContent: "flex-end"}}>
+/**
+ * NOTE: We give height because TooltipBubble is positioned absolute and due
+ * to aphrodite styles being "important" we can't override that.
+ */
+<View style={{height: 50}}>
     <TooltipBubble popperProps={popperProps}>
         <TooltipContent>I'm on the right!</TooltipContent>
     </TooltipBubble>
@@ -88,7 +96,11 @@ const popperProps = {
     outOfBoundaries: false,
 };
 
-<View style={{height: 50, display: "flex", flexDirection: "column-reverse"}}>
+/**
+ * NOTE: We give height because TooltipBubble is positioned absolute and due
+ * to aphrodite styles being "important" we can't override that.
+ */
+<View style={{height: 50}}>
     <TooltipBubble popperProps={popperProps}>
         <TooltipContent>I'm on the bottom!</TooltipContent>
     </TooltipBubble>
@@ -119,7 +131,11 @@ const popperProps = {
     outOfBoundaries: false,
 };
 
-<View style={{height: 50, display: "flex", flexDirection: "row"}}>
+/**
+ * NOTE: We give height because TooltipBubble is positioned absolute and due
+ * to aphrodite styles being "important" we can't override that.
+ */
+<View style={{height: 50, flexDirection: "row"}}>
     <TooltipBubble popperProps={popperProps}>
         <TooltipContent>I'm on the left!</TooltipContent>
     </TooltipBubble>
@@ -152,7 +168,11 @@ const popperProps = {
     outOfBoundaries: false,
 };
 
-<View style={{height: 50, display: "flex", flexDirection: "row"}}>
+/**
+ * NOTE: We give height because TooltipBubble is positioned absolute and due
+ * to aphrodite styles being "important" we can't override that.
+ */
+<View style={{height: 50}}>
     <TooltipBubble popperProps={popperProps}>
         <TooltipContent>I'm on the bottom with an arrow 50px in!</TooltipContent>
     </TooltipBubble>
@@ -184,6 +204,10 @@ const popperProps = {
     outOfBoundaries: true,
 };
 
+/**
+ * NOTE: We give height because TooltipBubble is positioned absolute and due
+ * to aphrodite styles being "important" we can't override that.
+ */
 <View style={{height: 50}}>
     <TooltipBubble popperProps={popperProps}>
         <TooltipContent>I'm hidden. So hidden. Shhhhh!</TooltipContent>

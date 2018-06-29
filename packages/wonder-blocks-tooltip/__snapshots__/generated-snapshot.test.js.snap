@@ -861,12 +861,27 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
       </span>
     </div>
     <div
-      className="arrowContainer_jqq9v4-o_O-container-top_15ku1de"
+      className=""
       data-placement="top"
       style={
         Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 20,
           "left": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "pointerEvents": "none",
+          "position": "relative",
           "top": 0,
+          "width": 24,
+          "zIndex": 0,
         }
       }
     >
@@ -928,9 +943,8 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row-reverse",
+      "flexDirection": "column",
       "height": 50,
-      "justifyContent": "flex-end",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1024,12 +1038,27 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
       </span>
     </div>
     <div
-      className="arrowContainer_jqq9v4-o_O-container-right_8hn242"
+      className=""
       data-placement="right"
       style={
         Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 24,
           "left": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "pointerEvents": "none",
+          "position": "relative",
           "top": 0,
+          "width": 20,
+          "zIndex": 0,
         }
       }
     >
@@ -1091,7 +1120,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "column-reverse",
+      "flexDirection": "column",
       "height": 50,
       "margin": 0,
       "minHeight": 0,
@@ -1186,12 +1215,27 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
       </span>
     </div>
     <div
-      className="arrowContainer_jqq9v4-o_O-container-bottom_15ku1de"
+      className=""
       data-placement="bottom"
       style={
         Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 20,
           "left": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "pointerEvents": "none",
+          "position": "relative",
           "top": 0,
+          "width": 24,
+          "zIndex": 0,
         }
       }
     >
@@ -1348,12 +1392,27 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       </span>
     </div>
     <div
-      className="arrowContainer_jqq9v4-o_O-container-left_8hn242"
+      className=""
       data-placement="left"
       style={
         Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 24,
           "left": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "pointerEvents": "none",
+          "position": "relative",
           "top": 0,
+          "width": 20,
+          "zIndex": 0,
         }
       }
     >
@@ -1415,7 +1474,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row",
+      "flexDirection": "column",
       "height": 50,
       "margin": 0,
       "minHeight": 0,
@@ -1510,12 +1569,27 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
       </span>
     </div>
     <div
-      className="arrowContainer_jqq9v4-o_O-container-top_15ku1de"
+      className=""
       data-placement="top"
       style={
         Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 20,
           "left": 50,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "pointerEvents": "none",
+          "position": "relative",
           "top": 0,
+          "width": 24,
+          "zIndex": 0,
         }
       }
     >
@@ -1675,12 +1749,27 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       </span>
     </div>
     <div
-      className="arrowContainer_jqq9v4-o_O-container-top_15ku1de"
+      className=""
       data-placement="top"
       style={
         Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 20,
           "left": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "pointerEvents": "none",
+          "position": "relative",
           "top": 0,
+          "width": 24,
+          "zIndex": 0,
         }
       }
     >

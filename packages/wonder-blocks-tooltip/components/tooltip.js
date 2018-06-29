@@ -1,4 +1,23 @@
 // @flow
+/**
+ * The Tooltip component provides the means to anchor some additional
+ * information to some content. The additional information is shown in a
+ * callout that hovers above the page content. This additional information is
+ * invoked by hovering over the anchored content, or focusing all or part of the
+ * anchored content.
+ *
+ * This component is structured as follows:
+ *
+ * Tooltip (this component)
+ * - TooltipAnchor (provides hover/focus behaviors on anchored content)
+ *   - TooltipPortalMounter (creates portal into which the callout is rendered)
+ * --------------------------- [PORTAL BOUNDARY] ------------------------------
+ * - TooltipPopper (provides positioning for the callout using react-popper)
+ *   - TooltipBubble (renders the callout borders, background and shadow)
+ *     - TooltipContent (renders the callout content; the actual information)
+ *     - TooltipArrow (renders the callout tail and shadow that points from the
+ *                     callout to the anchor content)
+ */
 import * as React from "react";
 
 import {Text} from "@khanacademy/wonder-blocks-core";

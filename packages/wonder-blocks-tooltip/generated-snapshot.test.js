@@ -233,8 +233,12 @@ describe("wonder-blocks-tooltip", () => {
             outOfBoundaries: false,
         };
 
+        /**
+         * NOTE: We give height because TooltipBubble is positioned absolute and due
+         * to aphrodite styles being "important" we can't override that.
+         */
         const example = (
-            <View style={{height: 50, flexDirection: "column"}}>
+            <View style={{height: 50}}>
                 <TooltipBubble popperProps={popperProps}>
                     <TooltipContent>I'm on the top!</TooltipContent>
                 </TooltipBubble>
@@ -265,14 +269,12 @@ describe("wonder-blocks-tooltip", () => {
             outOfBoundaries: false,
         };
 
+        /**
+         * NOTE: We give height because TooltipBubble is positioned absolute and due
+         * to aphrodite styles being "important" we can't override that.
+         */
         const example = (
-            <View
-                style={{
-                    height: 50,
-                    flexDirection: "row-reverse",
-                    justifyContent: "flex-end",
-                }}
-            >
+            <View style={{height: 50}}>
                 <TooltipBubble popperProps={popperProps}>
                     <TooltipContent>I'm on the right!</TooltipContent>
                 </TooltipBubble>
@@ -303,14 +305,12 @@ describe("wonder-blocks-tooltip", () => {
             outOfBoundaries: false,
         };
 
+        /**
+         * NOTE: We give height because TooltipBubble is positioned absolute and due
+         * to aphrodite styles being "important" we can't override that.
+         */
         const example = (
-            <View
-                style={{
-                    height: 50,
-                    display: "flex",
-                    flexDirection: "column-reverse",
-                }}
-            >
+            <View style={{height: 50}}>
                 <TooltipBubble popperProps={popperProps}>
                     <TooltipContent>I'm on the bottom!</TooltipContent>
                 </TooltipBubble>
@@ -341,8 +341,12 @@ describe("wonder-blocks-tooltip", () => {
             outOfBoundaries: false,
         };
 
+        /**
+         * NOTE: We give height because TooltipBubble is positioned absolute and due
+         * to aphrodite styles being "important" we can't override that.
+         */
         const example = (
-            <View style={{height: 50, display: "flex", flexDirection: "row"}}>
+            <View style={{height: 50, flexDirection: "row"}}>
                 <TooltipBubble popperProps={popperProps}>
                     <TooltipContent>I'm on the left!</TooltipContent>
                 </TooltipBubble>
@@ -374,8 +378,12 @@ describe("wonder-blocks-tooltip", () => {
             outOfBoundaries: false,
         };
 
+        /**
+         * NOTE: We give height because TooltipBubble is positioned absolute and due
+         * to aphrodite styles being "important" we can't override that.
+         */
         const example = (
-            <View style={{height: 50, display: "flex", flexDirection: "row"}}>
+            <View style={{height: 50}}>
                 <TooltipBubble popperProps={popperProps}>
                     <TooltipContent>
                         I'm on the bottom with an arrow 50px in!
@@ -409,6 +417,10 @@ describe("wonder-blocks-tooltip", () => {
             outOfBoundaries: true,
         };
 
+        /**
+         * NOTE: We give height because TooltipBubble is positioned absolute and due
+         * to aphrodite styles being "important" we can't override that.
+         */
         const example = (
             <View style={{height: 50}}>
                 <TooltipBubble popperProps={popperProps}>
