@@ -1,9 +1,11 @@
 // @flow
 import * as React from "react";
+
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {|
@@ -41,11 +43,13 @@ export default class TooltipContent extends React.Component<Props> {
     }
 
     render() {
+        const title = this._renderTitle();
+        const children = this._renderChildren();
         return (
             <View>
-                {this._renderTitle()}
-                <Strut size={Spacing.xxxSmall} />
-                {this._renderChildren()}
+                {title}
+                {title && children && <Strut size={Spacing.xxxSmall} />}
+                {children}
             </View>
         );
     }
