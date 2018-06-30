@@ -55,7 +55,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 placement={placement}
                 modifiers={{
                     wbVisibility: visibilityModifierDefaultConfig,
-                    preventOverflow: {boundariesElement: "viewport"},
+                    preventOverflow: {boundariesElement: "window"},
                 }}
             >
                 {(props) => this._renderPositionedContent(props)}

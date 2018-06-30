@@ -124,8 +124,8 @@ export default class TooltipArrow extends React.Component<Props> {
         switch (placement) {
             case "top":
                 return {
-                    height: "150%",
-                    y: "1%",
+                    height: "200%",
+                    y: "-25%",
                     width: "200%",
                     x: "-50%",
                 };
@@ -136,18 +136,18 @@ export default class TooltipArrow extends React.Component<Props> {
 
             case "left":
                 return {
-                    height: "150%",
-                    y: "50%",
-                    width: "105%",
-                    x: "1%",
+                    height: "200%",
+                    y: "-50%",
+                    width: "200%",
+                    x: "0%",
                 };
 
             case "right":
                 return {
-                    height: "150%",
-                    y: "50%",
-                    width: "99%",
-                    x: undefined,
+                    height: "200%",
+                    y: "-50%",
+                    width: "200%",
+                    x: "-100%",
                 };
 
             default:
@@ -171,38 +171,59 @@ export default class TooltipArrow extends React.Component<Props> {
             return null;
         }
         const {placement} = this.props;
-        const {height, y, width, x} = position;
+        const {y, x} = position;
         // TODO(somewhatabstract): Use unique IDs!
         const dropShadowFilterId = `tooltip-dropshadow-${placement}-${tempIdCounter++}`;
         return [
             <filter
                 key="filter"
                 id={dropShadowFilterId}
-                width={width}
+                // Height and width tell the filter how big of a canvas to
+                // draw based on its parent size. i.e. 2 times bigger.
+                // This is so that the diffuse gaussian blur has space to
+                // bleed into.
+                width={"200%"}
+                height={"200%"}
+                // The x and y values tell the filter where, relative to its
+                // parent, it should begin showing its canvas. Without these
+                // the filter would clip at 0,0, which would look really
+                // strange.
                 x={x}
-                height={height}
                 y={y}
             >
+                {/* Here we provide a nice blur that will be our shadow
+                * The stdDeviation is the spread of the blur. We don't want it
+                * too diffuse.
+                */}
                 <feGaussianBlur
                     in="SourceAlpha"
-                    stdDeviation={Spacing.xSmall / 2}
+                    stdDeviation={Spacing.xxSmall / 2}
                 />
-                <feMerge>
-                    <feMergeNode />
-                    <feMergeNode in="SourceGraphic" />
-                </feMerge>
+
+                {/* Here we adjust the alpha (feFuncA) linearly so as to blend
+                * the shadow to match the rest of the tooltip bubble shadow.
+                * It is a combination of the diffuse blur and this alpha
+                * value that will make it look right.
+                */}
+                <feComponentTransfer>
+                    <feFuncA type="linear" slope="0.5" />
+                </feComponentTransfer>
             </filter>,
             /**
              * Draw the tooltip arrow and apply the blur filter we created
              * above, to produce a drop shadow effect.
+             * We move it down a bit with a translation, so that it is what
+             * we want.
              */
-            <polyline
-                key="dropshadow"
-                fill={Colors.offBlack16}
-                points={points.join(" ")}
-                stroke={Colors.offBlack32}
-                filter={`url(#${dropShadowFilterId})`}
-            />,
+            <g transform="translate(0,5)">
+                <polyline
+                    key="dropshadow"
+                    fill={Colors.offBlack16}
+                    points={points.join(" ")}
+                    stroke={Colors.offBlack32}
+                    filter={`url(#${dropShadowFilterId})`}
+                />
+            </g>,
         ];
     }
 
@@ -279,8 +300,6 @@ const styles = StyleSheet.create({
      */
     arrowContainer: {
         position: "relative",
-        width: Spacing.large,
-        height: Spacing.small,
         pointerEvents: "none",
     },
 
@@ -288,23 +307,23 @@ const styles = StyleSheet.create({
     // by the Popper.js code.
     "container-top": {
         top: -1,
-        width: Spacing.large,
+        width: Spacing.large + Spacing.small,
         height: Spacing.small + Spacing.xSmall,
     },
     "container-right": {
-        right: -1,
+        left: 1,
         width: Spacing.small + Spacing.xSmall,
-        height: Spacing.large,
+        height: Spacing.large + Spacing.small,
     },
     "container-bottom": {
-        bottom: -1,
-        width: Spacing.large,
+        top: 1,
+        width: Spacing.large + Spacing.small,
         height: Spacing.small + Spacing.xSmall,
     },
     "container-left": {
         left: -1,
         width: Spacing.small + Spacing.xSmall,
-        height: Spacing.large,
+        height: Spacing.large + Spacing.small,
     },
 
     /**
@@ -315,15 +334,23 @@ const styles = StyleSheet.create({
         overflow: "visible",
     },
     "arrow-top": {
+        marginLeft: Spacing.xxSmall,
+        marginRight: Spacing.xxSmall,
         paddingBottom: Spacing.xSmall,
     },
     "arrow-right": {
+        marginTop: Spacing.xxSmall,
+        marginBottom: Spacing.xxSmall,
         paddingLeft: Spacing.xSmall,
     },
     "arrow-bottom": {
+        marginLeft: Spacing.xxSmall,
+        marginRight: Spacing.xxSmall,
         paddingTop: Spacing.xSmall,
     },
     "arrow-left": {
+        marginTop: Spacing.xxSmall,
+        marginBottom: Spacing.xxSmall,
         paddingRight: Spacing.xSmall,
     },
 });
