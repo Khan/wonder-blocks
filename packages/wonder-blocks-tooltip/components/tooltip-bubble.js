@@ -8,7 +8,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import TooltipContent from "./tooltip-content.js";
-import TooltipArrow from "./tooltip-arrow.js";
+import TooltipTail from "./tooltip-tail.js";
 
 import type {PopperChildrenProps} from "./tooltip-popper.js";
 
@@ -26,7 +26,7 @@ export default class TooltipBubble extends React.Component<Props> {
 
     _updateRef(ref: ?(React.Component<*> | Element)) {
         const {popperProps} = this.props;
-        // We only want to update the popper's arrow reference if it is
+        // We only want to update the popper's reference if it is
         // actually changed. Otherwise, we end up in an endless loop of updates
         // as every render would trigger yet another render.
         if (popperProps && ref) {
@@ -54,7 +54,7 @@ export default class TooltipBubble extends React.Component<Props> {
                 ]}
             >
                 <View style={styles.content}>{children}</View>
-                <TooltipArrow
+                <TooltipTail
                     placement={placement}
                     popperArrowProps={arrowProps}
                 />
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
 
     /**
-     * Ensure the content and arrow are properly arranged.
+     * Ensure the content and tail are properly arranged.
      */
     "content-top": {
         flexDirection: "column",
@@ -107,5 +107,6 @@ const styles = StyleSheet.create({
         boxShadow: `0 ${Spacing.xSmall}px ${Spacing.xSmall}px 0 ${
             Colors.offBlack8
         }`,
+        justifyContent: "center",
     },
 });

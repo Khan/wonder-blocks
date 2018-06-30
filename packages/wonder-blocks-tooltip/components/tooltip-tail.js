@@ -18,7 +18,8 @@ type Props = {
 // TODO(somewhatabstract): Replace this really basic unique ID work with
 // something SSR-friendly and more robust.
 let tempIdCounter = 0;
-export default class TooltipArrow extends React.Component<Props> {
+
+export default class TooltipTail extends React.Component<Props> {
     _lastRef: ?HTMLElement;
 
     updateRef(ref: ?(React.Component<*> | Element)) {
@@ -37,22 +38,19 @@ export default class TooltipArrow extends React.Component<Props> {
 
     _calculateDimensionsFromPlacement() {
         const {placement} = this.props;
-        const arrowWidth = Spacing.large;
-        const arrowHeight = Spacing.small;
 
-        // The trimline, which we draw to make the arrow flush to the bubble,
+        // The trimline, which we draw to make the tail flush to the bubble,
         // has a thickness of 1. Since the line is drawn centered to the
         // coordinates, we use an offset of 0.5 so that it properly covers what
         // we want it to.
         const trimlineOffset = 0.5;
 
-        // Calculate the three points of the arrow. Depending on the arrow's
+        // Calculate the three points of the arrow. Depending on the tail's
         // direction (i.e., the tooltip's "side"), we choose different points,
         // and set our SVG's bounds differently.
         //
-        // Note that `arrowWidth` and `arrowHeight` refer to the
-        // downward-pointing arrow (i.e. side="top"). When the arrow points to
-        // the left or right instead, the width/height are inverted.
+        // Note that when the tail points to the left or right, the width/height
+        // are inverted.
         switch (placement) {
             case "top":
                 return {
@@ -124,10 +122,9 @@ export default class TooltipArrow extends React.Component<Props> {
         switch (placement) {
             case "top":
                 return {
-                    height: "200%",
-                    y: "-25%",
-                    width: "200%",
+                    y: "-50%",
                     x: "-50%",
+                    offsetShadowX: 0,
                 };
 
             case "bottom":
@@ -136,18 +133,16 @@ export default class TooltipArrow extends React.Component<Props> {
 
             case "left":
                 return {
-                    height: "200%",
                     y: "-50%",
-                    width: "200%",
                     x: "0%",
+                    offsetShadowX: 1,
                 };
 
             case "right":
                 return {
-                    height: "200%",
                     y: "-50%",
-                    width: "200%",
                     x: "-100%",
+                    offsetShadowX: -1,
                 };
 
             default:
@@ -171,8 +166,7 @@ export default class TooltipArrow extends React.Component<Props> {
             return null;
         }
         const {placement} = this.props;
-        const {y, x} = position;
-        // TODO(somewhatabstract): Use unique IDs!
+        const {y, x, offsetShadowX} = position;
         const dropShadowFilterId = `tooltip-dropshadow-${placement}-${tempIdCounter++}`;
         return [
             <filter
@@ -206,7 +200,7 @@ export default class TooltipArrow extends React.Component<Props> {
                 * value that will make it look right.
                 */}
                 <feComponentTransfer>
-                    <feFuncA type="linear" slope="0.5" />
+                    <feFuncA type="linear" slope="0.3" />
                 </feComponentTransfer>
             </filter>,
             /**
@@ -215,7 +209,7 @@ export default class TooltipArrow extends React.Component<Props> {
              * We move it down a bit with a translation, so that it is what
              * we want.
              */
-            <g transform="translate(0,5)">
+            <g transform={`translate(${offsetShadowX},5.5)`}>
                 <polyline
                     key="dropshadow"
                     fill={Colors.offBlack16}
@@ -281,7 +275,7 @@ export default class TooltipArrow extends React.Component<Props> {
         return (
             <View
                 style={[
-                    styles.arrowContainer,
+                    styles.tailContainer,
                     styles[`container-${placement}`],
                     style,
                 ]}
@@ -294,11 +288,26 @@ export default class TooltipArrow extends React.Component<Props> {
     }
 }
 
+/**
+ * Some constants to make styles easier to understand.
+ * NOTE: The widths and heights refer to the downward-pointing tail
+ * (i.e. placement="top"). When the tail points to the left or right instead,
+ * the width/height are inverted.
+ */
+const minDistanceFromCorners = Spacing.medium;
+const distanceFromAnchor = Spacing.xSmall;
+
+const arrowWidth = Spacing.large;
+const arrowHeight = Spacing.small;
+
+const fullTailWidth = arrowWidth + 2 * minDistanceFromCorners;
+const fullTailHeight = arrowHeight + distanceFromAnchor;
+
 const styles = StyleSheet.create({
     /**
      * Container
      */
-    arrowContainer: {
+    tailContainer: {
         position: "relative",
         pointerEvents: "none",
     },
@@ -307,23 +316,23 @@ const styles = StyleSheet.create({
     // by the Popper.js code.
     "container-top": {
         top: -1,
-        width: Spacing.large + Spacing.small,
-        height: Spacing.small + Spacing.xSmall,
+        width: fullTailWidth,
+        height: fullTailHeight,
     },
     "container-right": {
         left: 1,
-        width: Spacing.small + Spacing.xSmall,
-        height: Spacing.large + Spacing.small,
+        width: fullTailHeight,
+        height: fullTailWidth,
     },
     "container-bottom": {
         top: 1,
-        width: Spacing.large + Spacing.small,
-        height: Spacing.small + Spacing.xSmall,
+        width: fullTailWidth,
+        height: fullTailHeight,
     },
     "container-left": {
         left: -1,
-        width: Spacing.small + Spacing.xSmall,
-        height: Spacing.large + Spacing.small,
+        width: fullTailHeight,
+        height: fullTailWidth,
     },
 
     /**
@@ -334,23 +343,23 @@ const styles = StyleSheet.create({
         overflow: "visible",
     },
     "arrow-top": {
-        marginLeft: Spacing.xxSmall,
-        marginRight: Spacing.xxSmall,
-        paddingBottom: Spacing.xSmall,
+        marginLeft: minDistanceFromCorners,
+        marginRight: minDistanceFromCorners,
+        paddingBottom: distanceFromAnchor,
     },
     "arrow-right": {
-        marginTop: Spacing.xxSmall,
-        marginBottom: Spacing.xxSmall,
-        paddingLeft: Spacing.xSmall,
+        marginTop: minDistanceFromCorners,
+        marginBottom: minDistanceFromCorners,
+        paddingLeft: distanceFromAnchor,
     },
     "arrow-bottom": {
-        marginLeft: Spacing.xxSmall,
-        marginRight: Spacing.xxSmall,
-        paddingTop: Spacing.xSmall,
+        marginLeft: minDistanceFromCorners,
+        marginRight: minDistanceFromCorners,
+        paddingTop: distanceFromAnchor,
     },
     "arrow-left": {
-        marginTop: Spacing.xxSmall,
-        marginBottom: Spacing.xxSmall,
-        paddingRight: Spacing.xSmall,
+        marginTop: minDistanceFromCorners,
+        marginBottom: minDistanceFromCorners,
+        paddingRight: distanceFromAnchor,
     },
 });
