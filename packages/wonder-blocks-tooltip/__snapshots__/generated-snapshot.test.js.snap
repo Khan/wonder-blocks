@@ -1211,14 +1211,12 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
         "position": "absolute",
-        "top": 0,
         "zIndex": 0,
       }
     }
@@ -1297,7 +1295,6 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "height": 20,
-          "left": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1402,14 +1399,12 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "row-reverse",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
         "position": "absolute",
-        "top": 0,
         "zIndex": 0,
       }
     }
@@ -1495,7 +1490,6 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": 0,
           "width": 20,
           "zIndex": 0,
         }
@@ -1593,14 +1587,12 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column-reverse",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
         "position": "absolute",
-        "top": 0,
         "zIndex": 0,
       }
     }
@@ -1679,7 +1671,6 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "height": 20,
-          "left": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1734,7 +1725,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row",
+      "flexDirection": "column",
       "height": 50,
       "margin": 0,
       "minHeight": 0,
@@ -1756,14 +1747,12 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "row",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
         "position": "absolute",
-        "top": 0,
         "zIndex": 0,
       }
     }
@@ -1849,7 +1838,6 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": 0,
           "width": 20,
           "zIndex": 0,
         }
@@ -1938,7 +1926,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
 >
   <div
     className=""
-    data-placement="top"
+    data-placement="bottom"
     style={
       Object {
         "alignItems": "stretch",
@@ -1946,15 +1934,13 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "column",
-        "left": 0,
+        "flexDirection": "column-reverse",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
         "position": "absolute",
-        "top": 0,
         "zIndex": 0,
       }
     }
@@ -2017,13 +2003,13 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
             }
           }
         >
-          I'm on the bottom with an tail 50px in!
+          I'm on the bottom with a tail 50px in!
         </span>
       </div>
     </div>
     <div
       className=""
-      data-placement="top"
+      data-placement="bottom"
       style={
         Object {
           "alignItems": "stretch",
@@ -2053,51 +2039,23 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
           Object {
             "marginLeft": 16,
             "marginRight": 16,
-            "paddingBottom": 8,
+            "paddingTop": 8,
           }
         }
         width={24}
       >
-        <filter
-          height="200%"
-          id="tooltip-dropshadow-top-6"
-          width="200%"
-          x="-50%"
-          y="-50%"
-        >
-          <feGaussianBlur
-            in="SourceAlpha"
-            stdDeviation={3}
-          />
-          <feComponentTransfer>
-            <feFuncA
-              slope="0.3"
-              type="linear"
-            />
-          </feComponentTransfer>
-        </filter>
-        <g
-          transform="translate(0,5.5)"
-        >
-          <polyline
-            fill="rgba(33,36,44,0.16)"
-            filter="url(#tooltip-dropshadow-top-6)"
-            points="0,0 12,12 24,0"
-            stroke="rgba(33,36,44,0.32)"
-          />
-        </g>
         <polyline
           fill="#ffffff"
-          points="0,0 12,12 24,0"
+          points="0, 12 12,0 24,12"
           stroke="#ffffff"
         />
         <polyline
           fill="#ffffff"
-          points="0,0 12,12 24,0"
+          points="0, 12 12,0 24,12"
           stroke="rgba(33,36,44,0.16)"
         />
         <polyline
-          points="0,-0.5 24,-0.5"
+          points="0, 12.5 24,12.5"
           stroke="#ffffff"
         />
       </svg>
@@ -2140,7 +2098,6 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         "color": "transparent",
         "display": "flex",
         "flexDirection": "column",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -2148,7 +2105,6 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         "padding": 0,
         "pointerEvents": "none",
         "position": "absolute",
-        "top": 0,
         "zIndex": 0,
       }
     }
@@ -2227,7 +2183,6 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "height": 20,
-          "left": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -2254,7 +2209,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       >
         <filter
           height="200%"
-          id="tooltip-dropshadow-top-7"
+          id="tooltip-dropshadow-top-6"
           width="200%"
           x="-50%"
           y="-50%"
@@ -2275,7 +2230,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         >
           <polyline
             fill="rgba(33,36,44,0.16)"
-            filter="url(#tooltip-dropshadow-top-7)"
+            filter="url(#tooltip-dropshadow-top-6)"
             points="0,0 12,12 24,0"
             stroke="rgba(33,36,44,0.32)"
           />

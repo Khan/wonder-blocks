@@ -7,31 +7,12 @@ Note that without explicit positioning, the tail will not be centered.
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 
-const popperProps = {
-    style: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-    },
-    placement: "top",
-    ref: () => {},
-    scheduleUpdate: () => {},
-    arrowProps: {
-        style: {
-            left: 0,
-            top: 0,
-        },
-        ref: () => {},
-    },
-    outOfBoundaries: false,
-};
-
 /**
  * NOTE: We give height because TooltipBubble is positioned absolute and due
  * to aphrodite styles being "important" we can't override that.
  */
 <View style={{height: 50}}>
-    <TooltipBubble popperProps={popperProps}>
+    <TooltipBubble placement="top">
         <TooltipContent>I'm on the top!</TooltipContent>
     </TooltipBubble>
 </View>
@@ -42,31 +23,12 @@ const popperProps = {
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 
-const popperProps = {
-    style: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-    },
-    placement: "right",
-    ref: () => {},
-    scheduleUpdate: () => {},
-    arrowProps: {
-        style: {
-            left: 0,
-            top: 0,
-        },
-        ref: () => {},
-    },
-    outOfBoundaries: false,
-};
-
 /**
  * NOTE: We give height because TooltipBubble is positioned absolute and due
  * to aphrodite styles being "important" we can't override that.
  */
 <View style={{height: 50}}>
-    <TooltipBubble popperProps={popperProps}>
+    <TooltipBubble placement="right">
         <TooltipContent>I'm on the right!</TooltipContent>
     </TooltipBubble>
 </View>
@@ -77,31 +39,12 @@ const popperProps = {
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 
-const popperProps = {
-    style: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-    },
-    placement: "bottom",
-    ref: () => {},
-    scheduleUpdate: () => {},
-    arrowProps: {
-        style: {
-            left: 0,
-            top: 0,
-        },
-        ref: () => {},
-    },
-    outOfBoundaries: false,
-};
-
 /**
  * NOTE: We give height because TooltipBubble is positioned absolute and due
  * to aphrodite styles being "important" we can't override that.
  */
 <View style={{height: 50}}>
-    <TooltipBubble popperProps={popperProps}>
+    <TooltipBubble placement="bottom">
         <TooltipContent>I'm on the bottom!</TooltipContent>
     </TooltipBubble>
 </View>
@@ -112,31 +55,12 @@ const popperProps = {
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 
-const popperProps = {
-    style: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-    },
-    placement: "left",
-    ref: () => {},
-    scheduleUpdate: () => {},
-    arrowProps: {
-        style: {
-            left: 0,
-            top: 0,
-        },
-        ref: () => {},
-    },
-    outOfBoundaries: false,
-};
-
 /**
  * NOTE: We give height because TooltipBubble is positioned absolute and due
  * to aphrodite styles being "important" we can't override that.
  */
-<View style={{height: 50, flexDirection: "row"}}>
-    <TooltipBubble popperProps={popperProps}>
+<View style={{height: 50}}>
+    <TooltipBubble placement="left">
         <TooltipContent>I'm on the left!</TooltipContent>
     </TooltipBubble>
 </View>
@@ -149,32 +73,13 @@ Here we tell the tail that it's lefthand side is at 50px.
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Spacing = require("@khanacademy/wonder-blocks-spacing");
 
-const popperProps = {
-    placement: "top",
-    style: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-    },
-    ref: () => {},
-    scheduleUpdate: () => {},
-    arrowProps: {
-        style: {
-            left: 50,
-            top: 0,
-        },
-        ref: () => {},
-    },
-    outOfBoundaries: false,
-};
-
 /**
  * NOTE: We give height because TooltipBubble is positioned absolute and due
  * to aphrodite styles being "important" we can't override that.
  */
 <View style={{height: 50}}>
-    <TooltipBubble popperProps={popperProps}>
-        <TooltipContent>I'm on the bottom with an tail 50px in!</TooltipContent>
+    <TooltipBubble placement="bottom" tailOffset={{left: 50, top: 0}}>
+        <TooltipContent>I'm on the bottom with a tail 50px in!</TooltipContent>
     </TooltipBubble>
 </View>
 ```
@@ -185,31 +90,12 @@ const popperProps = {
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Spacing = require("@khanacademy/wonder-blocks-spacing");
 
-const popperProps = {
-    placement: "top",
-    style: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-    },
-    ref: () => {},
-    scheduleUpdate: () => {},
-    arrowProps: {
-        style: {
-            left: 0,
-            top: 0,
-        },
-        ref: () => {},
-    },
-    outOfBoundaries: true,
-};
-
 /**
  * NOTE: We give height because TooltipBubble is positioned absolute and due
  * to aphrodite styles being "important" we can't override that.
  */
 <View style={{height: 50}}>
-    <TooltipBubble popperProps={popperProps}>
+    <TooltipBubble placement="top" outOfBoundaries={true}>
         <TooltipContent>I'm hidden. So hidden. Shhhhh!</TooltipContent>
     </TooltipBubble>
 </View>
