@@ -72,12 +72,12 @@ describe("TooltipBubble", () => {
                 expect(realElement.getAttribute("data-placement")).toBe("top");
 
                 // Did we render our content?
-                const contentElement = realElement.firstElementChild;
-                expect(
-                    contentElement && contentElement.getAttribute("id"),
-                ).toBe("content");
+                setTimeout(() => {
+                    const contentElement = document.getElementById("content");
+                    expect(contentElement).toBeDefined();
+                    done();
+                }, 0);
             }
-            done();
         };
 
         arrangeAct(andAssert);
