@@ -4,15 +4,14 @@
  * and control the tooltip bubble location and visibility as we need.
  */
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {Popper} from "react-popper";
 
 import TooltipBubble from "./tooltip-bubble.js";
 import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
+import RefTracker from "../util/ref-tracker.js";
 
 import type {PopperChildrenProps} from "react-popper";
-import type {Placement, getRefFn} from "../util/types.js";
-
+import type {Placement} from "../util/types.js";
 import type {TooltipBubbleProps} from "./tooltip-bubble.js";
 
 type Props = {|
@@ -29,56 +28,18 @@ type Props = {|
     placement: Placement,
 |};
 
-/**
- * This is a little helper function that wraps the react-popper reference
- * update methods so that we can convert a regular React ref into a DOM node
- * as react-popper expects, and so we can ensure we only update react-popper
- * on actual changes, and not just renders of the same thing.
- */
-function createRefTracker() {
-    let _lastRef: ?HTMLElement;
-    let _targetFn: (?HTMLElement) => void;
-
-    const updateRef = (ref: ?(React.Component<*> | Element)) => {
-        if (_targetFn && ref) {
-            // We only want to update the reference if it is
-            // actually changed. Otherwise, we can trigger another render that
-            // would then update the reference again and just keep looping.
-            const domNode = ReactDOM.findDOMNode(ref);
-            if (domNode instanceof HTMLElement && domNode !== _lastRef) {
-                _lastRef = domNode;
-                _targetFn(domNode);
-            }
-        }
-    };
-
-    const setCallback = (targetFn: (?HTMLElement) => void) => {
-        if (_targetFn !== targetFn) {
-            _targetFn = targetFn;
-            if (_lastRef) {
-                _targetFn(_lastRef);
-            }
-        }
-    };
-    updateRef.setCallback = setCallback;
-
-    return updateRef;
-}
-
 export default class TooltipPopper extends React.Component<Props> {
-    _bubbleRefTracker: getRefFn;
-    _tailRefTracker: getRefFn;
+    _bubbleRefTracker = new RefTracker();
+    _tailRefTracker = new RefTracker();
 
     _getUpdatedBubbleRefTracker(targetRefFn: (?HTMLElement) => void) {
-        this._bubbleRefTracker = this._bubbleRefTracker || createRefTracker();
         this._bubbleRefTracker.setCallback(targetRefFn);
-        return this._bubbleRefTracker;
+        return this._bubbleRefTracker.updateRef;
     }
 
     _getUpdatedTailRefTracker(targetRefFn: (?HTMLElement) => void) {
-        this._tailRefTracker = this._tailRefTracker || createRefTracker();
         this._tailRefTracker.setCallback(targetRefFn);
-        return this._tailRefTracker;
+        return this._tailRefTracker.updateRef;
     }
 
     _renderPositionedContent(popperProps: PopperChildrenProps) {
@@ -87,22 +48,21 @@ export default class TooltipPopper extends React.Component<Props> {
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
         const placement = popperProps.placement || this.props.placement;
-        const bubbleRefTracker = this._getUpdatedBubbleRefTracker(
-            popperProps.ref,
-        );
-        const tailRefTracker = this._getUpdatedTailRefTracker(
-            popperProps.arrowProps.ref,
-        );
+
+        // Just in case the callbacks have changed, let's update our reference
+        // trackers.
+        this._bubbleRefTracker.setCallback(popperProps.ref);
+        this._tailRefTracker.setCallback(popperProps.arrowProps.ref);
 
         const bubbleProps = {
             placement: placement,
             style: popperProps.style,
-            updateBubbleRef: bubbleRefTracker,
+            updateBubbleRef: this._bubbleRefTracker.updateRef,
             tailOffset: {
                 top: popperProps.arrowProps.style.top,
                 left: popperProps.arrowProps.style.left,
             },
-            updateTailRef: tailRefTracker,
+            updateTailRef: this._tailRefTracker.updateRef,
             outOfBoundaries: popperProps.outOfBoundaries,
         };
         return children(bubbleProps);
