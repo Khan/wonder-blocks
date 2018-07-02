@@ -30,8 +30,16 @@ export default class TooltipPortalMounter extends React.Component<Props> {
     _destination: ?Node;
     _rendered: boolean;
 
+    componentDidMount() {
+        // There's a slight chance we have something to mount on our very first
+        // render, so let's try it.
+        this._maybeDoMount();
+    }
+
     componentDidUpdate() {
-        this._renderChildren();
+        // Our content may have changed, so let's re-render it.
+        // If the portal isn't mounted yet, this will take care of that.
+        this._refreshPortalContent();
     }
 
     /**
@@ -42,7 +50,11 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         this._doUnmount();
     }
 
-    _doMount() {
+    _maybeDoMount() {
+        // We're not going to mount anything if we no children or we haven't
+        // rendered yet. That's because the first step in mounting the portal
+        // is to get the anchor node, which is what we render in the `render()`
+        // method.
         const {children} = this.props;
         if (!this._rendered || !children) {
             return;
@@ -81,7 +93,7 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         this._destination = destination;
 
         // Render the tooltip into the destination node.
-        this._renderChildren();
+        this._refreshPortalContent();
     }
 
     _doUnmount() {
@@ -99,20 +111,30 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         destination.parentNode.removeChild(destination);
     }
 
-    _renderChildren() {
+    _refreshPortalContent() {
         if (!this._destination) {
-            this._doMount();
+            this._maybeDoMount();
             return;
         }
 
         const {children} = this.props;
         if (!children) {
+            // We don't have any portal content, so let's dismantle the portal.
             this._doUnmount();
             return;
         } else {
+            // If we get here, the content of the bubble changed, so let's
+            // remove what we had and render something new. This way, we reuse
+            // the portal we have mounted, rather than take the time to
+            // dismantle it and mount a new one.
+            //
+            // Not certain this is necessary, or if the later render call
+            // handles this, but it seems appropriate and is certainly clearer
+            // to do it here.
             ReactDOM.unmountComponentAtNode(this._destination);
         }
 
+        // Now we can render the portal content.
         // We have to render the subtree like this so that everything works as
         // expected.
         // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
