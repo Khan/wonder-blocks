@@ -6,3 +6,6 @@ demo/src/third-party
 # eslint can't handle the type defintion for the addStyle HOC
 packages/wonder-blocks-core/util/add-style.js
 **/dist
+
+# it probably passes, but we really don't care
+styleguide.prod.config.js
