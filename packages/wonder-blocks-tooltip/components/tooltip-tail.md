@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     padding: {
         backgroundColor: "bisque",
-        height: Spacing.medium,
+        height: 7,
     },
     tail: {
         backgroundColor: "green",
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
     padding: {
         backgroundColor: "bisque",
-        height: Spacing.medium,
+        height: 7,
     },
     tail: {
         backgroundColor: "green",

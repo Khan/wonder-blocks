@@ -214,7 +214,7 @@ describe("wonder-blocks-tooltip", () => {
             },
             padding: {
                 backgroundColor: "bisque",
-                height: Spacing.medium,
+                height: 7,
             },
             tail: {
                 backgroundColor: "green",
@@ -286,7 +286,7 @@ describe("wonder-blocks-tooltip", () => {
             },
             padding: {
                 backgroundColor: "bisque",
-                height: Spacing.medium,
+                height: 7,
             },
             tail: {
                 backgroundColor: "green",

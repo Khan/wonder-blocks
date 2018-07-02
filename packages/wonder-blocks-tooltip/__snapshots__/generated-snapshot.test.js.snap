@@ -424,8 +424,15 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
     }
   >
     <svg
-      className="arrow_oo4scr-o_O-arrow-top_op9t44"
+      className="arrow_oo4scr"
       height={12}
+      style={
+        Object {
+          "marginLeft": 16,
+          "marginRight": 16,
+          "paddingBottom": 8,
+        }
+      }
       width={24}
     >
       <filter
@@ -630,7 +637,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
-          "height": 16,
+          "height": 7,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -672,7 +679,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
-          "height": 16,
+          "height": 7,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -714,7 +721,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
-        "height": 56,
+        "height": 38,
         "left": 1,
         "margin": 0,
         "minHeight": 0,
@@ -728,8 +735,15 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
     }
   >
     <svg
-      className="arrow_oo4scr-o_O-arrow-right_1g2n2jz"
+      className="arrow_oo4scr"
       height={24}
+      style={
+        Object {
+          "marginBottom": 7,
+          "marginTop": 7,
+          "paddingLeft": 8,
+        }
+      }
       width={12}
     >
       <filter
@@ -928,8 +942,15 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
     }
   >
     <svg
-      className="arrow_oo4scr-o_O-arrow-bottom_n541k0"
+      className="arrow_oo4scr"
       height={12}
+      style={
+        Object {
+          "marginLeft": 16,
+          "marginRight": 16,
+          "paddingTop": 8,
+        }
+      }
       width={24}
     >
       <polyline
@@ -982,7 +1003,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
-        "height": 56,
+        "height": 38,
         "left": -1,
         "margin": 0,
         "minHeight": 0,
@@ -996,8 +1017,15 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
     }
   >
     <svg
-      className="arrow_oo4scr-o_O-arrow-left_ksfhn8"
+      className="arrow_oo4scr"
       height={24}
+      style={
+        Object {
+          "marginBottom": 7,
+          "marginTop": 7,
+          "paddingRight": 8,
+        }
+      }
       width={12}
     >
       <filter
@@ -1075,7 +1103,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
-          "height": 16,
+          "height": 7,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1117,7 +1145,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
-          "height": 16,
+          "height": 7,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1283,8 +1311,15 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-top_op9t44"
+        className="arrow_oo4scr"
         height={12}
+        style={
+          Object {
+            "marginLeft": 16,
+            "marginRight": 16,
+            "paddingBottom": 8,
+          }
+        }
         width={24}
       >
         <filter
@@ -1452,7 +1487,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
-          "height": 56,
+          "height": 38,
           "left": 0,
           "margin": 0,
           "minHeight": 0,
@@ -1467,8 +1502,15 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-right_1g2n2jz"
+        className="arrow_oo4scr"
         height={24}
+        style={
+          Object {
+            "marginBottom": 7,
+            "marginTop": 7,
+            "paddingLeft": 8,
+          }
+        }
         width={12}
       >
         <filter
@@ -1651,8 +1693,15 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-bottom_n541k0"
+        className="arrow_oo4scr"
         height={12}
+        style={
+          Object {
+            "marginLeft": 16,
+            "marginRight": 16,
+            "paddingTop": 8,
+          }
+        }
         width={24}
       >
         <polyline
@@ -1792,7 +1841,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
-          "height": 56,
+          "height": 38,
           "left": 0,
           "margin": 0,
           "minHeight": 0,
@@ -1807,8 +1856,15 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-left_ksfhn8"
+        className="arrow_oo4scr"
         height={24}
+        style={
+          Object {
+            "marginBottom": 7,
+            "marginTop": 7,
+            "paddingRight": 8,
+          }
+        }
         width={12}
       >
         <filter
@@ -1991,8 +2047,15 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-top_op9t44"
+        className="arrow_oo4scr"
         height={12}
+        style={
+          Object {
+            "marginLeft": 16,
+            "marginRight": 16,
+            "paddingBottom": 8,
+          }
+        }
         width={24}
       >
         <filter
@@ -2178,8 +2241,15 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-top_op9t44"
+        className="arrow_oo4scr"
         height={12}
+        style={
+          Object {
+            "marginLeft": 16,
+            "marginRight": 16,
+            "paddingBottom": 8,
+          }
+        }
         width={24}
       >
         <filter

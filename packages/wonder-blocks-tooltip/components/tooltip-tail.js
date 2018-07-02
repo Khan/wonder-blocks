@@ -56,60 +56,60 @@ export default class TooltipTail extends React.Component<Props> {
                 return {
                     trimlinePoints: [
                         `0,-${trimlineOffset}`,
-                        `${arrowWidth},-${trimlineOffset}`,
+                        `${ARROW_WIDTH},-${trimlineOffset}`,
                     ],
                     points: [
                         "0,0",
-                        `${arrowWidth / 2},${arrowHeight}`,
-                        `${arrowWidth},0`,
+                        `${ARROW_WIDTH / 2},${ARROW_HEIGHT}`,
+                        `${ARROW_WIDTH},0`,
                     ],
-                    height: arrowHeight,
-                    width: arrowWidth,
+                    height: ARROW_HEIGHT,
+                    width: ARROW_WIDTH,
                 };
 
             case "right":
                 return {
                     trimlinePoints: [
-                        `${arrowHeight + trimlineOffset},0`,
-                        `${arrowHeight + trimlineOffset},${arrowWidth}`,
+                        `${ARROW_HEIGHT + trimlineOffset},0`,
+                        `${ARROW_HEIGHT + trimlineOffset},${ARROW_WIDTH}`,
                     ],
                     points: [
-                        `${arrowHeight},0`,
-                        `0,${arrowWidth / 2}`,
-                        `${arrowHeight},${arrowWidth}`,
+                        `${ARROW_HEIGHT},0`,
+                        `0,${ARROW_WIDTH / 2}`,
+                        `${ARROW_HEIGHT},${ARROW_WIDTH}`,
                     ],
-                    width: arrowHeight,
-                    height: arrowWidth,
+                    width: ARROW_HEIGHT,
+                    height: ARROW_WIDTH,
                 };
 
             case "bottom":
                 return {
                     trimlinePoints: [
-                        `0, ${arrowHeight + trimlineOffset}`,
-                        `${arrowWidth},${arrowHeight + trimlineOffset}`,
+                        `0, ${ARROW_HEIGHT + trimlineOffset}`,
+                        `${ARROW_WIDTH},${ARROW_HEIGHT + trimlineOffset}`,
                     ],
                     points: [
-                        `0, ${arrowHeight}`,
-                        `${arrowWidth / 2},0`,
-                        `${arrowWidth},${arrowHeight}`,
+                        `0, ${ARROW_HEIGHT}`,
+                        `${ARROW_WIDTH / 2},0`,
+                        `${ARROW_WIDTH},${ARROW_HEIGHT}`,
                     ],
-                    width: arrowWidth,
-                    height: arrowHeight,
+                    width: ARROW_WIDTH,
+                    height: ARROW_HEIGHT,
                 };
 
             case "left":
                 return {
                     trimlinePoints: [
                         `-${trimlineOffset},0`,
-                        `-${trimlineOffset},${arrowWidth}`,
+                        `-${trimlineOffset},${ARROW_WIDTH}`,
                     ],
                     points: [
                         `0,0`,
-                        `${arrowHeight},${arrowWidth / 2}`,
-                        `0,${arrowWidth}`,
+                        `${ARROW_HEIGHT},${ARROW_WIDTH / 2}`,
+                        `0,${ARROW_WIDTH}`,
                     ],
-                    width: arrowHeight,
-                    height: arrowWidth,
+                    width: ARROW_HEIGHT,
+                    height: ARROW_WIDTH,
                 };
 
             default:
@@ -198,6 +198,8 @@ export default class TooltipTail extends React.Component<Props> {
                 * the shadow to match the rest of the tooltip bubble shadow.
                 * It is a combination of the diffuse blur and this alpha
                 * value that will make it look right.
+                *
+                * The value of 0.3. was arrived at from trial and error.
                 */}
                 <feComponentTransfer>
                     <feFuncA type="linear" slope="0.3" />
@@ -208,6 +210,12 @@ export default class TooltipTail extends React.Component<Props> {
              * above, to produce a drop shadow effect.
              * We move it down a bit with a translation, so that it is what
              * we want.
+             *
+             * We offset the shadow on the X-axis because for left/right
+             * tails, we move the tail 1px toward the bubble. If we didn't
+             * offset the shadow, it would crash the bubble outline.
+             *
+             * See styles below for why we offset the arrow.
              */
             <g transform={`translate(${offsetShadowX},5.5)`}>
                 <polyline
@@ -221,6 +229,121 @@ export default class TooltipTail extends React.Component<Props> {
         ];
     }
 
+    _minDistanceFromCorners(placement: Placement) {
+        const minDistanceFromCornersForTopBottom = Spacing.medium;
+        const minDistanceFromCornersForLeftRight = 7;
+
+        switch (placement) {
+            case "top":
+            case "bottom":
+                return minDistanceFromCornersForTopBottom;
+
+            case "left":
+            case "right":
+                return minDistanceFromCornersForLeftRight;
+
+            default:
+                throw new Error(`Unknown placement: ${placement}`);
+        }
+    }
+
+    _getFullTailWidth(placement: Placement) {
+        const minDistanceFromCorners = this._minDistanceFromCorners(placement);
+        return ARROW_WIDTH + 2 * minDistanceFromCorners;
+    }
+
+    _getFullTailHeight(placement: Placement) {
+        return ARROW_HEIGHT + DISTANCE_FROM_ANCHOR;
+    }
+
+    _getContainerStyle(placement: Placement) {
+        /**
+         * Ensure the container is sized properly for us to be placed correctly
+         * by the Popper.js code.
+         *
+         * Here we offset the arrow 1px toward the bubble. This ensures the arrow
+         * outline meets the bubble outline and allows the arrow to erase the bubble
+         * outline between the ends of the arrow outline. We do this so that the
+         * arrow outline and bubble outline create a single, seamless outline of
+         * the callout.
+         *
+         * NOTE: The widths and heights refer to the downward-pointing tail
+         * (i.e. placement="top"). When the tail points to the left or right
+         * instead, the width/height are inverted.
+         */
+        const fullTailWidth = this._getFullTailWidth(placement);
+        const fullTailHeight = this._getFullTailHeight(placement);
+
+        switch (placement) {
+            case "top":
+                return {
+                    top: -1,
+                    width: fullTailWidth,
+                    height: fullTailHeight,
+                };
+
+            case "right":
+                return {
+                    left: 1,
+                    width: fullTailHeight,
+                    height: fullTailWidth,
+                };
+
+            case "bottom":
+                return {
+                    top: 1,
+                    width: fullTailWidth,
+                    height: fullTailHeight,
+                };
+
+            case "left":
+                return {
+                    left: -1,
+                    width: fullTailHeight,
+                    height: fullTailWidth,
+                };
+
+            default:
+                throw new Error(`Unknown placement: ${placement}`);
+        }
+    }
+
+    _getArrowStyle(placement: Placement) {
+        const minDistanceFromCorners = this._minDistanceFromCorners(placement);
+        switch (placement) {
+            case "top":
+                return {
+                    marginLeft: minDistanceFromCorners,
+                    marginRight: minDistanceFromCorners,
+                    paddingBottom: DISTANCE_FROM_ANCHOR,
+                };
+
+            case "right":
+                return {
+                    marginTop: minDistanceFromCorners,
+                    marginBottom: minDistanceFromCorners,
+                    paddingLeft: DISTANCE_FROM_ANCHOR,
+                };
+
+            case "bottom":
+                return {
+                    marginLeft: minDistanceFromCorners,
+                    marginRight: minDistanceFromCorners,
+                    paddingTop: DISTANCE_FROM_ANCHOR,
+                };
+
+            case "left":
+                return {
+                    marginTop: minDistanceFromCorners,
+                    marginBottom: minDistanceFromCorners,
+                    paddingRight: DISTANCE_FROM_ANCHOR,
+                };
+
+            default:
+                throw new Error(`Unknown placement: ${placement}`);
+        }
+    }
+
     _renderArrow() {
         const {placement} = this.props;
         const {
@@ -232,7 +355,8 @@ export default class TooltipTail extends React.Component<Props> {
 
         return (
             <svg
-                className={css(styles.arrow, styles[`arrow-${placement}`])}
+                className={css(styles.arrow)}
+                style={this._getArrowStyle(placement)}
                 width={width}
                 height={height}
             >
@@ -276,7 +400,7 @@ export default class TooltipTail extends React.Component<Props> {
             <View
                 style={[
                     styles.tailContainer,
-                    styles[`container-${placement}`],
+                    this._getContainerStyle(placement),
                     style,
                 ]}
                 data-placement={placement}
@@ -289,19 +413,15 @@ export default class TooltipTail extends React.Component<Props> {
 }
 
 /**
- * Some constants to make styles easier to understand.
+ * Some constants to make style generation easier to understand.
  * NOTE: The widths and heights refer to the downward-pointing tail
  * (i.e. placement="top"). When the tail points to the left or right instead,
  * the width/height are inverted.
  */
-const minDistanceFromCorners = Spacing.medium;
-const distanceFromAnchor = Spacing.xSmall;
+const DISTANCE_FROM_ANCHOR = Spacing.xSmall;
 
-const arrowWidth = Spacing.large;
-const arrowHeight = Spacing.small;
-
-const fullTailWidth = arrowWidth + 2 * minDistanceFromCorners;
-const fullTailHeight = arrowHeight + distanceFromAnchor;
+const ARROW_WIDTH = Spacing.large;
+const ARROW_HEIGHT = Spacing.small;
 
 const styles = StyleSheet.create({
     /**
@@ -312,54 +432,11 @@ const styles = StyleSheet.create({
         pointerEvents: "none",
     },
 
-    // Ensure the container is sized properly for us to be placed correctly
-    // by the Popper.js code.
-    "container-top": {
-        top: -1,
-        width: fullTailWidth,
-        height: fullTailHeight,
-    },
-    "container-right": {
-        left: 1,
-        width: fullTailHeight,
-        height: fullTailWidth,
-    },
-    "container-bottom": {
-        top: 1,
-        width: fullTailWidth,
-        height: fullTailHeight,
-    },
-    "container-left": {
-        left: -1,
-        width: fullTailHeight,
-        height: fullTailWidth,
-    },
-
     /**
      * Arrow
      */
     arrow: {
         // Ensure the dropshadow bleeds outside our bounds.
         overflow: "visible",
-    },
-    "arrow-top": {
-        marginLeft: minDistanceFromCorners,
-        marginRight: minDistanceFromCorners,
-        paddingBottom: distanceFromAnchor,
-    },
-    "arrow-right": {
-        marginTop: minDistanceFromCorners,
-        marginBottom: minDistanceFromCorners,
-        paddingLeft: distanceFromAnchor,
-    },
-    "arrow-bottom": {
-        marginLeft: minDistanceFromCorners,
-        marginRight: minDistanceFromCorners,
-        paddingTop: distanceFromAnchor,
-    },
-    "arrow-left": {
-        marginTop: minDistanceFromCorners,
-        marginBottom: minDistanceFromCorners,
-        paddingRight: distanceFromAnchor,
     },
 });
