@@ -1,8 +1,12 @@
-`wonder-blocks-core` provides building blocks for other `wonder-blocks` 
-components.  These components, `View` and `Text` can also be used on their 
-own.
+`wonder-blocks-core` provides building blocks for other `wonder-blocks` components.  These components, `View` and `Text` can also be used on their own.
 
 `View` roughly maps to `div` and `Text` roughly maps to `span`.
+
+These components can take styles in a variety of manners:
+
+- An inline style object
+- An `aphrodite` StyleSheet style
+- An array combining the above
 
 ```js
 const {StyleSheet} = require("aphrodite");
@@ -22,6 +26,12 @@ const styles = StyleSheet.create({
     <Text style={styles.text}>
         Hello, world!
     </Text>
+    <View style={[
+        styles.container,
+        {backgroundColor: "goldenrod", padding: 4},
+    ]}>
+        Even with an array and inline styles!
+    </View>
 </View>
 ```
 
@@ -39,7 +49,7 @@ Other props can be passed through `View` or `Text`, as if they were normal tags.
 </View>
 ```
 
-There's also an HOC that adds the same style prop to existing 
+There's also an HOC that adds the same style prop to existing
 components.
 
 ```js
