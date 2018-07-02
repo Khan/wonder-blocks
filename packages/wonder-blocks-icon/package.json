@@ -1,0 +1,16 @@
+{
+    "name": "@khanacademy/wonder-blocks-icon",
+    "version": "1.0.0",
+    "design": "v1",
+    "description": "",
+    "main": "dist/index.js",
+    "source": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "@khanacademy/wonder-blocks-color": "1.0.1"
+    }
+  }
