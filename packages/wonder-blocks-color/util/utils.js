@@ -4,7 +4,8 @@
  * mixing colors together.
  */
 
-const colorRegexp = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
+const color6Regexp = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
+const color3Regexp = /^#([0-9a-f])([0-9a-f])([0-9a-f])$/i;
 const rgbaRegexp = /^rgba?\(\s*(\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\s*\)$/i;
 
 type Color = {
@@ -21,28 +22,37 @@ const parse = (color: string) => {
         throw new Error(`Failed to parse color: ${color}`);
     }
 
-    const match = color.match(colorRegexp);
-    if (match) {
+    const color3Match = color.match(color3Regexp);
+    if (color3Match) {
         return {
-            r: parseInt(match[1], 16),
-            g: parseInt(match[2], 16),
-            b: parseInt(match[3], 16),
+            r: parseInt(`${color3Match[1]}${color3Match[1]}`, 16),
+            g: parseInt(`${color3Match[2]}${color3Match[2]}`, 16),
+            b: parseInt(`${color3Match[3]}${color3Match[3]}`, 16),
             a: 1,
         };
-    } else {
-        const rgbaMatch = color.match(rgbaRegexp);
-
-        if (rgbaMatch) {
-            return {
-                r: parseFloat(rgbaMatch[1]),
-                g: parseFloat(rgbaMatch[2]),
-                b: parseFloat(rgbaMatch[3]),
-                a: rgbaMatch[4] ? parseFloat(rgbaMatch[4]) : 1,
-            };
-        }
-
-        throw new Error(`Failed to parse color: ${color}`);
     }
+
+    const color6Match = color.match(color6Regexp);
+    if (color6Match) {
+        return {
+            r: parseInt(color6Match[1], 16),
+            g: parseInt(color6Match[2], 16),
+            b: parseInt(color6Match[3], 16),
+            a: 1,
+        };
+    }
+
+    const rgbaMatch = color.match(rgbaRegexp);
+    if (rgbaMatch) {
+        return {
+            r: parseFloat(rgbaMatch[1]),
+            g: parseFloat(rgbaMatch[2]),
+            b: parseFloat(rgbaMatch[3]),
+            a: rgbaMatch[4] ? parseFloat(rgbaMatch[4]) : 1,
+        };
+    }
+
+    throw new Error(`Failed to parse color: ${color}`);
 };
 
 // Stringify the color in an `rgba()` or `#abcdef` format.
@@ -51,16 +61,26 @@ const format = (color: Color) => {
     const g = Math.round(color.g);
     const b = Math.round(color.b);
 
-    return color.a === 1
-        ? `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`
-        : `rgba(${r},${g},${b},${color.a.toFixed(2)})`;
+    if (color.a === 1) {
+        const _s = (c) => {
+            const asString = c.toString(16);
+            return asString.length === 1 ? asString + asString : asString;
+        };
+        return `#${_s(r)}${_s(g)}${_s(b)}`;
+    } else {
+        return `rgba(${r},${g},${b},${color.a.toFixed(2)})`;
+    }
 };
 
-// Set the alpha value of a color.
+// Adjust the alpha value of a color.
 export const fade = (color: string, percentage: number) => {
+    if (percentage < 0 || percentage > 1) {
+        throw new Error("Percentage must be between 0 and 1");
+    }
+    const components = parse(color);
     return format({
-        ...parse(color),
-        a: percentage,
+        ...components,
+        a: components.a * percentage,
     });
 };
 
