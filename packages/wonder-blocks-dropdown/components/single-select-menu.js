@@ -39,7 +39,7 @@ type Props = {
     /**
      * Value of the currently selected item for this menu.
      */
-    selectedItem?: string,
+    selectedValue?: string,
 
     /**
      * Whether this menu should be left-aligned or right-aligned with the
@@ -99,7 +99,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         });
 
         // Call callback if selection changes.
-        if (selectedValue !== this.props.selectedItem) {
+        if (selectedValue !== this.props.selectedValue) {
             this.props.onChange(selectedValue);
         }
     }
@@ -111,15 +111,15 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
             items,
             light,
             placeholder,
-            selectedItem,
+            selectedValue,
             style,
         } = this.props;
 
         const {open} = this.state;
 
         const menuText = `${
-            selectedItem
-                ? items.filter((item) => item.value === selectedItem)[0].label
+            selectedValue
+                ? items.filter((item) => item.value === selectedValue)[0].label
                 : placeholder
         }`;
 
@@ -141,7 +141,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                     key={item.value}
                     label={item.label}
                     onToggle={(value, state) => this.handleSelected(value)}
-                    selected={selectedItem === item.value}
+                    selected={selectedValue === item.value}
                     value={item.value}
                     variant={"check"}
                 />

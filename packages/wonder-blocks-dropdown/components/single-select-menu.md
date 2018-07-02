@@ -29,14 +29,14 @@ class ExampleWithPlaceholder extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedItem: null,
+            selectedValue: null,
         }
     }
 
     handleSelected(selected) {
         console.log(`${selected} was selected!`);
         this.setState({
-            selectedItem: selected,
+            selectedValue: selected,
         });
     }
 
@@ -59,7 +59,7 @@ class ExampleWithPlaceholder extends React.Component {
             light={false}
             onChange={(selected) => this.handleSelected(selected)}
             placeholder={"Choose a fruit"}
-            selectedItem={this.state.selectedItem}
+            selectedValue={this.state.selectedValue}
             style={{
                 width: 170,
                 maxWidth: 170,
@@ -72,14 +72,14 @@ class ExampleWithStartingSelection extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedItem: "banana",
+            selectedValue: "banana",
         }
     }
 
     handleSelected(selected) {
         console.log(`${selected} was selected!`);
         this.setState({
-            selectedItem: selected,
+            selectedValue: selected,
         });
     }
 
@@ -102,7 +102,7 @@ class ExampleWithStartingSelection extends React.Component {
             ]}
             onChange={(selected) => this.handleSelected(selected)}
             placeholder={"Choose a fruit"}
-            selectedItem={this.state.selectedItem}
+            selectedValue={this.state.selectedValue}
         />;
     }
 }
@@ -111,14 +111,14 @@ class DisabledExample extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedItem: "banana",
+            selectedValue: "banana",
         }
     }
 
     handleSelected(selected) {
         console.log(`${selected} was selected!`);
         this.setState({
-            selectedItem: selected,
+            selectedValue: selected,
         });
     }
 
@@ -141,7 +141,7 @@ class DisabledExample extends React.Component {
             ]}
             onChange={(selected) => this.handleSelected(selected)}
             placeholder={"Choose a fruit"}
-            selectedItem={this.state.selectedItem}
+            selectedValue={this.state.selectedValue}
         />;
     }
 }
@@ -181,14 +181,14 @@ class LightRightAlignedExample extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedItem: null,
+            selectedValue: null,
         }
     }
 
     handleSelected(selected) {
         console.log(`${selected} was selected!`);
         this.setState({
-            selectedItem: selected,
+            selectedValue: selected,
         });
     }
 
@@ -211,7 +211,7 @@ class LightRightAlignedExample extends React.Component {
             light={true}
             onChange={(selected) => this.handleSelected(selected)}
             placeholder={"Boba order"}
-            selectedItem={this.state.selectedItem}
+            selectedValue={this.state.selectedValue}
             alignment={"right"}
         />;
     }

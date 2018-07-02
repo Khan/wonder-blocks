@@ -225,14 +225,14 @@ describe("wonder-blocks-dropdown", () => {
             constructor() {
                 super();
                 this.state = {
-                    selectedItem: null,
+                    selectedValue: null,
                 };
             }
 
             handleSelected(selected) {
                 console.log(`${selected} was selected!`);
                 this.setState({
-                    selectedItem: selected,
+                    selectedValue: selected,
                 });
             }
 
@@ -256,7 +256,7 @@ describe("wonder-blocks-dropdown", () => {
                         light={false}
                         onChange={(selected) => this.handleSelected(selected)}
                         placeholder={"Choose a fruit"}
-                        selectedItem={this.state.selectedItem}
+                        selectedValue={this.state.selectedValue}
                         style={{
                             width: 170,
                             maxWidth: 170,
@@ -270,14 +270,14 @@ describe("wonder-blocks-dropdown", () => {
             constructor() {
                 super();
                 this.state = {
-                    selectedItem: "banana",
+                    selectedValue: "banana",
                 };
             }
 
             handleSelected(selected) {
                 console.log(`${selected} was selected!`);
                 this.setState({
-                    selectedItem: selected,
+                    selectedValue: selected,
                 });
             }
 
@@ -301,7 +301,7 @@ describe("wonder-blocks-dropdown", () => {
                         ]}
                         onChange={(selected) => this.handleSelected(selected)}
                         placeholder={"Choose a fruit"}
-                        selectedItem={this.state.selectedItem}
+                        selectedValue={this.state.selectedValue}
                     />
                 );
             }
@@ -311,14 +311,14 @@ describe("wonder-blocks-dropdown", () => {
             constructor() {
                 super();
                 this.state = {
-                    selectedItem: "banana",
+                    selectedValue: "banana",
                 };
             }
 
             handleSelected(selected) {
                 console.log(`${selected} was selected!`);
                 this.setState({
-                    selectedItem: selected,
+                    selectedValue: selected,
                 });
             }
 
@@ -342,7 +342,7 @@ describe("wonder-blocks-dropdown", () => {
                         ]}
                         onChange={(selected) => this.handleSelected(selected)}
                         placeholder={"Choose a fruit"}
-                        selectedItem={this.state.selectedItem}
+                        selectedValue={this.state.selectedValue}
                     />
                 );
             }
@@ -384,14 +384,14 @@ describe("wonder-blocks-dropdown", () => {
             constructor() {
                 super();
                 this.state = {
-                    selectedItem: null,
+                    selectedValue: null,
                 };
             }
 
             handleSelected(selected) {
                 console.log(`${selected} was selected!`);
                 this.setState({
-                    selectedItem: selected,
+                    selectedValue: selected,
                 });
             }
 
@@ -415,7 +415,7 @@ describe("wonder-blocks-dropdown", () => {
                         light={true}
                         onChange={(selected) => this.handleSelected(selected)}
                         placeholder={"Boba order"}
-                        selectedItem={this.state.selectedItem}
+                        selectedValue={this.state.selectedValue}
                         alignment={"right"}
                     />
                 );
