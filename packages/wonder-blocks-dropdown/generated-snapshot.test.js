@@ -13,6 +13,7 @@ import SelectItem from "./components/select-item.js";
 import SeparatorItem from "./components/separator-item.js";
 import SelectBox from "./components/select-box.js";
 import SingleSelectMenu from "./components/single-select-menu.js";
+import MultiSelectMenu from "./components/multi-select-menu.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
@@ -449,6 +450,224 @@ describe("wonder-blocks-dropdown", () => {
                         placeholder={"Boba order"}
                         selectedValue={this.state.selectedValue}
                         alignment={"right"}
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row]}>
+                <View style={[styles.darkBackgroundWrapper]}>
+                    <LightRightAlignedExample />
+                </View>
+            </View>
+        );
+
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                height: 350,
+            },
+            strutLike: {
+                width: 8,
+            },
+        });
+
+        class ExampleNoneSelected extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                };
+            }
+
+            handleChanges(update) {
+                console.log("changes happened!");
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelectMenu
+                        items={[
+                            {
+                                label: "Red",
+                                value: "1",
+                            },
+                            {
+                                disabled: true,
+                                label: "Orange",
+                                value: "2",
+                            },
+                            {
+                                label: "Yellow",
+                                value: "3",
+                            },
+                            {
+                                label: "Green",
+                                value: "4",
+                            },
+                            {
+                                label: "Blue",
+                                value: "5",
+                            },
+                        ]}
+                        disabled={this.props.disabled}
+                        onChange={(selectedValues) =>
+                            this.handleChanges(selectedValues)
+                        }
+                        placeholder={"Choose some colors"}
+                        selectedValues={this.state.selectedValues}
+                        selectItemType={"colors"}
+                        style={{
+                            width: 170,
+                            maxWidth: 170,
+                        }}
+                    />
+                );
+            }
+        }
+
+        class ExampleWithShortcuts extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: ["1"],
+                };
+            }
+
+            handleChanges(update) {
+                console.log("changes happened!");
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelectMenu
+                        items={[
+                            {
+                                label: "Red",
+                                value: "1",
+                            },
+                            {
+                                label: "Orange",
+                                value: "2",
+                            },
+                            {
+                                label: "Yellow",
+                                value: "3",
+                            },
+                            {
+                                label: "Green",
+                                value: "4",
+                            },
+                            {
+                                label: "Blue",
+                                value: "5",
+                            },
+                        ]}
+                        shortcuts={true}
+                        onChange={(selectedValues) =>
+                            this.handleChanges(selectedValues)
+                        }
+                        selectedValues={this.state.selectedValues}
+                        selectItemType={"colors"}
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row]}>
+                <ExampleNoneSelected />
+                <View style={[styles.strutLike]} />
+                <ExampleWithShortcuts />
+                <View style={[styles.strutLike]} />
+                <ExampleNoneSelected disabled={true} />
+            </View>
+        );
+
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
+        const React = require("react");
+        const Color = require("@khanacademy/wonder-blocks-color");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            darkBackgroundWrapper: {
+                backgroundColor: Color.default.darkBlue,
+                width: 350,
+                height: 370,
+                paddingRight: 10,
+                paddingTop: 10,
+            },
+        });
+
+        class LightRightAlignedExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: ["1"],
+                };
+            }
+
+            handleChanges(update) {
+                console.log("changes happened!");
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelectMenu
+                        items={[
+                            {
+                                label: "the philosopher's stone",
+                                value: "1",
+                            },
+                            {
+                                label: "the chamber of secrets",
+                                value: "2",
+                            },
+                            {
+                                label: "the prisoner of azkaban",
+                                value: "3",
+                            },
+                            {
+                                label: "the goblet of fire",
+                                value: "4",
+                            },
+                            {
+                                label: "the order of the phoenix",
+                                value: "5",
+                            },
+                        ]}
+                        alignment={"right"}
+                        shortcuts={true}
+                        onChange={(selectedValues) =>
+                            this.handleChanges(selectedValues)
+                        }
+                        selectedValues={this.state.selectedValues}
+                        selectItemType={"harry potter books"}
                     />
                 );
             }
