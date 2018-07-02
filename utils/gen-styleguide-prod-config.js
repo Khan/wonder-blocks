@@ -188,7 +188,7 @@ function maybeGetPackageInfoForSection(section) {
  *
  */
 // See https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
-if (!process.env.PULL_REQUEST) {
+if (process.env.PULL_REQUEST !== "true") {
     // If we're not a pull request, then let's iterate over the configuration
     // and remove private sections.
     styleguideConfig.sections = removePrivateSections(
