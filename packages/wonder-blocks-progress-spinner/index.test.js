@@ -1,5 +1,5 @@
 // @flow
-describe("@khanacademy/wonder-blocks-button", () => {
+describe("@khanacademy/wonder-blocks-progress-spinner", () => {
     test("package exports default", async () => {
         // Arrange
         const importedModule = import("./index.js");
@@ -8,6 +8,8 @@ describe("@khanacademy/wonder-blocks-button", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result)).toEqual(["default"]);
+        expect(Object.keys(result).sort()).toEqual([
+            "CircularSpinner",
+        ].sort());
     });
 });
