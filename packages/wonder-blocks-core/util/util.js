@@ -1,5 +1,5 @@
 // @flow
-import {css} from "aphrodite";
+import {StyleSheet, css} from "aphrodite";
 import * as React from "react";
 import propTypes from "prop-types";
 
@@ -43,13 +43,14 @@ export function processStyleList<T: Object>(
         };
     }
 
+    // Check to see if we should inline all the styles for snapshot tests.
+    const shouldInlineStyles =
+        typeof global !== "undefined" && global.SNAPSHOT_INLINE_APHRODITE;
+
     flatten(style, mediaSize).forEach((child: T) => {
         // Check for aphrodite internal property
         if ((child: any)._definition) {
-            if (
-                typeof global !== "undefined" &&
-                global.SNAPSHOT_INLINE_APHRODITE
-            ) {
+            if (shouldInlineStyles) {
                 inlineStyles.push(child._definition);
             } else {
                 stylesheetStyles.push(child);
@@ -59,8 +60,22 @@ export function processStyleList<T: Object>(
         }
     });
 
+    const inlineStylesObject = Object.assign({}, ...inlineStyles);
+
+    // TODO(somewhatabstract): When aphrodite no longer puts "!important" on
+    // all the styles, remove this <ADD JIRA ISSUE HERE IF THIS PASSES REVIEW>
+    // If we're not snapshotting styles, let's create a class for the inline
+    // styles so that they can apply to the element even with aphrodite's
+    // use of !important.
+    if (inlineStyles.length > 0 && !shouldInlineStyles) {
+        const inlineStylesStyleSheet = StyleSheet.create({
+            inlineStyles: inlineStylesObject,
+        });
+        stylesheetStyles.push(inlineStylesStyleSheet.inlineStyles);
+    }
+
     return {
-        style: Object.assign({}, ...inlineStyles),
+        style: shouldInlineStyles ? inlineStylesObject : {},
         className: css(...stylesheetStyles),
     };
 }
