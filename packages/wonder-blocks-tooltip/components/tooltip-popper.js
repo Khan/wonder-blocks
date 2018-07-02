@@ -44,6 +44,8 @@ export default class TooltipPopper extends React.Component<Props> {
         this._bubbleRefTracker.setCallback(popperProps.ref);
         this._tailRefTracker.setCallback(popperProps.arrowProps.ref);
 
+        // Here we translate from the react-popper's PropperChildrenProps
+        // to our own TooltipBubbleProps.
         const bubbleProps = {
             placement: placement,
             style: popperProps.style,
