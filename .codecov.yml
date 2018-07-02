@@ -19,5 +19,5 @@ comment:
   require_head: yes
 
 ignore:
-  - "gen-snapshot-tests.js"
+  - "utils/*.js"
   - "packages/**/dist/index.js"
