@@ -34,6 +34,28 @@ exports[`wonder-blocks-core example 1 1`] = `
   >
     Hello, world!
   </span>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "goldenrod",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 4,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    Even with an array and inline styles!
+  </div>
 </div>
 `;
 

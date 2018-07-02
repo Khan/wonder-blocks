@@ -32,6 +32,14 @@ describe("wonder-blocks-core", () => {
         const example = (
             <View style={styles.container}>
                 <Text style={styles.text}>Hello, world!</Text>
+                <View
+                    style={[
+                        styles.container,
+                        {backgroundColor: "goldenrod", padding: 4},
+                    ]}
+                >
+                    Even with an array and inline styles!
+                </View>
             </View>
         );
         const tree = renderer.create(example).toJSON();
