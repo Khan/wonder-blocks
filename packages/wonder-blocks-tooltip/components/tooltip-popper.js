@@ -32,16 +32,6 @@ export default class TooltipPopper extends React.Component<Props> {
     _bubbleRefTracker = new RefTracker();
     _tailRefTracker = new RefTracker();
 
-    _getUpdatedBubbleRefTracker(targetRefFn: (?HTMLElement) => void) {
-        this._bubbleRefTracker.setCallback(targetRefFn);
-        return this._bubbleRefTracker.updateRef;
-    }
-
-    _getUpdatedTailRefTracker(targetRefFn: (?HTMLElement) => void) {
-        this._tailRefTracker.setCallback(targetRefFn);
-        return this._tailRefTracker.updateRef;
-    }
-
     _renderPositionedContent(popperProps: PopperChildrenProps) {
         const {children} = this.props;
 
