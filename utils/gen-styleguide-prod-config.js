@@ -194,6 +194,10 @@ if (!process.env.PULL_REQUEST) {
     styleguideConfig.sections = removePrivateSections(
         styleguideConfig.sections,
     );
+} else {
+    styleguideConfig.sections.unshift({
+        name: `${process.env.PULL_REQUEST}`,
+    });
 }
 
 // Here we process the root level sections and augment their descriptions
