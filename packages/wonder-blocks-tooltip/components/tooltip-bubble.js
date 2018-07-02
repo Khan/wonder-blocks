@@ -42,10 +42,10 @@ export default class TooltipBubble extends React.Component<Props> {
                 data-placement={placement}
                 ref={updateBubbleRef}
                 style={[
-                    style,
                     outOfBoundaries && styles.hide,
                     styles.bubble,
                     styles[`content-${placement}`],
+                    style,
                 ]}
             >
                 <View style={styles.content}>{children}</View>

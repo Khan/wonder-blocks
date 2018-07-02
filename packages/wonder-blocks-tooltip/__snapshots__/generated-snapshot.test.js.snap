@@ -1190,7 +1190,6 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1216,7 +1215,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -1372,13 +1371,12 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
   className=""
   style={
     Object {
-      "alignItems": "stretch",
+      "alignItems": "flex-start",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1404,7 +1402,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -1566,7 +1564,6 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1592,7 +1589,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -1726,7 +1723,6 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1752,7 +1748,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -1914,7 +1910,6 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1940,7 +1935,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -2026,7 +2021,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": -1,
+          "top": 1,
           "width": 56,
           "zIndex": 0,
         }
@@ -2075,7 +2070,6 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -2104,7 +2098,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         "opacity": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
+        "position": "relative",
         "zIndex": 0,
       }
     }

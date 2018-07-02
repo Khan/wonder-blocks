@@ -311,13 +311,9 @@ describe("wonder-blocks-tooltip", () => {
     it("example 12", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble placement="top">
+            <View>
+                <TooltipBubble placement="top" style={{position: "relative"}}>
                     <TooltipContent>I'm on the top!</TooltipContent>
                 </TooltipBubble>
             </View>
@@ -328,13 +324,9 @@ describe("wonder-blocks-tooltip", () => {
     it("example 13", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble placement="right">
+            <View style={{alignItems: "flex-start"}}>
+                <TooltipBubble placement="right" style={{position: "relative"}}>
                     <TooltipContent>I'm on the right!</TooltipContent>
                 </TooltipBubble>
             </View>
@@ -345,13 +337,12 @@ describe("wonder-blocks-tooltip", () => {
     it("example 14", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble placement="bottom">
+            <View>
+                <TooltipBubble
+                    placement="bottom"
+                    style={{position: "relative"}}
+                >
                     <TooltipContent>I'm on the bottom!</TooltipContent>
                 </TooltipBubble>
             </View>
@@ -362,13 +353,9 @@ describe("wonder-blocks-tooltip", () => {
     it("example 15", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble placement="left">
+            <View>
+                <TooltipBubble placement="left" style={{position: "relative"}}>
                     <TooltipContent>I'm on the left!</TooltipContent>
                 </TooltipBubble>
             </View>
@@ -380,15 +367,12 @@ describe("wonder-blocks-tooltip", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("@khanacademy/wonder-blocks-spacing");
 
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
+            <View>
                 <TooltipBubble
                     placement="bottom"
                     tailOffset={{left: 50, top: 0}}
+                    style={{position: "relative"}}
                 >
                     <TooltipContent>
                         I'm on the bottom with a tail 50px in!
@@ -403,13 +387,13 @@ describe("wonder-blocks-tooltip", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("@khanacademy/wonder-blocks-spacing");
 
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble placement="top" outOfBoundaries={true}>
+            <View>
+                <TooltipBubble
+                    placement="top"
+                    outOfBoundaries={true}
+                    style={{position: "relative"}}
+                >
                     <TooltipContent>
                         I'm hidden. So hidden. Shhhhh!
                     </TooltipContent>

@@ -15,7 +15,7 @@ export default class RefTracker {
     _lastRef: ?HTMLElement;
     _targetFn: ?(?HTMLElement) => void;
 
-    updateRef(ref: ?(React.Component<*> | Element)) {
+    updateRef = (ref: ?(React.Component<*> | Element)) => {
         if (ref) {
             // We only want to update the reference if it is
             // actually changed. Otherwise, we can trigger another render that
@@ -26,9 +26,9 @@ export default class RefTracker {
                 this._targetFn && this._targetFn(domNode);
             }
         }
-    }
+    };
 
-    setCallback(targetFn: ?(?HTMLElement) => void) {
+    setCallback = (targetFn: ?(?HTMLElement) => void) => {
         if (this._targetFn !== targetFn) {
             if (targetFn && typeof targetFn !== "function") {
                 throw new Error("targetFn must be a function");
@@ -39,5 +39,5 @@ export default class RefTracker {
                 this._targetFn(this._lastRef);
             }
         }
-    }
+    };
 }
