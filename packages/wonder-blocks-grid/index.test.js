@@ -1,5 +1,5 @@
 // @flow
-describe("@khanacademy/wonder-blocks-link", () => {
+describe("@khanacademy/wonder-blocks-grid", () => {
     test("package exports default", async () => {
         // Arrange
         const importedModule = import("./index.js");
@@ -9,7 +9,11 @@ describe("@khanacademy/wonder-blocks-link", () => {
 
         // Assert
         expect(Object.keys(result).sort()).toEqual([
-            "default",
+            "Cell",
+            "FixedWidthCell",
+            "FlexCell",
+            "Gutter",
+            "Row",
         ].sort());
     });
 });
