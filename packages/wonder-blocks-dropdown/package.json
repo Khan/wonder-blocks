@@ -1,5 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
+  "private": true,
   "version": "0.0.1",
   "design": "v1",
   "description": "Dropdown menu variants for Wonder Blocks.",
