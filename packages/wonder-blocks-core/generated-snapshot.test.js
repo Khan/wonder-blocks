@@ -12,6 +12,7 @@ import ClickableBehavior from "./components/clickable-behavior.js";
 import MediaLayout from "./components/media-layout.js";
 import NoSSR from "./components/no-ssr.js";
 import Text from "./components/text.js";
+import UniqueIDProvider from "./components/unique-id-provider.js";
 import View from "./components/view.js";
 
 describe("wonder-blocks-core", () => {
@@ -151,6 +152,120 @@ describe("wonder-blocks-core", () => {
                     </View>
                 )}
             </NoSSR>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const {
+            Body,
+            HeadingSmall,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+
+        let providerRef = null;
+
+        const renders = [];
+        const provider = (
+            <UniqueIDProvider ref={(ref) => (providerRef = ref)}>
+                {(ids) => {
+                    renders.push(ids.id("my-unique-id"));
+                    return (
+                        <View>
+                            {renders.map((id, i) => (
+                                <Body key={i}>
+                                    Render {i}: {id}
+                                </Body>
+                            ))}
+                        </View>
+                    );
+                }}
+            </UniqueIDProvider>
+        );
+
+        const onClick = () => {
+            if (providerRef) {
+                providerRef.forceUpdate();
+            }
+        };
+
+        const example = (
+            <View>
+                <View style={{flexDirection: "row"}}>
+                    <Button onClick={onClick}>Click Me to Rerender</Button>
+                    <Spring />
+                </View>
+                <Strut size={16} />
+                <HeadingSmall>The UniqueIDProvider:</HeadingSmall>
+                {provider}
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
+        const {
+            Body,
+            HeadingSmall,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+
+        let placeholderContent = null;
+        const placeholder = ({id}) => {
+            placeholderContent = (
+                <View>
+                    This is the placeholder. It gets the SSR friendly ID factory
+                    so if we ask for an ID, we get: {id("an-id")}
+                </View>
+            );
+            return placeholderContent;
+        };
+
+        const children = ({id}) => (
+            <View>
+                <HeadingSmall>The placeholder rendered as:</HeadingSmall>
+                {placeholderContent}
+                <Strut size={16} />
+                <HeadingSmall>But now we render the real deal:</HeadingSmall>
+                <View>
+                    This is the real deal. It gets the unique ID factory, so now
+                    we ask for an ID and get: {id("an-id")}
+                </View>
+            </View>
+        );
+
+        const example = (
+            <UniqueIDProvider placeholder={placeholder}>
+                {children}
+            </UniqueIDProvider>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
+        const {
+            Body,
+            HeadingSmall,
+            BodyMonospace,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+
+        const children = ({id}) => (
+            <View>
+                <Body>
+                    The id returned for "my-identifier": {id("my-identifier")}
+                </Body>
+            </View>
+        );
+
+        const example = (
+            <View>
+                <HeadingSmall>First Provider with scope: first</HeadingSmall>
+                <UniqueIDProvider scope="first">{children}</UniqueIDProvider>
+                <HeadingSmall>Second Provider with scope: second</HeadingSmall>
+                <UniqueIDProvider scope="second">{children}</UniqueIDProvider>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

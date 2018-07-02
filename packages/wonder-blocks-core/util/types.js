@@ -154,3 +154,7 @@ export type MediaSpec = {
         hasMaxWidth?: boolean,
     },
 };
+
+export interface IIdentifierFactory {
+    id(id: string): string;
+}
