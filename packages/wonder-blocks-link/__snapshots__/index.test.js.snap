@@ -28,6 +28,7 @@ exports[`LinkCore kind:primary href:# light:false disabled 1`] = `
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   Click me
 </a>
@@ -61,6 +62,7 @@ exports[`LinkCore kind:primary href:# light:false focused 1`] = `
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -94,6 +96,7 @@ exports[`LinkCore kind:primary href:# light:false hovered 1`] = `
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -127,6 +130,7 @@ exports[`LinkCore kind:primary href:# light:false pressed 1`] = `
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -160,6 +164,7 @@ exports[`LinkCore kind:primary href:# light:true disabled 1`] = `
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   Click me
 </a>
@@ -193,6 +198,7 @@ exports[`LinkCore kind:primary href:# light:true focused 1`] = `
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -226,6 +232,7 @@ exports[`LinkCore kind:primary href:# light:true hovered 1`] = `
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -259,6 +266,7 @@ exports[`LinkCore kind:primary href:# light:true pressed 1`] = `
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -292,6 +300,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false disabled 1`] 
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   Click me
 </a>
@@ -325,6 +334,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false focused 1`] =
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -358,6 +368,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false hovered 1`] =
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -391,6 +402,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false pressed 1`] =
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -424,6 +436,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true disabled 1`] =
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   Click me
 </a>
@@ -457,6 +470,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true focused 1`] = 
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -490,6 +504,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true hovered 1`] = 
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -523,6 +538,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true pressed 1`] = 
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -556,6 +572,7 @@ exports[`LinkCore kind:secondary href:# light:false disabled 1`] = `
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   Click me
 </a>
@@ -589,6 +606,7 @@ exports[`LinkCore kind:secondary href:# light:false focused 1`] = `
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -622,6 +640,7 @@ exports[`LinkCore kind:secondary href:# light:false hovered 1`] = `
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -655,6 +674,7 @@ exports[`LinkCore kind:secondary href:# light:false pressed 1`] = `
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -688,6 +708,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false disabled 1`
       "textDecoration": "none",
     }
   }
+  tabIndex={-1}
 >
   Click me
 </a>
@@ -721,6 +742,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false focused 1`]
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -754,6 +776,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false hovered 1`]
       "textDecoration": "underline currentcolor solid",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>
@@ -787,6 +810,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false pressed 1`]
       "textDecoration": "none",
     }
   }
+  tabIndex={0}
 >
   Click me
 </a>

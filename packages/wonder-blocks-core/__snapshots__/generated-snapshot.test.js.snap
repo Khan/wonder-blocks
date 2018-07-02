@@ -282,3 +282,27 @@ exports[`wonder-blocks-core example 4 1`] = `
   </div>
 </div>
 `;
+
+exports[`wonder-blocks-core example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  This is rendered only by the client for all but the first render.
+</div>
+`;

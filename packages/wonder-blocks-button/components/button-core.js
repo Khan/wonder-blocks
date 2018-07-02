@@ -82,7 +82,7 @@ export default class ButtonCore extends React.Component<Props> {
             ...handlers,
         };
 
-        if (href) {
+        if (!disabled && href) {
             if (clientNav) {
                 props.to = href;
             } else {

@@ -15,5 +15,8 @@
 
         // FlowType for flow support
         "flowtype.flow-for-vscode",
+
+        // Jest
+        "orta.vscode-jest"
     ]
 }
