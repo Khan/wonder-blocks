@@ -1,6 +1,6 @@
 This is an internal component that we use to render the stuff that appears when a tooltip shows.
 
-Note that without explicit positioning, the arrow will not be centered.
+Note that without explicit positioning, the tail will not be centered.
 
 ### Placement top
 
@@ -142,8 +142,8 @@ const popperProps = {
 </View>
 ```
 
-### Positioning the arrow
-Here we tell the arrow that it's lefthand side is at 50px.
+### Positioning the tail
+Here we tell the tail that it's lefthand side is at 50px.
 
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -174,7 +174,7 @@ const popperProps = {
  */
 <View style={{height: 50}}>
     <TooltipBubble popperProps={popperProps}>
-        <TooltipContent>I'm on the bottom with an arrow 50px in!</TooltipContent>
+        <TooltipContent>I'm on the bottom with an tail 50px in!</TooltipContent>
     </TooltipBubble>
 </View>
 ```

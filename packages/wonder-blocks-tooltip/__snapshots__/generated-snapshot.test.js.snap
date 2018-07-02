@@ -381,10 +381,21 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
 
 exports[`wonder-blocks-tooltip example 8 1`] = `
 <div
+  className=""
   style={
     Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
@@ -407,40 +418,51 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
         "pointerEvents": "none",
         "position": "relative",
         "top": -1,
-        "width": 24,
+        "width": 56,
         "zIndex": 0,
       }
     }
   >
     <svg
-      className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
+      className="arrow_oo4scr"
       height={12}
+      style={
+        Object {
+          "marginLeft": 16,
+          "marginRight": 16,
+          "paddingBottom": 8,
+        }
+      }
       width={24}
     >
       <filter
-        height="150%"
+        height="200%"
         id="tooltip-dropshadow-top-0"
         width="200%"
         x="-50%"
-        y="1%"
+        y="-50%"
       >
         <feGaussianBlur
           in="SourceAlpha"
-          stdDeviation={4}
+          stdDeviation={3}
         />
-        <feMerge>
-          <feMergeNode />
-          <feMergeNode
-            in="SourceGraphic"
+        <feComponentTransfer>
+          <feFuncA
+            slope="0.3"
+            type="linear"
           />
-        </feMerge>
+        </feComponentTransfer>
       </filter>
-      <polyline
-        fill="rgba(33,36,44,0.16)"
-        filter="url(#tooltip-dropshadow-top-0)"
-        points="0,0 12,12 24,0"
-        stroke="rgba(33,36,44,0.32)"
-      />
+      <g
+        transform="translate(0,5.5)"
+      >
+        <polyline
+          fill="rgba(33,36,44,0.16)"
+          filter="url(#tooltip-dropshadow-top-0)"
+          points="0,0 12,12 24,0"
+          stroke="rgba(33,36,44,0.32)"
+        />
+      </g>
       <polyline
         fill="#ffffff"
         points="0,0 12,12 24,0"
@@ -458,27 +480,236 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
     </svg>
   </div>
   <div
+    className=""
     style={
       Object {
-        "backgroundColor": "red",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
         "height": 4,
-        "width": 24,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "bisque",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "green",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "bisque",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
 </div>
 `;
 
 exports[`wonder-blocks-tooltip example 9 1`] = `
 <div
+  className=""
   style={
     Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row-reverse",
-      "justifyContent": "flex-end",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "bisque",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 7,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "green",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 24,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "bisque",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 7,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <div
     className=""
     data-placement="right"
@@ -490,48 +721,59 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
-        "height": 24,
+        "height": 38,
+        "left": 1,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
         "position": "relative",
-        "right": -1,
         "width": 20,
         "zIndex": 0,
       }
     }
   >
     <svg
-      className="arrow_oo4scr-o_O-arrow-right_14846yz"
+      className="arrow_oo4scr"
       height={24}
+      style={
+        Object {
+          "marginBottom": 7,
+          "marginTop": 7,
+          "paddingLeft": 8,
+        }
+      }
       width={12}
     >
       <filter
-        height="150%"
+        height="200%"
         id="tooltip-dropshadow-right-1"
-        width="99%"
-        x={undefined}
-        y="50%"
+        width="200%"
+        x="-100%"
+        y="-50%"
       >
         <feGaussianBlur
           in="SourceAlpha"
-          stdDeviation={4}
+          stdDeviation={3}
         />
-        <feMerge>
-          <feMergeNode />
-          <feMergeNode
-            in="SourceGraphic"
+        <feComponentTransfer>
+          <feFuncA
+            slope="0.3"
+            type="linear"
           />
-        </feMerge>
+        </feComponentTransfer>
       </filter>
-      <polyline
-        fill="rgba(33,36,44,0.16)"
-        filter="url(#tooltip-dropshadow-right-1)"
-        points="12,0 0,12 12,24"
-        stroke="rgba(33,36,44,0.32)"
-      />
+      <g
+        transform="translate(-1,5.5)"
+      >
+        <polyline
+          fill="rgba(33,36,44,0.16)"
+          filter="url(#tooltip-dropshadow-right-1)"
+          points="12,0 0,12 12,24"
+          stroke="rgba(33,36,44,0.32)"
+        />
+      </g>
       <polyline
         fill="#ffffff"
         points="12,0 0,12 12,24"
@@ -548,27 +790,133 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
       />
     </svg>
   </div>
-  <div
-    style={
-      Object {
-        "backgroundColor": "red",
-        "height": 24,
-        "width": 4,
-      }
-    }
-  />
 </div>
 `;
 
 exports[`wonder-blocks-tooltip example 10 1`] = `
 <div
+  className=""
   style={
     Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "column-reverse",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "height": 4,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "bisque",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "green",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "bisque",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <div
     className=""
     data-placement="bottom"
@@ -577,7 +925,6 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
-        "bottom": -1,
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
@@ -588,14 +935,22 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
         "padding": 0,
         "pointerEvents": "none",
         "position": "relative",
-        "width": 24,
+        "top": 1,
+        "width": 56,
         "zIndex": 0,
       }
     }
   >
     <svg
-      className="arrow_oo4scr-o_O-arrow-bottom_v72lrv"
+      className="arrow_oo4scr"
       height={12}
+      style={
+        Object {
+          "marginLeft": 16,
+          "marginRight": 16,
+          "paddingTop": 8,
+        }
+      }
       width={24}
     >
       <polyline
@@ -614,24 +969,26 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
       />
     </svg>
   </div>
-  <div
-    style={
-      Object {
-        "backgroundColor": "red",
-        "height": 4,
-        "width": 24,
-      }
-    }
-  />
 </div>
 `;
 
 exports[`wonder-blocks-tooltip example 11 1`] = `
 <div
+  className=""
   style={
     Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
   }
 >
@@ -646,7 +1003,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
-        "height": 24,
+        "height": 38,
         "left": -1,
         "margin": 0,
         "minHeight": 0,
@@ -660,34 +1017,45 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
     }
   >
     <svg
-      className="arrow_oo4scr-o_O-arrow-left_sdqx8w"
+      className="arrow_oo4scr"
       height={24}
+      style={
+        Object {
+          "marginBottom": 7,
+          "marginTop": 7,
+          "paddingRight": 8,
+        }
+      }
       width={12}
     >
       <filter
-        height="150%"
+        height="200%"
         id="tooltip-dropshadow-left-2"
-        width="105%"
-        x="1%"
-        y="50%"
+        width="200%"
+        x="0%"
+        y="-50%"
       >
         <feGaussianBlur
           in="SourceAlpha"
-          stdDeviation={4}
+          stdDeviation={3}
         />
-        <feMerge>
-          <feMergeNode />
-          <feMergeNode
-            in="SourceGraphic"
+        <feComponentTransfer>
+          <feFuncA
+            slope="0.3"
+            type="linear"
           />
-        </feMerge>
+        </feComponentTransfer>
       </filter>
-      <polyline
-        fill="rgba(33,36,44,0.16)"
-        filter="url(#tooltip-dropshadow-left-2)"
-        points="0,0 12,12 0,24"
-        stroke="rgba(33,36,44,0.32)"
-      />
+      <g
+        transform="translate(1,5.5)"
+      >
+        <polyline
+          fill="rgba(33,36,44,0.16)"
+          filter="url(#tooltip-dropshadow-left-2)"
+          points="0,0 12,12 0,24"
+          stroke="rgba(33,36,44,0.32)"
+        />
+      </g>
       <polyline
         fill="#ffffff"
         points="0,0 12,12 0,24"
@@ -705,14 +1073,109 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
     </svg>
   </div>
   <div
+    className=""
     style={
       Object {
-        "backgroundColor": "red",
-        "height": 24,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
         "width": 4,
+        "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "bisque",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 7,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "green",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 24,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "bisque",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 7,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
 </div>
 `;
 
@@ -774,6 +1237,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
+          "justifyContent": "center",
           "margin": 0,
           "maxWidth": 472,
           "minHeight": 0,
@@ -840,41 +1304,52 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": 0,
-          "width": 24,
+          "top": -1,
+          "width": 56,
           "zIndex": 0,
         }
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
+        className="arrow_oo4scr"
         height={12}
+        style={
+          Object {
+            "marginLeft": 16,
+            "marginRight": 16,
+            "paddingBottom": 8,
+          }
+        }
         width={24}
       >
         <filter
-          height="150%"
+          height="200%"
           id="tooltip-dropshadow-top-3"
           width="200%"
           x="-50%"
-          y="1%"
+          y="-50%"
         >
           <feGaussianBlur
             in="SourceAlpha"
-            stdDeviation={4}
+            stdDeviation={3}
           />
-          <feMerge>
-            <feMergeNode />
-            <feMergeNode
-              in="SourceGraphic"
+          <feComponentTransfer>
+            <feFuncA
+              slope="0.3"
+              type="linear"
             />
-          </feMerge>
+          </feComponentTransfer>
         </filter>
-        <polyline
-          fill="rgba(33,36,44,0.16)"
-          filter="url(#tooltip-dropshadow-top-3)"
-          points="0,0 12,12 24,0"
-          stroke="rgba(33,36,44,0.32)"
-        />
+        <g
+          transform="translate(0,5.5)"
+        >
+          <polyline
+            fill="rgba(33,36,44,0.16)"
+            filter="url(#tooltip-dropshadow-top-3)"
+            points="0,0 12,12 24,0"
+            stroke="rgba(33,36,44,0.32)"
+          />
+        </g>
         <polyline
           fill="#ffffff"
           points="0,0 12,12 24,0"
@@ -953,6 +1428,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
+          "justifyContent": "center",
           "margin": 0,
           "maxWidth": 472,
           "minHeight": 0,
@@ -1011,15 +1487,14 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
-          "height": 24,
-          "left": 0,
+          "height": 38,
+          "left": 1,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "right": -1,
           "top": 0,
           "width": 20,
           "zIndex": 0,
@@ -1027,34 +1502,45 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-right_14846yz"
+        className="arrow_oo4scr"
         height={24}
+        style={
+          Object {
+            "marginBottom": 7,
+            "marginTop": 7,
+            "paddingLeft": 8,
+          }
+        }
         width={12}
       >
         <filter
-          height="150%"
+          height="200%"
           id="tooltip-dropshadow-right-4"
-          width="99%"
-          x={undefined}
-          y="50%"
+          width="200%"
+          x="-100%"
+          y="-50%"
         >
           <feGaussianBlur
             in="SourceAlpha"
-            stdDeviation={4}
+            stdDeviation={3}
           />
-          <feMerge>
-            <feMergeNode />
-            <feMergeNode
-              in="SourceGraphic"
+          <feComponentTransfer>
+            <feFuncA
+              slope="0.3"
+              type="linear"
             />
-          </feMerge>
+          </feComponentTransfer>
         </filter>
-        <polyline
-          fill="rgba(33,36,44,0.16)"
-          filter="url(#tooltip-dropshadow-right-4)"
-          points="12,0 0,12 12,24"
-          stroke="rgba(33,36,44,0.32)"
-        />
+        <g
+          transform="translate(-1,5.5)"
+        >
+          <polyline
+            fill="rgba(33,36,44,0.16)"
+            filter="url(#tooltip-dropshadow-right-4)"
+            points="12,0 0,12 12,24"
+            stroke="rgba(33,36,44,0.32)"
+          />
+        </g>
         <polyline
           fill="#ffffff"
           points="12,0 0,12 12,24"
@@ -1133,6 +1619,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
+          "justifyContent": "center",
           "margin": 0,
           "maxWidth": 472,
           "minHeight": 0,
@@ -1188,7 +1675,6 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
-          "bottom": -1,
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
@@ -1200,15 +1686,22 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": 0,
-          "width": 24,
+          "top": 1,
+          "width": 56,
           "zIndex": 0,
         }
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-bottom_v72lrv"
+        className="arrow_oo4scr"
         height={12}
+        style={
+          Object {
+            "marginLeft": 16,
+            "marginRight": 16,
+            "paddingTop": 8,
+          }
+        }
         width={24}
       >
         <polyline
@@ -1289,6 +1782,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
+          "justifyContent": "center",
           "margin": 0,
           "maxWidth": 472,
           "minHeight": 0,
@@ -1347,8 +1841,8 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
-          "height": 24,
-          "left": 0,
+          "height": 38,
+          "left": -1,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1362,34 +1856,45 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-left_sdqx8w"
+        className="arrow_oo4scr"
         height={24}
+        style={
+          Object {
+            "marginBottom": 7,
+            "marginTop": 7,
+            "paddingRight": 8,
+          }
+        }
         width={12}
       >
         <filter
-          height="150%"
+          height="200%"
           id="tooltip-dropshadow-left-5"
-          width="105%"
-          x="1%"
-          y="50%"
+          width="200%"
+          x="0%"
+          y="-50%"
         >
           <feGaussianBlur
             in="SourceAlpha"
-            stdDeviation={4}
+            stdDeviation={3}
           />
-          <feMerge>
-            <feMergeNode />
-            <feMergeNode
-              in="SourceGraphic"
+          <feComponentTransfer>
+            <feFuncA
+              slope="0.3"
+              type="linear"
             />
-          </feMerge>
+          </feComponentTransfer>
         </filter>
-        <polyline
-          fill="rgba(33,36,44,0.16)"
-          filter="url(#tooltip-dropshadow-left-5)"
-          points="0,0 12,12 0,24"
-          stroke="rgba(33,36,44,0.32)"
-        />
+        <g
+          transform="translate(1,5.5)"
+        >
+          <polyline
+            fill="rgba(33,36,44,0.16)"
+            filter="url(#tooltip-dropshadow-left-5)"
+            points="0,0 12,12 0,24"
+            stroke="rgba(33,36,44,0.32)"
+          />
+        </g>
         <polyline
           fill="#ffffff"
           points="0,0 12,12 0,24"
@@ -1468,6 +1973,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
+          "justifyContent": "center",
           "margin": 0,
           "maxWidth": 472,
           "minHeight": 0,
@@ -1511,7 +2017,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
             }
           }
         >
-          I'm on the bottom with an arrow 50px in!
+          I'm on the bottom with an tail 50px in!
         </span>
       </div>
     </div>
@@ -1534,41 +2040,52 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": 0,
-          "width": 24,
+          "top": -1,
+          "width": 56,
           "zIndex": 0,
         }
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
+        className="arrow_oo4scr"
         height={12}
+        style={
+          Object {
+            "marginLeft": 16,
+            "marginRight": 16,
+            "paddingBottom": 8,
+          }
+        }
         width={24}
       >
         <filter
-          height="150%"
+          height="200%"
           id="tooltip-dropshadow-top-6"
           width="200%"
           x="-50%"
-          y="1%"
+          y="-50%"
         >
           <feGaussianBlur
             in="SourceAlpha"
-            stdDeviation={4}
+            stdDeviation={3}
           />
-          <feMerge>
-            <feMergeNode />
-            <feMergeNode
-              in="SourceGraphic"
+          <feComponentTransfer>
+            <feFuncA
+              slope="0.3"
+              type="linear"
             />
-          </feMerge>
+          </feComponentTransfer>
         </filter>
-        <polyline
-          fill="rgba(33,36,44,0.16)"
-          filter="url(#tooltip-dropshadow-top-6)"
-          points="0,0 12,12 24,0"
-          stroke="rgba(33,36,44,0.32)"
-        />
+        <g
+          transform="translate(0,5.5)"
+        >
+          <polyline
+            fill="rgba(33,36,44,0.16)"
+            filter="url(#tooltip-dropshadow-top-6)"
+            points="0,0 12,12 24,0"
+            stroke="rgba(33,36,44,0.32)"
+          />
+        </g>
         <polyline
           fill="#ffffff"
           points="0,0 12,12 24,0"
@@ -1650,6 +2167,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
+          "justifyContent": "center",
           "margin": 0,
           "maxWidth": 472,
           "minHeight": 0,
@@ -1716,41 +2234,52 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": 0,
-          "width": 24,
+          "top": -1,
+          "width": 56,
           "zIndex": 0,
         }
       }
     >
       <svg
-        className="arrow_oo4scr-o_O-arrow-top_1itpe9r"
+        className="arrow_oo4scr"
         height={12}
+        style={
+          Object {
+            "marginLeft": 16,
+            "marginRight": 16,
+            "paddingBottom": 8,
+          }
+        }
         width={24}
       >
         <filter
-          height="150%"
+          height="200%"
           id="tooltip-dropshadow-top-7"
           width="200%"
           x="-50%"
-          y="1%"
+          y="-50%"
         >
           <feGaussianBlur
             in="SourceAlpha"
-            stdDeviation={4}
+            stdDeviation={3}
           />
-          <feMerge>
-            <feMergeNode />
-            <feMergeNode
-              in="SourceGraphic"
+          <feComponentTransfer>
+            <feFuncA
+              slope="0.3"
+              type="linear"
             />
-          </feMerge>
+          </feComponentTransfer>
         </filter>
-        <polyline
-          fill="rgba(33,36,44,0.16)"
-          filter="url(#tooltip-dropshadow-top-7)"
-          points="0,0 12,12 24,0"
-          stroke="rgba(33,36,44,0.32)"
-        />
+        <g
+          transform="translate(0,5.5)"
+        >
+          <polyline
+            fill="rgba(33,36,44,0.16)"
+            filter="url(#tooltip-dropshadow-top-7)"
+            points="0,0 12,12 24,0"
+            stroke="rgba(33,36,44,0.32)"
+          />
+        </g>
         <polyline
           fill="#ffffff"
           points="0,0 12,12 24,0"
