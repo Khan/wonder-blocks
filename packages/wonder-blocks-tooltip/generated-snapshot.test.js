@@ -10,7 +10,7 @@ import renderer from "react-test-renderer";
 jest.mock("react-dom");
 import Tooltip from "./components/tooltip.js";
 import TooltipContent from "./components/tooltip-content.js";
-import TooltipArrow from "./components/tooltip-arrow.js";
+import TooltipTail from "./components/tooltip-tail.js";
 import TooltipBubble from "./components/tooltip-bubble.js";
 
 describe("wonder-blocks-tooltip", () => {
@@ -165,47 +165,145 @@ describe("wonder-blocks-tooltip", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 8", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Spring} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const styles = StyleSheet.create({
+            guideContainer: {
+                flexDirection: "row",
+                height: Spacing.xxxSmall,
+            },
+            padding: {
+                backgroundColor: "bisque",
+                width: Spacing.medium,
+            },
+            tail: {
+                backgroundColor: "green",
+                width: Spacing.large,
+            },
+        });
+
         const example = (
-            <div style={{display: "flex", flexDirection: "column"}}>
-                <TooltipArrow placement="top" />
-                <div style={{backgroundColor: "red", width: 24, height: 4}} />
-            </div>
+            <View>
+                <TooltipTail placement="top" />
+                <View style={styles.guideContainer}>
+                    <View key="padleft" style={styles.padding} />
+                    <View key="tail" style={styles.tail} />
+                    <View key="padright" style={styles.padding} />
+                    <Spring key="spring" />
+                </View>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 9", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Spring} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const styles = StyleSheet.create({
+            exampleContainer: {
+                flexDirection: "row",
+            },
+            guideContainer: {
+                width: Spacing.xxxSmall,
+            },
+            padding: {
+                backgroundColor: "bisque",
+                height: 7,
+            },
+            tail: {
+                backgroundColor: "green",
+                height: Spacing.large,
+            },
+        });
+
         const example = (
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row-reverse",
-                    justifyContent: "flex-end",
-                }}
-            >
-                <TooltipArrow placement="right" />
-                <div style={{backgroundColor: "red", width: 4, height: 24}} />
-            </div>
+            <View style={styles.exampleContainer}>
+                <View style={styles.guideContainer}>
+                    <View key="padleft" style={styles.padding} />
+                    <View key="tail" style={styles.tail} />
+                    <View key="padright" style={styles.padding} />
+                    <Spring key="spring" />
+                </View>
+                <TooltipTail placement="right" />
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 10", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Spring} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const styles = StyleSheet.create({
+            guideContainer: {
+                flexDirection: "row",
+                height: Spacing.xxxSmall,
+            },
+            padding: {
+                backgroundColor: "bisque",
+                width: Spacing.medium,
+            },
+            tail: {
+                backgroundColor: "green",
+                width: Spacing.large,
+            },
+        });
+
         const example = (
-            <div style={{display: "flex", flexDirection: "column-reverse"}}>
-                <TooltipArrow placement="bottom" />
-                <div style={{backgroundColor: "red", width: 24, height: 4}} />
-            </div>
+            <View>
+                <View style={styles.guideContainer}>
+                    <View key="padleft" style={styles.padding} />
+                    <View key="tail" style={styles.tail} />
+                    <View key="padright" style={styles.padding} />
+                    <Spring key="spring" />
+                </View>
+                <TooltipTail placement="bottom" />
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 11", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Spring} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const styles = StyleSheet.create({
+            exampleContainer: {
+                flexDirection: "row",
+            },
+            guideContainer: {
+                width: Spacing.xxxSmall,
+            },
+            padding: {
+                backgroundColor: "bisque",
+                height: 7,
+            },
+            tail: {
+                backgroundColor: "green",
+                height: Spacing.large,
+            },
+        });
+
         const example = (
-            <div style={{display: "flex", flexDirection: "row"}}>
-                <TooltipArrow placement="left" />
-                <div style={{backgroundColor: "red", width: 4, height: 24}} />
-            </div>
+            <View style={styles.exampleContainer}>
+                <TooltipTail placement="left" />
+                <View style={styles.guideContainer}>
+                    <View key="padleft" style={styles.padding} />
+                    <View key="tail" style={styles.tail} />
+                    <View key="padright" style={styles.padding} />
+                    <Spring key="spring" />
+                </View>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
@@ -385,7 +483,7 @@ describe("wonder-blocks-tooltip", () => {
             <View style={{height: 50}}>
                 <TooltipBubble popperProps={popperProps}>
                     <TooltipContent>
-                        I'm on the bottom with an arrow 50px in!
+                        I'm on the bottom with an tail 50px in!
                     </TooltipContent>
                 </TooltipBubble>
             </View>

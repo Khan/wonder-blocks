@@ -15,7 +15,7 @@
  * - TooltipPopper (provides positioning for the callout using react-popper)
  *   - TooltipBubble (renders the callout borders, background and shadow)
  *     - TooltipContent (renders the callout content; the actual information)
- *     - TooltipArrow (renders the callout tail and shadow that points from the
+ *     - TooltipTail (renders the callout tail and shadow that points from the
  *                     callout to the anchor content)
  */
 import * as React from "react";
