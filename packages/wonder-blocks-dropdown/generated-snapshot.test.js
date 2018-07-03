@@ -12,6 +12,7 @@ import ActionItem from "./components/action-item.js";
 import SelectItem from "./components/select-item.js";
 import SeparatorItem from "./components/separator-item.js";
 import SelectBox from "./components/select-box.js";
+import SingleSelectMenu from "./components/single-select-menu.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
@@ -109,7 +110,7 @@ describe("wonder-blocks-dropdown", () => {
                         disabled={true}
                         value={"5"}
                         variant={"checkbox"}
-                        onToggle={(v, s) =>
+                        onToggle={(v, l, s) =>
                             console.log(`would now be ${s.toString()}`)
                         }
                     />
@@ -202,6 +203,265 @@ describe("wonder-blocks-dropdown", () => {
                 </SelectBox>
             </View>
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                height: 180,
+            },
+        });
+
+        class ExampleWithPlaceholder extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValue: null,
+                };
+            }
+
+            handleChange(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelectMenu
+                        items={[
+                            {
+                                label: "Banana wrapped in a peel",
+                                value: "banana",
+                            },
+                            {
+                                label: "Apple",
+                                value: "apple",
+                            },
+                            {
+                                label: "Grape",
+                                value: "grape",
+                            },
+                        ]}
+                        light={false}
+                        onChange={(selected) => this.handleChange(selected)}
+                        placeholder={"Choose a fruit"}
+                        selectedValue={this.state.selectedValue}
+                        style={{
+                            width: 170,
+                            maxWidth: 170,
+                        }}
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row]}>
+                <ExampleWithPlaceholder />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                height: 180,
+            },
+        });
+
+        class ExampleWithStartingSelection extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValue: "banana",
+                };
+            }
+
+            handleChange(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelectMenu
+                        items={[
+                            {
+                                label: "Banana juice!!!",
+                                value: "banana",
+                            },
+                            {
+                                disabled: true,
+                                label: "Apple juice!!!",
+                                value: "apple",
+                            },
+                            {
+                                label: "Grape juice!!!",
+                                value: "grape",
+                            },
+                        ]}
+                        onChange={(selected) => this.handleChange(selected)}
+                        placeholder={"Choose a juice"}
+                        selectedValue={this.state.selectedValue}
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row]}>
+                <ExampleWithStartingSelection />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                height: 180,
+            },
+        });
+
+        class DisabledExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValue: "banana",
+                };
+            }
+
+            handleChange(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelectMenu
+                        disabled={true}
+                        items={[
+                            {
+                                label: "Banana juice!!!",
+                                value: "banana",
+                            },
+                            {
+                                label: "Apple juice!!!",
+                                value: "apple",
+                            },
+                            {
+                                label: "Grape juice!!!",
+                                value: "grape",
+                            },
+                        ]}
+                        onChange={(selected) => this.handleChange(selected)}
+                        placeholder={"Choose a fruit"}
+                        selectedValue={this.state.selectedValue}
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row]}>
+                <DisabledExample />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
+        const React = require("react");
+        const Color = require("@khanacademy/wonder-blocks-color");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            darkBackgroundWrapper: {
+                backgroundColor: Color.default.darkBlue,
+                width: 350,
+                height: 200,
+                paddingRight: 10,
+                paddingTop: 10,
+            },
+        });
+
+        class LightRightAlignedExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValue: null,
+                };
+            }
+
+            handleChange(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelectMenu
+                        items={[
+                            {
+                                label: "Regular milk tea with boba",
+                                value: "regular",
+                            },
+                            {
+                                label: "Wintermelon milk tea with boba",
+                                value: "wintermelon",
+                            },
+                            {
+                                label: "Taro milk tea, half sugar",
+                                value: "taro",
+                            },
+                        ]}
+                        light={true}
+                        onChange={(selected) => this.handleChange(selected)}
+                        placeholder={"Boba order"}
+                        selectedValue={this.state.selectedValue}
+                        alignment={"right"}
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row]}>
+                <View style={[styles.darkBackgroundWrapper]}>
+                    <LightRightAlignedExample />
+                </View>
+            </View>
+        );
+
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
