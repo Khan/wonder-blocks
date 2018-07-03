@@ -3445,7 +3445,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           Object {
             "alignItems": "stretch",
             "backgroundColor": "#ffffff",
-            "border": "solid 1px rgba(33,36,44,0.16)",
+            "border": "none",
             "borderRadius": 4,
             "borderStyle": "solid",
             "borderWidth": 0,

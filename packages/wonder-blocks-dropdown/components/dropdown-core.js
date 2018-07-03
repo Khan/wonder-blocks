@@ -32,6 +32,12 @@ type DropdownCoreProps = {
     alignment?: "left" | "right",
 
     /**
+     * Whether to display the "light" version of this component instead, for
+     * use when the item is used on a dark background.
+     */
+    light?: boolean,
+
+    /**
      * Optional styling to add to dropdown menu.
      */
     style?: any,
@@ -43,7 +49,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
     };
 
     render() {
-        const {alignment, items, open, opener, style} = this.props;
+        const {alignment, items, light, open, opener, style} = this.props;
 
         return (
             <View
@@ -55,7 +61,12 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
                 {opener}
                 {items && (
                     <View
-                        style={[styles.dropdown, !open && styles.hide, style]}
+                        style={[
+                            styles.dropdown,
+                            !open && styles.hide,
+                            light && styles.light,
+                            style,
+                        ]}
                     >
                         {items}
                     </View>
@@ -89,6 +100,11 @@ const styles = StyleSheet.create({
         // webapp. Perhaps wonderblocks will design a z-index hierarchy?
         // TODO(sophie): remove when portals are incorporated
         zIndex: 1000,
+    },
+
+    light: {
+        // Pretty much just remove the border
+        border: "none",
     },
 
     hide: {
