@@ -523,25 +523,6 @@ exports[`wonder-blocks-core example 6 1`] = `
       Render 
       0
       : 
-      my-unique-id
-    </span>
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "display": "block",
-          "fontFamily": "Lato",
-          "fontSize": 16,
-          "fontWeight": 400,
-          "lineHeight": "22px",
-        }
-      }
-    >
-      Render 
-      1
-      : 
       uid--0-my-unique-id
     </span>
   </div>
@@ -584,30 +565,9 @@ exports[`wonder-blocks-core example 7 1`] = `
       }
     }
   >
-    The placeholder rendered as:
+    The initial render ID:
   </h4>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    This is the placeholder. It gets the SSR friendly ID factory so if we ask for an ID, we get: 
-    an-id
-  </div>
+  an-id
   <div
     className=""
     style={
@@ -648,30 +608,9 @@ exports[`wonder-blocks-core example 7 1`] = `
       }
     }
   >
-    But now we render the real deal:
+    Subsequent ID:
   </h4>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    This is the real deal. It gets the unique ID factory, so now we ask for an ID and get: 
-    uid--1-an-id
-  </div>
+  uid--1-an-id
 </div>
 `;
 

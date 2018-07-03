@@ -2,9 +2,9 @@ The `UniqueIDProvider` component is how Wonder Blocks components obtain unique i
 
 In all but the first render, the children are rendered with the same `IIdentifierFactory` instance, ensuring that the same calls will return the same identifiers.
 
-### No placeholder
+### mockOnFirstRender absent or false
 
-When no placeholder is provided, the `children` prop is used for rendering. However, the first call uses a server-side friendly identifier factory. Note that after the initial render, each re-render will give the same identifier.
+When no `mockOnFirstRender` is `false` (the default), the `children` prop is only called after the initial render. Each call provides the same identifier factory, meaning the same identifier gets returned. Try it below.
 
 ```jsx
 const {Body, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
@@ -43,33 +43,31 @@ const onClick = () => {
 </View>
 ```
 
-### Placeholder
+### mockOnFirstRender is true
 
-When specifying a `placeholder` prop, the first render will use that to render the content, then use the `children` prop thereafter.
+When specifying `mockOnFirstRender` to be `true`, the first render will use a mock identifier factory that doesn't guarantee identifier uniqueness.
 
 ```jsx
 const {Body, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
 const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
 
-let placeholderContent = null;
-const placeholder = ({id}) => {
-    placeholderContent = (
-        <View>This is the placeholder. It gets the SSR friendly ID factory so if we ask for an ID, we get: {id("an-id")}</View>
+let firstId = null;
+
+const children = (idf) => {
+    const id = idf.id("an-id");
+    firstId = firstId || id;
+    return (
+        <View>
+            <HeadingSmall>The initial render ID:</HeadingSmall>
+            {firstId}
+            <Strut size={16} />
+            <HeadingSmall>Subsequent ID:</HeadingSmall>
+            {id}
+        </View>
     );
-    return placeholderContent;
 };
 
-const children = ({id}) => (
-    <View>
-        <HeadingSmall>The placeholder rendered as:</HeadingSmall>
-        {placeholderContent}
-        <Strut size={16} />
-        <HeadingSmall>But now we render the real deal:</HeadingSmall>
-        <View>This is the real deal. It gets the unique ID factory, so now we ask for an ID and get: {id("an-id")}</View>
-    </View>
-);
-
-<UniqueIDProvider placeholder={placeholder}>
+<UniqueIDProvider mockOnFirstRender={true}>
     {children}
 </UniqueIDProvider>
 ```

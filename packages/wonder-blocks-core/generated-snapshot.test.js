@@ -211,32 +211,24 @@ describe("wonder-blocks-core", () => {
         } = require("@khanacademy/wonder-blocks-typography");
         const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
 
-        let placeholderContent = null;
-        const placeholder = ({id}) => {
-            placeholderContent = (
+        let firstId = null;
+
+        const children = (idf) => {
+            const id = idf.id("an-id");
+            firstId = firstId || id;
+            return (
                 <View>
-                    This is the placeholder. It gets the SSR friendly ID factory
-                    so if we ask for an ID, we get: {id("an-id")}
+                    <HeadingSmall>The initial render ID:</HeadingSmall>
+                    {firstId}
+                    <Strut size={16} />
+                    <HeadingSmall>Subsequent ID:</HeadingSmall>
+                    {id}
                 </View>
             );
-            return placeholderContent;
         };
 
-        const children = ({id}) => (
-            <View>
-                <HeadingSmall>The placeholder rendered as:</HeadingSmall>
-                {placeholderContent}
-                <Strut size={16} />
-                <HeadingSmall>But now we render the real deal:</HeadingSmall>
-                <View>
-                    This is the real deal. It gets the unique ID factory, so now
-                    we ask for an ID and get: {id("an-id")}
-                </View>
-            </View>
-        );
-
         const example = (
-            <UniqueIDProvider placeholder={placeholder}>
+            <UniqueIDProvider mockOnFirstRender={true}>
                 {children}
             </UniqueIDProvider>
         );
