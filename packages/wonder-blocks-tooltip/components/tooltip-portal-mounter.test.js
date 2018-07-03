@@ -12,8 +12,7 @@ import {
 
 import {TooltipPortalAttributeName} from "../util/constants.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
-import TooltipBubble from "./tooltip-bubble.js";
-import TooltipContent from "./tooltip-content.js";
+import TooltipPopper from "./tooltip-popper.js";
 
 import type {Placement} from "../util/types.js";
 
@@ -52,17 +51,12 @@ class TestHarness extends React.Component<TestHarnessProps, TestHarnessState> {
 
     render() {
         const anchor = <View ref={(r) => this.updateAnchorRef(r)}>Anchor</View>;
+        const fakePopper = (((
+            <View ref={(r) => this.props.refChild(r)}>Popper</View>
+        ): any): React.Element<typeof TooltipPopper>);
         return (
             <TooltipPortalMounter anchor={anchor}>
-                {this.props.hasBubble ? (
-                    <TooltipBubble
-                        placement={this.props.placement}
-                        ref={(r) => this.props.refChild(r)}
-                        anchorElement={this.state.anchor}
-                    >
-                        <TooltipContent>Tooltip!</TooltipContent>
-                    </TooltipBubble>
-                ) : null}
+                {this.props.hasBubble ? fakePopper : null}
             </TooltipPortalMounter>
         );
     }

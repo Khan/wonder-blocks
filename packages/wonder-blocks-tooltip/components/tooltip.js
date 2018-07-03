@@ -1,4 +1,23 @@
 // @flow
+/**
+ * The Tooltip component provides the means to anchor some additional
+ * information to some content. The additional information is shown in a
+ * callout that hovers above the page content. This additional information is
+ * invoked by hovering over the anchored content, or focusing all or part of the
+ * anchored content.
+ *
+ * This component is structured as follows:
+ *
+ * Tooltip (this component)
+ * - TooltipAnchor (provides hover/focus behaviors on anchored content)
+ *   - TooltipPortalMounter (creates portal into which the callout is rendered)
+ * --------------------------- [PORTAL BOUNDARY] ------------------------------
+ * - TooltipPopper (provides positioning for the callout using react-popper)
+ *   - TooltipBubble (renders the callout borders, background and shadow)
+ *     - TooltipContent (renders the callout content; the actual information)
+ *     - TooltipTail (renders the callout tail and shadow that points from the
+ *                     callout to the anchor content)
+ */
 import * as React from "react";
 
 import {Text} from "@khanacademy/wonder-blocks-core";
@@ -7,6 +26,7 @@ import TooltipPortalMounter from "./tooltip-portal-mounter";
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
+import TooltipPopper from "./tooltip-popper.js";
 
 import type {Placement} from "../util/types.js";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
@@ -80,8 +100,28 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
+    _renderPopper(active: boolean) {
+        if (!active) {
+            return null;
+        }
+
+        const {placement} = this.props;
+        return (
+            <TooltipPopper
+                anchorElement={this.state.anchorElement}
+                placement={placement || Tooltip.defaultProps.placement}
+            >
+                {(props) => (
+                    <TooltipBubble popperProps={props}>
+                        {this._renderBubbleContent()}
+                    </TooltipBubble>
+                )}
+            </TooltipPopper>
+        );
+    }
+
     render() {
-        const {forceAnchorFocusivity, placement} = this.props;
+        const {forceAnchorFocusivity} = this.props;
         return (
             <TooltipAnchor
                 forceAnchorFocusivity={forceAnchorFocusivity}
@@ -89,16 +129,7 @@ export default class Tooltip extends React.Component<Props, State> {
             >
                 {(active) => (
                     <TooltipPortalMounter anchor={this._renderAnchorElement()}>
-                        {active ? (
-                            <TooltipBubble
-                                placement={
-                                    placement || Tooltip.defaultProps.placement
-                                }
-                                anchorElement={this.state.anchorElement}
-                            >
-                                {this._renderBubbleContent()}
-                            </TooltipBubble>
-                        ) : null}
+                        {this._renderPopper(active)}
                     </TooltipPortalMounter>
                 )}
             </TooltipAnchor>

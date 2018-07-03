@@ -5,7 +5,7 @@ import * as ReactDOM from "react-dom";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
 import {TooltipPortalAttributeName} from "../util/constants.js";
-import TooltipBubble from "./tooltip-bubble.js";
+import TooltipPopper from "./tooltip-popper.js";
 
 type Props = {|
     // The child element to be rendered within the main React tree.
@@ -13,7 +13,7 @@ type Props = {|
     anchor: React.Element<*>,
 
     // The tooltip that will be rendered in the portal.
-    children: ?React.Element<typeof TooltipBubble>,
+    children: ?React.Element<typeof TooltipPopper>,
 |};
 
 /**
@@ -28,27 +28,33 @@ type Props = {|
  */
 export default class TooltipPortalMounter extends React.Component<Props> {
     _destination: ?Node;
-    _timeoutId: ?number;
     _rendered: boolean;
+
+    componentDidMount() {
+        // There's a slight chance we have something to mount on our very first
+        // render, so let's try it.
+        this._maybeDoMount();
+    }
+
+    componentDidUpdate() {
+        // Our content may have changed, so let's re-render it.
+        // If the portal isn't mounted yet, this will take care of that.
+        this._refreshPortalContent();
+    }
 
     /**
      * When we unmount, we also unmount our children, and the new child of
      * `document.body` we created.
      */
     componentWillUnmount() {
-        this._clearMountTimeout();
         this._doUnmount();
     }
 
-    _clearMountTimeout() {
-        const timeoutId = this._timeoutId;
-        this._timeoutId = undefined;
-        if (timeoutId != null) {
-            clearTimeout(timeoutId);
-        }
-    }
-
-    _doMount() {
+    _maybeDoMount() {
+        // We're not going to mount anything if we no children or we haven't
+        // rendered yet. That's because the first step in mounting the portal
+        // is to get the anchor node, which is what we render in the `render()`
+        // method.
         const {children} = this.props;
         if (!this._rendered || !children) {
             return;
@@ -77,23 +83,17 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         }
 
         // Create a new destination node, and add it to the root.
-        // The data attribute is used in unit tests, to identify which
-        // ancestors of `children` were created by `TooltipPortal`.
+        // The data attribute is to identify which the mounted portal in
+        // unit tests.
         const destination = document.createElement("div");
         destination.setAttribute(TooltipPortalAttributeName, "");
         root.appendChild(destination);
 
-        // Render the tooltip into the destination node.
-        // We have to render the subtree like this so that everything works as expected.
-        // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
-        ReactDOM.unstable_renderSubtreeIntoContainer(
-            this,
-            children,
-            destination,
-        );
-
-        // Save the destination node, so we can remove it on unmount.
+        // Save the destination node, so we can re-use it.
         this._destination = destination;
+
+        // Render the tooltip into the destination node.
+        this._refreshPortalContent();
     }
 
     _doUnmount() {
@@ -111,24 +111,44 @@ export default class TooltipPortalMounter extends React.Component<Props> {
         destination.parentNode.removeChild(destination);
     }
 
-    _timeoutDoMount() {
-        this._clearMountTimeout();
-        this._timeoutId = setTimeout(() => this._doMount(), 0);
-    }
+    _refreshPortalContent() {
+        if (!this._destination) {
+            this._maybeDoMount();
+            return;
+        }
 
-    _timeoutDoUnmount() {
-        this._clearMountTimeout();
-        this._timeoutId = setTimeout(() => this._doUnmount(), 0);
+        const {children} = this.props;
+        if (!children) {
+            // We don't have any portal content, so let's dismantle the portal.
+            this._doUnmount();
+            return;
+        } else {
+            // If we get here, the content of the bubble changed, so let's
+            // remove what we had and render something new. This way, we reuse
+            // the portal we have mounted, rather than take the time to
+            // dismantle it and mount a new one.
+            //
+            // Not certain this is necessary, or if the later render call
+            // handles this, but it seems appropriate and is certainly clearer
+            // to do it here.
+            ReactDOM.unmountComponentAtNode(this._destination);
+        }
+
+        // Now we can render the portal content.
+        // We have to render the subtree like this so that everything works as
+        // expected.
+        // See https://github.com/tajo/react-portal/blob/master/src/LegacyPortal.js
+        ReactDOM.unstable_renderSubtreeIntoContainer(
+            this,
+            children,
+            this._destination,
+        );
     }
 
     render() {
-        const {children, anchor} = this.props;
+        const {anchor} = this.props;
+
         this._rendered = true;
-        if (children) {
-            this._timeoutDoMount();
-        } else {
-            this._timeoutDoUnmount();
-        }
         return anchor;
     }
 }

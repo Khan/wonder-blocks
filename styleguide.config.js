@@ -6,26 +6,19 @@ module.exports = {
     assetsDir: "static",
     sections: [
         {
-            name: "Typography",
-            content: "packages/wonder-blocks-typography/docs.md",
-            components: "packages/wonder-blocks-typography/components/*.js",
+            private: true,
+            name: "Wonder Blocks Documentation",
+            description:
+                "This section only appears to developers. If you want to include content that only appears in the development server, add `private: true` to the section configuration in `styleguide.config.js`.",
+        },
+        {
+            name: "Button",
+            content: "packages/wonder-blocks-button/docs.md",
+            components: "packages/wonder-blocks-button/components/button.js",
         },
         {
             name: "Color",
             content: "packages/wonder-blocks-color/docs.md",
-        },
-        {
-            name: "Spacing",
-            content: "packages/wonder-blocks-spacing/docs.md",
-        },
-        {
-            name: "Layout",
-            content: "packages/wonder-blocks-layout/docs.md",
-        },
-        {
-            name: "Grid (Prototype)",
-            content: "packages/wonder-blocks-grid/docs.md",
-            components: "packages/wonder-blocks-grid/components/*.js",
         },
         {
             name: "Core",
@@ -33,10 +26,34 @@ module.exports = {
             components: "packages/wonder-blocks-core/components/*.js",
         },
         {
-            name: "ProgressSpinner",
-            content: "packages/wonder-blocks-progress-spinner/docs.md",
+            name: "Dropdown",
+            content: "packages/wonder-blocks-dropdown/docs.md",
+            components: [
+                "packages/wonder-blocks-dropdown/components/action-item.js",
+                "packages/wonder-blocks-dropdown/components/select-item.js",
+                "packages/wonder-blocks-dropdown/components/separator-item.js",
+                "packages/wonder-blocks-dropdown/components/select-box.js",
+            ],
+        },
+        {
+            name: "Grid",
+            content: "packages/wonder-blocks-grid/docs.md",
+            components: "packages/wonder-blocks-grid/components/*.js",
+        },
+        {
+            name: "IconButton",
+            content: "packages/wonder-blocks-icon-button/docs.md",
             components:
-                "packages/wonder-blocks-progress-spinner/components/*.js",
+                "packages/wonder-blocks-icon-button/components/icon-button.js",
+        },
+        {
+            name: "Layout",
+            content: "packages/wonder-blocks-layout/docs.md",
+        },
+        {
+            name: "Link",
+            content: "packages/wonder-blocks-link/docs.md",
+            components: "packages/wonder-blocks-link/components/link.js",
         },
         {
             name: "Modal",
@@ -71,30 +88,14 @@ module.exports = {
             ],
         },
         {
-            name: "Button",
-            content: "packages/wonder-blocks-button/docs.md",
-            components: "packages/wonder-blocks-button/components/button.js",
-        },
-        {
-            name: "Link",
-            content: "packages/wonder-blocks-link/docs.md",
-            components: "packages/wonder-blocks-link/components/link.js",
-        },
-        {
-            name: "IconButton",
-            content: "packages/wonder-blocks-icon-button/docs.md",
+            name: "ProgressSpinner",
+            content: "packages/wonder-blocks-progress-spinner/docs.md",
             components:
-                "packages/wonder-blocks-icon-button/components/icon-button.js",
+                "packages/wonder-blocks-progress-spinner/components/*.js",
         },
         {
-            name: "Dropdown",
-            content: "packages/wonder-blocks-dropdown/docs.md",
-            components: [
-                "packages/wonder-blocks-dropdown/components/action-item.js",
-                "packages/wonder-blocks-dropdown/components/select-item.js",
-                "packages/wonder-blocks-dropdown/components/separator-item.js",
-                "packages/wonder-blocks-dropdown/components/select-box.js",
-            ],
+            name: "Spacing",
+            content: "packages/wonder-blocks-spacing/docs.md",
         },
         {
             name: "Toolbar",
@@ -108,6 +109,21 @@ module.exports = {
                 "packages/wonder-blocks-tooltip/components/tooltip.js",
                 "packages/wonder-blocks-tooltip/components/tooltip-content.js",
             ],
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-tooltip/components/tooltip-tail.js",
+                        "packages/wonder-blocks-tooltip/components/tooltip-bubble.js",
+                    ],
+                },
+            ],
+        },
+        {
+            name: "Typography",
+            content: "packages/wonder-blocks-typography/docs.md",
+            components: "packages/wonder-blocks-typography/components/*.js",
         },
     ],
 
@@ -120,6 +136,11 @@ module.exports = {
                     // Load Lato from Google Fonts.
                     rel: "stylesheet",
                     href: "https://fonts.googleapis.com/css?family=Lato",
+                },
+                {
+                    // Load Inconsolata from Google Fonts.
+                    rel: "stylesheet",
+                    href: "https://fonts.googleapis.com/css?family=Inconsolata",
                 },
             ],
         },
