@@ -26,6 +26,11 @@ type DropdownCoreProps = {
     opener: React.Node,
 
     /**
+     * Callback for when the menu is closed.
+     */
+    onClose: () => void,
+
+    /**
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
@@ -44,35 +49,96 @@ type DropdownCoreProps = {
 };
 
 export default class DropdownCore extends React.Component<DropdownCoreProps> {
+    node: ?HTMLDivElement;
+    // TODO(sophie): figure out flow typing
+    handleClick: (event: any) => void;
+
     static defaultProps = {
         alignment: "left",
     };
 
+    constructor(props: DropdownCoreProps) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentWillMount() {
+        document.addEventListener("click", this.handleClick, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("click", this.handleClick, false);
+    }
+
+    handleClick(event: SyntheticEvent<>) {
+        // If click was inside the component, return
+        // $FlowFixMe
+        if (this.node && this.node.contains(event.target)) {
+            return;
+        }
+        this.props.onClose();
+    }
+
     render() {
         const {alignment, items, light, open, opener, style} = this.props;
 
+        // TODO(sophie): why doesn't ref work with View?
         return (
-            <View
-                style={[
-                    styles.menuWrapper,
-                    alignment === "right" && styles.rightAlign,
-                ]}
+            <div
+                ref={(node) => {
+                    this.node = node;
+                }}
             >
-                {opener}
-                {items && (
-                    <View
-                        style={[
-                            styles.dropdown,
-                            !open && styles.hide,
-                            light && styles.light,
-                            style,
-                        ]}
-                    >
-                        {items}
-                    </View>
-                )}
-            </View>
+                <View
+                    style={[
+                        styles.menuWrapper,
+                        alignment === "right" && styles.rightAlign,
+                    ]}
+                >
+                    {opener}
+                    {items && (
+                        <View
+                            style={[
+                                styles.dropdown,
+                                !open && styles.hide,
+                                light && styles.light,
+                                style,
+                            ]}
+                        >
+                            {items}
+                        </View>
+                    )}
+                    {open && (
+                        <DropdownKeypressListener
+                            onClose={this.props.onClose}
+                        />
+                    )}
+                </View>
+            </div>
         );
+    }
+}
+
+/** A component that, when mounted, calls `onClose` when Escape is pressed. */
+class DropdownKeypressListener extends React.Component<{
+    onClose: () => void,
+}> {
+    componentDidMount() {
+        window.addEventListener("keyup", this._handleKeyup);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("keyup", this._handleKeyup);
+    }
+
+    _handleKeyup = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+            this.props.onClose();
+        }
+    };
+
+    render() {
+        return null;
     }
 }
 

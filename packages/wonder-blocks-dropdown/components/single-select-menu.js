@@ -83,6 +83,12 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         }));
     }
 
+    closeMenu() {
+        this.setState({
+            open: false,
+        });
+    }
+
     handleSelected(selectedValue: string) {
         this.setState({
             open: false, // close the menu upon selection
@@ -142,6 +148,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                 alignment={alignment}
                 items={menuItems}
                 light={light}
+                onClose={() => this.closeMenu()}
                 open={open}
                 opener={opener}
                 style={[styles.menuSpacer, style]}

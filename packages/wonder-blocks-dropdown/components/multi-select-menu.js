@@ -99,6 +99,12 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         }));
     }
 
+    closeMenu() {
+        this.setState({
+            open: false,
+        });
+    }
+
     handleSelected(selectedValue: string, oldSelectionState: boolean) {
         const {onChange, selectedValues} = this.props;
 
@@ -215,7 +221,11 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
             <DropdownCore
                 alignment={alignment}
                 items={menuItems}
+<<<<<<< HEAD
                 light={light}
+=======
+                onClose={() => this.closeMenu()}
+>>>>>>> d12c724... Allow closing of menu on pressing ESC and clicking out of the menu
                 open={open}
                 opener={opener}
                 style={[styles.menuTopSpace, style]}
