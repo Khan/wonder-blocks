@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
         top: 40,
         // NOTE: This is the z-index of the currently existing menus in the
         // webapp. Perhaps wonderblocks will design a z-index hierarchy?
+        // TODO(sophie): remove when portals are incorporated
         zIndex: 1000,
     },
 

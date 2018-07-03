@@ -3,12 +3,8 @@ responsible for keeping track of the selected item in the menu.
 
 TODO(sophie): keyboard navigation and dismissal
 
-The first menu has a starting placeholder and a set width.
-
-The second menu starts with a starting selected item. One of the items is
-disabled and thus cannot be selected.
-
-The third menu is disabled.
+This menu has a starting placeholder and a set width. One item is wider than
+the width, and it ellipses.
 
 ```js
 const React = require("react");
@@ -20,9 +16,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         height: 180,
     },
-    strutLike: {
-        width: 8,
-    }
 });
 
 class ExampleWithPlaceholder extends React.Component {
@@ -33,7 +26,7 @@ class ExampleWithPlaceholder extends React.Component {
         }
     }
 
-    handleSelected(selected) {
+    handleChange(selected) {
         console.log(`${selected} was selected!`);
         this.setState({
             selectedValue: selected,
@@ -57,7 +50,7 @@ class ExampleWithPlaceholder extends React.Component {
                 },
             ]}
             light={false}
-            onChange={(selected) => this.handleSelected(selected)}
+            onChange={(selected) => this.handleChange(selected)}
             placeholder={"Choose a fruit"}
             selectedValue={this.state.selectedValue}
             style={{
@@ -68,6 +61,26 @@ class ExampleWithPlaceholder extends React.Component {
     }
 }
 
+<View style={[styles.row]}>
+    <ExampleWithPlaceholder />
+</View>
+```
+
+This menu starts with a starting selected item. One of the items is disabled
+and thus cannot be selected.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        height: 180,
+    },
+});
+
 class ExampleWithStartingSelection extends React.Component {
     constructor() {
         super();
@@ -76,7 +89,7 @@ class ExampleWithStartingSelection extends React.Component {
         }
     }
 
-    handleSelected(selected) {
+    handleChange(selected) {
         console.log(`${selected} was selected!`);
         this.setState({
             selectedValue: selected,
@@ -100,12 +113,31 @@ class ExampleWithStartingSelection extends React.Component {
                     value: "grape"
                 },
             ]}
-            onChange={(selected) => this.handleSelected(selected)}
-            placeholder={"Choose a fruit"}
+            onChange={(selected) => this.handleChange(selected)}
+            placeholder={"Choose a juice"}
             selectedValue={this.state.selectedValue}
         />;
     }
 }
+
+<View style={[styles.row]}>
+    <ExampleWithStartingSelection />
+</View>
+```
+
+This is a disabled menu.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        height: 180,
+    },
+});
 
 class DisabledExample extends React.Component {
     constructor() {
@@ -115,7 +147,7 @@ class DisabledExample extends React.Component {
         }
     }
 
-    handleSelected(selected) {
+    handleChange(selected) {
         console.log(`${selected} was selected!`);
         this.setState({
             selectedValue: selected,
@@ -139,7 +171,7 @@ class DisabledExample extends React.Component {
                     value: "grape"
                 },
             ]}
-            onChange={(selected) => this.handleSelected(selected)}
+            onChange={(selected) => this.handleChange(selected)}
             placeholder={"Choose a fruit"}
             selectedValue={this.state.selectedValue}
         />;
@@ -147,13 +179,8 @@ class DisabledExample extends React.Component {
 }
 
 <View style={[styles.row]}>
-    <ExampleWithPlaceholder />
-    <View style={[styles.strutLike]} />
-    <ExampleWithStartingSelection />
-    <View style={[styles.strutLike]} />
     <DisabledExample />
 </View>
-
 ```
 
 This menu is on a dark background and is also right-aligned.
@@ -185,7 +212,7 @@ class LightRightAlignedExample extends React.Component {
         }
     }
 
-    handleSelected(selected) {
+    handleChange(selected) {
         console.log(`${selected} was selected!`);
         this.setState({
             selectedValue: selected,
@@ -209,7 +236,7 @@ class LightRightAlignedExample extends React.Component {
                 },
             ]}
             light={true}
-            onChange={(selected) => this.handleSelected(selected)}
+            onChange={(selected) => this.handleChange(selected)}
             placeholder={"Boba order"}
             selectedValue={this.state.selectedValue}
             alignment={"right"}

@@ -117,11 +117,10 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
 
         const {open} = this.state;
 
-        const menuText = `${
-            selectedValue
-                ? items.filter((item) => item.value === selectedValue)[0].label
-                : placeholder
-        }`;
+        const selectedItem = items.find((item) => item.value === selectedValue);
+        // If nothing is selected, or if the selectedValue doesn't match any
+        // item in the menu, use the placeholder.
+        const menuText = `${selectedItem ? selectedItem.label : placeholder}`;
 
         const opener = (
             <SelectBox

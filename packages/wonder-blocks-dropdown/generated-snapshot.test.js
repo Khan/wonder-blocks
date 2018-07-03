@@ -216,9 +216,6 @@ describe("wonder-blocks-dropdown", () => {
                 flexDirection: "row",
                 height: 180,
             },
-            strutLike: {
-                width: 8,
-            },
         });
 
         class ExampleWithPlaceholder extends React.Component {
@@ -229,7 +226,7 @@ describe("wonder-blocks-dropdown", () => {
                 };
             }
 
-            handleSelected(selected) {
+            handleChange(selected) {
                 console.log(`${selected} was selected!`);
                 this.setState({
                     selectedValue: selected,
@@ -254,7 +251,7 @@ describe("wonder-blocks-dropdown", () => {
                             },
                         ]}
                         light={false}
-                        onChange={(selected) => this.handleSelected(selected)}
+                        onChange={(selected) => this.handleChange(selected)}
                         placeholder={"Choose a fruit"}
                         selectedValue={this.state.selectedValue}
                         style={{
@@ -266,6 +263,26 @@ describe("wonder-blocks-dropdown", () => {
             }
         }
 
+        const example = (
+            <View style={[styles.row]}>
+                <ExampleWithPlaceholder />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                height: 180,
+            },
+        });
+
         class ExampleWithStartingSelection extends React.Component {
             constructor() {
                 super();
@@ -274,7 +291,7 @@ describe("wonder-blocks-dropdown", () => {
                 };
             }
 
-            handleSelected(selected) {
+            handleChange(selected) {
                 console.log(`${selected} was selected!`);
                 this.setState({
                     selectedValue: selected,
@@ -299,13 +316,33 @@ describe("wonder-blocks-dropdown", () => {
                                 value: "grape",
                             },
                         ]}
-                        onChange={(selected) => this.handleSelected(selected)}
-                        placeholder={"Choose a fruit"}
+                        onChange={(selected) => this.handleChange(selected)}
+                        placeholder={"Choose a juice"}
                         selectedValue={this.state.selectedValue}
                     />
                 );
             }
         }
+
+        const example = (
+            <View style={[styles.row]}>
+                <ExampleWithStartingSelection />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                height: 180,
+            },
+        });
 
         class DisabledExample extends React.Component {
             constructor() {
@@ -315,7 +352,7 @@ describe("wonder-blocks-dropdown", () => {
                 };
             }
 
-            handleSelected(selected) {
+            handleChange(selected) {
                 console.log(`${selected} was selected!`);
                 this.setState({
                     selectedValue: selected,
@@ -340,7 +377,7 @@ describe("wonder-blocks-dropdown", () => {
                                 value: "grape",
                             },
                         ]}
-                        onChange={(selected) => this.handleSelected(selected)}
+                        onChange={(selected) => this.handleChange(selected)}
                         placeholder={"Choose a fruit"}
                         selectedValue={this.state.selectedValue}
                     />
@@ -350,18 +387,13 @@ describe("wonder-blocks-dropdown", () => {
 
         const example = (
             <View style={[styles.row]}>
-                <ExampleWithPlaceholder />
-                <View style={[styles.strutLike]} />
-                <ExampleWithStartingSelection />
-                <View style={[styles.strutLike]} />
                 <DisabledExample />
             </View>
         );
-
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 8", () => {
         const React = require("react");
         const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -388,7 +420,7 @@ describe("wonder-blocks-dropdown", () => {
                 };
             }
 
-            handleSelected(selected) {
+            handleChange(selected) {
                 console.log(`${selected} was selected!`);
                 this.setState({
                     selectedValue: selected,
@@ -413,7 +445,7 @@ describe("wonder-blocks-dropdown", () => {
                             },
                         ]}
                         light={true}
-                        onChange={(selected) => this.handleSelected(selected)}
+                        onChange={(selected) => this.handleChange(selected)}
                         placeholder={"Boba order"}
                         selectedValue={this.state.selectedValue}
                         alignment={"right"}
