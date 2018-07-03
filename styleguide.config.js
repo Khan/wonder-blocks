@@ -133,6 +133,11 @@ module.exports = {
                     rel: "stylesheet",
                     href: "https://fonts.googleapis.com/css?family=Lato",
                 },
+                {
+                    // Load Inconsolata from Google Fonts.
+                    rel: "stylesheet",
+                    href: "https://fonts.googleapis.com/css?family=Inconsolata",
+                },
             ],
         },
     },
