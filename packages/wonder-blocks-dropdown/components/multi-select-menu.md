@@ -3,13 +3,8 @@ responsible for keeping track of the selected items in the menu.
 
 TODO(sophie): keyboard navigation and dismissal
 
-The first menu starts with nothing selected and has no selection shortcuts.
-There is also a disabled item, and this menu has a set width.
-
-The second menu starts with one item selected and has selection shortcuts for
-select all and select none. The second menu does not have a predefined placeholder.
-
-The third menu is disabled.
+This menu starts with nothing selected and has no selection shortcuts.
+This menu also has a set width. One of the items is disabled.
 
 ```js
 const React = require("react");
@@ -19,7 +14,7 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 350,
+        height: 250,
     },
     strutLike: {
         width: 8,
@@ -66,7 +61,6 @@ class ExampleNoneSelected extends React.Component {
                     value: "5",
                 },
             ]}
-            disabled={this.props.disabled}
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
             placeholder={"Choose some colors"}
             selectedValues={this.state.selectedValues}
@@ -78,6 +72,26 @@ class ExampleNoneSelected extends React.Component {
         />;
     }
 }
+
+<View style={[styles.row]}>
+    <ExampleNoneSelected />
+</View>
+```
+
+This menu starts with one item selected and has selection shortcuts for
+select all and select none. This does not have a predefined placeholder.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        height: 350,
+    },
+});
 
 class ExampleWithShortcuts extends React.Component {
     constructor() {
@@ -127,13 +141,59 @@ class ExampleWithShortcuts extends React.Component {
 }
 
 <View style={[styles.row]}>
-    <ExampleNoneSelected />
-    <View style={[styles.strutLike]} />
     <ExampleWithShortcuts />
-    <View style={[styles.strutLike]} />
-    <ExampleNoneSelected disabled={true} />
 </View>
+```
 
+This menu is disabled.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        height: 50,
+    },
+});
+
+class ExampleNoneSelected extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValues: [],
+        };
+    }
+
+    handleChanges(update) {
+        console.log("changes happened!");
+        this.setState({
+           selectedValues: update,
+        });
+    }
+
+    render() {
+        return <MultiSelectMenu
+            items={[
+                {
+                    label: "Red",
+                    value: "1",
+                },
+            ]}
+            disabled={true}
+            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            placeholder={"Choose some colors"}
+            selectedValues={this.state.selectedValues}
+            selectItemType={"colors"}
+        />;
+    }
+}
+
+<View style={[styles.row]}>
+    <ExampleNoneSelected />
+</View>
 ```
 
 This menu is on a dark background and is also right-aligned.

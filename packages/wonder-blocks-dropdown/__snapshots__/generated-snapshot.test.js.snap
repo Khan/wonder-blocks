@@ -3844,7 +3844,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 350,
+      "height": 250,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -4589,26 +4589,30 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       </button>
     </div>
   </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "width": 8,
-        "zIndex": 0,
-      }
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 10 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 350,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
-  />
+  }
+>
   <div
     className=""
     style={
@@ -5526,26 +5530,30 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
       </button>
     </div>
   </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "width": 8,
-        "zIndex": 0,
-      }
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 11 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 50,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
     }
-  />
+  }
+>
   <div
     className=""
     style={
@@ -5597,14 +5605,12 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
           "justifyContent": "space-between",
           "marginBottom": 4,
           "marginTop": 4,
-          "maxWidth": 170,
           "outline": "none",
           "paddingLeft": 16,
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
-          "width": 170,
         }
       }
       tabIndex={-1}
@@ -5696,7 +5702,6 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
           "flexDirection": "column",
           "margin": 0,
           "marginTop": 4,
-          "maxWidth": 170,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
@@ -5705,7 +5710,6 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
           "position": "absolute",
           "top": 48,
           "visibility": "hidden",
-          "width": 170,
           "zIndex": 1000,
         }
       }
@@ -5824,468 +5828,12 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
           </span>
         </div>
       </button>
-      <button
-        className=""
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        style={
-          Object {
-            "background": "#ffffff",
-            "border": "none",
-            "color": "rgba(33,36,44,0.32)",
-            "cursor": "default",
-            "margin": 0,
-            "outline": "none",
-            "padding": 0,
-          }
-        }
-        tabIndex={-1}
-      >
-        <div
-          aria-checked="false"
-          className=""
-          role="menuitemcheckbox"
-          style={
-            Object {
-              "alignItems": "center",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 40,
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "paddingLeft": 8,
-              "paddingRight": 16,
-              "position": "relative",
-              "whiteSpace": "nowrap",
-              "zIndex": 0,
-            }
-          }
-        >
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
-                "borderRadius": 3,
-                "borderStyle": "solid",
-                "borderWidth": 1,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "height": 16,
-                "margin": 0,
-                "minHeight": 16,
-                "minWidth": 16,
-                "padding": 0,
-                "position": "relative",
-                "width": 16,
-                "zIndex": 0,
-              }
-            }
-          />
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 8,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          />
-          <span
-            className=""
-            style={
-              Object {
-                "MozOsxFontSmoothing": "grayscale",
-                "WebkitFontSmoothing": "antialiased",
-                "display": "block",
-                "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
-                "overflow": "hidden",
-                "textOverflow": "ellipsis",
-                "whiteSpace": "nowrap",
-              }
-            }
-          >
-            Orange
-          </span>
-        </div>
-      </button>
-      <button
-        className=""
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        style={
-          Object {
-            "background": "#ffffff",
-            "border": "none",
-            "color": "#21242c",
-            "cursor": "pointer",
-            "margin": 0,
-            "outline": "none",
-            "padding": 0,
-          }
-        }
-        tabIndex={0}
-      >
-        <div
-          aria-checked="false"
-          className=""
-          role="menuitemcheckbox"
-          style={
-            Object {
-              "alignItems": "center",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 40,
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "paddingLeft": 8,
-              "paddingRight": 16,
-              "position": "relative",
-              "whiteSpace": "nowrap",
-              "zIndex": 0,
-            }
-          }
-        >
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
-                "borderRadius": 3,
-                "borderStyle": "solid",
-                "borderWidth": 1,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "height": 16,
-                "margin": 0,
-                "minHeight": 16,
-                "minWidth": 16,
-                "padding": 0,
-                "position": "relative",
-                "width": 16,
-                "zIndex": 0,
-              }
-            }
-          />
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 8,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          />
-          <span
-            className=""
-            style={
-              Object {
-                "MozOsxFontSmoothing": "grayscale",
-                "WebkitFontSmoothing": "antialiased",
-                "display": "block",
-                "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
-                "overflow": "hidden",
-                "textOverflow": "ellipsis",
-                "whiteSpace": "nowrap",
-              }
-            }
-          >
-            Yellow
-          </span>
-        </div>
-      </button>
-      <button
-        className=""
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        style={
-          Object {
-            "background": "#ffffff",
-            "border": "none",
-            "color": "#21242c",
-            "cursor": "pointer",
-            "margin": 0,
-            "outline": "none",
-            "padding": 0,
-          }
-        }
-        tabIndex={0}
-      >
-        <div
-          aria-checked="false"
-          className=""
-          role="menuitemcheckbox"
-          style={
-            Object {
-              "alignItems": "center",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 40,
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "paddingLeft": 8,
-              "paddingRight": 16,
-              "position": "relative",
-              "whiteSpace": "nowrap",
-              "zIndex": 0,
-            }
-          }
-        >
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
-                "borderRadius": 3,
-                "borderStyle": "solid",
-                "borderWidth": 1,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "height": 16,
-                "margin": 0,
-                "minHeight": 16,
-                "minWidth": 16,
-                "padding": 0,
-                "position": "relative",
-                "width": 16,
-                "zIndex": 0,
-              }
-            }
-          />
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 8,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          />
-          <span
-            className=""
-            style={
-              Object {
-                "MozOsxFontSmoothing": "grayscale",
-                "WebkitFontSmoothing": "antialiased",
-                "display": "block",
-                "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
-                "overflow": "hidden",
-                "textOverflow": "ellipsis",
-                "whiteSpace": "nowrap",
-              }
-            }
-          >
-            Green
-          </span>
-        </div>
-      </button>
-      <button
-        className=""
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        style={
-          Object {
-            "background": "#ffffff",
-            "border": "none",
-            "color": "#21242c",
-            "cursor": "pointer",
-            "margin": 0,
-            "outline": "none",
-            "padding": 0,
-          }
-        }
-        tabIndex={0}
-      >
-        <div
-          aria-checked="false"
-          className=""
-          role="menuitemcheckbox"
-          style={
-            Object {
-              "alignItems": "center",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 40,
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "paddingLeft": 8,
-              "paddingRight": 16,
-              "position": "relative",
-              "whiteSpace": "nowrap",
-              "zIndex": 0,
-            }
-          }
-        >
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
-                "borderRadius": 3,
-                "borderStyle": "solid",
-                "borderWidth": 1,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "height": 16,
-                "margin": 0,
-                "minHeight": 16,
-                "minWidth": 16,
-                "padding": 0,
-                "position": "relative",
-                "width": 16,
-                "zIndex": 0,
-              }
-            }
-          />
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 8,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          />
-          <span
-            className=""
-            style={
-              Object {
-                "MozOsxFontSmoothing": "grayscale",
-                "WebkitFontSmoothing": "antialiased",
-                "display": "block",
-                "fontFamily": "Lato",
-                "fontSize": 16,
-                "fontWeight": 700,
-                "lineHeight": "20px",
-                "overflow": "hidden",
-                "textOverflow": "ellipsis",
-                "whiteSpace": "nowrap",
-              }
-            }
-          >
-            Blue
-          </span>
-        </div>
-      </button>
     </div>
   </div>
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 10 1`] = `
+exports[`wonder-blocks-dropdown example 12 1`] = `
 <div
   className=""
   style={

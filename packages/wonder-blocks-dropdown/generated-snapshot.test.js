@@ -474,7 +474,7 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 350,
+                height: 250,
             },
             strutLike: {
                 width: 8,
@@ -522,7 +522,6 @@ describe("wonder-blocks-dropdown", () => {
                                 value: "5",
                             },
                         ]}
-                        disabled={this.props.disabled}
                         onChange={(selectedValues) =>
                             this.handleChanges(selectedValues)
                         }
@@ -537,6 +536,26 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
+        const example = (
+            <View style={[styles.row]}>
+                <ExampleNoneSelected />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 10", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                height: 350,
+            },
+        });
 
         class ExampleWithShortcuts extends React.Component {
             constructor() {
@@ -591,18 +610,69 @@ describe("wonder-blocks-dropdown", () => {
 
         const example = (
             <View style={[styles.row]}>
-                <ExampleNoneSelected />
-                <View style={[styles.strutLike]} />
                 <ExampleWithShortcuts />
-                <View style={[styles.strutLike]} />
-                <ExampleNoneSelected disabled={true} />
             </View>
         );
-
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                height: 50,
+            },
+        });
+
+        class ExampleNoneSelected extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                };
+            }
+
+            handleChanges(update) {
+                console.log("changes happened!");
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelectMenu
+                        items={[
+                            {
+                                label: "Red",
+                                value: "1",
+                            },
+                        ]}
+                        disabled={true}
+                        onChange={(selectedValues) =>
+                            this.handleChanges(selectedValues)
+                        }
+                        placeholder={"Choose some colors"}
+                        selectedValues={this.state.selectedValues}
+                        selectItemType={"colors"}
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row]}>
+                <ExampleNoneSelected />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 12", () => {
         const React = require("react");
         const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
