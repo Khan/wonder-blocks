@@ -174,6 +174,113 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    A
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    B
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    C
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    D
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
       "flexDirection": "column",
       "margin": 0,
       "minHeight": 0,
@@ -203,7 +310,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 6 1`] = `
+exports[`wonder-blocks-tooltip example 7 1`] = `
 <div
   className=""
   style={
@@ -284,7 +391,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 7 1`] = `
+exports[`wonder-blocks-tooltip example 8 1`] = `
 <div
   className=""
   style={
@@ -379,7 +486,7 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 8 1`] = `
+exports[`wonder-blocks-tooltip example 9 1`] = `
 <div
   className=""
   style={
@@ -586,7 +693,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 9 1`] = `
+exports[`wonder-blocks-tooltip example 10 1`] = `
 <div
   className=""
   style={
@@ -793,7 +900,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 10 1`] = `
+exports[`wonder-blocks-tooltip example 11 1`] = `
 <div
   className=""
   style={
@@ -972,7 +1079,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 11 1`] = `
+exports[`wonder-blocks-tooltip example 12 1`] = `
 <div
   className=""
   style={
@@ -1179,7 +1286,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 12 1`] = `
+exports[`wonder-blocks-tooltip example 13 1`] = `
 <div
   className=""
   style={
@@ -1366,7 +1473,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 13 1`] = `
+exports[`wonder-blocks-tooltip example 14 1`] = `
 <div
   className=""
   style={
@@ -1553,7 +1660,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 14 1`] = `
+exports[`wonder-blocks-tooltip example 15 1`] = `
 <div
   className=""
   style={
@@ -1712,7 +1819,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 15 1`] = `
+exports[`wonder-blocks-tooltip example 16 1`] = `
 <div
   className=""
   style={
@@ -1899,7 +2006,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 16 1`] = `
+exports[`wonder-blocks-tooltip example 17 1`] = `
 <div
   className=""
   style={
@@ -2059,7 +2166,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 17 1`] = `
+exports[`wonder-blocks-tooltip example 18 1`] = `
 <div
   className=""
   style={

@@ -40,7 +40,7 @@ describe("SuppressionArbiter", () => {
             expect(underTest).toThrowErrorMatchingSnapshot();
         });
 
-        test("track new suppressee, suppresses old active suppressee", () => {
+        test("track new suppressee, old active suppressee is instantly suppressed", () => {
             // Arrange
             const arbiter = new SuppressionArbiter();
             const suppresseeOld = new TestSuppressee();
@@ -51,10 +51,10 @@ describe("SuppressionArbiter", () => {
             arbiter.track(suppresseeNew);
 
             // Assert
-            expect(suppresseeOld.suppress).toHaveBeenCalledTimes(1);
+            expect(suppresseeOld.suppress).toHaveBeenCalledWith(true);
         });
 
-        test("track new suppressee, new suppressee is instantly active", () => {
+        test("track new suppressee, new suppressee is instantly unsuppressed", () => {
             // Arrange
             const arbiter = new SuppressionArbiter();
             const suppresseeOld = new TestSuppressee();
@@ -82,7 +82,7 @@ describe("SuppressionArbiter", () => {
             expect(underTest).toThrowErrorMatchingSnapshot();
         });
 
-        test("untrack active suppressee, suppressee is suppressed", () => {
+        test("untrack active suppressee, suppressee is suppressed non-instantly", () => {
             // Arrange
             const arbiter = new SuppressionArbiter();
             const suppressee = new TestSuppressee();
@@ -92,7 +92,7 @@ describe("SuppressionArbiter", () => {
             arbiter.untrack(suppressee);
 
             // Assert
-            expect(suppressee.suppress).toHaveBeenCalledTimes(1);
+            expect(suppressee.suppress).toHaveBeenCalledWith(false);
         });
 
         test("untrack active suppressee, next surpressee instantly unsuppressed", () => {
@@ -110,6 +110,23 @@ describe("SuppressionArbiter", () => {
 
             // Assert
             expect(newActiveSuppressee.unsuppress).toHaveBeenCalledWith(true);
+        });
+
+        test("untrack active suppressee, old active surpressee instantly suppressed", () => {
+            // Arrange
+            const arbiter = new SuppressionArbiter();
+            const oldActiveSuppressee = new TestSuppressee();
+            const newActiveSuppressee = new TestSuppressee();
+            arbiter.track(newActiveSuppressee);
+            arbiter.track(oldActiveSuppressee);
+            oldActiveSuppressee.clearAllMocks();
+            newActiveSuppressee.clearAllMocks();
+
+            // Act
+            arbiter.untrack(oldActiveSuppressee);
+
+            // Assert
+            expect(oldActiveSuppressee.suppress).toHaveBeenCalledWith(true);
         });
 
         test("untrack inactive suppressee, suppressee gets surpressed", () => {

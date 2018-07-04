@@ -7,6 +7,10 @@
 import * as React from "react";
 
 import SuppressionArbiter from "../util/suppression-arbiter.js";
+import {
+    TooltipAppearanceDelay,
+    TooltipDisappearanceDelay,
+} from "../util/constants.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 
 import type {ICanBeSuppressed} from "../util/types.js";
@@ -32,7 +36,6 @@ type State = {
     instant: boolean,
 };
 
-const APPEARANCE_DELAY = 100;
 const ARBITER = new SuppressionArbiter();
 
 export default class TooltipArbiter extends React.Component<Props, State>
@@ -77,10 +80,18 @@ export default class TooltipArbiter extends React.Component<Props, State>
         }
     }
 
-    suppress = () => {
+    suppress = (instantly: boolean) => {
         this._clearTimeout();
+
         if (this.state.active) {
-            this.setState({active: false});
+            if (instantly) {
+                this.setState({active: false, instant: true});
+            } else {
+                this._stateChangeTimeoutId = setTimeout(
+                    () => this.setState({active: false, instant: false}),
+                    TooltipDisappearanceDelay,
+                );
+            }
         }
     };
 
@@ -93,7 +104,7 @@ export default class TooltipArbiter extends React.Component<Props, State>
             } else {
                 this._stateChangeTimeoutId = setTimeout(
                     () => this.setState({active: true, instant: false}),
-                    APPEARANCE_DELAY,
+                    TooltipAppearanceDelay,
                 );
             }
         }

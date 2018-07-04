@@ -3,6 +3,10 @@ import * as React from "react";
 import {shallow} from "enzyme";
 
 import timeout from "../../../utils/testing/timeout.js";
+import {
+    TooltipAppearanceDelay,
+    TooltipDisappearanceDelay,
+} from "../util/constants.js";
 
 import TooltipArbiter from "./tooltip-arbiter.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
@@ -146,13 +150,34 @@ describe("TooltipArbiter", () => {
 
             // Assert
             expect(wrapper.state("active")).toBeFalsy();
-            await timeout(100);
+            await timeout(TooltipAppearanceDelay);
+            expect(wrapper.state("active")).toBeTruthy();
+        });
+
+        test("clears existing timeout, preventing pending state change", async () => {
+            // Arrange
+            const children = jest.fn(
+                () => ((null: any): React.Element<typeof TooltipPortalMounter>),
+            );
+            const nodes = (
+                <TooltipArbiter active={true}>{children}</TooltipArbiter>
+            );
+            const wrapper = shallow(nodes);
+            wrapper.instance().unsuppress(true);
+            wrapper.instance().suppress(false);
+
+            // Act
+            wrapper.instance().unsuppress(true);
+
+            // Assert
+            expect(wrapper.state("active")).toBeTruthy();
+            await timeout(TooltipDisappearanceDelay);
             expect(wrapper.state("active")).toBeTruthy();
         });
     });
 
     describe("#suppress", () => {
-        test("if active, sets state active to false", () => {
+        test("instant is true and state is active, sets state active to false", () => {
             // Arrange
             const children = jest.fn(
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
@@ -164,9 +189,29 @@ describe("TooltipArbiter", () => {
             wrapper.instance().unsuppress(true);
 
             // Act
-            wrapper.instance().suppress();
+            wrapper.instance().suppress(true);
 
             // Assert
+            expect(wrapper.state("active")).toBeFalsy();
+        });
+
+        test("instant is false and state is inactive, sets state active to false after delay", async () => {
+            // Arrange
+            const children = jest.fn(
+                () => ((null: any): React.Element<typeof TooltipPortalMounter>),
+            );
+            const nodes = (
+                <TooltipArbiter active={true}>{children}</TooltipArbiter>
+            );
+            const wrapper = shallow(nodes);
+            wrapper.instance().unsuppress(true);
+
+            // Act
+            wrapper.instance().suppress(false);
+
+            // Assert
+            expect(wrapper.state("active")).toBeTruthy();
+            await timeout(TooltipDisappearanceDelay);
             expect(wrapper.state("active")).toBeFalsy();
         });
 
@@ -186,7 +231,7 @@ describe("TooltipArbiter", () => {
 
             // Assert
             expect(wrapper.state("active")).toBeFalsy();
-            await timeout(100);
+            await timeout(TooltipAppearanceDelay);
             expect(wrapper.state("active")).toBeFalsy();
         });
     });

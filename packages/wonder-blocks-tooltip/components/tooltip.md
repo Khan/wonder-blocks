@@ -109,3 +109,26 @@ const modal = (
     {({openModal}) => <button onClick={openModal}>Click here!</button>}
 </ModalLauncher>
 ```
+
+### Tooltips side-by-side
+
+```js
+const React = require("react");
+
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+<View style={{flexDirection: "row"}}>
+    <Tooltip content={"Tooltip A"} placement="bottom">
+        <View>A</View>
+    </Tooltip>
+    <Tooltip content={"Tooltip B"} placement="bottom">
+        <View>B</View>
+    </Tooltip>
+    <Tooltip content={"Tooltip C"} placement="bottom">
+        <View>C</View>
+    </Tooltip>
+    <Tooltip content={"Tooltip D"} placement="bottom">
+        <View>D</View>
+    </Tooltip>
+</View>
+```
