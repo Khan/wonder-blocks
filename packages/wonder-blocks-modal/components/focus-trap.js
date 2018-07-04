@@ -52,6 +52,7 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
 
     /** Try to focus the given node. Return true iff successful. */
     _tryToFocus(node: Node) {
+        // $FlowFixMe: focus missing on node
         if (typeof node.focus !== "function") {
             return;
         }

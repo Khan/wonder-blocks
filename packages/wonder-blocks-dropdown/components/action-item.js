@@ -130,8 +130,10 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     if (!disabled && href) {
                         if (clientNav) {
+                            // $FlowFixMe: can't assign 'to' b/c 'to' is missing in object literal
                             props.to = href;
                         } else {
+                            // $FlowFixMe: can't assign 'href' b/c 'href' is missing in object literal
                             props.href = href;
                         }
                     }
