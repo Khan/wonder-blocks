@@ -6,3 +6,8 @@ export type getRefFn = (?(React.Component<*> | Element)) => void;
 export type Offset = {top: number, left: number};
 
 export type Placement = "top" | "right" | "bottom" | "left";
+
+export interface ICanBeSuppressed {
+    suppress: () => void;
+    unsuppress: (boolean) => void;
+}

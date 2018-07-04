@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SuppressionArbiter #track track already tracked suppressee, throws 1`] = `"Attempting to track suppressee already being tracked"`;
+
+exports[`SuppressionArbiter #untrack untrack an untracked suppressee, throws 1`] = `"Attempted to untrack suppressee that wasn't being tracked"`;

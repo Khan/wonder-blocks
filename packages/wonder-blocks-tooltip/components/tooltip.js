@@ -10,7 +10,8 @@
  *
  * Tooltip (this component)
  * - TooltipAnchor (provides hover/focus behaviors on anchored content)
- *   - TooltipPortalMounter (creates portal into which the callout is rendered)
+ *   - TooltipArbiter (controls which tooltip is visible and how soon)
+ *     - TooltipPortalMounter (creates portal into which the callout is rendered)
  * --------------------------- [PORTAL BOUNDARY] ------------------------------
  * - TooltipPopper (provides positioning for the callout using react-popper)
  *   - TooltipBubble (renders the callout borders, background and shadow)
@@ -22,11 +23,12 @@ import * as React from "react";
 
 import {Text} from "@khanacademy/wonder-blocks-core";
 
-import TooltipPortalMounter from "./tooltip-portal-mounter";
+import TooltipArbiter from "./tooltip-arbiter.js";
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
 import TooltipPopper from "./tooltip-popper.js";
+import TooltipPortalMounter from "./tooltip-portal-mounter";
 
 import type {Placement} from "../util/types.js";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
@@ -100,7 +102,7 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(active: boolean) {
+    _renderPopper(active: boolean, showInstantly: boolean) {
         if (!active) {
             return null;
         }
@@ -135,9 +137,15 @@ export default class Tooltip extends React.Component<Props, State> {
                 anchorRef={(r) => this._updateAnchorElement(r)}
             >
                 {(active) => (
-                    <TooltipPortalMounter anchor={this._renderAnchorElement()}>
-                        {this._renderPopper(active)}
-                    </TooltipPortalMounter>
+                    <TooltipArbiter active={active}>
+                        {(a, i) => (
+                            <TooltipPortalMounter
+                                anchor={this._renderAnchorElement()}
+                            >
+                                {this._renderPopper(a, i)}
+                            </TooltipPortalMounter>
+                        )}
+                    </TooltipArbiter>
                 )}
             </TooltipAnchor>
         );
