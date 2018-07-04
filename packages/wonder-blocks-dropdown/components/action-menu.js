@@ -71,20 +71,14 @@ type MenuProps = {
     menuText: string,
 
     /**
-     * Whether this menu contains select items. If true, user should also define
-     * the onChange and selectedItems props.
-     */
-    containsSelectionItems?: boolean,
-
-    /**
      * A callback that returns items that are newly selected. Use only if this
-     * menu contains select items (prop containsSelectionItems).
+     * menu contains select items (and make sure selectedValues is defined).
      */
     onChange?: (selectedItems: Array<string>) => void,
 
     /**
      * The values of the items that are currently selected. Use only if this
-     * menu contains select items (prop containsSelectionItems).
+     * menu contains select items (and make sure onChange is defined).
      */
     selectedValues?: Array<string>,
 
@@ -92,13 +86,13 @@ type MenuProps = {
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment?: "left" | "right",
+    alignment: "left" | "right",
 
     /**
      * Whether this menu is disabled. A disabled menu may not be opened and
      * does not support interaction. Defaults to false.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Optional styling to add.
@@ -116,7 +110,6 @@ type State = {
 export default class ActionMenu extends React.Component<MenuProps, State> {
     static defaultProps = {
         alignment: "left",
-        containsSelectionItems: false,
         disabled: false,
     };
 
@@ -134,7 +127,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         }));
     }
 
-    handleSelected(selectedValue: string, newSelectionState: boolean) {
+    handleSelected(selectedValue: string, oldSelectionState: boolean) {
         const {onChange, selectedValues} = this.props;
 
         // If either of these are not defined, return.
@@ -142,19 +135,22 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             return;
         }
 
-        if (newSelectionState) {
-            onChange([...selectedValues, selectedValue].sort());
-        } else {
-            const updatedSelection = selectedValues;
-            updatedSelection.splice(selectedValues.indexOf(selectedValue), 1);
+        if (oldSelectionState) {
+            const index = selectedValues.indexOf(selectedValue);
+            const updatedSelection = [
+                ...selectedValues.slice(0, index),
+                ...selectedValues.slice(index + 1),
+            ];
             onChange(updatedSelection);
+        } else {
+            // Item was newly selected
+            onChange([...selectedValues, selectedValue]);
         }
     }
 
     render() {
         const {
             alignment,
-            containsSelectionItems,
             disabled,
             items,
             menuText,
@@ -173,6 +169,8 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 {menuText}
             </ActionMenuOpener>
         );
+
+        const containsSelectItems = Array.isArray(selectedValues);
 
         const menuItems = items.map((item, index) => {
             if (item.type === "separator") {
@@ -201,7 +199,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                     <ActionItem
                         key={index}
                         disabled={item.disabled}
-                        indent={containsSelectionItems}
+                        indent={containsSelectItems}
                         label={item.label}
                         href={item.href}
                         clientNav={item.clientNav}
@@ -215,6 +213,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             <DropdownCore
                 alignment={alignment}
                 items={menuItems}
+                light={false}
                 open={open}
                 opener={opener}
                 style={[styles.menuTopSpace, style]}

@@ -8,10 +8,6 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import ActionItem from "./components/action-item.js";
-import SelectItem from "./components/select-item.js";
-import SeparatorItem from "./components/separator-item.js";
-import SelectBox from "./components/select-box.js";
 import ActionMenu from "./components/action-menu.js";
 import SingleSelectMenu from "./components/single-select-menu.js";
 import MultiSelectMenu from "./components/multi-select-menu.js";
@@ -24,308 +20,58 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
+                height: 250,
             },
-            darkBackgroundWrapper: {
-                background: "black",
-                padding: 10,
-            },
-            strutLike: {
-                width: 8,
-                height: 8,
-            },
-            sepContainer: {
-                width: 200,
-                height: 10,
+            wrapper: {
+                width: "100%",
             },
         });
         const example = (
-            <View style={[styles.darkBackgroundWrapper]}>
-                <View style={[styles.row]}>
-                    <ActionItem
-                        label={"Go to KA"}
-                        href={"https://khanacademy.org"}
-                    />
-                    <View style={[styles.strutLike]} />
-                    <ActionItem
-                        label={"Disabled"}
-                        disabled={true}
-                        href={"https://khanacademy.org"}
-                    />
-                    <View style={[styles.strutLike]} />
-                    <ActionItem
-                        label={"Calls an onClick"}
-                        onClick={() => console.log("Action item clicked")}
-                    />
-                    <View style={[styles.strutLike]} />
-                    <ActionItem
-                        label={"Indented"}
-                        onClick={() => console.log("Intended item clicked")}
-                    />
-                </View>
-
-                <View style={[styles.strutLike]} />
-
-                <View style={[styles.row]}>
-                    <SelectItem
-                        label={"Item 1"}
-                        selected={true}
-                        value={"1"}
-                        variant={"check"}
-                        onToggle={(v, s) =>
-                            console.log(`would now be ${s.toString()}`)
-                        }
-                    />
-                    <View style={[styles.strutLike]} />
-                    <SelectItem
-                        label={"Item 2"}
-                        selected={false}
-                        value={"2"}
-                        variant={"check"}
-                        onToggle={(v, s) =>
-                            console.log(`would now be ${s.toString()}`)
-                        }
-                    />
-                    <View style={[styles.strutLike]} />
-                    <SelectItem
-                        label={"Item 3"}
-                        selected={true}
-                        value={"3"}
-                        variant={"checkbox"}
-                        onToggle={(v, s) =>
-                            console.log(`would now be ${s.toString()}`)
-                        }
-                    />
-                    <View style={[styles.strutLike]} />
-                    <SelectItem
-                        label={"Item 4"}
-                        selected={false}
-                        value={"4"}
-                        variant={"checkbox"}
-                        onToggle={(v, s) =>
-                            console.log(`would now be ${s.toString()}`)
-                        }
-                    />
-                    <View style={[styles.strutLike]} />
-                    <SelectItem
-                        label={"Item 5"}
-                        selected={false}
-                        disabled={true}
-                        value={"5"}
-                        variant={"checkbox"}
-                        onToggle={(v, l, s) =>
-                            console.log(`would now be ${s.toString()}`)
-                        }
+            <View style={[styles.row]}>
+                <View style={[styles.wrapper]}>
+                    <ActionMenu
+                        items={[
+                            {
+                                type: "action",
+                                label: "Profile",
+                                href: "http://khanacademy.org/profile",
+                            },
+                            {
+                                type: "action",
+                                label: "Teacher dashboard",
+                                href: "http://khanacademy.org/coach/dashboard",
+                            },
+                            {
+                                type: "action",
+                                label: "Settings (onClick)",
+                                onClick: () =>
+                                    console.log("user clicked on settings"),
+                            },
+                            {
+                                type: "action",
+                                disabled: true,
+                                label: "Help",
+                                onClick: () => console.log("help"),
+                            },
+                            {
+                                type: "separator",
+                            },
+                            {
+                                type: "action",
+                                label: "Log out",
+                                href: "http://khanacademy.org/logout",
+                            },
+                        ]}
+                        menuText={"Betsy Appleseed"}
+                        alignment={"right"}
                     />
                 </View>
             </View>
         );
-
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            row: {
-                flexDirection: "row",
-            },
-        });
-        const example = (
-            <View style={[styles.row]}>
-                <SelectBox
-                    isPlaceholder={false}
-                    onClick={() => console.log("regular selectbox selected")}
-                    style={{width: 200}}
-                >
-                    Regular selectbox
-                </SelectBox>
-                <Strut size={8} />
-                <SelectBox
-                    isPlaceholder={true}
-                    onClick={() => console.log("Selected")}
-                    style={{width: 150}}
-                >
-                    Placeholder
-                </SelectBox>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 3", () => {
-        const Color = require("@khanacademy/wonder-blocks-color");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
-        console.log(Color);
-        const styles = StyleSheet.create({
-            row: {
-                flexDirection: "row",
-            },
-            darkBackgroundWrapper: {
-                backgroundColor: Color.default.darkBlue,
-                padding: 10,
-            },
-        });
-        const example = (
-            <View style={[styles.row]}>
-                <View style={[styles.darkBackgroundWrapper]}>
-                    <SelectBox
-                        light={true}
-                        isPlaceholder={false}
-                        onClick={() => console.log("light selectbox selected")}
-                    >
-                        Light version
-                    </SelectBox>
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 4", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            row: {
-                flexDirection: "row",
-            },
-        });
-        const example = (
-            <View style={[styles.row]}>
-                <SelectBox
-                    disabled={true}
-                    onClick={() => console.log("error error!!")}
-                >
-                    Disabled
-                </SelectBox>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 5", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            row: {
-                flexDirection: "row",
-                height: 170,
-            },
-            strutLike: {
-                width: 8,
-            },
-        });
-        const example = (
-            <View style={[styles.row]}>
-                <ActionMenu
-                    items={[
-                        {
-                            type: "action",
-                            label: "Go to Google",
-                            href: "https://google.com",
-                            onClick: () => console.log("Trigger action google"),
-                        },
-                        {
-                            type: "action",
-                            label: "Go to KA",
-                            disabled: true,
-                            href: "https://khanacademy.org",
-                            onClick: () => console.log("Trigger action KA"),
-                        },
-                        {
-                            type: "separator",
-                        },
-                        {
-                            type: "action",
-                            label: "Go to KA",
-                            disabled: false,
-                            href: "https://khanacademy.org",
-                            onClick: () => console.log("Trigger action KA"),
-                        },
-                    ]}
-                    menuText={"Navigation menu"}
-                    containsSelectionOptions={true}
-                />
-                <View style={[styles.strutLike]} />
-                <ActionMenu
-                    items={[
-                        {
-                            type: "action",
-                            label: "Log action 1",
-                            onClick: () => console.log("Action 1"),
-                        },
-                        {
-                            type: "action",
-                            label: "Log action 2",
-                            onClick: () => console.log("Action 2"),
-                        },
-                    ]}
-                    menuText={"Logging menu"}
-                />
-                <View style={[styles.strutLike]} />
-                <ActionMenu
-                    items={[
-                        {
-                            type: "action",
-                            label: "Log action 1",
-                            onClick: () => console.log("Action 1"),
-                        },
-                        {
-                            type: "action",
-                            label: "Log action 2",
-                            onClick: () => console.log("Action 2"),
-                        },
-                    ]}
-                    disabled={true}
-                    menuText={"Disabled menu"}
-                />
-                <View style={[styles.strutLike]} />
-                <ActionMenu
-                    items={[
-                        {
-                            type: "action",
-                            label: "Profile",
-                            onClick: () => console.log("profile"),
-                        },
-                        {
-                            type: "action",
-                            label: "Teacher dashboard",
-                            onClick: () => console.log("dashboard"),
-                        },
-                        {
-                            type: "action",
-                            label: "Settings",
-                            onClick: () => console.log("settings"),
-                        },
-                        {
-                            type: "action",
-                            label: "Help",
-                            onClick: () => console.log("help"),
-                        },
-                        {
-                            type: "separator",
-                        },
-                        {
-                            type: "action",
-                            label: "Log out",
-                            onClick: () => console.log("log out"),
-                        },
-                    ]}
-                    menuText={"Betsy Appleseed"}
-                    alignment={"right"}
-                />
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 6", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -380,7 +126,7 @@ describe("wonder-blocks-dropdown", () => {
                                 label: "Show homework assignments",
                                 onClick: (state) =>
                                     console.log(
-                                        `Show homework assignments ${state.toString()}`,
+                                        `Show homework assignments ${(!state).toString()}`,
                                     ),
                                 value: "homework",
                             },
@@ -389,13 +135,12 @@ describe("wonder-blocks-dropdown", () => {
                                 label: "Show in-class assignments",
                                 onClick: (state) =>
                                     console.log(
-                                        `Show in-class assignments ${state.toString()}`,
+                                        `Show in-class assignments ${(!state).toString()}`,
                                     ),
                                 value: "in-class",
                             },
                         ]}
                         menuText={"Assignments"}
-                        containsSelectionItems={true}
                         onChange={(selectedValues) =>
                             this.handleChanges(selectedValues)
                         }
@@ -413,7 +158,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 3", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -478,7 +223,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 4", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -539,7 +284,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 5", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -547,7 +292,7 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 180,
+                height: 50,
             },
         });
 
@@ -600,7 +345,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 6", () => {
         const React = require("react");
         const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -672,7 +417,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 7", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -751,7 +496,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 8", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -822,7 +567,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 9", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -878,7 +623,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
+    it("example 10", () => {
         const React = require("react");
         const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");

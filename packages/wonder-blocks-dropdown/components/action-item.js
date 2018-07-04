@@ -26,7 +26,7 @@ type ActionProps = {
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Whether this item should be indented to have menu items left-align in

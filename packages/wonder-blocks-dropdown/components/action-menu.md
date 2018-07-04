@@ -3,16 +3,14 @@ a different page or opening a modal.
 
 TODO(sophie): Incorporate the down caret once Icon is merged.
 
-The first menu demonstrates an action menu with a disabled item and other items
-that navigate to a link. There is also a separator.
+This menu demonstrates an action menu with
+- a separator
+- a disabled item
+- items that redirect to a link
+- items with an onClick callback (could be used for conversion loggin)
 
-The second menu demonstrates a menu where the items only have onClick callbacks
-and do not navigate to a different menu. The onClick property may be used for
-purposes such as conversion logging.
+This menu is also right-aligned.
 
-The third menu is disabled.
-
-The fourth menu is right-aligned.
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -20,110 +18,50 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 170,
+        height: 250,
     },
-    strutLike: {
-        width: 8,
+    wrapper: {
+        width: "100%",
     }
 });
 <View style={[styles.row]}>
+    <View style={[styles.wrapper]}>
     <ActionMenu
-        items={[
-            {
-                type: "action",
-                label: "Go to Google",
-                href: "https://google.com",
-                onClick: () => console.log("Trigger action google")
-            },
-            {
-                type: "action",
-                label: "Go to KA",
-                disabled: true,
-                href: "https://khanacademy.org",
-                onClick: () => console.log("Trigger action KA")
-            },
-            {
-                type: "separator",
-            },
-            {
-                type: "action",
-                label: "Go to KA",
-                disabled: false,
-                href: "https://khanacademy.org",
-                onClick: () => console.log("Trigger action KA")
-            },
-        ]}
-        menuText={"Navigation menu"}
-        containsSelectionOptions={true}
-    />
-    <View style={[styles.strutLike]} />
-    <ActionMenu
-        items={[
-            {
-                type: "action",
-                label: "Log action 1",
-                onClick: () => console.log("Action 1")
-            },
-            {
-                type: "action",
-                label: "Log action 2",
-                onClick: () => console.log("Action 2")
-            },
-        ]}
-        menuText={"Logging menu"}
-    />
-    <View style={[styles.strutLike]} />
-    <ActionMenu
-        items={[
-            {
-                type: "action",
-                label: "Log action 1",
-                onClick: () => console.log("Action 1")
-            },
-            {
-                type: "action",
-                label: "Log action 2",
-                onClick: () => console.log("Action 2")
-            },
-        ]}
-        disabled={true}
-        menuText={"Disabled menu"}
-    />
-    <View style={[styles.strutLike]} />
-    <ActionMenu
-        items={[
-            {
-                type: "action",
-                label: "Profile",
-                onClick: () => console.log("profile")
-            },
-            {
-                type: "action",
-                label: "Teacher dashboard",
-                onClick: () => console.log("dashboard")
-            },
-            {
-                type: "action",
-                label: "Settings",
-                onClick: () => console.log("settings")
-            },
-            {
-                type: "action",
-                label: "Help",
-                onClick: () => console.log("help")
-            },
-            {
-                type: "separator"
-            },
-            {
-                type: "action",
-                label: "Log out",
-                onClick: () => console.log("log out")
-            }
-        ]}
-        menuText={"Betsy Appleseed"}
-        alignment={"right"}
-    />
+            items={[
+                {
+                    type: "action",
+                    label: "Profile",
+                    href: "http://khanacademy.org/profile",
+                },
+                {
+                    type: "action",
+                    label: "Teacher dashboard",
+                    href: "http://khanacademy.org/coach/dashboard",
+                },
+                {
+                    type: "action",
+                    label: "Settings (onClick)",
+                    onClick: () => console.log("user clicked on settings")
+                },
+                {
+                    type: "action",
+                    disabled: true,
+                    label: "Help",
+                    onClick: () => console.log("help")
+                },
+                {
+                    type: "separator"
+                },
+                {
+                    type: "action",
+                    label: "Log out",
+                    href: "http://khanacademy.org/logout",
+                }
+            ]}
+            menuText={"Betsy Appleseed"}
+            alignment={"right"}
+        />
+    </View>
 </View>
 ```
 
@@ -183,19 +121,18 @@ class HybridMenu extends React.Component {
                 {
                     type: "select",
                     label: "Show homework assignments",
-                    onClick: (state) => console.log(`Show homework assignments ${state.toString()}`),
+                    onClick: (state) => console.log(`Show homework assignments ${(!state).toString()}`),
                     value: "homework"
                 },
                 {
                     type: "select",
                     label: "Show in-class assignments",
-                    onClick: (state) => console.log(`Show in-class assignments ${state.toString()}`),
+                    onClick: (state) => console.log(`Show in-class assignments ${(!state).toString()}`),
                     value: "in-class"
                 },
 
             ]}
             menuText={"Assignments"}
-            containsSelectionItems={true}
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
             selectedValues={this.state.selectedValues}
         />
