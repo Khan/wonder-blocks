@@ -197,6 +197,7 @@ class LightRightAlignedExample extends React.Component {
                 },
             ]}
             alignment={"right"}
+            light={true}
             shortcuts={true}
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
             selectedValues={this.state.selectedValues}

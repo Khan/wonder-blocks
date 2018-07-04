@@ -3833,7 +3833,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 7 1`] = `
+exports[`wonder-blocks-dropdown example 9 1`] = `
 <div
   className=""
   style={
@@ -6285,7 +6285,7 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 8 1`] = `
+exports[`wonder-blocks-dropdown example 10 1`] = `
 <div
   className=""
   style={
@@ -6368,10 +6368,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
             "alignItems": "center",
             "backgroundColor": "#ffffff",
             "border": "none",
-            "borderColor": "rgba(33,36,44,0.50)",
             "borderRadius": 4,
-            "borderStyle": "solid",
-            "borderWidth": 1,
             "boxSizing": "border-box",
             "color": "#21242c",
             "cursor": "pointer",
@@ -6466,7 +6463,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           Object {
             "alignItems": "stretch",
             "backgroundColor": "#ffffff",
-            "border": "solid 1px rgba(33,36,44,0.16)",
+            "border": "none",
             "borderRadius": 4,
             "borderStyle": "solid",
             "borderWidth": 0,

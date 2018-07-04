@@ -99,16 +99,19 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         }));
     }
 
-    handleSelected(selectedValue: string, newSelectionState: boolean) {
+    handleSelected(selectedValue: string, oldSelectionState: boolean) {
         const {onChange, selectedValues} = this.props;
 
-        if (newSelectionState) {
-            // Item was newly selected
-            onChange([...selectedValues, selectedValue].sort());
-        } else {
-            const updatedSelection = selectedValues;
-            updatedSelection.splice(selectedValues.indexOf(selectedValue), 1);
+        if (oldSelectionState) {
+            const index = selectedValues.indexOf(selectedValue);
+            const updatedSelection = [
+                ...selectedValues.slice(0, index),
+                ...selectedValues.slice(index + 1),
+            ];
             onChange(updatedSelection);
+        } else {
+            // Item was newly selected
+            onChange([...selectedValues, selectedValue]);
         }
     }
 
@@ -212,6 +215,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
             <DropdownCore
                 alignment={alignment}
                 items={menuItems}
+                light={light}
                 open={open}
                 opener={opener}
                 style={[styles.menuTopSpace, style]}
