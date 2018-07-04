@@ -47,8 +47,8 @@ type SelectProps = {
 
     /**
      * Callback for when this item is pressed to change its selection state.
-     * Passes value of the item and the new selection state of the item. Should
-     * be handled by an implementation of Menu.
+     * Passes value of the item and its new selection state. Should be handled
+     * by an implementation of Menu.
      */
     onToggle: (value: string, selectionState: boolean) => void,
 
@@ -77,7 +77,7 @@ const Check = (props: CheckProps) => {
     const {selected, pressed, hovered, focused} = props;
 
     return (
-        <View>
+        <View style={[styles.checkContainer]}>
             <svg
                 role="img"
                 width="16px"
@@ -107,6 +107,7 @@ const Checkbox = (props: CheckProps) => {
     return (
         <View
             style={[
+                styles.checkContainer,
                 styles.checkbox,
                 !selected && styles.borderedCheckbox,
                 !selected &&
@@ -187,7 +188,8 @@ export default class SelectItem extends React.Component<SelectProps> {
                                 ) : (
                                     <Checkbox selected={selected} {...state} />
                                 )}
-                                <LabelLarge style={styles.label}>
+                                <View style={[styles.spacing]} />
+                                <LabelLarge style={[styles.label]}>
                                     {label}
                                 </LabelLarge>
                             </View>
@@ -211,7 +213,9 @@ const styles = StyleSheet.create({
     },
 
     label: {
-        paddingLeft: Spacing.xSmall,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     // hover and focus states
@@ -241,9 +245,15 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
     },
 
+    checkContainer: {
+        // Semantically, this are the constants for a small-sized icon
+        height: 16,
+        width: 16,
+        minHeight: 16,
+        minWidth: 16,
+    },
+
     checkbox: {
-        height: Spacing.medium,
-        width: Spacing.medium,
         borderRadius: 3,
     },
 
@@ -256,5 +266,9 @@ const styles = StyleSheet.create({
     invertBackground: {
         backgroundColor: white,
         borderColor: mix(fade(blue, 0.32), white),
+    },
+
+    spacing: {
+        minWidth: 8,
     },
 });
