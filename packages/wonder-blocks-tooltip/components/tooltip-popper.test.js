@@ -51,28 +51,23 @@ describe("TooltipPopper", () => {
     // we're not in a browser.
     // So, let's do a test that we at least render the content how we expect
     // and use other things to test the overall placement things.
-    test("ensure component renders", (done) => {
+    test("ensure component renders", async () => {
         // Arrange
-        const arrange = (actAssert) => {
+        const ref = await new Promise((resolve, reject) => {
             const nodes = (
                 <View>
-                    <TestHarness placement="bottom" resultRef={actAssert} />
+                    <TestHarness placement="bottom" resultRef={resolve} />
                 </View>
             );
             mount(nodes);
-        };
+        });
 
-        const actAndAssert = (resultRef) => {
-            if (!resultRef) {
-                return;
-            }
+        if (!ref) {
+            return;
+        }
 
-            // Act
-            // Assert
-            expect(resultRef).toBeDefined();
-            done();
-        };
-
-        arrange(actAndAssert);
+        // Act
+        // Assert
+        expect(ref).toBeDefined();
     });
 });
