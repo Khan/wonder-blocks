@@ -112,7 +112,14 @@ export default class Tooltip extends React.Component<Props, State> {
                 placement={placement || Tooltip.defaultProps.placement}
             >
                 {(props) => (
-                    <TooltipBubble popperProps={props}>
+                    <TooltipBubble
+                        style={props.style}
+                        tailOffset={props.tailOffset}
+                        outOfBoundaries={props.outOfBoundaries}
+                        placement={props.placement}
+                        updateTailRef={props.updateTailRef}
+                        updateBubbleRef={props.updateBubbleRef}
+                    >
                         {this._renderBubbleContent()}
                     </TooltipBubble>
                 )}

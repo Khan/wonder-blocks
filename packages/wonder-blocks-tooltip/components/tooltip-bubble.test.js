@@ -11,21 +11,10 @@ describe("TooltipBubble", () => {
     // A little helper method to make the actual test more readable.
     const makePopperProps = () => ({
         placement: "top",
-        style: {
-            position: "absolute",
+        tailOffset: {
             top: 0,
-            left: 0,
+            left: 50,
         },
-        ref: () => {},
-        scheduleUpdate: () => {},
-        arrowProps: {
-            style: {
-                left: 50,
-                top: 0,
-            },
-            ref: () => {},
-        },
-        outOfBoundaries: false,
     });
 
     test("updates reference to bubble container", (done) => {
@@ -33,8 +22,7 @@ describe("TooltipBubble", () => {
         const arrangeAct = (assert) => {
             // Get some props and set the ref to our assert, that way we assert
             // when the bubble component is mounted.
-            const popperProps = makePopperProps();
-            popperProps.ref = assert;
+            const props = makePopperProps();
 
             // Do some casting to pretend this is `TooltipContent`. That way
             // we are isolating behaviors a bit more.
@@ -43,7 +31,11 @@ describe("TooltipBubble", () => {
             ): any): React.Element<typeof TooltipContent>);
             const nodes = (
                 <View>
-                    <TooltipBubble popperProps={popperProps}>
+                    <TooltipBubble
+                        placement={props.placement}
+                        tailOffset={props.tailOffset}
+                        updateBubbleRef={assert}
+                    >
                         {fakeContent}
                     </TooltipBubble>
                 </View>
