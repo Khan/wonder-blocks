@@ -274,4 +274,28 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+    it("example 9", () => {
+        const {
+            BodyMonospace,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+
+        // TODO(somewhatabstract): Update this to be nice once we can get BodyMonospace
+        // to allow us to properly preserve whitespace or have an alternative. Or remove
+        // this entirely when our styleguide renders our interface definitions.
+        const example = (
+            <View>
+                <BodyMonospace>
+                    interface IIdentifierFactory &#123;
+                </BodyMonospace>
+                <View style={{flexDirection: "row"}}>
+                    <Strut size={"2em"} />
+                    <BodyMonospace>get(id: string): string;</BodyMonospace>
+                </View>
+                <BodyMonospace>&#125;</BodyMonospace>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
