@@ -1,6 +1,8 @@
-The `UniqueIDProvider` component is how Wonder Blocks components obtain unique identifiers. This component ensures that server-side rendering and initial client rendering match while allowing the provision of unique identifiers for the client. It does this by not guaranteeing unique identifiers for the initial render, but instead allowing for a placeholder to be rendered in place of the real content, or for non-unique values to be provided as identifiers.
+The `UniqueIDProvider` component is how Wonder Blocks components obtain unique identifiers. This component ensures that server-side rendering and initial client rendering match while allowing the provision of unique identifiers for the client.
 
 In all but the first render, the children are rendered with the same `IIdentifierFactory` instance, ensuring that the same calls will return the same identifiers.
+
+The `get` method of the identifier factory ensures that the same identifier is returned for like requests, but also that all identifiers provided are unique. Therefore, `get("test")` will always equal `get("test")`, and `get("test2")` will always equal `get("test2")`, but `get("test")` will never equal `get("test2")`.
 
 ### mockOnFirstRender absent or false
 
@@ -17,7 +19,7 @@ const renders = [];
 const provider = (
     <UniqueIDProvider ref={ref => providerRef = ref}>
         {ids => {
-            renders.push(ids.id("my-unique-id"));
+            renders.push(ids.get("my-unique-id"));
             return (
                 <View>
                     {renders.map((id,i) => (
@@ -45,24 +47,33 @@ const onClick = () => {
 
 ### mockOnFirstRender is true
 
-When specifying `mockOnFirstRender` to be `true`, the first render will use a mock identifier factory that doesn't guarantee identifier uniqueness.
+When specifying `mockOnFirstRender` to be `true`, the first render will use a mock identifier factory that doesn't guarantee identifier uniqueness. Mock mode can help things appear on the screen during the initial render, but is not the default, because it is not always safe (e.g., we need actual IDs for some SVG constructs).
 
 ```jsx
-const {Body, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
+const {Body, BodyMonospace, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
 const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
 
 let firstId = null;
+let secondId = null;
 
 const children = (idf) => {
-    const id = idf.id("an-id");
-    firstId = firstId || id;
+    const id1 = idf.get("an-id");
+    const id2 = idf.get("something");
+    firstId = firstId || id1;
+    secondId = secondId || id2
     return (
         <View>
-            <HeadingSmall>The initial render ID:</HeadingSmall>
-            {firstId}
+            <HeadingSmall>The initial render:</HeadingSmall>
+            <View>
+                <BodyMonospace>get("an-id"): {firstId}</BodyMonospace>
+                <BodyMonospace>get("something"): {secondId}</BodyMonospace>
+            </View>
             <Strut size={16} />
-            <HeadingSmall>Subsequent ID:</HeadingSmall>
-            {id}
+            <HeadingSmall>Subsequent requests:</HeadingSmall>
+            <View>
+                <BodyMonospace>get("an-id"): {id1}</BodyMonospace>
+                <BodyMonospace>get("something"): {id2}</BodyMonospace>
+            </View>
         </View>
     );
 };
@@ -80,10 +91,10 @@ const children = (idf) => {
 const {Body, HeadingSmall, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
 const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
 
-const children = ({id}) => (
+const children = ({get}) => (
     <View>
         <Body>
-            The id returned for "my-identifier": {id("my-identifier")}
+            The id returned for "my-identifier": {get("my-identifier")}
         </Body>
     </View>
 );

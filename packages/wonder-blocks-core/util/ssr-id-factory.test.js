@@ -6,7 +6,7 @@ describe("SsrIDFactory", () => {
         const {default: SsrIDFactory} = await import("./ssr-id-factory.js");
 
         // Act
-        const result = SsrIDFactory.id(id);
+        const result = SsrIDFactory.get(id);
 
         // Assert
         expect(result).toBe(id);

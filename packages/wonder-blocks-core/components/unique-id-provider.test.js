@@ -24,7 +24,7 @@ describe("UniqueIDProvider", () => {
             expect(children).not.toHaveBeenCalled();
         });
 
-        test("initial render is nothing on client", () => {
+        test("initial render is skipped on client", () => {
             // Arrange
             const children = jest.fn(() => null);
             const nodes = <UniqueIDProvider>{children}</UniqueIDProvider>;
@@ -33,8 +33,12 @@ describe("UniqueIDProvider", () => {
             mount(nodes);
 
             // Assert
+            // Called once; for real render.
+            // Compare with case where mock factory is provided and note that
+            // children gets called twice, once for initial render, and once
+            // for real render with unique ID factory.
             expect(children).toHaveBeenCalledTimes(1);
-            expect(children).not.toHaveBeenCalledWith(SsrIDFactory);
+            expect(children.mock.calls[0][0]).toBeInstanceOf(UniqueIDFactory);
         });
 
         test("all renders get same unique id factory", () => {

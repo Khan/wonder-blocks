@@ -565,9 +565,62 @@ exports[`wonder-blocks-core example 7 1`] = `
       }
     }
   >
-    The initial render ID:
+    The initial render:
   </h4>
-  an-id
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Inconsolata",
+          "fontSize": 17,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      get("an-id"): 
+      an-id
+    </span>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Inconsolata",
+          "fontSize": 17,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      get("something"): 
+      something
+    </span>
+  </div>
   <div
     className=""
     style={
@@ -608,9 +661,62 @@ exports[`wonder-blocks-core example 7 1`] = `
       }
     }
   >
-    Subsequent ID:
+    Subsequent requests:
   </h4>
-  uid--1-an-id
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Inconsolata",
+          "fontSize": 17,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      get("an-id"): 
+      uid--1-an-id
+    </span>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Inconsolata",
+          "fontSize": 17,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      get("something"): 
+      uid--1-something
+    </span>
+  </div>
 </div>
 `;
 

@@ -14,7 +14,7 @@ import {IIdentifierFactory} from "../util/types.js";
 class SsrIDFactory implements IIdentifierFactory {
     static Default = new SsrIDFactory();
 
-    id(id: string) {
+    get(id: string) {
         return id;
     }
 }

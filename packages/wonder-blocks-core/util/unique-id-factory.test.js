@@ -58,13 +58,13 @@ describe("UniqueIDFactory", () => {
         });
     });
 
-    describe("#id", () => {
+    describe("#get", () => {
         test("should return an identifier", () => {
             // Arrange
             const factory = new UniqueIDFactory();
 
             // Act
-            const actual = factory.id("mynamedid");
+            const actual = factory.get("mynamedid");
 
             // Assert
             expect(typeof actual).toBe("string");
@@ -77,7 +77,7 @@ describe("UniqueIDFactory", () => {
             const expected = /^uid-factory-for-testing.*/g;
 
             // Act
-            const actual = factory.id("anotherid");
+            const actual = factory.get("anotherid");
 
             // Assert
             expect(actual).toMatch(expected);
@@ -88,7 +88,7 @@ describe("UniqueIDFactory", () => {
             const factory = new UniqueIDFactory();
 
             // Act
-            const underTest = () => factory.id("IN*89098 08a7 jhufs");
+            const underTest = () => factory.get("IN*89098 08a7 jhufs");
 
             // Assert
             expect(underTest).toThrowErrorMatchingSnapshot();
@@ -100,7 +100,7 @@ describe("UniqueIDFactory", () => {
             const expected = /.*this-id-please/g;
 
             // Act
-            const actual = factory.id("ThiS-ID-PLEASE");
+            const actual = factory.get("ThiS-ID-PLEASE");
 
             // Assert
             expect(actual).toMatch(expected);
@@ -113,7 +113,7 @@ describe("UniqueIDFactory", () => {
             const expected = /.*factory-name.*/g;
 
             // Act
-            const actual = factory.id("anotherid");
+            const actual = factory.get("anotherid");
 
             // Assert
             expect(actual).toMatch(expected);
@@ -122,10 +122,10 @@ describe("UniqueIDFactory", () => {
         test("should return unique identifiers", () => {
             // Arrange
             const factory = new UniqueIDFactory();
-            const id1 = factory.id("first");
+            const id1 = factory.get("first");
 
             // Act
-            const id2 = factory.id("second");
+            const id2 = factory.get("second");
 
             // Assert
             expect(id2).not.toEqual(id1);
@@ -138,12 +138,12 @@ describe("UniqueIDFactory", () => {
             // Generate some ids either side of our test case.
             // Just to validate that we're not benefiting from some
             // "only id requested" side-effect.
-            factory.id("before");
-            const expected = factory.id("name");
-            factory.id("after");
+            factory.get("before");
+            const expected = factory.get("name");
+            factory.get("after");
 
             // Act
-            const actual = factory.id("name");
+            const actual = factory.get("name");
 
             // Assert
             expect(actual).toBe(expected);
@@ -155,8 +155,8 @@ describe("UniqueIDFactory", () => {
             const factory2 = new UniqueIDFactory();
 
             // Act
-            const id1 = factory1.id("testname");
-            const id2 = factory2.id("testname");
+            const id1 = factory1.get("testname");
+            const id2 = factory2.get("testname");
 
             // Assert
             expect(id2).not.toEqual(id1);

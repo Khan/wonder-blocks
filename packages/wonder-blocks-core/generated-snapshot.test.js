@@ -170,7 +170,7 @@ describe("wonder-blocks-core", () => {
         const provider = (
             <UniqueIDProvider ref={(ref) => (providerRef = ref)}>
                 {(ids) => {
-                    renders.push(ids.id("my-unique-id"));
+                    renders.push(ids.get("my-unique-id"));
                     return (
                         <View>
                             {renders.map((id, i) => (
@@ -207,22 +207,34 @@ describe("wonder-blocks-core", () => {
     it("example 7", () => {
         const {
             Body,
+            BodyMonospace,
             HeadingSmall,
         } = require("@khanacademy/wonder-blocks-typography");
         const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
 
         let firstId = null;
+        let secondId = null;
 
         const children = (idf) => {
-            const id = idf.id("an-id");
-            firstId = firstId || id;
+            const id1 = idf.get("an-id");
+            const id2 = idf.get("something");
+            firstId = firstId || id1;
+            secondId = secondId || id2;
             return (
                 <View>
-                    <HeadingSmall>The initial render ID:</HeadingSmall>
-                    {firstId}
+                    <HeadingSmall>The initial render:</HeadingSmall>
+                    <View>
+                        <BodyMonospace>get("an-id"): {firstId}</BodyMonospace>
+                        <BodyMonospace>
+                            get("something"): {secondId}
+                        </BodyMonospace>
+                    </View>
                     <Strut size={16} />
-                    <HeadingSmall>Subsequent ID:</HeadingSmall>
-                    {id}
+                    <HeadingSmall>Subsequent requests:</HeadingSmall>
+                    <View>
+                        <BodyMonospace>get("an-id"): {id1}</BodyMonospace>
+                        <BodyMonospace>get("something"): {id2}</BodyMonospace>
+                    </View>
                 </View>
             );
         };
@@ -243,10 +255,10 @@ describe("wonder-blocks-core", () => {
         } = require("@khanacademy/wonder-blocks-typography");
         const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
 
-        const children = ({id}) => (
+        const children = ({get}) => (
             <View>
                 <Body>
-                    The id returned for "my-identifier": {id("my-identifier")}
+                    The id returned for "my-identifier": {get("my-identifier")}
                 </Body>
             </View>
         );

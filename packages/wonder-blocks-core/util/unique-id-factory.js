@@ -14,7 +14,7 @@ export default class UniqueIDFactory implements IIdentifierFactory {
     /**
      * Creates a UniqueIDFactory instance.
      *
-     * @param {string} factoryName An optional case-insensitive name for the
+     * @param {string} scope An optional case-insensitive scope for the
      * factory. This will be used as part of the identifier. Useful for
      * providing context to the identifiers, which can be useful in
      * differentiating elements when debugging the DOM. This must contain only
@@ -24,19 +24,24 @@ export default class UniqueIDFactory implements IIdentifierFactory {
         scope = typeof scope === "string" ? scope : "";
         const normalizedScope = scope.toLowerCase();
         if (!this._hasValidIdChars(normalizedScope)) {
-            throw new Error(`Invalid factory name: ${scope}`);
+            throw new Error(`Invalid factory scope: ${scope}`);
         }
         this._uniqueFactoryName = `uid-${normalizedScope}-${UniqueIDFactory._factoryUniquenessCounter++}`;
     }
 
+    /**
+     * This method verifies that a string contains valid characters for an
+     * identifier. It does not assert that a string IS a valid identifier (for
+     * example, that it doesn't start with numbers). We don't need to do that
+     * here because all identifiers are prefixed to avoid needing that check.
+     */
     _hasValidIdChars(value: ?string) {
-        if (typeof value === "string") {
-            const invalidCharsReplaced = value.replace(/[^\d\w-]/g, "-");
-            if (value === invalidCharsReplaced) {
-                return true;
-            }
+        if (typeof value !== "string") {
+            return false;
         }
-        return false;
+
+        const invalidCharsReplaced = value.replace(/[^\d\w-]/g, "-");
+        return value === invalidCharsReplaced;
     }
 
     /**
@@ -48,7 +53,7 @@ export default class UniqueIDFactory implements IIdentifierFactory {
      * key in this factory. This must contain only hyphen and alphanumeric
      * characters.
      */
-    id = (key: string) => {
+    get = (key: string) => {
         const normalizedKey = key.toLowerCase();
         if (!this._hasValidIdChars(key)) {
             throw new Error(`Invalid identifier key: ${key}`);

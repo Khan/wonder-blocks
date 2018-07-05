@@ -156,5 +156,5 @@ export type MediaSpec = {
 };
 
 export interface IIdentifierFactory {
-    id(id: string): string;
+    get(id: string): string;
 }
