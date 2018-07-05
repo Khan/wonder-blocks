@@ -47,10 +47,10 @@ type SelectProps = {
 
     /**
      * Callback for when this item is pressed to change its selection state.
-     * Passes value of the item and its new selection state. Should be handled
+     * Passes value of the item and its old selection state. Should be handled
      * by an implementation of Menu.
      */
-    onToggle: (value: string, selectionState: boolean) => void,
+    onToggle: (value: string, oldSelectionState: boolean) => void,
 
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
@@ -60,7 +60,7 @@ type SelectProps = {
     /**
      * Optional client-supplied callback when this item is called.
      */
-    onClick?: (selectionState: boolean) => void,
+    onClick?: (oldSelectionState: boolean) => void,
 };
 
 const StyledButton = addStyle("button");
@@ -158,9 +158,9 @@ export default class SelectItem extends React.Component<SelectProps> {
             <ClickableBehavior
                 disabled={disabled}
                 onClick={() => {
-                    onToggle(value, !selected);
+                    onToggle(value, selected);
                     if (onClick) {
-                        onClick(!selected);
+                        onClick(selected);
                     }
                 }}
             >

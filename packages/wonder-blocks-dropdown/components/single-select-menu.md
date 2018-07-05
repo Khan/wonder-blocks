@@ -38,15 +38,15 @@ class ExampleWithPlaceholder extends React.Component {
             items={[
                 {
                     label: "Banana wrapped in a peel",
-                    value: "banana"
+                    value: "banana",
                 },
                 {
                     label: "Apple",
-                    value: "apple"
+                    value: "apple",
                 },
                 {
                     label: "Grape",
-                    value: "grape"
+                    value: "grape",
                 },
             ]}
             light={false}
@@ -101,16 +101,16 @@ class ExampleWithStartingSelection extends React.Component {
             items={[
                 {
                     label: "Banana juice!!!",
-                    value: "banana"
+                    value: "banana",
                 },
                 {
                     disabled: true,
                     label: "Apple juice!!!",
-                    value: "apple"
+                    value: "apple",
                 },
                 {
                     label: "Grape juice!!!",
-                    value: "grape"
+                    value: "grape",
                 },
             ]}
             onChange={(selected) => this.handleChange(selected)}
@@ -160,15 +160,15 @@ class DisabledExample extends React.Component {
             items={[
                 {
                     label: "Banana juice!!!",
-                    value: "banana"
+                    value: "banana",
                 },
                 {
                     label: "Apple juice!!!",
-                    value: "apple"
+                    value: "apple",
                 },
                 {
                     label: "Grape juice!!!",
-                    value: "grape"
+                    value: "grape",
                 },
             ]}
             onChange={(selected) => this.handleChange(selected)}
@@ -224,15 +224,15 @@ class LightRightAlignedExample extends React.Component {
             items={[
                 {
                     label: "Regular milk tea with boba",
-                    value: "regular"
+                    value: "regular",
                 },
                 {
                     label: "Wintermelon milk tea with boba",
-                    value: "wintermelon"
+                    value: "wintermelon",
                 },
                 {
                     label: "Taro milk tea, half sugar",
-                    value: "taro"
+                    value: "taro",
                 },
             ]}
             light={true}

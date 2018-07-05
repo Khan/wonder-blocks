@@ -3832,3 +3832,2965 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
   </div>
 </div>
 `;
+
+exports[`wonder-blocks-dropdown example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 250,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="menu"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#21242c",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "marginBottom": 4,
+          "marginTop": 4,
+          "maxWidth": 170,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "whiteSpace": "nowrap",
+          "width": 170,
+        }
+      }
+      tabIndex={0}
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+      >
+        Choose some colors
+      </span>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 8,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 16,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <svg
+          aria-hidden={true}
+          height={16}
+          role="img"
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          />
+        </svg>
+      </div>
+    </button>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "#ffffff",
+          "border": "solid 1px rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxShadow": "0px 8px 8px 0px rgba(33,36,44,0.10)",
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "marginTop": 4,
+          "maxWidth": 170,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "paddingBottom": 4,
+          "paddingTop": 4,
+          "position": "absolute",
+          "top": 48,
+          "visibility": "hidden",
+          "width": 170,
+          "zIndex": 1000,
+        }
+      }
+    >
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Red
+          </span>
+        </div>
+      </button>
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "rgba(33,36,44,0.32)",
+            "cursor": "default",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={-1}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Orange
+          </span>
+        </div>
+      </button>
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Yellow
+          </span>
+        </div>
+      </button>
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Green
+          </span>
+        </div>
+      </button>
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Blue
+          </span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 10 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 350,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="menu"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#21242c",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "marginBottom": 4,
+          "marginTop": 4,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={0}
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+      >
+        1 colors
+      </span>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 8,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 16,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <svg
+          aria-hidden={true}
+          height={16}
+          role="img"
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          />
+        </svg>
+      </div>
+    </button>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "#ffffff",
+          "border": "solid 1px rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxShadow": "0px 8px 8px 0px rgba(33,36,44,0.10)",
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "marginTop": 4,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "paddingBottom": 4,
+          "paddingTop": 4,
+          "position": "absolute",
+          "top": 48,
+          "visibility": "hidden",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <button
+        className=""
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "display": "flex",
+            "flexDirection": "row",
+            "height": 40,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 16,
+              "zIndex": 0,
+            }
+          }
+        />
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Select all (5)
+        </span>
+      </button>
+      <button
+        className=""
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "alignItems": "center",
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "display": "flex",
+            "flexDirection": "row",
+            "height": 40,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 16,
+              "zIndex": 0,
+            }
+          }
+        />
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 700,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Select none
+        </span>
+      </button>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "backgroundColor": "rgba(33,36,44,0.16)",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 1,
+            "margin": 0,
+            "marginBottom": 4,
+            "marginTop": 4,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="true"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          >
+            <svg
+              aria-hidden="true"
+              height="16px"
+              role="img"
+              style={
+                Object {
+                  "backgroundColor": "#1865f2",
+                  "borderRadius": 3,
+                }
+              }
+              viewBox="-2 -1 14 14"
+              width="16px"
+            >
+              <path
+                d="M10,3.8C10,4,9.9,4.2,9.8,4.3L5.1,8.9L4.3,9.8C4.2,9.9,4,10,
+3.8,10S3.5,9.9,3.4,9.8L2.5,8.9L0.2,6.6C0.1,6.5,0,6.3,0,6.2s0.1-0.3,0.2-0.4
+l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
+0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l0.9,0.9C9.9,3.5,10,3.7,10,3.8z"
+                fill="#ffffff"
+              />
+            </svg>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Red
+          </span>
+        </div>
+      </button>
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Orange
+          </span>
+        </div>
+      </button>
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Yellow
+          </span>
+        </div>
+      </button>
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Green
+          </span>
+        </div>
+      </button>
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Blue
+          </span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 11 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 50,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="menu"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#21242c",
+          "cursor": "auto",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "marginBottom": 4,
+          "marginTop": 4,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={-1}
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "color": "rgba(33,36,44,0.32)",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+          }
+        }
+      >
+        Choose some colors
+      </span>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 8,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 16,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <svg
+          aria-hidden={true}
+          height={16}
+          role="img"
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          />
+        </svg>
+      </div>
+    </button>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "#ffffff",
+          "border": "solid 1px rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxShadow": "0px 8px 8px 0px rgba(33,36,44,0.10)",
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "marginTop": 4,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "paddingBottom": 4,
+          "paddingTop": 4,
+          "position": "absolute",
+          "top": 48,
+          "visibility": "hidden",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <button
+        className=""
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "background": "#ffffff",
+            "border": "none",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "margin": 0,
+            "outline": "none",
+            "padding": 0,
+          }
+        }
+        tabIndex={0}
+      >
+        <div
+          aria-checked="false"
+          className=""
+          role="menuitemcheckbox"
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderColor": "rgba(33,36,44,0.32)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Red
+          </span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 12 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#0a2a66",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 370,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingRight": 10,
+        "paddingTop": 10,
+        "position": "relative",
+        "width": 350,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <button
+        className=""
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        role="menu"
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "border": "none",
+            "borderRadius": 4,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+            "marginTop": 4,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 12,
+            "position": "relative",
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+        tabIndex={0}
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+            }
+          }
+        >
+          1 harry potter books
+        </span>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 8,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 16,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            aria-hidden={true}
+            height={16}
+            role="img"
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "backgroundColor": "#ffffff",
+            "border": "none",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxShadow": "0px 8px 8px 0px rgba(33,36,44,0.10)",
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "marginTop": 4,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "paddingBottom": 4,
+            "paddingTop": 4,
+            "position": "absolute",
+            "top": 48,
+            "visibility": "hidden",
+            "zIndex": 1000,
+          }
+        }
+      >
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "textDecoration": "none",
+              "whiteSpace": "nowrap",
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Select all (5)
+          </span>
+        </button>
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "display": "flex",
+              "flexDirection": "row",
+              "height": 40,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "textDecoration": "none",
+              "whiteSpace": "nowrap",
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 16,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Select none
+          </span>
+        </button>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "backgroundColor": "rgba(33,36,44,0.16)",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "height": 1,
+              "margin": 0,
+              "marginBottom": 4,
+              "marginTop": 4,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <button
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "background": "#ffffff",
+              "border": "none",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "margin": 0,
+              "outline": "none",
+              "padding": 0,
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            aria-checked="true"
+            className=""
+            role="menuitemcheckbox"
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 40,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingLeft": 8,
+                "paddingRight": 16,
+                "position": "relative",
+                "whiteSpace": "nowrap",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": 16,
+                  "margin": 0,
+                  "minHeight": 16,
+                  "minWidth": 16,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 16,
+                  "zIndex": 0,
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                height="16px"
+                role="img"
+                style={
+                  Object {
+                    "backgroundColor": "#1865f2",
+                    "borderRadius": 3,
+                  }
+                }
+                viewBox="-2 -1 14 14"
+                width="16px"
+              >
+                <path
+                  d="M10,3.8C10,4,9.9,4.2,9.8,4.3L5.1,8.9L4.3,9.8C4.2,9.9,4,10,
+3.8,10S3.5,9.9,3.4,9.8L2.5,8.9L0.2,6.6C0.1,6.5,0,6.3,0,6.2s0.1-0.3,0.2-0.4
+l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
+0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l0.9,0.9C9.9,3.5,10,3.7,10,3.8z"
+                  fill="#ffffff"
+                />
+              </svg>
+            </div>
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 8,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            />
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato",
+                  "fontSize": 16,
+                  "fontWeight": 700,
+                  "lineHeight": "20px",
+                  "overflow": "hidden",
+                  "textOverflow": "ellipsis",
+                  "whiteSpace": "nowrap",
+                }
+              }
+            >
+              the philosopher's stone
+            </span>
+          </div>
+        </button>
+        <button
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "background": "#ffffff",
+              "border": "none",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "margin": 0,
+              "outline": "none",
+              "padding": 0,
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            aria-checked="false"
+            className=""
+            role="menuitemcheckbox"
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 40,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingLeft": 8,
+                "paddingRight": 16,
+                "position": "relative",
+                "whiteSpace": "nowrap",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderColor": "rgba(33,36,44,0.32)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": 16,
+                  "margin": 0,
+                  "minHeight": 16,
+                  "minWidth": 16,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 16,
+                  "zIndex": 0,
+                }
+              }
+            />
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 8,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            />
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato",
+                  "fontSize": 16,
+                  "fontWeight": 700,
+                  "lineHeight": "20px",
+                  "overflow": "hidden",
+                  "textOverflow": "ellipsis",
+                  "whiteSpace": "nowrap",
+                }
+              }
+            >
+              the chamber of secrets
+            </span>
+          </div>
+        </button>
+        <button
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "background": "#ffffff",
+              "border": "none",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "margin": 0,
+              "outline": "none",
+              "padding": 0,
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            aria-checked="false"
+            className=""
+            role="menuitemcheckbox"
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 40,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingLeft": 8,
+                "paddingRight": 16,
+                "position": "relative",
+                "whiteSpace": "nowrap",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderColor": "rgba(33,36,44,0.32)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": 16,
+                  "margin": 0,
+                  "minHeight": 16,
+                  "minWidth": 16,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 16,
+                  "zIndex": 0,
+                }
+              }
+            />
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 8,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            />
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato",
+                  "fontSize": 16,
+                  "fontWeight": 700,
+                  "lineHeight": "20px",
+                  "overflow": "hidden",
+                  "textOverflow": "ellipsis",
+                  "whiteSpace": "nowrap",
+                }
+              }
+            >
+              the prisoner of azkaban
+            </span>
+          </div>
+        </button>
+        <button
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "background": "#ffffff",
+              "border": "none",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "margin": 0,
+              "outline": "none",
+              "padding": 0,
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            aria-checked="false"
+            className=""
+            role="menuitemcheckbox"
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 40,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingLeft": 8,
+                "paddingRight": 16,
+                "position": "relative",
+                "whiteSpace": "nowrap",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderColor": "rgba(33,36,44,0.32)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": 16,
+                  "margin": 0,
+                  "minHeight": 16,
+                  "minWidth": 16,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 16,
+                  "zIndex": 0,
+                }
+              }
+            />
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 8,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            />
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato",
+                  "fontSize": 16,
+                  "fontWeight": 700,
+                  "lineHeight": "20px",
+                  "overflow": "hidden",
+                  "textOverflow": "ellipsis",
+                  "whiteSpace": "nowrap",
+                }
+              }
+            >
+              the goblet of fire
+            </span>
+          </div>
+        </button>
+        <button
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "background": "#ffffff",
+              "border": "none",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "margin": 0,
+              "outline": "none",
+              "padding": 0,
+            }
+          }
+          tabIndex={0}
+        >
+          <div
+            aria-checked="false"
+            className=""
+            role="menuitemcheckbox"
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 40,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingLeft": 8,
+                "paddingRight": 16,
+                "position": "relative",
+                "whiteSpace": "nowrap",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderColor": "rgba(33,36,44,0.32)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": 16,
+                  "margin": 0,
+                  "minHeight": 16,
+                  "minWidth": 16,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 16,
+                  "zIndex": 0,
+                }
+              }
+            />
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 8,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            />
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato",
+                  "fontSize": 16,
+                  "fontWeight": 700,
+                  "lineHeight": "20px",
+                  "overflow": "hidden",
+                  "textOverflow": "ellipsis",
+                  "whiteSpace": "nowrap",
+                }
+              }
+            >
+              the order of the phoenix
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
