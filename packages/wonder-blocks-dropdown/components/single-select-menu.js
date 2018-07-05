@@ -7,23 +7,13 @@ import {StyleSheet} from "aphrodite";
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
-
-export type SingleSelectItemProps = {
-    /** Whether this item is disabled. Default false. */
-    disabled?: boolean,
-    /** Display text of the item. */
-    label: string,
-    /** Value of this item. Treat as a key. */
-    value: string,
-    /** Optional extra callback. Passes whether this item is selected. */
-    onClick?: (selected: boolean) => void,
-};
+import type {SelectItemProps} from "../utils/types.js";
 
 type Props = {
     /**
      * The items in this menu.
      */
-    items: Array<SingleSelectItemProps>,
+    items: Array<SelectItemProps>,
 
     /**
      * Callback for when the selection of the menu changes. Parameter is the

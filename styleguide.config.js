@@ -34,6 +34,7 @@ module.exports = {
                 "packages/wonder-blocks-dropdown/components/separator-item.js",
                 "packages/wonder-blocks-dropdown/components/select-box.js",
                 "packages/wonder-blocks-dropdown/components/single-select-menu.js",
+                "packages/wonder-blocks-dropdown/components/multi-select-menu.js",
             ],
         },
         {
