@@ -18,7 +18,7 @@ type TestHarnessProps = {|
     /**
      * Identifier to give the bubble
      */
-    bubbleId?: ?string,
+    bubbleId: string,
 
     /**
      * Should we even have a bubble? When false, bubble is
@@ -243,7 +243,6 @@ describe("TooltipPortalMounter", () => {
 
         // Act
         wrapper.setProps({hasAnchor: false});
-        // wrapper.instance().forceUpdate();
 
         // Assert
         const newTooltipPortal = getTooltipPortalForBubble(bubbleId);
