@@ -18,6 +18,7 @@
     "@khanacademy/wonder-blocks-color": "^1.0.2",
     "@khanacademy/wonder-blocks-core": "^1.0.2",
     "@khanacademy/wonder-blocks-grid": "^0.0.3",
+    "@khanacademy/wonder-blocks-toolbar": "^0.0.1",
     "@khanacademy/wonder-blocks-typography": "^1.0.2"
   }
 }

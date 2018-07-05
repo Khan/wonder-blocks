@@ -1,14 +1,7 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    HeadingMedium,
-    HeadingSmall,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {Toolbar} from "@khanacademy/wonder-blocks-toolbar";
 
 type Props = {
     /**
@@ -25,7 +18,6 @@ type Props = {
     subtitle?: string,
 
     color: "light" | "dark",
-    style?: any,
 };
 
 export default class ModalTitleBar extends React.Component<Props> {
@@ -33,75 +25,10 @@ export default class ModalTitleBar extends React.Component<Props> {
         color: "light",
     };
 
-    _renderTitleAndSubtitle() {
-        const {title, subtitle} = this.props;
-
-        if (subtitle) {
-            return (
-                <View>
-                    <HeadingSmall id="wb-modal-title">{title}</HeadingSmall>
-                    <LabelSmall>{subtitle}</LabelSmall>
-                </View>
-            );
-        } else {
-            return <HeadingMedium id="wb-modal-title">{title}</HeadingMedium>;
-        }
-    }
-
     render() {
-        const {color, style} = this.props;
-        return (
-            <View
-                style={[
-                    styles.titlebar,
-                    color === "dark" && styles.dark,
-                    (mediaSize) => mediaSize === "small" && styles.small,
-                    style,
-                ]}
-            >
-                <View style={styles.titleAndSubtitle}>
-                    {this._renderTitleAndSubtitle()}
-                </View>
-            </View>
-        );
+        const {color, title, subtitle} = this.props;
+
+        // TODO(scottgrant): Set size appropriately using mediaSize.
+        return <Toolbar color={color} title={title} subtitle={subtitle} />;
     }
 }
-
-const styles = StyleSheet.create({
-    titlebar: {
-        flex: "0 0 auto",
-        boxSizing: "border-box",
-        minHeight: 64,
-        paddingLeft: 4,
-        paddingRight: 4,
-        paddingTop: 8,
-        paddingBottom: 8,
-
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-
-        borderBottomStyle: "solid",
-        borderBottomColor: Color.offBlack16,
-        borderBottomWidth: 1,
-    },
-
-    // On mobile, the titlebar is more compact.
-    small: {
-        minHeight: 56,
-        paddingTop: 4,
-        paddingBottom: 4,
-    },
-
-    // This element is centered within the titlebar
-    titleAndSubtitle: {
-        flex: "1",
-        textAlign: "center",
-    },
-
-    dark: {
-        background: Color.darkBlue,
-        color: Color.white,
-        borderBottomColor: Color.white64,
-    },
-});
