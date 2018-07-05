@@ -1,5 +1,5 @@
 // @flow
-import SuppressionArbiter from "./suppression-arbiter";
+import SuppressionTracker from "./suppression-tracker.js";
 
 import type {ICanBeSuppressed} from "./types.js";
 
@@ -17,7 +17,7 @@ describe("SuppressionArbiter", () => {
     describe("#track", () => {
         test("first suppressee gets non-instantly unsuppressed", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const suppressee = new TestSuppressee();
 
             // Act
@@ -29,7 +29,7 @@ describe("SuppressionArbiter", () => {
 
         test("track already tracked suppressee, throws", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const suppressee = new TestSuppressee();
             arbiter.track(suppressee);
 
@@ -42,7 +42,7 @@ describe("SuppressionArbiter", () => {
 
         test("track new suppressee, old active suppressee is instantly suppressed", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const suppresseeOld = new TestSuppressee();
             const suppresseeNew = new TestSuppressee();
             arbiter.track(suppresseeOld);
@@ -56,7 +56,7 @@ describe("SuppressionArbiter", () => {
 
         test("track new suppressee, new suppressee is instantly unsuppressed", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const suppresseeOld = new TestSuppressee();
             const suppresseeNew = new TestSuppressee();
             arbiter.track(suppresseeOld);
@@ -72,7 +72,7 @@ describe("SuppressionArbiter", () => {
     describe("#untrack", () => {
         test("untrack an untracked suppressee, throws", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const suppressee = new TestSuppressee();
 
             // Act
@@ -84,7 +84,7 @@ describe("SuppressionArbiter", () => {
 
         test("untrack active suppressee, suppressee is suppressed non-instantly", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const suppressee = new TestSuppressee();
             arbiter.track(suppressee);
 
@@ -97,7 +97,7 @@ describe("SuppressionArbiter", () => {
 
         test("untrack active suppressee, next surpressee instantly unsuppressed", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const oldActiveSuppressee = new TestSuppressee();
             const newActiveSuppressee = new TestSuppressee();
             arbiter.track(newActiveSuppressee);
@@ -114,7 +114,7 @@ describe("SuppressionArbiter", () => {
 
         test("untrack active suppressee, old active surpressee instantly suppressed", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const oldActiveSuppressee = new TestSuppressee();
             const newActiveSuppressee = new TestSuppressee();
             arbiter.track(newActiveSuppressee);
@@ -131,7 +131,7 @@ describe("SuppressionArbiter", () => {
 
         test("untrack inactive suppressee, suppressee gets surpressed", () => {
             // Arrange
-            const arbiter = new SuppressionArbiter();
+            const arbiter = new SuppressionTracker();
             const activeSuppressee = new TestSuppressee();
             const untrackedSuppressee = new TestSuppressee();
             arbiter.track(untrackedSuppressee);

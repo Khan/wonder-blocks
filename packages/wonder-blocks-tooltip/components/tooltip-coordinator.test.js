@@ -8,47 +8,47 @@ import {
     TooltipDisappearanceDelay,
 } from "../util/constants.js";
 
-import TooltipArbiter from "./tooltip-arbiter.js";
+import TooltipCoordinator from "./tooltip-coordinator.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 
 /**
- * We'll mock out the arbiter and use our own with mocks.
+ * We'll mock out the tracker and use our own with mocks.
  */
 jest.mock(
-    "../util/suppression-arbiter.js",
+    "../util/suppression-tracker.js",
     () =>
-        class MockArbiter {
+        class MockTracker {
             static _track = jest.fn();
             static _untrack = jest.fn();
 
-            track = MockArbiter._track;
-            untrack = MockArbiter._untrack;
+            track = MockTracker._track;
+            untrack = MockTracker._untrack;
         },
 );
 
 /**
- * Here we make sure we can get hold of the mocks from our mock arbiter.
+ * Here we make sure we can get hold of the mocks from our mock tracker.
  */
 let trackFn;
 let untrackFn;
-async function getMockArbiterMocks() {
-    const MockArbiter = await import("../util/suppression-arbiter.js");
+async function getMockTrackerMocks() {
+    const MockTracker = await import("../util/suppression-tracker.js");
     // Flow doesn't like our jest mock shenanigans $FlowFixMe
-    trackFn = MockArbiter._track;
+    trackFn = MockTracker._track;
     // Flow doesn't like our jest mock shenanigans $FlowFixMe
-    untrackFn = MockArbiter._untrack;
+    untrackFn = MockTracker._untrack;
 }
 
-describe("TooltipArbiter", () => {
+describe("TooltipCoordinator", () => {
     /**
-     * Ensure the mock arbiter mocks are available to us.
+     * Ensure the mock tracker mocks are available to us.
      */
     beforeAll(async () => {
-        await getMockArbiterMocks();
+        await getMockTrackerMocks();
     });
 
     /**
-     * Prevent side-effects by resetting the arbiter mocks before each test.
+     * Prevent side-effects by resetting the tracker mocks before each test.
      */
     beforeEach(() => {
         trackFn.mockReset();
@@ -61,7 +61,7 @@ describe("TooltipArbiter", () => {
             () => ((null: any): React.Element<typeof TooltipPortalMounter>),
         );
         const nodes = (
-            <TooltipArbiter active={false}>{children}</TooltipArbiter>
+            <TooltipCoordinator active={false}>{children}</TooltipCoordinator>
         );
 
         // Act
@@ -71,12 +71,14 @@ describe("TooltipArbiter", () => {
         expect(children).toHaveBeenCalledWith(false, false);
     });
 
-    test("active true, calls arbiter track", () => {
+    test("active true, calls tracker's track", () => {
         // Arrange
         const children = jest.fn(
             () => ((null: any): React.Element<typeof TooltipPortalMounter>),
         );
-        const nodes = <TooltipArbiter active={true}>{children}</TooltipArbiter>;
+        const nodes = (
+            <TooltipCoordinator active={true}>{children}</TooltipCoordinator>
+        );
 
         // Act
         shallow(nodes);
@@ -85,12 +87,14 @@ describe("TooltipArbiter", () => {
         expect(trackFn).toHaveBeenCalled();
     });
 
-    test("active transitions from true to false, calls arbiter untrack", () => {
+    test("active transitions from true to false, calls tracker's untrack", () => {
         // Arrange
         const children = jest.fn(
             () => ((null: any): React.Element<typeof TooltipPortalMounter>),
         );
-        const nodes = <TooltipArbiter active={true}>{children}</TooltipArbiter>;
+        const nodes = (
+            <TooltipCoordinator active={true}>{children}</TooltipCoordinator>
+        );
         const wrapper = shallow(nodes);
 
         // Act
@@ -100,13 +104,13 @@ describe("TooltipArbiter", () => {
         expect(untrackFn).toHaveBeenCalled();
     });
 
-    test("active transitions from false to true, calls arbiter track", () => {
+    test("active transitions from false to true, calls tracker's track", () => {
         // Arrange
         const children = jest.fn(
             () => ((null: any): React.Element<typeof TooltipPortalMounter>),
         );
         const nodes = (
-            <TooltipArbiter active={false}>{children}</TooltipArbiter>
+            <TooltipCoordinator active={false}>{children}</TooltipCoordinator>
         );
         const wrapper = shallow(nodes);
 
@@ -124,7 +128,9 @@ describe("TooltipArbiter", () => {
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipArbiter active={true}>{children}</TooltipArbiter>
+                <TooltipCoordinator active={true}>
+                    {children}
+                </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
 
@@ -141,7 +147,9 @@ describe("TooltipArbiter", () => {
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipArbiter active={true}>{children}</TooltipArbiter>
+                <TooltipCoordinator active={true}>
+                    {children}
+                </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
 
@@ -160,7 +168,9 @@ describe("TooltipArbiter", () => {
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipArbiter active={true}>{children}</TooltipArbiter>
+                <TooltipCoordinator active={true}>
+                    {children}
+                </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
             wrapper.instance().unsuppress(true);
@@ -183,7 +193,9 @@ describe("TooltipArbiter", () => {
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipArbiter active={true}>{children}</TooltipArbiter>
+                <TooltipCoordinator active={true}>
+                    {children}
+                </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
             wrapper.instance().unsuppress(true);
@@ -201,7 +213,9 @@ describe("TooltipArbiter", () => {
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipArbiter active={true}>{children}</TooltipArbiter>
+                <TooltipCoordinator active={true}>
+                    {children}
+                </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
             wrapper.instance().unsuppress(true);
@@ -221,7 +235,9 @@ describe("TooltipArbiter", () => {
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipArbiter active={true}>{children}</TooltipArbiter>
+                <TooltipCoordinator active={true}>
+                    {children}
+                </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
             wrapper.instance().unsuppress(false);

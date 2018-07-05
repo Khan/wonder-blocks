@@ -10,7 +10,7 @@
  *
  * Tooltip (this component)
  * - TooltipAnchor (provides hover/focus behaviors on anchored content)
- *   - TooltipArbiter (controls which tooltip is visible and how soon)
+ *   - TooltipCoordinator (coordinates which tooltip is visible, how soon, etc.)
  *     - TooltipPortalMounter (creates portal into which the callout is rendered)
  * --------------------------- [PORTAL BOUNDARY] ------------------------------
  * - TooltipPopper (provides positioning for the callout using react-popper)
@@ -23,7 +23,7 @@ import * as React from "react";
 
 import {Text} from "@khanacademy/wonder-blocks-core";
 
-import TooltipArbiter from "./tooltip-arbiter.js";
+import TooltipCoordinator from "./tooltip-coordinator.js";
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
@@ -137,7 +137,7 @@ export default class Tooltip extends React.Component<Props, State> {
                 anchorRef={(r) => this._updateAnchorElement(r)}
             >
                 {(active) => (
-                    <TooltipArbiter active={active}>
+                    <TooltipCoordinator active={active}>
                         {(a, i) => (
                             <TooltipPortalMounter
                                 anchor={this._renderAnchorElement()}
@@ -145,7 +145,7 @@ export default class Tooltip extends React.Component<Props, State> {
                                 {this._renderPopper(a, i)}
                             </TooltipPortalMounter>
                         )}
-                    </TooltipArbiter>
+                    </TooltipCoordinator>
                 )}
             </TooltipAnchor>
         );

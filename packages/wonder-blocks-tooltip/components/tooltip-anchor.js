@@ -6,12 +6,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import TooltipArbiter from "./tooltip-arbiter.js";
+import TooltipCoordinator from "./tooltip-coordinator.js";
 
 type Props = {|
     // A method that ultimately renders the content for anchoring the tooltip.
     // This must return a TooltipArbiter component.
-    children: (active: boolean) => React.Element<typeof TooltipArbiter>,
+    children: (active: boolean) => React.Element<typeof TooltipCoordinator>,
 
     // Callback to be invoked when the anchored content is mounted.
     // This provides a reference to the anchored content, which can then be

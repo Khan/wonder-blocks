@@ -6,7 +6,7 @@ import type {ICanBeSuppressed} from "./types.js";
  * and arbitrating which ones are active or supressed based on which was
  * tracked most recently and those that are being tracked as a whole.
  */
-export default class SuppressionArbiter {
+export default class SuppressionTracker {
     _activeStack: Array<ICanBeSuppressed> = [];
 
     _getIndex(suppressee: ICanBeSuppressed) {

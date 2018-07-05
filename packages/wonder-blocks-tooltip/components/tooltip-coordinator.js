@@ -1,12 +1,12 @@
 // @flow
 /**
- * This component arbitrates between all the tooltips to ensure:
+ * This component coordinates all the tooltips to ensure:
  *    1. Only one is visible at any time
  *    2. The appropriate delay occurs before making a tooltip active
  */
 import * as React from "react";
 
-import SuppressionArbiter from "../util/suppression-arbiter.js";
+import SuppressionTracker from "../util/suppression-tracker.js";
 import {
     TooltipAppearanceDelay,
     TooltipDisappearanceDelay,
@@ -36,7 +36,7 @@ type State = {
     instant: boolean,
 };
 
-const ARBITER = new SuppressionArbiter();
+const ARBITER = new SuppressionTracker();
 
 export default class TooltipArbiter extends React.Component<Props, State>
     implements ICanBeSuppressed {
