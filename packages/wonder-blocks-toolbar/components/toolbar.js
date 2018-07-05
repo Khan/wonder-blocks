@@ -1,51 +1,42 @@
 // @flow
+/*
+ * A toolbar component that often acts as a container header.
+ */
 import * as React from "react";
-import {css, StyleSheet} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-
-// TODO(scottgrant): Make sure the toolbars are responsive.
-// import type {MediaSize} from "@khanacademy/wonder-blocks-core";
-
-const dismissIcon =
-    "M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z";
+import {
+    HeadingSmall,
+    LabelLarge,
+    LabelSmall,
+} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
     /**
-     * A list of nodes to render on the left side of the toolbar. In most
-     * cases, this will be empty.
+     * Whether we should use the default light color scheme or switch to a
+     * darker blue scheme.
      */
-    leftContent?: Array<React.Node>,
+    color?: "dark" | "light",
 
     /**
-     * The function to call when dismissing the toolbar. Only relevant if
-     * showClose is true.
+     * A list of nodes to render on the left side of the toolbar. This will
+     * often be empty, but may include a close button for modals.
      */
-    onClose?: () => void,
+    leftContent?: React.Node,
 
     /**
      * A list of nodes to render on the right side of the toolbar. This will
      * typically include buttons, links, span elements with text, or nothing
      * at all.
      */
-    rightContent?: Array<React.Node>,
-
-    /**
-     * True, if we should show the dismiss icon on the left side o the toolbar.
-     */
-    showClose: boolean,
+    rightContent?: React.Node,
 
     /**
      * How much vertical space to use for the toolbar. If this prop is not
      * provided, the default is "medium".
      */
     size?: "small" | "medium",
-
-    /**
-     * Additional styling for the toolbar. If a color value is provided and
-     * the showClose prop is set to true, the close icon will use this color.
-     */
-    style?: any,
 
     /**
      * An optional subtitle rendered in a lighter colour and smaller font size
@@ -61,61 +52,47 @@ type Props = {
 
 export default class Toolbar extends React.Component<Props> {
     static defaultProps = {
+        color: "light",
         leftContent: [],
-        onClose: () => {},
         rightContent: [],
-        showClose: false,
+        size: "medium",
     };
 
-    renderContent(content: React.Node, key: string) {
-        return (
+    renderContent(content: React.Node) {
+        const contentArray = Array.isArray(content) ? content : [content];
+
+        return contentArray.map((content, i) => (
             <View
                 style={[sharedStyles.content, sharedStyles.verticalAlign]}
-                key={key}
+                key={i.toString()}
             >
                 {content}
             </View>
-        );
+        ));
     }
 
     render() {
         const {
+            color,
             leftContent,
-            onClose,
             rightContent,
-            showClose,
             size,
-            style,
             subtitle,
             title,
         } = this.props;
 
-        // TODO(scottgrant): Replace the SVG with an Icon component once
-        // that's done
-        const fillColor = (style && style.color) || "rgba(33, 36, 44, 0.5)";
-        const closeButton = showClose && (
-            <View onClick={onClose}>
-                <svg role="img" width="24px" height="24px">
-                    <path fill={fillColor} d={dismissIcon} />
-                </svg>
-            </View>
-        );
+        const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
 
-        // TODO(scottgrant): Handle aria-labelledby appropriately.
         return (
             <View
                 style={[
                     sharedStyles.container,
-                    style,
+                    color === "dark" && sharedStyles.dark,
                     size === "small" && sharedStyles.small,
                 ]}
             >
                 <View style={sharedStyles.verticalAlign}>
-                    {closeButton}
-                    {leftContent &&
-                        leftContent.map((content, i) =>
-                            this.renderContent(content, i.toString()),
-                        )}
+                    {this.renderContent(leftContent)}
                 </View>
                 <View style={[sharedStyles.column]}>
                     <View
@@ -124,27 +101,18 @@ export default class Toolbar extends React.Component<Props> {
                             sharedStyles.verticalAlign,
                         ]}
                     >
-                        <span
-                            id="wb-toolbar-title"
-                            className={css(
-                                sharedStyles.title,
-                                !subtitle && sharedStyles.titleNoSubtitle,
-                            )}
-                        >
+                        <TitleComponent id="wb-toolbar-title">
                             {title}
-                        </span>
+                        </TitleComponent>
                         {subtitle && (
-                            <span className={css(sharedStyles.subtitle)}>
+                            <LabelSmall style={sharedStyles.subtitle}>
                                 {subtitle}
-                            </span>
+                            </LabelSmall>
                         )}
                     </View>
                 </View>
                 <View style={sharedStyles.rightColumn}>
-                    {rightContent &&
-                        rightContent.map((content, i) =>
-                            this.renderContent(content, i.toString()),
-                        )}
+                    {this.renderContent(rightContent)}
                 </View>
             </View>
         );
@@ -165,9 +133,12 @@ const sharedStyles = StyleSheet.create({
     small: {
         minHeight: 48,
     },
+    dark: {
+        backgroundColor: "#0a2a66",
+        boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.64)",
+        color: "white",
+    },
     verticalAlign: {
-        display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
     },
     column: {
@@ -187,18 +158,8 @@ const sharedStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-end",
     },
-    title: {
-        fontSize: 16,
-        fontWeight: "bold",
-    },
-    titleNoSubtitle: {
-        fontSize: 20,
-    },
     subtitle: {
         color: "rgba(33, 36, 44, 0.64)",
-        fontSize: 14,
-        fontWeight: "normal",
-        lineHeight: 1.29,
     },
     content: {
         padding: 8,
