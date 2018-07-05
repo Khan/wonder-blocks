@@ -2,6 +2,7 @@
 // A menu that consists of action items
 
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
@@ -49,7 +50,7 @@ type DropdownCoreProps = {
 };
 
 export default class DropdownCore extends React.Component<DropdownCoreProps> {
-    node: ?HTMLDivElement;
+    node: ?Node;
 
     static defaultProps = {
         alignment: "left",
@@ -87,30 +88,28 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
     render() {
         const {alignment, items, light, open, opener, style} = this.props;
 
-        // TODO(sophie): why doesn't ref work with View?
         return (
-            <div ref={(node) => (this.node = node)}>
-                <View
-                    style={[
-                        styles.menuWrapper,
-                        alignment === "right" && styles.rightAlign,
-                    ]}
-                >
-                    {opener}
-                    {items && (
-                        <View
-                            style={[
-                                styles.dropdown,
-                                !open && styles.hide,
-                                light && styles.light,
-                                style,
-                            ]}
-                        >
-                            {items}
-                        </View>
-                    )}
-                </View>
-            </div>
+            <View
+                ref={(node) => (this.node = ReactDOM.findDOMNode(node))}
+                style={[
+                    styles.menuWrapper,
+                    alignment === "right" && styles.rightAlign,
+                ]}
+            >
+                {opener}
+                {items && (
+                    <View
+                        style={[
+                            styles.dropdown,
+                            !open && styles.hide,
+                            light && styles.light,
+                            style,
+                        ]}
+                    >
+                        {items}
+                    </View>
+                )}
+            </View>
         );
     }
 }
