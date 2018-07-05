@@ -110,7 +110,12 @@ export default class Toolbar extends React.Component<Props> {
                                 {title}
                             </TitleComponent>
                             {subtitle && (
-                                <LabelSmall style={sharedStyles.subtitle}>
+                                <LabelSmall
+                                    style={
+                                        color === "light" &&
+                                        sharedStyles.subtitle
+                                    }
+                                >
                                     {subtitle}
                                 </LabelSmall>
                             )}
