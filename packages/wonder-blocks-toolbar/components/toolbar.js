@@ -91,28 +91,36 @@ export default class Toolbar extends React.Component<Props> {
                     size === "small" && sharedStyles.small,
                 ]}
             >
-                <View style={sharedStyles.verticalAlign}>
-                    {this.renderContent(leftContent)}
-                </View>
-                <View style={[sharedStyles.column]}>
-                    <View
-                        style={[
-                            sharedStyles.middleColumn,
-                            sharedStyles.verticalAlign,
-                        ]}
-                    >
-                        <TitleComponent id="wb-toolbar-title">
-                            {title}
-                        </TitleComponent>
-                        {subtitle && (
-                            <LabelSmall style={sharedStyles.subtitle}>
-                                {subtitle}
-                            </LabelSmall>
-                        )}
+                <View style={sharedStyles.column}>
+                    <View style={sharedStyles.verticalAlign}>
+                        {this.renderContent(leftContent)}
                     </View>
                 </View>
-                <View style={sharedStyles.rightColumn}>
-                    {this.renderContent(rightContent)}
+                {title && (
+                    <View
+                        style={[sharedStyles.column, sharedStyles.wideColumn]}
+                    >
+                        <View
+                            style={[
+                                sharedStyles.verticalAlign,
+                                sharedStyles.center,
+                            ]}
+                        >
+                            <TitleComponent id="wb-toolbar-title">
+                                {title}
+                            </TitleComponent>
+                            {subtitle && (
+                                <LabelSmall style={sharedStyles.subtitle}>
+                                    {subtitle}
+                                </LabelSmall>
+                            )}
+                        </View>
+                    </View>
+                )}
+                <View style={sharedStyles.column}>
+                    <View style={sharedStyles.rightColumn}>
+                        {this.renderContent(rightContent)}
+                    </View>
                 </View>
             </View>
         );
@@ -124,7 +132,6 @@ const sharedStyles = StyleSheet.create({
         border: "1px solid rgba(33, 36, 44, 0.16)",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
         minHeight: 64,
         padding: 8,
         position: "relative",
@@ -142,21 +149,20 @@ const sharedStyles = StyleSheet.create({
         justifyContent: "center",
     },
     column: {
-        display: "block",
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%);",
-        width: "80%",
+        display: "flex",
+        flex: 1,
+        justifyContent: "center",
     },
-    middleColumn: {
-        margin: "auto",
-        textAlign: "center",
+    wideColumn: {
+        flexBasis: "50%",
     },
     rightColumn: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "flex-end",
+    },
+    center: {
+        textAlign: "center",
     },
     subtitle: {
         color: "rgba(33, 36, 44, 0.64)",

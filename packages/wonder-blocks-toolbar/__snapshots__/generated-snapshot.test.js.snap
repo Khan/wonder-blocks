@@ -12,7 +12,6 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "justifyContent": "space-between",
       "margin": 0,
       "minHeight": 64,
       "minWidth": 0,
@@ -32,6 +31,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flex": 1,
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
@@ -57,21 +57,42 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 8,
+          "padding": 0,
           "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <svg
-        height="24px"
-        role="img"
-        width="24px"
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
       >
-        <path
-          d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
-        />
-      </svg>
+        <svg
+          height="24px"
+          role="img"
+          width="24px"
+        >
+          <path
+            d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
+          />
+        </svg>
+      </div>
     </div>
   </div>
   <div
@@ -82,17 +103,16 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "block",
+        "display": "flex",
+        "flex": 1,
+        "flexBasis": "50%",
         "flexDirection": "column",
-        "left": "50%",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "absolute",
-        "top": "50%",
-        "transform": "translate(-50%, -50%);",
-        "width": "80%",
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -108,7 +128,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "justifyContent": "center",
-          "margin": "auto",
+          "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
@@ -148,8 +168,9 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "row",
-        "justifyContent": "flex-end",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -158,7 +179,28 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
 </div>
 `;
 
@@ -174,7 +216,6 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "justifyContent": "space-between",
       "margin": 0,
       "minHeight": 64,
       "minWidth": 0,
@@ -194,6 +235,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flex": 1,
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
@@ -219,21 +261,42 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 8,
+          "padding": 0,
           "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <svg
-        height="24px"
-        role="img"
-        width="24px"
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
       >
-        <path
-          d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
-        />
-      </svg>
+        <svg
+          height="24px"
+          role="img"
+          width="24px"
+        >
+          <path
+            d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
+          />
+        </svg>
+      </div>
     </div>
   </div>
   <div
@@ -244,17 +307,16 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "block",
+        "display": "flex",
+        "flex": 1,
+        "flexBasis": "50%",
         "flexDirection": "column",
-        "left": "50%",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "absolute",
-        "top": "50%",
-        "transform": "translate(-50%, -50%);",
-        "width": "80%",
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -270,7 +332,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "justifyContent": "center",
-          "margin": "auto",
+          "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
@@ -310,8 +372,9 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "row",
-        "justifyContent": "flex-end",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -330,73 +393,94 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 8,
+          "padding": 0,
           "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <button
+      <div
         className=""
-        data-test-id={undefined}
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            "alignItems": "center",
-            "background": "#1865f2",
-            "border": "none",
-            "borderRadius": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "#ffffff",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
+            "display": "flex",
+            "flexDirection": "column",
             "justifyContent": "center",
-            "outline": "none",
-            "paddingBottom": 0,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
             "position": "relative",
-            "textDecoration": "none",
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
       >
-        <span
+        <button
           className=""
+          data-test-id={undefined}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "display": "block",
-              "fontFamily": "Lato",
-              "fontSize": 16,
-              "fontWeight": "bold",
-              "lineHeight": "20px",
-              "pointerEvents": "none",
+              "alignItems": "center",
+              "background": "#1865f2",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "outline": "none",
+              "paddingBottom": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 0,
+              "position": "relative",
+              "textDecoration": "none",
             }
           }
+          tabIndex={0}
         >
-          Next Video
-        </span>
-      </button>
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "lineHeight": "20px",
+                "pointerEvents": "none",
+              }
+            }
+          >
+            Next Video
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -414,7 +498,6 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "justifyContent": "space-between",
       "margin": 0,
       "minHeight": 64,
       "minWidth": 0,
@@ -434,6 +517,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flex": 1,
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
@@ -444,29 +528,6 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         "zIndex": 0,
       }
     }
-  />
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "block",
-        "flexDirection": "column",
-        "left": "50%",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "absolute",
-        "top": "50%",
-        "transform": "translate(-50%, -50%);",
-        "width": "80%",
-        "zIndex": 0,
-      }
-    }
   >
     <div
       className=""
@@ -479,34 +540,15 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "justifyContent": "center",
-          "margin": "auto",
+          "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "textAlign": "center",
           "zIndex": 0,
         }
       }
-    >
-      <h4
-        className=""
-        id="wb-toolbar-title"
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 20,
-            "fontWeight": 700,
-            "lineHeight": "24px",
-            "marginBottom": 0,
-            "marginTop": 0,
-          }
-        }
-      />
-    </div>
+    />
   </div>
   <div
     className=""
@@ -517,8 +559,9 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "row",
-        "justifyContent": "flex-end",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -537,94 +580,36 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 8,
+          "padding": 0,
           "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <span
+      <div
         className=""
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "20px",
-          }
-        }
-      >
-        7 questions
-      </span>
-    </div>
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 8,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    >
-      <button
-        className=""
-        data-test-id={undefined}
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "background": "none",
-            "border": "none",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 4,
+            "alignItems": "stretch",
             "borderStyle": "solid",
-            "borderWidth": 1,
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
+            "display": "flex",
+            "flexDirection": "column",
             "justifyContent": "center",
-            "outline": "none",
-            "paddingBottom": 0,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
             "position": "relative",
-            "textDecoration": "none",
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
       >
         <span
           className=""
@@ -635,92 +620,171 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
               "display": "block",
               "fontFamily": "Lato",
               "fontSize": 16,
-              "fontWeight": "bold",
+              "fontWeight": 400,
               "lineHeight": "20px",
-              "pointerEvents": "none",
             }
           }
         >
-          Try again
+          7 questions
         </span>
-      </button>
-    </div>
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 8,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    >
-      <button
+      </div>
+      <div
         className=""
-        data-test-id={undefined}
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            "alignItems": "center",
-            "background": "#1865f2",
-            "border": "none",
-            "borderRadius": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "#ffffff",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
+            "display": "flex",
+            "flexDirection": "column",
             "justifyContent": "center",
-            "outline": "none",
-            "paddingBottom": 0,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
             "position": "relative",
-            "textDecoration": "none",
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
       >
-        <span
+        <button
           className=""
+          data-test-id={undefined}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "display": "block",
-              "fontFamily": "Lato",
-              "fontSize": 16,
-              "fontWeight": "bold",
-              "lineHeight": "20px",
-              "pointerEvents": "none",
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(33,36,44,0.50)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "outline": "none",
+              "paddingBottom": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 0,
+              "position": "relative",
+              "textDecoration": "none",
             }
           }
+          tabIndex={0}
         >
-          Next exercise
-        </span>
-      </button>
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "lineHeight": "20px",
+                "pointerEvents": "none",
+              }
+            }
+          >
+            Try again
+          </span>
+        </button>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <button
+          className=""
+          data-test-id={undefined}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "#1865f2",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "outline": "none",
+              "paddingBottom": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 0,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
+          tabIndex={0}
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "lineHeight": "20px",
+                "pointerEvents": "none",
+              }
+            }
+          >
+            Next exercise
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -738,7 +802,6 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "justifyContent": "space-between",
       "margin": 0,
       "minHeight": 64,
       "minWidth": 0,
@@ -758,6 +821,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flex": 1,
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
@@ -783,21 +847,42 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 8,
+          "padding": 0,
           "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <svg
-        height="24px"
-        role="img"
-        width="24px"
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
       >
-        <path
-          d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
-        />
-      </svg>
+        <svg
+          height="24px"
+          role="img"
+          width="24px"
+        >
+          <path
+            d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
+          />
+        </svg>
+      </div>
     </div>
   </div>
   <div
@@ -808,17 +893,16 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
-        "display": "block",
+        "display": "flex",
+        "flex": 1,
+        "flexBasis": "50%",
         "flexDirection": "column",
-        "left": "50%",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "position": "absolute",
-        "top": "50%",
-        "transform": "translate(-50%, -50%);",
-        "width": "80%",
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -834,7 +918,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "justifyContent": "center",
-          "margin": "auto",
+          "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
@@ -889,8 +973,9 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "row",
-        "justifyContent": "flex-end",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -909,47 +994,68 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 8,
+          "padding": 0,
           "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <a
+      <div
         className=""
-        data-test-id={undefined}
-        href={undefined}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            ":visited": Object {
-              "color": "#8755ee",
-            },
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "outline": "none",
-            "textDecoration": "none",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
       >
-        Go to exercise
-      </a>
+        <a
+          className=""
+          data-test-id={undefined}
+          href={undefined}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              ":visited": Object {
+                "color": "#8755ee",
+              },
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "outline": "none",
+              "textDecoration": "none",
+            }
+          }
+          tabIndex={0}
+        >
+          Go to exercise
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -993,7 +1099,6 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         "color": "white",
         "display": "flex",
         "flexDirection": "row",
-        "justifyContent": "space-between",
         "margin": 0,
         "minHeight": 64,
         "minWidth": 0,
@@ -1013,6 +1118,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
+          "flex": 1,
           "flexDirection": "column",
           "justifyContent": "center",
           "margin": 0,
@@ -1020,29 +1126,6 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    />
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "block",
-          "flexDirection": "column",
-          "left": "50%",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "absolute",
-          "top": "50%",
-          "transform": "translate(-50%, -50%);",
-          "width": "80%",
           "zIndex": 0,
         }
       }
@@ -1058,7 +1141,50 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "justifyContent": "center",
-            "margin": "auto",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flex": 1,
+          "flexBasis": "50%",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -1098,8 +1224,9 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "row",
-          "justifyContent": "flex-end",
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "center",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1108,7 +1235,28 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </div>
@@ -1126,7 +1274,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "justifyContent": "space-between",
       "margin": 0,
       "minHeight": 48,
       "minWidth": 0,
@@ -1146,6 +1293,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flex": 1,
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
@@ -1153,29 +1301,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  />
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "block",
-        "flexDirection": "column",
-        "left": "50%",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "absolute",
-        "top": "50%",
-        "transform": "translate(-50%, -50%);",
-        "width": "80%",
         "zIndex": 0,
       }
     }
@@ -1191,34 +1316,15 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "justifyContent": "center",
-          "margin": "auto",
+          "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "textAlign": "center",
           "zIndex": 0,
         }
       }
-    >
-      <h4
-        className=""
-        id="wb-toolbar-title"
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 20,
-            "fontWeight": 700,
-            "lineHeight": "24px",
-            "marginBottom": 0,
-            "marginTop": 0,
-          }
-        }
-      />
-    </div>
+    />
   </div>
   <div
     className=""
@@ -1229,8 +1335,9 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "row",
-        "justifyContent": "flex-end",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -1239,7 +1346,28 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
 </div>
 `;
 
@@ -1255,7 +1383,6 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "justifyContent": "space-between",
       "margin": 0,
       "minHeight": 64,
       "minWidth": 0,
@@ -1275,6 +1402,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flex": 1,
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
@@ -1282,29 +1410,6 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  />
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "block",
-        "flexDirection": "column",
-        "left": "50%",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "absolute",
-        "top": "50%",
-        "transform": "translate(-50%, -50%);",
-        "width": "80%",
         "zIndex": 0,
       }
     }
@@ -1320,34 +1425,15 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "justifyContent": "center",
-          "margin": "auto",
+          "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "textAlign": "center",
           "zIndex": 0,
         }
       }
-    >
-      <h4
-        className=""
-        id="wb-toolbar-title"
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 20,
-            "fontWeight": 700,
-            "lineHeight": "24px",
-            "marginBottom": 0,
-            "marginTop": 0,
-          }
-        }
-      />
-    </div>
+    />
   </div>
   <div
     className=""
@@ -1358,8 +1444,9 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "row",
-        "justifyContent": "flex-end",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -1368,6 +1455,27 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
 </div>
 `;
