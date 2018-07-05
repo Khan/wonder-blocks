@@ -50,8 +50,6 @@ type DropdownCoreProps = {
 
 export default class DropdownCore extends React.Component<DropdownCoreProps> {
     node: ?HTMLDivElement;
-    // TODO(sophie): figure out flow typing
-    handleClick: (event: any) => void;
 
     static defaultProps = {
         alignment: "left",
@@ -59,36 +57,39 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
 
     constructor(props: DropdownCoreProps) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillMount() {
-        document.addEventListener("click", this.handleClick, false);
+    componentDidMount() {
+        document.addEventListener("mouseup", this._handleInteract);
+        document.addEventListener("touchend", this._handleInteract);
+        document.addEventListener("keyup", this._handleKeyup);
     }
 
     componentWillUnmount() {
-        document.removeEventListener("click", this.handleClick, false);
+        document.removeEventListener("mouseup", this._handleInteract);
+        document.removeEventListener("touchend", this._handleInteract);
+        document.removeEventListener("keyup", this._handleKeyup);
     }
 
-    handleClick(event: SyntheticEvent<>) {
-        // If click was inside the component, return
-        // $FlowFixMe
+    _handleInteract = (event: {target: any}) => {
         if (this.node && this.node.contains(event.target)) {
             return;
         }
         this.props.onClose();
-    }
+    };
+
+    _handleKeyup = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+            this.props.onClose();
+        }
+    };
 
     render() {
         const {alignment, items, light, open, opener, style} = this.props;
 
         // TODO(sophie): why doesn't ref work with View?
         return (
-            <div
-                ref={(node) => {
-                    this.node = node;
-                }}
-            >
+            <div ref={(node) => (this.node = node)}>
                 <View
                     style={[
                         styles.menuWrapper,
@@ -108,37 +109,9 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
                             {items}
                         </View>
                     )}
-                    {open && (
-                        <DropdownKeypressListener
-                            onClose={this.props.onClose}
-                        />
-                    )}
                 </View>
             </div>
         );
-    }
-}
-
-/** A component that, when mounted, calls `onClose` when Escape is pressed. */
-class DropdownKeypressListener extends React.Component<{
-    onClose: () => void,
-}> {
-    componentDidMount() {
-        window.addEventListener("keyup", this._handleKeyup);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("keyup", this._handleKeyup);
-    }
-
-    _handleKeyup = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-            this.props.onClose();
-        }
-    };
-
-    render() {
-        return null;
     }
 }
 

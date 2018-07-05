@@ -219,11 +219,8 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             <DropdownCore
                 alignment={alignment}
                 items={menuItems}
-<<<<<<< HEAD
                 light={false}
-=======
                 onClose={() => this.closeMenu()}
->>>>>>> d12c724... Allow closing of menu on pressing ESC and clicking out of the menu
                 open={open}
                 opener={opener}
                 style={[styles.menuTopSpace, style]}
