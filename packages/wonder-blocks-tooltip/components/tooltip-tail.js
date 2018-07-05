@@ -217,9 +217,8 @@ export default class TooltipTail extends React.Component<Props> {
              *
              * See styles below for why we offset the arrow.
              */
-            <g transform={`translate(${offsetShadowX},5.5)`}>
+            <g key="dropshadow" transform={`translate(${offsetShadowX},5.5)`}>
                 <polyline
-                    key="dropshadow"
                     fill={Colors.offBlack16}
                     points={points.join(" ")}
                     stroke={Colors.offBlack32}
