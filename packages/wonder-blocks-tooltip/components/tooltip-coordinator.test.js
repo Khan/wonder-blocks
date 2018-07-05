@@ -2,12 +2,6 @@
 import * as React from "react";
 import {shallow} from "enzyme";
 
-import timeout from "../../../utils/testing/timeout.js";
-import {
-    TooltipAppearanceDelay,
-    TooltipDisappearanceDelay,
-} from "../util/constants.js";
-
 import TooltipCoordinator from "./tooltip-coordinator.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 
@@ -122,58 +116,43 @@ describe("TooltipCoordinator", () => {
     });
 
     describe("#unsuppress", () => {
-        test("instant is true and state is inactive, sets state active to true", () => {
+        test("called when state is active, does not set state", () => {
             // Arrange
             const children = jest.fn(
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipCoordinator active={true}>
+                <TooltipCoordinator active={false}>
                     {children}
                 </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
-
-            // Act
-            wrapper.instance().unsuppress(true);
-
-            // Assert
-            expect(wrapper.state("active")).toBeTruthy();
-        });
-
-        test("instant is false and state is inactive, sets state active to true after delay", async () => {
-            // Arrange
-            const children = jest.fn(
-                () => ((null: any): React.Element<typeof TooltipPortalMounter>),
-            );
-            const nodes = (
-                <TooltipCoordinator active={true}>
-                    {children}
-                </TooltipCoordinator>
-            );
-            const wrapper = shallow(nodes);
-
-            // Act
+            // Make sure the state is active first, so we call unsuppress.
             wrapper.instance().unsuppress(false);
+            // Now clear our child mock so we can detect a re-render.
+            children.mockClear();
+
+            // Act
+            wrapper.instance().unsuppress(true);
 
             // Assert
-            expect(wrapper.state("active")).toBeFalsy();
-            await timeout(TooltipAppearanceDelay);
             expect(wrapper.state("active")).toBeTruthy();
+            expect(wrapper.state("instant")).toBeFalsy();
+            expect(children).not.toHaveBeenCalled();
         });
 
-        test("clears existing timeout, preventing pending state change", async () => {
+        test("called with true and state is inactive, sets state", () => {
             // Arrange
             const children = jest.fn(
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipCoordinator active={true}>
+                <TooltipCoordinator active={false}>
                     {children}
                 </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
-            wrapper.instance().unsuppress(true);
+            // Make sure the state is inactive first, so we call unsuppress.
             wrapper.instance().suppress(false);
 
             // Act
@@ -181,33 +160,59 @@ describe("TooltipCoordinator", () => {
 
             // Assert
             expect(wrapper.state("active")).toBeTruthy();
-            await timeout(TooltipDisappearanceDelay);
-            expect(wrapper.state("active")).toBeTruthy();
+            expect(wrapper.state("instant")).toBeTruthy();
         });
-    });
 
-    describe("#suppress", () => {
-        test("instant is true and state is active, sets state active to false", () => {
+        test("called with false and state is inactive, sets state", () => {
             // Arrange
             const children = jest.fn(
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
             );
             const nodes = (
-                <TooltipCoordinator active={true}>
+                <TooltipCoordinator active={false}>
                     {children}
                 </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
-            wrapper.instance().unsuppress(true);
+            // Make sure the state is inactive first, so we call unsuppress.
+            wrapper.instance().suppress(true);
+
+            // Act
+            wrapper.instance().unsuppress(false);
+
+            // Assert
+            expect(wrapper.state("active")).toBeTruthy();
+            expect(wrapper.state("instant")).toBeFalsy();
+        });
+    });
+
+    describe("#suppress", () => {
+        test("called when state is inactive, does not set state", () => {
+            // Arrange
+            const children = jest.fn(
+                () => ((null: any): React.Element<typeof TooltipPortalMounter>),
+            );
+            const nodes = (
+                <TooltipCoordinator active={false}>
+                    {children}
+                </TooltipCoordinator>
+            );
+            const wrapper = shallow(nodes);
+            // Make sure the state is inactive first, so we call suppress.
+            wrapper.instance().suppress(true);
+            // Now clear our child mock so we can detect a re-render.
+            children.mockClear();
 
             // Act
             wrapper.instance().suppress(true);
 
             // Assert
             expect(wrapper.state("active")).toBeFalsy();
+            expect(wrapper.state("instant")).toBeFalsy();
+            expect(children).not.toHaveBeenCalled();
         });
 
-        test("instant is false and state is inactive, sets state active to false after delay", async () => {
+        test("called with true and state is active, sets state", () => {
             // Arrange
             const children = jest.fn(
                 () => ((null: any): React.Element<typeof TooltipPortalMounter>),
@@ -218,37 +223,37 @@ describe("TooltipCoordinator", () => {
                 </TooltipCoordinator>
             );
             const wrapper = shallow(nodes);
+            // We need to make the state active first, so we call unsuppress.
+            wrapper.instance().unsuppress(false);
+
+            // Act
+            wrapper.instance().suppress(true);
+
+            // Assert
+            expect(wrapper.state("active")).toBeFalsy();
+            expect(wrapper.state("instant")).toBeTruthy();
+        });
+
+        test("called with false and state is active, sets state", async () => {
+            // Arrange
+            const children = jest.fn(
+                () => ((null: any): React.Element<typeof TooltipPortalMounter>),
+            );
+            const nodes = (
+                <TooltipCoordinator active={true}>
+                    {children}
+                </TooltipCoordinator>
+            );
+            const wrapper = shallow(nodes);
+            // We need to make the state active first, so we call unsuppress.
             wrapper.instance().unsuppress(true);
 
             // Act
             wrapper.instance().suppress(false);
 
             // Assert
-            expect(wrapper.state("active")).toBeTruthy();
-            await timeout(TooltipDisappearanceDelay);
             expect(wrapper.state("active")).toBeFalsy();
-        });
-
-        test("clears existing timeout, preventing pending state change", async () => {
-            // Arrange
-            const children = jest.fn(
-                () => ((null: any): React.Element<typeof TooltipPortalMounter>),
-            );
-            const nodes = (
-                <TooltipCoordinator active={true}>
-                    {children}
-                </TooltipCoordinator>
-            );
-            const wrapper = shallow(nodes);
-            wrapper.instance().unsuppress(false);
-
-            // Act
-            wrapper.instance().suppress();
-
-            // Assert
-            expect(wrapper.state("active")).toBeFalsy();
-            await timeout(TooltipAppearanceDelay);
-            expect(wrapper.state("active")).toBeFalsy();
+            expect(wrapper.state("instant")).toBeFalsy();
         });
     });
 });

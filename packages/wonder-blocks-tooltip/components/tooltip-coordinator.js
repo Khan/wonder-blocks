@@ -22,25 +22,29 @@ type Props = {|
         showInstantly: boolean,
     ) => React.Element<typeof TooltipPortalMounter>,
 
-    // Whether this arbiter is expected to be active or not.
-    // The parent TooltipAnchor should set this.
+    // Whether this specific coordinator's child is to be active or not.
+    // The parent TooltipAnchor should set this. The coordinator will then
+    // coordinate with other coordinators to make sure the correct tooltip
+    // is active.
     active: boolean,
 |};
 
 type State = {
-    // Should the arbiter attempt to represent an active state?
+    // Should the coordinator attempt to represent an active state?
     active: boolean,
 
-    // Should the arbiter tell its children to render instantly versus
+    // Should the coordinator tell its children to render instantly versus
     // animating their appearance?
     instant: boolean,
 };
 
-const ARBITER = new SuppressionTracker();
+const TRACKER = new SuppressionTracker(
+    TooltipAppearanceDelay,
+    TooltipDisappearanceDelay,
+);
 
-export default class TooltipArbiter extends React.Component<Props, State>
+export default class TooltipCoordinator extends React.Component<Props, State>
     implements ICanBeSuppressed {
-    _stateChangeTimeoutId: ?number;
     state = {
         active: false,
         instant: false,
@@ -66,47 +70,21 @@ export default class TooltipArbiter extends React.Component<Props, State>
 
     _updateTracking() {
         if (this.props.active) {
-            ARBITER.track(this);
+            TRACKER.track(this);
         } else {
-            ARBITER.untrack(this);
-        }
-    }
-
-    _clearTimeout() {
-        const timeoutID = this._stateChangeTimeoutId;
-        this._stateChangeTimeoutId = null;
-        if (timeoutID != null) {
-            clearTimeout(timeoutID);
+            TRACKER.untrack(this);
         }
     }
 
     suppress = (instantly: boolean) => {
-        this._clearTimeout();
-
         if (this.state.active) {
-            if (instantly) {
-                this.setState({active: false, instant: true});
-            } else {
-                this._stateChangeTimeoutId = setTimeout(
-                    () => this.setState({active: false, instant: false}),
-                    TooltipDisappearanceDelay,
-                );
-            }
+            this.setState({active: false, instant: instantly});
         }
     };
 
     unsuppress = (instantly: boolean) => {
-        this._clearTimeout();
-
         if (!this.state.active) {
-            if (instantly) {
-                this.setState({active: true, instant: true});
-            } else {
-                this._stateChangeTimeoutId = setTimeout(
-                    () => this.setState({active: true, instant: false}),
-                    TooltipAppearanceDelay,
-                );
-            }
+            this.setState({active: true, instant: instantly});
         }
     };
 

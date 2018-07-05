@@ -12,9 +12,11 @@ export {
 export {
     default as getElementIntersection,
 } from "./util/get-element-intersection.js";
+export {default as setFlushableTimeout} from "./util/set-flushable-timeout.js";
 export * from "./util/specs.js";
 export {MediaLayoutWrapper} from "./util/util.js";
 
+import type {FlushableTimeout} from "./util/set-flushable-timeout.js";
 import type {ClickableHandlers} from "./components/clickable-behavior.js";
 import type {
     AriaProps,
@@ -27,6 +29,7 @@ import type {Intersection} from "./util/get-element-intersection.js";
 export type {
     AriaProps,
     ClickableHandlers,
+    FlushableTimeout,
     Intersection,
     IIdentifierFactory,
     TextTag,
