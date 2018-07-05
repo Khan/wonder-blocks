@@ -1,18 +1,17 @@
 // @flow
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {css, StyleSheet} from "aphrodite";
 
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-import type {Placement} from "../util/types.js";
-import type {PopperArrowProps} from "react-popper";
+import type {getRefFn, Placement, Offset} from "../util/types.js";
 
-type Props = {
+export type Props = {
+    offset?: Offset,
     placement: Placement,
-    popperArrowProps?: PopperArrowProps,
+    updateRef?: getRefFn,
 };
 
 // TODO(somewhatabstract): Replace this really basic unique ID work with
@@ -20,22 +19,6 @@ type Props = {
 let tempIdCounter = 0;
 
 export default class TooltipTail extends React.Component<Props> {
-    _lastRef: ?HTMLElement;
-
-    updateRef(ref: ?(React.Component<*> | Element)) {
-        const {popperArrowProps} = this.props;
-        // We only want to update the popper's arrow reference if it is
-        // actually changed. Otherwise, we end up in an endless loop of updates
-        // as every render would trigger yet another render.
-        if (popperArrowProps && ref) {
-            const domNode = ReactDOM.findDOMNode(ref);
-            if (domNode instanceof HTMLElement && domNode !== this._lastRef) {
-                this._lastRef = domNode;
-                popperArrowProps.ref(domNode);
-            }
-        }
-    }
-
     _calculateDimensionsFromPlacement() {
         const {placement} = this.props;
 
@@ -217,9 +200,8 @@ export default class TooltipTail extends React.Component<Props> {
              *
              * See styles below for why we offset the arrow.
              */
-            <g transform={`translate(${offsetShadowX},5.5)`}>
+            <g key="dropshadow" transform={`translate(${offsetShadowX},5.5)`}>
                 <polyline
-                    key="dropshadow"
                     fill={Colors.offBlack16}
                     points={points.join(" ")}
                     stroke={Colors.offBlack32}
@@ -394,17 +376,16 @@ export default class TooltipTail extends React.Component<Props> {
     }
 
     render() {
-        const {placement, popperArrowProps} = this.props;
-        const {style} = popperArrowProps || {};
+        const {offset, placement, updateRef} = this.props;
         return (
             <View
                 style={[
                     styles.tailContainer,
-                    style,
+                    offset,
                     this._getContainerStyle(placement),
                 ]}
                 data-placement={placement}
-                ref={(r) => this.updateRef(r)}
+                ref={updateRef}
             >
                 {this._renderArrow()}
             </View>
