@@ -9,25 +9,37 @@ import SsrIDFactory from "../util/ssr-id-factory.js";
 import type {IIdentifierFactory} from "../util/types.js";
 
 type Props = {|
-    // A render prop that takes an instance of IIdentifierFactory and returns
-    // the content to be rendered.
-    // If mockOnFirstRender is false, this is only called after
-    // the initial render has occurred and will always be called with the same
-    // IIdentifierFactory instance.
-    // If mockOnFirstRender is true, this is called once with
-    // a mock IIdentifierFactory for the initial render, and then a unique ID
-    // factory thereafter.
+    /**
+     * A render prop that takes an instance of IIdentifierFactory and returns
+     * the content to be rendered.
+     *
+     * If mockOnFirstRender is false, this is only called after
+     * the initial render has occurred and will always be called with the same
+     * IIdentifierFactory instance.
+     *
+     * If mockOnFirstRender is true, this is called once with
+     * a mock IIdentifierFactory for the initial render, and then a unique ID
+     * factory thereafter.
+     *
+     * Full type with `IIdentifierFactory` definition inlined is:
+     *
+     * `{get(id: string): string} => React.Node`
+     */
     children: (IIdentifierFactory) => React.Node,
 
-    // If mockOnFirstRender is false, children is only called
-    // after the initial render has occurred.
-    // If mockOnFirstRender is true, children is called once with
-    // a mock IIdentifierFactory for the initial render, and then a unique ID
-    // factory thereafter.
+    /**
+     * If mockOnFirstRender is false, children is only called
+     * after the initial render has occurred.
+     * If mockOnFirstRender is true, children is called once with
+     * a mock IIdentifierFactory for the initial render, and then a unique ID
+     * factory thereafter.
+     */
     mockOnFirstRender?: boolean,
 
-    // If this prop is specified, any identifiers provided will contain the
-    // given scope. This can be useful for making easily readable identifiers.
+    /**
+     * If this prop is specified, any identifiers provided will contain the
+     * given scope. This can be useful for making easily readable identifiers.
+     */
     +scope?: string,
 |};
 

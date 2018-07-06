@@ -155,6 +155,9 @@ export type MediaSpec = {
     },
 };
 
+/**
+ * Interface implemented by types that can provide identifiers.
+ */
 export interface IIdentifierFactory {
     get(id: string): string;
 }
