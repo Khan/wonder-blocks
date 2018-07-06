@@ -158,7 +158,7 @@ describe("TooltipPortalMounter", () => {
         expect(tooltipPortal && tooltipPortal.parentNode).toBe(document.body);
     });
 
-    test.skip("when in modal portal, creates portal within modal portal", () => {
+    test("when in modal portal, creates portal within modal portal", () => {
         // Arrange
         const bubbleId = "bubble";
         const modal = (
