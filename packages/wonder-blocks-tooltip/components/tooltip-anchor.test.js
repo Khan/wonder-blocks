@@ -2,22 +2,12 @@
 import * as React from "react";
 import {mount} from "enzyme";
 
+import doEvent from "../../../utils/testing/do-event.js";
+
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
-
-// Helper for chaining event handlings.
-const doEvent = (ref, event) => {
-    if (!ref) {
-        throw new Error("No element");
-    }
-    ref.dispatchEvent(event);
-
-    return new Promise((resolve) => {
-        setTimeout(resolve, 0);
-    });
-};
 
 describe("TooltipAnchor", () => {
     test("on mount, subscribes to focus and hover events", () => {
@@ -260,17 +250,13 @@ describe("TooltipAnchor", () => {
                 wrapper.setProps({force: false});
             };
 
-            const actAndAssert = (ref) => {
+            const actAndAssert = async (ref) => {
                 // Act
-                // Need to do a timeout so that the mount can return and the
-                // wrapper can change the force prop to false.
-                setTimeout(() => {
-                    const result = ref && ref.getAttribute("tabindex");
+                const result = ref && ref.getAttribute("tabindex");
 
-                    // Assert
-                    expect(result).not.toBeNull();
-                    done();
-                }, 0);
+                // Assert
+                expect(result).not.toBeNull();
+                done();
             };
 
             arrange(actAndAssert);
@@ -294,22 +280,18 @@ describe("TooltipAnchor", () => {
             mount(nodes);
         };
 
-        const actAndAssert = (ref) => {
+        const actAndAssert = async (ref) => {
             // Act
             // Let's fake a focusin (this is the event that the anchor gets
             // whether focused directly or a child is focused). We have to
             // fake directly because there's no real browser here handling
             // focus and real events.
-            const act = doEvent(ref, new FocusEvent("focusin"));
+            await doEvent(ref, new FocusEvent("focusin"));
+            const result = ref && ref.innerHTML;
 
-            // Need a timeout here so that the event handling can occur.
-            act.then(() => {
-                const result = ref && ref.innerHTML;
-
-                // Assert
-                expect(result).toBe("true");
-                done();
-            });
+            // Assert
+            expect(result).toBe("true");
+            done();
         };
 
         arrange(actAndAssert);
@@ -333,18 +315,15 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             };
 
-            const actAndAssert = (ref) => {
+            const actAndAssert = async (ref) => {
                 // Act
-                const act = doEvent(ref, new FocusEvent("focusin")).then(() =>
-                    doEvent(ref, new FocusEvent("focusout")),
-                );
+                await doEvent(ref, new FocusEvent("focusin"));
+                await doEvent(ref, new FocusEvent("focusout"));
 
                 // Assert
-                act.then(() => {
-                    const result = ref && ref.innerHTML;
-                    expect(result).toBe("false");
-                    done();
-                });
+                const result = ref && ref.innerHTML;
+                expect(result).toBe("false");
+                done();
             };
 
             arrange(actAndAssert);
@@ -367,18 +346,16 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             };
 
-            const actAndAssert = (ref) => {
+            const actAndAssert = async (ref) => {
                 // Act
-                const act = doEvent(ref, new FocusEvent("focusin"))
-                    .then(() => doEvent(ref, new MouseEvent("mouseenter")))
-                    .then(() => doEvent(ref, new FocusEvent("focusout")));
+                await doEvent(ref, new FocusEvent("focusin"));
+                await doEvent(ref, new MouseEvent("mouseenter"));
+                await doEvent(ref, new FocusEvent("focusout"));
 
                 // Assert
-                act.then(() => {
-                    const result = ref && ref.innerHTML;
-                    expect(result).toBe("true");
-                    done();
-                });
+                const result = ref && ref.innerHTML;
+                expect(result).toBe("true");
+                done();
             };
 
             arrange(actAndAssert);
@@ -402,18 +379,14 @@ describe("TooltipAnchor", () => {
             mount(nodes);
         };
 
-        const actAndAssert = (ref) => {
+        const actAndAssert = async (ref) => {
             // Act
-            const act = doEvent(ref, new MouseEvent("mouseenter"));
+            await doEvent(ref, new MouseEvent("mouseenter"));
 
             // Assert
-            act.then(() => {
-                const result = ref && ref.innerHTML;
-
-                // Assert
-                expect(result).toBe("true");
-                done();
-            });
+            const result = ref && ref.innerHTML;
+            expect(result).toBe("true");
+            done();
         };
 
         arrange(actAndAssert);
@@ -437,18 +410,15 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             };
 
-            const actAndAssert = (ref) => {
+            const actAndAssert = async (ref) => {
                 // Act
-                const act = doEvent(ref, new MouseEvent("mouseenter")).then(
-                    () => doEvent(ref, new MouseEvent("mouseleave")),
-                );
+                await doEvent(ref, new MouseEvent("mouseenter"));
+                await doEvent(ref, new MouseEvent("mouseleave"));
 
                 // Assert
-                act.then(() => {
-                    const result = ref && ref.innerHTML;
-                    expect(result).toBe("false");
-                    done();
-                });
+                const result = ref && ref.innerHTML;
+                expect(result).toBe("false");
+                done();
             };
 
             arrange(actAndAssert);
@@ -471,18 +441,16 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             };
 
-            const actAndAssert = (ref) => {
+            const actAndAssert = async (ref) => {
                 // Act
-                const act = doEvent(ref, new MouseEvent("mouseenter"))
-                    .then(() => doEvent(ref, new FocusEvent("focusin")))
-                    .then(() => doEvent(ref, new MouseEvent("mouseleave")));
+                await doEvent(ref, new MouseEvent("mouseenter"));
+                await doEvent(ref, new FocusEvent("focusin"));
+                await doEvent(ref, new MouseEvent("mouseleave"));
 
                 // Assert
-                act.then(() => {
-                    const result = ref && ref.innerHTML;
-                    expect(result).toBe("true");
-                    done();
-                });
+                const result = ref && ref.innerHTML;
+                expect(result).toBe("true");
+                done();
             };
 
             arrange(actAndAssert);

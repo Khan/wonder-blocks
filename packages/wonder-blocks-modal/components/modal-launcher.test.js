@@ -3,6 +3,7 @@ import React from "react";
 import {shallow, mount} from "enzyme";
 
 import ModalLauncher from "./modal-launcher.js";
+import doEvent from "../../../utils/testing/do-event.js";
 
 describe("ModalLauncher", () => {
     test("Children can launch the modal", () => {
@@ -60,7 +61,7 @@ describe("ModalLauncher", () => {
         expect(wrapper.find("ModalLauncherPortal")).toHaveLength(1);
     });
 
-    test("Pressing Escape closes the modal", () => {
+    test("Pressing Escape closes the modal", async () => {
         // We mount into a real DOM, in order to simulate and capture real key
         // presses anywhere in the document.
         const wrapper = mount(
@@ -73,12 +74,12 @@ describe("ModalLauncher", () => {
         wrapper.find("button").simulate("click");
         expect(document.querySelector("[data-modal-child]")).toBeTruthy();
 
-        // Simulate an Escape keypress. This will happen synchronously, because
-        // we're using `dispatchEvent`.
+        // Simulate an Escape keypress.
         const event: KeyboardEvent = (document.createEvent("Event"): any);
         event.key = "Escape";
+        event.which = 27;
         event.initEvent("keyup", true, true);
-        document.dispatchEvent(event);
+        await doEvent(document, event);
 
         // Confirm that the modal is no longer mounted.
         //
