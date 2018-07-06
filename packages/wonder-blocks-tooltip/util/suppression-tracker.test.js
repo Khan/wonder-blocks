@@ -2,7 +2,6 @@
 import SuppressionTracker from "./suppression-tracker.js";
 
 import * as Core from "@khanacademy/wonder-blocks-core";
-import timeout from "../../../utils/testing/timeout.js";
 
 import type {ICanBeSuppressed} from "./types.js";
 
@@ -19,29 +18,30 @@ class TestSuppressee implements ICanBeSuppressed {
 }
 
 describe("SuppressionTracker", () => {
-    const flushMock = jest.fn();
-    const clearMock = jest.fn();
+    let setFlushableTimeoutReturnValues = [];
+    const clearSetFlushableTimeoutMock = () => {
+        setFlushableTimeoutReturnValues = [];
+        // Flow doesn't like jest mocks $FlowFixMe
+        Core.setFlushableTimeout.mockClear();
+    };
 
     beforeAll(() => {
         // Flow doesn't like jest mocks $FlowFixMe
         Core.setFlushableTimeout.mockImplementation((fn, ms) => {
             let resolve;
             const promise = new Promise((r) => (resolve = r));
-            flushMock.mockImplementation(() => resolve(false));
-            clearMock.mockImplementation(() => resolve(true));
-            flushMock.mockClear();
-            clearMock.mockClear();
-            return {
-                flush: flushMock,
-                clear: clearMock,
+            const fakeTimeout = {
+                flush: jest.fn(() => resolve(false)),
+                clear: jest.fn(() => resolve(true)),
                 promise,
             };
+            setFlushableTimeoutReturnValues.push(fakeTimeout);
+            return fakeTimeout;
         });
     });
 
     beforeEach(() => {
-        // Flow doesn't like jest mocks $FlowFixMe
-        Core.setFlushableTimeout.mockClear();
+        clearSetFlushableTimeoutMock();
     });
 
     describe("#track", () => {
@@ -154,7 +154,8 @@ describe("SuppressionTracker", () => {
 
             test("track new suppressee, pending unsuppress timeout cleared", () => {
                 // Arrange
-                const tracker = new SuppressionTracker(100);
+                const unsurpressDelay = 99;
+                const tracker = new SuppressionTracker(unsurpressDelay);
                 const suppresseeOld = new TestSuppressee();
                 const suppresseeNew = new TestSuppressee();
                 tracker.track(suppresseeOld);
@@ -163,42 +164,68 @@ describe("SuppressionTracker", () => {
                 tracker.track(suppresseeNew);
 
                 // Assert
-                expect(clearMock).toHaveBeenCalledTimes(1);
+                // We should have been called to setup an unsuppress twice
+                // and cancelled the first one.
+                expect(Core.setFlushableTimeout).toHaveBeenCalledTimes(2);
+                // Check that we were called as we expect.
+                // Flow doesn't get jest mocks $FlowFixMe
+                expect(Core.setFlushableTimeout.mock.calls[0][1]).toBe(
+                    unsurpressDelay,
+                );
+                // Flow doesn't get jest mocks $FlowFixMe
+                expect(Core.setFlushableTimeout.mock.calls[1][1]).toBe(
+                    unsurpressDelay,
+                );
+                expect(
+                    setFlushableTimeoutReturnValues[0].clear,
+                ).toHaveBeenCalledTimes(1);
             });
 
-            test("track new suppressee, pending suppress timeout cleared", async () => {
+            test("track new suppressee, pending suppress timeout flushed", async () => {
                 // Arrange
-                const unsurpressDelay = 75;
-                const surpressDelay = 100;
+                const unsuppressDelay = 75;
+                const suppressDelay = 100;
                 const tracker = new SuppressionTracker(
-                    unsurpressDelay,
-                    surpressDelay,
+                    unsuppressDelay,
+                    suppressDelay,
                 );
                 const suppressee1 = new TestSuppressee();
                 const suppressee2 = new TestSuppressee();
                 tracker.track(suppressee1);
-                // Flow doesn't like jest mocks $FlowFixMe
-                Core.setFlushableTimeout.mockClear();
-                await timeout(75);
+                // Make sure the track occurs. Since we mocked this out, we have
+                // to do this ourselves.
+                expect(Core.setFlushableTimeout).toHaveBeenCalledTimes(1);
+                setFlushableTimeoutReturnValues[0].flush();
+                await setFlushableTimeoutReturnValues[0].promise;
+                clearSetFlushableTimeoutMock();
+
                 tracker.untrack(suppressee1);
 
                 // Act
                 tracker.track(suppressee2);
 
                 // Assert
+                expect(Core.setFlushableTimeout).toHaveBeenCalledTimes(1);
                 // Flow doesn't like jest mocks $FlowFixMe
                 expect(Core.setFlushableTimeout.mock.calls[0][1]).toBe(
-                    surpressDelay,
+                    suppressDelay,
                 );
-                expect(clearMock).toHaveBeenCalledTimes(1);
+                expect(
+                    setFlushableTimeoutReturnValues[0].flush,
+                ).toHaveBeenCalledTimes(1);
             });
 
-            test("track new suppressee, old active suppressee is instantly suppressed", () => {
+            test("track new suppressee, old active suppressee is instantly suppressed", async () => {
                 // Arrange
                 const tracker = new SuppressionTracker(100);
                 const suppresseeOld = new TestSuppressee();
                 const suppresseeNew = new TestSuppressee();
                 tracker.track(suppresseeOld);
+                // Make sure the track occurs. Since we mocked this out, we have
+                // to do this ourselves.
+                expect(Core.setFlushableTimeout).toHaveBeenCalledTimes(1);
+                setFlushableTimeoutReturnValues[0].flush();
+                await setFlushableTimeoutReturnValues[0].promise;
 
                 // Act
                 tracker.track(suppresseeNew);
@@ -207,12 +234,17 @@ describe("SuppressionTracker", () => {
                 expect(suppresseeOld.suppress).toHaveBeenCalledWith(true);
             });
 
-            test("track new suppressee, new suppressee is instantly unsuppressed", () => {
+            test("track new suppressee, new suppressee is instantly unsuppressed", async () => {
                 // Arrange
                 const tracker = new SuppressionTracker(100);
                 const suppresseeOld = new TestSuppressee();
                 const suppresseeNew = new TestSuppressee();
                 tracker.track(suppresseeOld);
+                // Make sure the track occurs. Since we mocked this out, we have
+                // to do this ourselves.
+                expect(Core.setFlushableTimeout).toHaveBeenCalledTimes(1);
+                setFlushableTimeoutReturnValues[0].flush();
+                await setFlushableTimeoutReturnValues[0].promise;
 
                 // Act
                 tracker.track(suppresseeNew);
@@ -366,19 +398,20 @@ describe("SuppressionTracker", () => {
                 );
             });
 
-            test("untrack active suppressee before it was unsurpressed, unsurpress cancelled", () => {
+            test("untrack active suppressee before it was unsurpressed, pending unsurpress cancelled", () => {
                 // Arrange
                 const tracker = new SuppressionTracker(100, 100);
                 const oldActiveSuppressee = new TestSuppressee();
-                const newActiveSuppressee = new TestSuppressee();
-                tracker.track(newActiveSuppressee);
                 tracker.track(oldActiveSuppressee);
 
                 // Act
                 tracker.untrack(oldActiveSuppressee);
 
                 // Assert
-                expect(clearMock).toHaveBeenCalledTimes(1);
+                expect(Core.setFlushableTimeout).toHaveBeenCalledTimes(1);
+                expect(
+                    setFlushableTimeoutReturnValues[0].clear,
+                ).toHaveBeenCalledTimes(1);
             });
         });
     });

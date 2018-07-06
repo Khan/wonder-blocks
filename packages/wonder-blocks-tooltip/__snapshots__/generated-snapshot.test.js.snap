@@ -174,7 +174,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row",
+      "flexDirection": "column",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -184,6 +184,22 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
     }
   }
 >
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Here, we can see that the first tooltip shown has an initial delay before it appears, as does the last tooltip shown, yet when moving between tooltipped items, the transition from one to another is instantaneous.
+  </span>
   <div
     className=""
     style={
@@ -193,7 +209,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "column",
+        "flexDirection": "row",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -203,70 +219,106 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       }
     }
   >
-    A
-  </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "border": "solid 1px steelblue",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
       }
-    }
-  >
-    B
-  </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
+    >
+      A
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "border": "solid 1px steelblue",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
       }
-    }
-  >
-    C
-  </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
+    >
+      B
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "border": "solid 1px steelblue",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
       }
-    }
-  >
-    D
+    >
+      C
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "border": "solid 1px steelblue",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    >
+      D
+    </div>
   </div>
 </div>
 `;

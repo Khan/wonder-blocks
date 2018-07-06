@@ -35,14 +35,9 @@ export default class SuppressionTracker {
     }
 
     track(suppressee: ICanBeSuppressed) {
-        if (this._unsuppressTimeout) {
-            // If we are about to unsuppress an item, let's cancel that
-            // because this will be adding a new item to unsuppress.
-            this._unsuppressTimeout.clear();
-        }
         const hadPendingSuppress = !!this._suppressTimeout;
         if (this._suppressTimeout) {
-            // If we have a delayed suppression waiting to occur, let's flush
+            // If we have a pending suppression waiting to occur, let's flush
             // that to make it happen now.
             this._suppressTimeout.flush();
         }
@@ -56,20 +51,26 @@ export default class SuppressionTracker {
         }
         const previouslyActive = this._activeStack[0];
         this._activeStack.unshift(suppressee);
-        if (previouslyActive) {
+        if (previouslyActive && !this._unsuppressTimeout) {
             // Replace the previously active suppressee with this new one.
             previouslyActive.suppress(true);
         }
 
         if (
             hadPendingSuppress ||
-            previouslyActive ||
+            (previouslyActive && !this._unsuppressTimeout) ||
             !this._firstUnsuppressDelay
         ) {
             // This is either not our first item or we don't have a delay for
             // first unsuppress, so instantly unsuppress.
             suppressee.unsuppress(true);
         } else {
+            if (this._unsuppressTimeout) {
+                // If we have a pending unsuppress, let's cancel that
+                // because this will be adding a new item to unsuppress.
+                this._unsuppressTimeout.clear();
+            }
+
             // This is our first one and we have a delay for first unsupress,
             // so we unsuppress it on a timeout.
             this._unsuppressTimeout = setFlushableTimeout(
@@ -98,17 +99,20 @@ export default class SuppressionTracker {
         // Remove the suppressee from the stack.
         this._activeStack.splice(index, 1);
 
-        if (this._activeStack.length > 0 || !this._lastSuppressDelay) {
+        // Suppress the suppressee if we need to.
+        if (this._unsuppressTimeout && index === 0) {
+            // If we get here, it means the thing we just untracked was
+            // the active item but it didn't yet get unsuppressed, so let's
+            // cancel that.
+            this._unsuppressTimeout.clear();
+        } else if (this._activeStack.length > 0 || !this._lastSuppressDelay) {
             // If there are other things being tracked that we can switch to,
-            // or we don't have a delay for last supress, suppress instantly.
+            // or we don't have a delay for last suppress, suppress instantly.
             suppressee.suppress(true);
+        } else if (this._activeStack.length === 0 && !this._unsuppressTimeout) {
+            // We got here because this is our last one and it isn't waiting
+            // to be displayed.
 
-            if (this._activeStack.length > 0 && index === 0) {
-                // If we removed the active suppressee and we have another in
-                // our stack, then unsuppress the new one instantly.
-                this._activeStack[0].unsuppress(true);
-            }
-        } else {
             // This is our last one and we have a delay for last supress,
             // so we suppress it on a timeout.
             this._suppressTimeout = setFlushableTimeout(
@@ -118,6 +122,13 @@ export default class SuppressionTracker {
             this._suppressTimeout.promise.then(
                 () => (this._suppressTimeout = null),
             );
+        }
+
+        // Activate a new item if we have one and need to.
+        if (this._activeStack.length > 0 && index === 0) {
+            // If we removed the active suppressee and we have another in
+            // our stack, then unsuppress the new one instantly.
+            this._activeStack[0].unsuppress(true);
         }
     }
 }
