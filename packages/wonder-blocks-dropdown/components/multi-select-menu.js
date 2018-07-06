@@ -99,7 +99,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         }));
     }
 
-    closeMenu() {
+    handleClose() {
         this.setState({
             open: false,
         });
@@ -222,7 +222,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                 alignment={alignment}
                 items={menuItems}
                 light={light}
-                onClose={() => this.closeMenu()}
+                onClose={() => this.handleClose()}
                 open={open}
                 opener={opener}
                 style={[styles.menuTopSpace, style]}

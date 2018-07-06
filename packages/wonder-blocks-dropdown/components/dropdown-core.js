@@ -76,11 +76,15 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
         if (this.node && this.node.contains(event.target)) {
             return;
         }
-        this.props.onClose();
+        if (this.props.open) {
+            this.props.onClose();
+        }
     };
 
     _handleKeyup = (event: KeyboardEvent) => {
-        if (event.key === "Escape") {
+        if (this.props.open && event.key === "Escape") {
+            event.preventDefault();
+            event.stopImmediatePropagation();
             this.props.onClose();
         }
     };

@@ -127,7 +127,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         }));
     }
 
-    closeMenu() {
+    handleClose() {
         this.setState({
             open: false,
         });
@@ -220,7 +220,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 alignment={alignment}
                 items={menuItems}
                 light={false}
-                onClose={() => this.closeMenu()}
+                onClose={() => this.handleClose()}
                 open={open}
                 opener={opener}
                 style={[styles.menuTopSpace, style]}
