@@ -68,7 +68,7 @@ export default class TooltipCoordinator extends React.Component<Props, State>
         // If our active prop has changed, we need to update our tracking in
         // the main arbiter.
         if (this.props.active !== prevProps.active) {
-            this._updateTracking();
+            setTimeout(() => this._updateTracking(), 0);
         }
     }
 

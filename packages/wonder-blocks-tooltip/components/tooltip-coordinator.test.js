@@ -2,6 +2,8 @@
 import * as React from "react";
 import {shallow} from "enzyme";
 
+import timeout from "../../../utils/testing/timeout.js";
+
 import TooltipCoordinator from "./tooltip-coordinator.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 
@@ -81,7 +83,7 @@ describe("TooltipCoordinator", () => {
         expect(trackFn).toHaveBeenCalled();
     });
 
-    test("active transitions from true to false, calls tracker's untrack", () => {
+    test("active transitions from true to false, calls tracker's untrack", async () => {
         // Arrange
         const children = jest.fn(
             () => ((null: any): React.Element<typeof TooltipPortalMounter>),
@@ -93,12 +95,13 @@ describe("TooltipCoordinator", () => {
 
         // Act
         wrapper.setProps({active: false});
+        await timeout(0);
 
         // Assert
         expect(untrackFn).toHaveBeenCalled();
     });
 
-    test("active transitions from false to true, calls tracker's track", () => {
+    test("active transitions from false to true, calls tracker's track", async () => {
         // Arrange
         const children = jest.fn(
             () => ((null: any): React.Element<typeof TooltipPortalMounter>),
@@ -110,6 +113,7 @@ describe("TooltipCoordinator", () => {
 
         // Act
         wrapper.setProps({active: true});
+        await timeout(0);
 
         // Assert
         expect(trackFn).toHaveBeenCalled();
