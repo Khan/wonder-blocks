@@ -35,19 +35,19 @@ type Props = {
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment?: "left" | "right",
+    alignment: "left" | "right",
 
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
      */
-    light?: boolean,
+    light: boolean,
 
     /**
      * Whether this menu is disabled. A disabled menu may not be opened and
      * does not support interaction. Defaults to false.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Optional styling to add to dropdown.
