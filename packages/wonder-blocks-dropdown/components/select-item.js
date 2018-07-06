@@ -55,7 +55,7 @@ type SelectProps = {
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Optional client-supplied callback when this item is called.
@@ -141,6 +141,9 @@ const Checkbox = (props: CheckProps) => {
 };
 
 export default class SelectItem extends React.Component<SelectProps> {
+    static defaultProps = {
+        disabled: false,
+    };
     render() {
         const {
             disabled,

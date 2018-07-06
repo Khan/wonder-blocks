@@ -135,7 +135,7 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 180,
+        height: 50,
     },
 });
 

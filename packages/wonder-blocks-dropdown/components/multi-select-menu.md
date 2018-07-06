@@ -101,7 +101,7 @@ class ExampleWithShortcuts extends React.Component {
         };
     }
 
-    handleChanges(update) {
+    handleChange(update) {
         console.log("changes happened!");
         this.setState({
            selectedValues: update,
@@ -133,7 +133,7 @@ class ExampleWithShortcuts extends React.Component {
                 },
             ]}
             shortcuts={true}
-            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
             selectItemType={"colors"}
         />;
@@ -167,7 +167,7 @@ class ExampleNoneSelected extends React.Component {
         };
     }
 
-    handleChanges(update) {
+    handleChange(update) {
         console.log("changes happened!");
         this.setState({
            selectedValues: update,
@@ -183,7 +183,7 @@ class ExampleNoneSelected extends React.Component {
                 },
             ]}
             disabled={true}
-            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            onChange={(selectedValues) => this.handleChange(selectedValues)}
             placeholder={"Choose some colors"}
             selectedValues={this.state.selectedValues}
             selectItemType={"colors"}
@@ -225,7 +225,7 @@ class LightRightAlignedExample extends React.Component {
         };
     }
 
-    handleChanges(update) {
+    handleChange(update) {
         console.log("changes happened!");
         this.setState({
            selectedValues: update,
@@ -259,7 +259,7 @@ class LightRightAlignedExample extends React.Component {
             alignment={"right"}
             light={true}
             shortcuts={true}
-            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
             selectItemType={"harry potter books"}
         />;
