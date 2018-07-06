@@ -2,7 +2,7 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 
-import addStyle from "../../wonder-blocks-core/util/add-style.js";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset, IconSize} from "../util/icon-assets.js";
 import {getPathForIcon, viewportPixelsForSize} from "../util/icon-util.js";
 
