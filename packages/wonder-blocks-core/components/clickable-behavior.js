@@ -148,6 +148,12 @@ const keyCodes = {
     space: 32,
 };
 
+const startState = {
+    hovered: false,
+    focused: false,
+    pressed: false,
+};
+
 export default class ClickableBehavior extends React.Component<Props, State> {
     waitingForClick: boolean;
     keyboardClick: boolean;
@@ -159,11 +165,15 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.state = {
-            hovered: false,
-            focused: false,
-            pressed: false,
-        };
+        this.state = startState;
+    }
+
+    // TODO(sophie): This method is deprecated in React 16. Once we update to
+    // React 16, we should use static getDerivedStateFromProps instead.
+    componentWillReceiveProps(nextProps: Props) {
+        if (nextProps.disabled) {
+            this.setState(startState);
+        }
     }
 
     handleClick = (e: SyntheticMouseEvent<>) => {
