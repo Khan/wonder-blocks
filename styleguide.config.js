@@ -39,6 +39,11 @@ module.exports = {
             components: "packages/wonder-blocks-grid/components/*.js",
         },
         {
+            name: "Icon",
+            content: "packages/wonder-blocks-icon/docs.md",
+            components: "packages/wonder-blocks-icon/components/icon.js",
+        },
+        {
             name: "IconButton",
             content: "packages/wonder-blocks-icon-button/docs.md",
             components:
