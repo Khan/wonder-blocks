@@ -8,7 +8,7 @@ import timeout from "../../../utils/testing/timeout.js";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import TooltipAnchor from "./tooltip-anchor.js";
-import TooltipPortalMounter from "./tooltip-portal-mounter.js";
+import TooltipCoordinator from "./tooltip-coordinator.js";
 
 describe("TooltipAnchor", () => {
     afterEach(() => {
@@ -23,14 +23,14 @@ describe("TooltipAnchor", () => {
 
     test("on mount, subscribes to focus and hover events", () => {
         // Arrange
-        const getFakeTooltipPortalMounter = (active) =>
+        const getFakeTooltipCoordinator = (active) =>
             ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                typeof TooltipPortalMounter,
+                typeof TooltipCoordinator,
             >);
         const nodes = (
             <View>
                 <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                    {getFakeTooltipCoordinator}
                 </TooltipAnchor>
             </View>
         );
@@ -64,14 +64,14 @@ describe("TooltipAnchor", () => {
 
     test("on unmount, unsubscribes from focus and hover events", () => {
         // Arrange
-        const getFakeTooltipPortalMounter = (active) =>
+        const getFakeTooltipCoordinator = (active) =>
             ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                typeof TooltipPortalMounter,
+                typeof TooltipCoordinator,
             >);
         const nodes = (
             <View>
                 <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                    {getFakeTooltipCoordinator}
                 </TooltipAnchor>
             </View>
         );
@@ -108,16 +108,16 @@ describe("TooltipAnchor", () => {
         test("if not set, sets tabindex on anchor target", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
-                    <View id="portal">This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
+                const fakeTooltipCoordinator = (((
+                    <View>This is the anchor</View>
+                ): any): React.Element<typeof TooltipCoordinator>);
                 const nodes = (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={true}
                             anchorRef={resolve}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            {(active) => fakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -134,16 +134,16 @@ describe("TooltipAnchor", () => {
         test("if tabindex already set, leaves it as-is", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
+                const fakeTooltipCoordinator = (((
                     <View tabIndex="-1">This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
+                ): any): React.Element<typeof TooltipCoordinator>);
                 const nodes = (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={true}
                             anchorRef={resolve}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            {(active) => fakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -162,16 +162,16 @@ describe("TooltipAnchor", () => {
         test("does not set tabindex on anchor target", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
+                const fakeTooltipCoordinator = (((
                     <View>This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
+                ): any): React.Element<typeof TooltipCoordinator>);
                 const nodes = (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={false}
                             anchorRef={resolve}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            {(active) => fakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -189,9 +189,9 @@ describe("TooltipAnchor", () => {
             // Arrange
             let wrapper;
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
+                const fakeTooltipCoordinator = (((
                     <View>This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
+                ): any): React.Element<typeof TooltipCoordinator>);
 
                 const TestFixture = (props: any) => (
                     <View>
@@ -199,7 +199,7 @@ describe("TooltipAnchor", () => {
                             forceAnchorFocusivity={props.force}
                             anchorRef={resolve}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            {(active) => fakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -223,9 +223,9 @@ describe("TooltipAnchor", () => {
         test("if we had not added tabindex, leaves it", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
+                const fakeTooltipCoordinator = (((
                     <View tabIndex="-1">This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
+                ): any): React.Element<typeof TooltipCoordinator>);
 
                 const TestFixture = (props: any) => (
                     <View>
@@ -233,7 +233,7 @@ describe("TooltipAnchor", () => {
                             forceAnchorFocusivity={props.force}
                             anchorRef={resolve}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            {(active) => fakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -252,14 +252,14 @@ describe("TooltipAnchor", () => {
     test("receives keyboard focus, is active", async () => {
         // Arrange
         const ref = await new Promise((resolve) => {
-            const getFakeTooltipPortalMounter = (active) =>
+            const getFakeTooltipCoordinator = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
+                    typeof TooltipCoordinator,
                 >);
             const nodes = (
                 <View>
                     <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
+                        {getFakeTooltipCoordinator}
                     </TooltipAnchor>
                 </View>
             );
@@ -282,14 +282,14 @@ describe("TooltipAnchor", () => {
         test("active is set to false", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
+                const getFakeTooltipCoordinator = (active) =>
                     (((
                         <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
+                    ): any): React.Element<typeof TooltipCoordinator>);
                 const nodes = (
                     <View>
                         <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                            {getFakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -308,14 +308,14 @@ describe("TooltipAnchor", () => {
         test("if hovered, remains active", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
+                const getFakeTooltipCoordinator = (active) =>
                     (((
                         <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
+                    ): any): React.Element<typeof TooltipCoordinator>);
                 const nodes = (
                     <View>
                         <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                            {getFakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -336,14 +336,14 @@ describe("TooltipAnchor", () => {
     test("is hovered, is active", async () => {
         // Arrange
         const ref = await new Promise((resolve) => {
-            const getFakeTooltipPortalMounter = (active) =>
+            const getFakeTooltipCoordinator = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
+                    typeof TooltipCoordinator,
                 >);
             const nodes = (
                 <View>
                     <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
+                        {getFakeTooltipCoordinator}
                     </TooltipAnchor>
                 </View>
             );
@@ -362,14 +362,14 @@ describe("TooltipAnchor", () => {
         test("active is set to false", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
+                const getFakeTooltipCoordinator = (active) =>
                     (((
                         <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
+                    ): any): React.Element<typeof TooltipCoordinator>);
                 const nodes = (
                     <View>
                         <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                            {getFakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -388,14 +388,14 @@ describe("TooltipAnchor", () => {
         test("if focused, remains active", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
+                const getFakeTooltipCoordinator = (active) =>
                     (((
                         <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
+                    ): any): React.Element<typeof TooltipCoordinator>);
                 const nodes = (
                     <View>
                         <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                            {getFakeTooltipCoordinator}
                         </TooltipAnchor>
                     </View>
                 );
@@ -417,13 +417,13 @@ describe("TooltipAnchor", () => {
         test("subscribes to keydown event on active", () => {
             // Arrange
             const spy = jest.spyOn(document, "addEventListener");
-            const getFakeTooltipPortalMounter = (active) =>
+            const getFakeTooltipCoordinator = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
+                    typeof TooltipCoordinator,
                 >);
             const nodes = (
                 <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                    {getFakeTooltipCoordinator}
                 </TooltipAnchor>
             );
             const wrapper = mount(nodes);
@@ -441,13 +441,13 @@ describe("TooltipAnchor", () => {
         test("does not subscribe to keydown event if already active", () => {
             // Arrange
             const spy = jest.spyOn(document, "addEventListener");
-            const getFakeTooltipPortalMounter = (active) =>
+            const getFakeTooltipCoordinator = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
+                    typeof TooltipCoordinator,
                 >);
             const nodes = (
                 <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                    {getFakeTooltipCoordinator}
                 </TooltipAnchor>
             );
             const wrapper = mount(nodes);
@@ -471,13 +471,13 @@ describe("TooltipAnchor", () => {
         test("unsubscribes from keydown event on inactive", () => {
             // Arrange
             const spy = jest.spyOn(document, "removeEventListener");
-            const getFakeTooltipPortalMounter = (active) =>
+            const getFakeTooltipCoordinator = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
+                    typeof TooltipCoordinator,
                 >);
             const nodes = (
                 <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                    {getFakeTooltipCoordinator}
                 </TooltipAnchor>
             );
             const wrapper = mount(nodes);
@@ -499,13 +499,13 @@ describe("TooltipAnchor", () => {
         test("unsubscribes from keydown event on unmount", () => {
             // Arrange
             const spy = jest.spyOn(document, "removeEventListener");
-            const getFakeTooltipPortalMounter = (active) =>
+            const getFakeTooltipCoordinator = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
+                    typeof TooltipCoordinator,
                 >);
             const nodes = (
                 <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                    {getFakeTooltipCoordinator}
                 </TooltipAnchor>
             );
             const wrapper = mount(nodes);
@@ -523,13 +523,13 @@ describe("TooltipAnchor", () => {
 
         test("when active, escape dismisses tooltip", async () => {
             // Arrange
-            const getFakeTooltipPortalMounter = (active) =>
+            const getFakeTooltipCoordinator = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
+                    typeof TooltipCoordinator,
                 >);
             const nodes = (
                 <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                    {getFakeTooltipCoordinator}
                 </TooltipAnchor>
             );
             const wrapper = mount(nodes);
@@ -550,13 +550,13 @@ describe("TooltipAnchor", () => {
 
         test("when active, escape stops event propagation", async () => {
             // Arrange
-            const getFakeTooltipPortalMounter = (active) =>
+            const getFakeTooltipCoordinator = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
+                    typeof TooltipCoordinator,
                 >);
             const nodes = (
                 <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                    {getFakeTooltipCoordinator}
                 </TooltipAnchor>
             );
             const wrapper = mount(nodes);

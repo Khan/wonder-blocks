@@ -6,12 +6,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import TooltipPortalMounter from "./tooltip-portal-mounter.js";
+import TooltipCoordinator from "./tooltip-coordinator.js";
 
 type Props = {|
-    // A method that renders the content for anchoring the tooltip.
-    // This must return a TooltipPortalMounter component.
-    children: (active: boolean) => React.Element<typeof TooltipPortalMounter>,
+    // A method that ultimately renders the content for anchoring the tooltip.
+    // This must return a TooltipArbiter component.
+    children: (active: boolean) => React.Element<typeof TooltipCoordinator>,
 
     // Callback to be invoked when the anchored content is mounted.
     // This provides a reference to the anchored content, which can then be
@@ -143,7 +143,7 @@ export default class TooltipAnchor extends React.Component<Props, State> {
         this._hovered = hovered;
         this._focused = focused;
 
-        // If we changed state, call our subscriber and let them know.
+        // If we changed state, let's announce it.
         if (oldState !== newState) {
             this.setState({active: newState});
 

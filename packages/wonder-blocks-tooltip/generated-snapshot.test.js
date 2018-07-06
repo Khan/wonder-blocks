@@ -136,11 +136,56 @@ describe("wonder-blocks-tooltip", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
-        const example = <TooltipContent>Just the content</TooltipContent>;
+        const {StyleSheet} = require("aphrodite");
+        const React = require("react");
+
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {LabelSmall} = require("@khanacademy/wonder-blocks-typography");
+
+        const styles = StyleSheet.create({
+            block: {
+                border: "solid 1px steelblue",
+                width: 32,
+                height: 32,
+                alignItems: "center",
+                justifyContent: "center",
+            },
+        });
+
+        const example = (
+            <View>
+                <LabelSmall>
+                    Here, we can see that the first tooltip shown has an initial
+                    delay before it appears, as does the last tooltip shown, yet
+                    when moving between tooltipped items, the transition from
+                    one to another is instantaneous.
+                </LabelSmall>
+
+                <View style={{flexDirection: "row"}}>
+                    <Tooltip content={"Tooltip A"} placement="bottom">
+                        <View style={styles.block}>A</View>
+                    </Tooltip>
+                    <Tooltip content={"Tooltip B"} placement="bottom">
+                        <View style={styles.block}>B</View>
+                    </Tooltip>
+                    <Tooltip content={"Tooltip C"} placement="bottom">
+                        <View style={styles.block}>C</View>
+                    </Tooltip>
+                    <Tooltip content={"Tooltip D"} placement="bottom">
+                        <View style={styles.block}>D</View>
+                    </Tooltip>
+                </View>
+            </View>
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 6", () => {
+        const example = <TooltipContent>Just the content</TooltipContent>;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
         const example = (
             <TooltipContent title="Title text!">
                 Some content in my content
@@ -149,7 +194,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const {
             Body,
             LabelSmall,
@@ -164,7 +209,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -199,7 +244,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -236,7 +281,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -271,7 +316,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -308,7 +353,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
+    it("example 13", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
@@ -321,7 +366,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
+    it("example 14", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
@@ -334,7 +379,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
+    it("example 15", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
@@ -350,7 +395,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 15", () => {
+    it("example 16", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
@@ -363,7 +408,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 16", () => {
+    it("example 17", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("@khanacademy/wonder-blocks-spacing");
 
@@ -383,7 +428,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 17", () => {
+    it("example 18", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("@khanacademy/wonder-blocks-spacing");
 

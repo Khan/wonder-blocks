@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SuppressionTracker #track no first unsuppress delay track already tracked suppressee, throws 1`] = `"Attempting to track suppressee already being tracked"`;
+
+exports[`SuppressionTracker #track with first unsuppress delay track already tracked suppressee, throws 1`] = `"Attempting to track suppressee already being tracked"`;
+
+exports[`SuppressionTracker #untrack no first unsuppress delay untrack an untracked suppressee, throws 1`] = `"Attempted to untrack suppressee that wasn't being tracked"`;
+
+exports[`SuppressionTracker #untrack with last suppress delay untrack an untracked suppressee, throws 1`] = `"Attempted to untrack suppressee that wasn't being tracked"`;

@@ -24,6 +24,7 @@ describe("@khanacademy/wonder-blocks-core", () => {
                 "MEDIA_MODAL_SPEC",
                 "MediaLayoutWrapper",
                 "UniqueIDProvider",
+                "setFlushableTimeout",
             ].sort(),
         );
     });
