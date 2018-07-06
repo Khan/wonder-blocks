@@ -26,7 +26,7 @@ type ActionProps = {
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Whether this item should be indented to have menu items left-align in
@@ -141,7 +141,9 @@ export default class ActionItem extends React.Component<ActionProps> {
                     return (
                         <Tag {...props} role="menuitem">
                             {indent && <View style={{width: Spacing.medium}} />}
-                            <LabelLarge>{label}</LabelLarge>
+                            <LabelLarge style={[styles.label]}>
+                                {label}
+                            </LabelLarge>
                         </Tag>
                     );
                 }}
@@ -164,7 +166,12 @@ const styles = StyleSheet.create({
         height: 40,
         paddingLeft: Spacing.medium,
         paddingRight: Spacing.medium,
+    },
+
+    label: {
         whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     // hover and focus states

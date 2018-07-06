@@ -17,14 +17,17 @@ describe("SingleSelectMenu", () => {
         <SingleSelectMenu
             items={[
                 {
+                    type: "select",
                     label: "item 1",
                     value: "1",
                 },
                 {
+                    type: "select",
                     label: "item 2",
                     value: "2",
                 },
                 {
+                    type: "select",
                     label: "item 3",
                     value: "3",
                 },
@@ -58,6 +61,8 @@ describe("SingleSelectMenu", () => {
     });
 
     it("displays selected item label as expected", () => {
+        menu.setState({open: true});
+
         // Grab the second item in the list
         const item = menu.find(SelectItem).at(1);
         expect(item.text()).toEqual("item 2");

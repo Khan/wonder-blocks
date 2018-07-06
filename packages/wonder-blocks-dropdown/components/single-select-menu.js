@@ -7,23 +7,13 @@ import {StyleSheet} from "aphrodite";
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
-
-export type SingleSelectItemProps = {
-    /** Whether this item is disabled. Default false. */
-    disabled?: boolean,
-    /** Display text of the item. */
-    label: string,
-    /** Value of this item. Treat as a key. */
-    value: string,
-    /** Optional extra callback. Passes whether this item is selected. */
-    onClick?: (selected: boolean) => void,
-};
+import type {SelectItemProps} from "../utils/types.js";
 
 type Props = {
     /**
      * The items in this menu.
      */
-    items: Array<SingleSelectItemProps>,
+    items: Array<SelectItemProps>,
 
     /**
      * Callback for when the selection of the menu changes. Parameter is the
@@ -45,19 +35,19 @@ type Props = {
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment?: "left" | "right",
+    alignment: "left" | "right",
 
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
      */
-    light?: boolean,
+    light: boolean,
 
     /**
      * Whether this menu is disabled. A disabled menu may not be opened and
      * does not support interaction. Defaults to false.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Optional styling to add to dropdown.
@@ -91,6 +81,12 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         this.setState((prevState) => ({
             open: !prevState.open,
         }));
+    }
+
+    handleClose() {
+        this.setState({
+            open: false,
+        });
     }
 
     handleSelected(selectedValue: string) {
@@ -152,6 +148,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                 alignment={alignment}
                 items={menuItems}
                 light={light}
+                onClose={() => this.handleClose()}
                 open={open}
                 opener={opener}
                 style={[styles.menuSpacer, style]}

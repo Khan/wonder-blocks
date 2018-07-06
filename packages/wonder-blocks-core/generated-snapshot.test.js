@@ -12,6 +12,7 @@ import ClickableBehavior from "./components/clickable-behavior.js";
 import MediaLayout from "./components/media-layout.js";
 import NoSSR from "./components/no-ssr.js";
 import Text from "./components/text.js";
+import UniqueIDProvider from "./components/unique-id-provider.js";
 import View from "./components/view.js";
 
 describe("wonder-blocks-core", () => {
@@ -151,6 +152,148 @@ describe("wonder-blocks-core", () => {
                     </View>
                 )}
             </NoSSR>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const {
+            Body,
+            HeadingSmall,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+
+        let providerRef = null;
+
+        const renders = [];
+        const provider = (
+            <UniqueIDProvider ref={(ref) => (providerRef = ref)}>
+                {(ids) => {
+                    renders.push(ids.get("my-unique-id"));
+                    return (
+                        <View>
+                            {renders.map((id, i) => (
+                                <Body key={i}>
+                                    Render {i}: {id}
+                                </Body>
+                            ))}
+                        </View>
+                    );
+                }}
+            </UniqueIDProvider>
+        );
+
+        const onClick = () => {
+            if (providerRef) {
+                providerRef.forceUpdate();
+            }
+        };
+
+        const example = (
+            <View>
+                <View style={{flexDirection: "row"}}>
+                    <Button onClick={onClick}>Click Me to Rerender</Button>
+                    <Spring />
+                </View>
+                <Strut size={16} />
+                <HeadingSmall>The UniqueIDProvider:</HeadingSmall>
+                {provider}
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
+        const {
+            Body,
+            BodyMonospace,
+            HeadingSmall,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+
+        let firstId = null;
+        let secondId = null;
+
+        const children = (idf) => {
+            const id1 = idf.get("an-id");
+            const id2 = idf.get("something");
+            firstId = firstId || id1;
+            secondId = secondId || id2;
+            return (
+                <View>
+                    <HeadingSmall>The initial render:</HeadingSmall>
+                    <View>
+                        <BodyMonospace>get("an-id"): {firstId}</BodyMonospace>
+                        <BodyMonospace>
+                            get("something"): {secondId}
+                        </BodyMonospace>
+                    </View>
+                    <Strut size={16} />
+                    <HeadingSmall>Subsequent requests:</HeadingSmall>
+                    <View>
+                        <BodyMonospace>get("an-id"): {id1}</BodyMonospace>
+                        <BodyMonospace>get("something"): {id2}</BodyMonospace>
+                    </View>
+                </View>
+            );
+        };
+
+        const example = (
+            <UniqueIDProvider mockOnFirstRender={true}>
+                {children}
+            </UniqueIDProvider>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
+        const {
+            Body,
+            HeadingSmall,
+            BodyMonospace,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+
+        const children = ({get}) => (
+            <View>
+                <Body>
+                    The id returned for "my-identifier": {get("my-identifier")}
+                </Body>
+            </View>
+        );
+
+        const example = (
+            <View>
+                <HeadingSmall>First Provider with scope: first</HeadingSmall>
+                <UniqueIDProvider scope="first">{children}</UniqueIDProvider>
+                <HeadingSmall>Second Provider with scope: second</HeadingSmall>
+                <UniqueIDProvider scope="second">{children}</UniqueIDProvider>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 9", () => {
+        const {
+            BodyMonospace,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+
+        // TODO(somewhatabstract): Update this to be nice once we can get BodyMonospace
+        // to allow us to properly preserve whitespace or have an alternative. Or remove
+        // this entirely when our styleguide renders our interface definitions.
+        const example = (
+            <View>
+                <BodyMonospace>
+                    interface IIdentifierFactory &#123;
+                </BodyMonospace>
+                <View style={{flexDirection: "row"}}>
+                    <Strut size={"2em"} />
+                    <BodyMonospace>get(id: string): string;</BodyMonospace>
+                </View>
+                <BodyMonospace>&#125;</BodyMonospace>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

@@ -375,11 +375,62 @@ exports[`wonder-blocks-modal example 2 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="button_wdpcqp-o_O-dark_tzddsx"
+            className=""
+            data-test-id={undefined}
+            disabled={false}
+            href={undefined}
+            onBlur={[Function]}
             onClick={[Function]}
-            type="button"
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "rgba(33,36,44,0.50)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "font": "inherit",
+                "fontSize": 24,
+                "height": 48,
+                "justifyContent": "center",
+                "lineHeight": "48px",
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textDecoration": "none",
+                "width": 48,
+              }
+            }
+            tabIndex={0}
           >
-            ×
+            <svg
+              aria-label={undefined}
+              className=""
+              height={24}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
           </button>
         </div>
         <div
@@ -780,11 +831,62 @@ exports[`wonder-blocks-modal example 3 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="button_wdpcqp-o_O-dark_tzddsx"
+            className=""
+            data-test-id={undefined}
+            disabled={false}
+            href={undefined}
+            onBlur={[Function]}
             onClick={[Function]}
-            type="button"
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "rgba(33,36,44,0.50)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "font": "inherit",
+                "fontSize": 24,
+                "height": 48,
+                "justifyContent": "center",
+                "lineHeight": "48px",
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textDecoration": "none",
+                "width": 48,
+              }
+            }
+            tabIndex={0}
           >
-            ×
+            <svg
+              aria-label={undefined}
+              className=""
+              height={24}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
           </button>
         </div>
         <div
@@ -1185,11 +1287,62 @@ exports[`wonder-blocks-modal example 4 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="button_wdpcqp-o_O-dark_tzddsx"
+            className=""
+            data-test-id={undefined}
+            disabled={false}
+            href={undefined}
+            onBlur={[Function]}
             onClick={[Function]}
-            type="button"
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "rgba(33,36,44,0.50)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "font": "inherit",
+                "fontSize": 24,
+                "height": 48,
+                "justifyContent": "center",
+                "lineHeight": "48px",
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textDecoration": "none",
+                "width": 48,
+              }
+            }
+            tabIndex={0}
           >
-            ×
+            <svg
+              aria-label={undefined}
+              className=""
+              height={24}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
           </button>
         </div>
         <div
@@ -1791,11 +1944,62 @@ exports[`wonder-blocks-modal example 5 1`] = `
         >
           <button
             aria-label="Close modal"
-            className="button_wdpcqp-o_O-light_1lslapz"
+            className=""
+            data-test-id={undefined}
+            disabled={false}
+            href={undefined}
+            onBlur={[Function]}
             onClick={[Function]}
-            type="button"
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "#ffffff",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "font": "inherit",
+                "fontSize": 24,
+                "height": 48,
+                "justifyContent": "center",
+                "lineHeight": "48px",
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textDecoration": "none",
+                "width": 48,
+              }
+            }
+            tabIndex={0}
           >
-            ×
+            <svg
+              aria-label={undefined}
+              className=""
+              height={24}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
           </button>
         </div>
         <div
@@ -2099,11 +2303,62 @@ exports[`wonder-blocks-modal example 6 1`] = `
           >
             <button
               aria-label="Close modal"
-              className="button_wdpcqp-o_O-light_1lslapz"
+              className=""
+              data-test-id={undefined}
+              disabled={false}
+              href={undefined}
+              onBlur={[Function]}
               onClick={[Function]}
-              type="button"
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "font": "inherit",
+                  "fontSize": 24,
+                  "height": 48,
+                  "justifyContent": "center",
+                  "lineHeight": "48px",
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "width": 48,
+                }
+              }
+              tabIndex={0}
             >
-              ×
+              <svg
+                aria-label={undefined}
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
             </button>
           </div>
         </div>
@@ -2480,11 +2735,62 @@ exports[`wonder-blocks-modal example 7 1`] = `
           >
             <button
               aria-label="Close modal"
-              className="button_wdpcqp-o_O-light_1lslapz"
+              className=""
+              data-test-id={undefined}
+              disabled={false}
+              href={undefined}
+              onBlur={[Function]}
               onClick={[Function]}
-              type="button"
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "font": "inherit",
+                  "fontSize": 24,
+                  "height": 48,
+                  "justifyContent": "center",
+                  "lineHeight": "48px",
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "width": 48,
+                }
+              }
+              tabIndex={0}
             >
-              ×
+              <svg
+                aria-label={undefined}
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
             </button>
           </div>
         </div>
@@ -2929,11 +3235,62 @@ exports[`wonder-blocks-modal example 8 1`] = `
           >
             <button
               aria-label="Close modal"
-              className="button_wdpcqp-o_O-dark_tzddsx"
+              className=""
+              data-test-id={undefined}
+              disabled={false}
+              href={undefined}
+              onBlur={[Function]}
               onClick={[Function]}
-              type="button"
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "boxSizing": "border-box",
+                  "color": "rgba(33,36,44,0.50)",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "font": "inherit",
+                  "fontSize": 24,
+                  "height": 48,
+                  "justifyContent": "center",
+                  "lineHeight": "48px",
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "width": 48,
+                }
+              }
+              tabIndex={0}
             >
-              ×
+              <svg
+                aria-label={undefined}
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
             </button>
           </div>
         </div>
@@ -3200,11 +3557,62 @@ exports[`wonder-blocks-modal example 9 1`] = `
           >
             <button
               aria-label="Close modal"
-              className="button_wdpcqp-o_O-dark_tzddsx"
+              className=""
+              data-test-id={undefined}
+              disabled={false}
+              href={undefined}
+              onBlur={[Function]}
               onClick={[Function]}
-              type="button"
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "boxSizing": "border-box",
+                  "color": "rgba(33,36,44,0.50)",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "font": "inherit",
+                  "fontSize": 24,
+                  "height": 48,
+                  "justifyContent": "center",
+                  "lineHeight": "48px",
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "width": 48,
+                }
+              }
+              tabIndex={0}
             >
-              ×
+              <svg
+                aria-label={undefined}
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
             </button>
           </div>
           <div
