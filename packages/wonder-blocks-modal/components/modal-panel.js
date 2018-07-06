@@ -7,9 +7,9 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import ModalCloseButton from "./modal-close-button.js";
 import ModalContent from "./modal-content.js";
-import ModalTitleBar from "./modal-title-bar.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
+import {Toolbar} from "@khanacademy/wonder-blocks-toolbar";
 
 type Props = {
     /**
@@ -18,7 +18,7 @@ type Props = {
      */
     content: React.Element<typeof ModalContent> | React.Node,
     /** A title bar (with optional subtitle) to show at the top of the panel. */
-    titleBar?: React.Element<typeof ModalTitleBar>,
+    titleBar?: React.Element<typeof Toolbar>,
     /** A header to show above the contents, but below the title bar. */
     header?: React.Element<typeof ModalHeader> | React.Node,
     /** A footer to show beneath the contents. */

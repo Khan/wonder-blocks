@@ -5,7 +5,7 @@ import {StyleSheet} from "aphrodite";
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
-import ModalTitleBar from "./modal-title-bar.js";
+import {Toolbar} from "@khanacademy/wonder-blocks-toolbar";
 
 type Props = {
     /**
@@ -86,7 +86,7 @@ export default class StandardModal extends React.Component<Props> {
                     showCloseButton
                     onClickCloseButton={onClickCloseButton}
                     titleBar={
-                        <ModalTitleBar
+                        <Toolbar
                             title={title}
                             subtitle={subtitle}
                             color={header ? "dark" : "light"}
