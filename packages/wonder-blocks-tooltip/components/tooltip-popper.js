@@ -17,8 +17,8 @@ import type {TooltipBubbleProps} from "./tooltip-bubble.js";
 type Props = {|
     /**
      * This uses the children-as-a-function approach, mirroring react-popper's
-     * implementation, except we enforce the return type to be our TooltipBubble
-     * component.
+     * implementation, except we enforce the return type to be our
+     * `TooltipBubble` component.
      */
     children: (TooltipBubbleProps) => React.Element<typeof TooltipBubble>,
 

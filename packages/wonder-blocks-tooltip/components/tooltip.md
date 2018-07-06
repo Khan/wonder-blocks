@@ -109,3 +109,42 @@ const modal = (
     {({openModal}) => <button onClick={openModal}>Click here!</button>}
 </ModalLauncher>
 ```
+
+### Tooltips side-by-side
+
+```js
+const {StyleSheet} = require("aphrodite");
+const React = require("react");
+
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {LabelSmall} = require("@khanacademy/wonder-blocks-typography");
+
+const styles = StyleSheet.create({
+    "block": {
+        border: "solid 1px steelblue",
+        width: 32,
+        height: 32,
+        alignItems: "center",
+        justifyContent: "center",
+    }
+});
+
+<View>
+    <LabelSmall>Here, we can see that the first tooltip shown has an initial delay before it appears, as does the last tooltip shown, yet when moving between tooltipped items, the transition from one to another is instantaneous.</LabelSmall>
+
+    <View style={{flexDirection: "row"}}>
+        <Tooltip content={"Tooltip A"} placement="bottom">
+            <View style={styles.block}>A</View>
+        </Tooltip>
+        <Tooltip content={"Tooltip B"} placement="bottom">
+            <View style={styles.block}>B</View>
+        </Tooltip>
+        <Tooltip content={"Tooltip C"} placement="bottom">
+            <View style={styles.block}>C</View>
+        </Tooltip>
+        <Tooltip content={"Tooltip D"} placement="bottom">
+            <View style={styles.block}>D</View>
+        </Tooltip>
+    </View>
+</View>
+```

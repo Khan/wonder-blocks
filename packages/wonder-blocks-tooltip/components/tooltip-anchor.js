@@ -7,6 +7,13 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
+import ActiveTracker from "../util/active-tracker.js";
+import {
+    TooltipAppearanceDelay,
+    TooltipDisappearanceDelay,
+} from "../util/constants.js";
+
+import type {IActiveTrackerSubscriber} from "../util/active-tracker.js";
 
 type Props = {|
     /**
@@ -44,11 +51,17 @@ type State = {|
     active: boolean,
 |};
 
-export default class TooltipAnchor extends React.Component<Props, State> {
+const TRACKER = new ActiveTracker();
+
+export default class TooltipAnchor extends React.Component<Props, State>
+    implements IActiveTrackerSubscriber {
     _weSetFocusivity: ?boolean;
     _anchorNode: ?Element;
     _focused: boolean;
     _hovered: boolean;
+    _stolenFromUs: boolean;
+    _unsubscribeFromTracker: ?() => void;
+    _timeoutID: ?TimeoutID;
 
     static defaultProps = {
         forceAnchorFocusivity: true,
@@ -69,15 +82,15 @@ export default class TooltipAnchor extends React.Component<Props, State> {
             );
         }
 
+        this._unsubscribeFromTracker = TRACKER.subscribe(this);
         this._anchorNode = anchorNode;
         this._updateFocusivity();
         if (anchorNode) {
-            // TODO(somewhatabstract): Detect ESC key to deactivate
             /**
              * TODO(somewhatabstract): Work out how to allow pointer to go over
              * the tooltip content to keep it active. This likely requires
              * pointer events but that would break the obscurement checks we do.
-             * So, careful consideration required.
+             * So, careful consideration required. See
              */
             anchorNode.addEventListener("focusin", this._handleFocusIn);
             anchorNode.addEventListener("focusout", this._handleFocusOut);
@@ -99,6 +112,9 @@ export default class TooltipAnchor extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
+        this._unsubscribeFromTracker && this._unsubscribeFromTracker();
+        this._clearPendingAction();
+
         const anchorNode = this._anchorNode;
         if (anchorNode) {
             anchorNode.removeEventListener("focusin", this._handleFocusIn);
@@ -116,6 +132,20 @@ export default class TooltipAnchor extends React.Component<Props, State> {
             document.removeEventListener("keyup", this._handleKeyUp);
         }
     }
+
+    activeStateStolen = () => {
+        // Something wants the active state.
+        // Do we have it? If so, let's remember that.
+        // If we are already active, or we're inactive but have a timeoutID,
+        // then it was stolen from us.
+        this._stolenFromUs = this.state.active || !!this._timeoutID;
+        // Let's first tell ourselves we're not focused (otherwise the tooltip
+        // will be sticky on the next hover of this anchor and that just looks
+        // weird).
+        this._focused = false;
+        // Now update our actual state.
+        this._setActiveState(false, true);
+    };
 
     _updateFocusivity() {
         const anchorNode = this._anchorNode;
@@ -142,23 +172,59 @@ export default class TooltipAnchor extends React.Component<Props, State> {
     }
 
     _updateActiveState(hovered: boolean, focused: boolean) {
-        // Take a snapshot of the old and new state.
-        const oldState = this.state.active;
-        const newState = hovered || focused;
-
         // Update our stored values.
         this._hovered = hovered;
         this._focused = focused;
 
-        // If we changed state, call our subscriber and let them know.
-        if (oldState !== newState) {
-            this.setState({active: newState});
+        this._setActiveState(hovered || focused);
+    }
 
-            if (newState) {
+    _clearPendingAction() {
+        if (this._timeoutID) {
+            clearTimeout(this._timeoutID);
+            this._timeoutID = null;
+        }
+    }
+
+    _setActiveState(active: boolean, instant?: boolean) {
+        if (
+            this._stolenFromUs ||
+            active !== this.state.active ||
+            (!this.state.active && this._timeoutID)
+        ) {
+            // If we are about to lose active state or change it, we need to
+            // cancel any pending action to show ourselves.
+            // So, if active is stolen from us, we are changing active state,
+            // or we are inactive and have a timer, clear the action.
+            this._clearPendingAction();
+        } else if (active === this.state.active) {
+            // Nothing to do if we're already active.
+            return;
+        }
+
+        // Determine if we are doing things immediately or not.
+        instant = instant || (active && TRACKER.steal(this));
+        if (instant) {
+            if (active) {
                 document.addEventListener("keyup", this._handleKeyUp);
             } else {
                 document.removeEventListener("keyup", this._handleKeyUp);
             }
+            this.setState({active});
+            if (!this._stolenFromUs && !active) {
+                // Only the very last thing going inactive will giveup
+                // the stolen active state.
+                TRACKER.giveup();
+            }
+            this._stolenFromUs = false;
+        } else {
+            const delay = active
+                ? TooltipAppearanceDelay
+                : TooltipDisappearanceDelay;
+            this._timeoutID = setTimeout(() => {
+                this._timeoutID = null;
+                this._setActiveState(active, true);
+            }, delay);
         }
     }
 
