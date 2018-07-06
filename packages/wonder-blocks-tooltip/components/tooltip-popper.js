@@ -15,16 +15,20 @@ import type {Placement} from "../util/types.js";
 import type {TooltipBubbleProps} from "./tooltip-bubble.js";
 
 type Props = {|
-    // This uses the children-as-a-function approach, mirroring react-popper's
-    // implementation, except we enforce the return type to be our TooltipBubble
-    // component.
+    /**
+     * This uses the children-as-a-function approach, mirroring react-popper's
+     * implementation, except we enforce the return type to be our TooltipBubble
+     * component.
+     */
     children: (TooltipBubbleProps) => React.Element<typeof TooltipBubble>,
 
-    // The element that anchors the tooltip bubble.
-    // This is used to position the bubble.
+    /**
+     * The element that anchors the tooltip bubble.
+     * This is used to position the bubble.
+     */
     anchorElement: ?HTMLElement,
 
-    // Where should the bubble try to go with respect to its anchor.
+    /** Where should the bubble try to go with respect to its anchor. */
     placement: Placement,
 |};
 
