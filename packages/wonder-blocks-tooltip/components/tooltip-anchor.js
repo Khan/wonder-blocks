@@ -79,7 +79,6 @@ export default class TooltipAnchor extends React.Component<Props, State> {
              * pointer events but that would break the obscurement checks we do.
              * So, careful consideration required.
              */
-
             anchorNode.addEventListener("focusin", this._handleFocusIn);
             anchorNode.addEventListener("focusout", this._handleFocusOut);
             anchorNode.addEventListener("mouseenter", this._handleMouseEnter);
@@ -112,6 +111,9 @@ export default class TooltipAnchor extends React.Component<Props, State> {
                 "mouseleave",
                 this._handleMouseLeave,
             );
+        }
+        if (this.state.active) {
+            document.removeEventListener("keyup", this._handleKeyUp);
         }
     }
 
@@ -151,6 +153,12 @@ export default class TooltipAnchor extends React.Component<Props, State> {
         // If we changed state, call our subscriber and let them know.
         if (oldState !== newState) {
             this.setState({active: newState});
+
+            if (newState) {
+                document.addEventListener("keyup", this._handleKeyUp);
+            } else {
+                document.removeEventListener("keyup", this._handleKeyUp);
+            }
         }
     }
 
@@ -168,6 +176,16 @@ export default class TooltipAnchor extends React.Component<Props, State> {
 
     _handleMouseLeave = () => {
         this._updateActiveState(false, this._focused);
+    };
+
+    _handleKeyUp = (e: KeyboardEvent) => {
+        const escape = 27;
+        const keyCode = e.which || e.keyCode;
+        if (keyCode === escape && this.state.active) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            this._updateActiveState(false, false);
+        }
     };
 
     render() {

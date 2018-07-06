@@ -125,7 +125,11 @@ class ModalLauncherKeypressListener extends React.Component<{
     }
 
     _handleKeyup = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
+        const escape = 27;
+        const keyCode = e.which || e.keyCode;
+        if (keyCode === escape) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
             this.props.onClose();
         }
     };
