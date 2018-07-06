@@ -27,7 +27,6 @@ module.exports = {
         },
         {
             name: "Dropdown",
-            content: "packages/wonder-blocks-dropdown/docs.md",
             components: [
                 "packages/wonder-blocks-dropdown/components/action-menu.js",
                 "packages/wonder-blocks-dropdown/components/single-select-menu.js",

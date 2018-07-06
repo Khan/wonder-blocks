@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 });
 <View style={[styles.row]}>
     <View style={[styles.wrapper]}>
-    <ActionMenu
+        <ActionMenu
             items={[
                 {
                     type: "action",
@@ -89,7 +89,7 @@ class HybridMenu extends React.Component {
         };
     }
 
-    handleChanges(update) {
+    handleChange(update) {
         this.setState({
             selectedValues: update,
         });
@@ -133,7 +133,7 @@ class HybridMenu extends React.Component {
 
             ]}
             menuText={"Assignments"}
-            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
         />
     }
