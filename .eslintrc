@@ -3,6 +3,7 @@
         "./eslint/eslintrc"
     ],
     "rules": {
-        "flowtype/require-exact-type": [2, "always"]
+        "flowtype/require-exact-type": [2, "always"],
+        "react/jsx-handler-names": 2
     }
 }

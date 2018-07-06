@@ -71,7 +71,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
         this.setState({opened: true});
     };
 
-    _closeModal = () => {
+    handleCloseModal = () => {
         this.setState({opened: false}, () => {
             this.props.onClose && this.props.onClose();
         });
@@ -80,7 +80,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
     _renderModal() {
         if (typeof this.props.modal === "function") {
             return this.props.modal({
-                closeModal: this._closeModal,
+                closeModal: this.handleCloseModal,
             });
         } else {
             return this.props.modal;
@@ -98,13 +98,15 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
-                        <ModalBackdrop onCloseModal={this._closeModal}>
+                        <ModalBackdrop onCloseModal={this.handleCloseModal}>
                             {this._renderModal()}
                         </ModalBackdrop>
                     </ModalLauncherPortal>
                 )}
                 {this.state.opened && (
-                    <ModalLauncherKeypressListener onClose={this._closeModal} />
+                    <ModalLauncherKeypressListener
+                        onClose={this.handleCloseModal}
+                    />
                 )}
                 {this.state.opened && <ScrollDisabler />}
             </View>

@@ -172,6 +172,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
+                    /* eslint-disable-next-line react/jsx-handler-names */
                     onClick={item.onClick}
                     onToggle={(value, state) =>
                         this.handleSelected(value, state)
