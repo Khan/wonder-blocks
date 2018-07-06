@@ -2,6 +2,7 @@
 
 exports[`wonder-blocks-tooltip example 1 1`] = `
 <span
+  aria-describedby="uid-tooltip-0-aria-content"
   className=""
   style={
     Object {
@@ -35,7 +36,9 @@ exports[`wonder-blocks-tooltip example 2 1`] = `
   }
 >
   Some text
-  <input />
+  <input
+    aria-describedby="my-a11y-tooltip"
+  />
 </div>
 `;
 
@@ -116,6 +119,7 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
       >
         This is a big long piece of text with a
         <span
+          aria-describedby="uid-tooltip-1-aria-content"
           className=""
           style={
             Object {
@@ -220,6 +224,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
     }
   >
     <div
+      aria-describedby="uid-tooltip-2-aria-content"
       className=""
       style={
         Object {
@@ -245,6 +250,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       A
     </div>
     <div
+      aria-describedby="uid-tooltip-3-aria-content"
       className=""
       style={
         Object {
@@ -270,6 +276,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       B
     </div>
     <div
+      aria-describedby="uid-tooltip-4-aria-content"
       className=""
       style={
         Object {
@@ -295,6 +302,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       C
     </div>
     <div
+      aria-describedby="uid-tooltip-5-aria-content"
       className=""
       style={
         Object {
@@ -401,6 +409,7 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
     Title text!
   </h4>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
@@ -480,6 +489,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
     Body text title!
   </span>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
@@ -722,6 +732,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
       }
     />
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -849,6 +860,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
       }
     />
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -1056,6 +1068,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
       }
     />
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -1315,6 +1328,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
       }
     />
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -1361,6 +1375,8 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
   <div
     className=""
     data-placement="top"
+    id={undefined}
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -1548,6 +1564,8 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
   <div
     className=""
     data-placement="right"
+    id={undefined}
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -1735,6 +1753,8 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
   <div
     className=""
     data-placement="bottom"
+    id={undefined}
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -1894,6 +1914,8 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
   <div
     className=""
     data-placement="left"
+    id={undefined}
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -2081,6 +2103,8 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
   <div
     className=""
     data-placement="bottom"
+    id={undefined}
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -2241,6 +2265,8 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
   <div
     className=""
     data-placement="top"
+    id={undefined}
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",

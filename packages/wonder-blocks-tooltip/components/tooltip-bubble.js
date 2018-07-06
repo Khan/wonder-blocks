@@ -32,7 +32,10 @@ export type TooltipBubbleProps = {|
 |};
 
 export type Props = {|
-    /** The `TooltipContent` element that will be rendered in the bubble.*/
+    /** The unique identifier for this component. */
+    id: string,
+
+    /** The `TooltipContent` element that will be rendered in the bubble. */
     children: React.Element<typeof TooltipContent>,
     ...TooltipBubbleProps,
 |};
@@ -40,6 +43,7 @@ export type Props = {|
 export default class TooltipBubble extends React.Component<Props> {
     render() {
         const {
+            id,
             children,
             updateBubbleRef,
             placement,
@@ -51,6 +55,8 @@ export default class TooltipBubble extends React.Component<Props> {
 
         return (
             <View
+                id={id}
+                role="tooltip"
                 data-placement={placement}
                 ref={updateBubbleRef}
                 style={[

@@ -18,7 +18,10 @@ describe("wonder-blocks-tooltip", () => {
         const React = require("react");
 
         const example = (
-            <Tooltip content={"I'm on the right!"} placement="right">
+            <Tooltip
+                content={"This is a text tooltip on the right"}
+                placement="right"
+            >
                 Some text
             </Tooltip>
         );
@@ -30,10 +33,15 @@ describe("wonder-blocks-tooltip", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
-            <Tooltip forceAnchorFocusivity={false} content={"I'm at the top!"}>
+            <Tooltip
+                id="my-a11y-tooltip"
+                forceAnchorFocusivity={false}
+                title={"This tooltip has a title"}
+                content={"I'm at the top!"}
+            >
                 <View>
                     Some text
-                    <input />
+                    <input aria-describedby="my-a11y-tooltip" />
                 </View>
             </Tooltip>
         );
@@ -65,7 +73,9 @@ describe("wonder-blocks-tooltip", () => {
                         <Body>
                             This is a big long piece of text with a
                             <Tooltip
-                                content={"I'm on the bottom!"}
+                                content={
+                                    "This tooltip will disappear when scrolled out of bounds"
+                                }
                                 placement={"bottom"}
                             >
                                 [tooltip]
