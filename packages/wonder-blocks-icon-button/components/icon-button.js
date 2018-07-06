@@ -113,7 +113,7 @@ type Props = SharedProps & {
  *
  * <IconButton
  *     icon={icons.anIcon}
- *     alt="An Icon"
+ *     aria-label="An Icon"
  *     onClick={(e) => console.log("Hello, world!")}
  * />
  * ```

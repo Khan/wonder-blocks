@@ -411,6 +411,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
                 "width": 48,
               }
             }
+            tabIndex={0}
           >
             <svg
               aria-label={undefined}
@@ -866,6 +867,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
                 "width": 48,
               }
             }
+            tabIndex={0}
           >
             <svg
               aria-label={undefined}
@@ -1321,6 +1323,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                 "width": 48,
               }
             }
+            tabIndex={0}
           >
             <svg
               aria-label={undefined}
@@ -1977,6 +1980,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
                 "width": 48,
               }
             }
+            tabIndex={0}
           >
             <svg
               aria-label={undefined}
@@ -2335,6 +2339,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   "width": 48,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 aria-label={undefined}
@@ -2766,6 +2771,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "width": 48,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 aria-label={undefined}
@@ -3265,6 +3271,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                   "width": 48,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 aria-label={undefined}
@@ -3586,6 +3593,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   "width": 48,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 aria-label={undefined}
