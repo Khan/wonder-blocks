@@ -1,7 +1,8 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
+
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import RefTracker from "./ref-tracker.js";
@@ -9,6 +10,10 @@ import RefTracker from "./ref-tracker.js";
 type CallbackFn = (?HTMLElement) => void;
 
 describe("RefTracker", () => {
+    beforeEach(() => {
+        unmountAll();
+    });
+
     describe("#setCallback", () => {
         test("called with falsy value, no throw", () => {
             // Arrange
@@ -45,31 +50,26 @@ describe("RefTracker", () => {
                 expect(targetFn).not.toHaveBeenCalled();
             });
 
-            test("prior updateRef call, target called with ref's node", () => {
+            test("prior updateRef call, target called with ref's node", async () => {
                 // Arrange
                 const tracker = new RefTracker();
                 const targetFn = jest.fn();
-                const arrange = (actAssert) => {
+                const ref = await new Promise((resolve) => {
                     const nodes = (
                         <View>
-                            <View ref={actAssert} />
+                            <View ref={resolve} />
                         </View>
                     );
                     mount(nodes);
-                };
+                });
+                const domNode = ReactDOM.findDOMNode(ref);
+                tracker.updateRef(ref);
 
-                const actAndAssert = (ref) => {
-                    const domNode = ReactDOM.findDOMNode(ref);
-                    tracker.updateRef(ref);
+                // Act
+                tracker.setCallback(targetFn);
 
-                    // Act
-                    tracker.setCallback(targetFn);
-
-                    // Assert
-                    expect(targetFn).toHaveBeenCalledWith(domNode);
-                };
-
-                arrange(actAndAssert);
+                // Assert
+                expect(targetFn).toHaveBeenCalledWith(domNode);
             });
         });
     });
@@ -87,84 +87,70 @@ describe("RefTracker", () => {
                 expect(underTest).not.toThrow();
             });
 
-            test("real ref, no callback, no throw", () => {
+            test("real ref, no callback, no throw", async () => {
                 // Arrange
                 const tracker = new RefTracker();
-                const arrange = (actAssert) => {
+                const ref = await new Promise((resolve) => {
                     const nodes = (
                         <View>
-                            <View ref={actAssert} />
+                            <View ref={resolve} />
                         </View>
                     );
                     mount(nodes);
-                };
+                });
 
-                const actAndAssert = (ref) => {
-                    // Act
-                    const underTest = () => tracker.updateRef(ref);
+                // Act
+                const underTest = () => tracker.updateRef(ref);
 
-                    // Assert
-                    expect(underTest).not.toThrow();
-                };
-
-                arrange(actAndAssert);
+                // Assert
+                expect(underTest).not.toThrow();
             });
 
-            test("real ref, targetFn callback, calls the targetFn", () => {
+            test("real ref, targetFn callback, calls the targetFn", async () => {
                 // Arrange
                 const tracker = new RefTracker();
                 const targetFn = jest.fn();
                 tracker.setCallback(targetFn);
 
-                const arrange = (actAssert) => {
+                const ref = await new Promise((resolve) => {
                     const nodes = (
                         <View>
-                            <View ref={actAssert} />
+                            <View ref={resolve} />
                         </View>
                     );
                     mount(nodes);
-                };
+                });
+                const domNode = ReactDOM.findDOMNode(ref);
 
-                const actAndAssert = (ref) => {
-                    const domNode = ReactDOM.findDOMNode(ref);
+                // Act
+                tracker.updateRef(ref);
 
-                    // Act
-                    tracker.updateRef(ref);
-
-                    // Assert
-                    expect(targetFn).toHaveBeenCalledWith(domNode);
-                };
-
-                arrange(actAndAssert);
+                // Assert
+                expect(targetFn).toHaveBeenCalledWith(domNode);
             });
 
-            test("same ref, targetFn callback, does not call targetFn", () => {
+            test("same ref, targetFn callback, does not call targetFn", async () => {
                 // Arrange
                 const tracker = new RefTracker();
                 const targetFn = jest.fn();
                 tracker.setCallback(targetFn);
 
-                const arrange = (actAssert) => {
+                const ref = await new Promise((resolve) => {
                     const nodes = (
                         <View>
-                            <View ref={actAssert} />
+                            <View ref={resolve} />
                         </View>
                     );
                     mount(nodes);
-                };
+                });
+                tracker.updateRef(ref);
+                targetFn.mockClear();
 
-                const actAndAssert = (ref) => {
-                    tracker.updateRef(ref);
-                    targetFn.mockClear();
+                // Act
+                tracker.updateRef(ref);
 
-                    // Act
-                    tracker.updateRef(ref);
-
-                    // Assert
-                    expect(targetFn).not.toHaveBeenCalled();
-                };
-
-                arrange(actAndAssert);
+                // Assert
+                expect(targetFn).not.toHaveBeenCalled();
             });
         });
     });
