@@ -376,9 +376,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
           <button
             aria-label="Close modal"
             className=""
-            data-test-id={undefined}
             disabled={false}
-            href={undefined}
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -414,7 +412,6 @@ exports[`wonder-blocks-modal example 2 1`] = `
             tabIndex={0}
           >
             <svg
-              aria-label={undefined}
               className=""
               height={24}
               style={
@@ -832,9 +829,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
           <button
             aria-label="Close modal"
             className=""
-            data-test-id={undefined}
             disabled={false}
-            href={undefined}
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -870,7 +865,6 @@ exports[`wonder-blocks-modal example 3 1`] = `
             tabIndex={0}
           >
             <svg
-              aria-label={undefined}
               className=""
               height={24}
               style={
@@ -1288,9 +1282,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
           <button
             aria-label="Close modal"
             className=""
-            data-test-id={undefined}
             disabled={false}
-            href={undefined}
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -1326,7 +1318,6 @@ exports[`wonder-blocks-modal example 4 1`] = `
             tabIndex={0}
           >
             <svg
-              aria-label={undefined}
               className=""
               height={24}
               style={
@@ -1945,9 +1936,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
           <button
             aria-label="Close modal"
             className=""
-            data-test-id={undefined}
             disabled={false}
-            href={undefined}
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -1983,7 +1972,6 @@ exports[`wonder-blocks-modal example 5 1`] = `
             tabIndex={0}
           >
             <svg
-              aria-label={undefined}
               className=""
               height={24}
               style={
@@ -2304,9 +2292,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
             <button
               aria-label="Close modal"
               className=""
-              data-test-id={undefined}
               disabled={false}
-              href={undefined}
               onBlur={[Function]}
               onClick={[Function]}
               onKeyDown={[Function]}
@@ -2342,7 +2328,6 @@ exports[`wonder-blocks-modal example 6 1`] = `
               tabIndex={0}
             >
               <svg
-                aria-label={undefined}
                 className=""
                 height={24}
                 style={
@@ -2736,9 +2721,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
             <button
               aria-label="Close modal"
               className=""
-              data-test-id={undefined}
               disabled={false}
-              href={undefined}
               onBlur={[Function]}
               onClick={[Function]}
               onKeyDown={[Function]}
@@ -2774,7 +2757,6 @@ exports[`wonder-blocks-modal example 7 1`] = `
               tabIndex={0}
             >
               <svg
-                aria-label={undefined}
                 className=""
                 height={24}
                 style={
@@ -3236,9 +3218,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
             <button
               aria-label="Close modal"
               className=""
-              data-test-id={undefined}
               disabled={false}
-              href={undefined}
               onBlur={[Function]}
               onClick={[Function]}
               onKeyDown={[Function]}
@@ -3274,7 +3254,6 @@ exports[`wonder-blocks-modal example 8 1`] = `
               tabIndex={0}
             >
               <svg
-                aria-label={undefined}
                 className=""
                 height={24}
                 style={
@@ -3558,9 +3537,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
             <button
               aria-label="Close modal"
               className=""
-              data-test-id={undefined}
               disabled={false}
-              href={undefined}
               onBlur={[Function]}
               onClick={[Function]}
               onKeyDown={[Function]}
@@ -3596,7 +3573,6 @@ exports[`wonder-blocks-modal example 9 1`] = `
               tabIndex={0}
             >
               <svg
-                aria-label={undefined}
                 className=""
                 height={24}
                 style={

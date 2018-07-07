@@ -370,7 +370,6 @@ exports[`wonder-blocks-core example 6 1`] = `
   >
     <button
       className=""
-      data-test-id={undefined}
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
