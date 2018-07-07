@@ -2,6 +2,7 @@
 // A menu that consists of action items
 
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
@@ -26,6 +27,11 @@ type DropdownCoreProps = {
     opener: React.Node,
 
     /**
+     * Callback for when the menu is closed.
+     */
+    onClose: () => void,
+
+    /**
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
@@ -44,8 +50,43 @@ type DropdownCoreProps = {
 };
 
 export default class DropdownCore extends React.Component<DropdownCoreProps> {
+    node: ?Node;
+
     static defaultProps = {
         alignment: "left",
+    };
+
+    constructor(props: DropdownCoreProps) {
+        super(props);
+    }
+
+    componentDidMount() {
+        document.addEventListener("mouseup", this._handleInteract);
+        document.addEventListener("touchend", this._handleInteract);
+        document.addEventListener("keyup", this._handleKeyup);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("mouseup", this._handleInteract);
+        document.removeEventListener("touchend", this._handleInteract);
+        document.removeEventListener("keyup", this._handleKeyup);
+    }
+
+    _handleInteract = (event: {target: any}) => {
+        if (this.node && this.node.contains(event.target)) {
+            return;
+        }
+        if (this.props.open) {
+            this.props.onClose();
+        }
+    };
+
+    _handleKeyup = (event: KeyboardEvent) => {
+        if (this.props.open && event.key === "Escape") {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            this.props.onClose();
+        }
     };
 
     render() {
@@ -53,6 +94,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
 
         return (
             <View
+                ref={(node) => (this.node = ReactDOM.findDOMNode(node))}
                 style={[
                     styles.menuWrapper,
                     alignment === "right" && styles.rightAlign,
