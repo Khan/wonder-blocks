@@ -127,6 +127,12 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         }));
     }
 
+    handleClose() {
+        this.setState({
+            open: false,
+        });
+    }
+
     handleSelected(selectedValue: string, oldSelectionState: boolean) {
         const {onChange, selectedValues} = this.props;
 
@@ -214,6 +220,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 alignment={alignment}
                 items={menuItems}
                 light={false}
+                onClose={() => this.handleClose()}
                 open={open}
                 opener={opener}
                 style={[styles.menuTopSpace, style]}
