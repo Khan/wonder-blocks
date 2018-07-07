@@ -9,8 +9,9 @@ export type SharedProps = {|
     /**
      * Text to appear on the button.
      */
-    children: string,
+    children: React.Node,
 
+    // TODO: incorporate
     /**
      * An icon, displayed to the left of the title.
      */

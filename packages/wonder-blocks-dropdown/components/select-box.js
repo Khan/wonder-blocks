@@ -5,6 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {
@@ -16,9 +17,6 @@ import {
 const StyledButton = addStyle("button");
 
 const {blue, white, offBlack, offBlack16, offBlack32, offBlack50} = Color;
-
-const caretDown = `M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z`;
 
 type SelectBoxProps = {|
     /**
@@ -62,21 +60,6 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
         isPlaceholder: false,
     };
 
-    // TODO(sophie): replace with Icon component
-    renderCaret() {
-        return (
-            <svg
-                role="img"
-                aria-hidden={true}
-                width={16}
-                height={16}
-                viewBox={`0 0 16 16`}
-            >
-                <path d={caretDown} />
-            </svg>
-        );
-    }
-
     render() {
         const {
             children,
@@ -88,9 +71,6 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
-
-        // TODO(sophie): should ButtonCore be public so we can use that to make
-        // this custom button-like opener?
 
         const textStyles = [
             styles.text,
@@ -127,9 +107,11 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                                 {children}
                             </LabelMedium>
                             <View style={[styles.spacing]} />
-                            <View style={[styles.caretWrapper]}>
-                                {this.renderCaret()}
-                            </View>
+                            <Icon
+                                icon={icons.caretDown}
+                                size={"small"}
+                                style={[styles.caret, textStyles]}
+                            />
                         </StyledButton>
                     );
                 }}
@@ -183,7 +165,7 @@ const styles = StyleSheet.create({
         textOverflow: "ellipsis",
     },
 
-    caretWrapper: {
+    caret: {
         minWidth: 16,
     },
 

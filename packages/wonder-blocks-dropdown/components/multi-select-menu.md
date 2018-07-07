@@ -1,8 +1,6 @@
 The multi select menu allows the selection of multiple items. Clients are
 responsible for keeping track of the selected items in the menu.
 
-TODO(sophie): keyboard navigation and dismissal
-
 This menu starts with nothing selected and has no selection shortcuts.
 This menu also has a set width. One of the items is disabled.
 

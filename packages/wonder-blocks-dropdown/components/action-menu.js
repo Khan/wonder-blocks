@@ -5,6 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
@@ -45,7 +46,6 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
     render() {
         const {children, disabled, onClick} = this.props;
 
-        // TODO: incorporate caret once Icon is done
         return (
             // $FlowFixMe: button doesn't allow 'role' yet
             <Button
@@ -58,6 +58,11 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
                 style={[styles.opener]}
             >
                 {children}
+                <Icon
+                    icon={icons.caretDown}
+                    size={"small"}
+                    style={styles.caret}
+                />
             </Button>
         );
     }
@@ -185,8 +190,19 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const containsSelectItems = Array.isArray(selectedValues);
 
         const menuItems = items.map((item, index) => {
-            if (item.type === "separator") {
-                return <SeparatorItem key={index} />;
+            if (item.type === "action") {
+                return (
+                    <ActionItem
+                        key={index}
+                        disabled={item.disabled}
+                        indent={containsSelectItems}
+                        label={item.label}
+                        href={item.href}
+                        clientNav={item.clientNav}
+                        /* eslint-disable-next-line react/jsx-handler-names */
+                        onClick={item.onClick}
+                    />
+                );
             } else if (item.type === "select") {
                 return (
                     <SelectItem
@@ -207,19 +223,9 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         variant={"check"}
                     />
                 );
-            } else if (item.type === "action") {
-                return (
-                    <ActionItem
-                        key={index}
-                        disabled={item.disabled}
-                        indent={containsSelectItems}
-                        label={item.label}
-                        href={item.href}
-                        clientNav={item.clientNav}
-                        /* eslint-disable-next-line react/jsx-handler-names */
-                        onClick={item.onClick}
-                    />
-                );
+            } else {
+                // Remaining possibility is type = "separator"
+                return <SeparatorItem key={index} />;
             }
         });
 
@@ -238,12 +244,17 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
 }
 
 const styles = StyleSheet.create({
+    caret: {
+        marginLeft: 4,
+    },
+
     // The design calls for additional offset around the opener.
     opener: {
         paddingLeft: 8,
         paddingRight: 8,
         whiteSpace: "nowrap",
     },
+
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
         top: 36,

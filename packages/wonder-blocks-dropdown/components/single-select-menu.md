@@ -1,8 +1,6 @@
 The single select menu allows the selection of one item. Clients are
 responsible for keeping track of the selected item in the menu.
 
-TODO(sophie): keyboard navigation and dismissal
-
 This menu has a starting placeholder and a set width. One item is wider than
 the width, and it ellipses.
 

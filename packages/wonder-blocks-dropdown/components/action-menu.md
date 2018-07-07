@@ -1,8 +1,6 @@
 The action menu is mainly for items that trigger actions, such as navigating to
 a different page or opening a modal.
 
-TODO(sophie): Incorporate the down caret once Icon is merged.
-
 This menu demonstrates an action menu with
 - a separator
 - a disabled item
