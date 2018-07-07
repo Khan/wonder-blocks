@@ -54,7 +54,7 @@ describe("getClickableBehavior", () => {
                     // Arrange
                     const url = "/prep/lsat";
                     const clientNav = undefined;
-                    const router = <MemoryRouter history={[]} />;
+                    const router = <MemoryRouter />;
                     const expectation = "withRouter(ClickableBehavior)";
 
                     // Act
