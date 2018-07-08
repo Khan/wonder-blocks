@@ -5,7 +5,6 @@ exports[`wonder-blocks-link example 1 1`] = `
   Lorem ipsum 
   <a
     className=""
-    data-test-id={undefined}
     href="#nonexistent-link"
     onBlur={[Function]}
     onClick={[Function]}
@@ -36,7 +35,6 @@ exports[`wonder-blocks-link example 1 1`] = `
    dolor sit amet, consectetur 
   <a
     className=""
-    data-test-id={undefined}
     href="#"
     onBlur={[Function]}
     onClick={[Function]}
