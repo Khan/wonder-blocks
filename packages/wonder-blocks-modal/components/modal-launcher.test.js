@@ -3,7 +3,6 @@ import React from "react";
 import {shallow, mount} from "enzyme";
 
 import ModalLauncher from "./modal-launcher.js";
-import doEvent from "../../../utils/testing/do-event.js";
 
 describe("ModalLauncher", () => {
     test("Children can launch the modal", () => {
@@ -79,7 +78,7 @@ describe("ModalLauncher", () => {
         event.key = "Escape";
         event.which = 27;
         event.initEvent("keyup", true, true);
-        await doEvent(document, event);
+        document.dispatchEvent(event);
 
         // Confirm that the modal is no longer mounted.
         //

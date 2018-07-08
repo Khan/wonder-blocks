@@ -2,8 +2,6 @@
 import * as React from "react";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
-import doEvent from "../../../utils/testing/do-event.js";
-import timeout from "../../../utils/testing/timeout.js";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -18,6 +16,8 @@ describe("TooltipAnchor", () => {
         if (typeof document.removeEventListener.mockReset === "function") {
             document.removeEventListener.mockRestore();
         }
+        jest.clearAllTimers();
+        jest.useFakeTimers();
         unmountAll();
     });
 
@@ -211,9 +211,6 @@ describe("TooltipAnchor", () => {
             expect(tabindex).toBe("0");
 
             wrapper && wrapper.setProps({force: false});
-            // Need to do a timeout so that the mount can return and the
-            // wrapper can change the force prop to false.
-            await timeout(0);
             const result = ref && ref.getAttribute("tabindex");
 
             // Assert
@@ -271,7 +268,7 @@ describe("TooltipAnchor", () => {
         // whether focused directly or a child is focused). We have to
         // fake directly because there's no real browser here handling
         // focus and real events.
-        await doEvent(ref, new FocusEvent("focusin"));
+        ref && ref.dispatchEvent(new FocusEvent("focusin"));
         const result = ref && ref.innerHTML;
 
         // Assert
@@ -297,8 +294,8 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            await doEvent(ref, new FocusEvent("focusin"));
-            await doEvent(ref, new FocusEvent("focusout"));
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            ref && ref.dispatchEvent(new FocusEvent("focusout"));
 
             // Assert
             const result = ref && ref.innerHTML;
@@ -323,9 +320,9 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            await doEvent(ref, new FocusEvent("focusin"));
-            await doEvent(ref, new MouseEvent("mouseenter"));
-            await doEvent(ref, new FocusEvent("focusout"));
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref && ref.dispatchEvent(new FocusEvent("focusout"));
 
             // Assert
             const result = ref && ref.innerHTML;
@@ -351,7 +348,7 @@ describe("TooltipAnchor", () => {
         });
 
         // Act
-        await doEvent(ref, new MouseEvent("mouseenter"));
+        ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
 
         // Assert
         const result = ref && ref.innerHTML;
@@ -377,8 +374,8 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            await doEvent(ref, new MouseEvent("mouseenter"));
-            await doEvent(ref, new MouseEvent("mouseleave"));
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
 
             // Assert
             const result = ref && ref.innerHTML;
@@ -403,9 +400,9 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            await doEvent(ref, new MouseEvent("mouseenter"));
-            await doEvent(ref, new FocusEvent("focusin"));
-            await doEvent(ref, new MouseEvent("mouseleave"));
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
 
             // Assert
             const result = ref && ref.innerHTML;
@@ -542,7 +539,7 @@ describe("TooltipAnchor", () => {
             event.initEvent("keyup", true, true);
 
             // Act
-            await doEvent(document, event);
+            document.dispatchEvent(event);
 
             // Assert
             expect(wrapper.state("active")).toBeFalsy();
@@ -571,7 +568,7 @@ describe("TooltipAnchor", () => {
             document.addEventListener("keyup", spyHandler);
 
             // Act
-            await doEvent(document, event);
+            document.dispatchEvent(event);
 
             // Assert
             expect(spyHandler).not.toHaveBeenCalled();
