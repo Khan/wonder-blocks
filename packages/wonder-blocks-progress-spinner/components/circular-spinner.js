@@ -63,19 +63,21 @@ const _generateSVG = (size, light) => {
     return svg;
 };
 
-type Props = {
+type Props = {|
     /**
      * The size of the spinner. (large = 96px, medium = 48px, small = 24px,
      * xsmall = 16px)
      */
     size: "xsmall" | "small" | "medium" | "large",
+
     /** Should a light version of the spinner be shown?
      * (To be used on a dark background.)
      */
     light: boolean,
+
     /** Any (optional) styling to apply to the spinner container. */
     style?: any,
-};
+|};
 
 /**
  * A circular progress spinner. Used for indicating loading progress. Should

@@ -10,7 +10,7 @@ import {
     LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
 
-type Props = {
+type Props = {|
     /**
      * The title of the modal, appearing in the titlebar.
      *
@@ -26,7 +26,7 @@ type Props = {
 
     color: "light" | "dark",
     style?: any,
-};
+|};
 
 export default class ModalTitleBar extends React.Component<Props> {
     static defaultProps = {

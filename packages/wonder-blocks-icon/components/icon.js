@@ -6,7 +6,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset, IconSize} from "../util/icon-assets.js";
 import {getPathForIcon, viewportPixelsForSize} from "../util/icon-util.js";
 
-type Props = {
+type Props = {|
     /**
      * Passed transparently to the SVG. If not provided, we assume the SVG is
      * purely decorative and it is invisible to screenreaders.
@@ -31,7 +31,7 @@ type Props = {
      * Aphrodite style objects, or arrays thereof.
      */
     style?: any,
-};
+|};
 
 const StyledSVG = addStyle("svg");
 

@@ -9,7 +9,7 @@ import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
 import type {SelectItemProps} from "../utils/types.js";
 
-type Props = {
+type Props = {|
     /**
      * The items in this menu.
      */
@@ -53,14 +53,14 @@ type Props = {
      * Optional styling to add to dropdown.
      */
     style?: any,
-};
+|};
 
-type State = {
+type State = {|
     /**
      * Whether or not menu is open.
      */
     open: boolean,
-};
+|};
 
 export default class SingleSelectMenu extends React.Component<Props, State> {
     static defaultProps = {

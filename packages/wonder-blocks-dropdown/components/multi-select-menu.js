@@ -12,7 +12,7 @@ import SelectItem from "./select-item.js";
 import SeparatorItem from "./separator-item.js";
 import type {SelectItemProps} from "../utils/types.js";
 
-type Props = {
+type Props = {|
     /**
      * The items in this menu.
      */
@@ -69,14 +69,14 @@ type Props = {
      * Optional styling to add.
      */
     style?: any,
-};
+|};
 
-type State = {
+type State = {|
     /**
      * Whether or not menu is open.
      */
     open: boolean,
-};
+|};
 
 export default class MultiSelectMenu extends React.Component<Props, State> {
     static defaultProps = {

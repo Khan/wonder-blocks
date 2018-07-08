@@ -8,7 +8,7 @@ import ModalBackdrop from "./modal-backdrop.js";
 import ScrollDisabler from "./scroll-disabler.js";
 import type {ModalElement} from "../util/types.js";
 
-type Props = {
+type Props = {|
     /**
      * The modal to render.
      *
@@ -41,12 +41,12 @@ type Props = {
      * close events.
      */
     onClose?: () => void,
-};
+|};
 
-type State = {
+type State = {|
     /** Whether the modal should currently be open. */
     opened: boolean,
-};
+|};
 
 /**
  * This component enables you to launch a modal, covering the screen.

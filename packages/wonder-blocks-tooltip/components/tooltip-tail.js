@@ -8,7 +8,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {getRefFn, Placement, Offset} from "../util/types.js";
 
-export type Props = {
+export type Props = {|
     /** The offset of the tail indicating where it should be positioned. */
     offset?: Offset,
 
@@ -17,7 +17,7 @@ export type Props = {
 
     /** A callback to update the ref of the tail element. */
     updateRef?: getRefFn,
-};
+|};
 
 // TODO(somewhatabstract): Replace this really basic unique ID work with
 // something SSR-friendly and more robust.

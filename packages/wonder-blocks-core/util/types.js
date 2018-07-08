@@ -91,7 +91,8 @@ type IdRef = string;
 type IdRefList = IdRef | Array<IdRef>;
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
-// TODO(kevinb): figure out how to type ID ref lists
+// TODO(kevinb): convert to disjoint union of exact object types keyed on role
+// eslint-disable-next-line flowtype/require-exact-type
 export type AriaProps = {
     role?: roles,
     "aria-activedescendant"?: IdRef,
@@ -140,6 +141,8 @@ export type Props = AriaProps & {
 
 export type MediaSize = "small" | "medium" | "large";
 
+// TODO(kevinb): dedupe with wonder-blocks-grid
+// eslint-disable-next-line flowtype/require-exact-type
 export type MediaSpec = {
     [sizeName: MediaSize]: {
         /** The query to use to match the viewport against. */

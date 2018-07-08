@@ -20,7 +20,7 @@ import * as React from "react";
  * We use render functions so that we don't do any work unless we need to.
  * This avoids rendering but not mounting potentially complex component trees.
  */
-type Props = {
+type Props = {|
     /**
      * The content that is client-only.
      */
@@ -35,11 +35,11 @@ type Props = {
      * server, or it defeats the purpose of using the NoSSR component.
      */
     placeholder?: () => ?React.Node,
-};
+|};
 
-type State = {
+type State = {|
     mounted: boolean,
-};
+|};
 
 export default class NoSSR extends React.Component<Props, State> {
     state = {

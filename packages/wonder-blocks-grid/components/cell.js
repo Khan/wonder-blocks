@@ -7,7 +7,7 @@ import FixedWidthCell from "./fixed-width-cell.js";
 
 import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
-type Props = {
+type Props = {|
     /** The number of columns this cell should span on a Small Grid. */
     smallCols?: number,
     /** The number of columns this cell should span on a Medium Grid. */
@@ -40,7 +40,7 @@ type Props = {
      * @ignore
      */
     mediaSpec: MediaSpec,
-};
+|};
 
 /**
  * A Cell is a form of [FixedWidthCell](#fixedwidthcell) whose width is set

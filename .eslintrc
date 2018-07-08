@@ -1,5 +1,8 @@
 {
     "extends": [
         "./eslint/eslintrc"
-    ]
+    ],
+    "rules": {
+        "flowtype/require-exact-type": [2, "always"]
+    }
 }

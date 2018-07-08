@@ -17,7 +17,7 @@ import {
 
 const {blue, white, offBlack, offBlack32} = Color;
 
-type ActionProps = {
+type ActionProps = {|
     /**
      * Display text of the menu item.
      */
@@ -68,7 +68,7 @@ type ActionProps = {
      * href is not
      */
     onClick?: () => void,
-};
+|};
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import ButtonCore from "./button-core.js";
 
-export type SharedProps = {
+export type SharedProps = {|
     /**
      * Text to appear on the button.
      */
@@ -94,9 +94,10 @@ export type SharedProps = {
         ...FlexItemStyles,
     }>>,
     */
-};
+|};
 
-type Props = SharedProps & {
+type Props = {|
+    ...SharedProps,
     /**
      * Function to call when button is clicked.
      *
@@ -110,7 +111,7 @@ type Props = SharedProps & {
      * href is not
      */
     onClick?: (e: SyntheticEvent<>) => void,
-};
+|};
 
 /**
  * Reusable button component.
