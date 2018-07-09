@@ -4,9 +4,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -40,7 +38,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -64,9 +61,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -104,7 +99,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -128,9 +122,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -168,7 +160,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -192,9 +183,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -228,7 +217,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -252,9 +240,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -288,7 +274,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -312,9 +297,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -352,7 +335,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -376,9 +358,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -416,7 +396,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -440,9 +419,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -476,7 +453,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -500,9 +476,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -536,7 +510,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -560,9 +533,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -600,7 +571,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -624,9 +594,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -664,7 +632,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -688,9 +655,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -724,7 +689,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -748,9 +712,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -784,7 +746,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -808,9 +769,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -848,7 +807,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -872,9 +830,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -912,7 +868,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -936,9 +891,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -972,7 +925,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -996,9 +948,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1032,7 +982,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1056,9 +1005,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1096,7 +1043,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1120,9 +1066,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1160,7 +1104,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1184,9 +1127,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1220,7 +1161,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1244,9 +1184,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1280,7 +1218,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1304,9 +1241,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1344,7 +1279,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1368,9 +1302,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1408,7 +1340,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1432,9 +1363,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1468,7 +1397,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1492,9 +1420,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1528,7 +1454,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1552,9 +1477,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1592,7 +1515,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1616,9 +1538,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1656,7 +1576,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1680,9 +1599,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1716,7 +1633,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1740,9 +1656,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1776,7 +1690,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1800,9 +1713,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1840,7 +1751,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1864,9 +1774,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1904,7 +1812,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1928,9 +1835,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -1964,7 +1869,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -1988,9 +1892,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2024,7 +1926,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2048,9 +1949,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2088,7 +1987,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2112,9 +2010,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2152,7 +2048,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2176,9 +2071,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2212,7 +2105,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2236,9 +2128,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2272,7 +2162,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2296,9 +2185,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2336,7 +2223,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2360,9 +2246,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2400,7 +2284,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2424,9 +2307,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2460,7 +2341,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2484,9 +2364,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2520,7 +2398,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2544,9 +2421,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2584,7 +2459,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2608,9 +2482,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2648,7 +2520,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2672,9 +2543,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2708,7 +2577,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2732,9 +2600,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2768,7 +2634,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2792,9 +2657,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2832,7 +2695,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2856,9 +2718,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2896,7 +2756,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2920,9 +2779,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -2956,7 +2813,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -2980,9 +2836,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3016,7 +2870,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3040,9 +2893,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3080,7 +2931,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3104,9 +2954,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3144,7 +2992,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3168,9 +3015,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3204,7 +3049,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3228,9 +3072,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3264,7 +3106,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3288,9 +3129,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3328,7 +3167,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3352,9 +3190,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3392,7 +3228,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3416,9 +3251,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3452,7 +3285,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3476,9 +3308,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3512,7 +3342,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3536,9 +3365,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3576,7 +3403,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3600,9 +3426,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3640,7 +3464,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3664,9 +3487,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3700,7 +3521,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3724,9 +3544,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={true}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3760,7 +3578,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   tabIndex={-1}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3784,9 +3601,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3824,7 +3639,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3848,9 +3662,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3888,7 +3700,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -3912,9 +3723,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
 <button
   aria-label="search"
   className=""
-  data-test-id={undefined}
   disabled={false}
-  href={undefined}
   onBlur={[Function]}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -3948,7 +3757,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
   tabIndex={0}
 >
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
