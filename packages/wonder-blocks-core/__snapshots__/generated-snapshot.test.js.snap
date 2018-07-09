@@ -424,6 +424,7 @@ exports[`wonder-blocks-core example 6 1`] = `
       </span>
     </button>
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -445,6 +446,7 @@ exports[`wonder-blocks-core example 6 1`] = `
     />
   </div>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
@@ -621,6 +623,7 @@ exports[`wonder-blocks-core example 7 1`] = `
     </span>
   </div>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
@@ -908,6 +911,7 @@ exports[`wonder-blocks-core example 9 1`] = `
     }
   >
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {

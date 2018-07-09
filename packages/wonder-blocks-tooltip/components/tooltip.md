@@ -3,28 +3,34 @@
 ```js
 const React = require("react");
 
-<Tooltip content={"I'm on the right!"} placement="right">
+<Tooltip content="This is a text tooltip on the right" placement="right">
     Some text
 </Tooltip>
 ```
 
-### Complex anchor & text tooltip & placement default (top)
+### Complex anchor & title tooltip & placement default (top)
 
-In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus.
+In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `UniqueIDProvider`, but we'll cheat here and just give our own identifier).
 
 ```js
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
 
-<Tooltip forceAnchorFocusivity={false} content={"I'm at the top!"}>
+<Tooltip
+    id="my-a11y-tooltip"
+    forceAnchorFocusivity={false}
+    title="This tooltip has a title"
+    content="I'm at the top!"
+>
     <View>
         Some text
-        <input />
+        <input aria-describedby="my-a11y-tooltip" />
     </View>
 </Tooltip>
 ```
 
 ### Substring anchor in scrollable parent & placement bottom
+In this example, we have the anchor in a scrollable parent. Notice how, when the anchor is focused but scrolled out of bounds, the tooltip disappears.
 
 ```js
 const {StyleSheet} = require("aphrodite");
@@ -49,7 +55,7 @@ const styles = StyleSheet.create({
         <View style={styles.hostbox}>
             <Body>
                 This is a big long piece of text with a
-                <Tooltip content={"I'm on the bottom!"} placement={"bottom"}>
+                <Tooltip content="This tooltip will disappear when scrolled out of bounds" placement="bottom">
                     [tooltip]
                 </Tooltip>
                 <span> </span>in the middle.
@@ -60,6 +66,7 @@ const styles = StyleSheet.create({
 ```
 
 ### Tooltip in a modal & placement left
+This checks that the tooltip works how we want inside a modal. Click the button to take a look.
 
 ```js
 const {StyleSheet} = require("aphrodite");
@@ -85,7 +92,7 @@ const styles = StyleSheet.create({
 const scrollyContent = (
      <View style={styles.scrollbox}>
         <View style={styles.hostbox}>
-            <Tooltip content={"I'm on the left!"} placement="left">
+            <Tooltip content="I'm on the left!" placement="left">
                 tooltip
             </Tooltip>
         </View>
@@ -133,16 +140,16 @@ const styles = StyleSheet.create({
     <LabelSmall>Here, we can see that the first tooltip shown has an initial delay before it appears, as does the last tooltip shown, yet when moving between tooltipped items, the transition from one to another is instantaneous.</LabelSmall>
 
     <View style={{flexDirection: "row"}}>
-        <Tooltip content={"Tooltip A"} placement="bottom">
+        <Tooltip content="Tooltip A" placement="bottom">
             <View style={styles.block}>A</View>
         </Tooltip>
-        <Tooltip content={"Tooltip B"} placement="bottom">
+        <Tooltip content="Tooltip B" placement="bottom">
             <View style={styles.block}>B</View>
         </Tooltip>
-        <Tooltip content={"Tooltip C"} placement="bottom">
+        <Tooltip content="Tooltip C" placement="bottom">
             <View style={styles.block}>C</View>
         </Tooltip>
-        <Tooltip content={"Tooltip D"} placement="bottom">
+        <Tooltip content="Tooltip D" placement="bottom">
             <View style={styles.block}>D</View>
         </Tooltip>
     </View>

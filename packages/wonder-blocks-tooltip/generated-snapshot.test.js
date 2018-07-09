@@ -18,7 +18,10 @@ describe("wonder-blocks-tooltip", () => {
         const React = require("react");
 
         const example = (
-            <Tooltip content={"I'm on the right!"} placement="right">
+            <Tooltip
+                content="This is a text tooltip on the right"
+                placement="right"
+            >
                 Some text
             </Tooltip>
         );
@@ -30,10 +33,15 @@ describe("wonder-blocks-tooltip", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
-            <Tooltip forceAnchorFocusivity={false} content={"I'm at the top!"}>
+            <Tooltip
+                id="my-a11y-tooltip"
+                forceAnchorFocusivity={false}
+                title="This tooltip has a title"
+                content="I'm at the top!"
+            >
                 <View>
                     Some text
-                    <input />
+                    <input aria-describedby="my-a11y-tooltip" />
                 </View>
             </Tooltip>
         );
@@ -65,8 +73,8 @@ describe("wonder-blocks-tooltip", () => {
                         <Body>
                             This is a big long piece of text with a
                             <Tooltip
-                                content={"I'm on the bottom!"}
-                                placement={"bottom"}
+                                content="This tooltip will disappear when scrolled out of bounds"
+                                placement="bottom"
                             >
                                 [tooltip]
                             </Tooltip>
@@ -106,7 +114,7 @@ describe("wonder-blocks-tooltip", () => {
         const scrollyContent = (
             <View style={styles.scrollbox}>
                 <View style={styles.hostbox}>
-                    <Tooltip content={"I'm on the left!"} placement="left">
+                    <Tooltip content="I'm on the left!" placement="left">
                         tooltip
                     </Tooltip>
                 </View>
@@ -162,16 +170,16 @@ describe("wonder-blocks-tooltip", () => {
                 </LabelSmall>
 
                 <View style={{flexDirection: "row"}}>
-                    <Tooltip content={"Tooltip A"} placement="bottom">
+                    <Tooltip content="Tooltip A" placement="bottom">
                         <View style={styles.block}>A</View>
                     </Tooltip>
-                    <Tooltip content={"Tooltip B"} placement="bottom">
+                    <Tooltip content="Tooltip B" placement="bottom">
                         <View style={styles.block}>B</View>
                     </Tooltip>
-                    <Tooltip content={"Tooltip C"} placement="bottom">
+                    <Tooltip content="Tooltip C" placement="bottom">
                         <View style={styles.block}>C</View>
                     </Tooltip>
-                    <Tooltip content={"Tooltip D"} placement="bottom">
+                    <Tooltip content="Tooltip D" placement="bottom">
                         <View style={styles.block}>D</View>
                     </Tooltip>
                 </View>

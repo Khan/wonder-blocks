@@ -47,7 +47,7 @@ describe("TooltipTail", () => {
             const fakePlacement = (("notaplacement": any): Placement);
             // We need an instance so let's make one with a valid placement so
             // that we can render it.
-            const nodes = <TooltipTail placement={"top"} />;
+            const nodes = <TooltipTail placement="top" />;
             const wrapper = shallow(nodes);
             const tailInstance = wrapper.instance();
             // Sneakily change props so as not to re-render.
@@ -73,7 +73,7 @@ describe("TooltipTail", () => {
             const fakePlacement = (("notaplacement": any): Placement);
             // We need an instance so let's make one with a valid placement so
             // that we can render it.
-            const nodes = <TooltipTail placement={"top"} />;
+            const nodes = <TooltipTail placement="top" />;
             const wrapper = shallow(nodes);
             const tailInstance = wrapper.instance();
             // Sneakily change props so as not to re-render.
@@ -100,7 +100,7 @@ describe("TooltipTail", () => {
             const fakePlacement = (("notaplacement": any): Placement);
             // We need an instance so let's make one with a valid placement so
             // that we can render it.
-            const nodes = <TooltipTail placement={"top"} />;
+            const nodes = <TooltipTail placement="top" />;
             const wrapper = shallow(nodes);
             const tailInstance = wrapper.instance();
 

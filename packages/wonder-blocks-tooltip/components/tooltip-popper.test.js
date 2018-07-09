@@ -52,7 +52,7 @@ describe("TooltipPopper", () => {
         const arrange = (actAssert) => {
             const nodes = (
                 <View>
-                    <TestHarness placement={"bottom"} resultRef={actAssert} />
+                    <TestHarness placement="bottom" resultRef={actAssert} />
                 </View>
             );
             mount(nodes);

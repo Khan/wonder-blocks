@@ -20,7 +20,7 @@
  */
 import * as React from "react";
 
-import {Text} from "@khanacademy/wonder-blocks-core";
+import {Text, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
 
 import TooltipPortalMounter from "./tooltip-portal-mounter";
 import TooltipAnchor from "./tooltip-anchor.js";
@@ -30,6 +30,7 @@ import TooltipPopper from "./tooltip-popper.js";
 
 import type {Placement} from "../util/types.js";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
@@ -50,22 +51,42 @@ type Props = {|
     content: string | React.Element<typeof TooltipContent>,
 
     /**
-     * When true, the child element will be given tabindex=0
-     * to make it keyboard focusable. This value defaults to true. One might set
-     * this to false in circumstances where the wrapped component already can
-     * receive focus or contains an element that can.
+     * The unique identifier to give to the tooltip. Provide this in cases where
+     * you want to override the default accessibility solution. This identifier
+     * will be applied to the tooltip bubble content.
+     *
+     * By providing this identifier, the children that this tooltip anchors to
+     * will not be automatically given the aria-desribedby attribute. Instead,
+     * the accessibility solution is the responsibility of the caller.
+     *
+     * If this is not provided, the aria-describedby attribute will be added
+     * to the children with a unique identifier pointing to the tooltip bubble
+     * content.
+     */
+    id?: string,
+
+    /**
+     * When true, if a tabindex attribute is not already present on the element
+     * wrapped by the anchor, the element will be given tabindex=0 to make it
+     * keyboard focusable; otherwise, does not attempt to change the ability to
+     * focus the anchor element.
+     *
+     * Defaults to true.
+     *
+     * One might set this to false in circumstances where the wrapped component
+     * already can receive focus or contains an element that can.
      * Use good judgement when overriding this value, the tooltip content should
      * be accessible via keyboard in all circumstances where the tooltip would
-     * appear using the mouse, so very those use-cases.
+     * appear using the mouse, so verify those use-cases.
+     *
+     * Also, note that the aria-describedby attribute is attached to the root
+     * anchor element, so you may need to implement an additional accessibility
+     * solution when overriding anchor focusivity.
      */
     forceAnchorFocusivity?: boolean,
 
-    /**
-     * Where the tooltip should appear in relation to the anchor element.
-     */
+    /** Where the tooltip should appear in relation to the anchor element. */
     placement?: Placement,
-
-    // TODO(somewhatabstract): Add other props per spec
 |};
 
 type State = {|
@@ -73,6 +94,7 @@ type State = {|
 |};
 
 export default class Tooltip extends React.Component<Props, State> {
+    static ariaContentId = "aria-content";
     static defaultProps = {
         forceAnchorFocusivity: true,
         placement: "top",
@@ -86,16 +108,21 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderAnchorElement() {
+    _renderAnchorElement(ids?: IIdentifierFactory) {
         // We need to make sure we can anchor on our content.
         // If the content is just a string, we wrap it in a Text element
         // so as not to affect styling or layout but still have an element
         // to anchor to.
         const {children} = this.props;
-        if (typeof children === "string") {
-            return <Text>{children}</Text>;
+        const anchorableChildren =
+            typeof children === "string" ? <Text>{children}</Text> : children;
+
+        if (ids) {
+            return React.cloneElement(anchorableChildren, {
+                "aria-describedby": ids.get(Tooltip.ariaContentId),
+            });
         } else {
-            return children;
+            return anchorableChildren;
         }
     }
 
@@ -110,9 +137,15 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(active: boolean) {
+    _renderPopper(active: boolean, ids?: IIdentifierFactory) {
         if (!active) {
             return null;
+        }
+
+        const {id} = this.props;
+        const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
+        if (!bubbleId) {
+            throw new Error("Did not get an identifier factory nor a id prop");
         }
 
         const {placement} = this.props;
@@ -123,6 +156,7 @@ export default class Tooltip extends React.Component<Props, State> {
             >
                 {(props) => (
                     <TooltipBubble
+                        id={bubbleId}
                         style={props.style}
                         tailOffset={props.tailOffset}
                         outOfBoundaries={props.outOfBoundaries}
@@ -137,7 +171,7 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
-    render() {
+    _renderTooltipAnchor(ids?: IIdentifierFactory) {
         const {forceAnchorFocusivity} = this.props;
         return (
             <TooltipAnchor
@@ -145,11 +179,28 @@ export default class Tooltip extends React.Component<Props, State> {
                 anchorRef={(r) => this._updateAnchorElement(r)}
             >
                 {(active) => (
-                    <TooltipPortalMounter anchor={this._renderAnchorElement()}>
-                        {this._renderPopper(active)}
+                    <TooltipPortalMounter
+                        anchor={this._renderAnchorElement(ids)}
+                    >
+                        {this._renderPopper(active, ids)}
                     </TooltipPortalMounter>
                 )}
             </TooltipAnchor>
         );
+    }
+
+    render() {
+        const {id} = this.props;
+        if (id) {
+            // Let's bypass the extra weight of an id provider since we don't
+            // need it.
+            return this._renderTooltipAnchor();
+        } else {
+            return (
+                <UniqueIDProvider scope="tooltip" mockOnFirstRender={true}>
+                    {(ids) => this._renderTooltipAnchor(ids)}
+                </UniqueIDProvider>
+            );
+        }
     }
 }

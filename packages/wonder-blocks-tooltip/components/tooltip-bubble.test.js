@@ -32,6 +32,7 @@ describe("TooltipBubble", () => {
             const nodes = (
                 <View>
                     <TooltipBubble
+                        id="bubble"
                         placement={props.placement}
                         tailOffset={props.tailOffset}
                         updateBubbleRef={assert}

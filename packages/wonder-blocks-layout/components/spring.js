@@ -11,7 +11,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 export default class Spring extends React.Component<{}> {
     render() {
-        return <View style={styles.grow} />;
+        return <View aria-hidden="true" style={styles.grow} />;
     }
 }
 
