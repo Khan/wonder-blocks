@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // @flow
 import * as React from "react";
 
@@ -7,18 +8,34 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
+import {
+    TooltipAppearanceDelay,
+    TooltipDisappearanceDelay,
+} from "../util/constants.js";
+
+jest.mock("../util/active-tracker.js");
 
 describe("TooltipAnchor", () => {
-    afterEach(() => {
+    beforeEach(async () => {
         if (typeof document.addEventListener.mockReset === "function") {
             document.addEventListener.mockRestore();
         }
         if (typeof document.removeEventListener.mockReset === "function") {
             document.removeEventListener.mockRestore();
         }
+        unmountAll();
         jest.clearAllTimers();
         jest.useFakeTimers();
-        unmountAll();
+
+        const {
+            default: ActiveTracker,
+        } = await import("../util/active-tracker.js");
+        // We know there's one global instance of this import, so let's
+        // reset it.
+        // Flow doesn't know this is a mock $FlowFixMe
+        const mockTracker = ActiveTracker.mock.instances[0];
+        mockTracker.steal.mockClear();
+        mockTracker.giveup.mockClear();
     });
 
     test("on mount, subscribes to focus and hover events", () => {
@@ -246,38 +263,18 @@ describe("TooltipAnchor", () => {
         });
     });
 
-    test("receives keyboard focus, is active", async () => {
-        // Arrange
-        const ref = await new Promise((resolve) => {
-            const getFakeTooltipPortalMounter = (active) =>
-                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
-                >);
-            const nodes = (
-                <View>
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
-                </View>
-            );
-            mount(nodes);
-        });
-
-        // Act
-        // Let's fake a focusin (this is the event that the anchor gets
-        // whether focused directly or a child is focused). We have to
-        // fake directly because there's no real browser here handling
-        // focus and real events.
-        ref && ref.dispatchEvent(new FocusEvent("focusin"));
-        const result = ref && ref.innerHTML;
-
-        // Assert
-        expect(result).toBe("true");
-    });
-
-    describe("loses keyboard focus", () => {
-        test("active is set to false", async () => {
+    describe("receives keyboard focus", () => {
+        test("active state was not stolen, delays set active", async () => {
             // Arrange
+            const {
+                default: ActiveTracker,
+            } = await import("../util/active-tracker.js");
+            // Let's tell the tooltip it isn't stealing and therefore it should
+            // be using a delay to show the tooltip.
+            // Flow doesn't know this is a mock $FlowFixMe
+            const mockTracker = ActiveTracker.mock.instances[0];
+            mockTracker.steal.mockImplementationOnce(() => false);
+
             const ref = await new Promise((resolve) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
@@ -294,12 +291,208 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
+            // Let's fake a focusin (this is the event that the anchor gets
+            // whether focused directly or a child is focused). We have to
+            // fake directly because there's no real browser here handling
+            // focus and real events.
             ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            const before = ref && ref.innerHTML;
+            // Check that we didn't go active before the delay
+            expect(before).toBe("false");
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            const result = ref && ref.innerHTML;
+
+            // Assert
+            expect(result).toBe("true");
+        });
+
+        test("active state was stolen, set active immediately", async () => {
+            // Arrange
+            const {
+                default: ActiveTracker,
+            } = await import("../util/active-tracker.js");
+            // Let's tell the tooltip it is stealing and therefore it should
+            // not be using a delay to show the tooltip.
+            // Flow doesn't know this is a mock $FlowFixMe
+            const mockTracker = ActiveTracker.mock.instances[0];
+            mockTracker.steal.mockImplementationOnce(() => true);
+
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <View>
+                        <TooltipAnchor anchorRef={resolve}>
+                            {getFakeTooltipPortalMounter}
+                        </TooltipAnchor>
+                    </View>
+                );
+                mount(nodes);
+            });
+
+            // Act
+            // Let's fake a focusin (this is the event that the anchor gets
+            // whether focused directly or a child is focused). We have to
+            // fake directly because there's no real browser here handling
+            // focus and real events.
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            const result = ref && ref.innerHTML;
+
+            // Assert
+            expect(result).toBe("true");
+        });
+    });
+
+    describe("loses keyboard focus", () => {
+        test("active state was not stolen, active is set to false with delay", async () => {
+            // Arrange
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <TooltipAnchor anchorRef={resolve}>
+                        {getFakeTooltipPortalMounter}
+                    </TooltipAnchor>
+                );
+                mount(nodes);
+            });
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            expect(ref && ref.innerHTML).toBe("true");
+
+            // Act
             ref && ref.dispatchEvent(new FocusEvent("focusout"));
+            expect(ref && ref.innerHTML).toBe("true");
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipDisappearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            const result = ref && ref.innerHTML;
+
+            // Assert
+            expect(result).toBe("false");
+        });
+
+        test("active state was not stolen, gives up active state", async () => {
+            // Arrange
+            const {
+                default: ActiveTracker,
+            } = await import("../util/active-tracker.js");
+            // Flow doesn't know this is a mock $FlowFixMe
+            const mockTracker = ActiveTracker.mock.instances[0];
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <TooltipAnchor anchorRef={resolve}>
+                        {getFakeTooltipPortalMounter}
+                    </TooltipAnchor>
+                );
+                mount(nodes);
+            });
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            expect(ref && ref.innerHTML).toBe("true");
+
+            // Act
+            ref && ref.dispatchEvent(new FocusEvent("focusout"));
+            expect(ref && ref.innerHTML).toBe("true");
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipDisappearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+
+            // Assert
+            expect(mockTracker.giveup).toHaveBeenCalledTimes(1);
+        });
+
+        test("active state was stolen, active is set to false immediately", async () => {
+            // Arrange
+            let wrapper;
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <TooltipAnchor anchorRef={resolve}>
+                        {getFakeTooltipPortalMounter}
+                    </TooltipAnchor>
+                );
+                wrapper = mount(nodes);
+            });
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            expect(ref && ref.innerHTML).toBe("true");
+
+            // Act
+            ref && ref.dispatchEvent(new FocusEvent("focusout"));
+            wrapper && wrapper.instance().activeStateStolen();
 
             // Assert
             const result = ref && ref.innerHTML;
             expect(result).toBe("false");
+        });
+
+        test("active state was stolen, so it does not have it to give up", async () => {
+            // Arrange
+            const {
+                default: ActiveTracker,
+            } = await import("../util/active-tracker.js");
+            // Flow doesn't know this is a mock $FlowFixMe
+            const mockTracker = ActiveTracker.mock.instances[0];
+            // Arrange
+            let wrapper;
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <TooltipAnchor anchorRef={resolve}>
+                        {getFakeTooltipPortalMounter}
+                    </TooltipAnchor>
+                );
+                wrapper = mount(nodes);
+            });
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            expect(ref && ref.innerHTML).toBe("true");
+
+            // Act
+            ref && ref.dispatchEvent(new FocusEvent("focusout"));
+            wrapper && wrapper.instance().activeStateStolen();
+
+            // Assert
+            expect(mockTracker.giveup).not.toHaveBeenCalled();
         });
 
         test("if hovered, remains active", async () => {
@@ -318,46 +511,37 @@ describe("TooltipAnchor", () => {
                 );
                 mount(nodes);
             });
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            setTimeout.mockClear();
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
 
             // Act
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
             ref && ref.dispatchEvent(new FocusEvent("focusout"));
 
             // Assert
-            const result = ref && ref.innerHTML;
-            expect(result).toBe("true");
+            // Make sure that we're not delay hiding as well.
+            expect(ref && ref.innerHTML).toBe("true");
+            expect(setTimeout).not.toHaveBeenCalled();
         });
     });
 
-    test("is hovered, is active", async () => {
-        // Arrange
-        const ref = await new Promise((resolve) => {
-            const getFakeTooltipPortalMounter = (active) =>
-                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
-                >);
-            const nodes = (
-                <View>
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
-                </View>
-            );
-            mount(nodes);
-        });
-
-        // Act
-        ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-
-        // Assert
-        const result = ref && ref.innerHTML;
-        expect(result).toBe("true");
-    });
-
-    describe("is unhovered", () => {
-        test("active is set to false", async () => {
+    describe("is hovered", () => {
+        test("active state was not stolen, delays set active", async () => {
             // Arrange
+            const {
+                default: ActiveTracker,
+            } = await import("../util/active-tracker.js");
+            // Let's tell the tooltip it isn't stealing and therefore it should
+            // be using a delay to show the tooltip.
+            // Flow doesn't know this is a mock $FlowFixMe
+            const mockTracker = ActiveTracker.mock.instances[0];
+            mockTracker.steal.mockImplementationOnce(() => false);
+
             const ref = await new Promise((resolve) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
@@ -375,11 +559,199 @@ describe("TooltipAnchor", () => {
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            const before = ref && ref.innerHTML;
+            // Check that we didn't go active before the delay
+            expect(before).toBe("false");
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            const result = ref && ref.innerHTML;
+
+            // Assert
+            expect(result).toBe("true");
+        });
+
+        test("active state was stolen, set active immediately", async () => {
+            // Arrange
+            const {
+                default: ActiveTracker,
+            } = await import("../util/active-tracker.js");
+            // Let's tell the tooltip it is stealing and therefore it should
+            // not be using a delay to show the tooltip.
+            // Flow doesn't know this is a mock $FlowFixMe
+            const mockTracker = ActiveTracker.mock.instances[0];
+            mockTracker.steal.mockImplementationOnce(() => true);
+
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <View>
+                        <TooltipAnchor anchorRef={resolve}>
+                            {getFakeTooltipPortalMounter}
+                        </TooltipAnchor>
+                    </View>
+                );
+                mount(nodes);
+            });
+
+            // Act
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            const result = ref && ref.innerHTML;
+
+            // Assert
+            expect(result).toBe("true");
+        });
+    });
+
+    describe("is unhovered", () => {
+        test("active state was not stolen, active is set to false with delay", async () => {
+            // Arrange
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <TooltipAnchor anchorRef={resolve}>
+                        {getFakeTooltipPortalMounter}
+                    </TooltipAnchor>
+                );
+                mount(nodes);
+            });
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            expect(ref && ref.innerHTML).toBe("true");
+
+            // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
+            expect(ref && ref.innerHTML).toBe("true");
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipDisappearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            const result = ref && ref.innerHTML;
+
+            // Assert
+            expect(result).toBe("false");
+        });
+
+        test("active state was not stolen, gives up active state", async () => {
+            // Arrange
+            const {
+                default: ActiveTracker,
+            } = await import("../util/active-tracker.js");
+            // Flow doesn't know this is a mock $FlowFixMe
+            const mockTracker = ActiveTracker.mock.instances[0];
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <TooltipAnchor anchorRef={resolve}>
+                        {getFakeTooltipPortalMounter}
+                    </TooltipAnchor>
+                );
+                mount(nodes);
+            });
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            expect(ref && ref.innerHTML).toBe("true");
+
+            // Act
+            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
+            expect(ref && ref.innerHTML).toBe("true");
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipDisappearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+
+            // Assert
+            expect(mockTracker.giveup).toHaveBeenCalledTimes(1);
+        });
+
+        test("active state was stolen, active is set to false immediately", async () => {
+            // Arrange
+            let wrapper;
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <TooltipAnchor anchorRef={resolve}>
+                        {getFakeTooltipPortalMounter}
+                    </TooltipAnchor>
+                );
+                wrapper = mount(nodes);
+            });
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            expect(ref && ref.innerHTML).toBe("true");
+
+            // Act
+            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
+            wrapper && wrapper.instance().activeStateStolen();
 
             // Assert
             const result = ref && ref.innerHTML;
             expect(result).toBe("false");
+        });
+
+        test("active state was stolen, so it does not have it to give up", async () => {
+            // Arrange
+            const {
+                default: ActiveTracker,
+            } = await import("../util/active-tracker.js");
+            // Flow doesn't know this is a mock $FlowFixMe
+            const mockTracker = ActiveTracker.mock.instances[0];
+            // Arrange
+            let wrapper;
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <TooltipAnchor anchorRef={resolve}>
+                        {getFakeTooltipPortalMounter}
+                    </TooltipAnchor>
+                );
+                wrapper = mount(nodes);
+            });
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            expect(ref && ref.innerHTML).toBe("true");
+
+            // Act
+            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
+            wrapper && wrapper.instance().activeStateStolen();
+
+            // Assert
+            expect(mockTracker.giveup).not.toHaveBeenCalled();
         });
 
         test("if focused, remains active", async () => {
@@ -398,120 +770,158 @@ describe("TooltipAnchor", () => {
                 );
                 mount(nodes);
             });
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
+            setTimeout.mockClear();
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
             ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
 
             // Assert
-            const result = ref && ref.innerHTML;
-            expect(result).toBe("true");
+            // Make sure that we're not delay hiding as well.
+            expect(ref && ref.innerHTML).toBe("true");
+            expect(setTimeout).not.toHaveBeenCalled();
         });
     });
 
     describe("dismiss behavior", () => {
-        test("subscribes to keydown event on active", () => {
+        test("subscribes to keydown event on active", async () => {
             // Arrange
             const spy = jest.spyOn(document, "addEventListener");
-            const getFakeTooltipPortalMounter = (active) =>
-                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
-                >);
-            const nodes = (
-                <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
-                </TooltipAnchor>
-            );
-            const wrapper = mount(nodes);
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <View>
+                        <TooltipAnchor anchorRef={resolve}>
+                            {getFakeTooltipPortalMounter}
+                        </TooltipAnchor>
+                    </View>
+                );
+                mount(nodes);
+            });
 
             // Act
-            // We use the internal code to set active as a shortcut rather
-            // than sending events. We already tested that.
-            wrapper.instance()._updateActiveState(true, false);
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
 
             // Assert
             expect(spy).toHaveBeenCalledTimes(1);
             expect(spy).toHaveBeenLastCalledWith("keyup", expect.any(Function));
         });
 
-        test("does not subscribe to keydown event if already active", () => {
+        test("does not subscribe to keydown event if already active", async () => {
             // Arrange
             const spy = jest.spyOn(document, "addEventListener");
-            const getFakeTooltipPortalMounter = (active) =>
-                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
-                >);
-            const nodes = (
-                <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
-                </TooltipAnchor>
-            );
-            const wrapper = mount(nodes);
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <View>
+                        <TooltipAnchor anchorRef={resolve}>
+                            {getFakeTooltipPortalMounter}
+                        </TooltipAnchor>
+                    </View>
+                );
+                mount(nodes);
+            });
 
-            // We use the internal code to set active as a shortcut rather
-            // than sending events. We already tested that.
-            wrapper.instance()._updateActiveState(false, true);
+            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
             expect(spy).toHaveBeenCalledTimes(1);
             expect(spy).toHaveBeenLastCalledWith("keyup", expect.any(Function));
             spy.mockClear();
 
             // Act
-            // We use the internal code to set active as a shortcut rather
-            // than sending events. We already tested that.
-            wrapper.instance()._updateActiveState(true, false);
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
 
             // Assert
             expect(spy).not.toHaveBeenCalled();
         });
 
-        test("unsubscribes from keydown event on inactive", () => {
+        test("unsubscribes from keydown event on inactive", async () => {
             // Arrange
             const spy = jest.spyOn(document, "removeEventListener");
-            const getFakeTooltipPortalMounter = (active) =>
-                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
-                >);
-            const nodes = (
-                <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
-                </TooltipAnchor>
-            );
-            const wrapper = mount(nodes);
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <View>
+                        <TooltipAnchor anchorRef={resolve}>
+                            {getFakeTooltipPortalMounter}
+                        </TooltipAnchor>
+                    </View>
+                );
+                mount(nodes);
+            });
 
-            // We use the internal code to set active as a shortcut rather
-            // than sending events. We already tested that.
-            wrapper.instance()._updateActiveState(false, true);
+            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
 
             // Act
-            // We use the internal code to set active as a shortcut rather
-            // than sending events. We already tested that.
-            wrapper.instance()._updateActiveState(false, false);
+            ref && ref.dispatchEvent(new KeyboardEvent("focusout"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipDisappearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
 
             // Assert
             expect(spy).toHaveBeenCalledTimes(1);
             expect(spy).toHaveBeenLastCalledWith("keyup", expect.any(Function));
         });
 
-        test("unsubscribes from keydown event on unmount", () => {
+        test("unsubscribes from keydown event on unmount", async () => {
             // Arrange
+            let wrapper;
             const spy = jest.spyOn(document, "removeEventListener");
-            const getFakeTooltipPortalMounter = (active) =>
-                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
-                >);
-            const nodes = (
-                <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
-                </TooltipAnchor>
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <View>
+                        <TooltipAnchor anchorRef={resolve}>
+                            {getFakeTooltipPortalMounter}
+                        </TooltipAnchor>
+                    </View>
+                );
+                wrapper = mount(nodes);
+            });
+
+            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
             );
-            const wrapper = mount(nodes);
-            // We use the internal code to set active as a shortcut rather
-            // than sending events. We already tested that.
-            wrapper.instance()._updateActiveState(true, true);
+            jest.runOnlyPendingTimers();
 
             // Act
-            wrapper.unmount();
+            wrapper && wrapper.unmount();
 
             // Assert
             expect(spy).toHaveBeenCalledTimes(1);
@@ -520,19 +930,27 @@ describe("TooltipAnchor", () => {
 
         test("when active, escape dismisses tooltip", async () => {
             // Arrange
-            const getFakeTooltipPortalMounter = (active) =>
-                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
-                >);
-            const nodes = (
-                <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
-                </TooltipAnchor>
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <View>
+                        <TooltipAnchor anchorRef={resolve}>
+                            {getFakeTooltipPortalMounter}
+                        </TooltipAnchor>
+                    </View>
+                );
+                mount(nodes);
+            });
+
+            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
             );
-            const wrapper = mount(nodes);
-            // We use the internal code to set active as a shortcut rather
-            // than sending events. We already tested that.
-            wrapper.instance()._updateActiveState(false, true);
+            jest.runOnlyPendingTimers();
             const event: KeyboardEvent = (document.createEvent("Event"): any);
             event.key = "Escape";
             event.which = 27;
@@ -540,26 +958,39 @@ describe("TooltipAnchor", () => {
 
             // Act
             document.dispatchEvent(event);
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipDisappearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
 
             // Assert
-            expect(wrapper.state("active")).toBeFalsy();
+            expect(ref && ref.innerHTML).toBe("false");
         });
 
         test("when active, escape stops event propagation", async () => {
             // Arrange
-            const getFakeTooltipPortalMounter = (active) =>
-                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                    typeof TooltipPortalMounter,
-                >);
-            const nodes = (
-                <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
-                </TooltipAnchor>
+            const ref = await new Promise((resolve) => {
+                const getFakeTooltipPortalMounter = (active) =>
+                    (((
+                        <View>{active ? "true" : "false"}</View>
+                    ): any): React.Element<typeof TooltipPortalMounter>);
+                const nodes = (
+                    <View>
+                        <TooltipAnchor anchorRef={resolve}>
+                            {getFakeTooltipPortalMounter}
+                        </TooltipAnchor>
+                    </View>
+                );
+                mount(nodes);
+            });
+
+            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipAppearanceDelay,
             );
-            const wrapper = mount(nodes);
-            // We use the internal code to set active as a shortcut rather
-            // than sending events. We already tested that.
-            wrapper.instance()._updateActiveState(false, true);
+            jest.runOnlyPendingTimers();
             const event: KeyboardEvent = (document.createEvent("Event"): any);
             const spyOnStopPropagation = jest.spyOn(event, "stopPropagation");
             event.key = "Escape";
@@ -567,6 +998,11 @@ describe("TooltipAnchor", () => {
 
             // Act
             document.dispatchEvent(event);
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                TooltipDisappearanceDelay,
+            );
+            jest.runOnlyPendingTimers();
 
             // Assert
             expect(spyOnStopPropagation).toHaveBeenCalled();
