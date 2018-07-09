@@ -164,8 +164,8 @@ export default class TooltipTail extends React.Component<Props> {
                 // draw based on its parent size. i.e. 2 times bigger.
                 // This is so that the diffuse gaussian blur has space to
                 // bleed into.
-                width={"200%"}
-                height={"200%"}
+                width="200%"
+                height="200%"
                 // The x and y values tell the filter where, relative to its
                 // parent, it should begin showing its canvas. Without these
                 // the filter would clip at 0,0, which would look really
