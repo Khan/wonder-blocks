@@ -1,25 +1,26 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
+
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 
-// Helper for chaining event handlings.
-const doEvent = (ref, event) => {
-    if (!ref) {
-        throw new Error("No element");
-    }
-    ref.dispatchEvent(event);
-
-    return new Promise((resolve) => {
-        setTimeout(resolve, 0);
-    });
-};
-
 describe("TooltipAnchor", () => {
+    afterEach(() => {
+        if (typeof document.addEventListener.mockReset === "function") {
+            document.addEventListener.mockRestore();
+        }
+        if (typeof document.removeEventListener.mockReset === "function") {
+            document.removeEventListener.mockRestore();
+        }
+        jest.clearAllTimers();
+        jest.useFakeTimers();
+        unmountAll();
+    });
+
     test("on mount, subscribes to focus and hover events", () => {
         // Arrange
         const getFakeTooltipPortalMounter = (active) =>
@@ -104,40 +105,35 @@ describe("TooltipAnchor", () => {
     });
 
     describe("forceAnchorFocusivity is true", () => {
-        test("if not set, sets tabindex on anchor target", (done) => {
+        test("if not set, sets tabindex on anchor target", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const fakeTooltipPortalMounter = (((
-                    <View>This is the anchor</View>
+                    <View id="portal">This is the anchor</View>
                 ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={true}
-                            anchorRef={actAndAssert}
+                            anchorRef={resolve}
                         >
                             {(active) => fakeTooltipPortalMounter}
                         </TooltipAnchor>
                     </View>
                 );
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                const result = ref && ref.getAttribute("tabindex");
+            // Act
+            const result = ref && ref.getAttribute("tabindex");
 
-                // Assert
-                expect(result).toBe("0");
-                done();
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(result).toBe("0");
         });
 
-        test("if tabindex already set, leaves it as-is", (done) => {
+        test("if tabindex already set, leaves it as-is", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const fakeTooltipPortalMounter = (((
                     <View tabIndex="-1">This is the anchor</View>
                 ): any): React.Element<typeof TooltipPortalMounter>);
@@ -145,32 +141,27 @@ describe("TooltipAnchor", () => {
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={true}
-                            anchorRef={actAndAssert}
+                            anchorRef={resolve}
                         >
                             {(active) => fakeTooltipPortalMounter}
                         </TooltipAnchor>
                     </View>
                 );
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                const result = ref && ref.getAttribute("tabindex");
+            // Act
+            const result = ref && ref.getAttribute("tabindex");
 
-                // Assert
-                expect(result).toBe("-1");
-                done();
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(result).toBe("-1");
         });
     });
 
     describe("forceAnchorFocusivity is false", () => {
-        test("does not set tabindex on anchor target", (done) => {
+        test("does not set tabindex on anchor target", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const fakeTooltipPortalMounter = (((
                     <View>This is the anchor</View>
                 ): any): React.Element<typeof TooltipPortalMounter>);
@@ -178,30 +169,26 @@ describe("TooltipAnchor", () => {
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={false}
-                            anchorRef={actAndAssert}
+                            anchorRef={resolve}
                         >
                             {(active) => fakeTooltipPortalMounter}
                         </TooltipAnchor>
                     </View>
                 );
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                const result = ref && ref.getAttribute("tabindex");
+            // Act
+            const result = ref && ref.getAttribute("tabindex");
 
-                // Assert
-                expect(result).toBeNull();
-                done();
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(result).toBeNull();
         });
 
-        test("if we had added tabindex, removes it", (done) => {
+        test("if we had added tabindex, removes it", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            let wrapper;
+            const ref = await new Promise((resolve) => {
                 const fakeTooltipPortalMounter = (((
                     <View>This is the anchor</View>
                 ): any): React.Element<typeof TooltipPortalMounter>);
@@ -210,38 +197,29 @@ describe("TooltipAnchor", () => {
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={props.force}
-                            anchorRef={actAndAssert}
+                            anchorRef={resolve}
                         >
                             {(active) => fakeTooltipPortalMounter}
                         </TooltipAnchor>
                     </View>
                 );
-                const wrapper = mount(<TestFixture force={true} />);
-                wrapper.setProps({force: false});
-            };
+                wrapper = mount(<TestFixture force={true} />);
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                const tabindex = ref && ref.getAttribute("tabindex");
-                expect(tabindex).toBe("0");
+            // Act
+            const tabindex = ref && ref.getAttribute("tabindex");
+            expect(tabindex).toBe("0");
 
-                // Need to do a timeout so that the mount can return and the
-                // wrapper can change the force prop to false.
-                setTimeout(() => {
-                    const result = ref && ref.getAttribute("tabindex");
+            wrapper && wrapper.setProps({force: false});
+            const result = ref && ref.getAttribute("tabindex");
 
-                    // Assert
-                    expect(result).toBeNull();
-                    done();
-                }, 0);
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(result).toBeNull();
         });
 
-        test("if we had not added tabindex, leaves it", (done) => {
+        test("if we had not added tabindex, leaves it", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const fakeTooltipPortalMounter = (((
                     <View tabIndex="-1">This is the anchor</View>
                 ): any): React.Element<typeof TooltipPortalMounter>);
@@ -250,7 +228,7 @@ describe("TooltipAnchor", () => {
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={props.force}
-                            anchorRef={actAndAssert}
+                            anchorRef={resolve}
                         >
                             {(active) => fakeTooltipPortalMounter}
                         </TooltipAnchor>
@@ -258,234 +236,340 @@ describe("TooltipAnchor", () => {
                 );
                 const wrapper = mount(<TestFixture force={true} />);
                 wrapper.setProps({force: false});
-            };
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                // Need to do a timeout so that the mount can return and the
-                // wrapper can change the force prop to false.
-                setTimeout(() => {
-                    const result = ref && ref.getAttribute("tabindex");
+            // Act
+            const result = ref && ref.getAttribute("tabindex");
 
-                    // Assert
-                    expect(result).not.toBeNull();
-                    done();
-                }, 0);
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(result).not.toBeNull();
         });
     });
 
-    test("receives keyboard focus, is active", (done) => {
+    test("receives keyboard focus, is active", async () => {
         // Arrange
-        const arrange = (actAndAssert) => {
+        const ref = await new Promise((resolve) => {
             const getFakeTooltipPortalMounter = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
                     typeof TooltipPortalMounter,
                 >);
             const nodes = (
                 <View>
-                    <TooltipAnchor anchorRef={actAndAssert}>
+                    <TooltipAnchor anchorRef={resolve}>
                         {getFakeTooltipPortalMounter}
                     </TooltipAnchor>
                 </View>
             );
             mount(nodes);
-        };
+        });
 
-        const actAndAssert = (ref) => {
-            // Act
-            // Let's fake a focusin (this is the event that the anchor gets
-            // whether focused directly or a child is focused). We have to
-            // fake directly because there's no real browser here handling
-            // focus and real events.
-            const act = doEvent(ref, new FocusEvent("focusin"));
+        // Act
+        // Let's fake a focusin (this is the event that the anchor gets
+        // whether focused directly or a child is focused). We have to
+        // fake directly because there's no real browser here handling
+        // focus and real events.
+        ref && ref.dispatchEvent(new FocusEvent("focusin"));
+        const result = ref && ref.innerHTML;
 
-            // Need a timeout here so that the event handling can occur.
-            act.then(() => {
-                const result = ref && ref.innerHTML;
-
-                // Assert
-                expect(result).toBe("true");
-                done();
-            });
-        };
-
-        arrange(actAndAssert);
+        // Assert
+        expect(result).toBe("true");
     });
 
     describe("loses keyboard focus", () => {
-        test("active is set to false", (done) => {
+        test("active is set to false", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
                         <View>{active ? "true" : "false"}</View>
                     ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={actAndAssert}>
+                        <TooltipAnchor anchorRef={resolve}>
                             {getFakeTooltipPortalMounter}
                         </TooltipAnchor>
                     </View>
                 );
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                const act = doEvent(ref, new FocusEvent("focusin")).then(() =>
-                    doEvent(ref, new FocusEvent("focusout")),
-                );
+            // Act
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            ref && ref.dispatchEvent(new FocusEvent("focusout"));
 
-                // Assert
-                act.then(() => {
-                    const result = ref && ref.innerHTML;
-                    expect(result).toBe("false");
-                    done();
-                });
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            const result = ref && ref.innerHTML;
+            expect(result).toBe("false");
         });
 
-        test("if hovered, remains active", (done) => {
+        test("if hovered, remains active", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
                         <View>{active ? "true" : "false"}</View>
                     ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={actAndAssert}>
+                        <TooltipAnchor anchorRef={resolve}>
                             {getFakeTooltipPortalMounter}
                         </TooltipAnchor>
                     </View>
                 );
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                const act = doEvent(ref, new FocusEvent("focusin"))
-                    .then(() => doEvent(ref, new MouseEvent("mouseenter")))
-                    .then(() => doEvent(ref, new FocusEvent("focusout")));
+            // Act
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref && ref.dispatchEvent(new FocusEvent("focusout"));
 
-                // Assert
-                act.then(() => {
-                    const result = ref && ref.innerHTML;
-                    expect(result).toBe("true");
-                    done();
-                });
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            const result = ref && ref.innerHTML;
+            expect(result).toBe("true");
         });
     });
 
-    test("is hovered, is active", (done) => {
+    test("is hovered, is active", async () => {
         // Arrange
-        const arrange = (actAndAssert) => {
+        const ref = await new Promise((resolve) => {
             const getFakeTooltipPortalMounter = (active) =>
                 ((<View>{active ? "true" : "false"}</View>: any): React.Element<
                     typeof TooltipPortalMounter,
                 >);
             const nodes = (
                 <View>
-                    <TooltipAnchor anchorRef={actAndAssert}>
+                    <TooltipAnchor anchorRef={resolve}>
                         {getFakeTooltipPortalMounter}
                     </TooltipAnchor>
                 </View>
             );
             mount(nodes);
-        };
+        });
 
-        const actAndAssert = (ref) => {
-            // Act
-            const act = doEvent(ref, new MouseEvent("mouseenter"));
+        // Act
+        ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
 
-            // Assert
-            act.then(() => {
-                const result = ref && ref.innerHTML;
-
-                // Assert
-                expect(result).toBe("true");
-                done();
-            });
-        };
-
-        arrange(actAndAssert);
+        // Assert
+        const result = ref && ref.innerHTML;
+        expect(result).toBe("true");
     });
 
     describe("is unhovered", () => {
-        test("active is set to false", (done) => {
+        test("active is set to false", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
                         <View>{active ? "true" : "false"}</View>
                     ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={actAndAssert}>
+                        <TooltipAnchor anchorRef={resolve}>
                             {getFakeTooltipPortalMounter}
                         </TooltipAnchor>
                     </View>
                 );
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                const act = doEvent(ref, new MouseEvent("mouseenter")).then(
-                    () => doEvent(ref, new MouseEvent("mouseleave")),
-                );
+            // Act
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
 
-                // Assert
-                act.then(() => {
-                    const result = ref && ref.innerHTML;
-                    expect(result).toBe("false");
-                    done();
-                });
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            const result = ref && ref.innerHTML;
+            expect(result).toBe("false");
         });
 
-        test("if focused, remains active", (done) => {
+        test("if focused, remains active", async () => {
             // Arrange
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const getFakeTooltipPortalMounter = (active) =>
                     (((
                         <View>{active ? "true" : "false"}</View>
                     ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={actAndAssert}>
+                        <TooltipAnchor anchorRef={resolve}>
                             {getFakeTooltipPortalMounter}
                         </TooltipAnchor>
                     </View>
                 );
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (ref) => {
-                // Act
-                const act = doEvent(ref, new MouseEvent("mouseenter"))
-                    .then(() => doEvent(ref, new FocusEvent("focusin")))
-                    .then(() => doEvent(ref, new MouseEvent("mouseleave")));
+            // Act
+            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
 
-                // Assert
-                act.then(() => {
-                    const result = ref && ref.innerHTML;
-                    expect(result).toBe("true");
-                    done();
-                });
-            };
+            // Assert
+            const result = ref && ref.innerHTML;
+            expect(result).toBe("true");
+        });
+    });
 
-            arrange(actAndAssert);
+    describe("dismiss behavior", () => {
+        test("subscribes to keydown event on active", () => {
+            // Arrange
+            const spy = jest.spyOn(document, "addEventListener");
+            const getFakeTooltipPortalMounter = (active) =>
+                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                    typeof TooltipPortalMounter,
+                >);
+            const nodes = (
+                <TooltipAnchor anchorRef={() => {}}>
+                    {getFakeTooltipPortalMounter}
+                </TooltipAnchor>
+            );
+            const wrapper = mount(nodes);
+
+            // Act
+            // We use the internal code to set active as a shortcut rather
+            // than sending events. We already tested that.
+            wrapper.instance()._updateActiveState(true, false);
+
+            // Assert
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenLastCalledWith("keyup", expect.any(Function));
+        });
+
+        test("does not subscribe to keydown event if already active", () => {
+            // Arrange
+            const spy = jest.spyOn(document, "addEventListener");
+            const getFakeTooltipPortalMounter = (active) =>
+                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                    typeof TooltipPortalMounter,
+                >);
+            const nodes = (
+                <TooltipAnchor anchorRef={() => {}}>
+                    {getFakeTooltipPortalMounter}
+                </TooltipAnchor>
+            );
+            const wrapper = mount(nodes);
+
+            // We use the internal code to set active as a shortcut rather
+            // than sending events. We already tested that.
+            wrapper.instance()._updateActiveState(false, true);
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenLastCalledWith("keyup", expect.any(Function));
+            spy.mockClear();
+
+            // Act
+            // We use the internal code to set active as a shortcut rather
+            // than sending events. We already tested that.
+            wrapper.instance()._updateActiveState(true, false);
+
+            // Assert
+            expect(spy).not.toHaveBeenCalled();
+        });
+
+        test("unsubscribes from keydown event on inactive", () => {
+            // Arrange
+            const spy = jest.spyOn(document, "removeEventListener");
+            const getFakeTooltipPortalMounter = (active) =>
+                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                    typeof TooltipPortalMounter,
+                >);
+            const nodes = (
+                <TooltipAnchor anchorRef={() => {}}>
+                    {getFakeTooltipPortalMounter}
+                </TooltipAnchor>
+            );
+            const wrapper = mount(nodes);
+
+            // We use the internal code to set active as a shortcut rather
+            // than sending events. We already tested that.
+            wrapper.instance()._updateActiveState(false, true);
+
+            // Act
+            // We use the internal code to set active as a shortcut rather
+            // than sending events. We already tested that.
+            wrapper.instance()._updateActiveState(false, false);
+
+            // Assert
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenLastCalledWith("keyup", expect.any(Function));
+        });
+
+        test("unsubscribes from keydown event on unmount", () => {
+            // Arrange
+            const spy = jest.spyOn(document, "removeEventListener");
+            const getFakeTooltipPortalMounter = (active) =>
+                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                    typeof TooltipPortalMounter,
+                >);
+            const nodes = (
+                <TooltipAnchor anchorRef={() => {}}>
+                    {getFakeTooltipPortalMounter}
+                </TooltipAnchor>
+            );
+            const wrapper = mount(nodes);
+            // We use the internal code to set active as a shortcut rather
+            // than sending events. We already tested that.
+            wrapper.instance()._updateActiveState(true, true);
+
+            // Act
+            wrapper.unmount();
+
+            // Assert
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenLastCalledWith("keyup", expect.any(Function));
+        });
+
+        test("when active, escape dismisses tooltip", async () => {
+            // Arrange
+            const getFakeTooltipPortalMounter = (active) =>
+                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                    typeof TooltipPortalMounter,
+                >);
+            const nodes = (
+                <TooltipAnchor anchorRef={() => {}}>
+                    {getFakeTooltipPortalMounter}
+                </TooltipAnchor>
+            );
+            const wrapper = mount(nodes);
+            // We use the internal code to set active as a shortcut rather
+            // than sending events. We already tested that.
+            wrapper.instance()._updateActiveState(false, true);
+            const event: KeyboardEvent = (document.createEvent("Event"): any);
+            event.key = "Escape";
+            event.which = 27;
+            event.initEvent("keyup", true, true);
+
+            // Act
+            document.dispatchEvent(event);
+
+            // Assert
+            expect(wrapper.state("active")).toBeFalsy();
+        });
+
+        test("when active, escape stops event propagation", async () => {
+            // Arrange
+            const getFakeTooltipPortalMounter = (active) =>
+                ((<View>{active ? "true" : "false"}</View>: any): React.Element<
+                    typeof TooltipPortalMounter,
+                >);
+            const nodes = (
+                <TooltipAnchor anchorRef={() => {}}>
+                    {getFakeTooltipPortalMounter}
+                </TooltipAnchor>
+            );
+            const wrapper = mount(nodes);
+            // We use the internal code to set active as a shortcut rather
+            // than sending events. We already tested that.
+            wrapper.instance()._updateActiveState(false, true);
+            const event: KeyboardEvent = (document.createEvent("Event"): any);
+            const spyOnStopPropagation = jest.spyOn(event, "stopPropagation");
+            event.key = "Escape";
+            event.initEvent("keyup", true, true);
+
+            // Act
+            document.dispatchEvent(event);
+
+            // Assert
+            expect(spyOnStopPropagation).toHaveBeenCalled();
         });
     });
 });
