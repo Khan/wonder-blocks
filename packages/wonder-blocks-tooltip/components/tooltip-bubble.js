@@ -37,6 +37,8 @@ export type Props = {|
 
     /** The `TooltipContent` element that will be rendered in the bubble. */
     children: React.Element<typeof TooltipContent>,
+    // TODO(somewhatabstract): Update react-docgen to support spread operators
+    // (v3 beta introduces this)
     ...TooltipBubbleProps,
 |};
 

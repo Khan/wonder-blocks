@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import TooltipBubble from "./tooltip-bubble.js";
@@ -15,6 +15,10 @@ describe("TooltipBubble", () => {
             top: 0,
             left: 50,
         },
+    });
+
+    beforeEach(() => {
+        unmountAll();
     });
 
     test("updates reference to bubble container", (done) => {

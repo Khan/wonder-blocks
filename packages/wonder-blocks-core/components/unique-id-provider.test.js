@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
 
-import {mount} from "enzyme";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import View from "./view.js";
 
@@ -11,6 +11,10 @@ import UniqueIDFactory from "../util/unique-id-factory.js";
 import UniqueIDProvider from "./unique-id-provider.js";
 
 describe("UniqueIDProvider", () => {
+    beforeEach(() => {
+        unmountAll();
+    });
+
     describe("mockOnFirstRender is default (false)", () => {
         test("initial render is nothing on server", () => {
             // Arrange

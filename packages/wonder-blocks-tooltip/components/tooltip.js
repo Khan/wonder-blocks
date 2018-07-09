@@ -85,8 +85,11 @@ type Props = {|
      */
     forceAnchorFocusivity?: boolean,
 
-    /** Where the tooltip should appear in relation to the anchor element. */
-    placement?: Placement,
+    /**
+     * Where the tooltip should appear in relation to the anchor element.
+     * Defaults to "top".
+     */
+    placement: Placement,
 |};
 
 type State = {|
@@ -152,7 +155,7 @@ export default class Tooltip extends React.Component<Props, State> {
         return (
             <TooltipPopper
                 anchorElement={this.state.anchorElement}
-                placement={placement || Tooltip.defaultProps.placement}
+                placement={placement}
             >
                 {(props) => (
                     <TooltipBubble
