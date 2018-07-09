@@ -8,11 +8,13 @@ import {TooltipPortalAttributeName} from "../util/constants.js";
 import TooltipPopper from "./tooltip-popper.js";
 
 type Props = {|
-    // The child element to be rendered within the main React tree.
-    // This is the component to which the tooltip is anchored.
+    /**
+     * The child element to be rendered within the main React tree.
+     * This is the component to which the tooltip is anchored.
+     */
     anchor: React.Element<*>,
 
-    // The tooltip that will be rendered in the portal.
+    /** The tooltip that will be rendered in the portal. */
     children: ?React.Element<typeof TooltipPopper>,
 |};
 

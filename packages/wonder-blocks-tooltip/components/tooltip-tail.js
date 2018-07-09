@@ -9,8 +9,13 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {getRefFn, Placement, Offset} from "../util/types.js";
 
 export type Props = {
+    /** The offset of the tail indicating where it should be positioned. */
     offset?: Offset,
+
+    /** The placement of the tail with respect to the tooltip anchor. */
     placement: Placement,
+
+    /** A callback to update the ref of the tail element. */
     updateRef?: getRefFn,
 };
 

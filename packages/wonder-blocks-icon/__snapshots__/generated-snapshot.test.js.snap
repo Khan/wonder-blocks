@@ -2,7 +2,6 @@
 
 exports[`wonder-blocks-icon example 1 1`] = `
 <svg
-  aria-label={undefined}
   className=""
   height={16}
   style={
@@ -58,7 +57,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -87,7 +85,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -109,7 +106,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -138,7 +134,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -160,7 +155,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -189,7 +183,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -211,7 +204,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -240,7 +232,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -262,7 +253,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -291,7 +281,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -323,7 +312,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -345,7 +333,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -374,7 +361,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -396,7 +382,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -425,7 +410,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -447,7 +431,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -479,7 +462,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -511,7 +493,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -540,7 +521,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -562,7 +542,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -594,7 +573,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -626,7 +604,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -655,7 +632,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -687,7 +663,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -709,7 +684,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -738,7 +712,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -770,7 +743,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={16}
         style={
@@ -805,7 +777,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -837,7 +808,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
       className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
     >
       <svg
-        aria-label={undefined}
         className=""
         height={24}
         style={
@@ -862,7 +832,6 @@ exports[`wonder-blocks-icon example 2 1`] = `
 exports[`wonder-blocks-icon example 3 1`] = `
 <div>
   <svg
-    aria-label={undefined}
     className=""
     height={16}
     style={
@@ -880,7 +849,6 @@ exports[`wonder-blocks-icon example 3 1`] = `
     />
   </svg>
   <svg
-    aria-label={undefined}
     className=""
     height={24}
     style={
@@ -898,7 +866,6 @@ exports[`wonder-blocks-icon example 3 1`] = `
     />
   </svg>
   <svg
-    aria-label={undefined}
     className=""
     height={48}
     style={
@@ -916,7 +883,6 @@ exports[`wonder-blocks-icon example 3 1`] = `
     />
   </svg>
   <svg
-    aria-label={undefined}
     className=""
     height={96}
     style={
@@ -940,7 +906,6 @@ exports[`wonder-blocks-icon example 4 1`] = `
 <div>
   Here is an icon inline:
   <svg
-    aria-label={undefined}
     className=""
     height={16}
     style={
