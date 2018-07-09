@@ -32,27 +32,37 @@ import type {Placement} from "../util/types.js";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {|
-    // The content for anchoring the tooltip.
-    // This component will be used to position the tooltip.
+    /**
+     * The content for anchoring the tooltip.
+     * This component will be used to position the tooltip.
+     */
     children: React.Element<any> | string,
 
-    // The title of the tooltip.
-    // Optional.
+    /**
+     * The title of the tooltip.
+     * Optional.
+     */
     title?: string | React.Element<Typography>,
 
-    // The content to render in the tooltip.
+    /**
+     * The content to render in the tooltip.
+     */
     content: string | React.Element<typeof TooltipContent>,
 
-    // When true, the child element will be given tabindex=0
-    // to make it keyboard focusable. This value defaults to true. One might set
-    // this to false in circumstances where the wrapped component already can
-    // receive focus or contains an element that can.
-    // Use good judgement when overriding this value, the tooltip content should
-    // be accessible via keyboard in all circumstances where the tooltip would
-    // appear using the mouse, so very those use-cases.
+    /**
+     * When true, the child element will be given tabindex=0
+     * to make it keyboard focusable. This value defaults to true. One might set
+     * this to false in circumstances where the wrapped component already can
+     * receive focus or contains an element that can.
+     * Use good judgement when overriding this value, the tooltip content should
+     * be accessible via keyboard in all circumstances where the tooltip would
+     * appear using the mouse, so very those use-cases.
+     */
     forceAnchorFocusivity?: boolean,
 
-    // Where the tooltip should appear in relation to the anchor element.
+    /**
+     * Where the tooltip should appear in relation to the anchor element.
+     */
     placement?: Placement,
 
     // TODO(somewhatabstract): Add other props per spec
