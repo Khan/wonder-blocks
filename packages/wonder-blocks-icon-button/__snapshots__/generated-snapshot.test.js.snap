@@ -23,9 +23,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
   <button
     aria-label="search"
     className=""
-    data-test-id={undefined}
     disabled={false}
-    href={undefined}
     onBlur={[Function]}
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -59,7 +57,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     tabIndex={0}
   >
     <svg
-      aria-label={undefined}
       className=""
       height={24}
       style={
@@ -80,9 +77,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
   <button
     aria-label="search"
     className=""
-    data-test-id={undefined}
     disabled={false}
-    href={undefined}
     onBlur={[Function]}
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -116,7 +111,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     tabIndex={0}
   >
     <svg
-      aria-label={undefined}
       className=""
       height={24}
       style={
@@ -137,9 +131,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
   <button
     aria-label="search"
     className=""
-    data-test-id={undefined}
     disabled={false}
-    href={undefined}
     onBlur={[Function]}
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -173,7 +165,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     tabIndex={0}
   >
     <svg
-      aria-label={undefined}
       className=""
       height={24}
       style={

@@ -52,19 +52,17 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
 
     /** Try to focus the given node. Return true iff successful. */
     _tryToFocus(node: Node) {
-        if (typeof node.focus !== "function") {
-            return;
-        }
+        if (node instanceof HTMLElement) {
+            this._ignoreFocusChanges = true;
+            try {
+                node.focus();
+            } catch (e) {
+                // ignore error
+            }
+            this._ignoreFocusChanges = false;
 
-        this._ignoreFocusChanges = true;
-        try {
-            node.focus();
-        } catch (e) {
-            // ignore error
+            return document.activeElement === node;
         }
-        this._ignoreFocusChanges = false;
-
-        return document.activeElement === node;
     }
 
     /**

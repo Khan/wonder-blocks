@@ -12,15 +12,27 @@ import TooltipTail from "./tooltip-tail.js";
 import type {getRefFn, Offset, Placement} from "../util/types.js";
 
 export type TooltipBubbleProps = {|
+    /** The placement of the bubble with respect to the anchor. */
     placement: Placement,
+
+    /** Whether the bubble is out of bounds or not. */
     outOfBoundaries?: ?boolean,
+
+    /** A callback for updating the ref of the bubble itself. */
     updateBubbleRef?: getRefFn,
+
+    /** A callback for updating the ref of the bubble's tail. */
     updateTailRef?: getRefFn,
+
+    /** Where the tail is to be rendered. */
     tailOffset?: Offset,
+
+    /** Additional styles to be applied by the bubble. */
     style?: any,
 |};
 
 export type Props = {|
+    /** The `TooltipContent` element that will be rendered in the bubble.*/
     children: React.Element<typeof TooltipContent>,
     ...TooltipBubbleProps,
 |};

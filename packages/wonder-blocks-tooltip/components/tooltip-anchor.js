@@ -9,31 +9,38 @@ import * as ReactDOM from "react-dom";
 import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 
 type Props = {|
-    // A method that renders the content for anchoring the tooltip.
-    // This must return a TooltipPortalMounter component.
+    /**
+     * A method that renders the content for anchoring the tooltip.
+     * This must return a TooltipPortalMounter component.
+     */
     children: (active: boolean) => React.Element<typeof TooltipPortalMounter>,
 
-    // Callback to be invoked when the anchored content is mounted.
-    // This provides a reference to the anchored content, which can then be
-    // used for calculating tooltip bubble positioning.
+    /**
+     * Callback to be invoked when the anchored content is mounted.
+     * This provides a reference to the anchored content, which can then be
+     * used for calculating tooltip bubble positioning.
+     */
     anchorRef: (?Element) => mixed,
 
-    // When true, if a tabindex attribute is not already present on the element
-    // wrapped by the anchor, the element will be given tabindex=0 to make it
-    // keyboard focusable; otherwise, does not attempt to change the ability to
-    // focus the anchor element.
-    //
-    // Defaults to true.
-    //
-    // One might set this to false in circumstances where the wrapped component
-    // already can receive focus or contains an element that can.
-    // Use good judgement when overriding this value, the tooltip content should
-    // be accessible via keyboard in all circumstances where the tooltip would
-    // appear using the mouse, so verify those use-cases.
+    /**
+     * When true, if a tabindex attribute is not already present on the element
+     * wrapped by the anchor, the element will be given tabindex=0 to make it
+     * keyboard focusable; otherwise, does not attempt to change the ability to
+     * focus the anchor element.
+     *
+     * Defaults to true.
+     *
+     * One might set this to false in circumstances where the wrapped component
+     * already can receive focus or contains an element that can.
+     * Use good judgement when overriding this value, the tooltip content should
+     * be accessible via keyboard in all circumstances where the tooltip would
+     * appear using the mouse, so verify those use-cases.
+     */
     forceAnchorFocusivity?: boolean,
 |};
 
 type State = {|
+    /** Is the anchor active or not? */
     active: boolean,
 |};
 
