@@ -90,7 +90,7 @@ export default class TooltipAnchor extends React.Component<Props, State>
              * TODO(somewhatabstract): Work out how to allow pointer to go over
              * the tooltip content to keep it active. This likely requires
              * pointer events but that would break the obscurement checks we do.
-             * So, careful consideration required. See
+             * So, careful consideration required. See WB-302.
              */
             anchorNode.addEventListener("focusin", this._handleFocusIn);
             anchorNode.addEventListener("focusout", this._handleFocusOut);
@@ -112,7 +112,9 @@ export default class TooltipAnchor extends React.Component<Props, State>
     }
 
     componentWillUnmount() {
-        this._unsubscribeFromTracker && this._unsubscribeFromTracker();
+        if (this._unsubscribeFromTracker) {
+            this._unsubscribeFromTracker();
+        }
         this._clearPendingAction();
 
         const anchorNode = this._anchorNode;

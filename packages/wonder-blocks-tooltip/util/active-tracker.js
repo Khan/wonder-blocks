@@ -1,8 +1,42 @@
 // @flow
+
+/**
+ * This interface should be implemented by types that are interested in the
+ * notifications of active state being stolen. Generally, this would also be
+ * subscribers that may also steal active state, but not necessarily.
+ *
+ * Once implemented, the type must call subscribe on a tracker to begin
+ * receiving notifications.
+ */
 export interface IActiveTrackerSubscriber {
+    /**
+     * Notification raised when something steals the active state from a
+     * subscribed tracker.
+     */
     activeStateStolen: () => void;
 }
 
+/**
+ * This class is used to track the concept of active state (though technically
+ * that could be any boolean state). The tracker has a variety of subscribers
+ * that receive notifications of state theft and can steal the state.
+ *
+ * For the tooltip, this enables us to have a single tooltip active at any one
+ * time. The tracker allows tooltip anchors to coordinate which of them is
+ * active, and to ensure that if a different one becomes active, all the others
+ * know that they aren't.
+ *
+ * - When notified that the state has been stolen, subscribers can immediately
+ * reflect that theft (in the case of a tooltip, they would hide themselves).
+ * - The thief does not get notified if they were the one who stole the state
+ * since they should already know that they did that (this avoids having to have
+ * checks for reentrancy, for example).
+ * - When the subscriber that owns the state no longer needs it, it can
+ * voluntarily give it up.
+ * - If the state is stolen while a subscriber owns the
+ * state, that subscriber does not give up the state, as it doesn't have it
+ * anymore (it was stolen).
+ */
 export default class ActiveTracker {
     _subscribers: Array<IActiveTrackerSubscriber> = [];
     _active: boolean;
