@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TooltipTail #render unknown placement, throws 1`] = `"Unknown placement: notaplacement"`;
+
+exports[`TooltipTail INTERNALS _calculateDimensionsFromPlacement throws on bad placement 1`] = `"Unknown placement: notaplacement"`;
+
+exports[`TooltipTail INTERNALS _getFilterPositioning throws on bad placement 1`] = `"Unknown placement: notaplacement"`;
+
+exports[`TooltipTail INTERNALS _minDistanceFromCorners throws on bad placement 1`] = `"Unknown placement: notaplacement"`;

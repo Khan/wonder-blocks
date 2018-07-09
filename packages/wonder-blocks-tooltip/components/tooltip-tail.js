@@ -243,7 +243,8 @@ export default class TooltipTail extends React.Component<Props> {
         return ARROW_HEIGHT + DISTANCE_FROM_ANCHOR;
     }
 
-    _getContainerStyle(placement: Placement) {
+    _getContainerStyle() {
+        const {placement} = this.props;
         /**
          * Ensure the container is sized properly for us to be placed correctly
          * by the Popper.js code.
@@ -295,7 +296,8 @@ export default class TooltipTail extends React.Component<Props> {
         }
     }
 
-    _getArrowStyle(placement: Placement) {
+    _getArrowStyle() {
+        const {placement} = this.props;
         const minDistanceFromCorners = this._minDistanceFromCorners(placement);
         switch (placement) {
             case "top":
@@ -332,7 +334,6 @@ export default class TooltipTail extends React.Component<Props> {
     }
 
     _renderArrow() {
-        const {placement} = this.props;
         const {
             trimlinePoints,
             points,
@@ -343,7 +344,7 @@ export default class TooltipTail extends React.Component<Props> {
         return (
             <svg
                 className={css(styles.arrow)}
-                style={this._getArrowStyle(placement)}
+                style={this._getArrowStyle()}
                 width={width}
                 height={height}
             >
@@ -387,7 +388,7 @@ export default class TooltipTail extends React.Component<Props> {
                 style={[
                     styles.tailContainer,
                     offset,
-                    this._getContainerStyle(placement),
+                    this._getContainerStyle(),
                 ]}
                 data-placement={placement}
                 ref={updateRef}
