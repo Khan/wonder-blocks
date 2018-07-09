@@ -179,11 +179,22 @@ export default class TooltipAnchor extends React.Component<Props, State> {
     };
 
     _handleKeyUp = (e: KeyboardEvent) => {
-        const escape = 27;
-        const keyCode = e.which || e.keyCode;
-        if (keyCode === escape && this.state.active) {
+        // We check the key as that's keyboard layout agnostic and also avoids
+        // the minefield of deprecated number type properties like keyCode and
+        // which, with the replacement code, which uses a string instead.
+        if (e.key === "Escape" && this.state.active) {
+            // Stop the event going any further.
+            // For cancellation events, like the Escape key, we generally should
+            // air on the side of caution and only allow it to cancel one thing.
+            // So, it's polite for us to stop propagation of the event.
+            // Otherwise, we end up with UX where one Escape key press
+            // unexpectedly cancels multiple things.
+            //
+            // For example, using Escape to close a tooltip or a dropdown while
+            // displaying a modal and having the modal close as well. This would
+            // be annoyingly bad UX.
             e.preventDefault();
-            e.stopImmediatePropagation();
+            e.stopPropagation();
             this._updateActiveState(false, false);
         }
     };

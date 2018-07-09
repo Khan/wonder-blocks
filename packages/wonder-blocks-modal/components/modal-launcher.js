@@ -125,11 +125,18 @@ class ModalLauncherKeypressListener extends React.Component<{
     }
 
     _handleKeyup = (e: KeyboardEvent) => {
-        const escape = 27;
-        const keyCode = e.which || e.keyCode;
-        if (keyCode === escape) {
+        // We check the key as that's keyboard layout agnostic and also avoids
+        // the minefield of deprecated number type properties like keyCode and
+        // which, with the replacement code, which uses a string instead.
+        if (e.key === "Escape") {
+            // Stop the event going any further.
+            // For cancellation events, like the Escape key, we generally should
+            // air on the side of caution and only allow it to cancel one thing.
+            // So, it's polite for us to stop propagation of the event.
+            // Otherwise, we end up with UX where one Escape key press
+            // unexpectedly cancels multiple things.
             e.preventDefault();
-            e.stopImmediatePropagation();
+            e.stopPropagation();
             this.props.onClose();
         }
     };

@@ -561,17 +561,15 @@ describe("TooltipAnchor", () => {
             // than sending events. We already tested that.
             wrapper.instance()._updateActiveState(false, true);
             const event: KeyboardEvent = (document.createEvent("Event"): any);
+            const spyOnStopPropagation = jest.spyOn(event, "stopPropagation");
             event.key = "Escape";
-            event.which = 27;
             event.initEvent("keyup", true, true);
-            const spyHandler = jest.fn();
-            document.addEventListener("keyup", spyHandler);
 
             // Act
             document.dispatchEvent(event);
 
             // Assert
-            expect(spyHandler).not.toHaveBeenCalled();
+            expect(spyOnStopPropagation).toHaveBeenCalled();
         });
     });
 });
