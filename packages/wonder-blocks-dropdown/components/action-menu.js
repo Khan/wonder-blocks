@@ -193,6 +193,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         key={index}
                         disabled={item.disabled}
                         label={item.label}
+                        /* eslint-disable-next-line react/jsx-handler-names */
                         onClick={item.onClick}
                         onToggle={(value, state) =>
                             this.handleSelected(value, state)
@@ -215,6 +216,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         label={item.label}
                         href={item.href}
                         clientNav={item.clientNav}
+                        /* eslint-disable-next-line react/jsx-handler-names */
                         onClick={item.onClick}
                     />
                 );
