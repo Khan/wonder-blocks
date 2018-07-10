@@ -41,8 +41,8 @@ describe("MultiSelectMenu", () => {
                 saveUpdate(selectedValues);
                 onClick();
             }}
-            placeholder={"Choose"}
-            selectItemType={"students"}
+            placeholder="Choose"
+            selectItemType="students"
             selectedValues={["2"]}
             shortcuts={true}
         />,

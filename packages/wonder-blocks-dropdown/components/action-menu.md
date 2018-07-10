@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
                     href: "http://khanacademy.org/logout",
                 }
             ]}
-            menuText={"Betsy Appleseed"}
-            alignment={"right"}
+            menuText="Betsy Appleseed"
+            alignment="right"
         />
     </View>
 </View>
@@ -130,7 +130,7 @@ class HybridMenu extends React.Component {
                 },
 
             ]}
-            menuText={"Assignments"}
+            menuText="Assignments"
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
         />

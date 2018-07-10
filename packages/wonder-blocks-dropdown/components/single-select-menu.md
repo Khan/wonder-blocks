@@ -49,7 +49,7 @@ class ExampleWithPlaceholder extends React.Component {
             ]}
             light={false}
             onChange={(selected) => this.handleChange(selected)}
-            placeholder={"Choose a fruit"}
+            placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
             style={{
                 width: 170,
@@ -112,7 +112,7 @@ class ExampleWithStartingSelection extends React.Component {
                 },
             ]}
             onChange={(selected) => this.handleChange(selected)}
-            placeholder={"Choose a juice"}
+            placeholder="Choose a juice"
             selectedValue={this.state.selectedValue}
         />;
     }
@@ -170,7 +170,7 @@ class DisabledExample extends React.Component {
                 },
             ]}
             onChange={(selected) => this.handleChange(selected)}
-            placeholder={"Choose a fruit"}
+            placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
         />;
     }
@@ -235,9 +235,9 @@ class LightRightAlignedExample extends React.Component {
             ]}
             light={true}
             onChange={(selected) => this.handleChange(selected)}
-            placeholder={"Boba order"}
+            placeholder="Boba order"
             selectedValue={this.state.selectedValue}
-            alignment={"right"}
+            alignment="right"
         />;
     }
 }

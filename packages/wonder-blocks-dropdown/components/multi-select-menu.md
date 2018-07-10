@@ -60,9 +60,9 @@ class ExampleNoneSelected extends React.Component {
                 },
             ]}
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
-            placeholder={"Choose some colors"}
+            placeholder="Choose some colors"
             selectedValues={this.state.selectedValues}
-            selectItemType={"colors"}
+            selectItemType="colors"
             style={{
                 width: 170,
                 maxWidth: 170,
@@ -133,7 +133,7 @@ class ExampleWithShortcuts extends React.Component {
             shortcuts={true}
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
-            selectItemType={"colors"}
+            selectItemType="colors"
         />;
     }
 }
@@ -182,9 +182,9 @@ class ExampleNoneSelected extends React.Component {
             ]}
             disabled={true}
             onChange={(selectedValues) => this.handleChange(selectedValues)}
-            placeholder={"Choose some colors"}
+            placeholder="Choose some colors"
             selectedValues={this.state.selectedValues}
-            selectItemType={"colors"}
+            selectItemType="colors"
         />;
     }
 }
@@ -254,12 +254,12 @@ class LightRightAlignedExample extends React.Component {
                     value: "5",
                 },
             ]}
-            alignment={"right"}
+            alignment="right"
             light={true}
             shortcuts={true}
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
-            selectItemType={"harry potter books"}
+            selectItemType="harry potter books"
         />;
     }
 }

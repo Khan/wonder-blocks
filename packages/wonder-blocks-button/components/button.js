@@ -9,7 +9,7 @@ export type SharedProps = {|
     /**
      * Text to appear on the button.
      */
-    children: React.Node,
+    children: string,
 
     // TODO: incorporate
     /**

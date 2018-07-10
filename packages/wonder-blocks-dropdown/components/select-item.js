@@ -15,7 +15,15 @@ import {
     getClickableBehavior,
 } from "@khanacademy/wonder-blocks-core";
 
-const {blue, white, offBlack, offBlack32, offBlack50} = Color;
+const {
+    blue,
+    white,
+    offBlack,
+    offBlack16,
+    offBlack32,
+    offBlack50,
+    offWhite,
+} = Color;
 
 type SelectProps = {|
     /**
@@ -62,6 +70,7 @@ type SelectProps = {|
 const StyledButton = addStyle("button");
 
 type CheckProps = {|
+    disabled: boolean,
     selected: boolean,
     pressed: boolean,
     hovered: boolean,
@@ -82,9 +91,13 @@ const Check = (props: CheckProps) => {
 };
 
 const Checkbox = (props: CheckProps) => {
-    const {selected, pressed, hovered, focused} = props;
+    const {disabled, selected, pressed, hovered, focused} = props;
     const activeBlue = mix(offBlack32, blue);
-    const bgColor = selected && !(pressed || hovered || focused) ? blue : white;
+    const bgColor = disabled
+        ? offWhite
+        : selected && !(pressed || hovered || focused)
+            ? blue
+            : white;
 
     return (
         <View
@@ -97,6 +110,7 @@ const Checkbox = (props: CheckProps) => {
                 !selected &&
                     (pressed || hovered || focused) &&
                     styles.invertBackground,
+                disabled && styles.disabledCheckbox,
                 {backgroundColor: bgColor},
             ]}
         >
@@ -160,9 +174,17 @@ export default class SelectItem extends React.Component<SelectProps> {
                                 aria-checked={selected ? "true" : "false"}
                             >
                                 {variant === "check" ? (
-                                    <Check selected={selected} {...state} />
+                                    <Check
+                                        disabled={disabled}
+                                        selected={selected}
+                                        {...state}
+                                    />
                                 ) : (
-                                    <Checkbox selected={selected} {...state} />
+                                    <Checkbox
+                                        disabled={disabled}
+                                        selected={selected}
+                                        {...state}
+                                    />
                                 )}
                                 <View style={[styles.spacing]} />
                                 <LabelLarge style={[styles.label]}>
@@ -238,8 +260,11 @@ const styles = StyleSheet.create({
     },
 
     invertBackground: {
-        backgroundColor: white,
         borderColor: white,
+    },
+
+    disabledCheckbox: {
+        borderColor: offBlack16,
     },
 
     spacing: {

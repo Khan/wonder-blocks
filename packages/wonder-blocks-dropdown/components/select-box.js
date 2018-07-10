@@ -109,7 +109,7 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                             <View style={[styles.spacing]} />
                             <Icon
                                 icon={icons.caretDown}
-                                size={"small"}
+                                size="small"
                                 style={[styles.caret, textStyles]}
                             />
                         </StyledButton>

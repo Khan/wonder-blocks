@@ -50,9 +50,9 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
             // $FlowFixMe: button doesn't allow 'role' yet
             <Button
                 role="menu"
-                color={"default"}
+                color="default"
                 disabled={disabled}
-                kind={"tertiary"}
+                kind="tertiary"
                 light={false}
                 onClick={onClick}
                 style={[styles.opener]}
@@ -60,7 +60,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
                 {children}
                 <Icon
                     icon={icons.caretDown}
-                    size={"small"}
+                    size="small"
                     style={styles.caret}
                 />
             </Button>
@@ -220,7 +220,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                                 : false
                         }
                         value={item.value}
-                        variant={"check"}
+                        variant="check"
                     />
                 );
             } else {
