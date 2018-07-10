@@ -19,6 +19,7 @@ type Props = {|
 |};
 
 const StyledAnchor = addStyle("a");
+// $FlowFixMe: pass props directly to StyledLink instead of to Tag
 const StyledLink = addStyle(Link);
 
 export default class LinkCore extends React.Component<Props> {
