@@ -72,6 +72,7 @@ type ActionProps = {|
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
+// $FlowFixMe: need to ensure we're passing 'to' to Link in a way that flow understands
 const StyledLink = addStyle(Link);
 
 export default class ActionItem extends React.Component<ActionProps> {

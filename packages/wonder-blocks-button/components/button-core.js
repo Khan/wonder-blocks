@@ -23,6 +23,7 @@ type Props = {|
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
+// $FlowFixMe: pass props directly to StyledLink instead of to Tag
 const StyledLink = addStyle(Link);
 
 export default class ButtonCore extends React.Component<Props> {
