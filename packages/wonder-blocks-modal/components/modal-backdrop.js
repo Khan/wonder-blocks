@@ -9,10 +9,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import FocusTrap from "./focus-trap.js";
 import type {ModalElement} from "../util/types.js";
 
-type Props = {
+type Props = {|
     children: ModalElement,
     onCloseModal: () => void,
-};
+|};
 
 /**
  * A private component used by ModalLauncher. This is the fixed-position

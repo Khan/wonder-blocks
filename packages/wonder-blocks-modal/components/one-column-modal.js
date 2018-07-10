@@ -11,7 +11,7 @@ import ModalFooter from "./modal-footer.js";
 
 import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
-type Props = {
+type Props = {|
     /** The modal's content. */
     content: React.Node,
 
@@ -38,7 +38,7 @@ type Props = {
      * @ignore
      */
     mediaSize: MediaSize,
-};
+|};
 
 class ContentWrapper extends React.Component<Props> {
     static defaultProps = {

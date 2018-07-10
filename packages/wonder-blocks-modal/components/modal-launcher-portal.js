@@ -5,9 +5,9 @@ import * as ReactDOM from "react-dom";
 import type {ModalElement} from "../util/types.js";
 import {ModalLauncherPortalAttributeName} from "../util/constants.js";
 
-type Props = {
+type Props = {|
     children: ModalElement,
-};
+|};
 
 /**
  * A private component used by ModalLauncher, that behaves similarly to a React

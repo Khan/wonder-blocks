@@ -48,15 +48,12 @@ describe("IconButtonCore", () => {
                                         icon={icons.search}
                                         aria-label="search"
                                         kind={kind}
-                                        size={size}
                                         color={color}
                                         light={light}
                                         {...stateProps}
                                         {...defaultHandlers}
                                         tabIndex={stateProps.disabled ? -1 : 0}
-                                    >
-                                        Click me
-                                    </IconButtonCore>,
+                                    />,
                                 )
                                 .toJSON();
                             expect(tree).toMatchSnapshot();

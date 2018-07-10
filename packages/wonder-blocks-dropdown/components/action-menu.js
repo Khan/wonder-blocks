@@ -17,7 +17,7 @@ import type {
     SeparatorProps,
 } from "../utils/types.js";
 
-type OpenerProps = {
+type OpenerProps = {|
     /**
      * Display text for the opener.
      */
@@ -30,7 +30,12 @@ type OpenerProps = {
      * Callback for when the opener is pressed.
      */
     onClick: () => void,
-};
+
+    /**
+     * Style to apply to the opener.
+     */
+    style?: any,
+|};
 
 class ActionMenuOpener extends React.Component<OpenerProps> {
     static defaultProps = {
@@ -42,6 +47,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
 
         // TODO: incorporate caret once Icon is done
         return (
+            // $FlowFixMe: button doesn't allow 'role' yet
             <Button
                 role="menu"
                 color={"default"}
@@ -59,7 +65,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
 
 type ItemProps = ActionItemProps | SelectItemProps | SeparatorProps;
 
-type MenuProps = {
+type MenuProps = {|
     /**
      * The items in this menu.
      */
@@ -98,14 +104,14 @@ type MenuProps = {
      * Optional styling to add.
      */
     style?: any,
-};
+|};
 
-type State = {
+type State = {|
     /**
      * Whether or not menu is open.
      */
     open: boolean,
-};
+|};
 
 export default class ActionMenu extends React.Component<MenuProps, State> {
     static defaultProps = {

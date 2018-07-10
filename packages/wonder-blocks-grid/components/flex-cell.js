@@ -7,7 +7,7 @@ import {matchesSize} from "../util/utils.js";
 
 import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
-type Props = {
+type Props = {|
     /** Should this cell be shown on a Small Grid? */
     small?: boolean,
     /** Should this cell be shown on a Medium Grid? */
@@ -37,7 +37,7 @@ type Props = {
      * @ignore
      */
     mediaSpec: MediaSpec,
-};
+|};
 
 /**
  * A flexible-width grid cell. Expands to fill the available space.

@@ -4,10 +4,10 @@ import {StyleSheet} from "aphrodite";
 
 import {MediaLayout, MEDIA_MODAL_SPEC} from "@khanacademy/wonder-blocks-core";
 
-type Props = {
+type Props = {|
     children: React.Node,
     style?: any,
-};
+|};
 
 export default class ModalDialog extends React.Component<Props> {
     render() {

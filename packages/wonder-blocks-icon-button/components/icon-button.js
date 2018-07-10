@@ -1,11 +1,11 @@
 // @flow
 import React from "react";
 
-import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButtonCore from "./icon-button-core.js";
 
-export type SharedProps = {
+export type SharedProps = {|
     /**
      * A Wonder Blocks icon asset, an object specifing paths for one or more of
      * the following sizes: small, medium, large, xlarge.
@@ -63,9 +63,11 @@ export type SharedProps = {
         ...FlexItemStyles,
     }>>,
     */
-};
+|};
 
-type Props = SharedProps & {
+type Props = {|
+    ...SharedProps,
+
     /**
      * URL to navigate to.
      *
@@ -81,7 +83,7 @@ type Props = SharedProps & {
      * navigation by doing history.push(this.props.href) using
      * ReactRouter's history object
      */
-    clientSideNav?: boolean,
+    clientNav?: boolean,
 
     /**
      * Function to call when button is clicked.
@@ -96,7 +98,7 @@ type Props = SharedProps & {
      * href is not
      */
     onClick?: (e: SyntheticEvent<>) => void,
-};
+|};
 
 /**
  * An IconButton is a button whose contents are an SVG image.
@@ -128,13 +130,19 @@ export default class IconButton extends React.Component<Props> {
     };
 
     render() {
-        const {onClick, href, clientSideNav, ...sharedProps} = this.props;
+        const {onClick, href, clientNav, ...sharedProps} = this.props;
+
+        const ClickableBehavior = getClickableBehavior(
+            href,
+            clientNav,
+            this.context.router,
+        );
+
         return (
             <ClickableBehavior
                 disabled={sharedProps.disabled}
                 href={href}
                 onClick={onClick}
-                clientSideNav={clientSideNav}
             >
                 {(state, handlers) => {
                     return (

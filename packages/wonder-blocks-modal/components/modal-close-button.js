@@ -6,7 +6,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
-type Props = {
+type Props = {|
     /**
      * Whether the button icon should be dark (for light backgrounds), or light
      * (for dark backgrounds).
@@ -15,7 +15,7 @@ type Props = {
 
     /** Called when the button is clicked. */
     onClick: () => void,
-};
+|};
 
 /** A close button for modals. */
 export default class ModalCloseButton extends React.Component<Props> {

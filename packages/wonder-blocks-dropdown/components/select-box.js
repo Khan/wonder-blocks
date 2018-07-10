@@ -20,7 +20,7 @@ const {blue, white, offBlack, offBlack16, offBlack32, offBlack50} = Color;
 const caretDown = `M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z`;
 
-type SelectBoxProps = {
+type SelectBoxProps = {|
     /**
      * Display text in the SelectBox.
      */
@@ -53,7 +53,7 @@ type SelectBoxProps = {
      * Custom style. Mostly used for preferred width of this select box.
      */
     style?: any,
-};
+|};
 
 export default class SelectBox extends React.Component<SelectBoxProps> {
     static defaultProps = {

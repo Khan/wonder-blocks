@@ -1,6 +1,6 @@
 // @flow
 
-export type ActionItemProps = {
+export type ActionItemProps = {|
     type: "action",
     /** Whether this item is disabled. Default false. */
     disabled?: boolean,
@@ -12,9 +12,9 @@ export type ActionItemProps = {
     clientNav?: boolean,
     /** Callback on the action. */
     onClick?: () => void,
-};
+|};
 
-export type SelectItemProps = {
+export type SelectItemProps = {|
     type: "select",
     /** Whether this item is disabled. Default false. */
     disabled?: boolean,
@@ -24,8 +24,8 @@ export type SelectItemProps = {
     value: string,
     /** Optional extra callback. Passes whether this item is selected. */
     onClick?: (selected: boolean) => void,
-};
+|};
 
-export type SeparatorProps = {
+export type SeparatorProps = {|
     type: "separator",
-};
+|};

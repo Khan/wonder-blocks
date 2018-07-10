@@ -9,7 +9,7 @@ import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-type DropdownCoreProps = {
+type DropdownCoreProps = {|
     // TODO(sophie): figure out how to type ActionItem | SelectItem | SeperatorItem inline
     /**
      * Items for the menu.
@@ -47,7 +47,7 @@ type DropdownCoreProps = {
      * Optional styling to add to dropdown menu.
      */
     style?: any,
-};
+|};
 
 export default class DropdownCore extends React.Component<DropdownCoreProps> {
     node: ?Node;

@@ -7,7 +7,7 @@ import {flexBasis} from "../util/utils.js";
 
 import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
-type Props = {
+type Props = {|
     /** The width of this cell on a Small Grid (in pixels, %, or other). */
     smallWidth?: number | string,
     /** The width of this cell on a Medium Grid (in pixels, %, or other). */
@@ -40,7 +40,7 @@ type Props = {
      * @ignore
      */
     mediaSpec: MediaSpec,
-};
+|};
 
 /**
  * Fixed-width Cell, its width specified using CSS dimensions (such as pixels,

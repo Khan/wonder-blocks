@@ -7,7 +7,7 @@ import {mediaContextTypes} from "../util/util.js";
 
 import type {MediaSize, MediaSpec} from "../util/types.js";
 
-type Props = {
+type Props = {|
     /**
      * Force the MediaLayout to be a particular size (ignoring the actual
      * dimensions of the viewport).
@@ -29,7 +29,16 @@ type Props = {
 
     /** The contents of the page */
     children: React.Node,
-};
+
+    /**
+     * Style the layout container
+     */
+    style?: any,
+
+    // TODO(kevinb): provide a way to "mixin" allowed roles and aria props
+    role?: "dialog",
+    "aria-labelledby"?: string,
+|};
 
 /**
  * A MediaLayout wraps all parts of a page and tracks the browser viewport, toggling

@@ -4,7 +4,7 @@ import * as React from "react";
 import LinkCore from "./link-core.js";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
-export type SharedProps = {
+export type SharedProps = {|
     /**
      * Text to appear on the link.
      */
@@ -62,9 +62,11 @@ export type SharedProps = {
         ...FlexItemStyles,
     }>>,
     */
-};
+|};
 
-type Props = SharedProps & {
+type Props = {|
+    ...SharedProps,
+
     /**
      * Function to call when button is clicked.
      *
@@ -75,7 +77,7 @@ type Props = SharedProps & {
      * stubbed out.
      */
     onClick?: (e: SyntheticEvent<>) => void,
-};
+|};
 
 /**
  * Reusable link component.

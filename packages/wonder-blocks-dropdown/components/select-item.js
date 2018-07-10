@@ -21,7 +21,7 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
 
 const {blue, white, offBlack, offBlack32} = Color;
 
-type SelectProps = {
+type SelectProps = {|
     /**
      * Display text of the menu item.
      */
@@ -61,16 +61,16 @@ type SelectProps = {
      * Optional client-supplied callback when this item is called.
      */
     onClick?: (oldSelectionState: boolean) => void,
-};
+|};
 
 const StyledButton = addStyle("button");
 
-type CheckProps = {
+type CheckProps = {|
     selected: boolean,
     pressed: boolean,
     hovered: boolean,
     focused: boolean,
-};
+|};
 
 // TODO: return with Icon once it's been made!
 const Check = (props: CheckProps) => {

@@ -10,14 +10,14 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 import Color from "../index.js";
 
-type Props = {
+type Props = {|
     color: string,
     name: string,
     desc: string,
     use: "text" | "icons" | null,
     width: 256,
     segments: 1 | 2 | 3,
-};
+|};
 
 const constants = {
     segmentHeight: 64,
