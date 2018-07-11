@@ -164,6 +164,31 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         }
     }
 
+    getMenuText() {
+        const {items, placeholder, selectItemType, selectedValues} = this.props;
+        // If there is nothing selected, use the placeholder if it exists
+        const noSelectionText = placeholder
+            ? placeholder
+            : `0 ${selectItemType}`;
+        switch (selectedValues.length) {
+            case 0:
+                return noSelectionText;
+            case 1:
+                // If there is one item selected, we display its label. If for
+                // some reason we can't find the selected item, we use the
+                // display text for the case where nothing is selected.
+                const selectedItem = items.find(
+                    (item) => item.value === selectedValues[0],
+                );
+                return selectedItem ? selectedItem.label : noSelectionText;
+            case items.length:
+                // TODO(sophie): Configure i18n for the word "All"
+                return `All ${selectItemType}`;
+            default:
+                return `${selectedValues.length} ${selectItemType}`;
+        }
+    }
+
     getMenuItems() {
         const {items, selectedValues} = this.props;
         const menuItems = items.map((item, index) => {
@@ -187,23 +212,11 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
     }
 
     render() {
-        const {
-            alignment,
-            disabled,
-            light,
-            placeholder,
-            selectItemType,
-            selectedValues,
-            style,
-        } = this.props;
+        const {alignment, disabled, light, style} = this.props;
 
         const {open} = this.state;
 
-        // TODO(sophie): figure out how to configure plurals for i18n
-        const menuText =
-            selectedValues.length === 0 && placeholder
-                ? placeholder
-                : `${selectedValues.length} ${selectItemType}`;
+        const menuText = this.getMenuText();
 
         const opener = (
             <SelectBox
