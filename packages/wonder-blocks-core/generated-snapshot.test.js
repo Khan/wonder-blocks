@@ -87,55 +87,6 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {Row, FlexCell} = require("@khanacademy/wonder-blocks-grid");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            background: {
-                background: Color.offBlack,
-            },
-
-            cell: {
-                height: 100,
-                padding: 5,
-            },
-
-            small: {
-                background: Color.blue,
-            },
-
-            medium: {
-                background: Color.green,
-            },
-
-            large: {
-                background: Color.gold,
-            },
-        });
-
-        const cellStyles = [styles.cell, (size) => styles[size]];
-
-        const example = (
-            <View style={styles.background}>
-                <MediaLayout>
-                    <Row>
-                        <FlexCell style={cellStyles}>
-                            {({totalColumns, mediaSize}) => (
-                                <Text>
-                                    Layout Size: {mediaSize} Total Columns:{" "}
-                                    {totalColumns}
-                                </Text>
-                            )}
-                        </FlexCell>
-                    </Row>
-                </MediaLayout>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 5", () => {
         const example = (
             <NoSSR
                 placeholder={() => (
@@ -156,7 +107,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 5", () => {
         const {
             Body,
             HeadingSmall,
@@ -204,7 +155,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 6", () => {
         const {
             Body,
             BodyMonospace,
@@ -247,7 +198,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 7", () => {
         const {
             Body,
             HeadingSmall,
@@ -274,7 +225,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 8", () => {
         const {
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
