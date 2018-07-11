@@ -14,6 +14,7 @@ import {
     addStyle,
     getClickableBehavior,
 } from "@khanacademy/wonder-blocks-core";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 const {
     blue,
@@ -90,6 +91,12 @@ const Check = (props: CheckProps) => {
     );
 };
 
+// This is a smaller check specifically for use in checkboxes
+const checkboxCheck: IconAsset = {
+    small:
+        "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
+};
+
 const Checkbox = (props: CheckProps) => {
     const {disabled, selected, pressed, hovered, focused} = props;
     const activeBlue = mix(offBlack32, blue);
@@ -116,7 +123,7 @@ const Checkbox = (props: CheckProps) => {
         >
             {selected && (
                 <Icon
-                    icon={icons.check}
+                    icon={checkboxCheck}
                     size={"small"}
                     color={
                         hovered || focused ? blue : pressed ? activeBlue : white
