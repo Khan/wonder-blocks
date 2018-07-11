@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "@khanacademy/wonder-blocks-tooltip",
   "version": "0.0.1",
   "design": "v1",
