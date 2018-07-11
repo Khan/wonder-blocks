@@ -1,19 +1,4 @@
 // @flow
-/**
- * Defer or change rendering until the component did mount.
- *
- * The purpose of this component is to disable or modify serverside rendering
- * of certain components. Disabling rendering on the server, by itself, would
- * not be sufficient, since the initial render of the component must match
- * what is rendered on the server. Therefore, this component also disables
- * rendering the first time around on the client.
- *
- * Example:
- *
- *   <NoSSR placeholder={() => <div>This renders on the server.</div>}>
- *     {() => <div>This will not be rendered on the server.</div>}
- *   </NoSSR>
- */
 import * as React from "react";
 
 /**
@@ -41,6 +26,23 @@ type State = {|
     mounted: boolean,
 |};
 
+/**
+ * Defer or change rendering until the component did mount.
+ *
+ * The purpose of this component is to disable or modify serverside rendering
+ * of certain components. Disabling rendering on the server, by itself, would
+ * not be sufficient, since the initial render of the component must match
+ * what is rendered on the server. Therefore, this component also disables
+ * rendering the first time around on the client.
+ *
+ * Example:
+ *
+ * ```js
+ * <NoSSR placeholder={() => <div>This renders on the server.</div>}>
+ *   {() => <div>This will not be rendered on the server.</div>}
+ * </NoSSR>
+ * ```
+ */
 export default class NoSSR extends React.Component<Props, State> {
     state = {
         mounted: false,

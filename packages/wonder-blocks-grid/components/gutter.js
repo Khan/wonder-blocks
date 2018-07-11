@@ -20,9 +20,6 @@ import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
  * By default (with no properties specified) it will display at all
  * grid sizes. If you specify the `small`, `medium`, or `large`
  * props then the component will only be shown at those grid sizes.
- *
- * @version 1.0
- * @since 1.0
  */
 class Gutter extends React.Component<{
     /** Should this gutter be shown on a Small Grid? */

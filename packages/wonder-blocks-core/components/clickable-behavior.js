@@ -1,54 +1,4 @@
 // @flow
-/**
- * WARNING: Do not use this component directly, use getClickableBehavior instead.
- *
- * Add hover, focus, and active status updates to a clickable component.
- *
- * Via mouse:
- * 1. Hover over button -> hover state
- * 2. Mouse down -> active state
- * 3. Mouse up -> default state
- * 4. Press tab -> focus state
- *
- * Via touch:
- * 1. Touch down -> press state
- * 2. Touch up -> default state
- *
- * Via keyboard:
- * 1. Tab to focus -> focus state
- * 2. Keydown (spacebar/enter) -> active state
- * 3. Keyup (spacebar/enter) -> focus state
- *
- * `ClickableBehavior` accepts a function as `children` which is passed state
- * and an object containing event handlers. The `children` function should
- * return a clickable React Element of some sort.
- *
- * Example:
- *
- * ```js
- * class MyClickableComponent extends React.Component<Props> {
- *     render() {
- *         return <ClickableBehavior
- *             disabled={this.props.disabled}
- *             onClick={this.props.onClick}
- *         >
- *             {({hovered}, handlers) =>
- *                 <RoundRect
- *                      textcolor='white'
- *                      backgroundColor={hovered ? 'red' : 'blue'}}
- *                      {...handlers}
- *                 >
- *                      {this.props.children}
- *                 </RoundRect>
- *             }
- *         </ClickableBehavior>
- *     }
- * }
- * ```
- *
- * This follows a pattern call [Function as Child Components]
- * (https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
- */
 import React from "react";
 
 type Props = {|
@@ -155,6 +105,73 @@ const startState = {
     pressed: false,
 };
 
+/**
+ * Add hover, focus, and active status updates to a clickable component.
+ *
+ * Via mouse:
+ *
+ * 1. Hover over button -> hover state
+ * 2. Mouse down -> active state
+ * 3. Mouse up -> default state
+ * 4. Press tab -> focus state
+ *
+ * Via touch:
+ *
+ * 1. Touch down -> press state
+ * 2. Touch up -> default state
+ *
+ * Via keyboard:
+ *
+ * 1. Tab to focus -> focus state
+ * 2. Keydown (spacebar/enter) -> active state
+ * 3. Keyup (spacebar/enter) -> focus state
+ *
+ * `ClickableBehavior` accepts a function as `children` which is passed state
+ * and an object containing event handlers. The `children` function should
+ * return a clickable React Element of some sort.
+ *
+ * Example:
+ *
+ * ```js
+ * class MyClickableComponent extends React.Component<Props> {
+ *     render() {
+ *         const ClickableBehavior = getClickableBehavior();
+ *         return <ClickableBehavior
+ *             disabled={this.props.disabled}
+ *             onClick={this.props.onClick}
+ *         >
+ *             {({hovered}, handlers) =>
+ *                 <RoundRect
+ *                      textcolor='white'
+ *                      backgroundColor={hovered ? 'red' : 'blue'}}
+ *                      {...handlers}
+ *                 >
+ *                      {this.props.children}
+ *                 </RoundRect>
+ *             }
+ *         </ClickableBehavior>
+ *     }
+ * }
+ * ```
+ *
+ * This follows a pattern call [Function as Child Components]
+ * (https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
+ *
+ * WARNING: Do not use this component directly, use getClickableBehavior
+ * instead. getClickableBehavior takes three arguments (href, clientNav, and
+ * router) and returns either the default ClickableBehavior or a react-router
+ * aware version.
+ *
+ * The react-router aware version is return if the following conditions are met:
+ *
+ * - `href` is an external URL
+ * - `clientNav` is `true`
+ * - `router` is a react-router-dom router.
+ *
+ * The `router` can be accessed via this.context.router from a component
+ * rendered as a descendant of a BrowserRouter.
+ * See https://reacttraining.com/react-router/web/guides/basic-components.
+ */
 export default class ClickableBehavior extends React.Component<Props, State> {
     waitingForClick: boolean;
     keyboardClick: boolean;

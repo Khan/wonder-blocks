@@ -7924,7 +7924,7 @@ react-docgen@^2.20.1:
     node-dir "^0.1.10"
     recast "^0.12.6"
 
-react-docgen@^3.0.0-beta11:
+react-docgen@^3.0.0-beta12:
   version "3.0.0-beta9"
   resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-3.0.0-beta9.tgz#6be987e640786ecb10ce2dd22157a022c8285e95"
   dependencies:
@@ -7969,6 +7969,10 @@ react-is@^16.4.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
 
+react-lifecycles-compat@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
 react-popper@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-1.0.0.tgz#b99452144e8fe4acc77fa3d959a8c79e07a65084"
@@ -8012,9 +8016,9 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-styleguidist@^7.0.5:
-  version "7.0.16"
-  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-7.0.16.tgz#9d62aa52c94a65634198ea31ee3b17eac37e1328"
+react-styleguidist@^7.0.20:
+  version "7.0.20"
+  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-7.0.20.tgz#b221b108e85bcd4c0852059dfbf4da2e3673732d"
   dependencies:
     "@vxna/mini-html-webpack-template" "^0.1.7"
     acorn "^5.5.3"
@@ -8060,11 +8064,12 @@ react-styleguidist@^7.0.5:
     q-i "^2.0.1"
     react-codemirror2 "^4.2.1"
     react-dev-utils "^5.0.0"
-    react-docgen "^3.0.0-beta11"
+    react-docgen "^3.0.0-beta12"
     react-docgen-annotation-resolver "^1.0.0"
     react-docgen-displayname-handler "^1.0.1"
     react-group "^1.0.5"
     react-icons "^2.2.7"
+    react-lifecycles-compat "^3.0.4"
     remark "^9.0.0"
     style-loader "^0.20.3"
     to-ast "^1.0.0"

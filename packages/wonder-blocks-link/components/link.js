@@ -62,10 +62,11 @@ export type SharedProps = {|
         ...FlexItemStyles,
     }>>,
     */
-|};
 
-type Props = {|
-    ...SharedProps,
+    // NOTE(jeresig): Currently React Docgen (used by Styleguidist) doesn't
+    // support ... inside of an exact object type. Thus we had to move the
+    // following propers into this SharedProps, even though they should be
+    // external. Once that's fixed we can split them back apart.
 
     /**
      * Function to call when button is clicked.
@@ -96,7 +97,7 @@ type Props = {|
  * </Link>
  * ```
  */
-export default class Link extends React.Component<Props> {
+export default class Link extends React.Component<SharedProps> {
     static defaultProps = {
         caret: false,
         kind: "primary",

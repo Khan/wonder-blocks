@@ -8,17 +8,17 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import Spring from "./components/spring.js";
+import Strut from "./components/strut.js";
 
 describe("wonder-blocks-layout", () => {
     it("example 1", () => {
         const {StyleSheet} = require("aphrodite");
-        const {View, addStyle} = require("@khanacademy/wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const Color = require("@khanacademy/wonder-blocks-color").default;
         const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+        const Button = require("@khanacademy/wonder-blocks-button").default;
         const {Spring, Strut} = require("./index.js");
-
-        // TODO(kevinb): replace with wonder-blocks-button once yarn workspaces land
-        const Button = addStyle("button");
 
         const styles = StyleSheet.create({
             container: {
@@ -26,11 +26,7 @@ describe("wonder-blocks-layout", () => {
                 border: `solid 1px ${Color.offBlack50}`,
             },
             button: {
-                fontSize: 24,
                 width: 100,
-                borderRadius: 4,
-                border: "none",
-                height: 40,
             },
         });
 
