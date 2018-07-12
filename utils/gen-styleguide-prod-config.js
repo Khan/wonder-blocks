@@ -73,36 +73,6 @@ function writeStyleguideConfig(filepath, config) {
 }
 
 /**
- * This function recurses through the sections and sub-sections, removing
- * any that are marked as private. It returns the modified array with the
- * private sections removed.
- */
-function removePrivateSections(sections) {
-    if (!sections) {
-        return sections;
-    }
-    for (let i = sections.length; i > 0; i--) {
-        const sectionIndex = i - 1;
-        if (sections[sectionIndex].private) {
-            // eslint-disable-next-line no-console
-            console.log(
-                `Removing private section ${sections[sectionIndex].name}`,
-            );
-
-            // If the section is private, we presume all content of the section is
-            // private too.
-            sections.splice(sectionIndex, 1);
-        } else {
-            // And now, we move into the chilren of the section and repeat.
-            sections[sectionIndex].sections = removePrivateSections(
-                sections[sectionIndex].sections,
-            );
-        }
-    }
-    return sections;
-}
-
-/**
  * This uses the section content and component paths to try and determine a
  * wonder blocks package folder path. If it can, it returns that path,
  * otherwise it returns null.
@@ -181,31 +151,54 @@ function maybeGetPackageInfoForSection(section) {
 }
 
 /**
+ * This function recurses through the sections and sub-sections, removing
+ * any that are marked as private. It returns the modified array with the
+ * private sections removed.
+ */
+function removePrivateSections(sections) {
+    if (!sections) {
+        return sections;
+    }
+
+    for (let i = sections.length; i > 0; i--) {
+        const sectionIndex = i - 1;
+        if (sections[sectionIndex].private) {
+            // eslint-disable-next-line no-console
+            console.log(
+                `Removing private section ${sections[sectionIndex].name}`,
+            );
+
+            // If the section is private, we presume all content of the section is
+            // private too.
+            sections.splice(sectionIndex, 1);
+        } else {
+            // And now, we move into the chilren of the section and repeat.
+            sections[sectionIndex].sections = removePrivateSections(
+                sections[sectionIndex].sections,
+            );
+        }
+    }
+    return sections;
+}
+
+/**
  *
  *
  * This is where the magic begins!
  *
  *
  */
-// See https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
-if (process.env.PULL_REQUEST !== "true") {
-    // If we're not a pull request, then let's iterate over the configuration
-    // and remove private sections.
-    styleguideConfig.sections = removePrivateSections(
-        styleguideConfig.sections,
-    );
-}
-
 // Here we process the root level sections and augment their descriptions
-// with some additional package information.
+// with some additional package information. We also mark prototype packages
+// as private, so that we can strip them if needed.
 for (const section of styleguideConfig.sections) {
     const info = maybeGetPackageInfoForSection(section);
     if (info) {
         // eslint-disable-next-line no-console
         console.log(
-            `Adding package information for ${
-                section.name
-            }: ${JSON.stringify(info)}`,
+            `Adding package information for ${section.name}: ${JSON.stringify(
+                info,
+            )}`,
         );
         // Let's add some info!
         const currentDescription = section.description;
@@ -215,11 +208,25 @@ for (const section of styleguideConfig.sections) {
             `Design Specification: **${info.design}**\n`,
             currentDescription,
         ];
+        // If this is a prototype, then we don't want this in the prod
+        // documentation.
+        if (info.prototype) {
+            section.private = true;
+        }
         section.description = lines.filter((l) => !!l).join("  \n");
     } else {
         // eslint-disable-next-line no-console
         console.log(`No package information found for ${section.name}`);
     }
+}
+
+// See https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
+if (process.env.PULL_REQUEST !== "true") {
+    // If we're not a pull request, then let's iterate over the configuration
+    // and remove private sections.
+    styleguideConfig.sections = removePrivateSections(
+        styleguideConfig.sections,
+    );
 }
 
 // Finally, we output the results.
