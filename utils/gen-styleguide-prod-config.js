@@ -73,6 +73,37 @@ function writeStyleguideConfig(filepath, config) {
 }
 
 /**
+ * This function recurses through the sections and sub-sections, removing
+ * any that are marked as private. It returns the modified array with the
+ * private sections removed.
+ */
+function removePrivateSections(sections) {
+    if (!sections) {
+        return sections;
+    }
+
+    for (let i = sections.length; i > 0; i--) {
+        const sectionIndex = i - 1;
+        if (sections[sectionIndex].private) {
+            // eslint-disable-next-line no-console
+            console.log(
+                `Removing private section ${sections[sectionIndex].name}`,
+            );
+
+            // If the section is private, we presume all content of the section is
+            // private too.
+            sections.splice(sectionIndex, 1);
+        } else {
+            // And now, we move into the chilren of the section and repeat.
+            sections[sectionIndex].sections = removePrivateSections(
+                sections[sectionIndex].sections,
+            );
+        }
+    }
+    return sections;
+}
+
+/**
  * This uses the section content and component paths to try and determine a
  * wonder blocks package folder path. If it can, it returns that path,
  * otherwise it returns null.
@@ -148,37 +179,6 @@ function maybeGetPackageInfoForSection(section) {
     } else {
         return null;
     }
-}
-
-/**
- * This function recurses through the sections and sub-sections, removing
- * any that are marked as private. It returns the modified array with the
- * private sections removed.
- */
-function removePrivateSections(sections) {
-    if (!sections) {
-        return sections;
-    }
-
-    for (let i = sections.length; i > 0; i--) {
-        const sectionIndex = i - 1;
-        if (sections[sectionIndex].private) {
-            // eslint-disable-next-line no-console
-            console.log(
-                `Removing private section ${sections[sectionIndex].name}`,
-            );
-
-            // If the section is private, we presume all content of the section is
-            // private too.
-            sections.splice(sectionIndex, 1);
-        } else {
-            // And now, we move into the chilren of the section and repeat.
-            sections[sectionIndex].sections = removePrivateSections(
-                sections[sectionIndex].sections,
-            );
-        }
-    }
-    return sections;
 }
 
 /**
