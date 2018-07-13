@@ -126,8 +126,17 @@ const Checkbox = (props: CheckProps) => {
                     icon={checkboxCheck}
                     size={"small"}
                     color={
-                        hovered || focused ? blue : pressed ? activeBlue : white
+                        disabled
+                            ? offBlack32
+                            : hovered || focused
+                                ? blue
+                                : pressed
+                                    ? activeBlue
+                                    : white
                     }
+                    style={[
+                        disabled && selected && styles.disabledCheckFormatting,
+                    ]}
                 />
             )}
         </View>
@@ -272,6 +281,16 @@ const styles = StyleSheet.create({
 
     disabledCheckbox: {
         borderColor: offBlack16,
+        borderWidth: 1,
+        backgroundColor: offWhite,
+    },
+
+    // The border of 1px on the selected, disabled checkbox pushes the check out
+    // of place. Move it back.
+    disabledCheckFormatting: {
+        position: "absolute",
+        top: -1,
+        left: -1,
     },
 
     spacing: {
