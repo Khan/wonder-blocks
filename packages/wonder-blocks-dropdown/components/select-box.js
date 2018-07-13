@@ -193,27 +193,13 @@ const styles = StyleSheet.create({
 });
 
 const _generateStyles = (light, hovered, focused, pressed) => {
-    const focusRingGap = 1;
     const focusRingWidth = 2;
-    const focusRingOutset = focusRingGap + focusRingWidth;
-    const focusRingRadius = buttonRadius + focusRingOutset;
 
     let newStyles = {};
     if (light) {
         newStyles = {
             focus: {
-                ":before": {
-                    content: "''",
-                    position: "absolute",
-                    top: -focusRingOutset,
-                    left: -focusRingOutset,
-                    right: -focusRingOutset,
-                    bottom: -focusRingOutset,
-                    borderColor: white,
-                    borderStyle: "solid",
-                    borderWidth: focusRingWidth,
-                    borderRadius: focusRingRadius,
-                },
+                boxShadow: `0 0 0 1px currentColor, 0 0 0 3px ${white}`,
             },
             active: {
                 background: mix(fade(blue, 0.32), white),

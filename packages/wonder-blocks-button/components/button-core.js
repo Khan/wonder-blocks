@@ -159,7 +159,7 @@ const _generateStyles = (color, kind, light) => {
                 color: light ? color : white,
             },
             focus: {
-                boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${
+                boxShadow: `0 0 0 1px currentColor, 0 0 0 3px ${
                     light ? white : color
                 }`,
             },
