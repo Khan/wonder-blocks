@@ -234,12 +234,11 @@ export default class TooltipTail extends React.Component<Props> {
         }
     }
 
-    _getFullTailWidth(placement: Placement) {
-        const minDistanceFromCorners = this._minDistanceFromCorners(placement);
-        return ARROW_WIDTH + 2 * minDistanceFromCorners;
+    _getFullTailWidth() {
+        return ARROW_WIDTH + 2 * MIN_DISTANCE_FROM_CORNERS;
     }
 
-    _getFullTailHeight(placement: Placement) {
+    _getFullTailHeight() {
         return ARROW_HEIGHT + DISTANCE_FROM_ANCHOR;
     }
 
@@ -259,8 +258,8 @@ export default class TooltipTail extends React.Component<Props> {
          * (i.e. placement="top"). When the tail points to the left or right
          * instead, the width/height are inverted.
          */
-        const fullTailWidth = this._getFullTailWidth(placement);
-        const fullTailHeight = this._getFullTailHeight(placement);
+        const fullTailWidth = this._getFullTailWidth();
+        const fullTailHeight = this._getFullTailHeight();
 
         switch (placement) {
             case "top":
@@ -298,33 +297,32 @@ export default class TooltipTail extends React.Component<Props> {
 
     _getArrowStyle() {
         const {placement} = this.props;
-        const minDistanceFromCorners = this._minDistanceFromCorners(placement);
         switch (placement) {
             case "top":
                 return {
-                    marginLeft: minDistanceFromCorners,
-                    marginRight: minDistanceFromCorners,
+                    marginLeft: MIN_DISTANCE_FROM_CORNERS,
+                    marginRight: MIN_DISTANCE_FROM_CORNERS,
                     paddingBottom: DISTANCE_FROM_ANCHOR,
                 };
 
             case "right":
                 return {
-                    marginTop: minDistanceFromCorners,
-                    marginBottom: minDistanceFromCorners,
+                    marginTop: MIN_DISTANCE_FROM_CORNERS,
+                    marginBottom: MIN_DISTANCE_FROM_CORNERS,
                     paddingLeft: DISTANCE_FROM_ANCHOR,
                 };
 
             case "bottom":
                 return {
-                    marginLeft: minDistanceFromCorners,
-                    marginRight: minDistanceFromCorners,
+                    marginLeft: MIN_DISTANCE_FROM_CORNERS,
+                    marginRight: MIN_DISTANCE_FROM_CORNERS,
                     paddingTop: DISTANCE_FROM_ANCHOR,
                 };
 
             case "left":
                 return {
-                    marginTop: minDistanceFromCorners,
-                    marginBottom: minDistanceFromCorners,
+                    marginTop: MIN_DISTANCE_FROM_CORNERS,
+                    marginBottom: MIN_DISTANCE_FROM_CORNERS,
                     paddingRight: DISTANCE_FROM_ANCHOR,
                 };
 
@@ -406,6 +404,8 @@ export default class TooltipTail extends React.Component<Props> {
  * the width/height are inverted.
  */
 const DISTANCE_FROM_ANCHOR = Spacing.xSmall;
+
+const MIN_DISTANCE_FROM_CORNERS = Spacing.xSmall;
 
 const ARROW_WIDTH = Spacing.large;
 const ARROW_HEIGHT = Spacing.small;
