@@ -75,22 +75,11 @@ exports[`ButtonCore kind:primary color:default size:default light:false focused 
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#1865f2",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -145,22 +134,11 @@ exports[`ButtonCore kind:primary color:default size:default light:false hovered 
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#1865f2",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -331,22 +309,11 @@ exports[`ButtonCore kind:primary color:default size:default light:true focused 1
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -401,22 +368,11 @@ exports[`ButtonCore kind:primary color:default size:default light:true hovered 1
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -587,22 +543,11 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#1865f2",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -657,22 +602,11 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#1865f2",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -843,22 +777,11 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -913,22 +836,11 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -1099,22 +1011,11 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false focu
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#d92916",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1169,22 +1070,11 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false hove
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#d92916",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1355,22 +1245,11 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true focus
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1425,22 +1304,11 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true hover
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1611,22 +1479,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#d92916",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1681,22 +1538,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#d92916",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1867,22 +1713,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1937,22 +1772,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px currentColor, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",

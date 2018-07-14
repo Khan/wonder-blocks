@@ -121,6 +121,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
 const styles = StyleSheet.create({
     menuWrapper: {
         alignItems: "flex-start",
+        backgroundColor: "inherit",
     },
 
     rightAlign: {
