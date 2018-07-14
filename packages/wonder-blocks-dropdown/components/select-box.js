@@ -2,6 +2,7 @@
 // A menu opener
 
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
@@ -56,12 +57,24 @@ type SelectBoxProps = {|
 |};
 
 export default class SelectBox extends React.Component<SelectBoxProps> {
+    parentBackgroundColor: ?string;
+    node: ?Node;
+
     static defaultProps = {
         disabled: false,
         light: false,
         isPlaceholder: false,
     };
 
+    componentDidMount() {
+        if (this.props.light && this.node && !this.parentBackgroundColor) {
+            const style = window.getComputedStyle(this.node);
+            const color = style.getPropertyValue("background-color");
+            this.parentBackgroundColor = color;
+            // This update force happens only once because now we have the parent background color
+            this.forceUpdate();
+        }
+    }
     // TODO(sophie): replace with Icon component
     renderCaret() {
         return (
@@ -104,33 +117,44 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
         return (
             <ClickableBehavior disabled={disabled} onClick={onClick}>
                 {(state, handlers) => {
-                    const stateStyles = _generateStyles(light, {...state});
+                    const stateStyles = _generateStyles(
+                        light,
+                        {...state},
+                        this.parentBackgroundColor,
+                    );
                     const {hovered, focused, pressed} = state;
                     return (
-                        <StyledButton
-                            disabled={disabled}
-                            role="menu"
-                            style={[
-                                styles.shared,
-                                stateStyles.default,
-                                disabled && stateStyles.disabled,
-                                !disabled &&
-                                    (pressed
-                                        ? stateStyles.active
-                                        : (hovered || focused) &&
-                                          stateStyles.focus),
-                                style,
-                            ]}
+                        <View
+                            ref={(node) =>
+                                (this.node = ReactDOM.findDOMNode(node))
+                            }
+                            style={{backgroundColor: "inherit"}}
                             {...handlers}
                         >
-                            <LabelMedium style={[textStyles]}>
-                                {children}
-                            </LabelMedium>
-                            <View style={[styles.spacing]} />
-                            <View style={[styles.caretWrapper]}>
-                                {this.renderCaret()}
-                            </View>
-                        </StyledButton>
+                            <StyledButton
+                                disabled={disabled}
+                                role="menu"
+                                style={[
+                                    styles.shared,
+                                    stateStyles.default,
+                                    disabled && stateStyles.disabled,
+                                    !disabled &&
+                                        (pressed
+                                            ? stateStyles.active
+                                            : (hovered || focused) &&
+                                              stateStyles.focus),
+                                    style,
+                                ]}
+                            >
+                                <LabelMedium style={[textStyles]}>
+                                    {children}
+                                </LabelMedium>
+                                <View style={[styles.spacing]} />
+                                <View style={[styles.caretWrapper]}>
+                                    {this.renderCaret()}
+                                </View>
+                            </StyledButton>
+                        </View>
                     );
                 }}
             </ClickableBehavior>
@@ -192,14 +216,21 @@ const styles = StyleSheet.create({
     },
 });
 
-const _generateStyles = (light, hovered, focused, pressed) => {
+const _generateStyles = (
+    light,
+    hovered,
+    focused,
+    pressed,
+    parentBackground,
+) => {
     const focusRingWidth = 2;
 
     let newStyles = {};
     if (light) {
         newStyles = {
             focus: {
-                boxShadow: `0 0 0 1px currentColor, 0 0 0 3px ${white}`,
+                boxShadow: `0 0 0 1px ${parentBackground ||
+                    "currentColor"}, 0 0 0 3px ${white}`,
             },
             active: {
                 background: mix(fade(blue, 0.32), white),

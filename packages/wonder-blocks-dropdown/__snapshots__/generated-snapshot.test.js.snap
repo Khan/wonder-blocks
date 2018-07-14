@@ -46,6 +46,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       style={
         Object {
           "alignItems": "flex-end",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -468,6 +469,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
+        "backgroundColor": "inherit",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -1088,6 +1090,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
+        "backgroundColor": "inherit",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -1102,9 +1105,8 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       }
     }
   >
-    <button
+    <div
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -1116,106 +1118,128 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
-          "borderRadius": 4,
+          "alignItems": "stretch",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
-          "borderWidth": 1,
+          "borderWidth": 0,
           "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "space-between",
-          "marginBottom": 4,
-          "marginTop": 4,
-          "maxWidth": 170,
-          "outline": "none",
-          "paddingLeft": 16,
-          "paddingRight": 12,
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
           "position": "relative",
-          "textDecoration": "none",
-          "whiteSpace": "nowrap",
-          "width": 170,
+          "zIndex": 0,
         }
       }
       tabIndex={0}
     >
-      <span
+      <button
         className=""
+        disabled={false}
+        role="menu"
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.50)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+            "marginTop": 4,
+            "maxWidth": 170,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 12,
+            "position": "relative",
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
+            "width": 170,
           }
         }
       >
-        Choose a fruit
-      </span>
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 8,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+            }
           }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
         >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+          Choose a fruit
+        </span>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 8,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 16,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            aria-hidden={true}
+            height={16}
+            role="img"
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
-    </button>
+            />
+          </svg>
+        </div>
+      </button>
+    </div>
     <div
       className=""
       style={
@@ -1637,6 +1661,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
+        "backgroundColor": "inherit",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -1651,9 +1676,8 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       }
     }
   >
-    <button
+    <div
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -1665,104 +1689,126 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
-          "borderRadius": 4,
+          "alignItems": "stretch",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
-          "borderWidth": 1,
+          "borderWidth": 0,
           "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "space-between",
-          "marginBottom": 4,
-          "marginTop": 4,
-          "outline": "none",
-          "paddingLeft": 16,
-          "paddingRight": 12,
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
           "position": "relative",
-          "textDecoration": "none",
-          "whiteSpace": "nowrap",
+          "zIndex": 0,
         }
       }
       tabIndex={0}
     >
-      <span
+      <button
         className=""
+        disabled={false}
+        role="menu"
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.50)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+            "marginTop": 4,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 12,
+            "position": "relative",
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
-        Banana juice!!!
-      </span>
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 8,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+            }
           }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
         >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+          Banana juice!!!
+        </span>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 8,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 16,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            aria-hidden={true}
+            height={16}
+            role="img"
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
-    </button>
+            />
+          </svg>
+        </div>
+      </button>
+    </div>
     <div
       className=""
       style={
@@ -2190,6 +2236,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
+        "backgroundColor": "inherit",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -2204,9 +2251,8 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       }
     }
   >
-    <button
+    <div
       className=""
-      disabled={true}
       onBlur={[Function]}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -2218,105 +2264,127 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.16)",
-          "borderRadius": 4,
+          "alignItems": "stretch",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
-          "borderWidth": 1,
+          "borderWidth": 0,
           "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "auto",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "space-between",
-          "marginBottom": 4,
-          "marginTop": 4,
-          "outline": "none",
-          "paddingLeft": 16,
-          "paddingRight": 12,
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
           "position": "relative",
-          "textDecoration": "none",
-          "whiteSpace": "nowrap",
+          "zIndex": 0,
         }
       }
       tabIndex={-1}
     >
-      <span
+      <button
         className=""
+        disabled={true}
+        role="menu"
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "color": "rgba(33,36,44,0.32)",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.16)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "cursor": "auto",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+            "marginTop": 4,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 12,
+            "position": "relative",
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
-        Banana juice!!!
-      </span>
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 8,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "color": "rgba(33,36,44,0.32)",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+            }
           }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
         >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+          Banana juice!!!
+        </span>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 8,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 16,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            aria-hidden={true}
+            height={16}
+            role="img"
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
-    </button>
+            />
+          </svg>
+        </div>
+      </button>
+    </div>
     <div
       className=""
       style={
@@ -2767,6 +2835,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
       style={
         Object {
           "alignItems": "flex-end",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -2781,9 +2850,8 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         }
       }
     >
-      <button
+      <div
         className=""
-        disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2795,101 +2863,123 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
-        role="menu"
         style={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "border": "none",
-            "borderRadius": 4,
+            "alignItems": "stretch",
+            "backgroundColor": "inherit",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "#21242c",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "space-between",
-            "marginBottom": 4,
-            "marginTop": 4,
-            "outline": "none",
-            "paddingLeft": 16,
-            "paddingRight": 12,
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
             "position": "relative",
-            "textDecoration": "none",
-            "whiteSpace": "nowrap",
+            "zIndex": 0,
           }
         }
         tabIndex={0}
       >
-        <span
+        <button
           className=""
+          disabled={false}
+          role="menu"
           style={
             Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "display": "block",
-              "fontFamily": "Lato",
-              "fontSize": 16,
-              "fontWeight": 400,
-              "lineHeight": "20px",
-              "overflow": "hidden",
-              "textOverflow": "ellipsis",
+              "alignItems": "center",
+              "backgroundColor": "#ffffff",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginBottom": 4,
+              "marginTop": 4,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 12,
+              "position": "relative",
+              "textDecoration": "none",
+              "whiteSpace": "nowrap",
             }
           }
         >
-          Boba order
-        </span>
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 8,
-              "padding": 0,
-              "position": "relative",
-              "zIndex": 0,
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+              }
             }
-          }
-        />
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 16,
-              "padding": 0,
-              "position": "relative",
-              "zIndex": 0,
-            }
-          }
-        >
-          <svg
-            aria-hidden={true}
-            height={16}
-            role="img"
-            viewBox="0 0 16 16"
-            width={16}
           >
-            <path
-              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+            Boba order
+          </span>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <svg
+              aria-hidden={true}
+              height={16}
+              role="img"
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            />
-          </svg>
-        </div>
-      </button>
+              />
+            </svg>
+          </div>
+        </button>
+      </div>
       <div
         className=""
         style={
@@ -3310,6 +3400,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
+        "backgroundColor": "inherit",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -3324,9 +3415,8 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
       }
     }
   >
-    <button
+    <div
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -3338,106 +3428,128 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
-          "borderRadius": 4,
+          "alignItems": "stretch",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
-          "borderWidth": 1,
+          "borderWidth": 0,
           "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "space-between",
-          "marginBottom": 4,
-          "marginTop": 4,
-          "maxWidth": 170,
-          "outline": "none",
-          "paddingLeft": 16,
-          "paddingRight": 12,
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
           "position": "relative",
-          "textDecoration": "none",
-          "whiteSpace": "nowrap",
-          "width": 170,
+          "zIndex": 0,
         }
       }
       tabIndex={0}
     >
-      <span
+      <button
         className=""
+        disabled={false}
+        role="menu"
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.50)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+            "marginTop": 4,
+            "maxWidth": 170,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 12,
+            "position": "relative",
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
+            "width": 170,
           }
         }
       >
-        Choose some colors
-      </span>
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 8,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+            }
           }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
         >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+          Choose some colors
+        </span>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 8,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 16,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            aria-hidden={true}
+            height={16}
+            role="img"
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
-    </button>
+            />
+          </svg>
+        </div>
+      </button>
+    </div>
     <div
       className=""
       style={
@@ -4069,6 +4181,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
+        "backgroundColor": "inherit",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -4083,9 +4196,8 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       }
     }
   >
-    <button
+    <div
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -4097,104 +4209,126 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
-          "borderRadius": 4,
+          "alignItems": "stretch",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
-          "borderWidth": 1,
+          "borderWidth": 0,
           "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "space-between",
-          "marginBottom": 4,
-          "marginTop": 4,
-          "outline": "none",
-          "paddingLeft": 16,
-          "paddingRight": 12,
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
           "position": "relative",
-          "textDecoration": "none",
-          "whiteSpace": "nowrap",
+          "zIndex": 0,
         }
       }
       tabIndex={0}
     >
-      <span
+      <button
         className=""
+        disabled={false}
+        role="menu"
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.50)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+            "marginTop": 4,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 12,
+            "position": "relative",
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
-        1 colors
-      </span>
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 8,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+            }
           }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
         >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+          1 colors
+        </span>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 8,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 16,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            aria-hidden={true}
+            height={16}
+            role="img"
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
-    </button>
+            />
+          </svg>
+        </div>
+      </button>
+    </div>
     <div
       className=""
       style={
@@ -5014,6 +5148,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
+        "backgroundColor": "inherit",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -5028,9 +5163,8 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       }
     }
   >
-    <button
+    <div
       className=""
-      disabled={true}
       onBlur={[Function]}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -5042,105 +5176,127 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.16)",
-          "borderRadius": 4,
+          "alignItems": "stretch",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
-          "borderWidth": 1,
+          "borderWidth": 0,
           "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "auto",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "space-between",
-          "marginBottom": 4,
-          "marginTop": 4,
-          "outline": "none",
-          "paddingLeft": 16,
-          "paddingRight": 12,
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
           "position": "relative",
-          "textDecoration": "none",
-          "whiteSpace": "nowrap",
+          "zIndex": 0,
         }
       }
       tabIndex={-1}
     >
-      <span
+      <button
         className=""
+        disabled={true}
+        role="menu"
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "color": "rgba(33,36,44,0.32)",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "border": "none",
+            "borderColor": "rgba(33,36,44,0.16)",
+            "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "boxSizing": "border-box",
+            "color": "#21242c",
+            "cursor": "auto",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+            "marginTop": 4,
+            "outline": "none",
+            "paddingLeft": 16,
+            "paddingRight": 12,
+            "position": "relative",
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
-        Choose some colors
-      </span>
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 8,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "color": "rgba(33,36,44,0.32)",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+            }
           }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
         >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+          Choose some colors
+        </span>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 8,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 16,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            aria-hidden={true}
+            height={16}
+            role="img"
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
-    </button>
+            />
+          </svg>
+        </div>
+      </button>
+    </div>
     <div
       className=""
       style={
@@ -5337,6 +5493,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
       style={
         Object {
           "alignItems": "flex-end",
+          "backgroundColor": "inherit",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -5351,9 +5508,8 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
         }
       }
     >
-      <button
+      <div
         className=""
-        disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -5365,101 +5521,123 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
-        role="menu"
         style={
           Object {
-            "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "border": "none",
-            "borderRadius": 4,
+            "alignItems": "stretch",
+            "backgroundColor": "inherit",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "#21242c",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "space-between",
-            "marginBottom": 4,
-            "marginTop": 4,
-            "outline": "none",
-            "paddingLeft": 16,
-            "paddingRight": 12,
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
             "position": "relative",
-            "textDecoration": "none",
-            "whiteSpace": "nowrap",
+            "zIndex": 0,
           }
         }
         tabIndex={0}
       >
-        <span
+        <button
           className=""
+          disabled={false}
+          role="menu"
           style={
             Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "display": "block",
-              "fontFamily": "Lato",
-              "fontSize": 16,
-              "fontWeight": 400,
-              "lineHeight": "20px",
-              "overflow": "hidden",
-              "textOverflow": "ellipsis",
+              "alignItems": "center",
+              "backgroundColor": "#ffffff",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginBottom": 4,
+              "marginTop": 4,
+              "outline": "none",
+              "paddingLeft": 16,
+              "paddingRight": 12,
+              "position": "relative",
+              "textDecoration": "none",
+              "whiteSpace": "nowrap",
             }
           }
         >
-          1 harry potter books
-        </span>
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 8,
-              "padding": 0,
-              "position": "relative",
-              "zIndex": 0,
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+              }
             }
-          }
-        />
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 16,
-              "padding": 0,
-              "position": "relative",
-              "zIndex": 0,
-            }
-          }
-        >
-          <svg
-            aria-hidden={true}
-            height={16}
-            role="img"
-            viewBox="0 0 16 16"
-            width={16}
           >
-            <path
-              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
+            1 harry potter books
+          </span>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 8,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 16,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <svg
+              aria-hidden={true}
+              height={16}
+              role="img"
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            />
-          </svg>
-        </div>
-      </button>
+              />
+            </svg>
+          </div>
+        </button>
+      </div>
       <div
         className=""
         style={
