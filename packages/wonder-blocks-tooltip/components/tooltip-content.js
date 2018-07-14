@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -53,8 +54,9 @@ export default class TooltipContent extends React.Component<Props> {
     render() {
         const title = this._renderTitle();
         const children = this._renderChildren();
+        const containerStyle = title ? styles.withTitle : styles.withoutTitle;
         return (
-            <View>
+            <View style={containerStyle}>
                 {title}
                 {title && children && <Strut size={Spacing.xxxSmall} />}
                 {children}
@@ -62,3 +64,13 @@ export default class TooltipContent extends React.Component<Props> {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    withoutTitle: {
+        margin: "10px 16px",
+    },
+
+    withTitle: {
+        margin: 16,
+    },
+});
