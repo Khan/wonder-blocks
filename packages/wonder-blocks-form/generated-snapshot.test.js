@@ -9,7 +9,9 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import Checkbox from "./components/checkbox.js";
+import Radio from "./components/radio.js";
 import CheckboxCore from "./components/checkbox-core.js";
+import RadioCore from "./components/radio-core.js";
 
 describe("wonder-blocks-form", () => {
     it("example 1", () => {
@@ -73,4 +75,216 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+<<<<<<< HEAD
+=======
+    it("example 2", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet, css} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            cell: {
+                padding: 10,
+            },
+            checkbox: {
+                marginLeft: 5,
+                marginRight: 5,
+            },
+        });
+
+        const states = ["default", "error", "disabled"];
+        const clickableStates = ["default", "hovered", "pressed"];
+        const checkedStates = [false, true];
+
+        const example = (
+            <table>
+                <thead>
+                    <tr>
+                        <th />
+                        <th colSpan="2">Default</th>
+                        <th colSpan="2">Hover/focus</th>
+                        <th colSpan="2">Active/press</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {states.map((state) => (
+                        <tr key={state}>
+                            <td>{state}</td>
+                            {clickableStates.map((clickableState) => {
+                                const checkboxes = checkedStates.map(
+                                    (checked) => {
+                                        return (
+                                            <td
+                                                key={`${clickableState}-${checked}`}
+                                                className={css(styles.cell)}
+                                            >
+                                                <CheckboxCore
+                                                    checked={checked}
+                                                    disabled={
+                                                        state === "disabled"
+                                                    }
+                                                    error={state === "error"}
+                                                    hovered={
+                                                        clickableState ===
+                                                        "hovered"
+                                                    }
+                                                    pressed={
+                                                        clickableState ===
+                                                        "pressed"
+                                                    }
+                                                    style={[styles.checkbox]}
+                                                />
+                                            </td>
+                                        );
+                                    },
+                                );
+                                return checkboxes;
+                            })}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            marginRight: {
+                marginRight: 16,
+            },
+        });
+
+        const handleChanged = (checked) =>
+            console.log(
+                `clicked on checkbox with checked=${checked.toString()}`,
+            );
+        const groupName = "group";
+
+        const example = (
+            <View style={[styles.row]}>
+                <Radio
+                    error={false}
+                    checked={false}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    error={false}
+                    checked={true}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    error={true}
+                    checked={false}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    error={true}
+                    checked={true}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    disabled={true}
+                    checked={false}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    disabled={true}
+                    checked={true}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet, css} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            cell: {
+                padding: 10,
+            },
+            checkbox: {
+                marginLeft: 5,
+                marginRight: 5,
+            },
+        });
+
+        const states = ["default", "error", "disabled"];
+        const clickableStates = ["default", "hovered", "pressed"];
+        const checkedStates = [false, true];
+
+        const example = (
+            <table>
+                <thead>
+                    <tr>
+                        <th />
+                        <th colSpan="2">Default</th>
+                        <th colSpan="2">Hover/focus</th>
+                        <th colSpan="2">Active/press</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {states.map((state) => (
+                        <tr key={state}>
+                            <td>{state}</td>
+                            {clickableStates.map((clickableState) => {
+                                const checkboxes = checkedStates.map(
+                                    (checked) => {
+                                        return (
+                                            <td
+                                                key={`${clickableState}-${checked}`}
+                                                className={css(styles.cell)}
+                                            >
+                                                <RadioCore
+                                                    checked={checked}
+                                                    disabled={
+                                                        state === "disabled"
+                                                    }
+                                                    error={state === "error"}
+                                                    groupName={"examples"}
+                                                    hovered={
+                                                        clickableState ===
+                                                        "hovered"
+                                                    }
+                                                    pressed={
+                                                        clickableState ===
+                                                        "pressed"
+                                                    }
+                                                    style={[styles.checkbox]}
+                                                />
+                                            </td>
+                                        );
+                                    },
+                                );
+                                return checkboxes;
+                            })}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+>>>>>>> 9388023... Add cute little radio buttons
 });

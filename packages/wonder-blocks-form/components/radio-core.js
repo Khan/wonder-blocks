@@ -1,20 +1,16 @@
 // @flow
-// The internal stateless ☑️ Checkbox.
-
+// The internal stateless 🔘 Radio
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
-import Icon from "@khanacademy/wonder-blocks-icon";
 
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-
-import type {ChoiceCoreProps} from "../util/types.js";
+import type {ChoiceProps} from "../util/types.js";
 
 type Props = {|
-    ...ChoiceCoreProps,
+    ...ChoiceProps,
     ...ClickableHandlers,
     hovered: boolean,
     focused: boolean,
@@ -25,12 +21,7 @@ const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 const StyledInput = addStyle("input");
 
-const checkboxCheck: IconAsset = {
-    small:
-        "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
-};
-
-export default class CheckboxCore extends React.Component<Props> {
+export default class RadioCore extends React.Component<Props> {
     render() {
         const {
             checked,
@@ -67,7 +58,7 @@ export default class CheckboxCore extends React.Component<Props> {
         return (
             <View style={[sharedStyles.wrapper, style]} {...props}>
                 <StyledInput
-                    type="checkbox"
+                    type="radio"
                     aria-checked={checked}
                     checked={checked}
                     disabled={disabled}
@@ -80,53 +71,52 @@ export default class CheckboxCore extends React.Component<Props> {
                     style={defaultStyle}
                     tabIndex={-1}
                 />
-                {checked && (
-                    <Icon
-                        color={disabled ? offBlack32 : white}
-                        icon={checkboxCheck}
-                        size="small"
-                        style={sharedStyles.checkIcon}
-                    />
-                )}
+                {disabled &&
+                    checked && <View style={[sharedStyles.disabledChecked]} />}
             </View>
         );
     }
 }
+const size = 16;
 
 const sharedStyles = StyleSheet.create({
     wrapper: {
         outline: "none",
     },
-
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
         WebkitAppearance: "none",
         MozAppearance: "none",
     },
-
     default: {
-        height: 16,
-        width: 16,
+        height: size,
+        width: size,
         margin: 0,
         cursor: "pointer",
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
         borderWidth: 1,
-        borderRadius: 3,
+        borderRadius: "50%",
     },
-
     disabled: {
         cursor: "auto",
         backgroundColor: offWhite,
         borderColor: offBlack16,
         borderWidth: 1,
     },
-
-    checkIcon: {
+    // If the checkbox is disabled and selected, it has a border but also an
+    // inner circle with a different color. Here, we add an element for that
+    // specific center circle.
+    disabledChecked: {
         position: "absolute",
-        pointerEvents: "none",
+        top: size / 4,
+        left: size / 4,
+        height: size / 2,
+        width: size / 2,
+        borderRadius: "50%",
+        backgroundColor: offBlack32,
     },
 });
 
@@ -152,25 +142,25 @@ const styles = {};
 
 const _generateStyles = (checked, error) => {
     // "hash" the parameters
-    const styleKey = `${checked}-${error}`;
+    const styleKey = checked + 2 * error;
     if (styles[styleKey]) {
         return styles[styleKey];
     }
-
     const palette = error ? colors.error : colors.default;
 
     let newStyles = {};
     if (checked) {
         newStyles = {
             default: {
-                backgroundColor: palette.base,
-                borderWidth: 0,
+                backgroundColor: white,
+                borderColor: palette.base,
+                borderWidth: size / 4,
             },
             focus: {
                 boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
             },
             active: {
-                background: palette.active,
+                borderColor: palette.active,
             },
         };
     } else {
