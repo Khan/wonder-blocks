@@ -51,7 +51,7 @@
  */
 import React from "react";
 
-type Props = {
+type Props = {|
     /**
      * A function that returns the a React `Element`.
      *
@@ -87,9 +87,9 @@ type Props = {
      * Passed in by withRouter HOC.
      */
     history?: any,
-};
+|};
 
-type State = {
+type State = {|
     /**
      * Whether the component is hovered.
      *
@@ -110,9 +110,9 @@ type State = {
      * See component documentation for more details.
      */
     pressed: boolean,
-};
+|};
 
-export type ClickableHandlers = {
+export type ClickableHandlers = {|
     onClick: (e: SyntheticMouseEvent<>) => void,
     onMouseEnter: () => void,
     onMouseLeave: () => void,
@@ -125,7 +125,7 @@ export type ClickableHandlers = {
     onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
     onBlur: (e: SyntheticFocusEvent<*>) => void,
     tabIndex: number,
-};
+|};
 
 const disabledHandlers = {
     onClick: () => void 0,
@@ -148,6 +148,12 @@ const keyCodes = {
     space: 32,
 };
 
+const startState = {
+    hovered: false,
+    focused: false,
+    pressed: false,
+};
+
 export default class ClickableBehavior extends React.Component<Props, State> {
     waitingForClick: boolean;
     keyboardClick: boolean;
@@ -159,11 +165,15 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.state = {
-            hovered: false,
-            focused: false,
-            pressed: false,
-        };
+        this.state = startState;
+    }
+
+    // TODO(sophie): This method is deprecated in React 16. Once we update to
+    // React 16, we should use static getDerivedStateFromProps instead.
+    componentWillReceiveProps(nextProps: Props) {
+        if (nextProps.disabled) {
+            this.setState(startState);
+        }
     }
 
     handleClick = (e: SyntheticMouseEvent<>) => {

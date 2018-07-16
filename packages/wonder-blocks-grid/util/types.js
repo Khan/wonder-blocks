@@ -2,6 +2,8 @@
 
 export type MediaSize = "small" | "medium" | "large";
 
+// TODO(kevinb): dedupe with wonder-blocks-core
+// eslint-disable-next-line flowtype/require-exact-type
 export type MediaSpec = {
     [sizeName: MediaSize]: {
         /** The query to use to match the viewport against. */

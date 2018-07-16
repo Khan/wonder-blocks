@@ -2,11 +2,15 @@
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
 
-import {mount} from "enzyme";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import NoSSR from "./no-ssr.js";
 
 describe("NoSSR", () => {
+    beforeEach(() => {
+        unmountAll();
+    });
+
     test("renders a placeholder first, then the actual content", (done) => {
         // Arrange
         const mockPlaceholder = jest.fn(() => null);

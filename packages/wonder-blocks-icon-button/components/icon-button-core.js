@@ -9,42 +9,45 @@ import Color, {
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
+import Icon from "@khanacademy/wonder-blocks-icon";
 import type {SharedProps} from "./icon-button.js";
 
-type Props = SharedProps &
-    ClickableHandlers & {
-        /**
-         * Whether the IconButton is hovered.
-         *
-         * Same styling as focused. Refer to `ClickableBehavior` for more
-         * information on when this prop should be `true`.
-         */
-        hovered: boolean,
+type Props = {|
+    ...SharedProps,
+    ...ClickableHandlers,
 
-        /**
-         * Whether the IconButton is focused.
-         *
-         * Same styling as hvoered. Refer to `ClickableBehavior` for more
-         * information on when this prop should be `true`.
-         */
-        focused: boolean,
+    /**
+     * Whether the IconButton is hovered.
+     *
+     * Same styling as focused. Refer to `ClickableBehavior` for more
+     * information on when this prop should be `true`.
+     */
+    hovered: boolean,
 
-        /**
-         * Whether the IconButton is pressed.
-         *
-         * Refer to `ClickableBehavior` for more information on when this prop
-         * should be `true`.
-         */
-        pressed: boolean,
+    /**
+     * Whether the IconButton is focused.
+     *
+     * Same styling as hvoered. Refer to `ClickableBehavior` for more
+     * information on when this prop should be `true`.
+     */
+    focused: boolean,
 
-        /**
-         * URL to navigate to.
-         *
-         * Used to determine whether to render an `<a>` or `<button>` tag. Also
-         * passed in as the `<a>` tag's `href` if present.
-         */
-        href?: string,
-    };
+    /**
+     * Whether the IconButton is pressed.
+     *
+     * Refer to `ClickableBehavior` for more information on when this prop
+     * should be `true`.
+     */
+    pressed: boolean,
+
+    /**
+     * URL to navigate to.
+     *
+     * Used to determine whether to render an `<a>` or `<button>` tag. Also
+     * passed in as the `<a>` tag's `href` if present.
+     */
+    href?: string,
+|};
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
@@ -53,7 +56,6 @@ export default class IconButtonCore extends React.Component<Props> {
     render() {
         const {
             icon,
-            alt,
             color,
             kind,
             light,
@@ -87,25 +89,16 @@ export default class IconButtonCore extends React.Component<Props> {
 
         const Tag = href ? StyledAnchor : StyledButton;
 
-        // TODO: Replace the SVG with an Icon component once that's done
         return (
             <Tag
                 data-test-id={testId}
                 href={href}
                 disabled={disabled}
-                aria-label={alt}
+                aria-label={this.props["aria-label"]}
                 style={[defaultStyle, style]}
                 {...handlers}
             >
-                <svg
-                    role="img"
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 9.8 9.8"
-                    aria-hidden="true"
-                >
-                    <path fill="currentColor" d={icon} />
-                </svg>
+                <Icon size="medium" color="currentColor" icon={icon} />
             </Tag>
         );
     }

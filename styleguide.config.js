@@ -27,19 +27,21 @@ module.exports = {
         },
         {
             name: "Dropdown",
-            content: "packages/wonder-blocks-dropdown/docs.md",
             components: [
-                "packages/wonder-blocks-dropdown/components/action-item.js",
-                "packages/wonder-blocks-dropdown/components/select-item.js",
-                "packages/wonder-blocks-dropdown/components/separator-item.js",
-                "packages/wonder-blocks-dropdown/components/select-box.js",
+                "packages/wonder-blocks-dropdown/components/action-menu.js",
                 "packages/wonder-blocks-dropdown/components/single-select-menu.js",
+                "packages/wonder-blocks-dropdown/components/multi-select-menu.js",
             ],
         },
         {
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",
+        },
+        {
+            name: "Icon",
+            content: "packages/wonder-blocks-icon/docs.md",
+            components: "packages/wonder-blocks-icon/components/icon.js",
         },
         {
             name: "IconButton",

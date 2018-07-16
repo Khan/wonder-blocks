@@ -1,41 +1,29 @@
 // @flow
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {css, StyleSheet} from "aphrodite";
 
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-import type {Placement} from "../util/types.js";
-import type {PopperArrowProps} from "react-popper";
+import type {getRefFn, Placement, Offset} from "../util/types.js";
 
-type Props = {
+export type Props = {|
+    /** The offset of the tail indicating where it should be positioned. */
+    offset?: Offset,
+
+    /** The placement of the tail with respect to the tooltip anchor. */
     placement: Placement,
-    popperArrowProps?: PopperArrowProps,
-};
+
+    /** A callback to update the ref of the tail element. */
+    updateRef?: getRefFn,
+|};
 
 // TODO(somewhatabstract): Replace this really basic unique ID work with
 // something SSR-friendly and more robust.
 let tempIdCounter = 0;
 
 export default class TooltipTail extends React.Component<Props> {
-    _lastRef: ?HTMLElement;
-
-    updateRef(ref: ?(React.Component<*> | Element)) {
-        const {popperArrowProps} = this.props;
-        // We only want to update the popper's arrow reference if it is
-        // actually changed. Otherwise, we end up in an endless loop of updates
-        // as every render would trigger yet another render.
-        if (popperArrowProps && ref) {
-            const domNode = ReactDOM.findDOMNode(ref);
-            if (domNode instanceof HTMLElement && domNode !== this._lastRef) {
-                this._lastRef = domNode;
-                popperArrowProps.ref(domNode);
-            }
-        }
-    }
-
     _calculateDimensionsFromPlacement() {
         const {placement} = this.props;
 
@@ -176,8 +164,8 @@ export default class TooltipTail extends React.Component<Props> {
                 // draw based on its parent size. i.e. 2 times bigger.
                 // This is so that the diffuse gaussian blur has space to
                 // bleed into.
-                width={"200%"}
-                height={"200%"}
+                width="200%"
+                height="200%"
                 // The x and y values tell the filter where, relative to its
                 // parent, it should begin showing its canvas. Without these
                 // the filter would clip at 0,0, which would look really
@@ -217,9 +205,8 @@ export default class TooltipTail extends React.Component<Props> {
              *
              * See styles below for why we offset the arrow.
              */
-            <g transform={`translate(${offsetShadowX},5.5)`}>
+            <g key="dropshadow" transform={`translate(${offsetShadowX},5.5)`}>
                 <polyline
-                    key="dropshadow"
                     fill={Colors.offBlack16}
                     points={points.join(" ")}
                     stroke={Colors.offBlack32}
@@ -256,7 +243,8 @@ export default class TooltipTail extends React.Component<Props> {
         return ARROW_HEIGHT + DISTANCE_FROM_ANCHOR;
     }
 
-    _getContainerStyle(placement: Placement) {
+    _getContainerStyle() {
+        const {placement} = this.props;
         /**
          * Ensure the container is sized properly for us to be placed correctly
          * by the Popper.js code.
@@ -308,7 +296,8 @@ export default class TooltipTail extends React.Component<Props> {
         }
     }
 
-    _getArrowStyle(placement: Placement) {
+    _getArrowStyle() {
+        const {placement} = this.props;
         const minDistanceFromCorners = this._minDistanceFromCorners(placement);
         switch (placement) {
             case "top":
@@ -345,7 +334,6 @@ export default class TooltipTail extends React.Component<Props> {
     }
 
     _renderArrow() {
-        const {placement} = this.props;
         const {
             trimlinePoints,
             points,
@@ -356,7 +344,7 @@ export default class TooltipTail extends React.Component<Props> {
         return (
             <svg
                 className={css(styles.arrow)}
-                style={this._getArrowStyle(placement)}
+                style={this._getArrowStyle()}
                 width={width}
                 height={height}
             >
@@ -394,17 +382,16 @@ export default class TooltipTail extends React.Component<Props> {
     }
 
     render() {
-        const {placement, popperArrowProps} = this.props;
-        const {style} = popperArrowProps || {};
+        const {offset, placement, updateRef} = this.props;
         return (
             <View
                 style={[
                     styles.tailContainer,
-                    style,
-                    this._getContainerStyle(placement),
+                    offset,
+                    this._getContainerStyle(),
                 ]}
                 data-placement={placement}
-                ref={(r) => this.updateRef(r)}
+                ref={updateRef}
             >
                 {this._renderArrow()}
             </View>

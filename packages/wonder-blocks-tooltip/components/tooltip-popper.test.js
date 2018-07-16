@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import TooltipBubble from "./tooltip-bubble.js";
@@ -42,33 +42,32 @@ class TestHarness extends React.Component<*, {ref: ?HTMLElement}> {
 }
 
 describe("TooltipPopper", () => {
+    beforeEach(() => {
+        unmountAll();
+    });
+
     // The TooltipPopper component is just a wrapper around react-popper.
     // PopperJS requires full visual rendering and we don't do that here as
     // we're not in a browser.
     // So, let's do a test that we at least render the content how we expect
     // and use other things to test the overall placement things.
-    test("ensure component renders", (done) => {
+    test("ensure component renders", async () => {
         // Arrange
-        const arrange = (actAssert) => {
+        const ref = await new Promise((resolve, reject) => {
             const nodes = (
                 <View>
-                    <TestHarness placement={"bottom"} resultRef={actAssert} />
+                    <TestHarness placement="bottom" resultRef={resolve} />
                 </View>
             );
             mount(nodes);
-        };
+        });
 
-        const actAndAssert = (resultRef) => {
-            if (!resultRef) {
-                return;
-            }
+        if (!ref) {
+            return;
+        }
 
-            // Act
-            // Assert
-            expect(resultRef).toBeDefined();
-            done();
-        };
-
-        arrange(actAndAssert);
+        // Act
+        // Assert
+        expect(ref).toBeDefined();
     });
 });

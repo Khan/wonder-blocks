@@ -9,7 +9,15 @@ import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {|
+    /**
+     * The title for the tooltip content.
+     * Optional.
+     */
     title?: string | React.Element<Typography>,
+
+    /**
+     * The main content for a tooltip.
+     */
     children:
         | string
         | React.Element<Typography>

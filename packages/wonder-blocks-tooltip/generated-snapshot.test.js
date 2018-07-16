@@ -18,7 +18,10 @@ describe("wonder-blocks-tooltip", () => {
         const React = require("react");
 
         const example = (
-            <Tooltip content={"I'm on the right!"} placement="right">
+            <Tooltip
+                content="This is a text tooltip on the right"
+                placement="right"
+            >
                 Some text
             </Tooltip>
         );
@@ -30,10 +33,15 @@ describe("wonder-blocks-tooltip", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
-            <Tooltip forceAnchorFocusivity={false} content={"I'm at the top!"}>
+            <Tooltip
+                id="my-a11y-tooltip"
+                forceAnchorFocusivity={false}
+                title="This tooltip has a title"
+                content="I'm at the top!"
+            >
                 <View>
                     Some text
-                    <input />
+                    <input aria-describedby="my-a11y-tooltip" />
                 </View>
             </Tooltip>
         );
@@ -65,8 +73,8 @@ describe("wonder-blocks-tooltip", () => {
                         <Body>
                             This is a big long piece of text with a
                             <Tooltip
-                                content={"I'm on the bottom!"}
-                                placement={"bottom"}
+                                content="This tooltip will disappear when scrolled out of bounds"
+                                placement="bottom"
                             >
                                 [tooltip]
                             </Tooltip>
@@ -106,7 +114,7 @@ describe("wonder-blocks-tooltip", () => {
         const scrollyContent = (
             <View style={styles.scrollbox}>
                 <View style={styles.hostbox}>
-                    <Tooltip content={"I'm on the left!"} placement="left">
+                    <Tooltip content="I'm on the left!" placement="left">
                         tooltip
                     </Tooltip>
                 </View>
@@ -136,11 +144,56 @@ describe("wonder-blocks-tooltip", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
-        const example = <TooltipContent>Just the content</TooltipContent>;
+        const {StyleSheet} = require("aphrodite");
+        const React = require("react");
+
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {LabelSmall} = require("@khanacademy/wonder-blocks-typography");
+
+        const styles = StyleSheet.create({
+            block: {
+                border: "solid 1px steelblue",
+                width: 32,
+                height: 32,
+                alignItems: "center",
+                justifyContent: "center",
+            },
+        });
+
+        const example = (
+            <View>
+                <LabelSmall>
+                    Here, we can see that the first tooltip shown has an initial
+                    delay before it appears, as does the last tooltip shown, yet
+                    when moving between tooltipped items, the transition from
+                    one to another is instantaneous.
+                </LabelSmall>
+
+                <View style={{flexDirection: "row"}}>
+                    <Tooltip content="Tooltip A" placement="bottom">
+                        <View style={styles.block}>A</View>
+                    </Tooltip>
+                    <Tooltip content="Tooltip B" placement="bottom">
+                        <View style={styles.block}>B</View>
+                    </Tooltip>
+                    <Tooltip content="Tooltip C" placement="bottom">
+                        <View style={styles.block}>C</View>
+                    </Tooltip>
+                    <Tooltip content="Tooltip D" placement="bottom">
+                        <View style={styles.block}>D</View>
+                    </Tooltip>
+                </View>
+            </View>
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 6", () => {
+        const example = <TooltipContent>Just the content</TooltipContent>;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
         const example = (
             <TooltipContent title="Title text!">
                 Some content in my content
@@ -149,7 +202,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const {
             Body,
             LabelSmall,
@@ -164,7 +217,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -199,7 +252,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -236,7 +289,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -271,7 +324,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -308,72 +361,13 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-
-        const popperProps = {
-            style: {
-                position: "absolute",
-                top: 0,
-                left: 0,
-            },
-            placement: "top",
-            ref: () => {},
-            scheduleUpdate: () => {},
-            arrowProps: {
-                style: {
-                    left: 0,
-                    top: 0,
-                },
-                ref: () => {},
-            },
-            outOfBoundaries: false,
-        };
-
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
-        const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble popperProps={popperProps}>
-                    <TooltipContent>I'm on the top!</TooltipContent>
-                </TooltipBubble>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
     it("example 13", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
-        const popperProps = {
-            style: {
-                position: "absolute",
-                top: 0,
-                left: 0,
-            },
-            placement: "right",
-            ref: () => {},
-            scheduleUpdate: () => {},
-            arrowProps: {
-                style: {
-                    left: 0,
-                    top: 0,
-                },
-                ref: () => {},
-            },
-            outOfBoundaries: false,
-        };
-
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble popperProps={popperProps}>
-                    <TooltipContent>I'm on the right!</TooltipContent>
+            <View>
+                <TooltipBubble placement="top" style={{position: "relative"}}>
+                    <TooltipContent>I'm on the top!</TooltipContent>
                 </TooltipBubble>
             </View>
         );
@@ -383,33 +377,10 @@ describe("wonder-blocks-tooltip", () => {
     it("example 14", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
-        const popperProps = {
-            style: {
-                position: "absolute",
-                top: 0,
-                left: 0,
-            },
-            placement: "bottom",
-            ref: () => {},
-            scheduleUpdate: () => {},
-            arrowProps: {
-                style: {
-                    left: 0,
-                    top: 0,
-                },
-                ref: () => {},
-            },
-            outOfBoundaries: false,
-        };
-
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble popperProps={popperProps}>
-                    <TooltipContent>I'm on the bottom!</TooltipContent>
+            <View style={{alignItems: "flex-start"}}>
+                <TooltipBubble placement="right" style={{position: "relative"}}>
+                    <TooltipContent>I'm on the right!</TooltipContent>
                 </TooltipBubble>
             </View>
         );
@@ -419,33 +390,13 @@ describe("wonder-blocks-tooltip", () => {
     it("example 15", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
-        const popperProps = {
-            style: {
-                position: "absolute",
-                top: 0,
-                left: 0,
-            },
-            placement: "left",
-            ref: () => {},
-            scheduleUpdate: () => {},
-            arrowProps: {
-                style: {
-                    left: 0,
-                    top: 0,
-                },
-                ref: () => {},
-            },
-            outOfBoundaries: false,
-        };
-
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50, flexDirection: "row"}}>
-                <TooltipBubble popperProps={popperProps}>
-                    <TooltipContent>I'm on the left!</TooltipContent>
+            <View>
+                <TooltipBubble
+                    placement="bottom"
+                    style={{position: "relative"}}
+                >
+                    <TooltipContent>I'm on the bottom!</TooltipContent>
                 </TooltipBubble>
             </View>
         );
@@ -454,37 +405,11 @@ describe("wonder-blocks-tooltip", () => {
     });
     it("example 16", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing");
 
-        const popperProps = {
-            placement: "top",
-            style: {
-                position: "absolute",
-                top: 0,
-                left: 0,
-            },
-            ref: () => {},
-            scheduleUpdate: () => {},
-            arrowProps: {
-                style: {
-                    left: 50,
-                    top: 0,
-                },
-                ref: () => {},
-            },
-            outOfBoundaries: false,
-        };
-
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble popperProps={popperProps}>
-                    <TooltipContent>
-                        I'm on the bottom with an tail 50px in!
-                    </TooltipContent>
+            <View>
+                <TooltipBubble placement="left" style={{position: "relative"}}>
+                    <TooltipContent>I'm on the left!</TooltipContent>
                 </TooltipBubble>
             </View>
         );
@@ -495,32 +420,33 @@ describe("wonder-blocks-tooltip", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("@khanacademy/wonder-blocks-spacing");
 
-        const popperProps = {
-            placement: "top",
-            style: {
-                position: "absolute",
-                top: 0,
-                left: 0,
-            },
-            ref: () => {},
-            scheduleUpdate: () => {},
-            arrowProps: {
-                style: {
-                    left: 0,
-                    top: 0,
-                },
-                ref: () => {},
-            },
-            outOfBoundaries: true,
-        };
-
-        /**
-         * NOTE: We give height because TooltipBubble is positioned absolute and due
-         * to aphrodite styles being "important" we can't override that.
-         */
         const example = (
-            <View style={{height: 50}}>
-                <TooltipBubble popperProps={popperProps}>
+            <View>
+                <TooltipBubble
+                    placement="bottom"
+                    tailOffset={{left: 50, top: 0}}
+                    style={{position: "relative"}}
+                >
+                    <TooltipContent>
+                        I'm on the bottom with a tail 50px in!
+                    </TooltipContent>
+                </TooltipBubble>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 18", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing");
+
+        const example = (
+            <View>
+                <TooltipBubble
+                    placement="top"
+                    outOfBoundaries={true}
+                    style={{position: "relative"}}
+                >
                     <TooltipContent>
                         I'm hidden. So hidden. Shhhhh!
                     </TooltipContent>

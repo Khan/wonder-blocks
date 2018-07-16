@@ -11,7 +11,7 @@ import ModalPanel from "./modal-panel.js";
 
 import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
-type Props = {
+type Props = {|
     /** The sidebar contents (which becomes the header on mobile screens). */
     sidebar: React.Node,
 
@@ -41,7 +41,7 @@ type Props = {
      * @ignore
      */
     mediaSize: MediaSize,
-};
+|};
 
 class ContentWrapper extends React.Component<Props> {
     static defaultProps = {

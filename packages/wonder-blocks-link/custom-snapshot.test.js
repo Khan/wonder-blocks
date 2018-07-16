@@ -22,14 +22,8 @@ describe("LinkCore", () => {
     for (const kind of ["primary", "secondary"]) {
         for (const href of ["#", "#non-existent-link"]) {
             for (const light of kind === "primary" ? [true, false] : [false]) {
-                for (const state of [
-                    "disabled",
-                    "focused",
-                    "hovered",
-                    "pressed",
-                ]) {
+                for (const state of ["focused", "hovered", "pressed"]) {
                     const stateProps = {
-                        disabled: state === "disabled",
                         focused: state === "focused",
                         hovered: state === "hovered",
                         pressed: state === "pressed",
@@ -46,7 +40,7 @@ describe("LinkCore", () => {
                                     light={light}
                                     {...stateProps}
                                     {...defaultHandlers}
-                                    tabIndex={stateProps.disabled ? -1 : 0}
+                                    tabIndex={0}
                                 >
                                     Click me
                                 </LinkCore>,

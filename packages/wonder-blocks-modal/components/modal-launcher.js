@@ -8,7 +8,7 @@ import ModalBackdrop from "./modal-backdrop.js";
 import ScrollDisabler from "./scroll-disabler.js";
 import type {ModalElement} from "../util/types.js";
 
-type Props = {
+type Props = {|
     /**
      * The modal to render.
      *
@@ -41,12 +41,12 @@ type Props = {
      * close events.
      */
     onClose?: () => void,
-};
+|};
 
-type State = {
+type State = {|
     /** Whether the modal should currently be open. */
     opened: boolean,
-};
+|};
 
 /**
  * This component enables you to launch a modal, covering the screen.
@@ -71,7 +71,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
         this.setState({opened: true});
     };
 
-    _closeModal = () => {
+    handleCloseModal = () => {
         this.setState({opened: false}, () => {
             this.props.onClose && this.props.onClose();
         });
@@ -80,7 +80,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
     _renderModal() {
         if (typeof this.props.modal === "function") {
             return this.props.modal({
-                closeModal: this._closeModal,
+                closeModal: this.handleCloseModal,
             });
         } else {
             return this.props.modal;
@@ -98,13 +98,15 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
-                        <ModalBackdrop onCloseModal={this._closeModal}>
+                        <ModalBackdrop onCloseModal={this.handleCloseModal}>
                             {this._renderModal()}
                         </ModalBackdrop>
                     </ModalLauncherPortal>
                 )}
                 {this.state.opened && (
-                    <ModalLauncherKeypressListener onClose={this._closeModal} />
+                    <ModalLauncherKeypressListener
+                        onClose={this.handleCloseModal}
+                    />
                 )}
                 {this.state.opened && <ScrollDisabler />}
             </View>
@@ -125,7 +127,18 @@ class ModalLauncherKeypressListener extends React.Component<{
     }
 
     _handleKeyup = (e: KeyboardEvent) => {
+        // We check the key as that's keyboard layout agnostic and also avoids
+        // the minefield of deprecated number type properties like keyCode and
+        // which, with the replacement code, which uses a string instead.
         if (e.key === "Escape") {
+            // Stop the event going any further.
+            // For cancellation events, like the Escape key, we generally should
+            // air on the side of caution and only allow it to cancel one thing.
+            // So, it's polite for us to stop propagation of the event.
+            // Otherwise, we end up with UX where one Escape key press
+            // unexpectedly cancels multiple things.
+            e.preventDefault();
+            e.stopPropagation();
             this.props.onClose();
         }
     };

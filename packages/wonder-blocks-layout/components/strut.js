@@ -8,13 +8,13 @@ import * as React from "react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-type Props = {
+type Props = {|
     size: number,
-};
+|};
 
 export default class Strut extends React.Component<Props> {
     render() {
-        return <View style={flexBasis(this.props.size)} />;
+        return <View aria-hidden="true" style={flexBasis(this.props.size)} />;
     }
 }
 
