@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {Toolbar} from "@khanacademy/wonder-blocks-toolbar";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
-import {Toolbar} from "@khanacademy/wonder-blocks-toolbar";
 
 type Props = {|
     /**
