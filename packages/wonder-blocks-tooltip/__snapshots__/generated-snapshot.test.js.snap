@@ -2,6 +2,7 @@
 
 exports[`wonder-blocks-tooltip example 1 1`] = `
 <span
+  aria-describedby="uid-tooltip-0-aria-content"
   className=""
   style={
     Object {
@@ -35,7 +36,9 @@ exports[`wonder-blocks-tooltip example 2 1`] = `
   }
 >
   Some text
-  <input />
+  <input
+    aria-describedby="my-a11y-tooltip"
+  />
 </div>
 `;
 
@@ -116,6 +119,7 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
       >
         This is a big long piece of text with a
         <span
+          aria-describedby="uid-tooltip-1-aria-content"
           className=""
           style={
             Object {
@@ -192,6 +196,169 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
         "fontFamily": "Lato",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Here, we can see that the first tooltip shown has an initial delay before it appears, as does the last tooltip shown, yet when moving between tooltipped items, the transition from one to another is instantaneous.
+  </span>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-describedby="uid-tooltip-2-aria-content"
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "border": "solid 1px steelblue",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    >
+      A
+    </div>
+    <div
+      aria-describedby="uid-tooltip-3-aria-content"
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "border": "solid 1px steelblue",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    >
+      B
+    </div>
+    <div
+      aria-describedby="uid-tooltip-4-aria-content"
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "border": "solid 1px steelblue",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    >
+      C
+    </div>
+    <div
+      aria-describedby="uid-tooltip-5-aria-content"
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "border": "solid 1px steelblue",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    >
+      D
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -203,7 +370,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 6 1`] = `
+exports[`wonder-blocks-tooltip example 7 1`] = `
 <div
   className=""
   style={
@@ -242,6 +409,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     Title text!
   </h4>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
@@ -284,7 +452,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 7 1`] = `
+exports[`wonder-blocks-tooltip example 8 1`] = `
 <div
   className=""
   style={
@@ -321,6 +489,7 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
     Body text title!
   </span>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
@@ -379,7 +548,7 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 8 1`] = `
+exports[`wonder-blocks-tooltip example 9 1`] = `
 <div
   className=""
   style={
@@ -563,6 +732,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
       }
     />
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -586,7 +756,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 9 1`] = `
+exports[`wonder-blocks-tooltip example 10 1`] = `
 <div
   className=""
   style={
@@ -690,6 +860,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
       }
     />
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -793,7 +964,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 10 1`] = `
+exports[`wonder-blocks-tooltip example 11 1`] = `
 <div
   className=""
   style={
@@ -897,6 +1068,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
       }
     />
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -972,7 +1144,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 11 1`] = `
+exports[`wonder-blocks-tooltip example 12 1`] = `
 <div
   className=""
   style={
@@ -1156,6 +1328,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
       }
     />
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
@@ -1179,7 +1352,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 12 1`] = `
+exports[`wonder-blocks-tooltip example 13 1`] = `
 <div
   className=""
   style={
@@ -1190,7 +1363,6 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1203,6 +1375,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
   <div
     className=""
     data-placement="top"
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -1211,14 +1384,12 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
-        "top": 0,
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -1297,7 +1468,6 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "height": 20,
-          "left": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1370,18 +1540,17 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 13 1`] = `
+exports[`wonder-blocks-tooltip example 14 1`] = `
 <div
   className=""
   style={
     Object {
-      "alignItems": "stretch",
+      "alignItems": "flex-start",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1394,6 +1563,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
   <div
     className=""
     data-placement="right"
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -1402,14 +1572,12 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "row-reverse",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
-        "top": 0,
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -1495,7 +1663,6 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": 0,
           "width": 20,
           "zIndex": 0,
         }
@@ -1561,7 +1728,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 14 1`] = `
+exports[`wonder-blocks-tooltip example 15 1`] = `
 <div
   className=""
   style={
@@ -1572,7 +1739,6 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1585,6 +1751,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
   <div
     className=""
     data-placement="bottom"
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -1593,14 +1760,12 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column-reverse",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
-        "top": 0,
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -1679,7 +1844,6 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "height": 20,
-          "left": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1724,7 +1888,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 15 1`] = `
+exports[`wonder-blocks-tooltip example 16 1`] = `
 <div
   className=""
   style={
@@ -1734,8 +1898,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row",
-      "height": 50,
+      "flexDirection": "column",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1748,6 +1911,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
   <div
     className=""
     data-placement="left"
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -1756,14 +1920,12 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "row",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
-        "top": 0,
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -1849,7 +2011,6 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": 0,
           "width": 20,
           "zIndex": 0,
         }
@@ -1915,7 +2076,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 16 1`] = `
+exports[`wonder-blocks-tooltip example 17 1`] = `
 <div
   className=""
   style={
@@ -1926,7 +2087,6 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1938,7 +2098,8 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
 >
   <div
     className=""
-    data-placement="top"
+    data-placement="bottom"
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -1946,15 +2107,13 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "column",
-        "left": 0,
+        "flexDirection": "column-reverse",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
-        "top": 0,
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -2017,13 +2176,13 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
             }
           }
         >
-          I'm on the bottom with an tail 50px in!
+          I'm on the bottom with a tail 50px in!
         </span>
       </div>
     </div>
     <div
       className=""
-      data-placement="top"
+      data-placement="bottom"
       style={
         Object {
           "alignItems": "stretch",
@@ -2040,7 +2199,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
           "padding": 0,
           "pointerEvents": "none",
           "position": "relative",
-          "top": -1,
+          "top": 1,
           "width": 56,
           "zIndex": 0,
         }
@@ -2053,51 +2212,23 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
           Object {
             "marginLeft": 16,
             "marginRight": 16,
-            "paddingBottom": 8,
+            "paddingTop": 8,
           }
         }
         width={24}
       >
-        <filter
-          height="200%"
-          id="tooltip-dropshadow-top-6"
-          width="200%"
-          x="-50%"
-          y="-50%"
-        >
-          <feGaussianBlur
-            in="SourceAlpha"
-            stdDeviation={3}
-          />
-          <feComponentTransfer>
-            <feFuncA
-              slope="0.3"
-              type="linear"
-            />
-          </feComponentTransfer>
-        </filter>
-        <g
-          transform="translate(0,5.5)"
-        >
-          <polyline
-            fill="rgba(33,36,44,0.16)"
-            filter="url(#tooltip-dropshadow-top-6)"
-            points="0,0 12,12 24,0"
-            stroke="rgba(33,36,44,0.32)"
-          />
-        </g>
         <polyline
           fill="#ffffff"
-          points="0,0 12,12 24,0"
+          points="0, 12 12,0 24,12"
           stroke="#ffffff"
         />
         <polyline
           fill="#ffffff"
-          points="0,0 12,12 24,0"
+          points="0, 12 12,0 24,12"
           stroke="rgba(33,36,44,0.16)"
         />
         <polyline
-          points="0,-0.5 24,-0.5"
+          points="0, 12.5 24,12.5"
           stroke="#ffffff"
         />
       </svg>
@@ -2106,7 +2237,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 17 1`] = `
+exports[`wonder-blocks-tooltip example 18 1`] = `
 <div
   className=""
   style={
@@ -2117,7 +2248,6 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -2130,6 +2260,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
   <div
     className=""
     data-placement="top"
+    role="tooltip"
     style={
       Object {
         "alignItems": "stretch",
@@ -2140,15 +2271,13 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         "color": "transparent",
         "display": "flex",
         "flexDirection": "column",
-        "left": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "opacity": 0,
         "padding": 0,
         "pointerEvents": "none",
-        "position": "absolute",
-        "top": 0,
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -2227,7 +2356,6 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
           "display": "flex",
           "flexDirection": "column",
           "height": 20,
-          "left": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -2254,7 +2382,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       >
         <filter
           height="200%"
-          id="tooltip-dropshadow-top-7"
+          id="tooltip-dropshadow-top-6"
           width="200%"
           x="-50%"
           y="-50%"
@@ -2275,7 +2403,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         >
           <polyline
             fill="rgba(33,36,44,0.16)"
-            filter="url(#tooltip-dropshadow-top-7)"
+            filter="url(#tooltip-dropshadow-top-6)"
             points="0,0 12,12 24,0"
             stroke="rgba(33,36,44,0.32)"
           />

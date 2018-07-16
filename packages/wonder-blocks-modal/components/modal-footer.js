@@ -5,10 +5,10 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-type Props = {
+type Props = {|
     children: React.Node,
     style?: any,
-};
+|};
 
 export default class ModalFooter extends React.Component<Props> {
     render() {

@@ -4,10 +4,15 @@ import * as Core from "@khanacademy/wonder-blocks-core";
 import visibilityModifierDefaultConfig from "./visibility-modifier.js";
 import isObscured from "./is-obscured.js";
 
-jest.mock("@khanacademy/wonder-blocks-core");
 jest.mock("./is-obscured.js");
+jest.mock("@khanacademy/wonder-blocks-core");
 
 describe("Visibility PopperJS Modifier", () => {
+    beforeEach(() => {
+        // Flow doesn't know this is a jest mock $FlowFixMe
+        Core.getElementIntersection.mockClear();
+    });
+
     test("returns an enabled modifier configuration with expected order", () => {
         // Arrange
 
@@ -36,7 +41,7 @@ describe("Visibility PopperJS Modifier", () => {
                     hide: false,
                 };
                 // Flow doesn't know this is a jest mock $FlowFixMe
-                Core.getElementIntersection.mockReturnValue({
+                Core.getElementIntersection.mockReturnValueOnce({
                     horizontal: "before",
                     vertical: "within",
                 });
@@ -60,7 +65,7 @@ describe("Visibility PopperJS Modifier", () => {
                     hide: true,
                 };
                 // Flow doesn't know this is a jest mock $FlowFixMe
-                Core.getElementIntersection.mockReturnValue({
+                Core.getElementIntersection.mockReturnValueOnce({
                     horizontal: "within",
                     vertical: "before",
                 });
@@ -82,7 +87,7 @@ describe("Visibility PopperJS Modifier", () => {
                     hide: false,
                 };
                 // Flow doesn't know this is a jest mock $FlowFixMe
-                Core.getElementIntersection.mockReturnValue({
+                Core.getElementIntersection.mockReturnValueOnce({
                     horizontal: "after",
                     vertical: "after",
                 });
@@ -112,12 +117,12 @@ describe("Visibility PopperJS Modifier", () => {
             // though it would overwise be visible within its scroll parents.
 
             // Flow doesn't know this is a jest mock $FlowFixMe
-            Core.getElementIntersection.mockReturnValue({
+            Core.getElementIntersection.mockReturnValueOnce({
                 horizontal: "within",
                 vertical: "within",
             });
             // Flow doesn't know this is a jest mock $FlowFixMe
-            isObscured.mockReturnValue(true);
+            isObscured.mockReturnValueOnce(true);
 
             // Act
             const result = visibilityModifierDefaultConfig.fn(data);

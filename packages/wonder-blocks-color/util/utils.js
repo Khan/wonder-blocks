@@ -8,12 +8,12 @@ const color6Regexp = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
 const color3Regexp = /^#([0-9a-f])([0-9a-f])([0-9a-f])$/i;
 const rgbaRegexp = /^rgba?\(\s*(\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\s*\)$/i;
 
-type Color = {
+type Color = {|
     r: number,
     g: number,
     b: number,
     a: number,
-};
+|};
 
 // Parse a color in #abcdef, rgb(...), or rgba(...) form into an object
 // with r,g,b,a keys.

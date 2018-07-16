@@ -1,7 +1,6 @@
 // @flow
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -10,53 +9,70 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import TooltipContent from "./tooltip-content.js";
 import TooltipTail from "./tooltip-tail.js";
 
-import type {PopperChildrenProps} from "./tooltip-popper.js";
+import type {getRefFn, Offset, Placement} from "../util/types.js";
 
-type Props = {|
-    // The content to be shown in the bubble.
+export type TooltipBubbleProps = {|
+    /** The placement of the bubble with respect to the anchor. */
+    placement: Placement,
+
+    /** Whether the bubble is out of bounds or not. */
+    outOfBoundaries?: ?boolean,
+
+    /** A callback for updating the ref of the bubble itself. */
+    updateBubbleRef?: getRefFn,
+
+    /** A callback for updating the ref of the bubble's tail. */
+    updateTailRef?: getRefFn,
+
+    /** Where the tail is to be rendered. */
+    tailOffset?: Offset,
+
+    /** Additional styles to be applied by the bubble. */
+    style?: any,
+|};
+
+export type Props = {|
+    /** The unique identifier for this component. */
+    id: string,
+
+    /** The `TooltipContent` element that will be rendered in the bubble. */
     children: React.Element<typeof TooltipContent>,
-
-    // The props provided by TooltipPopper, which are used to position
-    // and manage the bubble contents.
-    popperProps: PopperChildrenProps,
+    // TODO(somewhatabstract): Update react-docgen to support spread operators
+    // (v3 beta introduces this)
+    ...TooltipBubbleProps,
 |};
 
 export default class TooltipBubble extends React.Component<Props> {
-    _lastRef: ?HTMLElement;
-
-    _updateRef(ref: ?(React.Component<*> | Element)) {
-        const {popperProps} = this.props;
-        // We only want to update the popper's reference if it is
-        // actually changed. Otherwise, we end up in an endless loop of updates
-        // as every render would trigger yet another render.
-        if (popperProps && ref) {
-            const domNode = ReactDOM.findDOMNode(ref);
-            if (domNode instanceof HTMLElement && domNode !== this._lastRef) {
-                this._lastRef = domNode;
-                popperProps.ref(domNode);
-            }
-        }
-    }
-
     render() {
-        const {children, popperProps} = this.props;
-        const {placement, outOfBoundaries, style, arrowProps} = popperProps;
+        const {
+            id,
+            children,
+            updateBubbleRef,
+            placement,
+            outOfBoundaries,
+            style,
+            updateTailRef,
+            tailOffset,
+        } = this.props;
 
         return (
             <View
+                id={id}
+                role="tooltip"
                 data-placement={placement}
-                ref={(r) => this._updateRef(r)}
+                ref={updateBubbleRef}
                 style={[
-                    style,
                     outOfBoundaries && styles.hide,
                     styles.bubble,
                     styles[`content-${placement}`],
+                    style,
                 ]}
             >
                 <View style={styles.content}>{children}</View>
                 <TooltipTail
+                    updateRef={updateTailRef}
                     placement={placement}
-                    popperArrowProps={arrowProps}
+                    offset={tailOffset}
                 />
             </View>
         );

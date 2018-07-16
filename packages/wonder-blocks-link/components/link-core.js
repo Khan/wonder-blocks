@@ -8,15 +8,18 @@ import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./link.js";
 
-type Props = SharedProps &
-    ClickableHandlers & {
-        hovered: boolean,
-        focused: boolean,
-        pressed: boolean,
-        href: string,
-    };
+type Props = {|
+    ...SharedProps,
+    ...ClickableHandlers,
+
+    hovered: boolean,
+    focused: boolean,
+    pressed: boolean,
+    href: string,
+|};
 
 const StyledAnchor = addStyle("a");
+// $FlowFixMe: pass props directly to StyledLink instead of to Tag
 const StyledLink = addStyle(Link);
 
 export default class LinkCore extends React.Component<Props> {
@@ -52,8 +55,10 @@ export default class LinkCore extends React.Component<Props> {
         };
 
         if (clientNav) {
+            // $FlowFixMe
             props.to = href;
         } else {
+            // $FlowFixMe
             props.href = href;
         }
 

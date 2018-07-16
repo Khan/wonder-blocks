@@ -9,10 +9,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import FocusTrap from "./focus-trap.js";
 import type {ModalElement} from "../util/types.js";
 
-type Props = {
+type Props = {|
     children: ModalElement,
     onCloseModal: () => void,
-};
+|};
 
 /**
  * A private component used by ModalLauncher. This is the fixed-position
@@ -50,7 +50,7 @@ export default class ModalBackdrop extends React.Component<Props> {
      * _directly_ from the positioner, not bubbled up from its children), close
      * the modal.
      */
-    _handleClick = (e: SyntheticEvent<>) => {
+    handleClick = (e: SyntheticEvent<>) => {
         // Was the lowest-level click target (`e.target`) the positioner element
         // (`e.currentTarget`)?
         if (e.target === e.currentTarget) {
@@ -70,7 +70,7 @@ export default class ModalBackdrop extends React.Component<Props> {
         });
 
         return (
-            <View style={styles.modalPositioner} onClick={this._handleClick}>
+            <View style={styles.modalPositioner} onClick={this.handleClick}>
                 {/* When you press Tab on the last focusable node of the
                   * document, some browsers will move your tab focus outside of
                   * the document. But we want to capture that as a focus event,

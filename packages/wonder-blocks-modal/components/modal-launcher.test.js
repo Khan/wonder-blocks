@@ -60,7 +60,7 @@ describe("ModalLauncher", () => {
         expect(wrapper.find("ModalLauncherPortal")).toHaveLength(1);
     });
 
-    test("Pressing Escape closes the modal", () => {
+    test("Pressing Escape closes the modal", async () => {
         // We mount into a real DOM, in order to simulate and capture real key
         // presses anywhere in the document.
         const wrapper = mount(
@@ -73,8 +73,7 @@ describe("ModalLauncher", () => {
         wrapper.find("button").simulate("click");
         expect(document.querySelector("[data-modal-child]")).toBeTruthy();
 
-        // Simulate an Escape keypress. This will happen synchronously, because
-        // we're using `dispatchEvent`.
+        // Simulate an Escape keypress.
         const event: KeyboardEvent = (document.createEvent("Event"): any);
         event.key = "Escape";
         event.initEvent("keyup", true, true);

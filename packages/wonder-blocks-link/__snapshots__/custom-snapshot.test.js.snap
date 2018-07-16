@@ -1,44 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LinkCore kind:primary href:# light:false disabled 1`] = `
-<a
-  className=""
-  data-test-id={undefined}
-  disabled={true}
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    Object {
-      ":visited": Object {
-        "color": "#8755ee",
-      },
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={-1}
->
-  Click me
-</a>
-`;
-
 exports[`LinkCore kind:primary href:# light:false focused 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -71,8 +35,6 @@ exports[`LinkCore kind:primary href:# light:false focused 1`] = `
 exports[`LinkCore kind:primary href:# light:false hovered 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -105,8 +67,6 @@ exports[`LinkCore kind:primary href:# light:false hovered 1`] = `
 exports[`LinkCore kind:primary href:# light:false pressed 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -136,45 +96,9 @@ exports[`LinkCore kind:primary href:# light:false pressed 1`] = `
 </a>
 `;
 
-exports[`LinkCore kind:primary href:# light:true disabled 1`] = `
-<a
-  className=""
-  data-test-id={undefined}
-  disabled={true}
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    Object {
-      ":visited": Object {
-        "color": "#ffffff",
-      },
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={-1}
->
-  Click me
-</a>
-`;
-
 exports[`LinkCore kind:primary href:# light:true focused 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -207,8 +131,6 @@ exports[`LinkCore kind:primary href:# light:true focused 1`] = `
 exports[`LinkCore kind:primary href:# light:true hovered 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -241,8 +163,6 @@ exports[`LinkCore kind:primary href:# light:true hovered 1`] = `
 exports[`LinkCore kind:primary href:# light:true pressed 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -272,45 +192,9 @@ exports[`LinkCore kind:primary href:# light:true pressed 1`] = `
 </a>
 `;
 
-exports[`LinkCore kind:primary href:#non-existent-link light:false disabled 1`] = `
-<a
-  className=""
-  data-test-id={undefined}
-  disabled={true}
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    Object {
-      ":visited": Object {
-        "color": "#8755ee",
-      },
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={-1}
->
-  Click me
-</a>
-`;
-
 exports[`LinkCore kind:primary href:#non-existent-link light:false focused 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -343,8 +227,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false focused 1`] =
 exports[`LinkCore kind:primary href:#non-existent-link light:false hovered 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -377,8 +259,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false hovered 1`] =
 exports[`LinkCore kind:primary href:#non-existent-link light:false pressed 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -408,45 +288,9 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false pressed 1`] =
 </a>
 `;
 
-exports[`LinkCore kind:primary href:#non-existent-link light:true disabled 1`] = `
-<a
-  className=""
-  data-test-id={undefined}
-  disabled={true}
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    Object {
-      ":visited": Object {
-        "color": "#ffffff",
-      },
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={-1}
->
-  Click me
-</a>
-`;
-
 exports[`LinkCore kind:primary href:#non-existent-link light:true focused 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -479,8 +323,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true focused 1`] = 
 exports[`LinkCore kind:primary href:#non-existent-link light:true hovered 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -513,8 +355,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true hovered 1`] = 
 exports[`LinkCore kind:primary href:#non-existent-link light:true pressed 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -544,45 +384,9 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true pressed 1`] = 
 </a>
 `;
 
-exports[`LinkCore kind:secondary href:# light:false disabled 1`] = `
-<a
-  className=""
-  data-test-id={undefined}
-  disabled={true}
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    Object {
-      ":visited": Object {
-        "color": "#8755ee",
-      },
-      "color": "#21242c",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={-1}
->
-  Click me
-</a>
-`;
-
 exports[`LinkCore kind:secondary href:# light:false focused 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -615,8 +419,6 @@ exports[`LinkCore kind:secondary href:# light:false focused 1`] = `
 exports[`LinkCore kind:secondary href:# light:false hovered 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -649,8 +451,6 @@ exports[`LinkCore kind:secondary href:# light:false hovered 1`] = `
 exports[`LinkCore kind:secondary href:# light:false pressed 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -680,45 +480,9 @@ exports[`LinkCore kind:secondary href:# light:false pressed 1`] = `
 </a>
 `;
 
-exports[`LinkCore kind:secondary href:#non-existent-link light:false disabled 1`] = `
-<a
-  className=""
-  data-test-id={undefined}
-  disabled={true}
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    Object {
-      ":visited": Object {
-        "color": "#8755ee",
-      },
-      "color": "#21242c",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={-1}
->
-  Click me
-</a>
-`;
-
 exports[`LinkCore kind:secondary href:#non-existent-link light:false focused 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -751,8 +515,6 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false focused 1`]
 exports[`LinkCore kind:secondary href:#non-existent-link light:false hovered 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}
@@ -785,8 +547,6 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false hovered 1`]
 exports[`LinkCore kind:secondary href:#non-existent-link light:false pressed 1`] = `
 <a
   className=""
-  data-test-id={undefined}
-  disabled={false}
   href="#"
   onBlur={[Function]}
   onClick={[Function]}

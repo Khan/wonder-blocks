@@ -1,19 +1,21 @@
 // @flow
 import React from "react";
 
-import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButtonCore from "./icon-button-core.js";
 
-export type SharedProps = {
+export type SharedProps = {|
     /**
-     * An icon, supplied as an svg path string.
+     * A Wonder Blocks icon asset, an object specifing paths for one or more of
+     * the following sizes: small, medium, large, xlarge.
      */
-    icon: string,
+    icon: IconAsset,
 
     /**
      * Text to display as the title of the svg element.
      */
-    alt: string,
+    "aria-label": string,
 
     /**
      * The color of the button, either blue or red.
@@ -61,9 +63,11 @@ export type SharedProps = {
         ...FlexItemStyles,
     }>>,
     */
-};
+|};
 
-type Props = SharedProps & {
+type Props = {|
+    ...SharedProps,
+
     /**
      * URL to navigate to.
      *
@@ -79,7 +83,7 @@ type Props = SharedProps & {
      * navigation by doing history.push(this.props.href) using
      * ReactRouter's history object
      */
-    clientSideNav?: boolean,
+    clientNav?: boolean,
 
     /**
      * Function to call when button is clicked.
@@ -94,21 +98,24 @@ type Props = SharedProps & {
      * href is not
      */
     onClick?: (e: SyntheticEvent<>) => void,
-};
+|};
 
 /**
  * An IconButton is a button whose contents are an SVG image.
  *
- * To use, supply an onClick function, the path (string) of your SVG image, and
- * alt-text for your image. Optionally specify href (URL), clientSideNav, color
- * Wonder Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"),
+ * To use, supply an onClick function, a wonder-blocks icon asset (see
+ * the Icon section) and an aria-label to describe the button functionality.
+ * Optionally specify href (URL), clientSideNav, color
+ * (Wonder Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"),
  * light (whether the IconButton will be rendered on a dark background),
  * disabled , test ID, and custom styling.
  *
  * ```js
+ * import {icons} from "@khanacademy/wonder-blocks-icon";
+ *
  * <IconButton
- *     icon={anIcon}
- *     alt="An Icon"
+ *     icon={icons.anIcon}
+ *     aria-label="An Icon"
  *     onClick={(e) => console.log("Hello, world!")}
  * />
  * ```
@@ -123,13 +130,19 @@ export default class IconButton extends React.Component<Props> {
     };
 
     render() {
-        const {onClick, href, clientSideNav, ...sharedProps} = this.props;
+        const {onClick, href, clientNav, ...sharedProps} = this.props;
+
+        const ClickableBehavior = getClickableBehavior(
+            href,
+            clientNav,
+            this.context.router,
+        );
+
         return (
             <ClickableBehavior
                 disabled={sharedProps.disabled}
                 href={href}
                 onClick={onClick}
-                clientSideNav={clientSideNav}
             >
                 {(state, handlers) => {
                     return (

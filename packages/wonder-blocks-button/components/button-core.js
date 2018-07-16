@@ -13,15 +13,17 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./button.js";
 
-type Props = SharedProps &
-    ClickableHandlers & {
-        hovered: boolean,
-        focused: boolean,
-        pressed: boolean,
-    };
+type Props = {|
+    ...SharedProps,
+    ...ClickableHandlers,
+    hovered: boolean,
+    focused: boolean,
+    pressed: boolean,
+|};
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
+// $FlowFixMe: pass props directly to StyledLink instead of to Tag
 const StyledLink = addStyle(Link);
 
 export default class ButtonCore extends React.Component<Props> {
@@ -84,8 +86,10 @@ export default class ButtonCore extends React.Component<Props> {
 
         if (!disabled && href) {
             if (clientNav) {
+                // $FlowFixMe
                 props.to = href;
             } else {
+                // $FlowFixMe
                 props.href = href;
             }
         }

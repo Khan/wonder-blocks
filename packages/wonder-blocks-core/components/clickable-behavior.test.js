@@ -303,4 +303,21 @@ describe("ClickableBehavior", () => {
         button.simulate("click", {preventDefault: jest.fn()});
         expect(onClick).toHaveBeenCalledTimes(4);
     });
+
+    it("resets state when set to disabled", () => {
+        const onClick = jest.fn();
+        const button = shallow(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, handlers) => {
+                    return <button {...handlers}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
+        button.setState({hovered: true, pressed: true, focused: true});
+        button.setProps({disabled: true});
+
+        expect(button.state("hovered")).toEqual(false);
+        expect(button.state("pressed")).toEqual(false);
+        expect(button.state("focused")).toEqual(false);
+    });
 });

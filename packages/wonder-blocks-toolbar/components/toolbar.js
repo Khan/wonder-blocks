@@ -12,7 +12,7 @@ import {
     LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
 
-type Props = {
+type Props = {|
     /**
      * Whether we should use the default light color scheme or switch to a
      * darker blue scheme.
@@ -48,7 +48,7 @@ type Props = {
      * The main title rendered in larger bold text.
      */
     title?: string,
-};
+|};
 
 export default class Toolbar extends React.Component<Props> {
     static defaultProps = {

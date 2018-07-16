@@ -11,7 +11,7 @@ import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
 import {Toolbar} from "@khanacademy/wonder-blocks-toolbar";
 
-type Props = {
+type Props = {|
     /**
      * The main contents of the ModalPanel. All other parts of the panel
      * are positioned around it.
@@ -48,7 +48,7 @@ type Props = {
      * clicks too.)
      */
     onClickCloseButton: () => void,
-};
+|};
 
 export default class ModalPanel extends React.Component<Props> {
     static defaultProps = {

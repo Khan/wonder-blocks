@@ -7,7 +7,7 @@ import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
 import {Toolbar} from "@khanacademy/wonder-blocks-toolbar";
 
-type Props = {
+type Props = {|
     /**
      * The content of the modal, appearing between the titlebar and footer.
      */
@@ -58,7 +58,7 @@ type Props = {
      * @ignore
      */
     onClickCloseButton: () => void,
-};
+|};
 
 /**
  * The "standard" modal layout: a titlebar, a content area, and a footer.

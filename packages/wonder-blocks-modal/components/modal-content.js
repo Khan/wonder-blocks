@@ -6,7 +6,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import ModalHeader from "./modal-header.js";
 
-type Props = {
+type Props = {|
     /** An optional header to display above the content. */
     header?: React.Element<typeof ModalHeader> | React.Node,
     /** Should the content scroll on overflow, or just expand. */
@@ -15,7 +15,7 @@ type Props = {
     children: React.Node,
     /** Optional styling to apply to the contents. */
     style?: any,
-};
+|};
 
 export default class ModalContent extends React.Component<Props> {
     static defaultProps = {

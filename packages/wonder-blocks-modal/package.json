@@ -1,7 +1,6 @@
 {
-  "private": true,
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "0.0.3",
+  "version": "1.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,10 +14,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.0.2",
-    "@khanacademy/wonder-blocks-core": "^1.0.2",
-    "@khanacademy/wonder-blocks-grid": "^0.0.3",
+    "@khanacademy/wonder-blocks-color": "^1.0.4",
+    "@khanacademy/wonder-blocks-core": "^1.0.4",
+    "@khanacademy/wonder-blocks-icon": "^1.0.1",
+    "@khanacademy/wonder-blocks-icon-button": "^1.0.1",
     "@khanacademy/wonder-blocks-toolbar": "^0.0.1",
-    "@khanacademy/wonder-blocks-typography": "^1.0.2"
+    "@khanacademy/wonder-blocks-typography": "^1.0.4"
   }
 }

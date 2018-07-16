@@ -17,7 +17,7 @@ import {
 
 const {blue, white, offBlack, offBlack32} = Color;
 
-type ActionProps = {
+type ActionProps = {|
     /**
      * Display text of the menu item.
      */
@@ -26,7 +26,7 @@ type ActionProps = {
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Whether this item should be indented to have menu items left-align in
@@ -68,10 +68,11 @@ type ActionProps = {
      * href is not
      */
     onClick?: () => void,
-};
+|};
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
+// $FlowFixMe: need to ensure we're passing 'to' to Link in a way that flow understands
 const StyledLink = addStyle(Link);
 
 export default class ActionItem extends React.Component<ActionProps> {
@@ -130,8 +131,10 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     if (!disabled && href) {
                         if (clientNav) {
+                            // $FlowFixMe: can't assign 'to' b/c 'to' is missing in object literal
                             props.to = href;
                         } else {
+                            // $FlowFixMe: can't assign 'href' b/c 'href' is missing in object literal
                             props.href = href;
                         }
                     }
@@ -139,7 +142,9 @@ export default class ActionItem extends React.Component<ActionProps> {
                     return (
                         <Tag {...props} role="menuitem">
                             {indent && <View style={{width: Spacing.medium}} />}
-                            <LabelLarge>{label}</LabelLarge>
+                            <LabelLarge style={[styles.label]}>
+                                {label}
+                            </LabelLarge>
                         </Tag>
                     );
                 }}
@@ -162,7 +167,12 @@ const styles = StyleSheet.create({
         height: 40,
         paddingLeft: Spacing.medium,
         paddingRight: Spacing.medium,
+    },
+
+    label: {
         whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     // hover and focus states

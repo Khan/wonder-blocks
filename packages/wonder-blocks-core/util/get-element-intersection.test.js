@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import enumerateScrollAncestors from "./enumerate-scroll-ancestors.js";
 import getElementIntersection from "./get-element-intersection.js";
 
@@ -15,6 +15,7 @@ describe("getElementIntersection", () => {
     beforeEach(() => {
         // Flow doesn't like jest mocks $FlowFixMe
         enumerateScrollAncestors.mockClear();
+        unmountAll();
     });
 
     test("element is null, returns unspecified intersection", () => {
@@ -29,82 +30,138 @@ describe("getElementIntersection", () => {
     });
 
     describe("when bounds element is falsy", () => {
-        test("element is not null, enumerates scroll ancestors", (done) => {
-            const arrange = (actAndAssert) => {
+        test("element is not null, enumerates scroll ancestors", async () => {
+            const ref = await new Promise((resolve) => {
                 // Arrange
                 const nodes = (
                     <div>
-                        <div ref={actAndAssert}>Test</div>
+                        <div ref={resolve}>Test</div>
                     </div>
                 );
 
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (node) => {
-                const element = (ReactDOM.findDOMNode(node): any);
+            const element = (ReactDOM.findDOMNode(ref): any);
 
-                // Act
-                getElementIntersection(element);
+            // Act
+            getElementIntersection(element);
 
-                // Assert
-                expect(enumerateScrollAncestors).toHaveBeenCalledWith(element);
-                done();
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(enumerateScrollAncestors).toHaveBeenCalledWith(element);
         });
 
-        test("no scroll ancestors, returns full intersection", (done) => {
-            const arrange = (actAndAssert) => {
+        test("no scroll ancestors, returns full intersection", async () => {
+            const ref = await new Promise((resolve) => {
                 // Arrange
                 const nodes = (
                     <div>
-                        <div ref={actAndAssert}>Test</div>
+                        <div ref={resolve}>Test</div>
                     </div>
                 );
 
                 mount(nodes);
-            };
+            });
+            const element = (ReactDOM.findDOMNode(ref): any);
 
-            const actAndAssert = (node) => {
-                const element = (ReactDOM.findDOMNode(node): any);
+            // Act
+            const result = getElementIntersection(element);
 
-                // Act
-                const result = getElementIntersection(element);
-
-                // Assert
-                expect(result).toMatchObject({
-                    horizontal: "within",
-                    vertical: "within",
-                });
-                done();
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(result).toMatchObject({
+                horizontal: "within",
+                vertical: "within",
+            });
         });
 
-        test("element is within visible part of scroll ancestor, returns within", (done) => {
+        test("element is within visible part of scroll ancestor, returns within", async () => {
             // Arrange
             // First, let's fake out some scroll parent.
             // Flow doesn't like jest mocks $FlowFixMe
             enumerateScrollAncestors.mockImplementation(() => [
                 {getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0))},
             ]);
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const nodes = (
                     <div>
-                        <div ref={actAndAssert}>Test</div>
+                        <div ref={resolve}>Test</div>
                     </div>
                 );
 
                 mount(nodes);
-            };
+            });
+            const element = (ReactDOM.findDOMNode(ref): any);
+            element.getBoundingClientRect = jest.fn(() => rect(5, 90, 90, 5));
 
-            const actAndAssert = (node) => {
-                const element = (ReactDOM.findDOMNode(node): any);
+            // Act
+            const result = getElementIntersection(element);
+
+            // Assert
+            expect(result).toMatchObject({
+                horizontal: "within",
+                vertical: "within",
+            });
+        });
+
+        describe("element is before visible part of scroll ancestor, returns before", () => {
+            test("horizontal", async () => {
+                // Arrange
+                // First, let's fake out some scroll parent.
+                // Flow doesn't like jest mocks $FlowFixMe
+                enumerateScrollAncestors.mockImplementation(() => [
+                    {
+                        getBoundingClientRect: jest.fn(() =>
+                            rect(0, 100, 100, 0),
+                        ),
+                    },
+                ]);
+                const ref = await new Promise((resolve) => {
+                    const nodes = (
+                        <div>
+                            <div ref={resolve}>Test</div>
+                        </div>
+                    );
+
+                    mount(nodes);
+                });
+                const element = (ReactDOM.findDOMNode(ref): any);
                 element.getBoundingClientRect = jest.fn(() =>
-                    rect(5, 90, 90, 5),
+                    rect(5, -25, 90, -50),
+                );
+
+                // Act
+                const result = getElementIntersection(element);
+
+                // Assert
+                expect(result).toMatchObject({
+                    horizontal: "before",
+                    vertical: "within",
+                });
+            });
+
+            test("vertical", async () => {
+                // Arrange
+                // First, let's fake out some scroll parent.
+                // Flow doesn't like jest mocks $FlowFixMe
+                enumerateScrollAncestors.mockImplementation(() => [
+                    {
+                        getBoundingClientRect: jest.fn(() =>
+                            rect(0, 100, 100, 0),
+                        ),
+                    },
+                ]);
+                const ref = await new Promise((resolve) => {
+                    const nodes = (
+                        <div>
+                            <div ref={resolve}>Test</div>
+                        </div>
+                    );
+
+                    mount(nodes);
+                });
+                const element = (ReactDOM.findDOMNode(ref): any);
+                element.getBoundingClientRect = jest.fn(() =>
+                    rect(-50, 90, -25, 5),
                 );
 
                 // Act
@@ -113,100 +170,13 @@ describe("getElementIntersection", () => {
                 // Assert
                 expect(result).toMatchObject({
                     horizontal: "within",
-                    vertical: "within",
+                    vertical: "before",
                 });
-                done();
-            };
-
-            arrange(actAndAssert);
-        });
-
-        describe("element is before visible part of scroll ancestor, returns before", () => {
-            test("horizontal", (done) => {
-                // Arrange
-                // First, let's fake out some scroll parent.
-                // Flow doesn't like jest mocks $FlowFixMe
-                enumerateScrollAncestors.mockImplementation(() => [
-                    {
-                        getBoundingClientRect: jest.fn(() =>
-                            rect(0, 100, 100, 0),
-                        ),
-                    },
-                ]);
-                const arrange = (actAndAssert) => {
-                    const nodes = (
-                        <div>
-                            <div ref={actAndAssert}>Test</div>
-                        </div>
-                    );
-
-                    mount(nodes);
-                };
-
-                const actAndAssert = (node) => {
-                    const element = (ReactDOM.findDOMNode(node): any);
-                    element.getBoundingClientRect = jest.fn(() =>
-                        rect(5, -25, 90, -50),
-                    );
-
-                    // Act
-                    const result = getElementIntersection(element);
-
-                    // Assert
-                    expect(result).toMatchObject({
-                        horizontal: "before",
-                        vertical: "within",
-                    });
-                    done();
-                };
-
-                arrange(actAndAssert);
-            });
-
-            test("vertical", (done) => {
-                // Arrange
-                // First, let's fake out some scroll parent.
-                // Flow doesn't like jest mocks $FlowFixMe
-                enumerateScrollAncestors.mockImplementation(() => [
-                    {
-                        getBoundingClientRect: jest.fn(() =>
-                            rect(0, 100, 100, 0),
-                        ),
-                    },
-                ]);
-                const arrange = (actAndAssert) => {
-                    const nodes = (
-                        <div>
-                            <div ref={actAndAssert}>Test</div>
-                        </div>
-                    );
-
-                    mount(nodes);
-                };
-
-                const actAndAssert = (node) => {
-                    const element = (ReactDOM.findDOMNode(node): any);
-                    element.getBoundingClientRect = jest.fn(() =>
-                        rect(-50, 90, -25, 5),
-                    );
-
-                    // Act
-                    const result = getElementIntersection(element);
-
-                    // Assert
-                    expect(result).toMatchObject({
-                        horizontal: "within",
-                        vertical: "before",
-                    });
-                    done();
-                };
-
-                arrange(actAndAssert);
             });
         });
 
         describe("element is after visible part of scroll ancestor, returns after", () => {
-            test("horizontal", (done) => {
+            test("horizontal", async () => {
                 // Arrange
                 // First, let's fake out some scroll parent.
                 // Flow doesn't like jest mocks $FlowFixMe
@@ -217,99 +187,18 @@ describe("getElementIntersection", () => {
                         ),
                     },
                 ]);
-                const arrange = (actAndAssert) => {
+                const ref = await new Promise((resolve) => {
                     const nodes = (
                         <div>
-                            <div ref={actAndAssert}>Test</div>
+                            <div ref={resolve}>Test</div>
                         </div>
                     );
 
                     mount(nodes);
-                };
-
-                const actAndAssert = (node) => {
-                    const element = (ReactDOM.findDOMNode(node): any);
-                    element.getBoundingClientRect = jest.fn(() =>
-                        rect(5, 150, 90, 125),
-                    );
-
-                    // Act
-                    const result = getElementIntersection(element);
-
-                    // Assert
-                    expect(result).toMatchObject({
-                        horizontal: "after",
-                        vertical: "within",
-                    });
-                    done();
-                };
-
-                arrange(actAndAssert);
-            });
-
-            test("vertical", (done) => {
-                // Arrange
-                // First, let's fake out some scroll parent.
-                // Flow doesn't like jest mocks $FlowFixMe
-                enumerateScrollAncestors.mockImplementation(() => [
-                    {
-                        getBoundingClientRect: jest.fn(() =>
-                            rect(0, 100, 100, 0),
-                        ),
-                    },
-                ]);
-                const arrange = (actAndAssert) => {
-                    const nodes = (
-                        <div>
-                            <div ref={actAndAssert}>Test</div>
-                        </div>
-                    );
-
-                    mount(nodes);
-                };
-
-                const actAndAssert = (node) => {
-                    const element = (ReactDOM.findDOMNode(node): any);
-                    element.getBoundingClientRect = jest.fn(() =>
-                        rect(125, 90, 150, 5),
-                    );
-
-                    // Act
-                    const result = getElementIntersection(element);
-
-                    // Assert
-                    expect(result).toMatchObject({
-                        horizontal: "within",
-                        vertical: "after",
-                    });
-                    done();
-                };
-
-                arrange(actAndAssert);
-            });
-        });
-
-        test("element is before and after visible part of scroll ancestor, returns combination", (done) => {
-            // Arrange
-            // First, let's fake out some scroll parent.
-            // Flow doesn't like jest mocks $FlowFixMe
-            enumerateScrollAncestors.mockImplementation(() => [
-                {getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0))},
-            ]);
-            const arrange = (actAndAssert) => {
-                const nodes = (
-                    <div>
-                        <div ref={actAndAssert}>Test</div>
-                    </div>
-                );
-
-                mount(nodes);
-            };
-
-            const actAndAssert = (node) => {
-                const element = (ReactDOM.findDOMNode(node): any);
+                });
+                const element = (ReactDOM.findDOMNode(ref): any);
                 element.getBoundingClientRect = jest.fn(() =>
-                    rect(-50, 150, -25, 125),
+                    rect(5, 150, 90, 125),
                 );
 
                 // Act
@@ -318,15 +207,78 @@ describe("getElementIntersection", () => {
                 // Assert
                 expect(result).toMatchObject({
                     horizontal: "after",
-                    vertical: "before",
+                    vertical: "within",
                 });
-                done();
-            };
+            });
 
-            arrange(actAndAssert);
+            test("vertical", async () => {
+                // Arrange
+                // First, let's fake out some scroll parent.
+                // Flow doesn't like jest mocks $FlowFixMe
+                enumerateScrollAncestors.mockImplementation(() => [
+                    {
+                        getBoundingClientRect: jest.fn(() =>
+                            rect(0, 100, 100, 0),
+                        ),
+                    },
+                ]);
+                const ref = await new Promise((resolve) => {
+                    const nodes = (
+                        <div>
+                            <div ref={resolve}>Test</div>
+                        </div>
+                    );
+
+                    mount(nodes);
+                });
+                const element = (ReactDOM.findDOMNode(ref): any);
+                element.getBoundingClientRect = jest.fn(() =>
+                    rect(125, 90, 150, 5),
+                );
+
+                // Act
+                const result = getElementIntersection(element);
+
+                // Assert
+                expect(result).toMatchObject({
+                    horizontal: "within",
+                    vertical: "after",
+                });
+            });
         });
 
-        test("multiple scroll ancestors, stops enumeration on first before/after", (done) => {
+        test("element is before and after visible part of scroll ancestor, returns combination", async () => {
+            // Arrange
+            // First, let's fake out some scroll parent.
+            // Flow doesn't like jest mocks $FlowFixMe
+            enumerateScrollAncestors.mockImplementation(() => [
+                {getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0))},
+            ]);
+            const ref = await new Promise((resolve) => {
+                const nodes = (
+                    <div>
+                        <div ref={resolve}>Test</div>
+                    </div>
+                );
+
+                mount(nodes);
+            });
+            const element = (ReactDOM.findDOMNode(ref): any);
+            element.getBoundingClientRect = jest.fn(() =>
+                rect(-50, 150, -25, 125),
+            );
+
+            // Act
+            const result = getElementIntersection(element);
+
+            // Assert
+            expect(result).toMatchObject({
+                horizontal: "after",
+                vertical: "before",
+            });
+        });
+
+        test("multiple scroll ancestors, stops enumeration on first before/after", async () => {
             // Arrange
             // First, let's fake out some scroll parent.
             // Flow doesn't like jest mocks $FlowFixMe
@@ -335,66 +287,49 @@ describe("getElementIntersection", () => {
                 {getBoundingClientRect: jest.fn(() => rect(50, 200, 250, 0))},
                 null,
             ]);
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const nodes = (
                     <div>
-                        <div ref={actAndAssert}>Test</div>
+                        <div ref={resolve}>Test</div>
                     </div>
                 );
 
                 mount(nodes);
-            };
+            });
+            const element = (ReactDOM.findDOMNode(ref): any);
+            element.getBoundingClientRect = jest.fn(() => rect(0, 25, 25, 0));
 
-            const actAndAssert = (node) => {
-                const element = (ReactDOM.findDOMNode(node): any);
-                element.getBoundingClientRect = jest.fn(() =>
-                    rect(0, 25, 25, 0),
-                );
+            // Act
+            const underTest = () => getElementIntersection(element);
 
-                // Act
-                const underTest = () => getElementIntersection(element);
-
-                // Assert
-                expect(underTest).not.toThrow();
-                done();
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(underTest).not.toThrow();
         });
     });
 
     describe("when bounds element is not falsy", () => {
-        test("does not enumerate scroll ancestors", (done) => {
+        test("does not enumerate scroll ancestors", async () => {
             // Arrange
             const fakeParentElement = ({
                 getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
             }: any);
-            const arrange = (actAndAssert) => {
+            const ref = await new Promise((resolve) => {
                 const nodes = (
                     <div>
-                        <div ref={actAndAssert}>Test</div>
+                        <div ref={resolve}>Test</div>
                     </div>
                 );
 
                 mount(nodes);
-            };
+            });
 
-            const actAndAssert = (node) => {
-                const element = (ReactDOM.findDOMNode(node): any);
+            const element = (ReactDOM.findDOMNode(ref): any);
 
-                // Act
-                getElementIntersection(element, fakeParentElement);
+            // Act
+            getElementIntersection(element, fakeParentElement);
 
-                // Assert
-                expect(enumerateScrollAncestors).not.toHaveBeenCalledWith(
-                    element,
-                );
-                done();
-            };
-
-            arrange(actAndAssert);
+            // Assert
+            expect(enumerateScrollAncestors).not.toHaveBeenCalledWith(element);
         });
     });
-
-    test("TODO", () => {});
 });

@@ -1,40 +1,35 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
 
+const sleep = (duration = 0) =>
+    new Promise((resolve, reject) => setTimeout(resolve, duration));
+
 describe("TooltipBubble", () => {
     // A little helper method to make the actual test more readable.
     const makePopperProps = () => ({
         placement: "top",
-        style: {
-            position: "absolute",
+        tailOffset: {
             top: 0,
-            left: 0,
+            left: 50,
         },
-        ref: () => {},
-        scheduleUpdate: () => {},
-        arrowProps: {
-            style: {
-                left: 50,
-                top: 0,
-            },
-            ref: () => {},
-        },
-        outOfBoundaries: false,
     });
 
-    test("updates reference to bubble container", (done) => {
+    beforeEach(() => {
+        unmountAll();
+    });
+
+    test("updates reference to bubble container", async () => {
         // Arrange
-        const arrangeAct = (assert) => {
+        const bubbleNode = await new Promise((resolve) => {
             // Get some props and set the ref to our assert, that way we assert
             // when the bubble component is mounted.
-            const popperProps = makePopperProps();
-            popperProps.ref = assert;
+            const props = makePopperProps();
 
             // Do some casting to pretend this is `TooltipContent`. That way
             // we are isolating behaviors a bit more.
@@ -43,7 +38,12 @@ describe("TooltipBubble", () => {
             ): any): React.Element<typeof TooltipContent>);
             const nodes = (
                 <View>
-                    <TooltipBubble popperProps={popperProps}>
+                    <TooltipBubble
+                        id="bubble"
+                        placement={props.placement}
+                        tailOffset={props.tailOffset}
+                        updateBubbleRef={resolve}
+                    >
                         {fakeContent}
                     </TooltipBubble>
                 </View>
@@ -51,35 +51,29 @@ describe("TooltipBubble", () => {
 
             // Act
             mount(nodes);
-        };
+        });
 
-        const andAssert = (bubbleNode) => {
-            /**
-             * All we're doing is making sure we got called and verifying that
-             * we got called with an element we expect.
-             */
-            // Assert
-            // Did we get a node?
-            expect(bubbleNode).toBeDefined();
+        /**
+         * All we're doing is making sure we got called and verifying that
+         * we got called with an element we expect.
+         */
+        // Assert
+        // Did we get a node?
+        expect(bubbleNode).toBeDefined();
 
-            // Is the node a mounted element?
-            const realElement = ReactDOM.findDOMNode(bubbleNode);
-            expect(realElement instanceof Element).toBeTruthy();
+        // Is the node a mounted element?
+        const realElement = ReactDOM.findDOMNode(bubbleNode);
+        expect(realElement instanceof Element).toBeTruthy();
 
-            // Keep flow happy...
-            if (realElement instanceof Element) {
-                // Did we apply our data attribute?
-                expect(realElement.getAttribute("data-placement")).toBe("top");
+        // Keep flow happy...
+        if (realElement instanceof Element) {
+            // Did we apply our data attribute?
+            expect(realElement.getAttribute("data-placement")).toBe("top");
 
-                // Did we render our content?
-                setTimeout(() => {
-                    const contentElement = document.getElementById("content");
-                    expect(contentElement).toBeDefined();
-                    done();
-                }, 0);
-            }
-        };
-
-        arrangeAct(andAssert);
+            // Did we render our content?
+            await sleep();
+            const contentElement = document.getElementById("content");
+            expect(contentElement).toBeDefined();
+        }
     });
 });

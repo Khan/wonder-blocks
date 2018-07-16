@@ -21,7 +21,7 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
 
 const {blue, white, offBlack, offBlack32} = Color;
 
-type SelectProps = {
+type SelectProps = {|
     /**
      * Display text of the menu item.
      */
@@ -47,30 +47,30 @@ type SelectProps = {
 
     /**
      * Callback for when this item is pressed to change its selection state.
-     * Passes value of the item and its new selection state. Should be handled
+     * Passes value of the item and its old selection state. Should be handled
      * by an implementation of Menu.
      */
-    onToggle: (value: string, selectionState: boolean) => void,
+    onToggle: (value: string, oldSelectionState: boolean) => void,
 
     /**
      * Whether this menu item is disabled. A disabled item may not be selected.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Optional client-supplied callback when this item is called.
      */
-    onClick?: (selectionState: boolean) => void,
-};
+    onClick?: (oldSelectionState: boolean) => void,
+|};
 
 const StyledButton = addStyle("button");
 
-type CheckProps = {
+type CheckProps = {|
     selected: boolean,
     pressed: boolean,
     hovered: boolean,
     focused: boolean,
-};
+|};
 
 // TODO: return with Icon once it's been made!
 const Check = (props: CheckProps) => {
@@ -141,6 +141,9 @@ const Checkbox = (props: CheckProps) => {
 };
 
 export default class SelectItem extends React.Component<SelectProps> {
+    static defaultProps = {
+        disabled: false,
+    };
     render() {
         const {
             disabled,
@@ -158,9 +161,9 @@ export default class SelectItem extends React.Component<SelectProps> {
             <ClickableBehavior
                 disabled={disabled}
                 onClick={() => {
-                    onToggle(value, !selected);
+                    onToggle(value, selected);
                     if (onClick) {
-                        onClick(!selected);
+                        onClick(selected);
                     }
                 }}
             >
