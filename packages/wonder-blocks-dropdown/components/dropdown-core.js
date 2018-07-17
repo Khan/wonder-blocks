@@ -9,19 +9,15 @@ import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import ActionItem from "./action-item.js";
-import SelectItem from "./select-item.js";
-import SeparatorItem from "./separator-item.js";
+import typeof ActionItem from "./action-item.js";
+import typeof SelectItem from "./select-item.js";
+import typeof SeparatorItem from "./separator-item.js";
 
 type DropdownCoreProps = {|
     /**
      * Items for the menu.
      */
-    items: Array<
-        React.Element<
-            typeof ActionItem | typeof SelectItem | typeof SeparatorItem,
-        >,
-    >,
+    items: Array<React.Element<ActionItem | SelectItem | SeparatorItem>>,
 
     /**
      * Whether the menu is open or not.

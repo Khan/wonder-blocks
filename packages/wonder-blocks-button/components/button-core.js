@@ -42,7 +42,6 @@ export default class ButtonCore extends React.Component<Props> {
 
     getProps() {
         const {
-            icon, // eslint-disable-line no-unused-vars
             color,
             kind,
             light,

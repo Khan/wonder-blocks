@@ -84,14 +84,17 @@ const Check = (props: CheckProps) => {
         <View style={[styles.check, !selected && styles.hide]}>
             <Icon
                 icon={icons.check}
-                size={"small"}
+                size="small"
                 color={pressed || hovered || focused ? white : offBlack}
             />
         </View>
     );
 };
 
-// This is a smaller check specifically for use in checkboxes
+// NOTE(sophie): This is a smaller check specifically for use in checkboxes.
+// Please don't copy it automatically and check with designers before using.
+// If the intended icon is a check without a checkbox, you should be using
+// icons.check from the Wonder Blocks Icon package.
 const checkboxCheck: IconAsset = {
     small:
         "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
@@ -124,7 +127,7 @@ const Checkbox = (props: CheckProps) => {
             {selected && (
                 <Icon
                     icon={checkboxCheck}
-                    size={"small"}
+                    size="small"
                     color={
                         disabled
                             ? offBlack32

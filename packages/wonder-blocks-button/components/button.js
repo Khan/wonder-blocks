@@ -15,7 +15,7 @@ export type SharedProps = {|
     /**
      * An icon, displayed to the left of the title.
      */
-    icon?: string,
+    // icon?: string,
 
     /**
      * If true, replaces the contents with a spinner.
