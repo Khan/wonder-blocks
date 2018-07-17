@@ -22,5 +22,9 @@
     "@khanacademy/wonder-blocks-spacing": "^2.0.2",
     "@khanacademy/wonder-blocks-typography": "^1.0.4",
     "react-popper": "^1.0.0"
+  },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "^15.3.2"
   }
 }
