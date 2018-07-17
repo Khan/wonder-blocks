@@ -33,7 +33,7 @@ describe("SingleSelectMenu", () => {
                 },
             ]}
             onChange={(selectedValue) => onClick()}
-            placeholder={"Choose"}
+            placeholder="Choose"
         />,
     );
     const opener = menu.find(SelectBox);
