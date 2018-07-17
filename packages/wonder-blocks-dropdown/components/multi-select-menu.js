@@ -164,12 +164,12 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         }
     }
 
+    // TODO(sophie): need to configure for i18n for the word "All" and
+    // potentially the concept of plurals
     getMenuText() {
         const {items, placeholder, selectItemType, selectedValues} = this.props;
         // If there is nothing selected, use the placeholder if it exists
-        const noSelectionText = placeholder
-            ? placeholder
-            : `0 ${selectItemType}`;
+        const noSelectionText = placeholder || `0 ${selectItemType}`;
         switch (selectedValues.length) {
             case 0:
                 return noSelectionText;
@@ -182,7 +182,6 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                 );
                 return selectedItem ? selectedItem.label : noSelectionText;
             case items.length:
-                // TODO(sophie): Configure i18n for the word "All"
                 return `All ${selectItemType}`;
             default:
                 return `${selectedValues.length} ${selectItemType}`;
