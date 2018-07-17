@@ -115,6 +115,24 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           }
         >
           Betsy Appleseed
+          <svg
+            className=""
+            height={16}
+            style={
+              Object {
+                "display": "inline-block",
+                "marginLeft": 4,
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
       </button>
       <div
@@ -537,6 +555,24 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         }
       >
         Assignments
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "marginLeft": 4,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+            fill="currentColor"
+          />
+        </svg>
       </span>
     </button>
     <div
@@ -870,29 +906,29 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
             >
               <path
-                d="M10,3.8C10,4,9.9,4.2,9.8,4.3L5.1,8.9L4.3,9.8C4.2,9.9,4,10,
-3.8,10S3.5,9.9,3.4,9.8L2.5,8.9L0.2,6.6C0.1,6.5,0,6.3,0,6.2s0.1-0.3,0.2-0.4
-l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
-0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l0.9,0.9C9.9,3.5,10,3.7,10,3.8z"
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
                 fill="#21242c"
               />
             </svg>
@@ -998,24 +1034,33 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
+                "visibility": "hidden",
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
-            />
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                fill="#21242c"
+              />
+            </svg>
           </div>
           <div
             className=""
@@ -1183,38 +1228,26 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           }
         }
       />
-      <div
+      <svg
         className=""
+        height={16}
         style={
           Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
+            "display": "inline-block",
             "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "verticalAlign": "text-bottom",
           }
         }
+        viewBox="0 0 16 16"
+        width={16}
       >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
     <div
       className=""
@@ -1307,24 +1340,33 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
+                "visibility": "hidden",
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
-            />
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                fill="#21242c"
+              />
+            </svg>
           </div>
           <div
             className=""
@@ -1427,24 +1469,33 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
+                "visibility": "hidden",
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
-            />
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                fill="#21242c"
+              />
+            </svg>
           </div>
           <div
             className=""
@@ -1547,24 +1598,33 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
+                "visibility": "hidden",
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
-            />
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                fill="#21242c"
+              />
+            </svg>
           </div>
           <div
             className=""
@@ -1730,38 +1790,26 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           }
         }
       />
-      <div
+      <svg
         className=""
+        height={16}
         style={
           Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
+            "display": "inline-block",
             "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "verticalAlign": "text-bottom",
           }
         }
+        viewBox="0 0 16 16"
+        width={16}
       >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
     <div
       className=""
@@ -1852,29 +1900,29 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
             >
               <path
-                d="M10,3.8C10,4,9.9,4.2,9.8,4.3L5.1,8.9L4.3,9.8C4.2,9.9,4,10,
-3.8,10S3.5,9.9,3.4,9.8L2.5,8.9L0.2,6.6C0.1,6.5,0,6.3,0,6.2s0.1-0.3,0.2-0.4
-l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
-0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l0.9,0.9C9.9,3.5,10,3.7,10,3.8z"
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
                 fill="#21242c"
               />
             </svg>
@@ -1980,24 +2028,33 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
+                "visibility": "hidden",
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
-            />
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                fill="#21242c"
+              />
+            </svg>
           </div>
           <div
             className=""
@@ -2100,24 +2157,33 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
+                "visibility": "hidden",
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
-            />
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                fill="#21242c"
+              />
+            </svg>
           </div>
           <div
             className=""
@@ -2284,38 +2350,27 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
           }
         }
       />
-      <div
+      <svg
         className=""
+        height={16}
         style={
           Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
+            "color": "rgba(33,36,44,0.32)",
+            "display": "inline-block",
             "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "verticalAlign": "text-bottom",
           }
         }
+        viewBox="0 0 16 16"
+        width={16}
       >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
     <div
       className=""
@@ -2406,29 +2461,29 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
             >
               <path
-                d="M10,3.8C10,4,9.9,4.2,9.8,4.3L5.1,8.9L4.3,9.8C4.2,9.9,4,10,
-3.8,10S3.5,9.9,3.4,9.8L2.5,8.9L0.2,6.6C0.1,6.5,0,6.3,0,6.2s0.1-0.3,0.2-0.4
-l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
-0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l0.9,0.9C9.9,3.5,10,3.7,10,3.8z"
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
                 fill="#21242c"
               />
             </svg>
@@ -2534,24 +2589,33 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
+                "visibility": "hidden",
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
-            />
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                fill="#21242c"
+              />
+            </svg>
           </div>
           <div
             className=""
@@ -2654,24 +2718,33 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
+                "visibility": "hidden",
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
-              viewBox="-1 0 12 12"
-              width="16px"
-            />
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                fill="#21242c"
+              />
+            </svg>
           </div>
           <div
             className=""
@@ -2857,38 +2930,26 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
             }
           }
         />
-        <div
+        <svg
           className=""
+          height={16}
           style={
             Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
+              "display": "inline-block",
               "minWidth": 16,
-              "padding": 0,
-              "position": "relative",
-              "zIndex": 0,
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+              "verticalAlign": "text-bottom",
             }
           }
+          viewBox="0 0 16 16"
+          width={16}
         >
-          <svg
-            aria-hidden={true}
-            height={16}
-            role="img"
-            viewBox="0 0 16 16"
-            width={16}
-          >
-            <path
-              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            />
-          </svg>
-        </div>
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+            fill="currentColor"
+          />
+        </svg>
       </button>
       <div
         className=""
@@ -2979,24 +3040,33 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "height": 16,
                   "margin": 0,
                   "minHeight": 16,
                   "minWidth": 16,
                   "padding": 0,
                   "position": "relative",
-                  "width": 16,
+                  "visibility": "hidden",
                   "zIndex": 0,
                 }
               }
             >
               <svg
-                aria-hidden="true"
-                height="16px"
-                role="img"
-                viewBox="-1 0 12 12"
-                width="16px"
-              />
+                className=""
+                height={16}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 16 16"
+                width={16}
+              >
+                <path
+                  d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                  fill="#21242c"
+                />
+              </svg>
             </div>
             <div
               className=""
@@ -3099,24 +3169,33 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "height": 16,
                   "margin": 0,
                   "minHeight": 16,
                   "minWidth": 16,
                   "padding": 0,
                   "position": "relative",
-                  "width": 16,
+                  "visibility": "hidden",
                   "zIndex": 0,
                 }
               }
             >
               <svg
-                aria-hidden="true"
-                height="16px"
-                role="img"
-                viewBox="-1 0 12 12"
-                width="16px"
-              />
+                className=""
+                height={16}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 16 16"
+                width={16}
+              >
+                <path
+                  d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                  fill="#21242c"
+                />
+              </svg>
             </div>
             <div
               className=""
@@ -3219,24 +3298,33 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "height": 16,
                   "margin": 0,
                   "minHeight": 16,
                   "minWidth": 16,
                   "padding": 0,
                   "position": "relative",
-                  "width": 16,
+                  "visibility": "hidden",
                   "zIndex": 0,
                 }
               }
             >
               <svg
-                aria-hidden="true"
-                height="16px"
-                role="img"
-                viewBox="-1 0 12 12"
-                width="16px"
-              />
+                className=""
+                height={16}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 16 16"
+                width={16}
+              >
+                <path
+                  d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+                  fill="#21242c"
+                />
+              </svg>
             </div>
             <div
               className=""
@@ -3405,38 +3493,26 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           }
         }
       />
-      <div
+      <svg
         className=""
+        height={16}
         style={
           Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
+            "display": "inline-block",
             "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "verticalAlign": "text-bottom",
           }
         }
+        viewBox="0 0 16 16"
+        width={16}
       >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
     <div
       className=""
@@ -3524,20 +3600,19 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -3638,20 +3713,19 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#f7f8fa",
+                "borderColor": "rgba(33,36,44,0.16)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -3752,20 +3826,19 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -3866,20 +3939,19 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -3980,20 +4052,19 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -4162,38 +4233,26 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           }
         }
       />
-      <div
+      <svg
         className=""
+        height={16}
         style={
           Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
+            "display": "inline-block",
             "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "verticalAlign": "text-bottom",
           }
         }
+        viewBox="0 0 16 16"
+        width={16}
       >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
     <div
       className=""
@@ -4448,41 +4507,36 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
+                "backgroundColor": "#1865f2",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
           >
             <svg
-              aria-hidden="true"
-              height="16px"
-              role="img"
+              className=""
+              height={16}
               style={
                 Object {
-                  "backgroundColor": "#1865f2",
-                  "borderRadius": 3,
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
                 }
               }
-              viewBox="-2 -1 14 14"
-              width="16px"
+              viewBox="0 0 16 16"
+              width={16}
             >
               <path
-                d="M10,3.8C10,4,9.9,4.2,9.8,4.3L5.1,8.9L4.3,9.8C4.2,9.9,4,10,
-3.8,10S3.5,9.9,3.4,9.8L2.5,8.9L0.2,6.6C0.1,6.5,0,6.3,0,6.2s0.1-0.3,0.2-0.4
-l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
-0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l0.9,0.9C9.9,3.5,10,3.7,10,3.8z"
+                d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
                 fill="#ffffff"
               />
             </svg>
@@ -4583,20 +4637,19 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -4697,20 +4750,19 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -4811,20 +4863,19 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -4925,20 +4976,19 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -5108,38 +5158,27 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
           }
         }
       />
-      <div
+      <svg
         className=""
+        height={16}
         style={
           Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
+            "color": "rgba(33,36,44,0.32)",
+            "display": "inline-block",
             "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "verticalAlign": "text-bottom",
           }
         }
+        viewBox="0 0 16 16"
+        width={16}
       >
-        <svg
-          aria-hidden={true}
-          height={16}
-          role="img"
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          />
-        </svg>
-      </div>
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
     <div
       className=""
@@ -5225,20 +5264,19 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "borderColor": "rgba(33,36,44,0.32)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
                 "borderRadius": 3,
                 "borderStyle": "solid",
                 "borderWidth": 1,
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "height": 16,
                 "margin": 0,
                 "minHeight": 16,
                 "minWidth": 16,
                 "padding": 0,
                 "position": "relative",
-                "width": 16,
                 "zIndex": 0,
               }
             }
@@ -5427,38 +5465,26 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
             }
           }
         />
-        <div
+        <svg
           className=""
+          height={16}
           style={
             Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
+              "display": "inline-block",
               "minWidth": 16,
-              "padding": 0,
-              "position": "relative",
-              "zIndex": 0,
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+              "verticalAlign": "text-bottom",
             }
           }
+          viewBox="0 0 16 16"
+          width={16}
         >
-          <svg
-            aria-hidden={true}
-            height={16}
-            role="img"
-            viewBox="0 0 16 16"
-            width={16}
-          >
-            <path
-              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0
-1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            />
-          </svg>
-        </div>
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+            fill="currentColor"
+          />
+        </svg>
       </button>
       <div
         className=""
@@ -5713,41 +5739,36 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
               style={
                 Object {
                   "alignItems": "stretch",
+                  "backgroundColor": "#1865f2",
                   "borderRadius": 3,
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "height": 16,
                   "margin": 0,
                   "minHeight": 16,
                   "minWidth": 16,
                   "padding": 0,
                   "position": "relative",
-                  "width": 16,
                   "zIndex": 0,
                 }
               }
             >
               <svg
-                aria-hidden="true"
-                height="16px"
-                role="img"
+                className=""
+                height={16}
                 style={
                   Object {
-                    "backgroundColor": "#1865f2",
-                    "borderRadius": 3,
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
                   }
                 }
-                viewBox="-2 -1 14 14"
-                width="16px"
+                viewBox="0 0 16 16"
+                width={16}
               >
                 <path
-                  d="M10,3.8C10,4,9.9,4.2,9.8,4.3L5.1,8.9L4.3,9.8C4.2,9.9,4,10,
-3.8,10S3.5,9.9,3.4,9.8L2.5,8.9L0.2,6.6C0.1,6.5,0,6.3,0,6.2s0.1-0.3,0.2-0.4
-l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
-0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l0.9,0.9C9.9,3.5,10,3.7,10,3.8z"
+                  d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
                   fill="#ffffff"
                 />
               </svg>
@@ -5848,20 +5869,19 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
               style={
                 Object {
                   "alignItems": "stretch",
-                  "borderColor": "rgba(33,36,44,0.32)",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
                   "borderRadius": 3,
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "height": 16,
                   "margin": 0,
                   "minHeight": 16,
                   "minWidth": 16,
                   "padding": 0,
                   "position": "relative",
-                  "width": 16,
                   "zIndex": 0,
                 }
               }
@@ -5962,20 +5982,19 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
               style={
                 Object {
                   "alignItems": "stretch",
-                  "borderColor": "rgba(33,36,44,0.32)",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
                   "borderRadius": 3,
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "height": 16,
                   "margin": 0,
                   "minHeight": 16,
                   "minWidth": 16,
                   "padding": 0,
                   "position": "relative",
-                  "width": 16,
                   "zIndex": 0,
                 }
               }
@@ -6076,20 +6095,19 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
               style={
                 Object {
                   "alignItems": "stretch",
-                  "borderColor": "rgba(33,36,44,0.32)",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
                   "borderRadius": 3,
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "height": 16,
                   "margin": 0,
                   "minHeight": 16,
                   "minWidth": 16,
                   "padding": 0,
                   "position": "relative",
-                  "width": 16,
                   "zIndex": 0,
                 }
               }
@@ -6190,20 +6208,19 @@ l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
               style={
                 Object {
                   "alignItems": "stretch",
-                  "borderColor": "rgba(33,36,44,0.32)",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
                   "borderRadius": 3,
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "height": 16,
                   "margin": 0,
                   "minHeight": 16,
                   "minWidth": 16,
                   "padding": 0,
                   "position": "relative",
-                  "width": 16,
                   "zIndex": 0,
                 }
               }
