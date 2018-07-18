@@ -1,7 +1,7 @@
 *   @kevinbarabash @jeresig
-packages/wonder-blocks-button/*   @chenyejia
-packages/wonder-blocks-color/*   @jangmi-jo
-packages/wonder-blocks-icon-button/*   @chenyejia
-packages/wonder-blocks-link/*   @chenyejia
-packages/wonder-blocks-tooltip/*   @somewhatabstract
-packages/wonder-blocks-typography/*   @briangenisio
+packages/wonder-blocks-button/*   @chenyejia @kevinbarabash @jeresig
+packages/wonder-blocks-color/*   @jangmi-jo @kevinbarabash @jeresig
+packages/wonder-blocks-icon-button/*   @chenyejia @kevinbarabash @jeresig
+packages/wonder-blocks-link/*   @chenyejia @kevinbarabash @jeresig
+packages/wonder-blocks-tooltip/*   @somewhatabstract @kevinbarabash @jeresig
+packages/wonder-blocks-typography/*   @briangenisio @kevinbarabash @jeresig

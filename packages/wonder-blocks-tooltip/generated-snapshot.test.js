@@ -230,7 +230,7 @@ describe("wonder-blocks-tooltip", () => {
             },
             padding: {
                 backgroundColor: "bisque",
-                width: Spacing.medium,
+                width: Spacing.xSmall,
             },
             tail: {
                 backgroundColor: "green",
@@ -267,7 +267,7 @@ describe("wonder-blocks-tooltip", () => {
             },
             padding: {
                 backgroundColor: "bisque",
-                height: 7,
+                height: Spacing.xSmall,
             },
             tail: {
                 backgroundColor: "green",
@@ -302,7 +302,7 @@ describe("wonder-blocks-tooltip", () => {
             },
             padding: {
                 backgroundColor: "bisque",
-                width: Spacing.medium,
+                width: Spacing.xSmall,
             },
             tail: {
                 backgroundColor: "green",
@@ -339,7 +339,7 @@ describe("wonder-blocks-tooltip", () => {
             },
             padding: {
                 backgroundColor: "bisque",
-                height: 7,
+                height: Spacing.xSmall,
             },
             tail: {
                 backgroundColor: "green",
