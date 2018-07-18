@@ -12,6 +12,17 @@ import Toolbar from "./components/toolbar.js";
 
 describe("wonder-blocks-toolbar", () => {
     it("example 1", () => {
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const smallButton = <Button size="small">Small button</Button>;
+
+        const example = (
+            <Toolbar size="small" rightContent={[smallButton, smallButton]} />
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        // TODO(scottgrant): Use wonder-blocks-icon and wonder-blocks-icon-button
         const dismissIcon =
             "M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z";
         const closeButton = (
@@ -29,7 +40,7 @@ describe("wonder-blocks-toolbar", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
+    it("example 3", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const dismissIcon =
@@ -52,7 +63,7 @@ describe("wonder-blocks-toolbar", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {LabelMedium} = require("@khanacademy/wonder-blocks-typography");
 
@@ -61,15 +72,12 @@ describe("wonder-blocks-toolbar", () => {
         const tryAgain = <Button kind="secondary">Try again</Button>;
 
         const example = (
-            <Toolbar
-                rightContent={[questionCount, tryAgain, nextExercise]}
-                showClose={false}
-            />
+            <Toolbar rightContent={[questionCount, tryAgain, nextExercise]} />
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 5", () => {
         const Link = require("@khanacademy/wonder-blocks-link").default;
 
         const dismissIcon =
@@ -93,7 +101,7 @@ describe("wonder-blocks-toolbar", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 6", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const style = {
@@ -105,21 +113,11 @@ describe("wonder-blocks-toolbar", () => {
 
         const example = (
             <View style={style}>
-                <Toolbar color="dark" showClose={true} title="Title" />
+                <Toolbar color="dark" title="Title" />
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </View>
         );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 6", () => {
-        const example = <Toolbar size="small" />;
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 7", () => {
-        const example = <Toolbar size="medium" />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

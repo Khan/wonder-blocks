@@ -1,8 +1,18 @@
 > TODO(scottgrant): Finish building, and write more thorough docs.
 
+## Small toolbar example:
+
+```js
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const smallButton = <Button size="small">Small button</Button>;
+
+<Toolbar size="small" rightContent={[smallButton, smallButton]} />
+```
+
 ## Toolbar with title
 
 ```js
+// TODO(scottgrant): Use wonder-blocks-icon and wonder-blocks-icon-button
 const dismissIcon =
     "M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z";
 const closeButton = (
@@ -51,7 +61,6 @@ const tryAgain = <Button kind="secondary">Try again</Button>;
 
 <Toolbar
 	rightContent={[questionCount, tryAgain, nextExercise]}
-	showClose={false}
 />
 ```
 
@@ -91,7 +100,7 @@ const style = {
 };
 
 <View style={style}>
-	<Toolbar color="dark" showClose={true} title="Title" />
+	<Toolbar color="dark" title="Title" />
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </View>
 ```
