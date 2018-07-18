@@ -1,4 +1,4 @@
 // @flow
 import Toolbar from "./components/toolbar.js";
 
-export {Toolbar};
+export {Toolbar as default};
