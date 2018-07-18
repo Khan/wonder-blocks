@@ -1,8 +1,8 @@
-The multi select menu allows the selection of multiple items. Clients are
-responsible for keeping track of the selected items in the menu.
+The multi select allows the selection of multiple items. Clients are responsible
+for keeping track of the selected items.
 
-This menu starts with nothing selected and has no selection shortcuts.
-This menu also has a set width. One of the items is disabled.
+This multi select starts with nothing selected and has no selection shortcuts.
+It also has a set width, and one of the items is disabled.
 
 ```js
 const React = require("react");
@@ -12,7 +12,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 250,
     },
     strutLike: {
         width: 8,
@@ -43,24 +42,20 @@ class ExampleNoneSelected extends React.Component {
                 },
                 {
                     disabled: true,
-                    label: "Orange",
+                    label: "Yellow",
                     value: "2",
                 },
                 {
-                    label: "Yellow",
+                    label: "Green",
                     value: "3",
                 },
                 {
-                    label: "Green",
-                    value: "4",
-                },
-                {
                     label: "Blue",
-                    value: "5",
+                    value: "4",
                 },
             ]}
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
-            placeholder="Choose some colors"
+            placeholder="Color palette"
             selectedValues={this.state.selectedValues}
             selectItemType="colors"
             style={{
@@ -76,8 +71,8 @@ class ExampleNoneSelected extends React.Component {
 </View>
 ```
 
-This menu starts with one item selected and has selection shortcuts for
-select all and select none. This does not have a predefined placeholder.
+This example starts with one item selected and has selection shortcuts for
+select all and select none. This one does not have a predefined placeholder.
 
 ```js
 const React = require("react");
@@ -87,7 +82,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 350,
     },
 });
 
@@ -95,7 +89,7 @@ class ExampleWithShortcuts extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedValues: ["1"],
+            selectedValues: ["wonderblocks 4ever"],
         };
     }
 
@@ -110,30 +104,49 @@ class ExampleWithShortcuts extends React.Component {
         return <MultiSelectMenu
             items={[
                 {
-                    label: "Red",
-                    value: "1",
+                    label: "Anesu",
+                    value: "very mobile",
                 },
                 {
-                    label: "Orange",
-                    value: "2",
+                    label: "Ioana",
+                    value: "lives in roma",
                 },
                 {
-                    label: "Yellow",
-                    value: "3",
+                    label: "Jennie",
+                    value: "walking to el camino",
                 },
                 {
-                    label: "Green",
-                    value: "4",
+                    label: "Kelsey",
+                    value: "pipelines and kotlin",
                 },
                 {
-                    label: "Blue",
-                    value: "5",
+                    label: "Mary",
+                    value: "flow-distress",
+                },
+                {
+                    label: "Nisha",
+                    value: "growth is great",
+                },
+                {
+                    label: "Stephanie",
+                    value: "ramen izakaya fan",
+                },
+                {
+                    label: "Sophie",
+                    value: "wonderblocks 4ever",
+                },
+                {
+                    label: "Yeva",
+                    value: "boba fan",
                 },
             ]}
             shortcuts={true}
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
-            selectItemType="colors"
+            selectItemType="interns"
+            style={{
+                width: 150,
+            }}
         />;
     }
 }
@@ -143,21 +156,35 @@ class ExampleWithShortcuts extends React.Component {
 </View>
 ```
 
-This menu is disabled.
+This multi select is in a portal.
 
 ```js
-const React = require("react");
-const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
+const React = require("react");
+const {View, Text} = require("@khanacademy/wonder-blocks-core");
+const {StandardModal, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-        height: 50,
+    wrapper: {
+        padding: 32,
+        alignItems: "center",
+    },
+    scrollbox: {
+        height: 100,
+        overflow: "auto",
+        border: "1px solid black",
+        margin: 10,
+    },
+    hostbox: {
+        minHeight: "200vh",
+    },
+    modalbox: {
+        height: "200vh",
     },
 });
 
-class ExampleNoneSelected extends React.Component {
+class SimpleMultiSelect extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -165,7 +192,7 @@ class ExampleNoneSelected extends React.Component {
         };
     }
 
-    handleChange(update) {
+    handleChanges(update) {
         console.log("changes happened!");
         this.setState({
            selectedValues: update,
@@ -175,100 +202,48 @@ class ExampleNoneSelected extends React.Component {
     render() {
         return <MultiSelectMenu
             items={[
-                {
-                    label: "Red",
-                    value: "1",
-                },
+                {label: "Stark", value: "1"},
+                {label: "Arryn", value: "2"},
+                {label: "Baratheon", value: "3"},
+                {label: "Tully", value: "4"},
+                {label: "Greyjoy", value: "5"},
+                {label: "Lannister", value: "6"},
+                {label: "Tyrell", value: "7"},
+                {label: "Martell", value: "8"},
+                {label: "Targaryen", value: "9"},
             ]}
-            disabled={true}
-            onChange={(selectedValues) => this.handleChange(selectedValues)}
-            placeholder="Choose some colors"
+            onChange={(selectedValues) => this.handleChanges(selectedValues)}
             selectedValues={this.state.selectedValues}
-            selectItemType="colors"
+            selectItemType="Great Houses"
+            style={{
+                width: 170,
+                maxWidth: 170,
+            }}
         />;
     }
 }
 
-<View style={[styles.row]}>
-    <ExampleNoneSelected />
-</View>
-```
-
-This menu is on a dark background and is also right-aligned.
-
-```js
-const React = require("react");
-const Color = require("@khanacademy/wonder-blocks-color");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-    },
-    darkBackgroundWrapper: {
-        backgroundColor: Color.default.darkBlue,
-        width: 350,
-        height: 370,
-        paddingRight: 10,
-        paddingTop: 10,
-    },
-});
-
-class LightRightAlignedExample extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            selectedValues: ["1"],
-        };
-    }
-
-    handleChange(update) {
-        console.log("changes happened!");
-        this.setState({
-           selectedValues: update,
-        });
-    }
-
-    render() {
-        return <MultiSelectMenu
-            items={[
-                {
-                    label: "the philosopher's stone",
-                    value: "1",
-                },
-                {
-                    label: "the chamber of secrets",
-                    value: "2",
-                },
-                {
-                    label: "the prisoner of azkaban",
-                    value: "3",
-                },
-                {
-                    label: "the goblet of fire",
-                    value: "4",
-                },
-                {
-                    label: "the order of the phoenix",
-                    value: "5",
-                },
-            ]}
-            alignment="right"
-            light={true}
-            shortcuts={true}
-            onChange={(selectedValues) => this.handleChange(selectedValues)}
-            selectedValues={this.state.selectedValues}
-            selectItemType="harry potter books"
-        />;
-    }
-}
-
-
-<View style={[styles.row]}>
-    <View style={[styles.darkBackgroundWrapper]}>
-        <LightRightAlignedExample />
+const modalContent = (
+    <View style={styles.modalbox}>
+        <View style={styles.scrollbox}>
+            <View style={styles.hostbox}>
+                <SimpleMultiSelect />
+            </View>
+        </View>
     </View>
-</View>
+);
 
+const modal = (
+    <StandardModal
+        title="My modal"
+        footer="Still my modal"
+        content={modalContent}
+    />
+);
+
+<View style={styles.wrapper}>
+    <ModalLauncher modal={modal}>
+        {({openModal}) => <Button onClick={openModal}>Open modal!</Button>}
+    </ModalLauncher>
+</View>
 ```

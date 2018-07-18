@@ -3,6 +3,7 @@
 // items to be selected.
 
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import ActionItem from "./action-item.js";
@@ -79,6 +80,8 @@ type State = {|
 |};
 
 export default class MultiSelectMenu extends React.Component<Props, State> {
+    openerElement: ?Element;
+
     static defaultProps = {
         alignment: "left",
         disabled: false,
@@ -216,6 +219,11 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                 disabled={disabled}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
+                ref={(node) =>
+                    (this.openerElement = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
                 style={style}
             >
                 {menuText}
@@ -232,6 +240,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                 onOpenChanged={(open) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
+                openerElement={this.openerElement}
                 style={[styles.menuTopSpace, style]}
             />
         );

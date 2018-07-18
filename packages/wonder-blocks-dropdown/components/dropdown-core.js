@@ -30,6 +30,11 @@ type DropdownCoreProps = {|
     opener: React.Element<*>,
 
     /**
+     * Ref to the opener element.
+     */
+    openerElement: ?Element,
+
+    /**
      * Callback for when the menu is opened or closed. Parameter is whether
      * the dropdown menu should be open.
      */
@@ -54,7 +59,11 @@ type DropdownCoreProps = {|
 |};
 
 export default class DropdownCore extends React.Component<DropdownCoreProps> {
-    node: ?Node;
+    element: ?Element;
+    // We need the menu width to tell it how to position itself for
+    // right-aligned menus
+    menuWidth: ?number;
+    menuElement: ?Element;
 
     static defaultProps = {
         alignment: "left",
@@ -65,22 +74,61 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
     }
 
     componentDidMount() {
-        document.addEventListener("mouseup", this._handleInteract);
-        document.addEventListener("touchend", this._handleInteract);
-        document.addEventListener("keyup", this._handleKeyup);
+        this.updateEventListeners();
+    }
+
+    componentDidUpdate(prevProps: DropdownCoreProps) {
+        if (prevProps.open !== this.props.open) {
+            this.updateEventListeners();
+        }
+
+        // If the menu just changed from closed to open, and if we haven't
+        // found the correct menuWidth yet
+        if (!prevProps.open && this.props.open && !this.menuWidth) {
+            // There is a timeout because if we call getBoundingClientRect
+            // right away, it returns the value of the document width instead
+            // of the width of the just-mounted component, the menu.
+            requestAnimationFrame(() => {
+                if (this.menuElement) {
+                    const rect = this.menuElement.getBoundingClientRect();
+                    // This update forcing would only happen once, because now
+                    // this.menuWidth is set
+                    this.menuWidth = rect.width;
+                    this.forceUpdate();
+                }
+            });
+        }
     }
 
     componentWillUnmount() {
+        this.removeEventListeners();
+    }
+
+    updateEventListeners() {
+        if (this.props.open) {
+            this.addEventListeners();
+        } else {
+            this.removeEventListeners();
+        }
+    }
+
+    addEventListeners() {
+        document.addEventListener("mouseup", this._handleInteract);
+        document.addEventListener("touchend", this._handleInteract);
+        // This is still keyup because we are listening for the escape key,
+        // which invokes events keydown and keyup and NOT keypress.
+        document.addEventListener("keyup", this._handleKeyup);
+    }
+
+    removeEventListeners() {
         document.removeEventListener("mouseup", this._handleInteract);
         document.removeEventListener("touchend", this._handleInteract);
         document.removeEventListener("keyup", this._handleKeyup);
     }
 
     _handleInteract = (event: {target: any}) => {
-        if (this.node && this.node.contains(event.target)) {
-            return;
-        }
-        if (this.props.open) {
+        const target: Node = event.target;
+        if (this.props.open && this.element && !this.element.contains(target)) {
             this.props.onOpenChanged(false);
         }
     };
@@ -93,30 +141,90 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
         }
     };
 
+    getOpenerBounds() {
+        const {openerElement} = this.props;
+        if (openerElement) {
+            const rect = openerElement.getBoundingClientRect();
+            return {
+                top: rect.top + window.pageYOffset,
+                left: rect.left + window.pageXOffset,
+                width: rect.width,
+            };
+        }
+    }
+
+    getTranslatedPosition(openerBounds: {
+        top: number,
+        left: number,
+        width: number,
+    }) {
+        const {top, left, width} = openerBounds;
+        if (this.props.alignment === "left") {
+            return {
+                transform: `translate3d(${left}px, ${top}px, 0)`,
+            };
+        } else {
+            return {
+                transform: `translate3d(${left +
+                    width -
+                    (this.menuWidth || 0)}px, ${top}px, 0)`,
+            };
+        }
+    }
+
+    maybeRenderMenu() {
+        const {items, light, open, style} = this.props;
+        const body = document.querySelector("body");
+
+        const bounds = this.getOpenerBounds();
+        const translatedPosition = bounds && this.getTranslatedPosition(bounds);
+
+        if (open && body) {
+            return ReactDOM.createPortal(
+                <View
+                    onMouseUp={(event) => {
+                        // Stop propagation to prevent the mouseup listener
+                        // on the document from closing the menu.
+                        event.nativeEvent.stopImmediatePropagation();
+                    }}
+                    ref={(node) =>
+                        (this.menuElement = ((ReactDOM.findDOMNode(
+                            node,
+                        ): any): Element))
+                    }
+                    style={[
+                        styles.dropdown,
+                        light && styles.light,
+                        !(open && this.menuWidth) && styles.hide,
+                        translatedPosition,
+                        // TODO: apply styld in better place
+                        style,
+                    ]}
+                >
+                    {items}
+                </View>,
+                body,
+            );
+        }
+    }
+
     render() {
-        const {alignment, items, light, open, opener, style} = this.props;
+        const {alignment, opener} = this.props;
 
         return (
             <View
-                ref={(node) => (this.node = ReactDOM.findDOMNode(node))}
+                ref={(node) =>
+                    (this.element = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
                 style={[
                     styles.menuWrapper,
                     alignment === "right" && styles.rightAlign,
                 ]}
             >
                 {opener}
-                {items && (
-                    <View
-                        style={[
-                            styles.dropdown,
-                            !open && styles.hide,
-                            light && styles.light,
-                            style,
-                        ]}
-                    >
-                        {items}
-                    </View>
-                )}
+                {this.maybeRenderMenu()}
             </View>
         );
     }
@@ -124,11 +232,13 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
 
 const styles = StyleSheet.create({
     menuWrapper: {
+        width: "fit-content",
         alignItems: "flex-start",
     },
 
     rightAlign: {
         alignItems: "flex-end",
+        alignSelf: "flex-end",
     },
 
     dropdown: {
@@ -136,7 +246,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         borderRadius: 4,
         // The space between the opener and the top of the menu
-        marginTop: Spacing.xxxSmall,
         paddingTop: Spacing.xxxSmall,
         paddingBottom: Spacing.xxxSmall,
         border: `solid 1px ${Color.offBlack16}`,

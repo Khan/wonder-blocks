@@ -46,6 +46,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       style={
         Object {
           "alignItems": "flex-end",
+          "alignSelf": "flex-end",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -56,6 +57,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": "fit-content",
           "zIndex": 0,
         }
       }
@@ -140,6 +142,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           </svg>
         </span>
       </button>
+<<<<<<< HEAD
       <div
         className=""
         style={
@@ -482,6 +485,8 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           </span>
         </a>
       </div>
+=======
+>>>>>>> 6107973... Open dropdown menus in portals
     </div>
   </div>
 </div>
@@ -523,6 +528,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -607,89 +613,152 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         </svg>
       </span>
     </button>
-    <div
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 180,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
       className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="menu"
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "backgroundColor": "#ffffff",
-          "border": "solid 1px rgba(33,36,44,0.16)",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
           "borderRadius": 4,
           "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxShadow": "0px 8px 8px 0px rgba(33,36,44,0.10)",
+          "borderWidth": 1,
           "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "column",
+          "color": "#21242c",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
           "margin": 0,
-          "marginTop": 4,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "paddingBottom": 4,
-          "paddingTop": 4,
-          "position": "absolute",
-          "top": 36,
-          "visibility": "hidden",
-          "zIndex": 1000,
+          "maxWidth": 170,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "whiteSpace": "nowrap",
+          "width": 170,
         }
       }
+      tabIndex={0}
     >
-      <button
+      <span
         className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        role="menuitem"
         style={
           Object {
-            "alignItems": "center",
-            "background": "#ffffff",
-            "border": "none",
-            "color": "#21242c",
-            "cursor": "pointer",
-            "display": "flex",
-            "flexDirection": "row",
-            "height": 40,
-            "margin": 0,
-            "outline": "none",
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "textDecoration": "none",
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
           }
         }
-        tabIndex={0}
       >
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
-              "width": 16,
-              "zIndex": 0,
-            }
+        Choose a fruit
+      </span>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 8,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
           }
+        }
+      />
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "minWidth": 16,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
         />
+<<<<<<< HEAD
         <span
           className=""
           style={
@@ -792,40 +861,114 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         </span>
       </button>
       <button
+=======
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 180,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="menu"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#21242c",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "margin": 0,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={0}
+    >
+      <span
+>>>>>>> 6107973... Open dropdown menus in portals
         className=""
-        disabled={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        role="menuitem"
         style={
           Object {
-            "alignItems": "center",
-            "background": "#ffffff",
-            "border": "none",
-            "color": "rgba(33,36,44,0.32)",
-            "cursor": "default",
-            "display": "flex",
-            "flexDirection": "row",
-            "height": 40,
-            "margin": 0,
-            "outline": "none",
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "textDecoration": "none",
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
           }
         }
-        tabIndex={-1}
       >
+<<<<<<< HEAD
         <div
           className=""
           style={
@@ -869,31 +1012,32 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           Delete
         </span>
       </button>
+=======
+        Banana juice!!!
+      </span>
+>>>>>>> 6107973... Open dropdown menus in portals
       <div
         className=""
         style={
           Object {
             "alignItems": "stretch",
-            "backgroundColor": "rgba(33,36,44,0.16)",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "height": 1,
             "margin": 0,
-            "marginBottom": 4,
-            "marginTop": 4,
             "minHeight": 0,
-            "minWidth": 0,
+            "minWidth": 8,
             "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
         }
       />
-      <button
+      <svg
         className=""
+<<<<<<< HEAD
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -1038,19 +1182,22 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+=======
+        height={16}
+>>>>>>> 6107973... Open dropdown menus in portals
         style={
           Object {
-            "background": "#ffffff",
-            "border": "none",
-            "color": "#21242c",
-            "cursor": "pointer",
-            "margin": 0,
-            "outline": "none",
-            "padding": 0,
+            "display": "inline-block",
+            "minWidth": 16,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "verticalAlign": "text-bottom",
           }
         }
-        tabIndex={0}
+        viewBox="0 0 16 16"
+        width={16}
       >
+<<<<<<< HEAD
         <div
           aria-checked="false"
           className=""
@@ -1158,11 +1305,19 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         </div>
       </button>
     </div>
+=======
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+>>>>>>> 6107973... Open dropdown menus in portals
   </div>
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 3 1`] = `
+exports[`wonder-blocks-dropdown example 5 1`] = `
 <div
   className=""
   style={
@@ -1173,7 +1328,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 180,
+      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1198,13 +1353,14 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
   >
     <button
       className=""
-      disabled={false}
+      disabled={true}
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -1223,30 +1379,26 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "alignItems": "center",
           "backgroundColor": "#ffffff",
           "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
+          "borderColor": "rgba(33,36,44,0.16)",
           "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
           "color": "#21242c",
-          "cursor": "pointer",
+          "cursor": "auto",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
           "margin": 0,
-          "marginBottom": 4,
-          "marginTop": 4,
-          "maxWidth": 170,
           "outline": "none",
           "paddingLeft": 16,
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
-          "width": 170,
         }
       }
-      tabIndex={0}
+      tabIndex={-1}
     >
       <span
         className=""
@@ -1254,6 +1406,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
+            "color": "rgba(33,36,44,0.32)",
             "display": "block",
             "fontFamily": Array [
               "Lato",
@@ -1267,7 +1420,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           }
         }
       >
-        Choose a fruit
+        Banana juice!!!
       </span>
       <div
         className=""
@@ -1293,6 +1446,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         height={16}
         style={
           Object {
+            "color": "rgba(33,36,44,0.32)",
             "display": "inline-block",
             "minWidth": 16,
             "overflow": "hidden",
@@ -1309,38 +1463,78 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         />
       </svg>
     </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#0a2a66",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 200,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "paddingRight": 10,
+        "paddingTop": 10,
+        "position": "relative",
+        "width": 350,
+        "zIndex": 0,
+      }
+    }
+  >
     <div
       className=""
       style={
         Object {
-          "alignItems": "stretch",
-          "backgroundColor": "#ffffff",
-          "border": "solid 1px rgba(33,36,44,0.16)",
-          "borderRadius": 4,
+          "alignItems": "flex-end",
+          "alignSelf": "flex-end",
           "borderStyle": "solid",
           "borderWidth": 0,
-          "boxShadow": "0px 8px 8px 0px rgba(33,36,44,0.10)",
           "boxSizing": "border-box",
           "display": "flex",
           "flexDirection": "column",
           "margin": 0,
-          "marginTop": 4,
-          "maxWidth": 170,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
-          "paddingBottom": 4,
-          "paddingTop": 4,
-          "position": "absolute",
-          "top": 48,
-          "visibility": "hidden",
-          "width": 170,
-          "zIndex": 1000,
+          "position": "relative",
+          "width": "fit-content",
+          "zIndex": 0,
         }
       }
     >
       <button
         className=""
+        disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -1353,44 +1547,83 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        role="menu"
         style={
           Object {
-            "background": "#ffffff",
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
             "border": "none",
+            "borderRadius": 4,
+            "boxSizing": "border-box",
             "color": "#21242c",
             "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "space-between",
             "margin": 0,
             "outline": "none",
-            "padding": 0,
+            "paddingLeft": 16,
+            "paddingRight": 12,
+            "position": "relative",
+            "textDecoration": "none",
+            "whiteSpace": "nowrap",
           }
         }
         tabIndex={0}
       >
-        <div
-          aria-checked="false"
+        <span
           className=""
-          role="menuitemcheckbox"
           style={
             Object {
-              "alignItems": "center",
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+            }
+          }
+        >
+          Boba order
+        </span>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
               "display": "flex",
-              "flexDirection": "row",
-              "height": 40,
+              "flexDirection": "column",
               "margin": 0,
               "minHeight": 0,
-              "minWidth": 0,
+              "minWidth": 8,
               "padding": 0,
-              "paddingLeft": 8,
-              "paddingRight": 16,
               "position": "relative",
-              "whiteSpace": "nowrap",
               "zIndex": 0,
             }
           }
+        />
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "minWidth": 16,
+              "overflow": "hidden",
+              "textOverflow": "ellipsis",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
         >
+<<<<<<< HEAD
           <div
             className=""
             style={
@@ -1737,13 +1970,20 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
             Grape
           </span>
         </div>
+=======
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+            fill="currentColor"
+          />
+        </svg>
+>>>>>>> 6107973... Open dropdown menus in portals
       </button>
     </div>
   </div>
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 4 1`] = `
+exports[`wonder-blocks-dropdown example 7 1`] = `
 <div
   className=""
   style={
@@ -1754,7 +1994,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 180,
+      "height": 250,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1779,6 +2019,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -1815,14 +2056,14 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "height": 40,
           "justifyContent": "space-between",
           "margin": 0,
-          "marginBottom": 4,
-          "marginTop": 4,
+          "maxWidth": 170,
           "outline": "none",
           "paddingLeft": 16,
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
+          "width": 170,
         }
       }
       tabIndex={0}
@@ -1846,7 +2087,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           }
         }
       >
-        Banana juice!!!
+        Choose some colors
       </span>
       <div
         className=""
@@ -1888,34 +2129,94 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         />
       </svg>
     </button>
-    <div
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 8 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 350,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
       className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="menu"
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "backgroundColor": "#ffffff",
-          "border": "solid 1px rgba(33,36,44,0.16)",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
           "borderRadius": 4,
           "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxShadow": "0px 8px 8px 0px rgba(33,36,44,0.10)",
+          "borderWidth": 1,
           "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "column",
+          "color": "#21242c",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
           "margin": 0,
-          "marginTop": 4,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "paddingBottom": 4,
-          "paddingTop": 4,
-          "position": "absolute",
-          "top": 48,
-          "visibility": "hidden",
-          "zIndex": 1000,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "whiteSpace": "nowrap",
         }
       }
+      tabIndex={0}
     >
+<<<<<<< HEAD
       <button
         className=""
         onBlur={[Function]}
@@ -2403,13 +2704,14 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       }
       tabIndex={-1}
     >
+=======
+>>>>>>> 6107973... Open dropdown menus in portals
       <span
         className=""
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "color": "rgba(33,36,44,0.32)",
             "display": "block",
             "fontFamily": Array [
               "Lato",
@@ -2423,7 +2725,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
           }
         }
       >
-        Banana juice!!!
+        Red
       </span>
       <div
         className=""
@@ -2449,7 +2751,6 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         height={16}
         style={
           Object {
-            "color": "rgba(33,36,44,0.32)",
             "display": "inline-block",
             "minWidth": 16,
             "overflow": "hidden",
@@ -2466,6 +2767,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         />
       </svg>
     </button>
+<<<<<<< HEAD
     <div
       className=""
       style={
@@ -5217,6 +5519,8 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
         </div>
       </button>
     </div>
+=======
+>>>>>>> 6107973... Open dropdown menus in portals
   </div>
 </div>
 `;
@@ -5257,6 +5561,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -5293,8 +5598,6 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
           "height": 40,
           "justifyContent": "space-between",
           "margin": 0,
-          "marginBottom": 4,
-          "marginTop": 4,
           "outline": "none",
           "paddingLeft": 16,
           "paddingRight": 12,
@@ -5368,6 +5671,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
         />
       </svg>
     </button>
+<<<<<<< HEAD
     <div
       className=""
       style={
@@ -5514,6 +5818,8 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
         </div>
       </button>
     </div>
+=======
+>>>>>>> 6107973... Open dropdown menus in portals
   </div>
 </div>
 `;
@@ -5567,6 +5873,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
       style={
         Object {
           "alignItems": "flex-end",
+          "alignSelf": "flex-end",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -5577,6 +5884,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": "fit-content",
           "zIndex": 0,
         }
       }
@@ -5610,8 +5918,6 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
             "height": 40,
             "justifyContent": "space-between",
             "margin": 0,
-            "marginBottom": 4,
-            "marginTop": 4,
             "outline": "none",
             "paddingLeft": 16,
             "paddingRight": 12,
@@ -5683,6 +5989,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
           />
         </svg>
       </button>
+<<<<<<< HEAD
       <div
         className=""
         style={
@@ -6493,6 +6800,8 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
           </div>
         </button>
       </div>
+=======
+>>>>>>> 6107973... Open dropdown menus in portals
     </div>
   </div>
 </div>

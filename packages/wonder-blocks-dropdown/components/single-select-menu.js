@@ -2,6 +2,7 @@
 // A menu that consists of items to be selected, single-choice
 
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import DropdownCore from "./dropdown-core.js";
@@ -63,6 +64,8 @@ type State = {|
 |};
 
 export default class SingleSelectMenu extends React.Component<Props, State> {
+    openerElement: ?Element;
+
     static defaultProps = {
         alignment: "left",
         disabled: false,
@@ -117,6 +120,11 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                 disabled={disabled}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
+                ref={(node) =>
+                    (this.openerElement = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
                 style={style}
             >
                 {menuText}
@@ -145,6 +153,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                 onOpenChanged={(open, source) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
+                openerElement={this.openerElement}
                 style={[styles.menuSpacer, style]}
             />
         );
