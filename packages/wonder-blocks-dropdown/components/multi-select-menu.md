@@ -1,8 +1,6 @@
 The multi select menu allows the selection of multiple items. Clients are
 responsible for keeping track of the selected items in the menu.
 
-TODO(sophie): keyboard navigation and dismissal
-
 This menu starts with nothing selected and has no selection shortcuts.
 This menu also has a set width. One of the items is disabled.
 
@@ -62,9 +60,9 @@ class ExampleNoneSelected extends React.Component {
                 },
             ]}
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
-            placeholder={"Choose some colors"}
+            placeholder="Choose some colors"
             selectedValues={this.state.selectedValues}
-            selectItemType={"colors"}
+            selectItemType="colors"
             style={{
                 width: 170,
                 maxWidth: 170,
@@ -135,7 +133,7 @@ class ExampleWithShortcuts extends React.Component {
             shortcuts={true}
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
-            selectItemType={"colors"}
+            selectItemType="colors"
         />;
     }
 }
@@ -184,9 +182,9 @@ class ExampleNoneSelected extends React.Component {
             ]}
             disabled={true}
             onChange={(selectedValues) => this.handleChange(selectedValues)}
-            placeholder={"Choose some colors"}
+            placeholder="Choose some colors"
             selectedValues={this.state.selectedValues}
-            selectItemType={"colors"}
+            selectItemType="colors"
         />;
     }
 }
@@ -256,12 +254,12 @@ class LightRightAlignedExample extends React.Component {
                     value: "5",
                 },
             ]}
-            alignment={"right"}
+            alignment="right"
             light={true}
             shortcuts={true}
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
-            selectItemType={"harry potter books"}
+            selectItemType="harry potter books"
         />;
     }
 }

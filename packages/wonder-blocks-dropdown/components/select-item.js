@@ -6,6 +6,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
@@ -13,13 +14,17 @@ import {
     addStyle,
     getClickableBehavior,
 } from "@khanacademy/wonder-blocks-core";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
-const checkIcon = `M10,3.8C10,4,9.9,4.2,9.8,4.3L5.1,8.9L4.3,9.8C4.2,9.9,4,10,
-3.8,10S3.5,9.9,3.4,9.8L2.5,8.9L0.2,6.6C0.1,6.5,0,6.3,0,6.2s0.1-0.3,0.2-0.4
-l0.9-0.9c0.1-0.1,0.3-0.2,0.4-0.2s0.3,0.1,0.4,0.2l1.9,1.9l4.2-4.2c0.1-0.1,
-0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l0.9,0.9C9.9,3.5,10,3.7,10,3.8z`;
-
-const {blue, white, offBlack, offBlack32} = Color;
+const {
+    blue,
+    white,
+    offBlack,
+    offBlack16,
+    offBlack32,
+    offBlack50,
+    offWhite,
+} = Color;
 
 type SelectProps = {|
     /**
@@ -66,75 +71,76 @@ type SelectProps = {|
 const StyledButton = addStyle("button");
 
 type CheckProps = {|
+    disabled: boolean,
     selected: boolean,
     pressed: boolean,
     hovered: boolean,
     focused: boolean,
 |};
 
-// TODO: return with Icon once it's been made!
 const Check = (props: CheckProps) => {
     const {selected, pressed, hovered, focused} = props;
-
     return (
-        <View style={[styles.checkContainer]}>
-            <svg
-                role="img"
-                width="16px"
-                height="16px"
-                viewBox="-1 0 12 12"
-                aria-hidden="true"
-            >
-                {selected && (
-                    <path
-                        fill={pressed || hovered || focused ? white : offBlack}
-                        d={checkIcon}
-                    />
-                )}
-            </svg>
+        <View style={[styles.check, !selected && styles.hide]}>
+            <Icon
+                icon={icons.check}
+                size="small"
+                color={pressed || hovered || focused ? white : offBlack}
+            />
         </View>
     );
 };
 
-// TODO: replace with Choice component once it's implemented
+// NOTE(sophie): This is a smaller check specifically for use in checkboxes.
+// Please don't copy it automatically and check with designers before using.
+// If the intended icon is a check without a checkbox, you should be using
+// icons.check from the Wonder Blocks Icon package.
+const checkboxCheck: IconAsset = {
+    small:
+        "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
+};
+
 const Checkbox = (props: CheckProps) => {
-    const {selected, pressed, hovered, focused} = props;
-
+    const {disabled, selected, pressed, hovered, focused} = props;
     const activeBlue = mix(offBlack32, blue);
-
-    const bgColor = selected && !(pressed || hovered || focused) ? blue : white;
+    const bgColor = disabled
+        ? offWhite
+        : selected && !(pressed || hovered || focused)
+            ? blue
+            : white;
 
     return (
         <View
             style={[
-                styles.checkContainer,
+                styles.check,
                 styles.checkbox,
-                !selected && styles.borderedCheckbox,
+                !selected &&
+                    !(pressed || hovered || focused) &&
+                    styles.borderedCheckbox,
                 !selected &&
                     (pressed || hovered || focused) &&
                     styles.invertBackground,
+                disabled && styles.disabledCheckbox,
+                {backgroundColor: bgColor},
             ]}
         >
             {selected && (
-                <svg
-                    role="img"
-                    width="16px"
-                    height="16px"
-                    viewBox="-2 -1 14 14"
-                    aria-hidden="true"
-                    style={{backgroundColor: bgColor, borderRadius: 3}}
-                >
-                    <path
-                        fill={
-                            hovered || focused
+                <Icon
+                    icon={checkboxCheck}
+                    size="small"
+                    color={
+                        disabled
+                            ? offBlack32
+                            : hovered || focused
                                 ? blue
                                 : pressed
                                     ? activeBlue
                                     : white
-                        }
-                        d={checkIcon}
-                    />
-                </svg>
+                    }
+                    style={[
+                        disabled && selected && styles.disabledCheckFormatting,
+                    ]}
+                />
             )}
         </View>
     );
@@ -187,9 +193,17 @@ export default class SelectItem extends React.Component<SelectProps> {
                                 aria-checked={selected ? "true" : "false"}
                             >
                                 {variant === "check" ? (
-                                    <Check selected={selected} {...state} />
+                                    <Check
+                                        disabled={disabled}
+                                        selected={selected}
+                                        {...state}
+                                    />
                                 ) : (
-                                    <Checkbox selected={selected} {...state} />
+                                    <Checkbox
+                                        disabled={disabled}
+                                        selected={selected}
+                                        {...state}
+                                    />
                                 )}
                                 <View style={[styles.spacing]} />
                                 <LabelLarge style={[styles.label]}>
@@ -248,10 +262,8 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
     },
 
-    checkContainer: {
+    check: {
         // Semantically, this are the constants for a small-sized icon
-        height: 16,
-        width: 16,
         minHeight: 16,
         minWidth: 16,
     },
@@ -261,17 +273,34 @@ const styles = StyleSheet.create({
     },
 
     borderedCheckbox: {
-        borderColor: offBlack32,
+        borderColor: offBlack50,
         borderStyle: "solid",
         borderWidth: 1,
     },
 
     invertBackground: {
-        backgroundColor: white,
-        borderColor: mix(fade(blue, 0.32), white),
+        borderColor: white,
+    },
+
+    disabledCheckbox: {
+        borderColor: offBlack16,
+        borderWidth: 1,
+        backgroundColor: offWhite,
+    },
+
+    // The border of 1px on the selected, disabled checkbox pushes the check out
+    // of place. Move it back.
+    disabledCheckFormatting: {
+        position: "absolute",
+        top: -1,
+        left: -1,
     },
 
     spacing: {
         minWidth: 8,
+    },
+
+    hide: {
+        visibility: "hidden",
     },
 });

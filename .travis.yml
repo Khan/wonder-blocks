@@ -8,7 +8,7 @@ cache:
 install:
   - yarn install
   - yarn run build:all
-  - yarn global add codecov
+  - yarn global add codecov && PATH=$PATH:$(yarn global bin)
 script:
   - yarn test
   - yarn run build:coverage && codecov
