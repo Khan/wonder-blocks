@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     padding: {
         backgroundColor: "bisque",
-        width: Spacing.medium,
+        width: Spacing.xSmall,
     },
     tail: {
         backgroundColor: "green",
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     padding: {
         backgroundColor: "bisque",
-        height: 7,
+        height: Spacing.xSmall,
     },
     tail: {
         backgroundColor: "green",
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     padding: {
         backgroundColor: "bisque",
-        width: Spacing.medium,
+        width: Spacing.xSmall,
     },
     tail: {
         backgroundColor: "green",
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
     padding: {
         backgroundColor: "bisque",
-        height: 7,
+        height: Spacing.xSmall,
     },
     tail: {
         backgroundColor: "green",

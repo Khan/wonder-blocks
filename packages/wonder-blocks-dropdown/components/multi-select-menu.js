@@ -139,7 +139,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
             const selectAll = (
                 <ActionItem
                     disabled={items.length === selectedValues.length}
-                    key={"select-all"}
+                    key="select-all"
                     label={`Select all (${items.length})`}
                     indent={true}
                     onClick={() => this.handleSelectAll()}
@@ -149,18 +149,42 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
             const selectNone = (
                 <ActionItem
                     disabled={selectedValues.length === 0}
-                    key={"select-none"}
-                    label={"Select none"}
+                    key="select-none"
+                    label="Select none"
                     indent={true}
                     onClick={() => this.handleSelectNone()}
                 />
             );
 
-            const separator = <SeparatorItem key={"shortcuts-separator"} />;
+            const separator = <SeparatorItem key="shortcuts-separator" />;
 
             return [selectAll, selectNone, separator];
         } else {
             return [];
+        }
+    }
+
+    // TODO(sophie): need to configure for i18n for the word "All" and
+    // potentially the concept of plurals
+    getMenuText() {
+        const {items, placeholder, selectItemType, selectedValues} = this.props;
+        // If there is nothing selected, use the placeholder if it exists
+        const noSelectionText = placeholder || `0 ${selectItemType}`;
+        switch (selectedValues.length) {
+            case 0:
+                return noSelectionText;
+            case 1:
+                // If there is one item selected, we display its label. If for
+                // some reason we can't find the selected item, we use the
+                // display text for the case where nothing is selected.
+                const selectedItem = items.find(
+                    (item) => item.value === selectedValues[0],
+                );
+                return selectedItem ? selectedItem.label : noSelectionText;
+            case items.length:
+                return `All ${selectItemType}`;
+            default:
+                return `${selectedValues.length} ${selectItemType}`;
         }
     }
 
@@ -179,7 +203,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                     }
                     selected={selectedValues.includes(item.value)}
                     value={item.value}
-                    variant={"checkbox"}
+                    variant="checkbox"
                 />
             );
         });
@@ -187,23 +211,11 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
     }
 
     render() {
-        const {
-            alignment,
-            disabled,
-            light,
-            placeholder,
-            selectItemType,
-            selectedValues,
-            style,
-        } = this.props;
+        const {alignment, disabled, light, style} = this.props;
 
         const {open} = this.state;
 
-        // TODO(sophie): figure out how to configure plurals for i18n
-        const menuText =
-            selectedValues.length === 0 && placeholder
-                ? placeholder
-                : `${selectedValues.length} ${selectItemType}`;
+        const menuText = this.getMenuText();
 
         const opener = (
             <SelectBox

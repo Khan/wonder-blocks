@@ -138,7 +138,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                     onToggle={(value, state) => this.handleSelected(value)}
                     selected={selectedValue === item.value}
                     value={item.value}
-                    variant={"check"}
+                    variant="check"
                 />
             );
         });
