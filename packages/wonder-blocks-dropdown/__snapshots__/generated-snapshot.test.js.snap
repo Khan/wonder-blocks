@@ -4212,7 +4212,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           }
         }
       >
-        1 colors
+        Red
       </span>
       <div
         className=""
@@ -5444,7 +5444,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
             }
           }
         >
-          1 harry potter books
+          the philosopher's stone
         </span>
         <div
           className=""
