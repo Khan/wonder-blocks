@@ -4,7 +4,6 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 import ModalCloseButton from "./modal-close-button.js";
 import ModalContent from "./modal-content.js";

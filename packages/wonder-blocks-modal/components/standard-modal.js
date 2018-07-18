@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
