@@ -132,8 +132,6 @@ const styles = StyleSheet.create({
         color: offBlack,
         backgroundColor: white,
         height: 40,
-        marginTop: Spacing.xxxSmall,
-        marginBottom: Spacing.xxxSmall,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.

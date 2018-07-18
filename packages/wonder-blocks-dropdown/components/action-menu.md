@@ -5,7 +5,7 @@ This menu demonstrates an action menu with
 - a separator
 - a disabled item
 - items that redirect to a link
-- items with an onClick callback (could be used for conversion loggin)
+- items with an onClick callback (could be used for conversion logging)
 
 This menu is also right-aligned.
 
@@ -16,7 +16,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 250,
     },
     wrapper: {
         width: "100%",
@@ -75,7 +74,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 250,
     },
 });
 
