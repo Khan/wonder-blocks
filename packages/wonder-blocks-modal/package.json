@@ -19,5 +19,9 @@
     "@khanacademy/wonder-blocks-icon": "^1.0.1",
     "@khanacademy/wonder-blocks-icon-button": "^1.0.1",
     "@khanacademy/wonder-blocks-typography": "^1.0.4"
+  },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "^15.3.2"
   }
 }
