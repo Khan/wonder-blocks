@@ -80,6 +80,7 @@ describe("ModalBackdrop", () => {
             <ModalBackdrop onCloseModal={onCloseModal}>
                 {exampleModal}
             </ModalBackdrop>,
+            {disableLifecycleMethods: true},
         );
 
         // Assert that the modal inside the backdrop was created from the
@@ -142,6 +143,7 @@ describe("ModalBackdrop", () => {
                         onClickCloseButton: customOnClickCloseButton,
                     })}
                 </ModalBackdrop>,
+                {disableLifecycleMethods: true},
             );
 
             // Assert that the modal inside the backdrop was created from the
