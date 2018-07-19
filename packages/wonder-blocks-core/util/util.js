@@ -51,7 +51,14 @@ export function processStyleList<T: Object>(
         // Check for aphrodite internal property
         if ((child: any)._definition) {
             if (shouldInlineStyles) {
-                inlineStyles.push(child._definition);
+                const def = {};
+                // React 16 complains about invalid keys in inline styles.
+                // It doesn't accept kebab-case in media queries and instead
+                // prefers camelCase.
+                for (const [key, value] of Object.entries(child._definition)) {
+                    def[key.replace("-width", "Width")] = value;
+                }
+                inlineStyles.push(def);
             } else {
                 stylesheetStyles.push(child);
             }

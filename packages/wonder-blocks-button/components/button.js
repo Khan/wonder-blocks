@@ -11,10 +11,11 @@ export type SharedProps = {|
      */
     children: string,
 
+    // TODO: incorporate
     /**
      * An icon, displayed to the left of the title.
      */
-    icon?: string,
+    // icon?: string,
 
     /**
      * If true, replaces the contents with a spinner.

@@ -33,7 +33,7 @@ describe("MultiSelectMenu", () => {
                     value: "toggle",
                 },
             ]}
-            menuText={"Action menu!"}
+            menuText="Action menu!"
             onChange={(selectedValues) => onChange()}
             selectedValues={[]}
         />,

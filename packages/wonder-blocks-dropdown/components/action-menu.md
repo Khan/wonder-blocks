@@ -1,8 +1,6 @@
 The action menu is mainly for items that trigger actions, such as navigating to
 a different page or opening a modal.
 
-TODO(sophie): Incorporate the down caret once Icon is merged.
-
 This menu demonstrates an action menu with
 - a separator
 - a disabled item
@@ -58,8 +56,8 @@ const styles = StyleSheet.create({
                     href: "http://khanacademy.org/logout",
                 }
             ]}
-            menuText={"Betsy Appleseed"}
-            alignment={"right"}
+            menuText="Betsy Appleseed"
+            alignment="right"
         />
     </View>
 </View>
@@ -132,7 +130,7 @@ class HybridMenu extends React.Component {
                 },
 
             ]}
-            menuText={"Assignments"}
+            menuText="Assignments"
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
         />
