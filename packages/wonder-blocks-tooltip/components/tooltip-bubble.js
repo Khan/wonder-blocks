@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
     },
 
     content: {
-        padding: "10px 16px",
         maxWidth: 472,
         borderRadius: Spacing.xxxSmall,
         border: `solid 1px ${Colors.offBlack16}`,

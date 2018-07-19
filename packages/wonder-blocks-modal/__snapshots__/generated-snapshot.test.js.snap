@@ -248,11 +248,11 @@ exports[`wonder-blocks-modal example 2 1`] = `
               id="wb-modal-title"
               style={
                 Object {
-                  "@media (max-width: 1023px)": Object {
+                  "@media (maxWidth: 1023px)": Object {
                     "fontSize": 22,
                     "lineHeight": "26px",
                   },
-                  "@media (min-width: 1024px)": Object {
+                  "@media (minWidth: 1024px)": Object {
                     "fontSize": 24,
                     "lineHeight": "28px",
                   },
@@ -2229,11 +2229,11 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   className=""
                   style={
                     Object {
-                      "@media (max-width: 1023px)": Object {
+                      "@media (maxWidth: 1023px)": Object {
                         "fontSize": 28,
                         "lineHeight": "32px",
                       },
-                      "@media (min-width: 1024px)": Object {
+                      "@media (minWidth: 1024px)": Object {
                         "fontSize": 36,
                         "lineHeight": "40px",
                       },
@@ -2433,11 +2433,11 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   className=""
                   style={
                     Object {
-                      "@media (max-width: 1023px)": Object {
+                      "@media (maxWidth: 1023px)": Object {
                         "fontSize": 28,
                         "lineHeight": "32px",
                       },
-                      "@media (min-width: 1024px)": Object {
+                      "@media (minWidth: 1024px)": Object {
                         "fontSize": 36,
                         "lineHeight": "40px",
                       },
@@ -2658,11 +2658,11 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   className=""
                   style={
                     Object {
-                      "@media (max-width: 1023px)": Object {
+                      "@media (maxWidth: 1023px)": Object {
                         "fontSize": 28,
                         "lineHeight": "32px",
                       },
-                      "@media (min-width: 1024px)": Object {
+                      "@media (minWidth: 1024px)": Object {
                         "fontSize": 36,
                         "lineHeight": "40px",
                       },
@@ -2863,11 +2863,11 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   className=""
                   style={
                     Object {
-                      "@media (max-width: 1023px)": Object {
+                      "@media (maxWidth: 1023px)": Object {
                         "fontSize": 28,
                         "lineHeight": "32px",
                       },
-                      "@media (min-width: 1024px)": Object {
+                      "@media (minWidth: 1024px)": Object {
                         "fontSize": 36,
                         "lineHeight": "40px",
                       },
@@ -3155,11 +3155,11 @@ exports[`wonder-blocks-modal example 8 1`] = `
                   className=""
                   style={
                     Object {
-                      "@media (max-width: 1023px)": Object {
+                      "@media (maxWidth: 1023px)": Object {
                         "fontSize": 28,
                         "lineHeight": "32px",
                       },
-                      "@media (min-width: 1024px)": Object {
+                      "@media (minWidth: 1024px)": Object {
                         "fontSize": 36,
                         "lineHeight": "40px",
                       },
@@ -3458,11 +3458,11 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   className=""
                   style={
                     Object {
-                      "@media (max-width: 1023px)": Object {
+                      "@media (maxWidth: 1023px)": Object {
                         "fontSize": 28,
                         "lineHeight": "32px",
                       },
-                      "@media (min-width: 1024px)": Object {
+                      "@media (minWidth: 1024px)": Object {
                         "fontSize": 36,
                         "lineHeight": "40px",
                       },

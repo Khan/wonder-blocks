@@ -40,7 +40,7 @@
     "babel-preset-react": "^6.24.1",
     "babylon": "^6.18.0",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "2.6.0",
     "eslint-plugin-flowtype": "^2.25.0",
@@ -60,7 +60,7 @@
     "pretty-quick": "^1.4.1",
     "react-docgen": "^2.20.1",
     "react-styleguidist": "^7.0.5",
-    "react-test-renderer": "^15.3.0",
+    "react-test-renderer": "^16.4.1",
     "unescape": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-blocks": "^1.0.0",
@@ -68,9 +68,9 @@
   },
   "dependencies": {
     "aphrodite": "^1.2.5",
-    "prop-types": "^15.6.1",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "react-router-dom": "^4.2.2"
   },
   "workspaces": [
