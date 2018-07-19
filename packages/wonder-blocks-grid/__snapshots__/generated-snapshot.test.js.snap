@@ -63,7 +63,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -606,7 +606,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -725,7 +725,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -844,7 +844,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -1008,7 +1008,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -1273,7 +1273,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -2010,7 +2010,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -2243,7 +2243,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -2370,7 +2370,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -2555,7 +2555,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -2842,7 +2842,7 @@ exports[`wonder-blocks-grid example 6 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",
@@ -3131,7 +3131,7 @@ exports[`wonder-blocks-grid example 7 1`] = `
         className=""
         style={
           Object {
-            "@media (min-width: 1168px)": Object {
+            "@media (minWidth: 1168px)": Object {
               "margin": "0 auto",
             },
             "alignItems": "stretch",

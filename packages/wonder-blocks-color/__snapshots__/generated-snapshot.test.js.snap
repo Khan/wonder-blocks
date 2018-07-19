@@ -94,11 +94,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -143,11 +143,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -192,11 +192,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -378,11 +378,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -427,11 +427,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -476,11 +476,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -787,11 +787,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -836,11 +836,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -885,11 +885,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1071,11 +1071,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1120,11 +1120,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1169,11 +1169,11 @@ exports[`wonder-blocks-color example 1 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1380,11 +1380,11 @@ exports[`wonder-blocks-color example 2 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1429,11 +1429,11 @@ exports[`wonder-blocks-color example 2 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1478,11 +1478,11 @@ exports[`wonder-blocks-color example 2 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1664,11 +1664,11 @@ exports[`wonder-blocks-color example 2 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1713,11 +1713,11 @@ exports[`wonder-blocks-color example 2 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -1762,11 +1762,11 @@ exports[`wonder-blocks-color example 2 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -2596,11 +2596,11 @@ exports[`wonder-blocks-color example 2 1`] = `
           className=""
           style={
             Object {
-              "@media (max-width: 1023px)": Object {
+              "@media (maxWidth: 1023px)": Object {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (min-width: 1024px)": Object {
+              "@media (minWidth: 1024px)": Object {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
@@ -2763,11 +2763,11 @@ exports[`wonder-blocks-color example 2 1`] = `
         className=""
         style={
           Object {
-            "@media (max-width: 1023px)": Object {
+            "@media (maxWidth: 1023px)": Object {
               "fontSize": 24,
               "lineHeight": "28px",
             },
-            "@media (min-width: 1024px)": Object {
+            "@media (minWidth: 1024px)": Object {
               "fontSize": 28,
               "lineHeight": "32px",
             },
