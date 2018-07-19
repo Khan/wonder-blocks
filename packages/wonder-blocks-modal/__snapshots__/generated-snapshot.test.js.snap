@@ -199,19 +199,25 @@ exports[`wonder-blocks-modal example 2 1`] = `
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "border": "1px solid rgba(33, 36, 44, 0.16)",
+              "alignItems": "center",
+              "borderBottomColor": "rgba(33,36,44,0.16)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
               "display": "flex",
+              "flex": "0 0 auto",
               "flexDirection": "row",
               "margin": 0,
               "minHeight": 64,
               "minWidth": 0,
-              "padding": 8,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 8,
               "position": "relative",
-              "width": "100%",
               "zIndex": 0,
             }
           }
@@ -225,144 +231,43 @@ exports[`wonder-blocks-modal example 2 1`] = `
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flex": 1,
+                "flex": "1",
                 "flexDirection": "column",
-                "justifyContent": "center",
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "textAlign": "center",
                 "zIndex": 0,
               }
             }
           >
-            <div
+            <h3
               className=""
+              id="wb-modal-title"
               style={
                 Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            />
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flex": 1,
-                "flexBasis": "50%",
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "textAlign": "center",
-                  "zIndex": 0,
+                  "@media (max-width: 1023px)": Object {
+                    "fontSize": 22,
+                    "lineHeight": "26px",
+                  },
+                  "@media (min-width: 1024px)": Object {
+                    "fontSize": 24,
+                    "lineHeight": "28px",
+                  },
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato",
+                  "fontWeight": 700,
+                  "marginBottom": 0,
+                  "marginTop": 0,
                 }
               }
             >
-              <h4
-                className=""
-                id="wb-toolbar-title"
-                style={
-                  Object {
-                    "MozOsxFontSmoothing": "grayscale",
-                    "WebkitFontSmoothing": "antialiased",
-                    "display": "block",
-                    "fontFamily": "Lato",
-                    "fontSize": 20,
-                    "fontWeight": 700,
-                    "lineHeight": "24px",
-                    "marginBottom": 0,
-                    "marginTop": 0,
-                  }
-                }
-              >
-                Title
-              </h4>
-            </div>
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            />
+              Title
+            </h3>
           </div>
         </div>
         <div
@@ -686,19 +591,25 @@ exports[`wonder-blocks-modal example 3 1`] = `
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "border": "1px solid rgba(33, 36, 44, 0.16)",
+              "alignItems": "center",
+              "borderBottomColor": "rgba(33,36,44,0.16)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
               "display": "flex",
+              "flex": "0 0 auto",
               "flexDirection": "row",
               "margin": 0,
               "minHeight": 64,
               "minWidth": 0,
-              "padding": 8,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 8,
               "position": "relative",
-              "width": "100%",
               "zIndex": 0,
             }
           }
@@ -712,14 +623,14 @@ exports[`wonder-blocks-modal example 3 1`] = `
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flex": 1,
+                "flex": "1",
                 "flexDirection": "column",
-                "justifyContent": "center",
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "textAlign": "center",
                 "zIndex": 0,
               }
             }
@@ -734,84 +645,40 @@ exports[`wonder-blocks-modal example 3 1`] = `
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "justifyContent": "center",
                   "margin": 0,
                   "minHeight": 0,
                   "minWidth": 0,
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            />
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flex": 1,
-                "flexBasis": "50%",
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "textAlign": "center",
                   "zIndex": 0,
                 }
               }
             >
-              <span
+              <h4
                 className=""
-                id="wb-toolbar-title"
+                id="wb-modal-title"
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
                     "display": "block",
                     "fontFamily": "Lato",
-                    "fontSize": 16,
+                    "fontSize": 20,
                     "fontWeight": 700,
-                    "lineHeight": "20px",
+                    "lineHeight": "24px",
+                    "marginBottom": 0,
+                    "marginTop": 0,
                   }
                 }
               >
                 Title
-              </span>
+              </h4>
               <span
                 className=""
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "color": "rgba(33, 36, 44, 0.64)",
                     "display": "block",
                     "fontFamily": "Lato",
                     "fontSize": 14,
@@ -823,48 +690,6 @@ exports[`wonder-blocks-modal example 3 1`] = `
                 Wow, look at all this content!
               </span>
             </div>
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            />
           </div>
         </div>
         <div
@@ -1219,19 +1044,25 @@ exports[`wonder-blocks-modal example 4 1`] = `
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "border": "1px solid rgba(33, 36, 44, 0.16)",
+              "alignItems": "center",
+              "borderBottomColor": "rgba(33,36,44,0.16)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
               "display": "flex",
+              "flex": "0 0 auto",
               "flexDirection": "row",
               "margin": 0,
               "minHeight": 64,
               "minWidth": 0,
-              "padding": 8,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 8,
               "position": "relative",
-              "width": "100%",
               "zIndex": 0,
             }
           }
@@ -1245,14 +1076,14 @@ exports[`wonder-blocks-modal example 4 1`] = `
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flex": 1,
+                "flex": "1",
                 "flexDirection": "column",
-                "justifyContent": "center",
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "textAlign": "center",
                 "zIndex": 0,
               }
             }
@@ -1267,84 +1098,40 @@ exports[`wonder-blocks-modal example 4 1`] = `
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "justifyContent": "center",
                   "margin": 0,
                   "minHeight": 0,
                   "minWidth": 0,
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            />
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flex": 1,
-                "flexBasis": "50%",
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "textAlign": "center",
                   "zIndex": 0,
                 }
               }
             >
-              <span
+              <h4
                 className=""
-                id="wb-toolbar-title"
+                id="wb-modal-title"
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
                     "display": "block",
                     "fontFamily": "Lato",
-                    "fontSize": 16,
+                    "fontSize": 20,
                     "fontWeight": 700,
-                    "lineHeight": "20px",
+                    "lineHeight": "24px",
+                    "marginBottom": 0,
+                    "marginTop": 0,
                   }
                 }
               >
                 Title
-              </span>
+              </h4>
               <span
                 className=""
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "color": "rgba(33, 36, 44, 0.64)",
                     "display": "block",
                     "fontFamily": "Lato",
                     "fontSize": 14,
@@ -1356,48 +1143,6 @@ exports[`wonder-blocks-modal example 4 1`] = `
                 Wow, look at all this content!
               </span>
             </div>
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            />
           </div>
         </div>
         <div
@@ -1887,22 +1632,27 @@ exports[`wonder-blocks-modal example 5 1`] = `
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "backgroundColor": "#0a2a66",
-              "border": "1px solid rgba(33, 36, 44, 0.16)",
+              "alignItems": "center",
+              "background": "#0a2a66",
+              "borderBottomColor": "rgba(255,255,255,0.64)",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 1,
               "borderStyle": "solid",
               "borderWidth": 0,
-              "boxShadow": "0 1px 0 0 rgba(255, 255, 255, 0.64)",
               "boxSizing": "border-box",
-              "color": "white",
+              "color": "#ffffff",
               "display": "flex",
+              "flex": "0 0 auto",
               "flexDirection": "row",
               "margin": 0,
               "minHeight": 64,
               "minWidth": 0,
-              "padding": 8,
+              "padding": 0,
+              "paddingBottom": 8,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 8,
               "position": "relative",
-              "width": "100%",
               "zIndex": 0,
             }
           }
@@ -1916,14 +1666,14 @@ exports[`wonder-blocks-modal example 5 1`] = `
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flex": 1,
+                "flex": "1",
                 "flexDirection": "column",
-                "justifyContent": "center",
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "textAlign": "center",
                 "zIndex": 0,
               }
             }
@@ -1938,77 +1688,34 @@ exports[`wonder-blocks-modal example 5 1`] = `
                   "boxSizing": "border-box",
                   "display": "flex",
                   "flexDirection": "column",
-                  "justifyContent": "center",
                   "margin": 0,
                   "minHeight": 0,
                   "minWidth": 0,
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            />
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flex": 1,
-                "flexBasis": "50%",
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "textAlign": "center",
                   "zIndex": 0,
                 }
               }
             >
-              <span
+              <h4
                 className=""
-                id="wb-toolbar-title"
+                id="wb-modal-title"
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
                     "display": "block",
                     "fontFamily": "Lato",
-                    "fontSize": 16,
+                    "fontSize": 20,
                     "fontWeight": 700,
-                    "lineHeight": "20px",
+                    "lineHeight": "24px",
+                    "marginBottom": 0,
+                    "marginTop": 0,
                   }
                 }
               >
                 Title
-              </span>
+              </h4>
               <span
                 className=""
                 style={
@@ -2026,48 +1733,6 @@ exports[`wonder-blocks-modal example 5 1`] = `
                 Wow, look at all this content!
               </span>
             </div>
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            />
           </div>
         </div>
         <div

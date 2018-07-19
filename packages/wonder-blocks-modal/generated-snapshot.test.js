@@ -15,6 +15,7 @@ import OneColumnModal from "./components/one-column-modal.js";
 import ModalDialog from "./components/modal-dialog.js";
 import ModalPanel from "./components/modal-panel.js";
 import ModalContent from "./components/modal-content.js";
+import ModalTitleBar from "./components/modal-title-bar.js";
 import ModalHeader from "./components/modal-header.js";
 import ModalFooter from "./components/modal-footer.js";
 
