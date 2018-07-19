@@ -1,18 +1,28 @@
 /**
- * This script processes the styleguide.config.js to generate a version for
- * our production documentation.
+ * This script processes the styleguide.config.js to modify the content.
+ * This can be used to augment packages with version information as well
+ * as optionally strip development only documentation (useful for producing
+ * production documentation).
  *
- * 1. It strips any dev-only docs from the styleguide
- *    This is any section with the property "private" set to true.
+ * The steps it performs are:
  *
- * 2. Adds the design package versions from the package.json of each package so
+ * 1. Adds the design package versions from the package.json of each package so
  *    that we know what design spec and package versions were last released.
+ *
+ * 2. [Optional] If the PULL_REQUEST environment variable does not have the
+ *    value of "true", then any dev-only docs are stripped from the styleguide.
+ *    Dev-only docs are defined as any section with the property "private" set
+ *    to true and any sections that map to prototype packages (prototypes are
+ *    marked as "private" in their package.json).
  *
  * Running `yarn build:styleguidist` will run this script and then run the
  * styleguidist build, which will generate the docs.
  *
  * Running `yarn start` will skip this script so that developers can see both
  * exported and development documentation.
+ *
+ * Running `yarn start:prod` will run this script and host the subsequent
+ * documentation for comparison.
  */
 const fs = require("fs");
 const path = require("path");
@@ -81,6 +91,7 @@ function removePrivateSections(sections) {
     if (!sections) {
         return sections;
     }
+
     for (let i = sections.length; i > 0; i--) {
         const sectionIndex = i - 1;
         if (sections[sectionIndex].private) {
@@ -169,11 +180,12 @@ function maybeGetPackageInfoForSection(section) {
         // We have a package file, let's read it and find out what we can.
         const pkgJson = require(pkgJsonPath);
 
+        // Let's gather the various bits of information for this package.
         return {
             name: pkgJson.name,
             lastRelease: pkgJson.version,
             design: pkgJson.design,
-            prototype: pkgJson.private,
+            private: pkgJson.private,
         };
     } else {
         return null;
@@ -187,6 +199,38 @@ function maybeGetPackageInfoForSection(section) {
  *
  *
  */
+// Here we process the root level sections and augment their descriptions
+// with some additional package information. We also mark prototype packages
+// as private, so that we can strip them if needed.
+for (const section of styleguideConfig.sections) {
+    const info = maybeGetPackageInfoForSection(section);
+    if (info) {
+        // eslint-disable-next-line no-console
+        console.log(
+            `Adding package information for ${section.name}: ${JSON.stringify(
+                info,
+            )}`,
+        );
+        // Let's add some info!
+        const currentDescription = section.description;
+        const lines = [
+            `${info.name}@${info.lastRelease}`,
+            info.private ? "**PROTOTYPE**" : null,
+            `Design Specification: **${info.design}**\n`,
+            currentDescription,
+        ];
+        // If this is a prototype package, then we don't want this in the prod
+        // documentation.
+        if (info.private) {
+            section.private = true;
+        }
+        section.description = lines.filter((l) => !!l).join("  \n");
+    } else {
+        // eslint-disable-next-line no-console
+        console.log(`No package information found for ${section.name}`);
+    }
+}
+
 // See https://www.netlify.com/docs/continuous-deployment/#build-environment-variables
 if (process.env.PULL_REQUEST !== "true") {
     // If we're not a pull request, then let's iterate over the configuration
@@ -194,32 +238,6 @@ if (process.env.PULL_REQUEST !== "true") {
     styleguideConfig.sections = removePrivateSections(
         styleguideConfig.sections,
     );
-}
-
-// Here we process the root level sections and augment their descriptions
-// with some additional package information.
-for (const section of styleguideConfig.sections) {
-    const info = maybeGetPackageInfoForSection(section);
-    if (info) {
-        // eslint-disable-next-line no-console
-        console.log(
-            `Adding package information for ${
-                section.name
-            }: ${JSON.stringify(info)}`,
-        );
-        // Let's add some info!
-        const currentDescription = section.description;
-        const lines = [
-            `${info.name}@${info.lastRelease}`,
-            info.prototype ? "**PROTOTYPE**" : null,
-            `Design Specification: **${info.design}**\n`,
-            currentDescription,
-        ];
-        section.description = lines.filter((l) => !!l).join("  \n");
-    } else {
-        // eslint-disable-next-line no-console
-        console.log(`No package information found for ${section.name}`);
-    }
 }
 
 // Finally, we output the results.
