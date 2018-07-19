@@ -14,9 +14,17 @@ describe("wonder-blocks-toolbar", () => {
     it("example 1", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const smallButton = <Button size="small">Small button</Button>;
+        const secondaryButton = (
+            <Button size="small" kind="secondary">
+                Secondary button
+            </Button>
+        );
 
         const example = (
-            <Toolbar size="small" rightContent={[smallButton, smallButton]} />
+            <Toolbar
+                size="small"
+                rightContent={[smallButton, secondaryButton]}
+            />
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

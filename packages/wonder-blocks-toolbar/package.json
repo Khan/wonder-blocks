@@ -16,5 +16,9 @@
   "license": "MIT",
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "^1.0.1"
+  },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "^15.3.2"
   }
 }

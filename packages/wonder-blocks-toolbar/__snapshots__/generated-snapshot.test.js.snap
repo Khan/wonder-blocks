@@ -218,11 +218,14 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "background": "#1865f2",
+              "background": "none",
               "border": "none",
+              "borderColor": "rgba(33,36,44,0.50)",
               "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
               "boxSizing": "border-box",
-              "color": "#ffffff",
+              "color": "#1865f2",
               "cursor": "pointer",
               "display": "inline-flex",
               "height": 32,
@@ -253,7 +256,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               }
             }
           >
-            Small button
+            Secondary button
           </span>
         </button>
       </div>
