@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import propTypes from "prop-types";
+import {StyleSheet} from "aphrodite";
 
 import {processStyleList, MediaLayoutWrapper} from "./util.js";
 
@@ -14,10 +15,13 @@ export default function addStyle<T: Object>(
         props: T & {style: any, mediaSize: MediaSize, mediaSpec: MediaSpec},
     ) {
         const {style, mediaSize, mediaSpec, ...otherProps} = props;
+        const reset = typeof Component === "string" ? styles[Component] : null;
+
         const {className, style: inlineStyles} = processStyleList(
-            [defaultStyle, style],
+            [reset, defaultStyle, style],
             mediaSize,
         );
+
         return (
             <Component
                 {...otherProps}
@@ -29,3 +33,10 @@ export default function addStyle<T: Object>(
 
     return MediaLayoutWrapper(StyleComponent);
 }
+
+// TODO(kevinb): add more style resets
+const styles = StyleSheet.create({
+    button: {
+        margin: 0, // Safari adds 2px left/right margins
+    },
+});
