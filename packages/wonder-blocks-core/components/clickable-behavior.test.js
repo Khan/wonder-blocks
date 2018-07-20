@@ -79,22 +79,6 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
     });
 
-    it("changes focused state on tab key down/up", () => {
-        const onClick = jest.fn();
-        const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
-                }}
-            </ClickableBehavior>,
-        );
-        expect(button.state("focused")).toEqual(false);
-        button.simulate("keyup", {keyCode: keyCodes.tab});
-        expect(button.state("focused")).toEqual(true);
-        button.simulate("keydown", {keyCode: keyCodes.tab});
-        expect(button.state("focused")).toEqual(false);
-    });
-
     it("enters focused state on key press after click", () => {
         const onClick = jest.fn();
         const button = shallow(
@@ -205,7 +189,6 @@ describe("ClickableBehavior", () => {
                 }}
             </ClickableBehavior>,
         );
-        button.simulate("keyup", {keyCode: keyCodes.tab});
         button.simulate("blur");
         expect(button.state("focused")).toEqual(false);
     });

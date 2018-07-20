@@ -145,7 +145,6 @@ const disabledHandlers = {
 };
 
 const keyCodes = {
-    tab: 9,
     enter: 13,
     space: 32,
 };
@@ -224,9 +223,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
-        if (keyCode === keyCodes.tab) {
-            this.setState({focused: false});
-        } else if (
+        if (
             this.props.href
                 ? keyCode === keyCodes.enter
                 : keyCode === keyCodes.space
@@ -238,9 +235,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyUp = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
-        if (keyCode === keyCodes.tab) {
-            this.setState({focused: true});
-        } else if (
+        if (
             this.props.href
                 ? keyCode === keyCodes.enter
                 : keyCode === keyCodes.space
