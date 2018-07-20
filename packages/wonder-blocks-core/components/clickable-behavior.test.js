@@ -183,6 +183,19 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
     });
 
+    it("gains focused state on focus event", () => {
+        const onClick = jest.fn();
+        const button = shallow(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, handlers) => {
+                    return <button {...handlers}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
+        button.simulate("focus");
+        expect(button.state("focused")).toEqual(true);
+    });
+
     it("changes focused state on blur", () => {
         const onClick = jest.fn();
         const button = shallow(

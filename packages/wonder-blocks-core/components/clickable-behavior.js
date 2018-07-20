@@ -123,6 +123,7 @@ export type ClickableHandlers = {|
     onTouchCancel: () => void,
     onKeyDown: (e: SyntheticKeyboardEvent<*>) => void,
     onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
+    onFocus: (e: SyntheticFocusEvent<*>) => void,
     onBlur: (e: SyntheticFocusEvent<*>) => void,
     tabIndex: number,
 |};
@@ -138,6 +139,7 @@ const disabledHandlers = {
     onTouchCancel: () => void 0,
     onKeyDown: () => void 0,
     onKeyUp: () => void 0,
+    onFocus: () => void 0,
     onBlur: () => void 0,
     tabIndex: -1,
 };
@@ -251,6 +253,10 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         }
     };
 
+    handleFocus = (e: SyntheticFocusEvent<*>) => {
+        this.setState({focused: true});
+    };
+
     handleBlur = (e: SyntheticFocusEvent<*>) => {
         this.setState({focused: false, pressed: false});
     };
@@ -280,6 +286,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                   onTouchCancel: this.handleTouchCancel,
                   onKeyDown: this.handleKeyDown,
                   onKeyUp: this.handleKeyUp,
+                  onFocus: this.handleFocus,
                   onBlur: this.handleBlur,
                   tabIndex: 0,
               };
