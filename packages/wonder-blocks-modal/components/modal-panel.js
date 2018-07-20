@@ -4,8 +4,9 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
-import ModalCloseButton from "./modal-close-button.js";
 import ModalContent from "./modal-content.js";
 import ModalTitleBar from "./modal-title-bar.js";
 import ModalHeader from "./modal-header.js";
@@ -83,9 +84,15 @@ export default class ModalPanel extends React.Component<Props> {
                         mediaSize === "small" && styles.smallCloseButton,
                 ]}
             >
-                <ModalCloseButton
-                    color={topBackgroundColor === "dark" ? "light" : "dark"}
+                <IconButton
+                    icon={icons.dismiss}
+                    // TODO(mdr): Translate this string for i18n.
+                    aria-label="Close modal"
                     onClick={onClickCloseButton}
+                    kind={
+                        topBackgroundColor === "dark" ? "primary" : "tertiary"
+                    }
+                    light={topBackgroundColor === "dark"}
                 />
             </View>
         );
@@ -166,13 +173,13 @@ const styles = StyleSheet.create({
 
     closeButton: {
         position: "absolute",
-        left: 4,
+        left: 8,
         top: 8,
     },
 
     smallCloseButton: {
-        left: 0,
-        top: 4,
+        left: 8,
+        top: 8,
     },
 
     dark: {
