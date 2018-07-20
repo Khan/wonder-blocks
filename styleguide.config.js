@@ -101,6 +101,11 @@ module.exports = {
             content: "packages/wonder-blocks-spacing/docs.md",
         },
         {
+            name: "Toolbar",
+            content: "packages/wonder-blocks-toolbar/docs.md",
+            components: "packages/wonder-blocks-toolbar/components/toolbar.js",
+        },
+        {
             name: "Tooltip",
             content: "packages/wonder-blocks-tooltip/docs.md",
             components: [
