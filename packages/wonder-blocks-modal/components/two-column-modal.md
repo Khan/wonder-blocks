@@ -150,3 +150,46 @@ const styles = StyleSheet.create({
     </View>
 </View>;
 ```
+
+This example shows that `TwoColumnModal` works with content and sidebar elements
+that aren't block level elements.
+
+```jsx
+const {StyleSheet, css} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+
+const styles = StyleSheet.create({
+    previewSizer: {
+        height: 512,
+    },
+
+    modalPositioner: {
+        // Checkerboard background
+        backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        backgroundSize: "20px 20px",
+        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    },
+});
+
+<View style={styles.previewSizer}>
+    <View style={styles.modalPositioner}>
+        <TwoColumnModal
+            sidebar={<span>foo</span>}
+            content={<span>bar</span>}
+            onClickCloseButton={() => alert("This would close the modal.")}
+        />
+    </View>
+</View>;
+```

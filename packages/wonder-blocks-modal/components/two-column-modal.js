@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
     contentWrapper: {
         flexDirection: "row",
         height: "100%",
+        width: "100%",
     },
 
     smallContentWrapper: {
