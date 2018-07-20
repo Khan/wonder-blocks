@@ -5,6 +5,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {
     HeadingSmall,
@@ -146,7 +147,7 @@ const sharedStyles = StyleSheet.create({
         minHeight: 48,
     },
     dark: {
-        backgroundColor: "#0a2a66",
+        backgroundColor: Color.darkBlue,
         boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.64)",
         color: "white",
     },
@@ -154,7 +155,6 @@ const sharedStyles = StyleSheet.create({
         justifyContent: "center",
     },
     column: {
-        display: "flex",
         flex: 1,
         justifyContent: "center",
     },
@@ -162,7 +162,6 @@ const sharedStyles = StyleSheet.create({
         flexBasis: "50%",
     },
     rightColumn: {
-        display: "flex",
         flexDirection: "row",
         justifyContent: "flex-end",
     },
