@@ -148,7 +148,7 @@ const _generateStyles = (color, kind, light) => {
         return styles[buttonType];
     }
 
-    const {white, white64, offBlack32, offBlack50} = Color;
+    const {white, white64, offBlack32, offBlack50, darkBlue} = Color;
 
     let newStyles = {};
     if (kind === "primary") {
@@ -158,18 +158,9 @@ const _generateStyles = (color, kind, light) => {
                 color: light ? color : white,
             },
             focus: {
-                ":before": {
-                    content: "''",
-                    position: "absolute",
-                    top: -3,
-                    left: -3,
-                    right: -3,
-                    bottom: -3,
-                    borderColor: light ? white : color,
-                    borderWidth: 2,
-                    borderStyle: "solid",
-                    borderRadius: 7,
-                },
+                boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 3px ${
+                    light ? white : color
+                }`,
             },
             active: {
                 background: light
