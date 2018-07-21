@@ -158,6 +158,10 @@ const _generateStyles = (color, kind, light) => {
                 color: light ? color : white,
             },
             focus: {
+                // This assumes a background of white for the regular button and
+                // a background of darkBlue for the light version. The inner
+                // box shadow/ring is also small enough for a slight variation
+                // in the background color not to matter too much.
                 boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 3px ${
                     light ? white : color
                 }`,
