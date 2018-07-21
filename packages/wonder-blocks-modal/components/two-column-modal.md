@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
             }
             footer={
                 <View>
-                    <button>Sample Button</button>
+                    <Button>Sample Button</Button>
                 </View>
             }
             onClickCloseButton={() => alert("This would close the modal.")}

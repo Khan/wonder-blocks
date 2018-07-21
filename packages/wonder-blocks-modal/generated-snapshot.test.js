@@ -28,11 +28,17 @@ describe("wonder-blocks-modal", () => {
             Body,
             LabelSmall,
         } = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
             example: {
                 padding: 32,
                 alignItems: "center",
+                flexDirection: "row",
+            },
+
+            button: {
+                marginRight: 10,
             },
 
             title: {
@@ -42,6 +48,11 @@ describe("wonder-blocks-modal", () => {
             modalContent: {
                 margin: "0 auto",
                 maxWidth: 544,
+            },
+
+            buttonContainer: {
+                marginTop: 24,
+                flexDirection: "row",
             },
         });
 
@@ -68,10 +79,7 @@ describe("wonder-blocks-modal", () => {
                         </Body>
                     </View>
                 }
-                footer={
-                    // TODO(mdr): Use Wonder Blocks Button.
-                    <button onClick={closeModal}>Close modal</button>
-                }
+                footer={<Button onClick={closeModal}>Close modal</Button>}
             />
         );
 
@@ -103,20 +111,20 @@ describe("wonder-blocks-modal", () => {
                                 <input type="password" />
                             </label>
                         </View>
-                        <View>
-                            {/* TODO(mdr): Use Wonder Blocks Button. */}
-                            <button
+                        <View style={styles.buttonContainer}>
+                            <Button
+                                kind="secondary"
                                 onClick={closeModal}
-                                style={{marginTop: 16}}
+                                style={styles.button}
                             >
                                 Go back
-                            </button>
-                            <button
+                            </Button>
+                            <Button
                                 onClick={() => alert("Just kidding, no-op!")}
-                                style={{marginTop: 16}}
+                                style={styles.button}
                             >
                                 Log in
-                            </button>
+                            </Button>
                         </View>
                     </View>
                 }
@@ -140,47 +148,48 @@ describe("wonder-blocks-modal", () => {
                                 <input type="password" />
                             </label>
                         </View>
-                        <View>
-                            {/* TODO(mdr): Use Wonder Blocks Button. */}
-                            <button
+                        <View style={styles.buttonContainer}>
+                            <Button
+                                kind="secondary"
                                 onClick={closeModal}
-                                style={{marginTop: 16}}
+                                style={styles.button}
                             >
                                 Go back
-                            </button>
-                            <button
+                            </Button>
+                            <Button
                                 onClick={() => alert("Just kidding, no-op!")}
-                                style={{marginTop: 16}}
+                                style={styles.button}
                             >
                                 Log in
-                            </button>
+                            </Button>
                         </View>
                     </View>
                 }
-                footer={
-                    <View>
-                        <button>Sample Button</button>
-                    </View>
-                }
+                footer={<Button>Sample Button</Button>}
             />
         );
 
-        // TODO(mdr): Use Wonder Blocks Button.
         const example = (
             <View style={styles.example}>
                 <ModalLauncher modal={standardModal}>
                     {({openModal}) => (
-                        <button onClick={openModal}>Standard modal</button>
+                        <Button onClick={openModal} style={styles.button}>
+                            Standard modal
+                        </Button>
                     )}
                 </ModalLauncher>
                 <ModalLauncher modal={twoColumnModal}>
                     {({openModal}) => (
-                        <button onClick={openModal}>Two-column modal</button>
+                        <Button onClick={openModal} style={styles.button}>
+                            Two-column modal
+                        </Button>
                     )}
                 </ModalLauncher>
                 <ModalLauncher modal={oneColumnModal}>
                     {({openModal}) => (
-                        <button onClick={openModal}>One-column modal</button>
+                        <Button onClick={openModal} style={styles.button}>
+                            One-column modal
+                        </Button>
                     )}
                 </ModalLauncher>
             </View>
@@ -192,6 +201,7 @@ describe("wonder-blocks-modal", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
             previewSizer: {
@@ -236,12 +246,7 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
-                        footer={
-                            <View>
-                                {/* TODO(mdr): Use Wonder Blocks button. */}
-                                <button type="button">Button (no-op)</button>
-                            </View>
-                        }
+                        footer={<Button>Button (no-op)</Button>}
                         onClickCloseButton={() =>
                             alert("This would close the modal.")
                         }
@@ -256,6 +261,7 @@ describe("wonder-blocks-modal", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
             previewSizer: {
@@ -306,12 +312,7 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
-                        footer={
-                            <View>
-                                {/* TODO(mdr): Use Wonder Blocks button. */}
-                                <button type="button">Button (no-op)</button>
-                            </View>
-                        }
+                        footer={<Button>Button (no-op)</Button>}
                         onClickCloseButton={() =>
                             alert("This would close the modal.")
                         }
@@ -326,6 +327,7 @@ describe("wonder-blocks-modal", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
             previewSizer: {
@@ -396,12 +398,7 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
-                        footer={
-                            <View>
-                                {/* TODO(mdr): Use Wonder Blocks button. */}
-                                <button type="button">Button (no-op)</button>
-                            </View>
-                        }
+                        footer={<Button>Button (no-op)</Button>}
                         onClickCloseButton={() =>
                             alert("This would close the modal.")
                         }
@@ -416,6 +413,7 @@ describe("wonder-blocks-modal", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
             previewSizer: {
@@ -476,12 +474,7 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
-                        footer={
-                            <View>
-                                {/* TODO(mdr): Use Wonder Blocks button. */}
-                                <button type="button">Button (no-op)</button>
-                            </View>
-                        }
+                        footer={<Button>Button (no-op)</Button>}
                         onClickCloseButton={() =>
                             alert("This would close the modal.")
                         }
@@ -573,6 +566,7 @@ describe("wonder-blocks-modal", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
             previewSizer: {
@@ -652,7 +646,7 @@ describe("wonder-blocks-modal", () => {
                         }
                         footer={
                             <View>
-                                <button>Sample Button</button>
+                                <Button>Sample Button</Button>
                             </View>
                         }
                         onClickCloseButton={() =>
@@ -781,6 +775,7 @@ describe("wonder-blocks-modal", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
             previewSizer: {
@@ -816,7 +811,7 @@ describe("wonder-blocks-modal", () => {
                 <View style={styles.modalPositioner}>
                     <OneColumnModal
                         content={<span>Foo</span>}
-                        footer={<button>Bar</button>}
+                        footer={<Button>Bar</Button>}
                         onClickCloseButton={() =>
                             alert("This would close the modal.")
                         }

@@ -4,11 +4,17 @@ Once the modal is launched, tab focus wraps inside the modal content. Pressing T
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     example: {
         padding: 32,
         alignItems: "center",
+        flexDirection: "row",
+    },
+
+    button: {
+        marginRight: 10,
     },
 
     title: {
@@ -18,6 +24,11 @@ const styles = StyleSheet.create({
     modalContent: {
         margin: "0 auto",
         maxWidth: 544,
+    },
+
+    buttonContainer: {
+        marginTop: 24,
+        flexDirection: "row",
     },
 });
 
@@ -44,12 +55,7 @@ const standardModal = ({closeModal}) => (
                 </Body>
             </View>
         }
-        footer={
-            // TODO(mdr): Use Wonder Blocks Button.
-            <button onClick={closeModal}>
-                Close modal
-            </button>
-        }
+        footer={<Button onClick={closeModal}>Close modal</Button>}
     />
 );
 
@@ -80,20 +86,20 @@ const twoColumnModal = ({closeModal}) => <TwoColumnModal
                     <input type="password" />
                 </label>
             </View>
-            <View>
-                {/* TODO(mdr): Use Wonder Blocks Button. */}
-                <button
+            <View style={styles.buttonContainer}>
+                <Button
+                    kind="secondary"
                     onClick={closeModal}
-                    style={{marginTop: 16}}
+                    style={styles.button}
                 >
                     Go back
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={() => alert("Just kidding, no-op!")}
-                    style={{marginTop: 16}}
+                    style={styles.button}
                 >
                     Log in
-                </button>
+                </Button>
             </View>
         </View>
     }
@@ -115,40 +121,35 @@ const oneColumnModal = ({closeModal}) => <OneColumnModal
                     <input type="password" />
                 </label>
             </View>
-            <View>
-                {/* TODO(mdr): Use Wonder Blocks Button. */}
-                <button
+            <View style={styles.buttonContainer}>
+                <Button
+                    kind="secondary"
                     onClick={closeModal}
-                    style={{marginTop: 16}}
+                    style={styles.button}
                 >
                     Go back
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={() => alert("Just kidding, no-op!")}
-                    style={{marginTop: 16}}
+                    style={styles.button}
                 >
                     Log in
-                </button>
+                </Button>
             </View>
         </View>
     }
-    footer={
-        <View>
-            <button>Sample Button</button>
-        </View>
-    }
+    footer={<Button>Sample Button</Button>}
 />;
 
-// TODO(mdr): Use Wonder Blocks Button.
 <View style={styles.example}>
     <ModalLauncher modal={standardModal}>
-        {({openModal}) => <button onClick={openModal}>Standard modal</button>}
+        {({openModal}) => <Button onClick={openModal} style={styles.button}>Standard modal</Button>}
     </ModalLauncher>
     <ModalLauncher modal={twoColumnModal}>
-        {({openModal}) => <button onClick={openModal}>Two-column modal</button>}
+        {({openModal}) => <Button onClick={openModal} style={styles.button}>Two-column modal</Button>}
     </ModalLauncher>
     <ModalLauncher modal={oneColumnModal}>
-        {({openModal}) => <button onClick={openModal}>One-column modal</button>}
+        {({openModal}) => <Button onClick={openModal} style={styles.button}>One-column modal</Button>}
     </ModalLauncher>
 </View>;
 ```

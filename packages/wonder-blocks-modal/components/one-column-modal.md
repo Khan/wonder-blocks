@@ -63,6 +63,7 @@ that aren't block level elements.
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     <View style={styles.modalPositioner}>
         <OneColumnModal
             content={<span>Foo</span>}
-            footer={<button>Bar</button>}
+            footer={<Button>Bar</Button>}
             onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>
