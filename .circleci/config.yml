@@ -17,7 +17,6 @@ jobs:
       - run: yarn run gen-snapshot-tests
       - run: yarn run build:all
       - run: yarn run jest --coverage
-      - run: yarn add codecov
       - run: yarn run codecov
 workflows:
   version: 2
