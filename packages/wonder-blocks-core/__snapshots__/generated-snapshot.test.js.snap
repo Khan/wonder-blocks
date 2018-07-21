@@ -198,6 +198,7 @@ exports[`wonder-blocks-core example 5 1`] = `
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
       onMouseDown={[Function]}

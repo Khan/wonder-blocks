@@ -123,6 +123,7 @@ export type ClickableHandlers = {|
     onTouchCancel: () => void,
     onKeyDown: (e: SyntheticKeyboardEvent<*>) => void,
     onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
+    onFocus: (e: SyntheticFocusEvent<*>) => void,
     onBlur: (e: SyntheticFocusEvent<*>) => void,
     tabIndex: number,
 |};
@@ -138,12 +139,12 @@ const disabledHandlers = {
     onTouchCancel: () => void 0,
     onKeyDown: () => void 0,
     onKeyUp: () => void 0,
+    onFocus: () => void 0,
     onBlur: () => void 0,
     tabIndex: -1,
 };
 
 const keyCodes = {
-    tab: 9,
     enter: 13,
     space: 32,
 };
@@ -222,9 +223,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
-        if (keyCode === keyCodes.tab) {
-            this.setState({focused: false});
-        } else if (
+        if (
             this.props.href
                 ? keyCode === keyCodes.enter
                 : keyCode === keyCodes.space
@@ -236,9 +235,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyUp = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
-        if (keyCode === keyCodes.tab) {
-            this.setState({focused: true});
-        } else if (
+        if (
             this.props.href
                 ? keyCode === keyCodes.enter
                 : keyCode === keyCodes.space
@@ -249,6 +246,10 @@ export default class ClickableBehavior extends React.Component<Props, State> {
             }
             this.maybeNavigate();
         }
+    };
+
+    handleFocus = (e: SyntheticFocusEvent<*>) => {
+        this.setState({focused: true});
     };
 
     handleBlur = (e: SyntheticFocusEvent<*>) => {
@@ -280,6 +281,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                   onTouchCancel: this.handleTouchCancel,
                   onKeyDown: this.handleKeyDown,
                   onKeyUp: this.handleKeyUp,
+                  onFocus: this.handleFocus,
                   onBlur: this.handleBlur,
                   tabIndex: 0,
               };

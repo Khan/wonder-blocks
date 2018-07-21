@@ -1,0 +1,1 @@
+The Toolbar component is a generic toolbar wrapper that exposes customization options. An optional title and subtitle property can be used along with left and right content passed as props.
