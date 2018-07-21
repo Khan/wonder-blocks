@@ -16,7 +16,9 @@ jobs:
       - run: yarn install
       - run: yarn run gen-snapshot-tests
       - run: yarn run build:all
+      - run: yarn global add codecov && PATH=$PATH:$(yarn global bin)
       - run: yarn run jest --coverage
+      - run: codecov
 workflows:
   version: 2
   lint_and_test:
