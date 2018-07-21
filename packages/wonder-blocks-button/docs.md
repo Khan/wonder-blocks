@@ -36,6 +36,51 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+Primary, secondary, tertiary, and small button examples on a dark blue background:
+```js
+const Button = require("./index.js").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        backgroundColor: Color.darkBlue,
+        padding: 10,
+    },
+    sideMargins: {
+        marginLeft: 10,
+    }
+});
+
+<View style={[styles.row]}>
+    <Button
+        style={[styles.sideMargins]}
+        onClick={(e) => console.log("Hello, world!")}
+        light
+    >Label</Button>
+    <Button
+        style={[styles.sideMargins]}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="secondary"
+        light
+    >Label</Button>
+    <Button
+        style={[styles.sideMargins]}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="tertiary"
+        light
+    >Label</Button>
+    <Button
+        style={[styles.sideMargins]}
+        onClick={(e) => console.log("Hello, world!")}
+        size="small"
+        light
+    >Label</Button>
+</View>
+```
+
 Button example, `href="#button-1"`:
 ```js
 const Button = require("./index.js").default;

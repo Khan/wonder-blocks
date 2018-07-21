@@ -6,6 +6,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false disabled
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -64,6 +65,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false focused 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -75,22 +77,11 @@ exports[`ButtonCore kind:primary color:default size:default light:false focused 
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#1865f2",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -134,6 +125,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false hovered 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -145,22 +137,11 @@ exports[`ButtonCore kind:primary color:default size:default light:false hovered 
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#1865f2",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -204,6 +185,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false pressed 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -262,6 +244,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true disabled 
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -320,6 +303,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true focused 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -331,22 +315,11 @@ exports[`ButtonCore kind:primary color:default size:default light:true focused 1
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -390,6 +363,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true hovered 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -401,22 +375,11 @@ exports[`ButtonCore kind:primary color:default size:default light:true hovered 1
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -460,6 +423,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true pressed 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -518,6 +482,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -576,6 +541,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -587,22 +553,11 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#1865f2",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -646,6 +601,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -657,22 +613,11 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#1865f2",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -716,6 +661,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -774,6 +720,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -832,6 +779,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -843,22 +791,11 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -902,6 +839,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -913,22 +851,11 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -972,6 +899,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1030,6 +958,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false disa
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1088,6 +1017,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false focu
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1099,22 +1029,11 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false focu
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#d92916",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1158,6 +1077,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false hove
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1169,22 +1089,11 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false hove
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#d92916",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1228,6 +1137,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false pres
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1286,6 +1196,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true disab
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1344,6 +1255,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true focus
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1355,22 +1267,11 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true focus
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1414,6 +1315,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true hover
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1425,22 +1327,11 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true hover
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1484,6 +1375,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true press
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1542,6 +1434,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1600,6 +1493,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1611,22 +1505,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#d92916",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1670,6 +1553,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1681,22 +1565,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#d92916",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1740,6 +1613,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1798,6 +1672,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1856,6 +1731,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1867,22 +1743,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1926,6 +1791,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -1937,22 +1803,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   onTouchStart={[Function]}
   style={
     Object {
-      ":before": Object {
-        "borderColor": "#ffffff",
-        "borderRadius": 7,
-        "borderStyle": "solid",
-        "borderWidth": 2,
-        "bottom": -3,
-        "content": "''",
-        "left": -3,
-        "position": "absolute",
-        "right": -3,
-        "top": -3,
-      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1996,6 +1851,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2054,6 +1910,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false disabl
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2115,6 +1972,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false focuse
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2176,6 +2034,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false hovere
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2237,6 +2096,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false presse
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2298,6 +2158,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true disable
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2359,6 +2220,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true focused
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2420,6 +2282,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true hovered
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2481,6 +2344,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true pressed
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2542,6 +2406,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2603,6 +2468,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2664,6 +2530,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2725,6 +2592,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2786,6 +2654,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2847,6 +2716,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2908,6 +2778,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -2969,6 +2840,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3030,6 +2902,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false di
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3091,6 +2964,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false fo
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3152,6 +3026,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false ho
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3213,6 +3088,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false pr
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3274,6 +3150,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true dis
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3335,6 +3212,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true foc
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3396,6 +3274,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true hov
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3457,6 +3336,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true pre
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3518,6 +3398,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3579,6 +3460,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3640,6 +3522,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3701,6 +3584,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3762,6 +3646,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3823,6 +3708,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3884,6 +3770,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -3945,6 +3832,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4006,6 +3894,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false disable
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4064,6 +3953,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false focused
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4131,6 +4021,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false hovered
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4198,6 +4089,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false pressed
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4256,6 +4148,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true disabled
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4314,6 +4207,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true focused 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4381,6 +4275,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true hovered 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4448,6 +4343,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true pressed 
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4506,6 +4402,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4564,6 +4461,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4631,6 +4529,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4698,6 +4597,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4756,6 +4656,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4814,6 +4715,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4881,6 +4783,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -4948,6 +4851,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5006,6 +4910,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false dis
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5064,6 +4969,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false foc
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5131,6 +5037,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false hov
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5198,6 +5105,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false pre
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5256,6 +5164,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true disa
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5314,6 +5223,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true focu
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5381,6 +5291,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true hove
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5448,6 +5359,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true pres
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5506,6 +5418,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5564,6 +5477,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5631,6 +5545,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5698,6 +5613,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5756,6 +5672,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
   disabled={true}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5814,6 +5731,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5881,6 +5799,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -5948,6 +5867,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}

@@ -379,6 +379,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
             onMouseDown={[Function]}
@@ -832,6 +833,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
             onMouseDown={[Function]}
@@ -1285,6 +1287,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
             onMouseDown={[Function]}
@@ -1939,6 +1942,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
             onMouseDown={[Function]}
@@ -2133,6 +2137,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "height": "100%",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -2295,6 +2300,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
               onMouseDown={[Function]}
@@ -2562,6 +2568,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "height": "100%",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -2724,6 +2731,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
               onMouseDown={[Function]}
@@ -3060,6 +3068,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "height": "100%",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -3221,6 +3230,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
               onMouseDown={[Function]}
@@ -3362,6 +3372,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "row",
+            "height": "100%",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -3540,6 +3551,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
               onMouseDown={[Function]}

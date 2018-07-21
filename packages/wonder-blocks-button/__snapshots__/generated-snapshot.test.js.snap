@@ -25,6 +25,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
@@ -81,6 +82,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
@@ -140,6 +142,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
@@ -196,6 +199,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
@@ -251,12 +255,268 @@ exports[`wonder-blocks-button example 1 1`] = `
 `;
 
 exports[`wonder-blocks-button example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "backgroundColor": "#0a2a66",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 10,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "background": "#ffffff",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginLeft": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
+        }
+      }
+    >
+      Label
+    </span>
+  </button>
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "borderColor": "rgba(255,255,255,0.64)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginLeft": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
+        }
+      }
+    >
+      Label
+    </span>
+  </button>
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginLeft": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 4,
+        "paddingRight": 4,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
+        }
+      }
+    >
+      Label
+    </span>
+  </button>
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "background": "#ffffff",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 32,
+        "justifyContent": "center",
+        "marginLeft": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato",
+          "fontSize": 14,
+          "fontWeight": "bold",
+          "lineHeight": "18px",
+          "pointerEvents": "none",
+        }
+      }
+    >
+      Label
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-button example 3 1`] = `
 <a
   className=""
   disabled={false}
   href="#button-1"
   onBlur={[Function]}
   onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
@@ -309,7 +569,7 @@ exports[`wonder-blocks-button example 2 1`] = `
 </a>
 `;
 
-exports[`wonder-blocks-button example 3 1`] = `
+exports[`wonder-blocks-button example 4 1`] = `
 <div
   className=""
   style={
@@ -334,6 +594,7 @@ exports[`wonder-blocks-button example 3 1`] = `
     disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
@@ -390,6 +651,7 @@ exports[`wonder-blocks-button example 3 1`] = `
     disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
@@ -444,7 +706,7 @@ exports[`wonder-blocks-button example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 4 1`] = `
+exports[`wonder-blocks-button example 5 1`] = `
 <table>
   <thead>
     <tr>
@@ -479,6 +741,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
           onMouseDown={[Function]}
@@ -542,6 +805,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
           onMouseDown={[Function]}
@@ -605,6 +869,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
           onMouseDown={[Function]}
@@ -675,6 +940,7 @@ exports[`wonder-blocks-button example 4 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
             onMouseDown={[Function]}
@@ -746,6 +1012,7 @@ exports[`wonder-blocks-button example 4 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
             onMouseDown={[Function]}
@@ -832,6 +1099,7 @@ exports[`wonder-blocks-button example 4 1`] = `
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
             onMouseDown={[Function]}
@@ -926,6 +1194,7 @@ exports[`wonder-blocks-button example 4 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
               onMouseDown={[Function]}

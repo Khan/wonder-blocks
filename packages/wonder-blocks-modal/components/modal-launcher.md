@@ -132,6 +132,11 @@ const oneColumnModal = ({closeModal}) => <OneColumnModal
             </View>
         </View>
     }
+    footer={
+        <View>
+            <button>Sample Button</button>
+        </View>
+    }
 />;
 
 // TODO(mdr): Use Wonder Blocks Button.
