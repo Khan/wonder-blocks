@@ -17,6 +17,7 @@ const defaultHandlers = {
     onTouchCancel: () => void 0,
     onKeyDown: () => void 0,
     onKeyUp: () => void 0,
+    onFocus: () => void 0,
     onBlur: () => void 0,
 };
 
