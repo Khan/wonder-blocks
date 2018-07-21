@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - checkout
+      - run: yarn install
       - run: yarn run lint
       - run: yarn run flow
   test:
@@ -12,6 +13,7 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - checkout
+      - run: yarn install
       - run: yarn run gen-snapshot-tests
       - run: yarn run build:all
       - run: yarn run jest --coverage
