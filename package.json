@@ -17,7 +17,7 @@
     "test:common": "yarn run lint && yarn run gen-snapshot-tests && yarn run build:all && yarn run flow",
     "test": "yarn run test:common && yarn run jest",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
-    "coverage": "yarn run build:coverage && open coverage/lcov-report/index.html",
+    "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
     "styleguidist": "styleguidist server",
     "start": "yarn run styleguidist",
     "start:prod": "yarn run build:styleguidist && yarn run styleguidist --config styleguide.prod.config.js",
