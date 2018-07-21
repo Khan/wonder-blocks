@@ -6,14 +6,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - npm-deps-{{ checksum "package.json" }}
-          - npm-deps-
+          keys:
+            - npm-deps-{{ checksum "yarn.lock" }}
+            - npm-deps-
       - run: yarn install
       - save_cache:
-        key: npm-deps-{{ checksum "package.json" }}
-        paths:
-          - node_modules
+          key: npm-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
       - run: yarn run lint
       - run: yarn run flow
   test:
@@ -22,14 +22,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - npm-deps-{{ checksum "package.json" }}
-          - npm-deps-
+          keys:
+            - npm-deps-{{ checksum "yarn.lock" }}
+            - npm-deps-
       - run: yarn install
       - save_cache:
-        key: npm-deps-{{ checksum "package.json" }}
-        paths:
-          - node_modules
+          key: npm-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
       - run: yarn run gen-snapshot-tests
       - run: yarn run build:all
       - run: yarn run jest --coverage
