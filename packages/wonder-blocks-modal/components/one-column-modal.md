@@ -56,6 +56,9 @@ const styles = StyleSheet.create({
 </View>;
 ```
 
+This example shows that `OneColumnModal` works with content and footer elements
+that aren't block level elements.
+
 ```js
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -92,38 +95,8 @@ const styles = StyleSheet.create({
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <OneColumnModal
-            content={
-                <View>
-                    <Title style={styles.title}>Title</Title>
-                    <Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est.
-                    </Body>
-                    <Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est.
-                    </Body>
-                </View>
-            }
-            footer={
-                <View>
-                    <button>Sample Button</button>
-                </View>
-            }
+            content={<span>Foo</span>}
+            footer={<button>Bar</button>}
             onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>
