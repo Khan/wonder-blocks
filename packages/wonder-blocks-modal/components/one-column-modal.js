@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
 
     contentWrapper: {
         flexDirection: "row",
+        height: "100%",
     },
 
     smallContentWrapper: {

@@ -157,6 +157,11 @@ describe("wonder-blocks-modal", () => {
                         </View>
                     </View>
                 }
+                footer={
+                    <View>
+                        <button>Sample Button</button>
+                    </View>
+                }
             />
         );
 
