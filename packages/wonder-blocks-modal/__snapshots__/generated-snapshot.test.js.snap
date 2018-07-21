@@ -3188,16 +3188,13 @@ exports[`wonder-blocks-modal example 8 1`] = `
                   "color": "#ffffff",
                   "cursor": "pointer",
                   "display": "inline-flex",
-                  "font": "inherit",
-                  "fontSize": 24,
-                  "height": 48,
+                  "height": 40,
                   "justifyContent": "center",
-                  "lineHeight": "48px",
                   "outline": "none",
                   "padding": 0,
                   "position": "relative",
                   "textDecoration": "none",
-                  "width": 48,
+                  "width": 40,
                 }
               }
               tabIndex={0}
@@ -3775,7 +3772,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
-                "left": 4,
+                "left": 8,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
