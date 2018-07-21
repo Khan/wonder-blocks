@@ -5,7 +5,15 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - checkout
+      - restore_cache:
+        keys:
+          - npm-deps-{{ checksum "package.json" }}
+          - npm-deps-
       - run: yarn install
+      - save_cache:
+        key: npm-deps-{{ checksum "package.json" }}
+        paths:
+          - node_modules
       - run: yarn run lint
       - run: yarn run flow
   test:
@@ -13,7 +21,15 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - checkout
+      - restore_cache:
+        keys:
+          - npm-deps-{{ checksum "package.json" }}
+          - npm-deps-
       - run: yarn install
+      - save_cache:
+        key: npm-deps-{{ checksum "package.json" }}
+        paths:
+          - node_modules
       - run: yarn run gen-snapshot-tests
       - run: yarn run build:all
       - run: yarn run jest --coverage
