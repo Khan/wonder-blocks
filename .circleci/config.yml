@@ -5,14 +5,14 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: echo "A first hello!"
       - run: sleep 25
   two:
     docker:
       - image: circleci/node:8-browsers
     steps:
       - checkout
-      - run: echo "A more familiar hi"
+      - run: echo "A more familiar hi!"
       - run: sleep 15
 workflows:
   version: 2
