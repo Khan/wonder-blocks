@@ -61,6 +61,61 @@ describe("wonder-blocks-button", () => {
     });
     it("example 2", () => {
         const Button = require("./index.js").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                backgroundColor: Color.darkBlue,
+                padding: 10,
+            },
+            sideMargins: {
+                marginLeft: 10,
+            },
+        });
+
+        const example = (
+            <View style={[styles.row]}>
+                <Button
+                    style={[styles.sideMargins]}
+                    onClick={(e) => console.log("Hello, world!")}
+                    light
+                >
+                    Label
+                </Button>
+                <Button
+                    style={[styles.sideMargins]}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="secondary"
+                    light
+                >
+                    Label
+                </Button>
+                <Button
+                    style={[styles.sideMargins]}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="tertiary"
+                    light
+                >
+                    Label
+                </Button>
+                <Button
+                    style={[styles.sideMargins]}
+                    onClick={(e) => console.log("Hello, world!")}
+                    size="small"
+                    light
+                >
+                    Label
+                </Button>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const Button = require("./index.js").default;
 
         const example = (
             <Button
@@ -73,7 +128,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const Button = require("./index.js").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -108,7 +163,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 5", () => {
         const Button = require("./index.js").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
