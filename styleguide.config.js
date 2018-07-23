@@ -52,6 +52,7 @@ module.exports = {
         {
             name: "Layout",
             content: "packages/wonder-blocks-layout/docs.md",
+            components: "packages/wonder-blocks-layout/components/*.js",
         },
         {
             name: "Link",
@@ -77,6 +78,8 @@ module.exports = {
                     ],
                 },
                 {
+                    // NOTE(jeresig): Not ready to be used yet, need docs.
+                    private: true,
                     name: "Building Blocks",
                     content: "packages/wonder-blocks-modal/building-blocks.md",
                     components: [

@@ -61,7 +61,7 @@
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
     "react-docgen": "^2.20.1",
-    "react-styleguidist": "^7.0.5",
+    "react-styleguidist": "^7.0.20",
     "react-test-renderer": "^16.4.1",
     "unescape": "^1.0.1",
     "webpack": "^4.6.0",
