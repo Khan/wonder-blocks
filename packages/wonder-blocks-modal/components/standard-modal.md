@@ -4,6 +4,7 @@
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -44,10 +45,7 @@ const styles = StyleSheet.create({
                     </Body>
                 </View>
             }
-            footer={<View>
-                {/* TODO(mdr): Use Wonder Blocks button. */}
-                <button type="button">Button (no-op)</button>
-            </View>}
+            footer={<Button>Button (no-op)</Button>}
             onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>
@@ -60,6 +58,7 @@ const styles = StyleSheet.create({
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -102,10 +101,7 @@ const styles = StyleSheet.create({
                     </Body>
                 </View>
             }
-            footer={<View>
-                {/* TODO(mdr): Use Wonder Blocks button. */}
-                <button type="button">Button (no-op)</button>
-            </View>}
+            footer={<Button>Button (no-op)</Button>}
             onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>
@@ -118,6 +114,7 @@ const styles = StyleSheet.create({
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -174,10 +171,7 @@ const styles = StyleSheet.create({
                     </Body>
                 </View>
             }
-            footer={<View>
-                {/* TODO(mdr): Use Wonder Blocks button. */}
-                <button type="button">Button (no-op)</button>
-            </View>}
+            footer={<Button>Button (no-op)</Button>}
             onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>
@@ -190,6 +184,7 @@ const styles = StyleSheet.create({
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -240,10 +235,7 @@ const styles = StyleSheet.create({
                     </Body>
                 </View>
             }
-            footer={<View>
-                {/* TODO(mdr): Use Wonder Blocks button. */}
-                <button type="button">Button (no-op)</button>
-            </View>}
+            footer={<Button>Button (no-op)</Button>}
             onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>

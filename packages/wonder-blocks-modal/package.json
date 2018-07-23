@@ -20,6 +20,9 @@
     "@khanacademy/wonder-blocks-icon-button": "^1.0.1",
     "@khanacademy/wonder-blocks-typography": "^1.0.4"
   },
+  "devDependencies": {
+    "@khanacademy/wonder-blocks-button": "^1.0.1"
+  },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "^16.4.1"
