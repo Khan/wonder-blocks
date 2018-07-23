@@ -1,22 +1,42 @@
 version: 2
 jobs:
-  one:
+  lint:
     docker:
       - image: circleci/node:8-browsers
     steps:
       - checkout
-      - run: echo "A first hello"
-      - run: sleep 25
-  two:
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "yarn.lock" }}
+            - npm-deps-
+      - run: yarn install
+      - save_cache:
+          key: npm-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run: yarn run lint
+      - run: yarn run flow
+  test:
     docker:
       - image: circleci/node:8-browsers
     steps:
       - checkout
-      - run: echo "A more familiar hi"
-      - run: sleep 15
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "yarn.lock" }}
+            - npm-deps-
+      - run: yarn install
+      - save_cache:
+          key: npm-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run: yarn run gen-snapshot-tests
+      - run: yarn run build:all
+      - run: yarn run jest --coverage
+      - run: yarn run codecov
 workflows:
   version: 2
-  one_and_two:
+  lint_and_test:
     jobs:
-      - one
-      - two
+      - lint
+      - test
