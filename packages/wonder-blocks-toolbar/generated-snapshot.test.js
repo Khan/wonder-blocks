@@ -30,13 +30,13 @@ describe("wonder-blocks-toolbar", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        // TODO(scottgrant): Use wonder-blocks-icon and wonder-blocks-icon-button
-        const dismissIcon =
-            "M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z";
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
+            .default;
+
         const closeButton = (
-            <svg role="img" width="24px" height="24px">
-                <path d={dismissIcon} />
-            </svg>
+            <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />
         );
 
         const example = (
@@ -50,13 +50,13 @@ describe("wonder-blocks-toolbar", () => {
     });
     it("example 3", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
+            .default;
 
-        const dismissIcon =
-            "M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z";
         const closeButton = (
-            <svg role="img" width="24px" height="24px">
-                <path d={dismissIcon} />
-            </svg>
+            <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />
         );
 
         const startExercise = <Button>Next Video</Button>;
@@ -86,14 +86,14 @@ describe("wonder-blocks-toolbar", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
+            .default;
         const Link = require("@khanacademy/wonder-blocks-link").default;
 
-        const dismissIcon =
-            "M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z";
         const closeButton = (
-            <svg role="img" width="24px" height="24px">
-                <path d={dismissIcon} />
-            </svg>
+            <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />
         );
 
         const goToExercise = <Link>Go to exercise</Link>;

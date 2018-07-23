@@ -350,15 +350,59 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           }
         }
       >
-        <svg
-          height="24px"
-          role="img"
-          width="24px"
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
+            }
+          }
+          tabIndex={0}
         >
-          <path
-            d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
-          />
-        </svg>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -554,15 +598,59 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           }
         }
       >
-        <svg
-          height="24px"
-          role="img"
-          width="24px"
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
+            }
+          }
+          tabIndex={0}
         >
-          <path
-            d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
-          />
-        </svg>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -1140,15 +1228,59 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           }
         }
       >
-        <svg
-          height="24px"
-          role="img"
-          width="24px"
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#21242c",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
+            }
+          }
+          tabIndex={0}
         >
-          <path
-            d="M12.003 10.588L7.707 6.293a1 1 0 0 0-1.414 1.414l4.295 4.296-4.295 4.295a1 1 0 0 0 1.414 1.414l4.296-4.295 4.295 4.295a1 1 0 0 0 1.414-1.414l-4.295-4.295 4.295-4.296a1 1 0 1 0-1.414-1.414l-4.295 4.295z"
-          />
-        </svg>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   </div>
