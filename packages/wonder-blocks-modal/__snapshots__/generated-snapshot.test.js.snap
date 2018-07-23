@@ -3382,7 +3382,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                     }
                   }
                 >
-                  Sample Button
+                  Button (no-op)
                 </span>
               </button>
             </div>

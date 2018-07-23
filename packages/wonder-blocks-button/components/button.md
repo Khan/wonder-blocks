@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-Button examples, `style` specified (Support width, position, margin, and flex styles):
+Button examples, `style` specified (Supports width, position, margin, and flex styles):
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -131,18 +131,18 @@ const styles = StyleSheet.create({
     <tr>
         <td>flexGrow: 1</td>
         <td>
-            <div style={{display: 'flex'}}>
+            <View>
                 <Button
                     onClick={(e) => console.log("Hello, world!")}
                     style={{flexGrow: 1}}
                 >Label</Button>
-            </div>
+            </View>
         </td>
     </tr>
     <tr>
         <td>flexShrink: 2, width: '300px'</td>
         <td>
-            <div style={{display: 'flex'}}>
+            <View>
                 <Button
                     onClick={(e) => console.log("Hello, world!")}
                     style={[
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
                         styles.sideMargins
                     ]}
                 >Label</Button>
-                <div
+                <View
                     onClick={(e) => console.log("Hello, world!")}
                     style={
                         {
@@ -160,19 +160,19 @@ const styles = StyleSheet.create({
                             lineHeight: '40px',
                         }
                     }
-                >Not a button</div>
-            </div>
+                >Not a button</View>
+            </View>
         </td>
     </tr>
     <tr>
         <td>alignSelf: 'flex-end'</td>
         <td>
-            <div style={{display: 'flex'}}>
+            <View>
                 <Button
                     onClick={(e) => console.log("Hello, world!")}
                     style={[{alignSelf: 'flex-end'}, styles.sideMargins]}
                 >Label</Button>
-                <div
+                <View
                     onClick={(e) => console.log("Hello, world!")}
                     style={
                         {
@@ -183,21 +183,21 @@ const styles = StyleSheet.create({
                             padding: '0px 4px',
                         }
                     }
-                >Not a button</div>
-            </div>
+                >Not a button</View>
+            </View>
         </td>
     </tr>
     <tr>
         <td>justifySelf: 'flex-end'</td>
         <td>
-            <div style={{display: 'flex'}}>
-                <div style={{display: 'grid', width: '100%'}}>
-                <Button
-                    onClick={(e) => console.log("Hello, world!")}
-                    style={{justifySelf: 'flex-end'}}
-                >Label</Button>
-                </div>
-            </div>
+            <View>
+                <View style={{display: 'grid', width: '100%'}}>
+                    <Button
+                        onClick={(e) => console.log("Hello, world!")}
+                        style={{justifySelf: 'flex-end'}}
+                    >Label</Button>
+                </View>
+            </View>
         </td>
     </tr>
     </tbody>

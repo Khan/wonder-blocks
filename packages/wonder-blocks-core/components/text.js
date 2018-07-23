@@ -31,10 +31,9 @@ const styles = StyleSheet.create({
 });
 
 /**
- * Text is a building block for constructing other components. `View` roughly
- * maps to `div` and `Text` roughly maps to `span`. You can override which tag
- * is used to render the component (for semantic purposes) by specifying the
- * `tag` prop.
+ * Text is a building block for constructing other components. `Text` roughly
+ * maps to `span`. You can override which tag is used to render the component
+ * (for semantic purposes) by specifying the `tag` prop.
  *
  * These components can take styles (via the `style` prop) in a variety of
  * manners:

@@ -26,8 +26,6 @@ module.exports = {
             components: "packages/wonder-blocks-core/components/*.js",
         },
         {
-            // NOTE(jeresig): Work-in-progress.
-            private: true,
             name: "Dropdown",
             components: [
                 "packages/wonder-blocks-dropdown/components/action-menu.js",
@@ -36,8 +34,6 @@ module.exports = {
             ],
         },
         {
-            // NOTE(jeresig): Not ready yet, awaiting new Layout component.
-            private: true,
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",

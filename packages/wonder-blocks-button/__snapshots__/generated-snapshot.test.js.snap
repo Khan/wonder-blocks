@@ -674,9 +674,21 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <div
+          className=""
           style={
             Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -746,9 +758,21 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <div
+          className=""
           style={
             Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -812,13 +836,26 @@ exports[`wonder-blocks-button example 4 1`] = `
             </span>
           </button>
           <div
+            className=""
             onClick={[Function]}
             style={
               Object {
+                "alignItems": "stretch",
                 "background": "#eee",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
                 "lineHeight": "40px",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
                 "textAlign": "center",
                 "width": "100%",
+                "zIndex": 0,
               }
             }
           >
@@ -833,9 +870,21 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <div
+          className=""
           style={
             Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
@@ -898,14 +947,26 @@ exports[`wonder-blocks-button example 4 1`] = `
             </span>
           </button>
           <div
+            className=""
             onClick={[Function]}
             style={
               Object {
+                "alignItems": "stretch",
                 "background": "#eee",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
                 "height": "100px",
                 "lineHeight": "100px",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
                 "padding": "0px 4px",
+                "position": "relative",
                 "textAlign": "center",
+                "zIndex": 0,
               }
             }
           >
@@ -920,17 +981,41 @@ exports[`wonder-blocks-button example 4 1`] = `
       </td>
       <td>
         <div
+          className=""
           style={
             Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
               "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
             }
           }
         >
           <div
+            className=""
             style={
               Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
                 "display": "grid",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
                 "width": "100%",
+                "zIndex": 0,
               }
             }
           >

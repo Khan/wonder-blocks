@@ -651,7 +651,7 @@ describe("wonder-blocks-modal", () => {
                         }
                         footer={
                             <View>
-                                <Button>Sample Button</Button>
+                                <Button>Button (no-op)</Button>
                             </View>
                         }
                         onClickCloseButton={() =>

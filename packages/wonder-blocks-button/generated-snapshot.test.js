@@ -169,7 +169,7 @@ describe("wonder-blocks-button", () => {
                     <tr>
                         <td>flexGrow: 1</td>
                         <td>
-                            <div style={{display: "flex"}}>
+                            <View>
                                 <Button
                                     onClick={(e) =>
                                         console.log("Hello, world!")
@@ -178,13 +178,13 @@ describe("wonder-blocks-button", () => {
                                 >
                                     Label
                                 </Button>
-                            </div>
+                            </View>
                         </td>
                     </tr>
                     <tr>
                         <td>flexShrink: 2, width: '300px'</td>
                         <td>
-                            <div style={{display: "flex"}}>
+                            <View>
                                 <Button
                                     onClick={(e) =>
                                         console.log("Hello, world!")
@@ -196,7 +196,7 @@ describe("wonder-blocks-button", () => {
                                 >
                                     Label
                                 </Button>
-                                <div
+                                <View
                                     onClick={(e) =>
                                         console.log("Hello, world!")
                                     }
@@ -208,14 +208,14 @@ describe("wonder-blocks-button", () => {
                                     }}
                                 >
                                     Not a button
-                                </div>
-                            </div>
+                                </View>
+                            </View>
                         </td>
                     </tr>
                     <tr>
                         <td>alignSelf: 'flex-end'</td>
                         <td>
-                            <div style={{display: "flex"}}>
+                            <View>
                                 <Button
                                     onClick={(e) =>
                                         console.log("Hello, world!")
@@ -227,7 +227,7 @@ describe("wonder-blocks-button", () => {
                                 >
                                     Label
                                 </Button>
-                                <div
+                                <View
                                     onClick={(e) =>
                                         console.log("Hello, world!")
                                     }
@@ -240,15 +240,15 @@ describe("wonder-blocks-button", () => {
                                     }}
                                 >
                                     Not a button
-                                </div>
-                            </div>
+                                </View>
+                            </View>
                         </td>
                     </tr>
                     <tr>
                         <td>justifySelf: 'flex-end'</td>
                         <td>
-                            <div style={{display: "flex"}}>
-                                <div style={{display: "grid", width: "100%"}}>
+                            <View>
+                                <View style={{display: "grid", width: "100%"}}>
                                     <Button
                                         onClick={(e) =>
                                             console.log("Hello, world!")
@@ -257,8 +257,8 @@ describe("wonder-blocks-button", () => {
                                     >
                                         Label
                                     </Button>
-                                </div>
-                            </div>
+                                </View>
+                            </View>
                         </td>
                     </tr>
                 </tbody>

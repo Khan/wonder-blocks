@@ -154,7 +154,7 @@ const startState = {
  * }
  * ```
  *
- * This follows a pattern call [Function as Child Components]
+ * This follows a pattern called [Function as Child Components]
  * (https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
  *
  * WARNING: Do not use this component directly, use getClickableBehavior
