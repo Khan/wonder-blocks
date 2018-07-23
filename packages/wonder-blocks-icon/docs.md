@@ -52,12 +52,14 @@ const styles = StyleSheet.create({
                 if (icons[iconName][size]) {
                     return <td
                         className={css(styles.iconCell, styles.tableBorder)}
+                        key={size}
                     >
                         <Icon icon={icons[iconName]} size={size} />
                     </td>;
                 }
                 return <td
                     className={css(styles.emptyCell, styles.tableBorder)}
+                    key={size}
                 />;
             })}
         </tr>

@@ -78,6 +78,7 @@ describe("wonder-blocks-icon", () => {
                                             styles.iconCell,
                                             styles.tableBorder,
                                         )}
+                                        key={size}
                                     >
                                         <Icon
                                             icon={icons[iconName]}
@@ -92,6 +93,7 @@ describe("wonder-blocks-icon", () => {
                                         styles.emptyCell,
                                         styles.tableBorder,
                                     )}
+                                    key={size}
                                 />
                             );
                         })}
