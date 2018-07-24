@@ -11,11 +11,10 @@ const secondaryButton = <Button size="small" kind="secondary">Secondary button</
 ### Toolbar with title
 
 ```js
-const Color = require("@khanacademy/wonder-blocks-color").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />;
+const closeButton = <IconButton icon={icons.dismiss} kind="secondary" />;
 
 <Toolbar
     leftContent={closeButton}
@@ -27,11 +26,10 @@ const closeButton = <IconButton icon={icons.dismiss} style={{color: Color.offBla
 
 ```js
 const Button = require("@khanacademy/wonder-blocks-button").default;
-const Color = require("@khanacademy/wonder-blocks-color").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />;
+const closeButton = <IconButton icon={icons.dismiss} kind="secondary" />;
 
 const startExercise = <Button>Next Video</Button>;
 
@@ -60,14 +58,13 @@ const tryAgain = <Button kind="secondary">Try again</Button>;
 ### Header overflow text
 
 ```js
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {icons} = require("@khanacademy/wonder-blocks-icon");
+const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const Link = require("@khanacademy/wonder-blocks-link").default;
 
-const closeButton = <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />;
+const closeButton = <IconButton icon={icons.dismiss} kind="secondary" />;
 
-const goToExercise = <Link>Go to exercise</Link>;
+const goToExercise = <Link href="#">Go to exercise <Icon icon={icons.caretRight} /></Link>;
 
 <Toolbar
     leftContent={closeButton}

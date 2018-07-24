@@ -1426,6 +1426,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
       >
         <a
           className=""
+          href="#"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -1451,7 +1452,24 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           }
           tabIndex={0}
         >
-          Go to exercise
+          Go to exercise 
+          <svg
+            className=""
+            height={16}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <path
+              d="M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z"
+              fill="currentColor"
+            />
+          </svg>
         </a>
       </div>
     </div>

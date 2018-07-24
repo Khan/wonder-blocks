@@ -30,13 +30,12 @@ describe("wonder-blocks-toolbar", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
         const {icons} = require("@khanacademy/wonder-blocks-icon");
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
 
         const closeButton = (
-            <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />
+            <IconButton icon={icons.dismiss} kind="secondary" />
         );
 
         const example = (
@@ -50,13 +49,12 @@ describe("wonder-blocks-toolbar", () => {
     });
     it("example 3", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
-        const Color = require("@khanacademy/wonder-blocks-color").default;
         const {icons} = require("@khanacademy/wonder-blocks-icon");
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
 
         const closeButton = (
-            <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />
+            <IconButton icon={icons.dismiss} kind="secondary" />
         );
 
         const startExercise = <Button>Next Video</Button>;
@@ -86,17 +84,23 @@ describe("wonder-blocks-toolbar", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const {
+            default: Icon,
+            icons,
+        } = require("@khanacademy/wonder-blocks-icon");
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
         const Link = require("@khanacademy/wonder-blocks-link").default;
 
         const closeButton = (
-            <IconButton icon={icons.dismiss} style={{color: Color.offBlack}} />
+            <IconButton icon={icons.dismiss} kind="secondary" />
         );
 
-        const goToExercise = <Link>Go to exercise</Link>;
+        const goToExercise = (
+            <Link href="#">
+                Go to exercise <Icon icon={icons.caretRight} />
+            </Link>
+        );
 
         const example = (
             <Toolbar
