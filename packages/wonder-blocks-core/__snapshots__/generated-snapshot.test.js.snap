@@ -206,6 +206,7 @@ exports[`wonder-blocks-core example 4 1`] = `
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
           "outline": "none",
           "paddingBottom": 0,
           "paddingLeft": 16,
