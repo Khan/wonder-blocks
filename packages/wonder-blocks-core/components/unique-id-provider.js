@@ -43,6 +43,22 @@ type Props = {|
     +scope?: string,
 |};
 
+/**
+ * The `UniqueIDProvider` component is how Wonder Blocks components obtain
+ * unique identifiers. This component ensures that server-side rendering and
+ * initial client rendering match while allowing the provision of unique
+ * identifiers for the client.
+ *
+ * In all but the first render, the children are rendered with the same
+ * `IIdentifierFactory` instance, ensuring that the same calls will return the
+ * same identifiers.
+ *
+ * The `get` method of the identifier factory ensures that the same identifier
+ * is returned for like requests, but also that all identifiers provided are
+ * unique. Therefore, `get("test")` will always equal `get("test")`, and
+ * `get("test2")` will always equal `get("test2")`, but `get("test")` will
+ * never equal `get("test2")`.
+ */
 export default class UniqueIDProvider extends React.Component<Props> {
     _idFactory: IIdentifierFactory;
 

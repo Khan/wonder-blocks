@@ -12,7 +12,6 @@ import Button from "./components/button.js";
 
 describe("wonder-blocks-button", () => {
     it("example 1", () => {
-        const Button = require("./index.js").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -26,29 +25,29 @@ describe("wonder-blocks-button", () => {
         });
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <Button
-                    style={[styles.sideMargins]}
+                    style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                 >
                     Label
                 </Button>
                 <Button
-                    style={[styles.sideMargins]}
+                    style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                 >
                     Label
                 </Button>
                 <Button
-                    style={[styles.sideMargins]}
+                    style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                 >
                     Label
                 </Button>
                 <Button
-                    style={[styles.sideMargins]}
+                    style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                     size="small"
                 >
@@ -60,63 +59,6 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const Button = require("./index.js").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            row: {
-                flexDirection: "row",
-                backgroundColor: Color.darkBlue,
-                padding: 10,
-            },
-            sideMargins: {
-                marginLeft: 10,
-            },
-        });
-
-        const example = (
-            <View style={[styles.row]}>
-                <Button
-                    style={[styles.sideMargins]}
-                    onClick={(e) => console.log("Hello, world!")}
-                    light
-                >
-                    Label
-                </Button>
-                <Button
-                    style={[styles.sideMargins]}
-                    onClick={(e) => console.log("Hello, world!")}
-                    kind="secondary"
-                    light
-                >
-                    Label
-                </Button>
-                <Button
-                    style={[styles.sideMargins]}
-                    onClick={(e) => console.log("Hello, world!")}
-                    kind="tertiary"
-                    light
-                >
-                    Label
-                </Button>
-                <Button
-                    style={[styles.sideMargins]}
-                    onClick={(e) => console.log("Hello, world!")}
-                    size="small"
-                    light
-                >
-                    Label
-                </Button>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 3", () => {
-        const Button = require("./index.js").default;
-
         const example = (
             <Button
                 onClick={(e) => console.log("Hello, world!")}
@@ -128,8 +70,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const Button = require("./index.js").default;
+    it("example 3", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -143,17 +84,17 @@ describe("wonder-blocks-button", () => {
         });
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <Button
-                    style={[styles.sideMargins]}
+                    style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                     disabled={true}
                 >
                     Label
                 </Button>
                 <Button
-                    style={[styles.sideMargins]}
-                    href={"https://khanacademy.org"}
+                    style={styles.sideMargins}
+                    href="https://khanacademy.org"
                     disabled={true}
                 >
                     Button with href
@@ -163,8 +104,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
-        const Button = require("./index.js").default;
+    it("example 4", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -198,7 +138,7 @@ describe("wonder-blocks-button", () => {
                         <td>
                             <Button
                                 onClick={(e) => console.log("Hello, world!")}
-                                style={[styles.wideButton]}
+                                style={styles.wideButton}
                             >
                                 Label
                             </Button>
@@ -220,7 +160,7 @@ describe("wonder-blocks-button", () => {
                         <td>
                             <Button
                                 onClick={(e) => console.log("Hello, world!")}
-                                style={[styles.centerInDiv]}
+                                style={styles.centerInDiv}
                             >
                                 Label
                             </Button>
@@ -229,7 +169,7 @@ describe("wonder-blocks-button", () => {
                     <tr>
                         <td>flexGrow: 1</td>
                         <td>
-                            <div style={{display: "flex"}}>
+                            <View>
                                 <Button
                                     onClick={(e) =>
                                         console.log("Hello, world!")
@@ -238,13 +178,13 @@ describe("wonder-blocks-button", () => {
                                 >
                                     Label
                                 </Button>
-                            </div>
+                            </View>
                         </td>
                     </tr>
                     <tr>
                         <td>flexShrink: 2, width: '300px'</td>
                         <td>
-                            <div style={{display: "flex"}}>
+                            <View>
                                 <Button
                                     onClick={(e) =>
                                         console.log("Hello, world!")
@@ -256,7 +196,7 @@ describe("wonder-blocks-button", () => {
                                 >
                                     Label
                                 </Button>
-                                <div
+                                <View
                                     onClick={(e) =>
                                         console.log("Hello, world!")
                                     }
@@ -268,14 +208,14 @@ describe("wonder-blocks-button", () => {
                                     }}
                                 >
                                     Not a button
-                                </div>
-                            </div>
+                                </View>
+                            </View>
                         </td>
                     </tr>
                     <tr>
                         <td>alignSelf: 'flex-end'</td>
                         <td>
-                            <div style={{display: "flex"}}>
+                            <View>
                                 <Button
                                     onClick={(e) =>
                                         console.log("Hello, world!")
@@ -287,7 +227,7 @@ describe("wonder-blocks-button", () => {
                                 >
                                     Label
                                 </Button>
-                                <div
+                                <View
                                     onClick={(e) =>
                                         console.log("Hello, world!")
                                     }
@@ -300,15 +240,15 @@ describe("wonder-blocks-button", () => {
                                     }}
                                 >
                                     Not a button
-                                </div>
-                            </div>
+                                </View>
+                            </View>
                         </td>
                     </tr>
                     <tr>
                         <td>justifySelf: 'flex-end'</td>
                         <td>
-                            <div style={{display: "flex"}}>
-                                <div style={{display: "grid", width: "100%"}}>
+                            <View>
+                                <View style={{display: "grid", width: "100%"}}>
                                     <Button
                                         onClick={(e) =>
                                             console.log("Hello, world!")
@@ -317,8 +257,8 @@ describe("wonder-blocks-button", () => {
                                     >
                                         Label
                                     </Button>
-                                </div>
-                            </div>
+                                </View>
+                            </View>
                         </td>
                     </tr>
                 </tbody>

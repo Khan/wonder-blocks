@@ -17,6 +17,27 @@ import View from "./components/view.js";
 
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
+        const example = (
+            <NoSSR
+                placeholder={() => (
+                    <View>
+                        This gets rendered on client and server for the first
+                        render call
+                    </View>
+                )}
+            >
+                {() => (
+                    <View>
+                        This is rendered only by the client for all but the
+                        first render.
+                    </View>
+                )}
+            </NoSSR>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -46,7 +67,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
+    it("example 3", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -59,55 +80,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {addStyle} = require("./index.js");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            // default style for all instances of StyledInput
-            input: {
-                fontSize: 30,
-            },
-            // style for a particular instance of StyledInput
-            pink: {
-                backgroundColor: "pink",
-            },
-        });
-
-        const StyledInput = addStyle("input", styles.input);
-
-        const example = (
-            <StyledInput
-                style={styles.pink}
-                type="text"
-                placeholder="hello, world"
-            />
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
     it("example 4", () => {
-        const example = (
-            <NoSSR
-                placeholder={() => (
-                    <View>
-                        This gets rendered on client and server for the first
-                        render call
-                    </View>
-                )}
-            >
-                {() => (
-                    <View>
-                        This is rendered only by the client for all but the
-                        first render.
-                    </View>
-                )}
-            </NoSSR>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 5", () => {
         const {
             Body,
             HeadingSmall,
@@ -155,7 +128,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 5", () => {
         const {
             Body,
             BodyMonospace,
@@ -198,7 +171,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 6", () => {
         const {
             Body,
             HeadingSmall,
@@ -225,7 +198,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 7", () => {
         const {
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
@@ -244,6 +217,49 @@ describe("wonder-blocks-core", () => {
                     <BodyMonospace>get(id: string): string;</BodyMonospace>
                 </View>
                 <BodyMonospace>&#125;</BodyMonospace>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            container: {
+                padding: 32,
+                backgroundColor: "plum",
+            },
+            text: {
+                fontFamily: "sans-serif",
+                fontSize: 24,
+            },
+        });
+
+        const example = (
+            <View style={styles.container}>
+                <Text style={styles.text}>Hello, world!</Text>
+                <View
+                    style={[
+                        styles.container,
+                        {backgroundColor: "goldenrod", padding: 4},
+                    ]}
+                >
+                    Even with an array and inline styles!
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 9", () => {
+        const example = (
+            <View>
+                <View onClick={() => alert("Clicked!")}>Click me!</View>
+
+                <Text aria-hidden="true">
+                    This text is hidden from screen readers.
+                </Text>
             </View>
         );
         const tree = renderer.create(example).toJSON();

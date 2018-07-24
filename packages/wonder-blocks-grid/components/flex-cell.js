@@ -50,9 +50,6 @@ type Props = {|
  * By default (with no properties specified) it will display at all
  * grid sizes. If you specify the `small`, `medium`, or `large`
  * props then the component will only be shown at those grid sizes.
- *
- * @version 1.0
- * @since 1.0
  */
 class FlexCell extends React.Component<Props> {
     static defaultProps = {

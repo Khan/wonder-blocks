@@ -40,11 +40,63 @@ exports[`wonder-blocks-modal example 1 1`] = `
     }
   >
     <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
     >
-      Standard modal
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "pointerEvents": "none",
+          }
+        }
+      >
+        Standard modal
+      </span>
     </button>
   </div>
+  <br />
   <div
     className=""
     style={
@@ -65,11 +117,63 @@ exports[`wonder-blocks-modal example 1 1`] = `
     }
   >
     <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
     >
-      Two-column modal
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "pointerEvents": "none",
+          }
+        }
+      >
+        Two-column modal
+      </span>
     </button>
   </div>
+  <br />
   <div
     className=""
     style={
@@ -90,9 +194,60 @@ exports[`wonder-blocks-modal example 1 1`] = `
     }
   >
     <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
     >
-      One-column modal
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "pointerEvents": "none",
+          }
+        }
+      >
+        One-column modal
+      </span>
     </button>
   </div>
 </div>
@@ -572,9 +727,61 @@ exports[`wonder-blocks-modal example 2 1`] = `
             }
           >
             <button
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "background": "#1865f2",
+                  "border": "none",
+                  "borderRadius": 4,
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "outline": "none",
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                }
+              }
+              tabIndex={0}
               type="button"
             >
-              Button (no-op)
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "lineHeight": "20px",
+                    "pointerEvents": "none",
+                  }
+                }
+              >
+                Button (no-op)
+              </span>
             </button>
           </div>
         </div>
@@ -1104,9 +1311,61 @@ exports[`wonder-blocks-modal example 3 1`] = `
             }
           >
             <button
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "background": "#1865f2",
+                  "border": "none",
+                  "borderRadius": 4,
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "outline": "none",
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                }
+              }
+              tabIndex={0}
               type="button"
             >
-              Button (no-op)
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "lineHeight": "20px",
+                    "pointerEvents": "none",
+                  }
+                }
+              >
+                Button (no-op)
+              </span>
             </button>
           </div>
         </div>
@@ -1636,9 +1895,61 @@ exports[`wonder-blocks-modal example 4 1`] = `
             }
           >
             <button
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "background": "#1865f2",
+                  "border": "none",
+                  "borderRadius": 4,
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "outline": "none",
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                }
+              }
+              tabIndex={0}
               type="button"
             >
-              Button (no-op)
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "lineHeight": "20px",
+                    "pointerEvents": "none",
+                  }
+                }
+              >
+                Button (no-op)
+              </span>
             </button>
           </div>
         </div>
@@ -2370,9 +2681,61 @@ exports[`wonder-blocks-modal example 5 1`] = `
             }
           >
             <button
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "background": "#1865f2",
+                  "border": "none",
+                  "borderRadius": 4,
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "outline": "none",
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                }
+              }
+              tabIndex={0}
               type="button"
             >
-              Button (no-op)
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "lineHeight": "20px",
+                    "pointerEvents": "none",
+                  }
+                }
+              >
+                Button (no-op)
+              </span>
             </button>
           </div>
         </div>
@@ -3301,8 +3664,61 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 }
               }
             >
-              <button>
-                Sample Button
+              <button
+                className=""
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchCancel={[Function]}
+                onTouchEnd={[Function]}
+                onTouchStart={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "background": "#1865f2",
+                    "border": "none",
+                    "borderRadius": 4,
+                    "boxSizing": "border-box",
+                    "color": "#ffffff",
+                    "cursor": "pointer",
+                    "display": "inline-flex",
+                    "height": 40,
+                    "justifyContent": "center",
+                    "outline": "none",
+                    "paddingBottom": 0,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 0,
+                    "position": "relative",
+                    "textDecoration": "none",
+                  }
+                }
+                tabIndex={0}
+              >
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato",
+                      "fontSize": 16,
+                      "fontWeight": "bold",
+                      "lineHeight": "20px",
+                      "pointerEvents": "none",
+                    }
+                  }
+                >
+                  Button (no-op)
+                </span>
               </button>
             </div>
           </div>

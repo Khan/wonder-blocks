@@ -6,6 +6,30 @@ exports[`wonder-blocks-core example 1 1`] = `
   style={
     Object {
       "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  This is rendered only by the client for all but the first render.
+</div>
+`;
+
+exports[`wonder-blocks-core example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
       "backgroundColor": "plum",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -59,7 +83,7 @@ exports[`wonder-blocks-core example 1 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 2 1`] = `
+exports[`wonder-blocks-core example 3 1`] = `
 <div
   className=""
   style={
@@ -116,45 +140,7 @@ exports[`wonder-blocks-core example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 3 1`] = `
-<input
-  className=""
-  placeholder="hello, world"
-  style={
-    Object {
-      "backgroundColor": "pink",
-      "fontSize": 30,
-    }
-  }
-  type="text"
-/>
-`;
-
 exports[`wonder-blocks-core example 4 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  This is rendered only by the client for all but the first render.
-</div>
-`;
-
-exports[`wonder-blocks-core example 5 1`] = `
 <div
   className=""
   style={
@@ -356,7 +342,7 @@ exports[`wonder-blocks-core example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 6 1`] = `
+exports[`wonder-blocks-core example 5 1`] = `
 <div
   className=""
   style={
@@ -548,7 +534,7 @@ exports[`wonder-blocks-core example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 7 1`] = `
+exports[`wonder-blocks-core example 6 1`] = `
 <div
   className=""
   style={
@@ -681,7 +667,7 @@ exports[`wonder-blocks-core example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 8 1`] = `
+exports[`wonder-blocks-core example 7 1`] = `
 <div
   className=""
   style={
@@ -793,6 +779,122 @@ exports[`wonder-blocks-core example 8 1`] = `
     }
   >
     }
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-core example 8 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "backgroundColor": "plum",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 32,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "fontFamily": "sans-serif",
+        "fontSize": 24,
+      }
+    }
+  >
+    Hello, world!
+  </span>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "goldenrod",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 4,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    Even with an array and inline styles!
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-core example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onClick={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    Click me!
+  </div>
+  <span
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+      }
+    }
+  >
+    This text is hidden from screen readers.
   </span>
 </div>
 `;

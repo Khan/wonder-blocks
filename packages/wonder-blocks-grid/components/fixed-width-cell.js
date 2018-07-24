@@ -60,9 +60,6 @@ type Props = {|
  * grid sizes. If you specify the `smallWidth`, `mediumWidth`, `largeWidth`,
  * or `width` props then the component will only be shown at those grid sizes
  * and using the specified width.
- *
- * @version 1.0
- * @since 1.0
  */
 class FixedWidthCell extends React.Component<Props> {
     static defaultProps = {
