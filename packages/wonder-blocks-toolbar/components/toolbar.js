@@ -145,6 +145,7 @@ const sharedStyles = StyleSheet.create({
     },
     small: {
         minHeight: 48,
+        padding: 0,
     },
     dark: {
         backgroundColor: Color.darkBlue,

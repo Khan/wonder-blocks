@@ -13,9 +13,16 @@ import Toolbar from "./components/toolbar.js";
 describe("wonder-blocks-toolbar", () => {
     it("example 1", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
-        const smallButton = <Button size="small">Small button</Button>;
+
+        const buttonStyle = {width: 160};
+
+        const smallButton = (
+            <Button size="small" style={buttonStyle}>
+                Small button
+            </Button>
+        );
         const secondaryButton = (
-            <Button size="small" kind="secondary">
+            <Button size="small" kind="secondary" style={buttonStyle}>
                 Secondary button
             </Button>
         );
@@ -80,9 +87,15 @@ describe("wonder-blocks-toolbar", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {LabelMedium} = require("@khanacademy/wonder-blocks-typography");
 
-        const nextExercise = <Button>Next exercise</Button>;
+        const buttonStyle = {width: 140};
+
+        const nextExercise = <Button style={buttonStyle}>Next exercise</Button>;
         const questionCount = <LabelMedium>7 questions</LabelMedium>;
-        const tryAgain = <Button kind="secondary">Try again</Button>;
+        const tryAgain = (
+            <Button style={buttonStyle} kind="secondary">
+                Try again
+            </Button>
+        );
 
         const example = (
             <Toolbar rightContent={[questionCount, tryAgain, nextExercise]} />
@@ -98,6 +111,7 @@ describe("wonder-blocks-toolbar", () => {
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
         const Link = require("@khanacademy/wonder-blocks-link").default;
+        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
         const closeButton = (
             <IconButton
@@ -109,7 +123,9 @@ describe("wonder-blocks-toolbar", () => {
 
         const goToExercise = (
             <Link href="#">
-                Go to exercise <Icon icon={icons.caretRight} />
+                <LabelLarge>
+                    Go to exercise <Icon icon={icons.caretRight} />
+                </LabelLarge>
             </Link>
         );
 
@@ -137,8 +153,6 @@ describe("wonder-blocks-toolbar", () => {
         const example = (
             <View style={style}>
                 <Toolbar color="dark" title="Title" />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </View>
         );
         const tree = renderer.create(example).toJSON();

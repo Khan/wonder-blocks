@@ -15,7 +15,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       "margin": 0,
       "minHeight": 48,
       "minWidth": 0,
-      "padding": 4,
+      "padding": 0,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -160,6 +160,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
+              "width": 160,
             }
           }
         >
@@ -243,6 +244,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
+              "width": 160,
             }
           }
         >
@@ -1059,6 +1061,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
+              "width": 140,
             }
           }
         >
@@ -1139,6 +1142,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
+              "width": 140,
             }
           }
         >
@@ -1481,24 +1485,42 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             }
           }
         >
-          Go to exercise 
-          <svg
+          <span
             className=""
-            height={16}
             style={
               Object {
-                "display": "inline-block",
-                "verticalAlign": "text-bottom",
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
               }
             }
-            viewBox="0 0 16 16"
-            width={16}
           >
-            <path
-              d="M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z"
-              fill="currentColor"
-            />
-          </svg>
+            Go to exercise 
+            <svg
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
         </a>
       </div>
     </div>
@@ -1706,6 +1728,5 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
       />
     </div>
   </div>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </div>
 `;
