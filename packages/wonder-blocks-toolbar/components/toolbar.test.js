@@ -15,8 +15,8 @@ describe("Toolbar", () => {
         expect(wrapperTitle.containsMatchingElement(title)).toBe(true);
     });
     test("Adds left and right components", () => {
-        const componentLeft = "Left component";
-        const componentRight = "Left component";
+        const componentLeft = "Test left component";
+        const componentRight = "Test right component";
         const wrapper = shallow(
             <Toolbar
                 leftContent={componentLeft}
