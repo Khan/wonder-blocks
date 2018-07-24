@@ -16,7 +16,7 @@ export default class Checkbox extends React.Component<ChoiceProps> {
 
     render() {
         const {onChange, ...coreProps} = this.props;
-        const ClickableBehavior = getClickableBehavior(this.context.router);
+        const ClickableBehavior = getClickableBehavior();
 
         return (
             <ClickableBehavior
