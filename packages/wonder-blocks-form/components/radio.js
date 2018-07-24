@@ -15,7 +15,7 @@ export default class Radio extends React.Component<ChoiceProps> {
 
     render() {
         const {onChange, ...coreProps} = this.props;
-        const ClickableBehavior = getClickableBehavior(this.context.router);
+        const ClickableBehavior = getClickableBehavior();
 
         return (
             <ClickableBehavior
