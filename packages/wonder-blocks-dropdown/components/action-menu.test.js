@@ -4,7 +4,7 @@ import React from "react";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import ActionItem from "./action-item.js";
-import SelectItem from "./select-item.js";
+import OptionItem from "./option-item.js";
 import ActionMenu from "./action-menu.js";
 
 const keyCodes = {
@@ -85,10 +85,10 @@ describe("ActionMenu", () => {
         actionItem.simulate("click");
         expect(onClick).toHaveBeenCalledTimes(1);
 
-        const selectItem = menu.find(SelectItem);
-        selectItem.simulate("mousedown");
-        selectItem.simulate("mouseup", nativeEvent);
-        selectItem.simulate("click", nativeEvent);
+        const optionItem = menu.find(OptionItem);
+        optionItem.simulate("mousedown");
+        optionItem.simulate("mouseup", nativeEvent);
+        optionItem.simulate("click", nativeEvent);
         expect(onToggle).toHaveBeenCalledTimes(1);
         expect(onChange).toHaveBeenCalledTimes(1);
     });

@@ -6,17 +6,18 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 
 import ActionItem from "./action-item.js";
-import DropdownCore from "./dropdown-core.js";
-import SelectBox from "./select-box.js";
-import SelectItem from "./select-item.js";
+import Dropdown from "./dropdown.js";
+import OptionItem from "./option-item.js";
+import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
-import type {SelectItemProps} from "../util/types.js";
+
+import type {OptionItemProps} from "../util/types.js";
 
 type Props = {|
     /**
      * The items in this menu.
      */
-    items: Array<SelectItemProps>,
+    items: Array<OptionItemProps>,
 
     /**
      * Callback for when the selection of the menu changes. Parameter is an
@@ -32,7 +33,7 @@ type Props = {|
     /**
      * Type of the menu items.
      * For example, if selectItemType is "student" and there are two students
-     * selected, the SelectBox would display "2 students"
+     * selected, the SelectOpener would display "2 students"
      */
     selectItemType: string,
 
@@ -78,7 +79,7 @@ type State = {|
     open: boolean,
 |};
 
-export default class MultiSelectMenu extends React.Component<Props, State> {
+export default class MultiSelect extends React.Component<Props, State> {
     openerElement: ?Element;
 
     static defaultProps = {
@@ -188,7 +189,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         const {items, selectedValues} = this.props;
         const menuItems = items.map((item, index) => {
             return (
-                <SelectItem
+                <OptionItem
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
@@ -214,7 +215,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         const menuText = this.getMenuText();
 
         const opener = (
-            <SelectBox
+            <SelectOpener
                 disabled={disabled}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
@@ -226,13 +227,13 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                 style={style}
             >
                 {menuText}
-            </SelectBox>
+            </SelectOpener>
         );
 
         const menuItems = [...this.getShortcuts(), ...this.getMenuItems()];
 
         return (
-            <DropdownCore
+            <Dropdown
                 alignment={alignment}
                 dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}

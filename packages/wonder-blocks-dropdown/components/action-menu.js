@@ -9,13 +9,13 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import ActionItem from "./action-item.js";
-import DropdownCore from "./dropdown-core.js";
-import SelectItem from "./select-item.js";
+import Dropdown from "./dropdown.js";
+import OptionItem from "./option-item.js";
 import SeparatorItem from "./separator-item.js";
 
 import type {
     ActionItemProps,
-    SelectItemProps,
+    OptionItemProps,
     SeparatorProps,
 } from "../util/types.js";
 
@@ -69,7 +69,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
     }
 }
 
-type ItemProps = ActionItemProps | SelectItemProps | SeparatorProps;
+type ItemProps = ActionItemProps | OptionItemProps | SeparatorProps;
 
 type MenuProps = {|
     /**
@@ -189,7 +189,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             </ActionMenuOpener>
         );
 
-        const containsSelectItems = Array.isArray(selectedValues);
+        const containsOptionItems = Array.isArray(selectedValues);
 
         const menuItems = items.map((item, index) => {
             if (item.type === "action") {
@@ -197,7 +197,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                     <ActionItem
                         key={index}
                         disabled={item.disabled}
-                        indent={containsSelectItems}
+                        indent={containsOptionItems}
                         label={item.label}
                         href={item.href}
                         clientNav={item.clientNav}
@@ -207,7 +207,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 );
             } else if (item.type === "select") {
                 return (
-                    <SelectItem
+                    <OptionItem
                         key={index}
                         disabled={item.disabled}
                         label={item.label}
@@ -232,7 +232,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         });
 
         return (
-            <DropdownCore
+            <Dropdown
                 alignment={alignment}
                 items={menuItems}
                 light={false}

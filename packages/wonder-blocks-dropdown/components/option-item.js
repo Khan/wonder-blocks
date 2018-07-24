@@ -27,7 +27,7 @@ const {
     offWhite,
 } = Color;
 
-type SelectProps = {|
+type OptionProps = {|
     /**
      * Display text of the menu item.
      */
@@ -147,7 +147,7 @@ const Checkbox = (props: CheckProps) => {
     );
 };
 
-export default class SelectItem extends React.Component<SelectProps> {
+export default class OptionItem extends React.Component<OptionProps> {
     static defaultProps = {
         disabled: false,
     };

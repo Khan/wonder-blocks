@@ -2,17 +2,17 @@
 import React from "react";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
-import SelectBox from "./select-box";
-import ActionItem from "./action-item";
-import SelectItem from "./select-item";
-import MultiSelectMenu from "./multi-select-menu.js";
+import SelectOpener from "./select-opener.js";
+import ActionItem from "./action-item.js";
+import OptionItem from "./option-item.js";
+import MultiSelect from "./multi-select.js";
 
 const keyCodes = {
     enter: 13,
     space: 32,
 };
 
-describe("MultiSelectMenu", () => {
+describe("MultiSelect", () => {
     let menu;
     const allChanges = [];
     const saveUpdate = (update) => {
@@ -22,7 +22,7 @@ describe("MultiSelectMenu", () => {
 
     beforeEach(() => {
         menu = mount(
-            <MultiSelectMenu
+            <MultiSelect
                 items={[
                     {
                         type: "select",
@@ -57,7 +57,7 @@ describe("MultiSelectMenu", () => {
     });
 
     it("closes/opens the menu on mouse click, space, and enter", () => {
-        const opener = menu.find(SelectBox);
+        const opener = menu.find(SelectOpener);
         expect(menu.state("open")).toEqual(false);
 
         // Open menu with mouse
@@ -89,7 +89,7 @@ describe("MultiSelectMenu", () => {
         expect(menu.prop("selectedValues")).toEqual(["2"]);
 
         // Grab the second item in the list
-        const item = menu.find(SelectItem).at(0);
+        const item = menu.find(OptionItem).at(0);
         expect(item.text()).toEqual("item 1");
         // Click the item 2, deselecting it
         item.simulate("mousedown");
@@ -132,7 +132,7 @@ describe("MultiSelectMenu", () => {
     });
 
     it("displays correct text for opener", () => {
-        const opener = menu.find(SelectBox);
+        const opener = menu.find(SelectOpener);
 
         // No items are selected, display placeholder because there is one
         menu.setProps({selectedValues: []});

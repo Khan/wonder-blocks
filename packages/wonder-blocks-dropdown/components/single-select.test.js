@@ -2,22 +2,22 @@
 import React from "react";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
-import SelectBox from "./select-box";
-import SelectItem from "./select-item";
-import SingleSelectMenu from "./single-select-menu.js";
+import SelectOpener from "./select-opener.js";
+import OptionItem from "./option-item.js";
+import SingleSelect from "./single-select.js";
 
 const keyCodes = {
     enter: 13,
     space: 32,
 };
 
-describe("SingleSelectMenu", () => {
+describe("SingleSelect", () => {
     let menu;
     const onClick = jest.fn();
 
     beforeEach(() => {
         menu = mount(
-            <SingleSelectMenu
+            <SingleSelect
                 items={[
                     {
                         type: "select",
@@ -46,7 +46,7 @@ describe("SingleSelectMenu", () => {
     });
 
     it("closes/opens the menu on mouse click, space, and enter", () => {
-        const opener = menu.find(SelectBox);
+        const opener = menu.find(SelectOpener);
         expect(menu.state("open")).toEqual(false);
 
         // Open menu with mouse
@@ -70,16 +70,15 @@ describe("SingleSelectMenu", () => {
 
     it("displays selected item label as expected", () => {
         menu.setState({open: true});
-        const opener = menu.find(SelectBox);
+        const opener = menu.find(SelectOpener);
         const noop = jest.fn();
         const nativeEvent = {
             nativeEvent: {stopImmediatePropagation: noop},
         };
 
         // Grab the second item in the list
-        const item = menu.find(SelectItem).at(1);
+        const item = menu.find(OptionItem).at(1);
         expect(item.text()).toEqual("item 2");
-
         // Click the item
         item.simulate("mousedown");
         item.simulate("mouseup", nativeEvent);
@@ -91,14 +90,14 @@ describe("SingleSelectMenu", () => {
         // This menu should close afer a single item selection
         expect(menu.state("open")).toEqual(false);
 
-        // Selected is still false because the client of SingleSelectMenu is
-        // expected to change the props on SingleSelectMenu
+        // Selected is still false because the client of SingleSelect is
+        // expected to change the props on SingleSelect
         expect(item.prop("selected")).toEqual(false);
 
-        // Let's set it manually here via selectedValue on SingleSelectMenu
+        // Let's set it manually here via selectedValue on SingleSelect
         menu.setProps({selectedValue: "2"});
 
-        // Now the SelectBox should display the label of the selected item
+        // Now the SelectOpener should display the label of the selected item
         // instead of the placeholder
         expect(opener.text()).toEqual("item 2");
     });

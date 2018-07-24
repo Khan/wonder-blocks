@@ -36,7 +36,7 @@ class ExampleNoneSelected extends React.Component {
     }
 
     render() {
-        return <MultiSelectMenu
+        return <MultiSelect
             items={[
                 {label: "Red", value: "1"},
                 {label: "Yellow", value: "2", disabled: true},
@@ -92,7 +92,7 @@ class ExampleWithShortcuts extends React.Component {
     }
 
     render() {
-        return <MultiSelectMenu
+        return <MultiSelect
             items={[
                 {label: "Anesu", value: "very mobile"},
                 {label: "Ioana", value: "lives in roma"},
@@ -161,7 +161,7 @@ class SimpleMultiSelect extends React.Component {
     }
 
     render() {
-        return <MultiSelectMenu
+        return <MultiSelect
             items={[
                 {label: "Stark", value: "1"},
                 {label: "Arryn", value: "2"},
