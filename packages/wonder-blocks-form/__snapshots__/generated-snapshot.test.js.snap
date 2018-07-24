@@ -1113,6 +1113,7 @@ exports[`wonder-blocks-form example 4 1`] = `
           className=""
           data-test-id="algebra-assignment-test"
           disabled={false}
+          id="assignment"
           onChange={[Function]}
           style={
             Object {
@@ -1177,10 +1178,208 @@ exports[`wonder-blocks-form example 4 1`] = `
           }
         }
       >
-        Receive assignment reminders for Algebra
+        <label
+          htmlFor="assignment"
+        >
+          Receive assignment reminders for Algebra
+        </label>
       </span>
     </div>
   </div>
+<<<<<<< HEAD
+=======
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 8,
+        "MsFlexPreferredSize": 8,
+        "WebkitFlexBasis": 8,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 8,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+      tabIndex={-1}
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "outline": "none",
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <input
+          aria-checked={false}
+          checked={false}
+          className=""
+          disabled={false}
+          id="agree"
+          onChange={[Function]}
+          style={
+            Object {
+              "MozAppearance": "none",
+              "WebkitAppearance": "none",
+              "appearance": "none",
+              "backgroundColor": "#ffffff",
+              "borderColor": "rgba(33,36,44,0.50)",
+              "borderRadius": "50%",
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "cursor": "pointer",
+              "height": 16,
+              "margin": 0,
+              "outline": "none",
+              "width": 16,
+            }
+          }
+          type="radio"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        <label
+          htmlFor="agree"
+        >
+          I agree to not cheat in Algebra
+        </label>
+      </span>
+    </div>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "color": "rgba(33,36,44,0.64)",
+          "display": "block",
+          "fontFamily": "Lato",
+          "fontSize": 14,
+          "fontWeight": 400,
+          "lineHeight": "18px",
+          "marginLeft": 24,
+          "marginTop": 6,
+        }
+      }
+    >
+      because otherwise I will never learn!
+    </span>
+  </div>
+>>>>>>> a585e8d... Address TODOs for Choice
 </div>
 `;
 
@@ -1378,6 +1577,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-pepperoni"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -1443,7 +1643,11 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Pepperoni
+            <label
+              htmlFor="Toppings-pepperoni"
+            >
+              Pepperoni
+            </label>
           </span>
         </div>
       </div>
@@ -1549,6 +1753,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-sausage"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -1614,7 +1819,11 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Sausage
+            <label
+              htmlFor="Toppings-sausage"
+            >
+              Sausage
+            </label>
           </span>
         </div>
         <span
@@ -1742,6 +1951,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-cheese"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -1807,7 +2017,11 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Extra cheese
+            <label
+              htmlFor="Toppings-cheese"
+            >
+              Extra cheese
+            </label>
           </span>
         </div>
       </div>
@@ -1913,6 +2127,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-pepper"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -1978,7 +2193,11 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Green pepper
+            <label
+              htmlFor="Toppings-pepper"
+            >
+              Green pepper
+            </label>
           </span>
         </div>
       </div>
@@ -2084,6 +2303,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-mushroom"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -2149,7 +2369,11 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Mushroom
+            <label
+              htmlFor="Toppings-mushroom"
+            >
+              Mushroom
+            </label>
           </span>
         </div>
       </div>
@@ -2255,6 +2479,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={true}
               className=""
               disabled={false}
+              id="Toppings-pineapple"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -2338,7 +2563,11 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Pineapple
+            <label
+              htmlFor="Toppings-pineapple"
+            >
+              Pineapple
+            </label>
           </span>
         </div>
         <span
@@ -2563,6 +2792,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Pokemon-bulb"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -2628,7 +2858,11 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Bulbasaur
+            <label
+              htmlFor="Pokemon-bulb"
+            >
+              Bulbasaur
+            </label>
           </span>
         </div>
       </div>
@@ -2734,6 +2968,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={true}
+              id="Pokemon-char"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -2800,7 +3035,11 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Charmander
+            <label
+              htmlFor="Pokemon-char"
+            >
+              Charmander
+            </label>
           </span>
         </div>
         <span
@@ -2928,6 +3167,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Pokemon-squirt"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -2993,7 +3233,11 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Squirtle
+            <label
+              htmlFor="Pokemon-squirt"
+            >
+              Squirtle
+            </label>
           </span>
         </div>
       </div>
@@ -3099,6 +3343,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Pokemon-pika"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -3164,7 +3409,11 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Pikachu
+            <label
+              htmlFor="Pokemon-pika"
+            >
+              Pikachu
+            </label>
           </span>
         </div>
       </div>
@@ -3270,6 +3519,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Pokemon-infiltrator"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -3335,7 +3585,11 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Superman
+            <label
+              htmlFor="Pokemon-infiltrator"
+            >
+              Superman
+            </label>
           </span>
         </div>
       </div>

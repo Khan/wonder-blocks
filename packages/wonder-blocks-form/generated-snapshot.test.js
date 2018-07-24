@@ -253,13 +253,30 @@ describe("wonder-blocks-form", () => {
                     <View>
                         <ChoiceField
                             label="Receive assignment reminders for Algebra"
-                            testId="algebra-assignment-test"
                             checked={this.state.assignment}
+                            id="assignment"
                             onChange={(checked) =>
                                 this.handleChange("assignment", checked)
                             }
+                            testId="algebra-assignment-test"
                             variant="checkbox"
                         />
+<<<<<<< HEAD
+=======
+                        <Strut size={8} />
+                        <ChoiceField
+                            label="I agree to not cheat in Algebra"
+                            description="because otherwise I will never learn!"
+                            checked={this.state.agreement}
+                            id="agree"
+                            // once checked, this Choice will not receive an onChange
+                            // callback unless the state was reset for some reason
+                            onChange={(checked) =>
+                                this.handleChange("agreement", checked)
+                            }
+                            variant="radio"
+                        />
+>>>>>>> a585e8d... Address TODOs for Choice
                     </View>
                 );
             }

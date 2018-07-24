@@ -85,9 +85,10 @@ type Props = {|
             value,
             ...coreProps
         } = this.props;
-        const ClickableBehavior = getClickableBehavior();
+        const {checked, disabled, id} = coreProps;
 
         const ChoiceCore = this.getChoiceCoreComponent();
+        const ClickableBehavior = getClickableBehavior();
 
         return (
             <View style={style}>
@@ -96,10 +97,10 @@ type Props = {|
                     onClick={(e) => {
                         // Radio buttons cannot be unchecked and do not change
                         // if clicked on when checked
-                        if (variant === "radio" && coreProps.checked) {
+                        if (variant === "radio" && checked) {
                             return;
                         }
-                        onChange(!coreProps.checked);
+                        onChange(!checked);
                     }}
                 >
                     {(state, handlers) => {
@@ -124,7 +125,7 @@ type Props = {|
                                         styles.disabledLabel
                                     }
                                 >
-                                    {label}
+                                    <label htmlFor={id}>{label}</label>
                                 </LabelMedium>
                             </View>
                         );
