@@ -56,7 +56,7 @@ export default class RadioCore extends React.Component<Props> {
         };
 
         return (
-            <View style={[sharedStyles.wrapper, style]} {...props}>
+            <View style={[sharedStyles.wrapper, style]}>
                 <StyledInput
                     type="radio"
                     aria-checked={checked}
@@ -69,7 +69,7 @@ export default class RadioCore extends React.Component<Props> {
                     // ClickableBehavior already
                     onChange={() => void 0}
                     style={defaultStyle}
-                    tabIndex={-1}
+                    {...props}
                 />
                 {disabled &&
                     checked && <View style={[sharedStyles.disabledChecked]} />}

@@ -23,3 +23,62 @@ const handleChanged = (checked) => console.log(`clicked on checkbox with checked
     <Checkbox disabled={true} checked={true} style={[styles.marginRight]} onChange={checked => handleChanged(checked)} />
 </View>
 ```
+
+A Checkbox can be used as part of the Choice or CheckboxGroup components. If you
+wish to use a single Checkbox for a settings-like item, please see the Choice
+component.
+
+However, sometimes one may wish to use a solo checkbox somewhere, like in this
+example content item. Use a `<label htmlFor={id}>` element that matches the id
+prop of the checkbox for accessibility purposes.
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {LabelMedium, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    wrapper: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+    },
+    topic: {
+        maxWidth: 600,
+    },
+});
+
+class ContentItem extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            checked: false,
+        }
+    }
+
+    handleChange(checked) {
+        this.setState({
+            checked: checked,
+        });
+        // Potentially do something here with this updated state information.
+    }
+
+    render() {
+        const handleChanged = (checked) => console.log(`clicked on checkbox with checked=${checked.toString()}`);
+        const headingText = "Functions";
+        const descriptionText = `A great cook knows how to take basic ingredients and
+        prepare a delicious meal. In this topic, you will become function-chefs! You
+        will learn how to combine functions with arithmetic operations and how to
+        compose functions.`;
+        return <View style={styles.wrapper}>
+            <View style={styles.topic}>
+                <label htmlFor="topic-123"><LabelMedium>{headingText}</LabelMedium></label>
+                <LabelSmall>{descriptionText}</LabelSmall>
+            </View>
+            <Checkbox checked={this.state.checked} id="topic-123" onChange={checked => this.handleChange(checked)} />
+        </View>;
+    }
+}
+
+<ContentItem />
+```

@@ -10,8 +10,9 @@ import renderer from "react-test-renderer";
 jest.mock("react-dom");
 import Checkbox from "./components/checkbox.js";
 import Radio from "./components/radio.js";
-import CheckboxCore from "./components/checkbox-core.js";
-import RadioCore from "./components/radio-core.js";
+import Choice from "./components/choice.js";
+import CheckboxGroup from "./components/checkbox-group.js";
+import RadioGroup from "./components/radio-group.js";
 
 describe("wonder-blocks-form", () => {
     it("example 1", () => {
@@ -76,6 +77,73 @@ describe("wonder-blocks-form", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {
+            LabelMedium,
+            LabelSmall,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            wrapper: {
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-evenly",
+            },
+            topic: {
+                maxWidth: 600,
+            },
+        });
+
+        class ContentItem extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    checked: false,
+                };
+            }
+
+            handleChange(checked) {
+                this.setState({
+                    checked: checked,
+                });
+                // Potentially do something here with this updated state information.
+            }
+
+            render() {
+                const handleChanged = (checked) =>
+                    console.log(
+                        `clicked on checkbox with checked=${checked.toString()}`,
+                    );
+                const headingText = "Functions";
+                const descriptionText = `A great cook knows how to take basic ingredients and
+                prepare a delicious meal. In this topic, you will become function-chefs! You
+                will learn how to combine functions with arithmetic operations and how to
+                compose functions.`;
+                return (
+                    <View style={styles.wrapper}>
+                        <View style={styles.topic}>
+                            <label htmlFor="topic-123">
+                                <LabelMedium>{headingText}</LabelMedium>
+                            </label>
+                            <LabelSmall>{descriptionText}</LabelSmall>
+                        </View>
+                        <Checkbox
+                            checked={this.state.checked}
+                            id="topic-123"
+                            onChange={(checked) => this.handleChange(checked)}
+                        />
+                    </View>
+                );
+            }
+        }
+
+        const example = <ContentItem />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -138,6 +206,224 @@ describe("wonder-blocks-form", () => {
                     groupName={groupName}
                     onChange={(checked) => handleChanged(checked)}
                 />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {
+            LabelMedium,
+            LabelSmall,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            wrapper: {},
+        });
+
+        class Settings extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    assignment: false,
+                    agreement: false,
+                };
+            }
+
+            handleChange(choiceKey, checked) {
+                this.setState({
+                    [choiceKey]: checked,
+                });
+                // Potentially do something here with this updated state information.
+            }
+
+            render() {
+                const handleChanged = (checked) =>
+                    console.log(
+                        `clicked on checkbox with checked=${checked.toString()}`,
+                    );
+                const headingText = "Functions";
+                const descriptionText = `A great cook knows how to take basic ingredients and
+                prepare a delicious meal. In this topic, you will become function-chefs! You
+                will learn how to combine functions with arithmetic operations and how to
+                compose functions.`;
+                return (
+                    <View style={styles.wrapper}>
+                        <Choice
+                            label="Receive assignment reminders for Algebra"
+                            testId="algebra-assignment-test"
+                            checked={this.state.assignment}
+                            onChange={(checked) =>
+                                this.handleChange("assignment", checked)
+                            }
+                            variant="checkbox"
+                        />
+                        <Strut size={8} />
+                        <Choice
+                            label="I agree to not cheat in Algebra"
+                            description="because otherwise I will never learn!"
+                            checked={this.state.agreement}
+                            // once checked, this Choice will not receive an onChange
+                            // callback unless the state was reset for some reason
+                            onChange={(checked) =>
+                                this.handleChange("agreement", checked)
+                            }
+                            variant="radio"
+                        />
+                    </View>
+                );
+            }
+        }
+
+        const example = <Settings />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            wrapper: {
+                width: 300,
+            },
+            marginRight: {
+                marginRight: 16,
+            },
+        });
+
+        class CheckboxGroupPizzaExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: ["pineapple"],
+                };
+            }
+
+            handleChange(change) {
+                console.log(`${change} was selected!`);
+                const error = this.checkForError(change);
+                this.setState({
+                    selectedValues: change,
+                    error: error,
+                });
+            }
+
+            checkForError(input) {
+                if (input.length > 3) {
+                    return "You have selected too many toppings";
+                }
+            }
+
+            render() {
+                return (
+                    <CheckboxGroup
+                        label="Pizza order"
+                        description="You may choose at most three toppings"
+                        errorMessage={this.state.error}
+                        groupName="Toppings"
+                        onChange={(change) => this.handleChange(change)}
+                        selectedValues={this.state.selectedValues}
+                    >
+                        <Choice label="Pepperoni" value="pepperoni" />
+                        <Choice
+                            label="Sausage"
+                            value="sausage"
+                            description="Imported from Italy"
+                        />
+                        <Choice label="Extra cheese" value="cheese" />
+                        <Choice label="Green pepper" value="pepper" />
+                        <Choice label="Mushroom" value="mushroom" />
+                        <Choice
+                            label="Pineapple"
+                            value="pineapple"
+                            description="Does in fact belong on pizzas"
+                        />
+                    </CheckboxGroup>
+                );
+            }
+        }
+        const example = (
+            <View style={[styles.wrapper]}>
+                <CheckboxGroupPizzaExample />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            wrapper: {
+                width: 300,
+            },
+            marginRight: {
+                marginRight: 16,
+            },
+        });
+
+        class RadioGroupPokemonExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValue: null,
+                };
+            }
+
+            handleChange(change) {
+                console.log(`${change} was selected!`);
+                const error = this.checkForError(change);
+                this.setState({
+                    selectedValue: change,
+                    error: error,
+                });
+            }
+
+            checkForError(input) {
+                if (input === "infiltrator") {
+                    return "Superman isn't a Pokemon!";
+                }
+            }
+
+            render() {
+                return (
+                    <RadioGroup
+                        label="Choose a starter!"
+                        description="Your first Pokemon"
+                        errorMessage={this.state.error}
+                        groupName="Pokemon"
+                        onChange={(change) => this.handleChange(change)}
+                        selectedValue={this.state.selectedValue}
+                    >
+                        <Choice label="Bulbasaur" value="bulb" />
+                        <Choice
+                            label="Charmander"
+                            value="char"
+                            description="Oops, we ran out of Charmanders"
+                            disabled
+                        />
+                        <Choice label="Squirtle" value="squirt" />
+                        <Choice label="Pikachu" value="pika" />
+                        <Choice
+                            label="Superman"
+                            value="infiltrator"
+                            description="Not a pokemon"
+                        />
+                    </RadioGroup>
+                );
+            }
+        }
+        const example = (
+            <View style={[styles.wrapper]}>
+                <RadioGroupPokemonExample />
             </View>
         );
         const tree = renderer.create(example).toJSON();

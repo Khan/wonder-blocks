@@ -6,9 +6,9 @@ import * as React from "react";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core.js";
 
-import type {ChoiceProps} from "../util/types.js";
+import type {ChoiceComponentProps} from "../util/types.js";
 
-export default class Checkbox extends React.Component<ChoiceProps> {
+export default class Checkbox extends React.Component<ChoiceComponentProps> {
     static defaultProps = {
         disabled: false,
         error: false,
@@ -21,7 +21,7 @@ export default class Checkbox extends React.Component<ChoiceProps> {
         return (
             <ClickableBehavior
                 disabled={coreProps.disabled}
-                onClick={() => onChange(coreProps.checked)}
+                onClick={() => onChange(!coreProps.checked)}
             >
                 {(state, handlers) => {
                     return (

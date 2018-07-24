@@ -65,7 +65,7 @@ export default class CheckboxCore extends React.Component<Props> {
         };
 
         return (
-            <View style={[sharedStyles.wrapper, style]} {...props}>
+            <View style={[sharedStyles.wrapper, style]}>
                 <StyledInput
                     type="checkbox"
                     aria-checked={checked}
@@ -78,7 +78,7 @@ export default class CheckboxCore extends React.Component<Props> {
                     // ClickableBehavior already
                     onChange={() => void 0}
                     style={defaultStyle}
-                    tabIndex={-1}
+                    {...props}
                 />
                 {checked && (
                     <Icon
