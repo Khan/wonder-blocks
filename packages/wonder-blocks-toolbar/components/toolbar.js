@@ -139,7 +139,7 @@ const sharedStyles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         minHeight: 64,
-        padding: 8,
+        padding: 4,
         position: "relative",
         width: "100%",
     },

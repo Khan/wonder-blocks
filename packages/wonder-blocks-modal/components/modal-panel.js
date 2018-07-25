@@ -145,9 +145,9 @@ export default class ModalPanel extends React.Component<Props> {
             <View
                 style={[styles.wrapper, color === "dark" && styles.dark, style]}
             >
+                {this.maybeRenderCloseButton()}
                 {titleBar}
                 {mainContent}
-                {this.maybeRenderCloseButton()}
                 {!footer ||
                 (typeof footer === "object" && footer.type === ModalFooter) ? (
                     footer
@@ -175,6 +175,9 @@ const styles = StyleSheet.create({
         position: "absolute",
         left: 8,
         top: 8,
+        // This is to allow the button to be tab-ordered before the modal
+        // content but still be above the header and content.
+        zIndex: 1,
     },
 
     smallCloseButton: {
