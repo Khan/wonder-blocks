@@ -34,6 +34,20 @@ module.exports = {
             ],
         },
         {
+            name: "Form",
+            content: "packages/wonder-blocks-form/docs.md",
+            components: ["packages/wonder-blocks-form/components/checkbox.js"],
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-form/components/checkbox-core.js",
+                    ],
+                },
+            ],
+        },
+        {
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",
