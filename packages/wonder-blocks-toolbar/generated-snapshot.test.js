@@ -35,7 +35,11 @@ describe("wonder-blocks-toolbar", () => {
             .default;
 
         const closeButton = (
-            <IconButton icon={icons.dismiss} kind="secondary" />
+            <IconButton
+                icon={icons.dismiss}
+                kind="tertiary"
+                style={{width: 28}}
+            />
         );
 
         const example = (
@@ -54,9 +58,12 @@ describe("wonder-blocks-toolbar", () => {
             .default;
 
         const closeButton = (
-            <IconButton icon={icons.dismiss} kind="secondary" />
+            <IconButton
+                icon={icons.dismiss}
+                kind="tertiary"
+                style={{width: 28}}
+            />
         );
-
         const startExercise = <Button>Next Video</Button>;
 
         const example = (
@@ -93,7 +100,11 @@ describe("wonder-blocks-toolbar", () => {
         const Link = require("@khanacademy/wonder-blocks-link").default;
 
         const closeButton = (
-            <IconButton icon={icons.dismiss} kind="secondary" />
+            <IconButton
+                icon={icons.dismiss}
+                kind="tertiary"
+                style={{width: 28}}
+            />
         );
 
         const goToExercise = (
