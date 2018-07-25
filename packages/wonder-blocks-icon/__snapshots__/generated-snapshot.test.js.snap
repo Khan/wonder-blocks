@@ -1,26 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`wonder-blocks-icon example 1 1`] = `
-<svg
-  className=""
-  height={16}
-  style={
-    Object {
-      "display": "inline-block",
-      "verticalAlign": "text-bottom",
-    }
-  }
-  viewBox="0 0 16 16"
-  width={16}
->
-  <path
-    d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-    fill="currentColor"
-  />
-</svg>
-`;
-
-exports[`wonder-blocks-icon example 2 1`] = `
 <table
   className=""
   style={
@@ -827,6 +807,26 @@ exports[`wonder-blocks-icon example 2 1`] = `
     </td>
   </tr>
 </table>
+`;
+
+exports[`wonder-blocks-icon example 2 1`] = `
+<svg
+  className=""
+  height={16}
+  style={
+    Object {
+      "display": "inline-block",
+      "verticalAlign": "text-bottom",
+    }
+  }
+  viewBox="0 0 16 16"
+  width={16}
+>
+  <path
+    d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+    fill="currentColor"
+  />
+</svg>
 `;
 
 exports[`wonder-blocks-icon example 3 1`] = `

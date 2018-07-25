@@ -80,9 +80,6 @@ type Props = {|
  * | ----- | ------- | ------ | ------ | ---------------------------------------------- |
  * | small | 4       | 16px   | 16px   | `max-width: 767px`                             |
  * | large | 12      | 32px   | 64px   | `min-width: 768px` (No maximum content width.) |
- *
- * @version 1.0
- * @since 1.0
  */
 export default class MediaLayout extends React.Component<
     Props,

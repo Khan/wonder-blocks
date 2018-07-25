@@ -31,21 +31,21 @@ describe("wonder-blocks-icon-button", () => {
                     icon={icons.search}
                     aria-label="search"
                     onClick={(e) => console.log("hello")}
-                    style={[styles.sideMargins]}
+                    style={styles.sideMargins}
                 />
                 <IconButton
                     icon={icons.search}
                     aria-label="search"
                     kind="secondary"
                     onClick={(e) => console.log("hello")}
-                    style={[styles.sideMargins]}
+                    style={styles.sideMargins}
                 />
                 <IconButton
                     icon={icons.search}
                     aria-label="search"
                     kind="tertiary"
                     onClick={(e) => console.log("hello")}
-                    style={[styles.sideMargins]}
+                    style={styles.sideMargins}
                 />
             </View>
         );

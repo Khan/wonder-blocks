@@ -12,16 +12,6 @@ import Icon from "./components/icon.js";
 
 describe("wonder-blocks-icon", () => {
     it("example 1", () => {
-        const {
-            default: Icon,
-            icons,
-        } = require("@khanacademy/wonder-blocks-icon");
-
-        const example = <Icon icon={icons.search} size="small" />;
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 2", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {
@@ -102,6 +92,16 @@ describe("wonder-blocks-icon", () => {
             </table>
         );
 
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const {
+            default: Icon,
+            icons,
+        } = require("@khanacademy/wonder-blocks-icon");
+
+        const example = <Icon icon={icons.search} size="small" />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

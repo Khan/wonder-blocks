@@ -58,9 +58,6 @@ type Props = {|
  * grid sizes. If you specify the `smallCols`, `mediumCols`, `largeCols`, or
  * `cols` props then the component will only be shown at those grid sizes and
  * using the specified column width.
- *
- * @version 1.0
- * @since 1.0
  */
 class Cell extends React.Component<Props> {
     static defaultProps = {

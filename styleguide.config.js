@@ -34,6 +34,24 @@ module.exports = {
             ],
         },
         {
+            name: "Form",
+            content: "packages/wonder-blocks-form/docs.md",
+            components: [
+                "packages/wonder-blocks-form/components/checkbox.js",
+                "packages/wonder-blocks-form/components/radio.js",
+            ],
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-form/components/checkbox-core.js",
+                        "packages/wonder-blocks-form/components/radio-core.js",
+                    ],
+                },
+            ],
+        },
+        {
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",
@@ -52,6 +70,7 @@ module.exports = {
         {
             name: "Layout",
             content: "packages/wonder-blocks-layout/docs.md",
+            components: "packages/wonder-blocks-layout/components/*.js",
         },
         {
             name: "Link",
@@ -77,6 +96,8 @@ module.exports = {
                     ],
                 },
                 {
+                    // NOTE(jeresig): Not ready to be used yet, need docs.
+                    private: true,
                     name: "Building Blocks",
                     content: "packages/wonder-blocks-modal/building-blocks.md",
                     components: [
