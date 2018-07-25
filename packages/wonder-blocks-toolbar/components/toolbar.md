@@ -54,12 +54,12 @@ const startExercise = <Button>Next Video</Button>;
 
 ```js
 const Button = require("@khanacademy/wonder-blocks-button").default;
-const {LabelMedium} = require("@khanacademy/wonder-blocks-typography");
+const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
 const buttonStyle = { width: 140 };
 
 const nextExercise = <Button style={buttonStyle}>Next exercise</Button>;
-const questionCount = <LabelMedium>7 questions</LabelMedium>;
+const questionCount = <LabelLarge>7 questions</LabelLarge>;
 const tryAgain = <Button style={buttonStyle} kind="secondary">Try again</Button>;
 
 <Toolbar
@@ -79,7 +79,7 @@ const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{ wi
 
 const goToExercise = (
     <Link href="#">
-        <LabelLarge>Go to exercise <Icon icon={icons.caretRight} /></LabelLarge>
+        <LabelLarge>Go to exercise</LabelLarge>
     </Link>
 );
 
