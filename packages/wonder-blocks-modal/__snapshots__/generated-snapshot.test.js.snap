@@ -359,6 +359,83 @@ exports[`wonder-blocks-modal example 2 1`] = `
           style={
             Object {
               "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "left": 8,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 8,
+              "zIndex": 1,
+            }
+          }
+        >
+          <button
+            aria-label="Close modal"
+            className=""
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "rgba(33,36,44,0.64)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "height": 40,
+                "justifyContent": "center",
+                "margin": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textDecoration": "none",
+                "width": 40,
+              }
+            }
+            tabIndex={0}
+          >
+            <svg
+              className=""
+              height={24}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
               "border": "1px solid rgba(33, 36, 44, 0.16)",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -368,7 +445,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
               "margin": 0,
               "minHeight": 64,
               "minWidth": 0,
-              "padding": 8,
+              "padding": 4,
               "position": "relative",
               "width": "100%",
               "zIndex": 0,
@@ -822,6 +899,83 @@ exports[`wonder-blocks-modal example 3 1`] = `
           style={
             Object {
               "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "left": 8,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 8,
+              "zIndex": 1,
+            }
+          }
+        >
+          <button
+            aria-label="Close modal"
+            className=""
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "rgba(33,36,44,0.64)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "height": 40,
+                "justifyContent": "center",
+                "margin": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textDecoration": "none",
+                "width": 40,
+              }
+            }
+            tabIndex={0}
+          >
+            <svg
+              className=""
+              height={24}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
               "border": "1px solid rgba(33, 36, 44, 0.16)",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -831,7 +985,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
               "margin": 0,
               "minHeight": 64,
               "minWidth": 0,
-              "padding": 8,
+              "padding": 4,
               "position": "relative",
               "width": "100%",
               "zIndex": 0,
@@ -1331,6 +1485,83 @@ exports[`wonder-blocks-modal example 4 1`] = `
           style={
             Object {
               "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "left": 8,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 8,
+              "zIndex": 1,
+            }
+          }
+        >
+          <button
+            aria-label="Close modal"
+            className=""
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "rgba(33,36,44,0.64)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "height": 40,
+                "justifyContent": "center",
+                "margin": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textDecoration": "none",
+                "width": 40,
+              }
+            }
+            tabIndex={0}
+          >
+            <svg
+              className=""
+              height={24}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
               "border": "1px solid rgba(33, 36, 44, 0.16)",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -1340,7 +1571,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
               "margin": 0,
               "minHeight": 64,
               "minWidth": 0,
-              "padding": 8,
+              "padding": 4,
               "position": "relative",
               "width": "100%",
               "zIndex": 0,
@@ -1976,22 +2207,19 @@ exports[`wonder-blocks-modal example 5 1`] = `
           style={
             Object {
               "alignItems": "stretch",
-              "backgroundColor": "#0a2a66",
-              "border": "1px solid rgba(33, 36, 44, 0.16)",
               "borderStyle": "solid",
               "borderWidth": 0,
-              "boxShadow": "0 1px 0 0 rgba(255, 255, 255, 0.64)",
               "boxSizing": "border-box",
-              "color": "white",
               "display": "flex",
-              "flexDirection": "row",
+              "flexDirection": "column",
+              "left": 8,
               "margin": 0,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": 8,
-              "position": "relative",
-              "width": "100%",
-              "zIndex": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 8,
+              "zIndex": 1,
             }
           }
         >
@@ -2055,27 +2283,22 @@ exports[`wonder-blocks-modal example 5 1`] = `
           className=""
           style={
             Object {
-              "alignItems": "center",
-              "background": "#0a2a66",
-              "borderBottomColor": "rgba(255,255,255,0.64)",
-              "borderBottomStyle": "solid",
-              "borderBottomWidth": 1,
+              "alignItems": "stretch",
+              "backgroundColor": "#0a2a66",
+              "border": "1px solid rgba(33, 36, 44, 0.16)",
               "borderStyle": "solid",
               "borderWidth": 0,
+              "boxShadow": "0 1px 0 0 rgba(255, 255, 255, 0.64)",
               "boxSizing": "border-box",
-              "color": "#ffffff",
+              "color": "white",
               "display": "flex",
-              "flex": "0 0 auto",
               "flexDirection": "row",
               "margin": 0,
               "minHeight": 64,
               "minWidth": 0,
-              "padding": 0,
-              "paddingBottom": 8,
-              "paddingLeft": 4,
-              "paddingRight": 4,
-              "paddingTop": 8,
+              "padding": 4,
               "position": "relative",
+              "width": "100%",
               "zIndex": 0,
             }
           }
