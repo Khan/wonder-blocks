@@ -104,7 +104,6 @@ module.exports = {
                         "packages/wonder-blocks-modal/components/modal-dialog.js",
                         "packages/wonder-blocks-modal/components/modal-panel.js",
                         "packages/wonder-blocks-modal/components/modal-content.js",
-                        "packages/wonder-blocks-modal/components/modal-title-bar.js",
                         "packages/wonder-blocks-modal/components/modal-header.js",
                         "packages/wonder-blocks-modal/components/modal-footer.js",
                     ],
