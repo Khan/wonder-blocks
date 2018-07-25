@@ -5,7 +5,7 @@ This menu demonstrates an action menu with
 - a separator
 - a disabled item
 - items that redirect to a link
-- items with an onClick callback (could be used for conversion loggin)
+- items with an onClick callback (could be used for conversion logging)
 
 This menu is also right-aligned.
 
