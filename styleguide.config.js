@@ -36,13 +36,17 @@ module.exports = {
         {
             name: "Form",
             content: "packages/wonder-blocks-form/docs.md",
-            components: ["packages/wonder-blocks-form/components/checkbox.js"],
+            components: [
+                "packages/wonder-blocks-form/components/checkbox.js",
+                "packages/wonder-blocks-form/components/radio.js",
+            ],
             sections: [
                 {
                     name: "Internal Components",
                     private: true,
                     components: [
                         "packages/wonder-blocks-form/components/checkbox-core.js",
+                        "packages/wonder-blocks-form/components/radio-core.js",
                     ],
                 },
             ],

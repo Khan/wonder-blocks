@@ -9,7 +9,9 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import Checkbox from "./components/checkbox.js";
+import Radio from "./components/radio.js";
 import CheckboxCore from "./components/checkbox-core.js";
+import RadioCore from "./components/radio-core.js";
 
 describe("wonder-blocks-form", () => {
     it("example 1", () => {
@@ -66,6 +68,74 @@ describe("wonder-blocks-form", () => {
                     disabled={true}
                     checked={true}
                     style={[styles.marginRight]}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            marginRight: {
+                marginRight: 16,
+            },
+        });
+
+        const handleChanged = (checked) =>
+            console.log(
+                `clicked on checkbox with checked=${checked.toString()}`,
+            );
+        const groupName = "group";
+
+        const example = (
+            <View style={[styles.row]}>
+                <Radio
+                    error={false}
+                    checked={false}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    error={false}
+                    checked={true}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    error={true}
+                    checked={false}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    error={true}
+                    checked={true}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    disabled={true}
+                    checked={false}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
+                    onChange={(checked) => handleChanged(checked)}
+                />
+                <Radio
+                    disabled={true}
+                    checked={true}
+                    style={[styles.marginRight]}
+                    groupName={groupName}
                     onChange={(checked) => handleChanged(checked)}
                 />
             </View>

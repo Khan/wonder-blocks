@@ -449,3 +449,429 @@ exports[`wonder-blocks-form example 1 1`] = `
   </div>
 </div>
 `;
+
+exports[`wonder-blocks-form example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "marginRight": 16,
+        "minHeight": 0,
+        "minWidth": 0,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+    tabIndex={0}
+  >
+    <input
+      aria-checked={false}
+      checked={false}
+      className=""
+      disabled={false}
+      name="group"
+      onChange={[Function]}
+      style={
+        Object {
+          "MozAppearance": "none",
+          "WebkitAppearance": "none",
+          "appearance": "none",
+          "backgroundColor": "#ffffff",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": "50%",
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "cursor": "pointer",
+          "height": 16,
+          "margin": 0,
+          "outline": "none",
+          "width": 16,
+        }
+      }
+      tabIndex={-1}
+      type="radio"
+    />
+  </div>
+  <div
+    className=""
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "marginRight": 16,
+        "minHeight": 0,
+        "minWidth": 0,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+    tabIndex={0}
+  >
+    <input
+      aria-checked={true}
+      checked={true}
+      className=""
+      disabled={false}
+      name="group"
+      onChange={[Function]}
+      style={
+        Object {
+          "MozAppearance": "none",
+          "WebkitAppearance": "none",
+          "appearance": "none",
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1865f2",
+          "borderRadius": "50%",
+          "borderStyle": "solid",
+          "borderWidth": 4,
+          "boxSizing": "border-box",
+          "cursor": "pointer",
+          "height": 16,
+          "margin": 0,
+          "outline": "none",
+          "width": 16,
+        }
+      }
+      tabIndex={-1}
+      type="radio"
+    />
+  </div>
+  <div
+    className=""
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "marginRight": 16,
+        "minHeight": 0,
+        "minWidth": 0,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+    tabIndex={0}
+  >
+    <input
+      aria-checked={false}
+      checked={false}
+      className=""
+      disabled={false}
+      name="group"
+      onChange={[Function]}
+      style={
+        Object {
+          "MozAppearance": "none",
+          "WebkitAppearance": "none",
+          "appearance": "none",
+          "backgroundColor": "#fceeec",
+          "borderColor": "#d92916",
+          "borderRadius": "50%",
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "cursor": "pointer",
+          "height": 16,
+          "margin": 0,
+          "outline": "none",
+          "width": 16,
+        }
+      }
+      tabIndex={-1}
+      type="radio"
+    />
+  </div>
+  <div
+    className=""
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "marginRight": 16,
+        "minHeight": 0,
+        "minWidth": 0,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+    tabIndex={0}
+  >
+    <input
+      aria-checked={true}
+      checked={true}
+      className=""
+      disabled={false}
+      name="group"
+      onChange={[Function]}
+      style={
+        Object {
+          "MozAppearance": "none",
+          "WebkitAppearance": "none",
+          "appearance": "none",
+          "backgroundColor": "#ffffff",
+          "borderColor": "#d92916",
+          "borderRadius": "50%",
+          "borderStyle": "solid",
+          "borderWidth": 4,
+          "boxSizing": "border-box",
+          "cursor": "pointer",
+          "height": 16,
+          "margin": 0,
+          "outline": "none",
+          "width": 16,
+        }
+      }
+      tabIndex={-1}
+      type="radio"
+    />
+  </div>
+  <div
+    className=""
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "marginRight": 16,
+        "minHeight": 0,
+        "minWidth": 0,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+    tabIndex={-1}
+  >
+    <input
+      aria-checked={false}
+      checked={false}
+      className=""
+      disabled={true}
+      name="group"
+      onChange={[Function]}
+      style={
+        Object {
+          "MozAppearance": "none",
+          "WebkitAppearance": "none",
+          "appearance": "none",
+          "backgroundColor": "#f7f8fa",
+          "borderColor": "rgba(33,36,44,0.16)",
+          "borderRadius": "50%",
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "cursor": "auto",
+          "height": 16,
+          "margin": 0,
+          "outline": "none",
+          "width": 16,
+        }
+      }
+      tabIndex={-1}
+      type="radio"
+    />
+  </div>
+  <div
+    className=""
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "marginRight": 16,
+        "minHeight": 0,
+        "minWidth": 0,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+    tabIndex={-1}
+  >
+    <input
+      aria-checked={true}
+      checked={true}
+      className=""
+      disabled={true}
+      name="group"
+      onChange={[Function]}
+      style={
+        Object {
+          "MozAppearance": "none",
+          "WebkitAppearance": "none",
+          "appearance": "none",
+          "backgroundColor": "#f7f8fa",
+          "borderColor": "rgba(33,36,44,0.16)",
+          "borderRadius": "50%",
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "cursor": "auto",
+          "height": 16,
+          "margin": 0,
+          "outline": "none",
+          "width": 16,
+        }
+      }
+      tabIndex={-1}
+      type="radio"
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "rgba(33,36,44,0.32)",
+          "borderRadius": "50%",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 8,
+          "left": 4,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "absolute",
+          "top": 4,
+          "width": 8,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
+</div>
+`;
