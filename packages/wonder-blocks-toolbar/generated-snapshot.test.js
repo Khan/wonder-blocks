@@ -45,7 +45,7 @@ describe("wonder-blocks-toolbar", () => {
             <IconButton
                 icon={icons.dismiss}
                 kind="tertiary"
-                style={{width: 28}}
+                style={{marginLeft: -12}}
             />
         );
 
@@ -68,7 +68,7 @@ describe("wonder-blocks-toolbar", () => {
             <IconButton
                 icon={icons.dismiss}
                 kind="tertiary"
-                style={{width: 28}}
+                style={{marginLeft: -12}}
             />
         );
         const startExercise = <Button>Next Video</Button>;
@@ -117,7 +117,7 @@ describe("wonder-blocks-toolbar", () => {
             <IconButton
                 icon={icons.dismiss}
                 kind="tertiary"
-                style={{width: 28}}
+                style={{marginLeft: -12}}
             />
         );
 

@@ -389,11 +389,12 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
+              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
               "textDecoration": "none",
-              "width": 28,
+              "width": 40,
             }
           }
         >
@@ -642,11 +643,12 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
+              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
               "textDecoration": "none",
-              "width": 28,
+              "width": 40,
             }
           }
         >
@@ -1293,11 +1295,12 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
+              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
               "textDecoration": "none",
-              "width": 28,
+              "width": 40,
             }
           }
         >
