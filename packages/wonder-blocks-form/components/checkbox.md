@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const handleChanged = (checked) => console.log(`clicked on checkbox with checked=${checked.toString()}`);
+const handleChanged = (checked) => console.log(`clicked on checkbox, will be checked=${checked.toString()}`);
 
 <View style={[styles.row]}>
     <Checkbox error={false} checked={false} style={[styles.marginRight]} onChange={checked => handleChanged(checked)} />
@@ -24,13 +24,12 @@ const handleChanged = (checked) => console.log(`clicked on checkbox with checked
 </View>
 ```
 
-A Checkbox can be used as part of the Choice or CheckboxGroup components. If you
-wish to use a single Checkbox for a settings-like item, please see the Choice
-component.
+If you wish to use a single Checkbox for a settings-like item or as part of a
+group of Checkbox[es], please see the ChoiceField and CheckboxGroup components.
 
 However, sometimes one may wish to use a solo checkbox somewhere, like in this
 example content item. Use a `<label htmlFor={id}>` element that matches the id
-prop of the checkbox for accessibility purposes.
+prop of the Checkbox for accessibility purposes.
 ```js
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");

@@ -10,6 +10,7 @@ import renderer from "react-test-renderer";
 jest.mock("react-dom");
 import Checkbox from "./components/checkbox.js";
 import Radio from "./components/radio.js";
+import ChoiceField from "./components/choice-field.js";
 import Choice from "./components/choice.js";
 import CheckboxGroup from "./components/checkbox-group.js";
 import RadioGroup from "./components/radio-group.js";
@@ -30,7 +31,7 @@ describe("wonder-blocks-form", () => {
 
         const handleChanged = (checked) =>
             console.log(
-                `clicked on checkbox with checked=${checked.toString()}`,
+                `clicked on checkbox, will be checked=${checked.toString()}`,
             );
 
         const example = (
@@ -158,7 +159,7 @@ describe("wonder-blocks-form", () => {
 
         const handleChanged = (checked) =>
             console.log(
-                `clicked on checkbox with checked=${checked.toString()}`,
+                `clicked on radio, will be checked=${checked.toString()}`,
             );
         const groupName = "group";
 
@@ -253,7 +254,7 @@ describe("wonder-blocks-form", () => {
                 compose functions.`;
                 return (
                     <View style={styles.wrapper}>
-                        <Choice
+                        <ChoiceField
                             label="Receive assignment reminders for Algebra"
                             testId="algebra-assignment-test"
                             checked={this.state.assignment}
@@ -263,7 +264,7 @@ describe("wonder-blocks-form", () => {
                             variant="checkbox"
                         />
                         <Strut size={8} />
-                        <Choice
+                        <ChoiceField
                             label="I agree to not cheat in Algebra"
                             description="because otherwise I will never learn!"
                             checked={this.state.agreement}
@@ -412,11 +413,7 @@ describe("wonder-blocks-form", () => {
                         />
                         <Choice label="Squirtle" value="squirt" />
                         <Choice label="Pikachu" value="pika" />
-                        <Choice
-                            label="Superman"
-                            value="infiltrator"
-                            description="Not a pokemon"
-                        />
+                        <Choice label="Superman" value="infiltrator" />
                     </RadioGroup>
                 );
             }

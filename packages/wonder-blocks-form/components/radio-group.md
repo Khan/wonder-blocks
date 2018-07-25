@@ -60,7 +60,7 @@ class RadioGroupPokemonExample extends React.Component {
             <Choice label="Charmander" value="char" description="Oops, we ran out of Charmanders" disabled />
             <Choice label="Squirtle" value="squirt" />
             <Choice label="Pikachu" value="pika" />
-            <Choice label="Superman" value="infiltrator" description="Not a pokemon" />
+            <Choice label="Superman" value="infiltrator" />
         </RadioGroup>
     }
 }

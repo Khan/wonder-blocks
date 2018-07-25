@@ -3461,25 +3461,6 @@ exports[`wonder-blocks-form example 6 1`] = `
             Superman
           </span>
         </div>
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "color": "rgba(33,36,44,0.64)",
-              "display": "block",
-              "fontFamily": "Lato",
-              "fontSize": 14,
-              "fontWeight": 400,
-              "lineHeight": "18px",
-              "marginLeft": 24,
-              "marginTop": 6,
-            }
-          }
-        >
-          Not a pokemon
-        </span>
       </div>
     </div>
   </fieldset>

@@ -39,6 +39,7 @@ module.exports = {
             components: [
                 "packages/wonder-blocks-form/components/checkbox.js",
                 "packages/wonder-blocks-form/components/radio.js",
+                "packages/wonder-blocks-form/components/choice-field.js",
                 "packages/wonder-blocks-form/components/choice.js",
                 "packages/wonder-blocks-form/components/checkbox-group.js",
                 "packages/wonder-blocks-form/components/radio-group.js",

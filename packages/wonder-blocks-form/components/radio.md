@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const handleChanged = (checked) => console.log(`clicked on checkbox with checked=${checked.toString()}`);
+const handleChanged = (checked) => console.log(`clicked on radio, will be checked=${checked.toString()}`);
 const groupName = "group";
 
 <View style={[styles.row]}>
@@ -25,5 +25,6 @@ const groupName = "group";
 </View>
 ```
 
-Radio buttons aren't really meant to be used alone. See the Choice component
-for a potential example of a solo radio button.
+Radio buttons aren't really meant to be used alone, but you may use this radio
+button component if it makes sense. See the ChoiceField component for a
+potential example of a solo radio button with a label.
