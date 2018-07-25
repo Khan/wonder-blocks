@@ -150,6 +150,7 @@ export default class IconButton extends React.Component<SharedProps> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
+                            clientNav={clientNav}
                             href={href}
                         />
                     );
