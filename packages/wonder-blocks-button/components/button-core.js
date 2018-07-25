@@ -23,37 +23,24 @@ type Props = {|
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
-// $FlowFixMe: pass props directly to StyledLink instead of to Tag
 const StyledLink = addStyle(Link);
 
 export default class ButtonCore extends React.Component<Props> {
-    getTag() {
-        const {href, clientNav} = this.props;
-        if (href) {
-            if (clientNav) {
-                return StyledLink;
-            } else {
-                return StyledAnchor;
-            }
-        } else {
-            return StyledButton;
-        }
-    }
-
-    getProps() {
+    render() {
         const {
+            children,
+            clientNav,
             color,
+            disabled,
+            focused,
+            hovered,
+            href,
             kind,
             light,
-            size,
-            testId,
-            style,
-            disabled,
-            hovered,
-            focused,
             pressed,
-            href,
-            clientNav,
+            size,
+            style,
+            testId,
             ...handlers
         } = this.props;
 
@@ -76,37 +63,30 @@ export default class ButtonCore extends React.Component<Props> {
             size === "small" && sharedStyles.small,
         ];
 
-        const props = {
-            style: [defaultStyle, style],
-            disabled,
+        const commonProps = {
             "data-test-id": testId,
+            disabled,
+            style: [defaultStyle, style],
             ...handlers,
         };
 
-        if (!disabled && href) {
-            if (clientNav) {
-                // $FlowFixMe
-                props.to = href;
-            } else {
-                // $FlowFixMe
-                props.href = href;
-            }
-        }
-
-        return props;
-    }
-
-    render() {
-        const {children, size} = this.props;
-
-        const Tag = this.getTag();
-        const props = this.getProps();
         const Label = size === "small" ? LabelSmall : LabelLarge;
-        return (
-            <Tag {...props}>
-                <Label style={sharedStyles.text}>{children}</Label>
-            </Tag>
-        );
+
+        const label = <Label style={sharedStyles.text}>{children}</Label>;
+
+        if (href) {
+            return clientNav ? (
+                <StyledLink {...commonProps} to={href}>
+                    {label}
+                </StyledLink>
+            ) : (
+                <StyledAnchor {...commonProps} href={href}>
+                    {label}
+                </StyledAnchor>
+            );
+        } else {
+            return <StyledButton {...commonProps}>{label}</StyledButton>;
+        }
     }
 }
 

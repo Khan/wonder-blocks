@@ -19,22 +19,22 @@ type Props = {|
 |};
 
 const StyledAnchor = addStyle("a");
-// $FlowFixMe: pass props directly to StyledLink instead of to Tag
 const StyledLink = addStyle(Link);
 
 export default class LinkCore extends React.Component<Props> {
-    getProps() {
+    render() {
         const {
             caret, // eslint-disable-line no-unused-vars
+            children,
+            clientNav,
+            focused,
+            hovered,
+            href,
             kind,
             light,
-            testId,
-            style,
-            hovered,
-            focused,
             pressed,
-            href,
-            clientNav,
+            style,
+            testId,
             ...handlers
         } = this.props;
 
@@ -48,29 +48,21 @@ export default class LinkCore extends React.Component<Props> {
                 : (hovered || focused) && linkStyles.focus,
         ];
 
-        const props = {
-            style: [defaultStyles, style],
+        const commonProps = {
             "data-test-id": testId,
+            style: [defaultStyles, style],
             ...handlers,
         };
 
-        if (clientNav) {
-            // $FlowFixMe
-            props.to = href;
-        } else {
-            // $FlowFixMe
-            props.href = href;
-        }
-
-        return props;
-    }
-
-    render() {
-        const {children, clientNav} = this.props;
-
-        const Tag = clientNav ? StyledLink : StyledAnchor;
-
-        return <Tag {...this.getProps()}>{children}</Tag>;
+        return clientNav ? (
+            <StyledLink {...commonProps} to={href}>
+                {children}
+            </StyledLink>
+        ) : (
+            <StyledAnchor {...commonProps} href={href}>
+                {children}
+            </StyledAnchor>
+        );
     }
 }
 

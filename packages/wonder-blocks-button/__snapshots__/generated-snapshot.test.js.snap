@@ -417,6 +417,7 @@ exports[`wonder-blocks-button example 3 1`] = `
   <a
     className=""
     disabled={true}
+    href="https://khanacademy.org"
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
