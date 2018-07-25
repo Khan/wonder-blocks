@@ -14,6 +14,7 @@ import {
     addStyle,
     getClickableBehavior,
 } from "@khanacademy/wonder-blocks-core";
+
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 const {
@@ -150,6 +151,7 @@ export default class SelectItem extends React.Component<SelectProps> {
     static defaultProps = {
         disabled: false,
     };
+
     render() {
         const {
             disabled,
