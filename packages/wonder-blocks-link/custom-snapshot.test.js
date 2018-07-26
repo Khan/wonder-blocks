@@ -41,7 +41,6 @@ describe("LinkCore", () => {
                                     light={light}
                                     {...stateProps}
                                     {...defaultHandlers}
-                                    tabIndex={0}
                                 >
                                     Click me
                                 </LinkCore>,

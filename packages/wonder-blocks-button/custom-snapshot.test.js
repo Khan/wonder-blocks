@@ -48,7 +48,6 @@ describe("ButtonCore", () => {
                                         light={light}
                                         {...stateProps}
                                         {...defaultHandlers}
-                                        tabIndex={stateProps.disabled ? -1 : 0}
                                     >
                                         Click me
                                     </ButtonCore>,
