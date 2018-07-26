@@ -85,7 +85,11 @@ export default class ButtonCore extends React.Component<Props> {
                 </StyledAnchor>
             );
         } else {
-            return <StyledButton {...commonProps}>{label}</StyledButton>;
+            return (
+                <StyledButton {...commonProps} disabled={disabled}>
+                    {label}
+                </StyledButton>
+            );
         }
     }
 }

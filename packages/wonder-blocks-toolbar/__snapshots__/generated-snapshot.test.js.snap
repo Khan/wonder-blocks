@@ -127,6 +127,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       >
         <button
           className=""
+          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -206,6 +207,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       >
         <button
           className=""
+          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -791,6 +793,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
       >
         <button
           className=""
+          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -1020,6 +1023,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
       >
         <button
           className=""
+          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -1102,6 +1106,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
       >
         <button
           className=""
+          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}

@@ -91,6 +91,7 @@ const disabledHandlers = {
     onKeyUp: () => void 0,
     onFocus: () => void 0,
     onBlur: () => void 0,
+    tabIndex: -1,
 };
 
 const keyCodes = {
