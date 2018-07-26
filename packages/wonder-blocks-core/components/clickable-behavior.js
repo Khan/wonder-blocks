@@ -75,6 +75,7 @@ export type ClickableHandlers = {|
     onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
     onFocus: (e: SyntheticFocusEvent<*>) => void,
     onBlur: (e: SyntheticFocusEvent<*>) => void,
+    tabIndex?: number,
 |};
 
 const disabledHandlers = {
@@ -90,6 +91,7 @@ const disabledHandlers = {
     onKeyUp: () => void 0,
     onFocus: () => void 0,
     onBlur: () => void 0,
+    tabIndex: -1,
 };
 
 const keyCodes = {

@@ -64,8 +64,8 @@ export default class ButtonCore extends React.Component<Props> {
         ];
 
         const commonProps = {
-            "data-test-id": testId,
             "aria-disabled": disabled ? "true" : undefined,
+            "data-test-id": testId,
             style: [defaultStyle, style],
             ...handlers,
         };
@@ -85,7 +85,11 @@ export default class ButtonCore extends React.Component<Props> {
                 </StyledAnchor>
             );
         } else {
-            return <StyledButton {...commonProps}>{label}</StyledButton>;
+            return (
+                <StyledButton {...commonProps} disabled={disabled}>
+                    {label}
+                </StyledButton>
+            );
         }
     }
 }

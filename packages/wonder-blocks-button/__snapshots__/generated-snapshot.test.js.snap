@@ -22,6 +22,7 @@ exports[`wonder-blocks-button example 1 1`] = `
 >
   <button
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -81,6 +82,7 @@ exports[`wonder-blocks-button example 1 1`] = `
   </button>
   <button
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -143,6 +145,7 @@ exports[`wonder-blocks-button example 1 1`] = `
   </button>
   <button
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -202,6 +205,7 @@ exports[`wonder-blocks-button example 1 1`] = `
   </button>
   <button
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -346,6 +350,7 @@ exports[`wonder-blocks-button example 3 1`] = `
   <button
     aria-disabled="true"
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -381,6 +386,7 @@ exports[`wonder-blocks-button example 3 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={-1}
   >
     <span
       className=""
@@ -441,6 +447,7 @@ exports[`wonder-blocks-button example 3 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={-1}
   >
     <span
       className=""
@@ -498,6 +505,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       <td>
         <button
           className=""
+          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -564,6 +572,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       <td>
         <button
           className=""
+          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -630,6 +639,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       <td>
         <button
           className=""
+          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -714,6 +724,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <button
             className=""
+            disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={[Function]}
@@ -800,6 +811,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <button
             className=""
+            disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={[Function]}
@@ -914,6 +926,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         >
           <button
             className=""
+            disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={[Function]}
@@ -1047,6 +1060,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           >
             <button
               className=""
+              disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
               onFocus={[Function]}

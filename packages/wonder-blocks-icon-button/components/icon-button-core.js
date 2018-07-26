@@ -94,8 +94,8 @@ export default class IconButtonCore extends React.Component<Props> {
 
         const commonProps = {
             // TODO(kevinb): figure out a better way of forward ARIA props
-            "aria-label": this.props["aria-label"],
             "aria-disabled": disabled ? "true" : undefined,
+            "aria-label": this.props["aria-label"],
             "data-test-id": testId,
             style: [defaultStyle, style],
             ...handlers,
