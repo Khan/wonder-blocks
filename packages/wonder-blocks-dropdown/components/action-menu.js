@@ -17,7 +17,7 @@ import type {
     ActionItemProps,
     SelectItemProps,
     SeparatorProps,
-} from "../utils/types.js";
+} from "../util/types.js";
 
 type OpenerProps = {|
     /**

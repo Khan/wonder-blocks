@@ -3,7 +3,7 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
-import {Popper} from 'react-popper';
+import {Popper} from "react-popper";
 import {StyleSheet} from "aphrodite";
 
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
@@ -11,11 +11,10 @@ import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
 import typeof ActionItem from "./action-item.js";
 import typeof SelectItem from "./select-item.js";
 import typeof SeparatorItem from "./separator-item.js";
-
-import visibilityModifierDefaultConfig from "../../wonder-blocks-tooltip/util/visibility-modifier.js";
 
 type DropdownCoreProps = {|
     /**
@@ -83,13 +82,19 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
     }
 
     componentDidUpdate(prevProps: DropdownCoreProps) {
-        if (prevProps.open !== this.props.open) {
+        const {alignment, open} = this.props;
+        if (prevProps.open !== open) {
             this.updateEventListeners();
         }
 
         // If the menu just changed from closed to open, and if we haven't
         // found the correct menuWidth yet. Only applies to right aligned.
-        if (this.props.alignment === "right" && !prevProps.open && this.props.open && !this.menuWidth) {
+        if (
+            alignment === "right" &&
+            !prevProps.open &&
+            open &&
+            !this.menuWidth
+        ) {
             // There is a timeout because if we call getBoundingClientRect
             // right away, it returns the value of the document width instead
             // of the width of the just-mounted component, the menu.
@@ -130,25 +135,27 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
     }
 
     _handleInteract = (event: {target: any}) => {
+        const {open, onOpenChanged} = this.props;
         const target: Node = event.target;
-        if (this.props.open && this.element && !this.element.contains(target)) {
-            this.props.onOpenChanged(false);
+        if (open && this.element && !this.element.contains(target)) {
+            onOpenChanged(false);
         }
     };
 
     _handleKeyup = (event: KeyboardEvent) => {
-        if (this.props.open && event.key === "Escape") {
+        const {open, onOpenChanged} = this.props;
+        if (open && event.key === "Escape") {
             event.preventDefault();
             event.stopImmediatePropagation();
-            this.props.onOpenChanged(false);
+            onOpenChanged(false);
         }
     };
 
     getTranslatedPosition() {
-        if (this.props.alignment === "right" ) {
+        if (this.props.alignment === "right") {
             return {
                 transform: `translate3d(${-(this.menuWidth || 0)}px, 0, 0)`,
-            }
+            };
         }
     }
 
@@ -156,17 +163,29 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
         const {items, light, style} = this.props;
 
         const translated = this.getTranslatedPosition();
-        return <View
-            onMouseUp={(event) => {
-                // Stop propagation to prevent the mouseup listener
-                // on the document from closing the menu.
-                event.nativeEvent.stopImmediatePropagation();
-            }}
-            ref={node => this.menuElement = ((ReactDOM.findDOMNode(node): any): Element)}
-            style={[styles.dropdown, light && styles.light, translated, outOfBoundaries && styles.hidden, style]}
-        >
-            {items}
-        </View>;
+        return (
+            <View
+                onMouseUp={(event) => {
+                    // Stop propagation to prevent the mouseup listener
+                    // on the document from closing the menu.
+                    event.nativeEvent.stopImmediatePropagation();
+                }}
+                ref={(node) =>
+                    (this.menuElement = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
+                style={[
+                    styles.dropdown,
+                    light && styles.light,
+                    translated,
+                    outOfBoundaries && styles.hidden,
+                    style,
+                ]}
+            >
+                {items}
+            </View>
+        );
     }
 
     renderDropdown() {
@@ -175,7 +194,9 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
         // by using the helper function from the modal package on the opener
         // element.
         // If we are not in a modal, we use body as the location to portal to.
-        const modalHost = maybeGetPortalMountedModalHostElement(openerElement) || document.querySelector("body");
+        const modalHost =
+            maybeGetPortalMountedModalHostElement(openerElement) ||
+            document.querySelector("body");
 
         if (modalHost) {
             return ReactDOM.createPortal(
@@ -183,7 +204,9 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
                     referenceElement={this.props.openerElement}
                     // TODO(sophie): allow dropdown to be a dropup (rise-up?) --
                     // to appear above the dropdown opener
-                    placement={alignment === "left" ? "bottom-start" : "bottom-end"}
+                    placement={
+                        alignment === "left" ? "bottom-start" : "bottom-end"
+                    }
                     modifiers={{
                         wbVisibility: visibilityModifierDefaultConfig,
                         preventOverflow: {boundariesElement: "viewport"},
@@ -195,7 +218,8 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
                         </div>
                     )}
                 </Popper>,
-            modalHost);
+                modalHost,
+            );
         }
     }
 
@@ -249,5 +273,5 @@ const styles = StyleSheet.create({
 
     hidden: {
         visibility: "hidden",
-    }
+    },
 });

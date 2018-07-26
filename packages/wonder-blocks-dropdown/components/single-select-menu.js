@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
-import type {SelectItemProps} from "../utils/types.js";
+import type {SelectItemProps} from "../util/types.js";
 
 type Props = {|
     /**
