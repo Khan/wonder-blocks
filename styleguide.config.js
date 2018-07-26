@@ -44,6 +44,17 @@ module.exports = {
                 "packages/wonder-blocks-form/components/checkbox-group.js",
                 "packages/wonder-blocks-form/components/radio-group.js",
             ],
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-form/components/checkbox-core.js",
+                        "packages/wonder-blocks-form/components/radio-core.js",
+                        "packages/wonder-blocks-form/components/choice-internal.js",
+                    ],
+                },
+            ],
         },
         {
             name: "Grid",

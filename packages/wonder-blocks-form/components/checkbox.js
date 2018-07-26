@@ -1,5 +1,4 @@
 // @flow
-// ☑️ A nicely styled checkbox for all your checkbox-y needs
 
 import * as React from "react";
 
@@ -8,6 +7,12 @@ import CheckboxCore from "./checkbox-core.js";
 
 import type {ChoiceComponentProps} from "../util/types.js";
 
+/**
+ * ☑️ A nicely styled checkbox for all your checking needs.
+ *
+ * If you wish to use a single Checkbox for a settings-like item or as part of a
+ * group of Checkbox[es], see the ChoiceField and CheckboxGroup components.
+ */
 export default class Checkbox extends React.Component<ChoiceComponentProps> {
     static defaultProps = {
         disabled: false,

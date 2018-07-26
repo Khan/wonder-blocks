@@ -1,19 +1,26 @@
 // @flow
-// A group of radio buttons 🔘 that function together. The use of the groupName
-// prop is important to maintain expected keyboard navigation behavior for
-// accessibility.
+
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {RadioGroupProps} from "../util/types.js";
 
 const StyledFieldset = addStyle("fieldset");
 
+/**
+ * A radio group allows only single selection. Like CheckboxGroup, this
+ * component auto-populates many props for its children Choice components. The
+ * Choice component is exposed for the user to apply custom styles or to
+ * indicate which choices are disabled. The use of the groupName prop is
+ * important to maintain expected keyboard navigation behavior for
+ * accessibility.
+ */
 export default class RadioGroup extends React.Component<RadioGroupProps> {
     handleChange(changedValue: string) {
         this.props.onChange(changedValue);
@@ -28,7 +35,6 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
             selectedValue,
             style,
         } = this.props;
-        const Spacing = <Strut size={8} />;
 
         const lastIndex = React.Children.count(children) - 1;
 
@@ -49,10 +55,10 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
                             {errorMessage}
                         </LabelSmall>
                     )}
-                    {Spacing}
+                    <Strut size={Spacing.xSmall} />
 
                     {React.Children.map(children, (child, index) => {
-                        const value = child.props.value;
+                        const {value} = child.props;
                         const checked = selectedValue === value;
                         return (
                             <React.Fragment>
@@ -64,7 +70,9 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
                                     onChange: () => this.handleChange(value),
                                     variant: "radio",
                                 })}
-                                {index !== lastIndex && Spacing}
+                                {index !== lastIndex && (
+                                    <Strut size={Spacing.xSmall} />
+                                )}
                             </React.Fragment>
                         );
                     })}
@@ -80,11 +88,11 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     description: {
-        marginTop: 6,
+        marginTop: Spacing.xxSmall,
         color: Color.offBlack64,
     },
     error: {
-        marginTop: 6,
+        marginTop: Spacing.xxSmall,
         color: Color.red,
     },
 });

@@ -1,5 +1,4 @@
 // @flow
-// A group of checkbox ☑️ items
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -7,12 +6,19 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {CheckboxGroupProps} from "../util/types.js";
 
 const StyledFieldset = addStyle("fieldset");
 
+/**
+ * A checkbox group allows multiple selection. This component auto-populates
+ * many props for its children Choice components. The Choice component is
+ * exposed for the user to apply custom styles or to indicate which choices are
+ * disabled.
+ */
 export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
     handleChange(changedValue: string, originalCheckedState: boolean) {
         const {onChange, selectedValues} = this.props;
@@ -39,7 +45,6 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
             selectedValues,
             style,
         } = this.props;
-        const Spacing = <Strut size={8} />;
 
         const lastIndex = React.Children.count(children) - 1;
 
@@ -62,10 +67,10 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                             {errorMessage}
                         </LabelSmall>
                     )}
-                    {Spacing}
+                    <Strut size={Spacing.xSmall} />
 
                     {React.Children.map(children, (child, index) => {
-                        const value = child.props.value;
+                        const {value} = child.props;
                         const checked = selectedValues.includes(value);
                         return (
                             <React.Fragment>
@@ -78,7 +83,9 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                                         this.handleChange(value, checked),
                                     variant: "checkbox",
                                 })}
-                                {index !== lastIndex && Spacing}
+                                {index !== lastIndex && (
+                                    <Strut size={Spacing.xSmall} />
+                                )}
                             </React.Fragment>
                         );
                     })}
@@ -96,12 +103,12 @@ const styles = StyleSheet.create({
     },
 
     description: {
-        marginTop: 6,
+        marginTop: Spacing.xxSmall,
         color: Color.offBlack64,
     },
 
     error: {
-        marginTop: 6,
+        marginTop: Spacing.xxSmall,
         color: Color.red,
     },
 });

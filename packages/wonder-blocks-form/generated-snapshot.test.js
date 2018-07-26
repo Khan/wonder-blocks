@@ -14,6 +14,9 @@ import ChoiceField from "./components/choice-field.js";
 import Choice from "./components/choice.js";
 import CheckboxGroup from "./components/checkbox-group.js";
 import RadioGroup from "./components/radio-group.js";
+import CheckboxCore from "./components/checkbox-core.js";
+import RadioCore from "./components/radio-core.js";
+import ChoiceInternal from "./components/choice-internal.js";
 
 describe("wonder-blocks-form", () => {
     it("example 1", () => {
@@ -219,19 +222,13 @@ describe("wonder-blocks-form", () => {
             LabelMedium,
             LabelSmall,
         } = require("@khanacademy/wonder-blocks-typography");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
         const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            wrapper: {},
-        });
 
         class Settings extends React.Component {
             constructor() {
                 super();
                 this.state = {
                     assignment: false,
-                    agreement: false,
                 };
             }
 
@@ -253,7 +250,7 @@ describe("wonder-blocks-form", () => {
                 will learn how to combine functions with arithmetic operations and how to
                 compose functions.`;
                 return (
-                    <View style={styles.wrapper}>
+                    <View>
                         <ChoiceField
                             label="Receive assignment reminders for Algebra"
                             testId="algebra-assignment-test"
@@ -262,18 +259,6 @@ describe("wonder-blocks-form", () => {
                                 this.handleChange("assignment", checked)
                             }
                             variant="checkbox"
-                        />
-                        <Strut size={8} />
-                        <ChoiceField
-                            label="I agree to not cheat in Algebra"
-                            description="because otherwise I will never learn!"
-                            checked={this.state.agreement}
-                            // once checked, this Choice will not receive an onChange
-                            // callback unless the state was reset for some reason
-                            onChange={(checked) =>
-                                this.handleChange("agreement", checked)
-                            }
-                            variant="radio"
                         />
                     </View>
                 );
@@ -350,7 +335,7 @@ describe("wonder-blocks-form", () => {
             }
         }
         const example = (
-            <View style={[styles.wrapper]}>
+            <View style={styles.wrapper}>
                 <CheckboxGroupPizzaExample />
             </View>
         );
@@ -419,7 +404,7 @@ describe("wonder-blocks-form", () => {
             }
         }
         const example = (
-            <View style={[styles.wrapper]}>
+            <View style={styles.wrapper}>
                 <RadioGroupPokemonExample />
             </View>
         );

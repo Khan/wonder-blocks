@@ -24,11 +24,8 @@ const handleChanged = (checked) => console.log(`clicked on checkbox, will be che
 </View>
 ```
 
-If you wish to use a single Checkbox for a settings-like item or as part of a
-group of Checkbox[es], please see the ChoiceField and CheckboxGroup components.
-
-However, sometimes one may wish to use a solo checkbox somewhere, like in this
-example content item. Use a `<label htmlFor={id}>` element that matches the id
+Sometimes one may wish to use a solo checkbox somewhere, like in this
+example content item. Use a `<label htmlFor={id}>` element that matches the `id`
 prop of the Checkbox for accessibility purposes.
 ```js
 const React = require("react");

@@ -24,7 +24,3 @@ const groupName = "group";
     <Radio disabled={true} checked={true} style={[styles.marginRight]} groupName={groupName} onChange={checked => handleChanged(checked)} />
 </View>
 ```
-
-Radio buttons aren't really meant to be used alone, but you may use this radio
-button component if it makes sense. See the ChoiceField component for a
-potential example of a solo radio button with a label.

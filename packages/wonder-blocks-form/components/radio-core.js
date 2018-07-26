@@ -1,5 +1,5 @@
 // @flow
-// The internal stateless 🔘 Radio
+
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -21,7 +21,9 @@ const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 const StyledInput = addStyle("input");
 
-export default class RadioCore extends React.Component<Props> {
+/**
+ * The internal stateless 🔘 Radio button
+ */ export default class RadioCore extends React.Component<Props> {
     render() {
         const {
             checked,

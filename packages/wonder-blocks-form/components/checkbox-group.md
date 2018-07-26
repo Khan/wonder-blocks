@@ -1,7 +1,3 @@
-A checkbox group allows multiple selection. This component autopopulates many
-props for its children Choice components. The Choice component is exposed for
-the user to apply custom styles or to indicate which choices are disabled.
-
 This example has two items with descriptions, and it sets an error state to the
 entire group if more than three items are selected.
 
@@ -63,7 +59,7 @@ class CheckboxGroupPizzaExample extends React.Component {
         </CheckboxGroup>
     }
 }
-<View style={[styles.wrapper]}>
+<View style={styles.wrapper}>
     <CheckboxGroupPizzaExample />
 </View>
 ```

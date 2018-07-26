@@ -1,8 +1,3 @@
-A radio group allows only single selection. Like CheckboxGroup, this component
-autopopulates many props for its children Choice components. The Choice
-component is exposed for the user to apply custom styles or to indicate which
-choices are disabled.
-
 This example has a disabled item. Selecting the last item results in an error
 state for the entire group.
 
@@ -64,7 +59,7 @@ class RadioGroupPokemonExample extends React.Component {
         </RadioGroup>
     }
 }
-<View style={[styles.wrapper]}>
+<View style={styles.wrapper}>
     <RadioGroupPokemonExample />
 </View>
 ```

@@ -1,47 +1,75 @@
 // @flow
-// This is a 🔘 or ☑️ field item. This component is meant to be used as a child
-// of CheckboxGroup or RadioGroup. Many of the props are auto-populated. If you
-// wish to use a single choice field, use the ChoiceField component.
+
 import * as React from "react";
 
 import ChoiceInternal from "./choice-internal.js";
 
 type Props = {|
-    /** User-defined. Label for the field. */ label: string,
-    /** User-defined. Optional description for the field. */ description?: string,
-    /** User-defined. Should be distinct for each item in the group. */ value: string,
-    /** User-defined. Whether this choice option is disabled. Default false. */ disabled?: boolean,
-    /** User-defined. Optional id for testing purposes. */ testId?: string,
-    /** User-defined. Optional additional styling. */ style?: any,
+    /** User-defined. Label for the field. */
+    label: string,
+
+    /** User-defined. Optional description for the field. */
+    description?: string,
+
+    /** User-defined. Should be distinct for each item in the group. */
+    value: string,
+
+    /** User-defined. Whether this choice option is disabled. Default false. */
+    disabled?: boolean,
+
+    /** User-defined. Optional id for testing purposes. */
+    testId?: string,
+
+    /** User-defined. Optional additional styling. */
+    style?: any,
+
     /**
-     * Autopopulated by parent. Whether this choice is checked.
+     * Auto-populated by parent. Whether this choice is checked.
      * @ignore
-     */ checked?: boolean,
+     */
+    checked?: boolean,
+
     /**
-     * Autopopulated by parent. Whether this choice is in error mode (everything
+     * Auto-populated by parent. Whether this choice is in error mode (everything
      * in a choice group would be in error mode at the same time).
      * @ignore
-     */ error?: boolean,
+     */
+    error?: boolean,
+
     /**
-     * Autopopulated by parent. Used for accessibility purposes, where the label
+     * Auto-populated by parent. Used for accessibility purposes, where the label
      * id should match the input id.
      * @ignore
-     */ id?: string,
+     */
+    id?: string,
+
     /**
-     * Autopopulated by parent's groupName prop.
+     * Auto-populated by parent's groupName prop.
      * @ignore
-     */ groupName?: string,
+     */
+    groupName?: string,
+
     /**
-     * Autopopulated by parent. Returns the new checked state of the component.
+     * Auto-populated by parent. Returns the new checked state of the component.
      * @ignore
-     */ onChange?: (newCheckedState: boolean) => void,
+     */
+    onChange?: (newCheckedState: boolean) => void,
+
     /**
-     * Autopopulated by parent.
+     * Auto-populated by parent.
      * @ignore
-     */ variant?: "radio" | "checkbox",
+     */
+    variant?: "radio" | "checkbox",
 |};
 
-export default class Choice extends React.Component<Props> {
+/**
+ * This is a 🔘 or ☑️ field item. Choice is meant to be used as children of
+ * CheckboxGroup and RadioGroup because many of its props are auto-populated
+ * and not shown in the documentation here. See those components for usage
+ * examples.
+ *
+ * If you wish to use just a single field, see the ChoiceField component.
+ */ export default class Choice extends React.Component<Props> {
     static defaultProps = {
         disabled: false,
     };
