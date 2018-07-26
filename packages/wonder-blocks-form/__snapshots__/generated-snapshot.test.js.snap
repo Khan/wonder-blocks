@@ -70,7 +70,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -130,7 +129,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -210,7 +208,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -270,7 +267,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -581,7 +577,6 @@ exports[`wonder-blocks-form example 2 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -666,7 +661,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -728,7 +722,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           "borderStyle": "solid",
           "borderWidth": 4,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -790,7 +783,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -852,7 +844,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           "borderStyle": "solid",
           "borderWidth": 4,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -1126,7 +1117,6 @@ exports[`wonder-blocks-form example 4 1`] = `
               "borderStyle": "solid",
               "borderWidth": 1,
               "boxSizing": "border-box",
-              "cursor": "pointer",
               "height": 16,
               "margin": 0,
               "outline": "none",
@@ -1180,206 +1170,13 @@ exports[`wonder-blocks-form example 4 1`] = `
       >
         <label
           htmlFor="assignment"
+          onClick={[Function]}
         >
           Receive assignment reminders for Algebra
         </label>
       </span>
     </div>
   </div>
-<<<<<<< HEAD
-=======
-  <div
-    aria-hidden="true"
-    className=""
-    style={
-      Object {
-        "MsFlexBasis": 8,
-        "MsFlexPreferredSize": 8,
-        "WebkitFlexBasis": 8,
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexBasis": 8,
-        "flexDirection": "column",
-        "flexShrink": 0,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  />
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      style={
-        Object {
-          "alignItems": "center",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "outline": "none",
-          "padding": 0,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={-1}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "outline": "none",
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <input
-          aria-checked={false}
-          checked={false}
-          className=""
-          disabled={false}
-          id="agree"
-          onChange={[Function]}
-          style={
-            Object {
-              "MozAppearance": "none",
-              "WebkitAppearance": "none",
-              "appearance": "none",
-              "backgroundColor": "#ffffff",
-              "borderColor": "rgba(33,36,44,0.50)",
-              "borderRadius": "50%",
-              "borderStyle": "solid",
-              "borderWidth": 1,
-              "boxSizing": "border-box",
-              "cursor": "pointer",
-              "height": 16,
-              "margin": 0,
-              "outline": "none",
-              "width": 16,
-            }
-          }
-          type="radio"
-        />
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato",
-            "fontSize": 16,
-            "fontWeight": 400,
-            "lineHeight": "20px",
-          }
-        }
-      >
-        <label
-          htmlFor="agree"
-        >
-          I agree to not cheat in Algebra
-        </label>
-      </span>
-    </div>
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "color": "rgba(33,36,44,0.64)",
-          "display": "block",
-          "fontFamily": "Lato",
-          "fontSize": 14,
-          "fontWeight": 400,
-          "lineHeight": "18px",
-          "marginLeft": 24,
-          "marginTop": 6,
-        }
-      }
-    >
-      because otherwise I will never learn!
-    </span>
-  </div>
->>>>>>> a585e8d... Address TODOs for Choice
 </div>
 `;
 
@@ -1591,7 +1388,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -1645,6 +1441,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           >
             <label
               htmlFor="Toppings-pepperoni"
+              onClick={[Function]}
             >
               Pepperoni
             </label>
@@ -1767,7 +1564,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -1821,6 +1617,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           >
             <label
               htmlFor="Toppings-sausage"
+              onClick={[Function]}
             >
               Sausage
             </label>
@@ -1965,7 +1762,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2019,6 +1815,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           >
             <label
               htmlFor="Toppings-cheese"
+              onClick={[Function]}
             >
               Extra cheese
             </label>
@@ -2141,7 +1938,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2195,6 +1991,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           >
             <label
               htmlFor="Toppings-pepper"
+              onClick={[Function]}
             >
               Green pepper
             </label>
@@ -2317,7 +2114,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2371,6 +2167,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           >
             <label
               htmlFor="Toppings-mushroom"
+              onClick={[Function]}
             >
               Mushroom
             </label>
@@ -2492,7 +2289,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2565,6 +2361,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           >
             <label
               htmlFor="Toppings-pineapple"
+              onClick={[Function]}
             >
               Pineapple
             </label>
@@ -2806,7 +2603,6 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2860,6 +2656,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           >
             <label
               htmlFor="Pokemon-bulb"
+              onClick={[Function]}
             >
               Bulbasaur
             </label>
@@ -3037,6 +2834,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           >
             <label
               htmlFor="Pokemon-char"
+              onClick={[Function]}
             >
               Charmander
             </label>
@@ -3181,7 +2979,6 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -3235,6 +3032,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           >
             <label
               htmlFor="Pokemon-squirt"
+              onClick={[Function]}
             >
               Squirtle
             </label>
@@ -3357,7 +3155,6 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -3411,6 +3208,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           >
             <label
               htmlFor="Pokemon-pika"
+              onClick={[Function]}
             >
               Pikachu
             </label>
@@ -3533,7 +3331,6 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -3587,6 +3384,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           >
             <label
               htmlFor="Pokemon-infiltrator"
+              onClick={[Function]}
             >
               Superman
             </label>

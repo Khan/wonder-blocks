@@ -26,7 +26,7 @@ type ChoiceComponentProps = {|
     /**
      * Unique identifier attached to the HTML input element. If used, need to
      * guarantee that the ID is unique within everything rendered on a page.
-     * Used to match <label> with <input> elements for screenreaders.
+     * Used to match `<label>` with `<input>` elements for screenreaders.
      */
     id?: string,
     /**

@@ -111,7 +111,6 @@ const sharedStyles = StyleSheet.create({
         height: 16,
         width: 16,
         margin: 0,
-        cursor: "pointer",
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
