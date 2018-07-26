@@ -45,6 +45,12 @@ type Props = {|
     preview?: React.Node,
 
     /**
+     * An optional id to provide a selector for the title element. Uses
+     * "wb-modal-title" as a default if titleId is not specified.
+     */
+    titleId?: string,
+
+    /**
      * Called when the close button is clicked.
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
@@ -76,6 +82,7 @@ export default class StandardModal extends React.Component<Props> {
             footer,
             content,
             preview,
+            titleId,
         } = this.props;
 
         return (
@@ -90,6 +97,7 @@ export default class StandardModal extends React.Component<Props> {
                             title={title}
                             subtitle={subtitle}
                             color={header ? "dark" : "light"}
+                            titleId={titleId || "wb-modal-title"}
                         />
                     }
                     header={header}

@@ -539,7 +539,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
             >
               <h4
                 className=""
-                id="wb-toolbar-title"
+                id="wb-modal-title"
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
@@ -1079,7 +1079,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
             >
               <span
                 className=""
-                id="wb-toolbar-title"
+                id="wb-modal-title"
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
@@ -1665,7 +1665,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
             >
               <span
                 className=""
-                id="wb-toolbar-title"
+                id="wb-modal-title"
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
@@ -2390,7 +2390,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
             >
               <span
                 className=""
-                id="wb-toolbar-title"
+                id="wb-modal-title"
                 style={
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
