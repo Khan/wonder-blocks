@@ -29,34 +29,38 @@ const styles = StyleSheet.create({
 });
 
 <table className={css(styles.table)} style={{borderCollapse: "collapse"}}>
-    <tr>
-        <th className={css(styles.tableBorder)}></th>
-        {headings.map(heading => <th
-            className={css(styles.tableBorder)}
-            key={heading}>{heading}
-        </th>)}
-    </tr>
-    {Object.keys(icons).map(iconName => (
-        <tr key={iconName}>
-            <td className={css(styles.nameCell, styles.tableBorder)}>
-                {iconName}
-            </td>
-            {headings.map(size => {
-                if (icons[iconName][size]) {
-                    return <td
-                        className={css(styles.iconCell, styles.tableBorder)}
-                        key={size}
-                    >
-                        <Icon icon={icons[iconName]} size={size} />
-                    </td>;
-                }
-                return <td
-                    className={css(styles.emptyCell, styles.tableBorder)}
-                    key={size}
-                />;
-            })}
+    <thead>
+        <tr>
+            <th className={css(styles.tableBorder)}></th>
+            {headings.map(heading => <th
+                className={css(styles.tableBorder)}
+                key={heading}>{heading}
+            </th>)}
         </tr>
-    ))}
+    </thead>
+    <tbody>
+        {Object.keys(icons).map(iconName => (
+            <tr key={iconName}>
+                <td className={css(styles.nameCell, styles.tableBorder)}>
+                    {iconName}
+                </td>
+                {headings.map(size => {
+                    if (icons[iconName][size]) {
+                        return <td
+                            className={css(styles.iconCell, styles.tableBorder)}
+                            key={size}
+                        >
+                            <Icon icon={icons[iconName]} size={size} />
+                        </td>;
+                    }
+                    return <td
+                        className={css(styles.emptyCell, styles.tableBorder)}
+                        key={size}
+                    />;
+                })}
+            </tr>
+        ))}
+    </tbody>
 </table>
 
 ```
