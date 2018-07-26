@@ -1,5 +1,5 @@
 // @flow
-// A menu that consists of action items
+// A menu that consists of items to be selected, single-choice
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -77,15 +77,9 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         };
     }
 
-    toggleMenu() {
-        this.setState((prevState) => ({
-            open: !prevState.open,
-        }));
-    }
-
-    handleClose() {
+    handleOpenChanged(open: boolean) {
         this.setState({
-            open: false,
+            open: open,
         });
     }
 
@@ -122,7 +116,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
             <SelectBox
                 disabled={disabled}
                 light={light}
-                onClick={() => this.toggleMenu()}
+                onClick={() => this.handleOpenChanged(!open)}
                 style={style}
             >
                 {menuText}
@@ -148,7 +142,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                 alignment={alignment}
                 items={menuItems}
                 light={light}
-                onClose={() => this.handleClose()}
+                onOpenChanged={(open, source) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
                 style={[styles.menuSpacer, style]}

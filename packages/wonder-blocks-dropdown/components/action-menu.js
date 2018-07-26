@@ -132,15 +132,9 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         };
     }
 
-    toggleMenu() {
-        this.setState((prevState) => ({
-            open: !prevState.open,
-        }));
-    }
-
-    handleClose() {
+    handleOpenChanged(open: boolean) {
         this.setState({
-            open: false,
+            open: open,
         });
     }
 
@@ -180,7 +174,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const opener = (
             <ActionMenuOpener
                 disabled={disabled}
-                onClick={() => this.toggleMenu()}
+                onClick={() => this.handleOpenChanged(!open)}
                 style={style}
             >
                 {menuText}
@@ -234,7 +228,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 alignment={alignment}
                 items={menuItems}
                 light={false}
-                onClose={() => this.handleClose()}
+                onOpenChanged={(open) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
                 style={[styles.menuTopSpace, style]}
