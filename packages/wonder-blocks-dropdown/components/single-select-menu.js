@@ -3,7 +3,6 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
 
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
@@ -154,16 +153,8 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
-                style={[styles.menuSpacer, style]}
+                style={style}
             />
         );
     }
 }
-
-const styles = StyleSheet.create({
-    // This is to add extra space on top of the menu options to separate the
-    // options from the opener component.
-    menuSpacer: {
-        top: 48,
-    },
-});

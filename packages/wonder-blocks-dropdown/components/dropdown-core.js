@@ -3,15 +3,19 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
+import {Popper} from 'react-popper';
 import {StyleSheet} from "aphrodite";
 
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
+import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import typeof ActionItem from "./action-item.js";
 import typeof SelectItem from "./select-item.js";
 import typeof SeparatorItem from "./separator-item.js";
+
+import visibilityModifierDefaultConfig from "../../wonder-blocks-tooltip/util/visibility-modifier.js";
 
 type DropdownCoreProps = {|
     /**
@@ -61,7 +65,8 @@ type DropdownCoreProps = {|
 export default class DropdownCore extends React.Component<DropdownCoreProps> {
     element: ?Element;
     // We need the menu width to tell it how to position itself for
-    // right-aligned menus
+    // right-aligned menus, because react popper bottom-end doesn't do the
+    // expected thing.
     menuWidth: ?number;
     menuElement: ?Element;
 
@@ -83,8 +88,8 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
         }
 
         // If the menu just changed from closed to open, and if we haven't
-        // found the correct menuWidth yet
-        if (!prevProps.open && this.props.open && !this.menuWidth) {
+        // found the correct menuWidth yet. Only applies to right aligned.
+        if (this.props.alignment === "right" && !prevProps.open && this.props.open && !this.menuWidth) {
             // There is a timeout because if we call getBoundingClientRect
             // right away, it returns the value of the document width instead
             // of the width of the just-mounted component, the menu.
@@ -115,8 +120,6 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
     addEventListeners() {
         document.addEventListener("mouseup", this._handleInteract);
         document.addEventListener("touchend", this._handleInteract);
-        // This is still keyup because we are listening for the escape key,
-        // which invokes events keydown and keyup and NOT keypress.
         document.addEventListener("keyup", this._handleKeyup);
     }
 
@@ -141,75 +144,63 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
         }
     };
 
-    getOpenerBounds() {
-        const {openerElement} = this.props;
-        if (openerElement) {
-            const rect = openerElement.getBoundingClientRect();
+    getTranslatedPosition() {
+        if (this.props.alignment === "right" ) {
             return {
-                top: rect.top + window.pageYOffset,
-                left: rect.left + window.pageXOffset,
-                width: rect.width,
-            };
+                transform: `translate3d(${-(this.menuWidth || 0)}px, 0, 0)`,
+            }
         }
     }
 
-    getTranslatedPosition(openerBounds: {
-        top: number,
-        left: number,
-        width: number,
-    }) {
-        const {top, left, width} = openerBounds;
-        if (this.props.alignment === "left") {
-            return {
-                transform: `translate3d(${left}px, ${top}px, 0)`,
-            };
-        } else {
-            return {
-                transform: `translate3d(${left +
-                    width -
-                    (this.menuWidth || 0)}px, ${top}px, 0)`,
-            };
-        }
+    renderMenu(outOfBoundaries: ?boolean) {
+        const {items, light, style} = this.props;
+
+        const translated = this.getTranslatedPosition();
+        return <View
+            onMouseUp={(event) => {
+                // Stop propagation to prevent the mouseup listener
+                // on the document from closing the menu.
+                event.nativeEvent.stopImmediatePropagation();
+            }}
+            ref={node => this.menuElement = ((ReactDOM.findDOMNode(node): any): Element)}
+            style={[styles.dropdown, light && styles.light, translated, outOfBoundaries && styles.hidden, style]}
+        >
+            {items}
+        </View>;
     }
 
-    maybeRenderMenu() {
-        const {items, light, open, style} = this.props;
-        const body = document.querySelector("body");
+    renderDropdown() {
+        const {alignment, openerElement} = this.props;
+        // If we are in a modal, we find where we should be portalling the menu
+        // by using the helper function from the modal package on the opener
+        // element.
+        // If we are not in a modal, we use body as the location to portal to.
+        const modalHost = maybeGetPortalMountedModalHostElement(openerElement) || document.querySelector("body");
 
-        const bounds = this.getOpenerBounds();
-        const translatedPosition = bounds && this.getTranslatedPosition(bounds);
-
-        if (open && body) {
+        if (modalHost) {
             return ReactDOM.createPortal(
-                <View
-                    onMouseUp={(event) => {
-                        // Stop propagation to prevent the mouseup listener
-                        // on the document from closing the menu.
-                        event.nativeEvent.stopImmediatePropagation();
+                <Popper
+                    referenceElement={this.props.openerElement}
+                    // TODO(sophie): allow dropdown to be a dropup (rise-up?) --
+                    // to appear above the dropdown opener
+                    placement={alignment === "left" ? "bottom-start" : "bottom-end"}
+                    modifiers={{
+                        wbVisibility: visibilityModifierDefaultConfig,
+                        preventOverflow: {boundariesElement: "viewport"},
                     }}
-                    ref={(node) =>
-                        (this.menuElement = ((ReactDOM.findDOMNode(
-                            node,
-                        ): any): Element))
-                    }
-                    style={[
-                        styles.dropdown,
-                        light && styles.light,
-                        !(open && this.menuWidth) && styles.hide,
-                        translatedPosition,
-                        // TODO: apply styld in better place
-                        style,
-                    ]}
                 >
-                    {items}
-                </View>,
-                body,
-            );
+                    {({placement, ref, style, outOfBoundaries}) => (
+                        <div ref={ref} style={style} data-placement={placement}>
+                            {this.renderMenu(outOfBoundaries)}
+                        </div>
+                    )}
+                </Popper>,
+            modalHost);
         }
     }
 
     render() {
-        const {alignment, opener} = this.props;
+        const {alignment, open, opener} = this.props;
 
         return (
             <View
@@ -224,7 +215,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
                 ]}
             >
                 {opener}
-                {this.maybeRenderMenu()}
+                {open && this.renderDropdown()}
             </View>
         );
     }
@@ -232,13 +223,11 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
 
 const styles = StyleSheet.create({
     menuWrapper: {
-        width: "fit-content",
         alignItems: "flex-start",
     },
 
     rightAlign: {
         alignItems: "flex-end",
-        alignSelf: "flex-end",
     },
 
     dropdown: {
@@ -250,11 +239,7 @@ const styles = StyleSheet.create({
         paddingBottom: Spacing.xxxSmall,
         border: `solid 1px ${Color.offBlack16}`,
         boxShadow: `0px 8px 8px 0px ${fade(Color.offBlack, 0.1)}`,
-        top: 40,
-        // NOTE: This is the z-index of the currently existing menus in the
-        // webapp. Perhaps wonderblocks will design a z-index hierarchy?
-        // TODO(sophie): remove when portals are incorporated
-        zIndex: 1000,
+        top: 8,
     },
 
     light: {
@@ -262,7 +247,7 @@ const styles = StyleSheet.create({
         border: "none",
     },
 
-    hide: {
+    hidden: {
         visibility: "hidden",
-    },
+    }
 });

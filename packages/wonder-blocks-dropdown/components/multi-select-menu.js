@@ -4,7 +4,6 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
@@ -241,17 +240,8 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
-                style={[styles.menuTopSpace, style]}
+                style={style}
             />
         );
     }
 }
-
-const styles = StyleSheet.create({
-    // This is to add extra space on top of the menu options to separate the
-    // options from the opener component. The opener (select box) has a height
-    // of 40, and there is a space of 8 between the opener and top of the menu.
-    menuTopSpace: {
-        top: 48,
-    },
-});

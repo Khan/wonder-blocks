@@ -1,6 +1,8 @@
 The action menu is used for items that trigger actions, such as navigating to
 a different page or opening a modal.
 
+### Basic, right-aligned action menu
+
 This menu shows different type of possible items in this type of menu:
 
 1. leads to a different page (the profile)
@@ -64,6 +66,8 @@ const styles = StyleSheet.create({
     </View>
 </View>
 ```
+
+### Hybrid menu of action items and option items
 
 The following menu demonstrates a hybrid menu with both action items and items
 that can toggle to change the state of the application. The user of this menu

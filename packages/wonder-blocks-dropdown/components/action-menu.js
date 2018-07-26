@@ -260,6 +260,6 @@ const styles = StyleSheet.create({
 
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
-        top: 36,
+        top: -4,
     },
 });

@@ -1,6 +1,8 @@
 The multi select allows the selection of multiple items. Clients are responsible
 for keeping track of the selected items.
 
+### Basic multi select
+
 This multi select starts with nothing selected and has no selection shortcuts.
 It also has a set width, and one of the items is disabled.
 
@@ -36,23 +38,10 @@ class ExampleNoneSelected extends React.Component {
     render() {
         return <MultiSelectMenu
             items={[
-                {
-                    label: "Red",
-                    value: "1",
-                },
-                {
-                    disabled: true,
-                    label: "Yellow",
-                    value: "2",
-                },
-                {
-                    label: "Green",
-                    value: "3",
-                },
-                {
-                    label: "Blue",
-                    value: "4",
-                },
+                {label: "Red", value: "1"},
+                {label: "Yellow", value: "2", disabled: true},
+                {label: "Green", value: "3"},
+                {label: "Blue", value: "4"},
             ]}
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
             placeholder="Color palette"
@@ -70,6 +59,8 @@ class ExampleNoneSelected extends React.Component {
     <ExampleNoneSelected />
 </View>
 ```
+
+### Multi select with select all / select none shortcuts
 
 This example starts with one item selected and has selection shortcuts for
 select all and select none. This one does not have a predefined placeholder.
@@ -103,42 +94,15 @@ class ExampleWithShortcuts extends React.Component {
     render() {
         return <MultiSelectMenu
             items={[
-                {
-                    label: "Anesu",
-                    value: "very mobile",
-                },
-                {
-                    label: "Ioana",
-                    value: "lives in roma",
-                },
-                {
-                    label: "Jennie",
-                    value: "walking to el camino",
-                },
-                {
-                    label: "Kelsey",
-                    value: "pipelines and kotlin",
-                },
-                {
-                    label: "Mary",
-                    value: "flow-distress",
-                },
-                {
-                    label: "Nisha",
-                    value: "growth is great",
-                },
-                {
-                    label: "Stephanie",
-                    value: "ramen izakaya fan",
-                },
-                {
-                    label: "Sophie",
-                    value: "wonderblocks 4ever",
-                },
-                {
-                    label: "Yeva",
-                    value: "boba fan",
-                },
+                {label: "Anesu", value: "very mobile"},
+                {label: "Ioana", value: "lives in roma"},
+                {label: "Jennie", value: "master of dominion"},
+                {label: "Kelsey", value: "pipelines and kotlin"},
+                {label: "Mary", value: "flow-distress"},
+                {label: "Nisha", value: "on the growth boat boat"},
+                {label: "Stephanie", value: "ramen izakaya fan"},
+                {label: "Sophie", value: "wonderblocks 4ever"},
+                {label: "Yeva", value: "boba fan"},
             ]}
             shortcuts={true}
             onChange={(selectedValues) => this.handleChange(selectedValues)}
@@ -156,7 +120,9 @@ class ExampleWithShortcuts extends React.Component {
 </View>
 ```
 
-This multi select is in a portal.
+### Multi select in a modal
+
+This multi select is in a modal.
 
 ```js
 const {StyleSheet} = require("aphrodite");
@@ -167,20 +133,15 @@ const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     wrapper: {
-        padding: 32,
         alignItems: "center",
     },
-    scrollbox: {
-        height: 100,
+    scrolledWrapper: {
+        height: 200,
         overflow: "auto",
-        border: "1px solid black",
+        border: "1px solid grey",
+        borderRadius: 4,
         margin: 10,
-    },
-    hostbox: {
-        minHeight: "200vh",
-    },
-    modalbox: {
-        height: "200vh",
+        padding: 20,
     },
 });
 
@@ -224,9 +185,9 @@ class SimpleMultiSelect extends React.Component {
 }
 
 const modalContent = (
-    <View style={styles.modalbox}>
-        <View style={styles.scrollbox}>
-            <View style={styles.hostbox}>
+    <View style={{height: "200vh"}}>
+        <View style={styles.scrolledWrapper}>
+            <View style={{minHeight: "100vh"}}>
                 <SimpleMultiSelect />
             </View>
         </View>
@@ -235,8 +196,8 @@ const modalContent = (
 
 const modal = (
     <StandardModal
-        title="My modal"
-        footer="Still my modal"
+        title="Westerosi modal"
+        footer=""
         content={modalContent}
     />
 );

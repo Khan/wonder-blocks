@@ -1,6 +1,8 @@
 The single select allows the selection of one item. Clients are responsible for
 keeping track of the selected item in the select.
 
+### Single select with placeholder
+
 This single select has a starting placeholder and a set width. One item is wider
 than the width, and so the text ellipses.
 
@@ -33,18 +35,9 @@ class ExampleWithPlaceholder extends React.Component {
     render() {
         return <SingleSelectMenu
             items={[
-                {
-                    label: "Vine-ripened tomatoes",
-                    value: "tomato",
-                },
-                {
-                    label: "Watermelon",
-                    value: "watermelon",
-                },
-                {
-                    label: "Strawberry",
-                    value: "strawberry",
-                },
+                {label: "Vine-ripened tomatoes", value: "tomato"},
+                {label: "Watermelon", value: "watermelon"},
+                {label: "Strawberry", value: "strawberry"},
             ]}
             light={false}
             onChange={(selected) => this.handleChange(selected)}
@@ -62,6 +55,8 @@ class ExampleWithPlaceholder extends React.Component {
     <ExampleWithPlaceholder />
 </View>
 ```
+
+### Single select with starting selected item and disabled item
 
 This select starts with a starting selected item. One of the items is disabled
 and thus cannot be selected.
@@ -95,19 +90,9 @@ class ExampleWithStartingSelection extends React.Component {
     render() {
         return <SingleSelectMenu
             items={[
-                {
-                    label: "Banana juice",
-                    value: "banana",
-                },
-                {
-                    disabled: true,
-                    label: "Guava juice",
-                    value: "guava",
-                },
-                {
-                    label: "White grape juice",
-                    value: "grape",
-                },
+                {label: "Banana juice", value: "banana"},
+                {label: "Guava juice", value: "guava", disabled: true},
+                {label: "White grape juice", value: "grape"},
             ]}
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Choose a juice"
@@ -120,6 +105,8 @@ class ExampleWithStartingSelection extends React.Component {
     <ExampleWithStartingSelection />
 </View>
 ```
+
+### Disabled select
 
 This select is disabled.
 ```js
@@ -152,19 +139,9 @@ class DisabledExample extends React.Component {
         return <SingleSelectMenu
             disabled={true}
             items={[
-                {
-                    label: "Banana juice",
-                    value: "banana",
-                },
-                {
-                    disabled: true,
-                    label: "Guava juice",
-                    value: "guava",
-                },
-                {
-                    label: "White grape juice",
-                    value: "grape",
-                },
+                {label: "Banana juice", value: "banana"},
+                {label: "Guava juice", value: "guava", disabled: true},
+                {label: "White grape juice", value: "grape"},
             ]}
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Choose a juice"
@@ -177,6 +154,8 @@ class DisabledExample extends React.Component {
     <DisabledExample />
 </View>
 ```
+
+### Select on dark background, right-aligned
 
 This select is on a dark background and is also right-aligned.
 
@@ -217,18 +196,9 @@ class LightRightAlignedExample extends React.Component {
     render() {
         return <SingleSelectMenu
             items={[
-                {
-                    label: "Regular milk tea with boba",
-                    value: "regular",
-                },
-                {
-                    label: "Wintermelon milk tea with boba",
-                    value: "wintermelon",
-                },
-                {
-                    label: "Taro milk tea, half sugar",
-                    value: "taro",
-                },
+                {label: "Regular milk tea with boba", value: "regular"},
+                {label: "Wintermelon milk tea with boba", value: "wintermelon"},
+                {label: "Taro milk tea, half sugar", value: "taro"},
             ]}
             light={true}
             onChange={(selected) => this.handleChange(selected)}
@@ -238,7 +208,6 @@ class LightRightAlignedExample extends React.Component {
         />;
     }
 }
-
 
 <View style={[styles.row]}>
     <View style={[styles.darkBackgroundWrapper]}>
