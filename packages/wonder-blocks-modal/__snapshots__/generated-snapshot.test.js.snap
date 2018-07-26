@@ -41,7 +41,6 @@ exports[`wonder-blocks-modal example 1 1`] = `
   >
     <button
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -121,7 +120,6 @@ exports[`wonder-blocks-modal example 1 1`] = `
   >
     <button
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -201,7 +199,6 @@ exports[`wonder-blocks-modal example 1 1`] = `
   >
     <button
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -743,7 +740,6 @@ exports[`wonder-blocks-modal example 2 1`] = `
           >
             <button
               className=""
-              disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
               onFocus={[Function]}
@@ -1345,7 +1341,6 @@ exports[`wonder-blocks-modal example 3 1`] = `
           >
             <button
               className=""
-              disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
               onFocus={[Function]}
@@ -1947,7 +1942,6 @@ exports[`wonder-blocks-modal example 4 1`] = `
           >
             <button
               className=""
-              disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
               onFocus={[Function]}
@@ -2763,7 +2757,6 @@ exports[`wonder-blocks-modal example 5 1`] = `
           >
             <button
               className=""
-              disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
               onFocus={[Function]}
@@ -3777,7 +3770,6 @@ exports[`wonder-blocks-modal example 7 1`] = `
             >
               <button
                 className=""
-                disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
                 onFocus={[Function]}

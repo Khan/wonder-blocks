@@ -181,7 +181,6 @@ exports[`wonder-blocks-core example 4 1`] = `
   >
     <button
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}

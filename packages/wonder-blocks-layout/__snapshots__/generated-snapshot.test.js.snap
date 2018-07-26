@@ -23,7 +23,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
 >
   <button
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -108,7 +107,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
   />
   <button
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -193,7 +191,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
   />
   <button
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -274,7 +271,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
   />
   <button
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -359,7 +355,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
   />
   <button
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}

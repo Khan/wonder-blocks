@@ -75,26 +75,17 @@ export default class ButtonCore extends React.Component<Props> {
         const label = <Label style={sharedStyles.text}>{children}</Label>;
 
         if (href) {
-            const linkProps = {
-                "aria-disabled": disabled ? "true" : "false",
-                tabIndex: disabled ? "-1" : undefined,
-            };
-
             return clientNav ? (
-                <StyledLink {...commonProps} {...linkProps} to={href}>
+                <StyledLink {...commonProps} to={href}>
                     {label}
                 </StyledLink>
             ) : (
-                <StyledAnchor {...commonProps} {...linkProps} href={href}>
+                <StyledAnchor {...commonProps} href={href}>
                     {label}
                 </StyledAnchor>
             );
         } else {
-            return (
-                <StyledButton {...commonProps} disabled={disabled}>
-                    {label}
-                </StyledButton>
-            );
+            return <StyledButton {...commonProps}>{label}</StyledButton>;
         }
     }
 }
