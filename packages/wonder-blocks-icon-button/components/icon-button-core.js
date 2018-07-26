@@ -96,23 +96,31 @@ export default class IconButtonCore extends React.Component<Props> {
             // TODO(kevinb): figure out a better way of forward ARIA props
             "aria-label": this.props["aria-label"],
             "data-test-id": testId,
-            disabled: disabled,
             style: [defaultStyle, style],
             ...handlers,
         };
 
         if (href) {
+            const linkProps = {
+                "aria-disabled": disabled ? "true" : "false",
+                tabIndex: disabled ? "-1" : undefined,
+            };
+
             return clientNav ? (
-                <StyledLink {...commonProps} to={href}>
+                <StyledLink {...commonProps} {...linkProps} to={href}>
                     {child}
                 </StyledLink>
             ) : (
-                <StyledAnchor {...commonProps} href={href}>
+                <StyledAnchor {...commonProps} {...linkProps} href={href}>
                     {child}
                 </StyledAnchor>
             );
         } else {
-            return <StyledButton {...commonProps}>{child}</StyledButton>;
+            return (
+                <StyledButton {...commonProps} disabled={disabled}>
+                    {child}
+                </StyledButton>
+            );
         }
     }
 }
