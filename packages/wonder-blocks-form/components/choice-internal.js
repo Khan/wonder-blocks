@@ -59,7 +59,8 @@ type Props = {|
  * RadioGroup. ChoiceField is the variant used outside of such a group. The two
  * are different to allow for more explicit flow typing. Choice has many of its
  * props auto-populated, but ChoiceField does not.
- */ export default class ChoiceInternal extends React.Component<Props> {
+ */
+export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps = {
         checked: false,
         disabled: false,
