@@ -39,6 +39,7 @@ describe("IconButton", () => {
     });
 
     test("client-side navigation", () => {
+        // Arrange
         const wrapper = mount(
             <MemoryRouter>
                 <div>
@@ -58,16 +59,18 @@ describe("IconButton", () => {
             </MemoryRouter>,
         );
 
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        // Act
         const buttonWrapper = wrapper
             .find(`[data-test-id="icon-button"]`)
             .first();
-        expect(buttonWrapper.exists()).toBe(true);
         buttonWrapper.simulate("click", {button: 0});
+
+        // Assert
         expect(wrapper.find("#foo").exists()).toBe(true);
     });
 
     test("client-side navigation without 'clientNav' prop fails", () => {
+        // Arrange
         const wrapper = mount(
             <MemoryRouter>
                 <div>
@@ -86,12 +89,13 @@ describe("IconButton", () => {
             </MemoryRouter>,
         );
 
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        // Act
         const buttonWrapper = wrapper
             .find(`[data-test-id="icon-button"]`)
             .first();
-        expect(buttonWrapper.exists()).toBe(true);
         buttonWrapper.simulate("click", {button: 0});
+
+        // Assert
         expect(wrapper.find("#foo").exists()).toBe(false);
     });
 });
