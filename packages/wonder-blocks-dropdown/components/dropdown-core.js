@@ -27,12 +27,13 @@ type DropdownCoreProps = {|
     /**
      * The component that opens the menu.
      */
-    opener: React.Node,
+    opener: React.Element<*>,
 
     /**
-     * Callback for when the menu is closed.
+     * Callback for when the menu is opened or closed. Parameter is whether
+     * the dropdown menu should be open.
      */
-    onClose: () => void,
+    onOpenChanged: (open: boolean) => void,
 
     /**
      * Whether this menu should be left-aligned or right-aligned with the
@@ -80,7 +81,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
             return;
         }
         if (this.props.open) {
-            this.props.onClose();
+            this.props.onOpenChanged(false);
         }
     };
 
@@ -88,7 +89,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
         if (this.props.open && event.key === "Escape") {
             event.preventDefault();
             event.stopImmediatePropagation();
-            this.props.onClose();
+            this.props.onOpenChanged(false);
         }
     };
 
