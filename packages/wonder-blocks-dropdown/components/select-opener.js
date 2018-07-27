@@ -1,5 +1,5 @@
 // @flow
-// A menu opener
+// A select opener
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";

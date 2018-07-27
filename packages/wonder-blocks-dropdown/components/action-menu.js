@@ -73,7 +73,7 @@ type ItemProps = ActionItemProps | OptionItemProps | SeparatorProps;
 
 type MenuProps = {|
     /**
-     * The items in this menu.
+     * The items in this dropdown.
      */
     items: Array<ItemProps>,
 
@@ -101,8 +101,8 @@ type MenuProps = {|
     alignment: "left" | "right",
 
     /**
-     * Whether this menu is disabled. A disabled menu may not be opened and
-     * does not support interaction. Defaults to false.
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
      */
     disabled: boolean,
 
@@ -114,7 +114,7 @@ type MenuProps = {|
 
 type State = {|
     /**
-     * Whether or not menu is open.
+     * Whether or not the dropdown is open.
      */
     open: boolean,
 |};

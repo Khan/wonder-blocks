@@ -56,11 +56,14 @@ type DropdownProps = {|
     light: boolean,
 
     /**
-     * Optional styling to add to dropdown menu.
+     * Styling specific to the dropdown component that isn't part of the opener.
+     */
+    dropdownStyle?: any,
+
+    /**
+     * Optional styling to add to the entire menu.
      */
     style?: any,
-
-    dropdownStyle?: any,
 |};
 
 export default class Dropdown extends React.Component<DropdownProps> {
@@ -126,7 +129,7 @@ export default class Dropdown extends React.Component<DropdownProps> {
     };
 
     renderMenu(outOfBoundaries: ?boolean) {
-        const {items, light, dropdownStyle} = this.props;
+        const {items, light, dropdownStyle, style} = this.props;
 
         return (
             <View
@@ -140,6 +143,7 @@ export default class Dropdown extends React.Component<DropdownProps> {
                     light && styles.light,
                     outOfBoundaries && styles.hidden,
                     dropdownStyle,
+                    style,
                 ]}
             >
                 {items}

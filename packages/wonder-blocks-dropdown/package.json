@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.3",
   "design": "v1",
-  "description": "Dropdown menu variants for Wonder Blocks.",
+  "description": "Dropdown variants for Wonder Blocks.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

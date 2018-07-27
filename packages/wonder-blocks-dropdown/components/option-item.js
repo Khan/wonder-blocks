@@ -1,5 +1,5 @@
 // @flow
-// For menu items that can be selected, selection denoted either with a
+// For option items that can be selected, selection denoted either with a
 // check ✔️ or a checkbox ☑️
 
 import * as React from "react";
@@ -29,7 +29,7 @@ const {
 
 type OptionProps = {|
     /**
-     * Display text of the menu item.
+     * Display text of the option item.
      */
     label: string,
 
@@ -39,9 +39,9 @@ type OptionProps = {|
     selected: boolean,
 
     /**
-     * Value of the item, used as a key of sorts for the parent menu to manage
-     * its menu items, because label/display text may be identical in some
-     * menus. This is the value passed back when the item is pressed.
+     * Value of the item, used as a key of sorts for the parent to manage its
+     * items, because label/display text may be identical for some selects. This
+     * is the value passed back when the item is selected.
      */
     value: string,
 
@@ -59,7 +59,8 @@ type OptionProps = {|
     onToggle: (value: string, oldSelectionState: boolean) => void,
 
     /**
-     * Whether this menu item is disabled. A disabled item may not be selected.
+     * Whether this option item is disabled. A disabled item may not be
+     * selected.
      */
     disabled: boolean,
 
