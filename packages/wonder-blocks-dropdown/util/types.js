@@ -14,7 +14,7 @@ export type ActionItemProps = {|
     onClick?: () => void,
 |};
 
-export type SelectItemProps = {|
+export type OptionItemProps = {|
     type: "select",
     /** Whether this item is disabled. Default false. */
     disabled?: boolean,

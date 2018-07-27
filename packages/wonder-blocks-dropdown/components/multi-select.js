@@ -1,38 +1,39 @@
 // @flow
-// A menu that consists of multiple selection items. This menu allows multiple
-// items to be selected.
+// A dropdown that consists of multiple selection items. This select allows
+// multiple options to be selected.
 
 import * as React from "react";
 import ReactDOM from "react-dom";
 
 import ActionItem from "./action-item.js";
-import DropdownCore from "./dropdown-core.js";
-import SelectBox from "./select-box.js";
-import SelectItem from "./select-item.js";
+import Dropdown from "./dropdown.js";
+import OptionItem from "./option-item.js";
+import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
-import type {SelectItemProps} from "../util/types.js";
+
+import type {OptionItemProps} from "../util/types.js";
 
 type Props = {|
     /**
-     * The items in this menu.
+     * The items in this select.
      */
-    items: Array<SelectItemProps>,
+    items: Array<OptionItemProps>,
 
     /**
-     * Callback for when the selection of the menu changes. Parameter is an
-     * updated array of the values that are now selected.
+     * Callback for when the selection changes. Parameter is an updated array of
+     * the values that are now selected.
      */
     onChange: (selectedValues: Array<string>) => void,
 
     /**
-     * List of the item values that are currently selected.
+     * The values of the items that are currently selected.
      */
     selectedValues: Array<string>,
 
     /**
-     * Type of the menu items.
+     * Type of the option.
      * For example, if selectItemType is "student" and there are two students
-     * selected, the SelectBox would display "2 students"
+     * selected, the SelectOpener would display "2 students"
      */
     selectItemType: string,
 
@@ -48,20 +49,20 @@ type Props = {|
     shortcuts?: boolean,
 
     /**
-     * Whether this menu should be left-aligned or right-aligned with the
+     * Whether this dropdown should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
     alignment: "left" | "right",
 
     /**
-     * Whether this menu is disabled. A disabled menu may not be opened and
-     * does not support interaction. Defaults to false.
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
      */
     disabled: boolean,
 
     /**
      * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
+     * use when the component is used on a dark background.
      */
     light: boolean,
 
@@ -73,12 +74,12 @@ type Props = {|
 
 type State = {|
     /**
-     * Whether or not menu is open.
+     * Whether or not the dropdown is open.
      */
     open: boolean,
 |};
 
-export default class MultiSelectMenu extends React.Component<Props, State> {
+export default class MultiSelect extends React.Component<Props, State> {
     openerElement: ?Element;
 
     static defaultProps = {
@@ -188,7 +189,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         const {items, selectedValues} = this.props;
         const menuItems = items.map((item, index) => {
             return (
-                <SelectItem
+                <OptionItem
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
@@ -214,7 +215,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         const menuText = this.getMenuText();
 
         const opener = (
-            <SelectBox
+            <SelectOpener
                 disabled={disabled}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
@@ -226,13 +227,13 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                 style={style}
             >
                 {menuText}
-            </SelectBox>
+            </SelectOpener>
         );
 
         const menuItems = [...this.getShortcuts(), ...this.getMenuItems()];
 
         return (
-            <DropdownCore
+            <Dropdown
                 alignment={alignment}
                 dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}

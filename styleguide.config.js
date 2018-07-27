@@ -29,8 +29,8 @@ module.exports = {
             name: "Dropdown",
             components: [
                 "packages/wonder-blocks-dropdown/components/action-menu.js",
-                "packages/wonder-blocks-dropdown/components/single-select-menu.js",
-                "packages/wonder-blocks-dropdown/components/multi-select-menu.js",
+                "packages/wonder-blocks-dropdown/components/single-select.js",
+                "packages/wonder-blocks-dropdown/components/multi-select.js",
             ],
         },
         {

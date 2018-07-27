@@ -13,14 +13,14 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
 import typeof ActionItem from "./action-item.js";
-import typeof SelectItem from "./select-item.js";
+import typeof OptionItem from "./option-item.js";
 import typeof SeparatorItem from "./separator-item.js";
 
-type DropdownCoreProps = {|
+type DropdownProps = {|
     /**
      * Items for the menu.
      */
-    items: Array<React.Element<ActionItem | SelectItem | SeparatorItem>>,
+    items: Array<React.Element<ActionItem | OptionItem | SeparatorItem>>,
 
     /**
      * Whether the menu is open or not.
@@ -56,21 +56,24 @@ type DropdownCoreProps = {|
     light: boolean,
 
     /**
-     * Optional styling to add to dropdown menu.
+     * Styling specific to the dropdown component that isn't part of the opener.
+     */
+    dropdownStyle?: any,
+
+    /**
+     * Optional styling to add to the entire menu.
      */
     style?: any,
-
-    dropdownStyle?: any,
 |};
 
-export default class DropdownCore extends React.Component<DropdownCoreProps> {
+export default class Dropdown extends React.Component<DropdownProps> {
     element: ?Element;
 
     static defaultProps = {
         alignment: "left",
     };
 
-    constructor(props: DropdownCoreProps) {
+    constructor(props: DropdownProps) {
         super(props);
     }
 
@@ -78,7 +81,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
         this.updateEventListeners();
     }
 
-    componentDidUpdate(prevProps: DropdownCoreProps) {
+    componentDidUpdate(prevProps: DropdownProps) {
         if (prevProps.open !== this.props.open) {
             this.updateEventListeners();
         }
@@ -126,7 +129,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
     };
 
     renderMenu(outOfBoundaries: ?boolean) {
-        const {items, light, dropdownStyle} = this.props;
+        const {items, light, dropdownStyle, style} = this.props;
 
         return (
             <View
@@ -140,6 +143,7 @@ export default class DropdownCore extends React.Component<DropdownCoreProps> {
                     light && styles.light,
                     outOfBoundaries && styles.hidden,
                     dropdownStyle,
+                    style,
                 ]}
             >
                 {items}

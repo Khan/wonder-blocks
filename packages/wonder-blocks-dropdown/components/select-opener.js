@@ -1,5 +1,5 @@
 // @flow
-// A menu opener
+// A select opener
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -18,15 +18,15 @@ const StyledButton = addStyle("button");
 
 const {blue, white, offBlack, offBlack16, offBlack32, offBlack50} = Color;
 
-type SelectBoxProps = {|
+type SelectOpenerProps = {|
     /**
-     * Display text in the SelectBox.
+     * Display text in the SelectOpener.
      */
     children: string,
 
     /**
-     * Whether the SelectBox opener is disabled. If disabled, disallows
-     * interaction. Default false.
+     * Whether the SelectOpener is disabled. If disabled, disallows interaction.
+     * Default false.
      */
     disabled?: boolean,
 
@@ -43,7 +43,7 @@ type SelectBoxProps = {|
     light?: boolean,
 
     /**
-     * Callback for when the SelectBox is pressed.
+     * Callback for when the SelectOpener is pressed.
      */
     onClick: () => void,
 
@@ -53,7 +53,7 @@ type SelectBoxProps = {|
     style?: any,
 |};
 
-export default class SelectBox extends React.Component<SelectBoxProps> {
+export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static defaultProps = {
         disabled: false,
         light: false,

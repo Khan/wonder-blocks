@@ -33,7 +33,7 @@ class ExampleWithPlaceholder extends React.Component {
     }
 
     render() {
-        return <SingleSelectMenu
+        return <SingleSelect
             items={[
                 {label: "Vine-ripened tomatoes", value: "tomato"},
                 {label: "Watermelon", value: "watermelon"},
@@ -88,7 +88,7 @@ class ExampleWithStartingSelection extends React.Component {
     }
 
     render() {
-        return <SingleSelectMenu
+        return <SingleSelect
             items={[
                 {label: "Banana juice", value: "banana"},
                 {label: "Guava juice", value: "guava", disabled: true},
@@ -136,7 +136,7 @@ class DisabledExample extends React.Component {
     }
 
     render() {
-        return <SingleSelectMenu
+        return <SingleSelect
             disabled={true}
             items={[
                 {label: "Banana juice", value: "banana"},
@@ -157,7 +157,7 @@ class DisabledExample extends React.Component {
 
 ### Select on dark background, right-aligned
 
-This select is on a dark background and is also right-aligned.
+This single select is on a dark background and is also right-aligned.
 
 ```js
 const React = require("react");
@@ -194,7 +194,7 @@ class LightRightAlignedExample extends React.Component {
     }
 
     render() {
-        return <SingleSelectMenu
+        return <SingleSelect
             items={[
                 {label: "Regular milk tea with boba", value: "regular"},
                 {label: "Wintermelon milk tea with boba", value: "wintermelon"},

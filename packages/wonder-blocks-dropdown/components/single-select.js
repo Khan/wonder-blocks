@@ -4,20 +4,20 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import DropdownCore from "./dropdown-core.js";
-import SelectBox from "./select-box.js";
-import SelectItem from "./select-item.js";
-import type {SelectItemProps} from "../util/types.js";
+import Dropdown from "./dropdown.js";
+import SelectOpener from "./select-opener.js";
+import OptionItem from "./option-item.js";
+import type {OptionItemProps} from "../util/types.js";
 
 type Props = {|
     /**
-     * The items in this menu.
+     * The items in this select.
      */
-    items: Array<SelectItemProps>,
+    items: Array<OptionItemProps>,
 
     /**
-     * Callback for when the selection of the menu changes. Parameter is the
-     * newly selected item.
+     * Callback for when the selection. Parameter is the value of the newly
+     * selected item.
      */
     onChange: (selectedValue: string) => void,
 
@@ -27,42 +27,42 @@ type Props = {|
     placeholder: string,
 
     /**
-     * Value of the currently selected item for this menu.
+     * Value of the currently selected item.
      */
     selectedValue?: string,
 
     /**
-     * Whether this menu should be left-aligned or right-aligned with the
+     * Whether this dropdown should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
     alignment: "left" | "right",
 
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean,
-
-    /**
-     * Whether this menu is disabled. A disabled menu may not be opened and
-     * does not support interaction. Defaults to false.
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
      */
     disabled: boolean,
 
     /**
-     * Optional styling to add to dropdown.
+     * Whether to display the "light" version of this component instead, for
+     * use when the component is used on a dark background.
+     */
+    light: boolean,
+
+    /**
+     * Optional styling to add.
      */
     style?: any,
 |};
 
 type State = {|
     /**
-     * Whether or not menu is open.
+     * Whether or not the dropdown is open.
      */
     open: boolean,
 |};
 
-export default class SingleSelectMenu extends React.Component<Props, State> {
+export default class SingleSelect extends React.Component<Props, State> {
     openerElement: ?Element;
 
     static defaultProps = {
@@ -115,7 +115,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         const menuText = selectedItem ? selectedItem.label : placeholder;
 
         const opener = (
-            <SelectBox
+            <SelectOpener
                 disabled={disabled}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
@@ -127,12 +127,12 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                 style={style}
             >
                 {menuText}
-            </SelectBox>
+            </SelectOpener>
         );
 
         const menuItems = items.map((item, index) => {
             return (
-                <SelectItem
+                <OptionItem
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
@@ -145,7 +145,7 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         });
 
         return (
-            <DropdownCore
+            <Dropdown
                 alignment={alignment}
                 dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}

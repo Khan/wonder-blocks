@@ -9,8 +9,8 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import ActionMenu from "./components/action-menu.js";
-import SingleSelectMenu from "./components/single-select-menu.js";
-import MultiSelectMenu from "./components/multi-select-menu.js";
+import SingleSelectMenu from "./components/single-select.js";
+import MultiSelectMenu from "./components/multi-select.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {

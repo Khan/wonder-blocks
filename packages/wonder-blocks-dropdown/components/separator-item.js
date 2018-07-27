@@ -1,5 +1,5 @@
 // @flow
-// Separator item in a menu, used to denote a semantic break in the menu.
+// Separator item in a dropdown, used to denote a semantic break.
 // Actualized as a horizontal line with surrounding whitespace. -----
 
 import * as React from "react";
