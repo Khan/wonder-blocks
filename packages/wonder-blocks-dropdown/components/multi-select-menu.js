@@ -234,6 +234,7 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         return (
             <DropdownCore
                 alignment={alignment}
+                dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}
                 light={light}
                 onOpenChanged={(open) => this.handleOpenChanged(open)}
