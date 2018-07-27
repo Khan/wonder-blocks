@@ -5,7 +5,39 @@ import * as React from "react";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import RadioCore from "./radio-core.js";
 
-import type {ChoiceComponentProps} from "../util/types.js";
+// Keep synced with ChoiceComponentProps in ../util/types.js
+type ChoiceComponentProps = {|
+    /** Whether this component is checked */
+    checked: boolean,
+
+    /** Whether this component is disabled */
+    disabled?: boolean,
+
+    /** Whether this component should show an error state */
+    error?: boolean,
+
+    /** Name for the checkbox or radio button group */
+    groupName?: string,
+
+    /**
+     * Unique identifier attached to the HTML input element. If used, need to
+     * guarantee that the ID is unique within everything rendered on a page.
+     * Used to match `<label>` with `<input>` elements for screenreaders.
+     */
+    id?: string,
+
+    /** Optional test ID for e2e testing */
+    testId?: string,
+
+    /** Optional styling for the container. Does not style the component. */
+    style?: any,
+
+    /**
+     * Callback when this component is selected. The newCheckedState is the
+     * new checked state of the component.
+     */
+    onChange: (newCheckedState: boolean) => void,
+|};
 
 /**
  * 🔘 A nicely styled radio button for all your non-AMFM radio button needs.

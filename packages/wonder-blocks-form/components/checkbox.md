@@ -26,7 +26,8 @@ const handleChanged = (checked) => console.log(`clicked on checkbox, will be che
 
 Sometimes one may wish to use a solo checkbox somewhere, like in this
 example content item. Use a `<label htmlFor={id}>` element that matches the `id`
-prop of the Checkbox for accessibility purposes.
+prop of the Checkbox for accessibility purposes. Doing this also automatically
+makes the label a click target for the checkbox.
 ```js
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");

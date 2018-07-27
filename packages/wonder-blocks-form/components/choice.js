@@ -63,13 +63,14 @@ type Props = {|
 |};
 
 /**
- * This is a 🔘 or ☑️ field item. Choice is meant to be used as children of
+ * This is a labeled 🔘 or ☑️ item. Choice is meant to be used as children of
  * CheckboxGroup and RadioGroup because many of its props are auto-populated
  * and not shown in the documentation here. See those components for usage
  * examples.
  *
  * If you wish to use just a single field, see the ChoiceField component.
- */ export default class Choice extends React.Component<Props> {
+ */
+export default class Choice extends React.Component<Props> {
     static defaultProps = {
         disabled: false,
     };

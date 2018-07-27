@@ -70,7 +70,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -130,7 +129,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -210,7 +208,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -270,7 +267,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -581,7 +577,6 @@ exports[`wonder-blocks-form example 2 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -666,7 +661,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -728,7 +722,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           "borderStyle": "solid",
           "borderWidth": 4,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -790,7 +783,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -852,7 +844,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           "borderStyle": "solid",
           "borderWidth": 4,
           "boxSizing": "border-box",
-          "cursor": "pointer",
           "height": 16,
           "margin": 0,
           "outline": "none",
@@ -1113,6 +1104,7 @@ exports[`wonder-blocks-form example 4 1`] = `
           className=""
           data-test-id="algebra-assignment-test"
           disabled={false}
+          id="assignment"
           onChange={[Function]}
           style={
             Object {
@@ -1125,7 +1117,6 @@ exports[`wonder-blocks-form example 4 1`] = `
               "borderStyle": "solid",
               "borderWidth": 1,
               "boxSizing": "border-box",
-              "cursor": "pointer",
               "height": 16,
               "margin": 0,
               "outline": "none",
@@ -1177,7 +1168,12 @@ exports[`wonder-blocks-form example 4 1`] = `
           }
         }
       >
-        Receive assignment reminders for Algebra
+        <label
+          htmlFor="assignment"
+          onClick={[Function]}
+        >
+          Receive assignment reminders for Algebra
+        </label>
       </span>
     </div>
   </div>
@@ -1378,6 +1374,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-pepperoni"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -1391,7 +1388,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -1443,7 +1439,12 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Pepperoni
+            <label
+              htmlFor="Toppings-pepperoni"
+              onClick={[Function]}
+            >
+              Pepperoni
+            </label>
           </span>
         </div>
       </div>
@@ -1549,6 +1550,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-sausage"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -1562,7 +1564,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -1614,7 +1615,12 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Sausage
+            <label
+              htmlFor="Toppings-sausage"
+              onClick={[Function]}
+            >
+              Sausage
+            </label>
           </span>
         </div>
         <span
@@ -1742,6 +1748,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-cheese"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -1755,7 +1762,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -1807,7 +1813,12 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Extra cheese
+            <label
+              htmlFor="Toppings-cheese"
+              onClick={[Function]}
+            >
+              Extra cheese
+            </label>
           </span>
         </div>
       </div>
@@ -1913,6 +1924,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-pepper"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -1926,7 +1938,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -1978,7 +1989,12 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Green pepper
+            <label
+              htmlFor="Toppings-pepper"
+              onClick={[Function]}
+            >
+              Green pepper
+            </label>
           </span>
         </div>
       </div>
@@ -2084,6 +2100,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Toppings-mushroom"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -2097,7 +2114,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2149,7 +2165,12 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Mushroom
+            <label
+              htmlFor="Toppings-mushroom"
+              onClick={[Function]}
+            >
+              Mushroom
+            </label>
           </span>
         </div>
       </div>
@@ -2255,6 +2276,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               checked={true}
               className=""
               disabled={false}
+              id="Toppings-pineapple"
               name="Toppings"
               onChange={[Function]}
               style={
@@ -2267,7 +2289,6 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2338,7 +2359,12 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
           >
-            Pineapple
+            <label
+              htmlFor="Toppings-pineapple"
+              onClick={[Function]}
+            >
+              Pineapple
+            </label>
           </span>
         </div>
         <span
@@ -2563,6 +2589,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Pokemon-bulb"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -2576,7 +2603,6 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2628,7 +2654,12 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Bulbasaur
+            <label
+              htmlFor="Pokemon-bulb"
+              onClick={[Function]}
+            >
+              Bulbasaur
+            </label>
           </span>
         </div>
       </div>
@@ -2734,6 +2765,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={true}
+              id="Pokemon-char"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -2800,7 +2832,12 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Charmander
+            <label
+              htmlFor="Pokemon-char"
+              onClick={[Function]}
+            >
+              Charmander
+            </label>
           </span>
         </div>
         <span
@@ -2928,6 +2965,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Pokemon-squirt"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -2941,7 +2979,6 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -2993,7 +3030,12 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Squirtle
+            <label
+              htmlFor="Pokemon-squirt"
+              onClick={[Function]}
+            >
+              Squirtle
+            </label>
           </span>
         </div>
       </div>
@@ -3099,6 +3141,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Pokemon-pika"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -3112,7 +3155,6 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -3164,7 +3206,12 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Pikachu
+            <label
+              htmlFor="Pokemon-pika"
+              onClick={[Function]}
+            >
+              Pikachu
+            </label>
           </span>
         </div>
       </div>
@@ -3270,6 +3317,7 @@ exports[`wonder-blocks-form example 6 1`] = `
               checked={false}
               className=""
               disabled={false}
+              id="Pokemon-infiltrator"
               name="Pokemon"
               onChange={[Function]}
               style={
@@ -3283,7 +3331,6 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 1,
                   "boxSizing": "border-box",
-                  "cursor": "pointer",
                   "height": 16,
                   "margin": 0,
                   "outline": "none",
@@ -3335,7 +3382,12 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
           >
-            Superman
+            <label
+              htmlFor="Pokemon-infiltrator"
+              onClick={[Function]}
+            >
+              Superman
+            </label>
           </span>
         </div>
       </div>

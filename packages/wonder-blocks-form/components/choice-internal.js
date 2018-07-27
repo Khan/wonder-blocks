@@ -54,12 +54,13 @@ type Props = {|
 |};
 
 /**
- * This is a 🔘 or ☑️ field item. This is an internal component that's wrapped by
- * ChoiceField or Choice. Choice should be used in a CheckboxGroup or in a
+ * This is a labeled 🔘 or ☑️ item. This is an internal component that's wrapped
+ * by ChoiceField or Choice. Choice should be used in a CheckboxGroup or in a
  * RadioGroup. ChoiceField is the variant used outside of such a group. The two
  * are different to allow for more explicit flow typing. Choice has many of its
  * props auto-populated, but ChoiceField does not.
- */ export default class ChoiceInternal extends React.Component<Props> {
+ */
+export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps = {
         checked: false,
         disabled: false,
@@ -79,15 +80,16 @@ type Props = {|
             description,
             onChange,
             style,
-            variant,
             // we don't need this to go into coreProps
             // eslint-disable-next-line no-unused-vars
             value,
+            variant,
             ...coreProps
         } = this.props;
-        const ClickableBehavior = getClickableBehavior();
+        const {checked, disabled, id} = coreProps;
 
         const ChoiceCore = this.getChoiceCoreComponent();
+        const ClickableBehavior = getClickableBehavior();
 
         return (
             <View style={style}>
@@ -96,20 +98,16 @@ type Props = {|
                     onClick={(e) => {
                         // Radio buttons cannot be unchecked and do not change
                         // if clicked on when checked
-                        if (variant === "radio" && coreProps.checked) {
+                        if (variant === "radio" && checked) {
                             return;
                         }
-                        onChange(!coreProps.checked);
+                        onChange(!checked);
                     }}
                 >
                     {(state, handlers) => {
                         return (
                             <View
-                                style={[
-                                    styles.wrapper,
-                                    state.hovered && styles.hovered,
-                                    style,
-                                ]}
+                                style={[styles.wrapper]}
                                 {...handlers}
                                 // We are resetting the tabIndex=0 from handlers
                                 // because the ChoiceCore component will receive
@@ -119,12 +117,18 @@ type Props = {|
                                 <ChoiceCore {...coreProps} {...state} />
                                 <Strut size={Spacing.xSmall} />
                                 <LabelMedium
-                                    style={
-                                        coreProps.disabled &&
-                                        styles.disabledLabel
-                                    }
+                                    style={disabled && styles.disabledLabel}
                                 >
-                                    {label}
+                                    <label
+                                        htmlFor={id}
+                                        // Browsers automatically use the for
+                                        // attribute to select the input, but
+                                        // we use ClickableBehavior to handle
+                                        // this.
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        {label}
+                                    </label>
                                 </LabelMedium>
                             </View>
                         );
@@ -153,8 +157,5 @@ const styles = StyleSheet.create({
     },
     disabledLabel: {
         color: Color.offBlack32,
-    },
-    hovered: {
-        cursor: "pointer",
     },
 });

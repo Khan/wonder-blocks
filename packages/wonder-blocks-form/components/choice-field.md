@@ -32,9 +32,10 @@ class Settings extends React.Component {
         return <View>
             <ChoiceField
                 label="Receive assignment reminders for Algebra"
-                testId="algebra-assignment-test"
                 checked={this.state.assignment}
+                id="assignment"
                 onChange={(checked) => this.handleChange("assignment", checked)}
+                testId="algebra-assignment-test"
                 variant="checkbox"
             />
         </View>;
