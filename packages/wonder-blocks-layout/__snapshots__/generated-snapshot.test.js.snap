@@ -59,7 +59,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "width": 100,
       }
     }
-    tabIndex={0}
   >
     <span
       className=""
@@ -145,7 +144,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "width": 100,
       }
     }
-    tabIndex={0}
   >
     <span
       className=""
@@ -231,7 +229,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "width": 100,
       }
     }
-    tabIndex={0}
   >
     <span
       className=""
@@ -313,7 +310,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "width": 100,
       }
     }
-    tabIndex={0}
   >
     <span
       className=""
@@ -399,7 +395,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "width": 100,
       }
     }
-    tabIndex={0}
   >
     <span
       className=""

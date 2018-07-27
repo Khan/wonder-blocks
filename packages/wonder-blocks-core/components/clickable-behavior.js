@@ -75,11 +75,11 @@ export type ClickableHandlers = {|
     onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
     onFocus: (e: SyntheticFocusEvent<*>) => void,
     onBlur: (e: SyntheticFocusEvent<*>) => void,
-    tabIndex: number,
+    tabIndex?: number,
 |};
 
 const disabledHandlers = {
-    onClick: () => void 0,
+    onClick: (e) => e.preventDefault(),
     onMouseEnter: () => void 0,
     onMouseLeave: () => void 0,
     onMouseDown: () => void 0,
@@ -300,7 +300,6 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                   onKeyUp: this.handleKeyUp,
                   onFocus: this.handleFocus,
                   onBlur: this.handleBlur,
-                  tabIndex: 0,
               };
         const {children} = this.props;
         return children && children(this.state, handlers);

@@ -58,7 +58,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         "textDecoration": "none",
       }
     }
-    tabIndex={0}
   >
     <span
       className=""
@@ -122,7 +121,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         "textDecoration": "none",
       }
     }
-    tabIndex={0}
   >
     <span
       className=""
@@ -183,7 +181,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         "textDecoration": "none",
       }
     }
-    tabIndex={0}
   >
     <span
       className=""
@@ -244,7 +241,6 @@ exports[`wonder-blocks-button example 1 1`] = `
         "textDecoration": "none",
       }
     }
-    tabIndex={0}
   >
     <span
       className=""
@@ -273,7 +269,6 @@ exports[`wonder-blocks-button example 1 1`] = `
 exports[`wonder-blocks-button example 2 1`] = `
 <a
   className=""
-  disabled={false}
   href="#button-1"
   onBlur={[Function]}
   onClick={[Function]}
@@ -308,7 +303,6 @@ exports[`wonder-blocks-button example 2 1`] = `
       "textDecoration": "none",
     }
   }
-  tabIndex={0}
 >
   <span
     className=""
@@ -354,6 +348,7 @@ exports[`wonder-blocks-button example 3 1`] = `
   }
 >
   <button
+    aria-disabled="true"
     className=""
     disabled={true}
     onBlur={[Function]}
@@ -415,8 +410,9 @@ exports[`wonder-blocks-button example 3 1`] = `
     </span>
   </button>
   <a
+    aria-disabled="true"
     className=""
-    disabled={true}
+    href="https://khanacademy.org"
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -545,7 +541,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "width": 200,
             }
           }
-          tabIndex={0}
         >
           <span
             className=""
@@ -613,7 +608,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "width": "75%",
             }
           }
-          tabIndex={0}
         >
           <span
             className=""
@@ -680,7 +674,6 @@ exports[`wonder-blocks-button example 4 1`] = `
               "textDecoration": "none",
             }
           }
-          tabIndex={0}
         >
           <span
             className=""
@@ -767,7 +760,6 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "textDecoration": "none",
               }
             }
-            tabIndex={0}
           >
             <span
               className=""
@@ -857,7 +849,6 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "width": "300px",
               }
             }
-            tabIndex={0}
           >
             <span
               className=""
@@ -972,7 +963,6 @@ exports[`wonder-blocks-button example 4 1`] = `
                 "textDecoration": "none",
               }
             }
-            tabIndex={0}
           >
             <span
               className=""
@@ -1106,7 +1096,6 @@ exports[`wonder-blocks-button example 4 1`] = `
                   "textDecoration": "none",
                 }
               }
-              tabIndex={0}
             >
               <span
                 className=""
