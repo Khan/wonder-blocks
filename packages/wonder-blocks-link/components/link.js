@@ -22,7 +22,7 @@ export type SharedProps = {|
     caret: boolean,
 
     /**
-     * Kind of Link. Note: Secondary light Links ar enot supported.
+     * Kind of Link. Note: Secondary light Links are not supported.
      */
     kind: "primary" | "secondary",
 
