@@ -1,14 +1,19 @@
 // @flow
-// ☑️ A nicely styled checkbox for all your checkbox-y needs
 
 import * as React from "react";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core.js";
 
-import type {ChoiceProps} from "../util/types.js";
+import type {ChoiceComponentProps} from "../util/types.js";
 
-export default class Checkbox extends React.Component<ChoiceProps> {
+/**
+ * ☑️ A nicely styled checkbox for all your checking needs.
+ *
+ * If you wish to use a single Checkbox for a settings-like item or as part of a
+ * group of Checkbox[es], see the ChoiceField and CheckboxGroup components.
+ */
+export default class Checkbox extends React.Component<ChoiceComponentProps> {
     static defaultProps = {
         disabled: false,
         error: false,
@@ -21,7 +26,7 @@ export default class Checkbox extends React.Component<ChoiceProps> {
         return (
             <ClickableBehavior
                 disabled={coreProps.disabled}
-                onClick={() => onChange(coreProps.checked)}
+                onClick={() => onChange(!coreProps.checked)}
             >
                 {(state, handlers) => {
                     return (

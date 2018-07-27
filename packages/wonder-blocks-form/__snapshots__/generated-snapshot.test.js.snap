@@ -22,18 +22,6 @@ exports[`wonder-blocks-form example 1 1`] = `
 >
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -52,14 +40,25 @@ exports[`wonder-blocks-form example 1 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={0}
   >
     <input
       aria-checked={false}
       checked={false}
       className=""
       disabled={false}
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -78,24 +77,12 @@ exports[`wonder-blocks-form example 1 1`] = `
           "width": 16,
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="checkbox"
     />
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -114,14 +101,25 @@ exports[`wonder-blocks-form example 1 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={0}
   >
     <input
       aria-checked={true}
       checked={true}
       className=""
       disabled={false}
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -139,7 +137,7 @@ exports[`wonder-blocks-form example 1 1`] = `
           "width": 16,
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="checkbox"
     />
     <svg
@@ -164,18 +162,6 @@ exports[`wonder-blocks-form example 1 1`] = `
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -194,14 +180,25 @@ exports[`wonder-blocks-form example 1 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={0}
   >
     <input
       aria-checked={false}
       checked={false}
       className=""
       disabled={false}
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -220,24 +217,12 @@ exports[`wonder-blocks-form example 1 1`] = `
           "width": 16,
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="checkbox"
     />
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -256,14 +241,25 @@ exports[`wonder-blocks-form example 1 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={0}
   >
     <input
       aria-checked={true}
       checked={true}
       className=""
       disabled={false}
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -281,7 +277,7 @@ exports[`wonder-blocks-form example 1 1`] = `
           "width": 16,
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="checkbox"
     />
     <svg
@@ -306,18 +302,6 @@ exports[`wonder-blocks-form example 1 1`] = `
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -336,14 +320,25 @@ exports[`wonder-blocks-form example 1 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={-1}
   >
     <input
       aria-checked={false}
       checked={false}
       className=""
       disabled={true}
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -368,18 +363,6 @@ exports[`wonder-blocks-form example 1 1`] = `
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -398,14 +381,25 @@ exports[`wonder-blocks-form example 1 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={-1}
   >
     <input
       aria-checked={true}
       checked={true}
       className=""
       disabled={true}
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -455,6 +449,157 @@ exports[`wonder-blocks-form example 2 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-evenly",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "maxWidth": 600,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <label
+      htmlFor="topic-123"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": Array [
+              "Lato",
+              "sans-serif",
+            ],
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Functions
+      </span>
+    </label>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": Array [
+            "Lato",
+            "sans-serif",
+          ],
+          "fontSize": 14,
+          "fontWeight": 400,
+          "lineHeight": "18px",
+        }
+      }
+    >
+      A great cook knows how to take basic ingredients and
+                prepare a delicious meal. In this topic, you will become function-chefs! You
+                will learn how to combine functions with arithmetic operations and how to
+                compose functions.
+    </span>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <input
+      aria-checked={false}
+      checked={false}
+      className=""
+      disabled={false}
+      id="topic-123"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "MozAppearance": "none",
+          "WebkitAppearance": "none",
+          "appearance": "none",
+          "backgroundColor": "#ffffff",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 3,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "cursor": "pointer",
+          "height": 16,
+          "margin": 0,
+          "outline": "none",
+          "width": 16,
+        }
+      }
+      tabIndex={0}
+      type="checkbox"
+    />
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-form example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -472,18 +617,6 @@ exports[`wonder-blocks-form example 2 1`] = `
 >
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -502,7 +635,6 @@ exports[`wonder-blocks-form example 2 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={0}
   >
     <input
       aria-checked={false}
@@ -510,7 +642,19 @@ exports[`wonder-blocks-form example 2 1`] = `
       className=""
       disabled={false}
       name="group"
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -529,24 +673,12 @@ exports[`wonder-blocks-form example 2 1`] = `
           "width": 16,
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="radio"
     />
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -565,7 +697,6 @@ exports[`wonder-blocks-form example 2 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={0}
   >
     <input
       aria-checked={true}
@@ -573,7 +704,19 @@ exports[`wonder-blocks-form example 2 1`] = `
       className=""
       disabled={false}
       name="group"
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -592,24 +735,12 @@ exports[`wonder-blocks-form example 2 1`] = `
           "width": 16,
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="radio"
     />
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -628,7 +759,6 @@ exports[`wonder-blocks-form example 2 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={0}
   >
     <input
       aria-checked={false}
@@ -636,7 +766,19 @@ exports[`wonder-blocks-form example 2 1`] = `
       className=""
       disabled={false}
       name="group"
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -655,24 +797,12 @@ exports[`wonder-blocks-form example 2 1`] = `
           "width": 16,
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="radio"
     />
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -691,7 +821,6 @@ exports[`wonder-blocks-form example 2 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={0}
   >
     <input
       aria-checked={true}
@@ -699,7 +828,19 @@ exports[`wonder-blocks-form example 2 1`] = `
       className=""
       disabled={false}
       name="group"
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -718,24 +859,12 @@ exports[`wonder-blocks-form example 2 1`] = `
           "width": 16,
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="radio"
     />
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -754,7 +883,6 @@ exports[`wonder-blocks-form example 2 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={-1}
   >
     <input
       aria-checked={false}
@@ -762,7 +890,19 @@ exports[`wonder-blocks-form example 2 1`] = `
       className=""
       disabled={true}
       name="group"
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -787,18 +927,6 @@ exports[`wonder-blocks-form example 2 1`] = `
   </div>
   <div
     className=""
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -817,7 +945,6 @@ exports[`wonder-blocks-form example 2 1`] = `
         "zIndex": 0,
       }
     }
-    tabIndex={-1}
   >
     <input
       aria-checked={true}
@@ -825,7 +952,19 @@ exports[`wonder-blocks-form example 2 1`] = `
       className=""
       disabled={true}
       name="group"
+      onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozAppearance": "none",
@@ -873,5 +1012,2334 @@ exports[`wonder-blocks-form example 2 1`] = `
       }
     />
   </div>
+</div>
+`;
+
+exports[`wonder-blocks-form example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+      tabIndex={-1}
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "outline": "none",
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <input
+          aria-checked={false}
+          checked={false}
+          className=""
+          data-test-id="algebra-assignment-test"
+          disabled={false}
+          onChange={[Function]}
+          style={
+            Object {
+              "MozAppearance": "none",
+              "WebkitAppearance": "none",
+              "appearance": "none",
+              "backgroundColor": "#ffffff",
+              "borderColor": "rgba(33,36,44,0.50)",
+              "borderRadius": 3,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "cursor": "pointer",
+              "height": 16,
+              "margin": 0,
+              "outline": "none",
+              "width": 16,
+            }
+          }
+          type="checkbox"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": Array [
+              "Lato",
+              "sans-serif",
+            ],
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Receive assignment reminders for Algebra
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-form example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "width": 300,
+      "zIndex": 0,
+    }
+  }
+>
+  <fieldset
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "margin": 0,
+        "padding": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <legend>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": Array [
+                "Lato",
+                "sans-serif",
+              ],
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Pizza order
+        </span>
+      </legend>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "color": "rgba(33,36,44,0.64)",
+            "display": "block",
+            "fontFamily": Array [
+              "Lato",
+              "sans-serif",
+            ],
+            "fontSize": 14,
+            "fontWeight": 400,
+            "lineHeight": "18px",
+            "marginTop": 6,
+          }
+        }
+      >
+        You may choose at most three toppings
+      </span>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Toppings"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="checkbox"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Pepperoni
+          </span>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Toppings"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="checkbox"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Sausage
+          </span>
+        </div>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "color": "rgba(33,36,44,0.64)",
+              "display": "block",
+              "fontFamily": Array [
+                "Lato",
+                "sans-serif",
+              ],
+              "fontSize": 14,
+              "fontWeight": 400,
+              "lineHeight": "18px",
+              "marginLeft": 24,
+              "marginTop": 6,
+            }
+          }
+        >
+          Imported from Italy
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Toppings"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="checkbox"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Extra cheese
+          </span>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Toppings"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="checkbox"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Green pepper
+          </span>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Toppings"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="checkbox"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Mushroom
+          </span>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={true}
+              checked={true}
+              className=""
+              disabled={false}
+              name="Toppings"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#1865f2",
+                  "borderRadius": 3,
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="checkbox"
+            />
+            <svg
+              className=""
+              height={16}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <path
+                d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+                fill="#ffffff"
+              />
+            </svg>
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Pineapple
+          </span>
+        </div>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "color": "rgba(33,36,44,0.64)",
+              "display": "block",
+              "fontFamily": Array [
+                "Lato",
+                "sans-serif",
+              ],
+              "fontSize": 14,
+              "fontWeight": 400,
+              "lineHeight": "18px",
+              "marginLeft": 24,
+              "marginTop": 6,
+            }
+          }
+        >
+          Does in fact belong on pizzas
+        </span>
+      </div>
+    </div>
+  </fieldset>
+</div>
+`;
+
+exports[`wonder-blocks-form example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "width": 300,
+      "zIndex": 0,
+    }
+  }
+>
+  <fieldset
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "margin": 0,
+        "padding": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <legend>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": Array [
+                "Lato",
+                "sans-serif",
+              ],
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Choose a starter!
+        </span>
+      </legend>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "color": "rgba(33,36,44,0.64)",
+            "display": "block",
+            "fontFamily": Array [
+              "Lato",
+              "sans-serif",
+            ],
+            "fontSize": 14,
+            "fontWeight": 400,
+            "lineHeight": "18px",
+            "marginTop": 6,
+          }
+        }
+      >
+        Your first Pokemon
+      </span>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Pokemon"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": "50%",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="radio"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Bulbasaur
+          </span>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={true}
+              name="Pokemon"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#f7f8fa",
+                  "borderColor": "rgba(33,36,44,0.16)",
+                  "borderRadius": "50%",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "auto",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="radio"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "color": "rgba(33,36,44,0.32)",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Charmander
+          </span>
+        </div>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "color": "rgba(33,36,44,0.64)",
+              "display": "block",
+              "fontFamily": Array [
+                "Lato",
+                "sans-serif",
+              ],
+              "fontSize": 14,
+              "fontWeight": 400,
+              "lineHeight": "18px",
+              "marginLeft": 24,
+              "marginTop": 6,
+            }
+          }
+        >
+          Oops, we ran out of Charmanders
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Pokemon"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": "50%",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="radio"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Squirtle
+          </span>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Pokemon"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": "50%",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="radio"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Pikachu
+          </span>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 8,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      />
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className=""
+              disabled={false}
+              name="Pokemon"
+              onChange={[Function]}
+              style={
+                Object {
+                  "MozAppearance": "none",
+                  "WebkitAppearance": "none",
+                  "appearance": "none",
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "rgba(33,36,44,0.50)",
+                  "borderRadius": "50%",
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "boxSizing": "border-box",
+                  "cursor": "pointer",
+                  "height": 16,
+                  "margin": 0,
+                  "outline": "none",
+                  "width": 16,
+                }
+              }
+              type="radio"
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Superman
+          </span>
+        </div>
+      </div>
+    </div>
+  </fieldset>
 </div>
 `;

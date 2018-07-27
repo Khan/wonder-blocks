@@ -1,5 +1,4 @@
 // @flow
-// The internal stateless ☑️ Checkbox.
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -30,6 +29,9 @@ const checkboxCheck: IconAsset = {
         "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
 };
 
+/**
+ * The internal stateless ☑️ Checkbox
+ */
 export default class CheckboxCore extends React.Component<Props> {
     render() {
         const {
@@ -65,7 +67,7 @@ export default class CheckboxCore extends React.Component<Props> {
         };
 
         return (
-            <View style={[sharedStyles.wrapper, style]} {...props}>
+            <View style={[sharedStyles.wrapper, style]}>
                 <StyledInput
                     type="checkbox"
                     aria-checked={checked}
@@ -78,7 +80,7 @@ export default class CheckboxCore extends React.Component<Props> {
                     // ClickableBehavior already
                     onChange={() => void 0}
                     style={defaultStyle}
-                    tabIndex={-1}
+                    {...props}
                 />
                 {checked && (
                     <Icon

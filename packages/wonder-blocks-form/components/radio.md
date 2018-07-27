@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const handleChanged = (checked) => console.log(`clicked on checkbox with checked=${checked.toString()}`);
+const handleChanged = (checked) => console.log(`clicked on radio, will be checked=${checked.toString()}`);
 const groupName = "group";
 
 <View style={[styles.row]}>

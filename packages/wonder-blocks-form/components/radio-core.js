@@ -1,5 +1,5 @@
 // @flow
-// The internal stateless 🔘 Radio
+
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -21,6 +21,9 @@ const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 const StyledInput = addStyle("input");
 
+/**
+ * The internal stateless 🔘 Radio button
+ */
 export default class RadioCore extends React.Component<Props> {
     render() {
         const {
@@ -56,7 +59,7 @@ export default class RadioCore extends React.Component<Props> {
         };
 
         return (
-            <View style={[sharedStyles.wrapper, style]} {...props}>
+            <View style={[sharedStyles.wrapper, style]}>
                 <StyledInput
                     type="radio"
                     aria-checked={checked}
@@ -69,7 +72,7 @@ export default class RadioCore extends React.Component<Props> {
                     // ClickableBehavior already
                     onChange={() => void 0}
                     style={defaultStyle}
-                    tabIndex={-1}
+                    {...props}
                 />
                 {disabled &&
                     checked && <View style={[sharedStyles.disabledChecked]} />}
