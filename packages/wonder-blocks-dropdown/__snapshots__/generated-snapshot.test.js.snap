@@ -359,6 +359,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
+            "color": "rgba(33,36,44,0.50)",
             "display": "block",
             "fontFamily": Array [
               "Lato",
@@ -398,6 +399,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         height={16}
         style={
           Object {
+            "color": "rgba(33,36,44,0.50)",
             "display": "inline-block",
             "minWidth": 16,
             "overflow": "hidden",
@@ -822,6 +824,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
             Object {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
+              "color": "rgba(33,36,44,0.50)",
               "display": "block",
               "fontFamily": Array [
                 "Lato",
@@ -861,6 +864,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
           height={16}
           style={
             Object {
+              "color": "rgba(33,36,44,0.50)",
               "display": "inline-block",
               "minWidth": 16,
               "overflow": "hidden",
@@ -972,6 +976,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
+            "color": "rgba(33,36,44,0.50)",
             "display": "block",
             "fontFamily": Array [
               "Lato",
@@ -1011,6 +1016,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
         height={16}
         style={
           Object {
+            "color": "rgba(33,36,44,0.50)",
             "display": "inline-block",
             "minWidth": 16,
             "overflow": "hidden",
@@ -1266,7 +1272,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "color": "rgba(33,36,44,0.32)",
+            "color": "rgba(33,36,44,0.16)",
             "display": "block",
             "fontFamily": Array [
               "Lato",
@@ -1306,7 +1312,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
         height={16}
         style={
           Object {
-            "color": "rgba(33,36,44,0.32)",
+            "color": "rgba(33,36,44,0.16)",
             "display": "inline-block",
             "minWidth": 16,
             "overflow": "hidden",

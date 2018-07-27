@@ -16,7 +16,15 @@ import {
 
 const StyledButton = addStyle("button");
 
-const {blue, white, offBlack, offBlack16, offBlack32, offBlack50} = Color;
+const {
+    blue,
+    darkBlue,
+    white,
+    offBlack,
+    offBlack16,
+    offBlack32,
+    offBlack50,
+} = Color;
 
 type SelectOpenerProps = {|
     /**
@@ -103,7 +111,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             ]}
                             {...handlers}
                         >
-                            <LabelMedium style={[textStyles]}>
+                            <LabelMedium style={textStyles}>
                                 {children}
                             </LabelMedium>
                             <View style={[styles.spacing]} />
@@ -173,29 +181,17 @@ const styles = StyleSheet.create({
 });
 
 const _generateStyles = (light, hovered, focused, pressed) => {
-    const focusRingGap = 1;
-    const focusRingWidth = 2;
-    const focusRingOutset = focusRingGap + focusRingWidth;
-    const focusRingRadius = buttonRadius + focusRingOutset;
-
     let newStyles = {};
     if (light) {
         newStyles = {
             focus: {
-                ":before": {
-                    content: "''",
-                    position: "absolute",
-                    top: -focusRingOutset,
-                    left: -focusRingOutset,
-                    right: -focusRingOutset,
-                    bottom: -focusRingOutset,
-                    borderColor: white,
-                    borderStyle: "solid",
-                    borderWidth: focusRingWidth,
-                    borderRadius: focusRingRadius,
-                },
+                boxShadow: `0 0 0 1px ${darkBlue}, 0 0 0 3px ${white}`,
             },
             active: {
+                boxShadow: `0 0 0 1px ${darkBlue}, 0 0 0 3px ${mix(
+                    fade(blue, 0.32),
+                    white,
+                )}`,
                 background: mix(fade(blue, 0.32), white),
             },
             disabled: {
@@ -211,8 +207,7 @@ const _generateStyles = (light, hovered, focused, pressed) => {
             },
             focus: {
                 borderColor: blue,
-                borderStyle: "solid",
-                borderWidth: focusRingWidth,
+                borderWidth: 2,
                 // These values are default padding (16 and 12) minus 1, because
                 // changing the borderWidth to 2 messes up the button width
                 // and causes it to move a couple pixels. This fixes that.
@@ -222,13 +217,12 @@ const _generateStyles = (light, hovered, focused, pressed) => {
             active: {
                 background: mix(fade(blue, 0.32), white),
                 borderColor: mix(offBlack32, blue),
-                borderStyle: "solid",
-                borderWidth: 1,
+                borderWidth: 2,
+                paddingLeft: 15,
+                paddingRight: 11,
             },
             disabled: {
                 borderColor: offBlack16,
-                borderStyle: "solid",
-                borderWidth: 1,
                 cursor: "auto",
             },
         };

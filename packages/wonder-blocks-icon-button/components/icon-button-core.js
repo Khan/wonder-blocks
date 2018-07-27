@@ -183,6 +183,12 @@ const _generateStyles = (color, kind, light) => {
             color: light
                 ? mix(fade(color, 0.32), white)
                 : mix(offBlack32, color),
+            borderWidth: 2,
+            borderColor: light
+                ? mix(fade(color, 0.32), white)
+                : mix(offBlack32, color),
+            borderStyle: "solid",
+            borderRadius: 4,
         },
         disabled: {
             color: light ? mix(fade(white, 0.32), color) : offBlack32,

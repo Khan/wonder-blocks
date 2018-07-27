@@ -214,6 +214,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false pressed 
       "background": "#1b50b3",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1b50b3",
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
@@ -275,7 +276,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true disabled 
   style={
     Object {
       "alignItems": "center",
-      "background": "#6296f6",
+      "background": "#b5cefb",
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
@@ -469,6 +470,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true pressed 1
       "background": "#b5cefb",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #b5cefb",
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -724,6 +726,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
       "background": "#1b50b3",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1b50b3",
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
@@ -785,7 +788,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
   style={
     Object {
       "alignItems": "center",
-      "background": "#6296f6",
+      "background": "#b5cefb",
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
@@ -979,6 +982,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
       "background": "#b5cefb",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #b5cefb",
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -1234,6 +1238,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false pres
       "background": "#9e271d",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #9e271d",
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
@@ -1295,7 +1300,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true disab
   style={
     Object {
       "alignItems": "center",
-      "background": "#e56d61",
+      "background": "#f3bbb4",
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
@@ -1489,6 +1494,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true press
       "background": "#f3bbb4",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #f3bbb4",
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -1744,6 +1750,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
       "background": "#9e271d",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #9e271d",
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
@@ -1805,7 +1812,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
   style={
     Object {
       "alignItems": "center",
-      "background": "#e56d61",
+      "background": "#f3bbb4",
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
@@ -1999,6 +2006,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
       "background": "#f3bbb4",
       "border": "none",
       "borderRadius": 4,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #f3bbb4",
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -2263,7 +2271,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false presse
       "borderColor": "#1b50b3",
       "borderRadius": 4,
       "borderStyle": "solid",
-      "borderWidth": 1,
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -2273,8 +2281,8 @@ exports[`ButtonCore kind:secondary color:default size:default light:false presse
       "margin": 0,
       "outline": "none",
       "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
+      "paddingLeft": 15,
+      "paddingRight": 15,
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
@@ -2327,13 +2335,18 @@ exports[`ButtonCore kind:secondary color:default size:default light:true disable
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#6296f6",
+      "borderColor": "#b5cefb",
       "borderRadius": 4,
       "borderStyle": "solid",
       "borderWidth": 1,
       "boxSizing": "border-box",
+<<<<<<< HEAD
       "color": "#6296f6",
       "cursor": "default",
+=======
+      "color": "#b5cefb",
+      "cursor": "auto",
+>>>>>>> Update clickable components to retain focus ring in active state
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -2528,7 +2541,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true pressed
       "borderColor": "#b5cefb",
       "borderRadius": 4,
       "borderStyle": "solid",
-      "borderWidth": 1,
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
@@ -2538,8 +2551,8 @@ exports[`ButtonCore kind:secondary color:default size:default light:true pressed
       "margin": 0,
       "outline": "none",
       "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
+      "paddingLeft": 15,
+      "paddingRight": 15,
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
@@ -2793,7 +2806,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
       "borderColor": "#1b50b3",
       "borderRadius": 4,
       "borderStyle": "solid",
-      "borderWidth": 1,
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -2803,8 +2816,8 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
       "margin": 0,
       "outline": "none",
       "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
+      "paddingLeft": 15,
+      "paddingRight": 15,
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
@@ -2857,13 +2870,18 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#6296f6",
+      "borderColor": "#b5cefb",
       "borderRadius": 4,
       "borderStyle": "solid",
       "borderWidth": 1,
       "boxSizing": "border-box",
+<<<<<<< HEAD
       "color": "#6296f6",
       "cursor": "default",
+=======
+      "color": "#b5cefb",
+      "cursor": "auto",
+>>>>>>> Update clickable components to retain focus ring in active state
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -3058,7 +3076,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
       "borderColor": "#b5cefb",
       "borderRadius": 4,
       "borderStyle": "solid",
-      "borderWidth": 1,
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
@@ -3068,8 +3086,8 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
       "margin": 0,
       "outline": "none",
       "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
+      "paddingLeft": 15,
+      "paddingRight": 15,
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
@@ -3323,7 +3341,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false pr
       "borderColor": "#9e271d",
       "borderRadius": 4,
       "borderStyle": "solid",
-      "borderWidth": 1,
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -3333,8 +3351,8 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false pr
       "margin": 0,
       "outline": "none",
       "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
+      "paddingLeft": 15,
+      "paddingRight": 15,
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
@@ -3387,13 +3405,18 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true dis
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#e56d61",
+      "borderColor": "#f3bbb4",
       "borderRadius": 4,
       "borderStyle": "solid",
       "borderWidth": 1,
       "boxSizing": "border-box",
+<<<<<<< HEAD
       "color": "#e56d61",
       "cursor": "default",
+=======
+      "color": "#f3bbb4",
+      "cursor": "auto",
+>>>>>>> Update clickable components to retain focus ring in active state
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -3588,7 +3611,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true pre
       "borderColor": "#f3bbb4",
       "borderRadius": 4,
       "borderStyle": "solid",
-      "borderWidth": 1,
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
@@ -3598,8 +3621,8 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true pre
       "margin": 0,
       "outline": "none",
       "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
+      "paddingLeft": 15,
+      "paddingRight": 15,
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
@@ -3853,7 +3876,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
       "borderColor": "#9e271d",
       "borderRadius": 4,
       "borderStyle": "solid",
-      "borderWidth": 1,
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -3863,8 +3886,8 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
       "margin": 0,
       "outline": "none",
       "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
+      "paddingLeft": 15,
+      "paddingRight": 15,
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
@@ -3917,13 +3940,18 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#e56d61",
+      "borderColor": "#f3bbb4",
       "borderRadius": 4,
       "borderStyle": "solid",
       "borderWidth": 1,
       "boxSizing": "border-box",
+<<<<<<< HEAD
       "color": "#e56d61",
       "cursor": "default",
+=======
+      "color": "#f3bbb4",
+      "cursor": "auto",
+>>>>>>> Update clickable components to retain focus ring in active state
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -4118,7 +4146,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
       "borderColor": "#f3bbb4",
       "borderRadius": 4,
       "borderStyle": "solid",
-      "borderWidth": 1,
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
@@ -4128,8 +4156,8 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
       "margin": 0,
       "outline": "none",
       "paddingBottom": 0,
-      "paddingLeft": 16,
-      "paddingRight": 16,
+      "paddingLeft": 15,
+      "paddingRight": 15,
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
@@ -4386,6 +4414,15 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false pressed
   onTouchStart={[Function]}
   style={
     Object {
+      ":after": Object {
+        "background": "#1b50b3",
+        "borderRadius": 2,
+        "bottom": "calc(50% - 11px)",
+        "content": "''",
+        "height": 2,
+        "position": "absolute",
+        "width": "calc(100% - 8px)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4455,8 +4492,13 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true disabled
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
+<<<<<<< HEAD
       "color": "#6296f6",
       "cursor": "default",
+=======
+      "color": "#b5cefb",
+      "cursor": "auto",
+>>>>>>> Update clickable components to retain focus ring in active state
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -4657,6 +4699,15 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true pressed 
   onTouchStart={[Function]}
   style={
     Object {
+      ":after": Object {
+        "background": "#b5cefb",
+        "borderRadius": 2,
+        "bottom": "calc(50% - 11px)",
+        "content": "''",
+        "height": 2,
+        "position": "absolute",
+        "width": "calc(100% - 8px)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4928,6 +4979,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
   onTouchStart={[Function]}
   style={
     Object {
+      ":after": Object {
+        "background": "#1b50b3",
+        "borderRadius": 2,
+        "bottom": "calc(50% - 11px)",
+        "content": "''",
+        "height": 2,
+        "position": "absolute",
+        "width": "calc(100% - 8px)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4997,8 +5057,13 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
+<<<<<<< HEAD
       "color": "#6296f6",
       "cursor": "default",
+=======
+      "color": "#b5cefb",
+      "cursor": "auto",
+>>>>>>> Update clickable components to retain focus ring in active state
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -5199,6 +5264,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
   onTouchStart={[Function]}
   style={
     Object {
+      ":after": Object {
+        "background": "#b5cefb",
+        "borderRadius": 2,
+        "bottom": "calc(50% - 11px)",
+        "content": "''",
+        "height": 2,
+        "position": "absolute",
+        "width": "calc(100% - 8px)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -5470,6 +5544,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false pre
   onTouchStart={[Function]}
   style={
     Object {
+      ":after": Object {
+        "background": "#9e271d",
+        "borderRadius": 2,
+        "bottom": "calc(50% - 11px)",
+        "content": "''",
+        "height": 2,
+        "position": "absolute",
+        "width": "calc(100% - 8px)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -5539,8 +5622,13 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true disa
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
+<<<<<<< HEAD
       "color": "#e56d61",
       "cursor": "default",
+=======
+      "color": "#f3bbb4",
+      "cursor": "auto",
+>>>>>>> Update clickable components to retain focus ring in active state
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -5741,6 +5829,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true pres
   onTouchStart={[Function]}
   style={
     Object {
+      ":after": Object {
+        "background": "#f3bbb4",
+        "borderRadius": 2,
+        "bottom": "calc(50% - 11px)",
+        "content": "''",
+        "height": 2,
+        "position": "absolute",
+        "width": "calc(100% - 8px)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -6012,6 +6109,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
   onTouchStart={[Function]}
   style={
     Object {
+      ":after": Object {
+        "background": "#9e271d",
+        "borderRadius": 2,
+        "bottom": "calc(50% - 11px)",
+        "content": "''",
+        "height": 2,
+        "position": "absolute",
+        "width": "calc(100% - 8px)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -6081,8 +6187,13 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
+<<<<<<< HEAD
       "color": "#e56d61",
       "cursor": "default",
+=======
+      "color": "#f3bbb4",
+      "cursor": "auto",
+>>>>>>> Update clickable components to retain focus ring in active state
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -6283,6 +6394,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
   onTouchStart={[Function]}
   style={
     Object {
+      ":after": Object {
+        "background": "#f3bbb4",
+        "borderRadius": 2,
+        "bottom": "calc(50% - 11px)",
+        "content": "''",
+        "height": 2,
+        "position": "absolute",
+        "width": "calc(100% - 8px)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",

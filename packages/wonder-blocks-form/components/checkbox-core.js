@@ -171,6 +171,7 @@ const _generateStyles = (checked, error) => {
                 boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
             },
             active: {
+                boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.active}`,
                 background: palette.active,
             },
         };
@@ -188,6 +189,7 @@ const _generateStyles = (checked, error) => {
             active: {
                 backgroundColor: palette.faded,
                 borderColor: error ? activeRed : blue,
+                borderWidth: 2,
             },
         };
     }

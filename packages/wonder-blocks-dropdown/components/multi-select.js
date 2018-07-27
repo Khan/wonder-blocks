@@ -208,7 +208,7 @@ export default class MultiSelect extends React.Component<Props, State> {
     }
 
     render() {
-        const {alignment, disabled, light, style} = this.props;
+        const {alignment, disabled, light, placeholder, style} = this.props;
 
         const {open} = this.state;
 
@@ -217,6 +217,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         const opener = (
             <SelectOpener
                 disabled={disabled}
+                isPlaceholder={menuText === placeholder}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
                 ref={(node) =>

@@ -147,6 +147,8 @@ const _generateStyles = (color, kind, light) => {
     }
 
     const {white, white64, offBlack32, offBlack50, darkBlue} = Color;
+    const fadedColor = mix(fade(color, 0.32), white);
+    const activeColor = mix(offBlack32, color);
 
     let newStyles = {};
     if (kind === "primary") {
@@ -165,15 +167,14 @@ const _generateStyles = (color, kind, light) => {
                 }`,
             },
             active: {
-                background: light
-                    ? mix(fade(color, 0.32), white)
-                    : mix(offBlack32, color),
-                color: light
-                    ? mix(offBlack32, color)
-                    : mix(fade(color, 0.32), white),
+                boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 3px ${
+                    light ? fadedColor : activeColor
+                }`,
+                background: light ? fadedColor : activeColor,
+                color: light ? activeColor : fadedColor,
             },
             disabled: {
-                background: light ? mix(fade(white, 0.32), color) : offBlack32,
+                background: light ? fadedColor : offBlack32,
                 color: light ? color : white64,
                 cursor: "default",
             },
@@ -195,19 +196,16 @@ const _generateStyles = (color, kind, light) => {
                 paddingRight: 15,
             },
             active: {
-                background: light
-                    ? mix(offBlack32, color)
-                    : mix(fade(color, 0.32), white),
-                color: light
-                    ? mix(fade(color, 0.32), white)
-                    : mix(offBlack32, color),
-                borderColor: light
-                    ? mix(fade(color, 0.32), white)
-                    : mix(offBlack32, color),
+                background: light ? activeColor : fadedColor,
+                color: light ? fadedColor : activeColor,
+                borderColor: light ? fadedColor : activeColor,
+                borderWidth: 2,
+                paddingLeft: 15,
+                paddingRight: 15,
             },
             disabled: {
-                color: light ? mix(fade(white, 0.32), color) : offBlack32,
-                borderColor: light ? mix(fade(white, 0.32), color) : offBlack32,
+                color: light ? fadedColor : offBlack32,
+                borderColor: light ? fadedColor : offBlack32,
                 cursor: "default",
             },
         };
@@ -231,12 +229,19 @@ const _generateStyles = (color, kind, light) => {
                 },
             },
             active: {
-                color: light
-                    ? mix(fade(color, 0.32), white)
-                    : mix(offBlack32, color),
+                color: light ? fadedColor : activeColor,
+                ":after": {
+                    content: "''",
+                    position: "absolute",
+                    height: 2,
+                    width: "calc(100% - 8px)",
+                    bottom: "calc(50% - 11px)",
+                    background: light ? fadedColor : activeColor,
+                    borderRadius: 2,
+                },
             },
             disabled: {
-                color: light ? mix(fade(white, 0.32), color) : offBlack32,
+                color: light ? fadedColor : offBlack32,
                 cursor: "default",
             },
         };
