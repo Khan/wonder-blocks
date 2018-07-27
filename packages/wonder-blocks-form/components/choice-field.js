@@ -46,6 +46,13 @@ type Props = {|
      * @ignore
      */
     value?: string,
+
+    /**
+     * Ignored prop because we're only allowing checkbox variants of ChoiceField
+     * for now.
+     * @ignore
+     */
+    variant: "radio" | "checkbox",
 |};
 
 /**
@@ -66,9 +73,10 @@ export default class ChoiceField extends React.Component<Props> {
     static defaultProps = {
         disabled: false,
         error: false,
+        variant: "checkbox",
     };
 
     render() {
-        return <ChoiceInternal variant="checkbox" {...this.props} />;
+        return <ChoiceInternal {...this.props} />;
     }
 }

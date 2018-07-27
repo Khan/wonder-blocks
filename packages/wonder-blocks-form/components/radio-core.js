@@ -23,7 +23,8 @@ const StyledInput = addStyle("input");
 
 /**
  * The internal stateless 🔘 Radio button
- */ export default class RadioCore extends React.Component<Props> {
+ */
+export default class RadioCore extends React.Component<Props> {
     render() {
         const {
             checked,
