@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
+        textAlign: "left",
     },
 
     // hover and focus states

@@ -3,14 +3,14 @@
 // items to be selected.
 
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import ReactDOM from "react-dom";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
 import SeparatorItem from "./separator-item.js";
-import type {SelectItemProps} from "../utils/types.js";
+import type {SelectItemProps} from "../util/types.js";
 
 type Props = {|
     /**
@@ -79,6 +79,8 @@ type State = {|
 |};
 
 export default class MultiSelectMenu extends React.Component<Props, State> {
+    openerElement: ?Element;
+
     static defaultProps = {
         alignment: "left",
         disabled: false,
@@ -216,6 +218,11 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
                 disabled={disabled}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
+                ref={(node) =>
+                    (this.openerElement = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
                 style={style}
             >
                 {menuText}
@@ -227,22 +234,15 @@ export default class MultiSelectMenu extends React.Component<Props, State> {
         return (
             <DropdownCore
                 alignment={alignment}
+                dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}
                 light={light}
                 onOpenChanged={(open) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
-                style={[styles.menuTopSpace, style]}
+                openerElement={this.openerElement}
+                style={style}
             />
         );
     }
 }
-
-const styles = StyleSheet.create({
-    // This is to add extra space on top of the menu options to separate the
-    // options from the opener component. The opener (select box) has a height
-    // of 40, and there is a space of 8 between the opener and top of the menu.
-    menuTopSpace: {
-        top: 48,
-    },
-});

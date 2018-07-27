@@ -2,6 +2,7 @@
 // A menu that consists of action items
 
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -16,7 +17,7 @@ import type {
     ActionItemProps,
     SelectItemProps,
     SeparatorProps,
-} from "../utils/types.js";
+} from "../util/types.js";
 
 type OpenerProps = {|
     /**
@@ -119,6 +120,8 @@ type State = {|
 |};
 
 export default class ActionMenu extends React.Component<MenuProps, State> {
+    openerElement: ?Element;
+
     static defaultProps = {
         alignment: "left",
         disabled: false,
@@ -175,6 +178,11 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             <ActionMenuOpener
                 disabled={disabled}
                 onClick={() => this.handleOpenChanged(!open)}
+                ref={(node) =>
+                    (this.openerElement = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
                 style={style}
             >
                 {menuText}
@@ -231,6 +239,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 onOpenChanged={(open) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
+                openerElement={this.openerElement}
                 style={[styles.menuTopSpace, style]}
             />
         );
@@ -251,6 +260,6 @@ const styles = StyleSheet.create({
 
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
-        top: 36,
+        top: -4,
     },
 });

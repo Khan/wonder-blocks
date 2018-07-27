@@ -2,12 +2,12 @@
 // A menu that consists of items to be selected, single-choice
 
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import ReactDOM from "react-dom";
 
 import DropdownCore from "./dropdown-core.js";
 import SelectBox from "./select-box.js";
 import SelectItem from "./select-item.js";
-import type {SelectItemProps} from "../utils/types.js";
+import type {SelectItemProps} from "../util/types.js";
 
 type Props = {|
     /**
@@ -63,6 +63,8 @@ type State = {|
 |};
 
 export default class SingleSelectMenu extends React.Component<Props, State> {
+    openerElement: ?Element;
+
     static defaultProps = {
         alignment: "left",
         disabled: false,
@@ -117,6 +119,11 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
                 disabled={disabled}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
+                ref={(node) =>
+                    (this.openerElement = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
                 style={style}
             >
                 {menuText}
@@ -140,21 +147,15 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         return (
             <DropdownCore
                 alignment={alignment}
+                dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}
                 light={light}
                 onOpenChanged={(open, source) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
-                style={[styles.menuSpacer, style]}
+                openerElement={this.openerElement}
+                style={style}
             />
         );
     }
 }
-
-const styles = StyleSheet.create({
-    // This is to add extra space on top of the menu options to separate the
-    // options from the opener component.
-    menuSpacer: {
-        top: 48,
-    },
-});
