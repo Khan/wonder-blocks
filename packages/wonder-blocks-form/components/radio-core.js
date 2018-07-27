@@ -4,14 +4,12 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {ChoiceCoreProps} from "../util/types.js";
 
 type Props = {|
     ...ChoiceCoreProps,
-    ...ClickableHandlers,
     hovered: boolean,
     focused: boolean,
     pressed: boolean,
@@ -32,11 +30,9 @@ const StyledInput = addStyle("input");
             groupName,
             id,
             testId,
-            style,
             hovered,
             focused,
             pressed,
-            ...handlers
         } = this.props;
 
         const stateStyles = _generateStyles(checked, error);
@@ -54,11 +50,10 @@ const StyledInput = addStyle("input");
 
         const props = {
             "data-test-id": testId,
-            ...handlers,
         };
 
         return (
-            <View style={[sharedStyles.wrapper, style]}>
+            <React.Fragment>
                 <StyledInput
                     type="radio"
                     aria-checked={checked}
@@ -73,18 +68,25 @@ const StyledInput = addStyle("input");
                     style={defaultStyle}
                     {...props}
                 />
-                {disabled &&
-                    checked && <View style={[sharedStyles.disabledChecked]} />}
-            </View>
+                {disabled && checked && <span style={disabledChecked} />}
+            </React.Fragment>
         );
     }
 }
-const size = 16;
+const size = 16; // circle with a different color. Here, we add that center circle.
+
+// If the checkbox is disabled and selected, it has a border but also an inner
+const disabledChecked = {
+    position: "absolute",
+    top: size / 4,
+    left: size / 4,
+    height: size / 2,
+    width: size / 2,
+    borderRadius: "50%",
+    backgroundColor: offBlack32,
+};
 
 const sharedStyles = StyleSheet.create({
-    wrapper: {
-        outline: "none",
-    },
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -94,6 +96,8 @@ const sharedStyles = StyleSheet.create({
     default: {
         height: size,
         width: size,
+        minHeight: size,
+        minWidth: size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",
@@ -106,18 +110,6 @@ const sharedStyles = StyleSheet.create({
         backgroundColor: offWhite,
         borderColor: offBlack16,
         borderWidth: 1,
-    },
-    // If the checkbox is disabled and selected, it has a border but also an
-    // inner circle with a different color. Here, we add an element for that
-    // specific center circle.
-    disabledChecked: {
-        position: "absolute",
-        top: size / 4,
-        left: size / 4,
-        height: size / 2,
-        width: size / 2,
-        borderRadius: "50%",
-        backgroundColor: offBlack32,
     },
 });
 

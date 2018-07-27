@@ -2,22 +2,40 @@
 
 import * as React from "react";
 
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
-import RadioCore from "./radio-core.js";
+import ChoiceInternal from "./choice-internal.js";
 
 // Keep synced with ChoiceComponentProps in ../util/types.js
 type ChoiceComponentProps = {|
-    /** Whether this component is checked */
+    /**
+     * Whether this component is checked
+     */
     checked: boolean,
 
-    /** Whether this component is disabled */
-    disabled?: boolean,
+    /**
+     * Whether this component is disabled
+     */
+    disabled: boolean,
 
-    /** Whether this component should show an error state */
-    error?: boolean,
+    /**
+     * Whether this component should show an error state
+     */
+    error: boolean,
 
-    /** Name for the checkbox or radio button group */
-    groupName?: string,
+    /**
+     * Callback when this component is selected. The newCheckedState is the
+     * new checked state of the component.
+     */
+    onChange: (newCheckedState: boolean) => void,
+
+    /**
+     * Optional label for the field.
+     */
+    label?: string,
+
+    /**
+     * Optional description for the field.
+     */
+    description?: string,
 
     /**
      * Unique identifier attached to the HTML input element. If used, need to
@@ -26,21 +44,27 @@ type ChoiceComponentProps = {|
      */
     id?: string,
 
-    /** Optional test ID for e2e testing */
-    testId?: string,
-
-    /** Optional styling for the container. Does not style the component. */
+    /**
+     * Optional styling for the container. Does not style the component.
+     */
     style?: any,
 
     /**
-     * Callback when this component is selected. The newCheckedState is the
-     * new checked state of the component.
+     * Optional test ID for e2e testing
      */
-    onChange: (newCheckedState: boolean) => void,
+    testId?: string,
+
+    /**
+     * Name for the checkbox or radio button group. Only applicable for group
+     * contexts, auto-populated by group components via Choice.
+     * @ignore
+     */
+    groupName?: string,
 |};
 
 /**
- * 🔘 A nicely styled radio button for all your non-AMFM radio button needs.
+ * 🔘 A nicely styled radio button for all your non-AMFM radio button needs. Can
+ * optionally take label and description props.
  *
  * This component should not really be used by itself because radio buttons are
  * often grouped together. See RadioGroup.
@@ -52,26 +76,6 @@ export default class Radio extends React.Component<ChoiceComponentProps> {
     };
 
     render() {
-        const {onChange, ...coreProps} = this.props;
-        const ClickableBehavior = getClickableBehavior();
-
-        return (
-            <ClickableBehavior
-                disabled={coreProps.disabled}
-                onClick={() => {
-                    // Radio buttons cannot be unchecked and therefore only
-                    // call onChange if they were not originally checked
-                    if (!coreProps.checked) {
-                        onChange(!coreProps.checked);
-                    }
-                }}
-            >
-                {(state, handlers) => {
-                    return (
-                        <RadioCore {...coreProps} {...state} {...handlers} />
-                    );
-                }}
-            </ClickableBehavior>
-        );
+        return <ChoiceInternal variant="radio" {...this.props} />;
     }
 }

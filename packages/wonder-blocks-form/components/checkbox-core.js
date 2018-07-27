@@ -4,17 +4,15 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import type {ChoiceCoreProps} from "../util/types.js";
 
 type Props = {|
     ...ChoiceCoreProps,
-    ...ClickableHandlers,
     hovered: boolean,
     focused: boolean,
     pressed: boolean,
@@ -41,11 +39,9 @@ export default class CheckboxCore extends React.Component<Props> {
             groupName,
             id,
             testId,
-            style,
             hovered,
             focused,
             pressed,
-            ...handlers
         } = this.props;
 
         const stateStyles = _generateStyles(checked, error);
@@ -63,11 +59,10 @@ export default class CheckboxCore extends React.Component<Props> {
 
         const props = {
             "data-test-id": testId,
-            ...handlers,
         };
 
         return (
-            <View style={[sharedStyles.wrapper, style]}>
+            <React.Fragment>
                 <StyledInput
                     type="checkbox"
                     aria-checked={checked}
@@ -90,16 +85,14 @@ export default class CheckboxCore extends React.Component<Props> {
                         style={sharedStyles.checkIcon}
                     />
                 )}
-            </View>
+            </React.Fragment>
         );
     }
 }
 
-const sharedStyles = StyleSheet.create({
-    wrapper: {
-        outline: "none",
-    },
+const size = 16;
 
+const sharedStyles = StyleSheet.create({
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -108,8 +101,10 @@ const sharedStyles = StyleSheet.create({
     },
 
     default: {
-        height: 16,
-        width: 16,
+        height: size,
+        width: size,
+        minHeight: size,
+        minWidth: size,
         margin: 0,
         outline: "none",
         boxSizing: "border-box",

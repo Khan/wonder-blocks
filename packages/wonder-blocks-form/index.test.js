@@ -14,7 +14,6 @@ describe("@khanacademy/wonder-blocks-form", () => {
                 "Checkbox",
                 "CheckboxGroup",
                 "Choice",
-                "ChoiceField",
                 "Radio",
                 "RadioGroup",
             ].sort(),
