@@ -49,6 +49,12 @@ type Props = {|
      * The main title rendered in larger bold text.
      */
     title?: string,
+
+    /**
+     * An optional id to provide a selector for the title element. Uses
+     * "wb-toolbar-title" as a default if titleId is not specified.
+     */
+    titleId?: string,
 |};
 
 export default class Toolbar extends React.Component<Props> {
@@ -80,6 +86,7 @@ export default class Toolbar extends React.Component<Props> {
             size,
             subtitle,
             title,
+            titleId,
         } = this.props;
 
         const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
@@ -107,7 +114,7 @@ export default class Toolbar extends React.Component<Props> {
                                 sharedStyles.center,
                             ]}
                         >
-                            <TitleComponent id="wb-toolbar-title">
+                            <TitleComponent id={titleId || "wb-toolbar-title"}>
                                 {title}
                             </TitleComponent>
                             {subtitle && (
