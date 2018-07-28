@@ -7,10 +7,10 @@ import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
-import type {ChoiceProps} from "../util/types.js";
+import type {ChoiceCoreProps} from "../util/types.js";
 
 type Props = {|
-    ...ChoiceProps,
+    ...ChoiceCoreProps,
     ...ClickableHandlers,
     hovered: boolean,
     focused: boolean,
@@ -23,8 +23,7 @@ const StyledInput = addStyle("input");
 
 /**
  * The internal stateless 🔘 Radio button
- */
-export default class RadioCore extends React.Component<Props> {
+ */ export default class RadioCore extends React.Component<Props> {
     render() {
         const {
             checked,
@@ -144,7 +143,7 @@ const styles = {};
 
 const _generateStyles = (checked, error) => {
     // "hash" the parameters
-    const styleKey = `${checked}-${error}`;
+    const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
         return styles[styleKey];
     }

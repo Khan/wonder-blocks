@@ -1,3 +1,4 @@
+// @flow
 // NOTE(sophie): Unfortunately, styleguidist does not pull prop definitions
 // from imported types. We've duplicated the shared props for each component
 // they apply to, so that the prop definitions will show up on the generated

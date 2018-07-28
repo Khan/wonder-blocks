@@ -153,7 +153,7 @@ const styles = {};
 
 const _generateStyles = (checked, error) => {
     // "hash" the parameters
-    const styleKey = `${checked}-${error}`;
+    const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
         return styles[styleKey];
     }

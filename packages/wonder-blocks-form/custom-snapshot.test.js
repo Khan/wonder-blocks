@@ -9,6 +9,21 @@ const states = ["default", "error", "disabled"];
 const clickableStates = ["default", "hovered", "pressed"];
 const checkedStates = [false, true];
 
+const defaultHandlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onFocus: () => void 0,
+    onBlur: () => void 0,
+};
+
 describe("CheckboxCore", () => {
     states.forEach((state) => {
         clickableStates.forEach((clickableState) => {
@@ -24,6 +39,8 @@ describe("CheckboxCore", () => {
                                 error={state === "error"}
                                 hovered={clickableState === "hovered"}
                                 pressed={clickableState === "pressed"}
+                                focused={clickableState === "focused"}
+                                {...defaultHandlers}
                             />,
                         )
                         .toJSON();
@@ -49,6 +66,8 @@ describe("RadioCore", () => {
                                 error={state === "error"}
                                 hovered={clickableState === "hovered"}
                                 pressed={clickableState === "pressed"}
+                                focused={clickableState === "focused"}
+                                {...defaultHandlers}
                             />,
                         )
                         .toJSON();
