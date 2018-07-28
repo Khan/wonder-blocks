@@ -181,6 +181,7 @@ const _generateStyles = (light, hovered, focused, pressed) => {
     let newStyles = {};
     if (light) {
         newStyles = {
+            default: {},
             focus: {
                 ":before": {
                     content: "''",
