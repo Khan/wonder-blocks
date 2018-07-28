@@ -107,12 +107,6 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@khanacademy/wonder-blocks-spacing@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-blocks-spacing/-/wonder-blocks-spacing-1.0.0.tgz#616078db6f40d81a405b089b4abd0cfb5de4dcf5"
-  dependencies:
-    "@khanacademy/wonder-blocks-core" "^1.0.1"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
