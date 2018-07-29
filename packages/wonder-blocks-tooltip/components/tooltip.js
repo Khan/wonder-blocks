@@ -105,11 +105,11 @@ export default class Tooltip extends React.Component<Props, State> {
 
     state = {anchorElement: null};
 
-    _updateAnchorElement(ref: ?Element) {
+    _updateAnchorElement = (ref: ?Element) => {
         if (ref && ref !== this.state.anchorElement) {
             this.setState({anchorElement: ((ref: any): HTMLElement)});
         }
-    }
+    };
 
     _renderAnchorElement(ids?: IIdentifierFactory) {
         // We need to make sure we can anchor on our content.
@@ -179,7 +179,7 @@ export default class Tooltip extends React.Component<Props, State> {
         return (
             <TooltipAnchor
                 forceAnchorFocusivity={forceAnchorFocusivity}
-                anchorRef={(r) => this._updateAnchorElement(r)}
+                anchorRef={this._updateAnchorElement}
             >
                 {(active) => (
                     <TooltipPortalMounter

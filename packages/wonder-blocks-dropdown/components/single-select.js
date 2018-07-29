@@ -79,13 +79,17 @@ export default class SingleSelect extends React.Component<Props, State> {
         };
     }
 
-    handleOpenChanged(open: boolean) {
+    handleOpenChanged = (open: boolean, source: any) => {
         this.setState({
             open: open,
         });
-    }
+    };
 
-    handleSelected(selectedValue: string) {
+    handleOpenerClick = () => {
+        this.handleOpenChanged(!this.state.open);
+    };
+
+    handleSelected = (selectedValue: string, state: any) => {
         this.setState({
             open: false, // close the menu upon selection
         });
@@ -94,7 +98,11 @@ export default class SingleSelect extends React.Component<Props, State> {
         if (selectedValue !== this.props.selectedValue) {
             this.props.onChange(selectedValue);
         }
-    }
+    };
+
+    getOpenerRef = (node: any) => {
+        this.openerElement = ((ReactDOM.findDOMNode(node): any): Element);
+    };
 
     render() {
         const {
@@ -118,12 +126,8 @@ export default class SingleSelect extends React.Component<Props, State> {
             <SelectOpener
                 disabled={disabled}
                 light={light}
-                onClick={() => this.handleOpenChanged(!open)}
-                ref={(node) =>
-                    (this.openerElement = ((ReactDOM.findDOMNode(
-                        node,
-                    ): any): Element))
-                }
+                onClick={this.handleOpenerClick}
+                ref={this.getOpenerRef}
                 style={style}
             >
                 {menuText}
@@ -136,7 +140,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
-                    onToggle={(value, state) => this.handleSelected(value)}
+                    onToggle={this.handleSelected}
                     selected={selectedValue === item.value}
                     value={item.value}
                     variant="check"
@@ -150,7 +154,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}
                 light={light}
-                onOpenChanged={(open, source) => this.handleOpenChanged(open)}
+                onOpenChanged={this.handleOpenChanged}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}

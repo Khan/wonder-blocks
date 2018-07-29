@@ -51,14 +51,20 @@ export default class Checkbox extends React.Component<ChoiceComponentProps> {
         error: false,
     };
 
+    handleClick = () => {
+        const {checked, onChange} = this.props;
+        onChange(!checked);
+    };
+
     render() {
+        /* eslint-disable-next-line no-unused-vars */
         const {onChange, ...coreProps} = this.props;
         const ClickableBehavior = getClickableBehavior();
 
         return (
             <ClickableBehavior
                 disabled={coreProps.disabled}
-                onClick={() => onChange(!coreProps.checked)}
+                onClick={this.handleClick}
             >
                 {(state, handlers) => {
                     return (

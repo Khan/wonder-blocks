@@ -29,6 +29,8 @@ const checkboxCheck: IconAsset = {
         "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
 };
 
+const noop = () => void 0;
+
 /**
  * The internal stateless ☑️ Checkbox
  */
@@ -78,7 +80,7 @@ export default class CheckboxCore extends React.Component<Props> {
                     // Need to specify because this is a controlled React
                     // form component, but we handle the click via
                     // ClickableBehavior already
-                    onChange={() => void 0}
+                    onChange={noop}
                     style={defaultStyle}
                     {...props}
                 />

@@ -5,6 +5,8 @@ import {shallow, mount} from "enzyme";
 import ModalBackdrop from "./modal-backdrop.js";
 import StandardModal from "./standard-modal.js";
 
+const noop = () => {};
+
 const exampleModal = (
     <StandardModal
         content={<div data-modal-content />}
@@ -170,7 +172,7 @@ describe("ModalBackdrop", () => {
 
     test("On mount, we focus the last button in the modal", () => {
         const wrapper = mount(
-            <ModalBackdrop onCloseModal={() => {}}>
+            <ModalBackdrop onCloseModal={noop}>
                 <div>
                     <button />
                     <button />
@@ -191,7 +193,7 @@ describe("ModalBackdrop", () => {
         const wrapper = mount(
             <div>
                 <button data-button-id="A" />
-                <ModalBackdrop onCloseModal={() => {}}>
+                <ModalBackdrop onCloseModal={noop}>
                     <div>
                         <button data-button-id="1" />
                         <button data-button-id="2" />

@@ -8,6 +8,8 @@ import {icons} from "@khanacademy/wonder-blocks-icon";
 
 import IconButton from "./icon-button.js";
 
+const noop = () => void 0;
+
 describe("IconButton", () => {
     beforeEach(() => {
         unmountAll();
@@ -18,7 +20,7 @@ describe("IconButton", () => {
             <IconButton
                 icon={icons.search}
                 aria-label="search"
-                onClick={() => done()}
+                onClick={done}
             />,
         );
         wrapper.simulate("click");
@@ -32,7 +34,7 @@ describe("IconButton", () => {
                     aria-label="search"
                     kind="secondary"
                     light={true}
-                    onClick={() => void 0}
+                    onClick={noop}
                 />,
             ),
         ).toThrowError("Light is only supported for primary IconButtons");

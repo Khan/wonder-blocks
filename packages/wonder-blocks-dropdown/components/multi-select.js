@@ -96,13 +96,13 @@ export default class MultiSelect extends React.Component<Props, State> {
         };
     }
 
-    handleOpenChanged(open: boolean) {
+    handleOpenChanged = (open: boolean) => {
         this.setState({
             open: open,
         });
-    }
+    };
 
-    handleSelected(selectedValue: string, oldSelectionState: boolean) {
+    handleSelected = (selectedValue: string, oldSelectionState: boolean) => {
         const {onChange, selectedValues} = this.props;
 
         if (oldSelectionState) {
@@ -116,18 +116,26 @@ export default class MultiSelect extends React.Component<Props, State> {
             // Item was newly selected
             onChange([...selectedValues, selectedValue]);
         }
-    }
+    };
 
-    handleSelectAll() {
+    handleSelectAll = () => {
         const {items, onChange} = this.props;
         const selected = items.map((item) => item.value);
         onChange(selected);
-    }
+    };
 
-    handleSelectNone() {
+    handleSelectNone = () => {
         const {onChange} = this.props;
         onChange([]);
-    }
+    };
+
+    handleClickOpener = () => {
+        this.handleOpenChanged(!this.state.open);
+    };
+
+    getOpenerRef = (node: any) => {
+        this.openerElement = ((ReactDOM.findDOMNode(node): any): Element);
+    };
 
     getShortcuts() {
         const {items, selectedValues, shortcuts} = this.props;
@@ -139,7 +147,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                     key="select-all"
                     label={`Select all (${items.length})`}
                     indent={true}
-                    onClick={() => this.handleSelectAll()}
+                    onClick={this.handleSelectAll}
                 />
             );
 
@@ -149,7 +157,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                     key="select-none"
                     label="Select none"
                     indent={true}
-                    onClick={() => this.handleSelectNone()}
+                    onClick={this.handleSelectNone}
                 />
             );
 
@@ -195,9 +203,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                     label={item.label}
                     /* eslint-disable-next-line react/jsx-handler-names */
                     onClick={item.onClick}
-                    onToggle={(value, state) =>
-                        this.handleSelected(value, state)
-                    }
+                    onToggle={this.handleSelected}
                     selected={selectedValues.includes(item.value)}
                     value={item.value}
                     variant="checkbox"
@@ -218,12 +224,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             <SelectOpener
                 disabled={disabled}
                 light={light}
-                onClick={() => this.handleOpenChanged(!open)}
-                ref={(node) =>
-                    (this.openerElement = ((ReactDOM.findDOMNode(
-                        node,
-                    ): any): Element))
-                }
+                onClick={this.handleClickOpener}
+                ref={this.getOpenerRef}
                 style={style}
             >
                 {menuText}
@@ -238,7 +240,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}
                 light={light}
-                onOpenChanged={(open) => this.handleOpenChanged(open)}
+                onOpenChanged={this.handleOpenChanged}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}

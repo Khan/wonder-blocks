@@ -24,11 +24,16 @@ class TestHarness extends React.Component<*, {ref: ?HTMLElement}> {
     }
 
     render() {
-        const fakeBubble = (((
-            <View ref={(ref) => this.props.resultRef(ref)}>Fake bubble</View>
-        ): any): React.Element<typeof TooltipBubble>);
+        const fakeBubble =
+            /* eslint-disable-next-line react/jsx-no-bind */
+            (((
+                <View ref={(ref) => this.props.resultRef(ref)}>
+                    Fake bubble
+                </View>
+            ): any): React.Element<typeof TooltipBubble>);
         return (
             <View>
+                {/* eslint-disable-next-line react/jsx-no-bind */}
                 <View ref={(ref) => this.updateRef(ref)}>Anchor</View>
                 <TooltipPopper
                     placement={this.props.placement}

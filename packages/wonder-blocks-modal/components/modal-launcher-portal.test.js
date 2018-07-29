@@ -56,6 +56,7 @@ describe("ModalPortal", () => {
 
         const wrapper = mount(
             <ModalLauncherPortal>
+                {/* eslint-disable-next-line react/jsx-no-bind */}
                 <div ref={childrenRef} />
             </ModalLauncherPortal>,
         );

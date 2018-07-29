@@ -128,16 +128,18 @@ export default class Dropdown extends React.Component<DropdownProps> {
         }
     };
 
+    handleMouseUp = (event: SyntheticMouseEvent<>) => {
+        // Stop propagation to prevent the mouseup listener
+        // on the document from closing the menu.
+        event.nativeEvent.stopImmediatePropagation();
+    };
+
     renderMenu(outOfBoundaries: ?boolean) {
         const {items, light, dropdownStyle, style} = this.props;
 
         return (
             <View
-                onMouseUp={(event) => {
-                    // Stop propagation to prevent the mouseup listener
-                    // on the document from closing the menu.
-                    event.nativeEvent.stopImmediatePropagation();
-                }}
+                onMouseUp={this.handleMouseUp}
                 style={[
                     styles.dropdown,
                     light && styles.light,
@@ -190,16 +192,16 @@ export default class Dropdown extends React.Component<DropdownProps> {
         }
     }
 
+    getDropdownRef = (node: any) => {
+        this.element = ((ReactDOM.findDOMNode(node): any): Element);
+    };
+
     render() {
         const {alignment, open, opener} = this.props;
 
         return (
             <View
-                ref={(node) =>
-                    (this.element = ((ReactDOM.findDOMNode(
-                        node,
-                    ): any): Element))
-                }
+                ref={this.getDropdownRef}
                 style={[
                     styles.menuWrapper,
                     alignment === "right" && styles.rightAlign,

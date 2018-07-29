@@ -14,7 +14,7 @@ describe("ClickableBehavior", () => {
     it("renders a label", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -28,7 +28,7 @@ describe("ClickableBehavior", () => {
     it("changes only hovered state on mouse enter/leave", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -44,7 +44,7 @@ describe("ClickableBehavior", () => {
     it("changes pressed state on mouse down/up", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -60,7 +60,7 @@ describe("ClickableBehavior", () => {
     it("changes pressed state on touch start/end/cancel", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -82,7 +82,7 @@ describe("ClickableBehavior", () => {
     it("enters focused state on key press after click", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -102,7 +102,7 @@ describe("ClickableBehavior", () => {
         window.location.assign = jest.fn();
 
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -122,7 +122,7 @@ describe("ClickableBehavior", () => {
     it("changes pressed state on only space key down/up if <button>", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -144,7 +144,7 @@ describe("ClickableBehavior", () => {
         const button = shallow(
             <ClickableBehavior
                 disabled={false}
-                onClick={(e) => onClick(e)}
+                onClick={onClick}
                 href="https://www.khanacademy.org"
             >
                 {(state, handlers) => {
@@ -170,7 +170,7 @@ describe("ClickableBehavior", () => {
     it("gains focused state on focus event", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -183,7 +183,7 @@ describe("ClickableBehavior", () => {
     it("changes focused state on blur", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -196,7 +196,7 @@ describe("ClickableBehavior", () => {
     it("does not change state if disabled", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={true} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={true} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -270,7 +270,7 @@ describe("ClickableBehavior", () => {
     it("has onClick triggered just once per click by various means", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}
@@ -303,7 +303,7 @@ describe("ClickableBehavior", () => {
     it("resets state when set to disabled", () => {
         const onClick = jest.fn();
         const button = shallow(
-            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+            <ClickableBehavior disabled={false} onClick={onClick}>
                 {(state, handlers) => {
                     return <button {...handlers}>Label</button>;
                 }}

@@ -35,7 +35,7 @@ describe("SingleSelect", () => {
                         value: "3",
                     },
                 ]}
-                onChange={(selectedValue) => onClick()}
+                onChange={onClick}
                 placeholder="Choose"
             />,
         );

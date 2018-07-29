@@ -7,6 +7,8 @@ import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
 
+import type {MediaSize} from "@khanacademy/wonder-blocks-core";
+
 type Props = {|
     /**
      * The content of the modal, appearing between the titlebar and footer.
@@ -67,6 +69,10 @@ export default class StandardModal extends React.Component<Props> {
     static defaultProps = {
         onClickCloseButton: () => {},
     };
+
+    getStyle = (mediaSize: MediaSize) =>
+        mediaSize !== "small" && styles.wrapper;
+
     render() {
         const {
             onClickCloseButton,
@@ -79,9 +85,7 @@ export default class StandardModal extends React.Component<Props> {
         } = this.props;
 
         return (
-            <ModalDialog
-                style={(mediaSize) => mediaSize !== "small" && styles.wrapper}
-            >
+            <ModalDialog style={this.getStyle}>
                 <ModalPanel
                     showCloseButton
                     onClickCloseButton={onClickCloseButton}
