@@ -9,13 +9,15 @@ describe("@khanacademy/wonder-blocks-form", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual([
-            "Checkbox",
-            "CheckboxGroup",
-            "Choice",
-            "ChoiceField",
-            "Radio",
-            "RadioGroup",
-        ].sort());
+        expect(Object.keys(result).sort()).toEqual(
+            [
+                "Checkbox",
+                "CheckboxGroup",
+                "Choice",
+                "ChoiceField",
+                "Radio",
+                "RadioGroup",
+            ].sort(),
+        );
     });
 });
