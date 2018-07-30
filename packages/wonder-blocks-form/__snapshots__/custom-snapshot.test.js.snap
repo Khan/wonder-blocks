@@ -26,7 +26,19 @@ exports[`CheckboxCore type:default state:default checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -44,6 +56,7 @@ exports[`CheckboxCore type:default state:default checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
 </div>
@@ -75,7 +88,19 @@ exports[`CheckboxCore type:default state:default checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -92,6 +117,7 @@ exports[`CheckboxCore type:default state:default checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
   <svg
@@ -142,7 +168,19 @@ exports[`CheckboxCore type:default state:hovered checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -160,6 +198,7 @@ exports[`CheckboxCore type:default state:hovered checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
 </div>
@@ -191,7 +230,19 @@ exports[`CheckboxCore type:default state:hovered checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -209,6 +260,7 @@ exports[`CheckboxCore type:default state:hovered checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
   <svg
@@ -259,7 +311,19 @@ exports[`CheckboxCore type:default state:pressed checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -277,6 +341,7 @@ exports[`CheckboxCore type:default state:pressed checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
 </div>
@@ -308,7 +373,19 @@ exports[`CheckboxCore type:default state:pressed checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -327,6 +404,7 @@ exports[`CheckboxCore type:default state:pressed checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
   <svg
@@ -377,7 +455,19 @@ exports[`CheckboxCore type:disabled state:default checked:false 1`] = `
     checked={false}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -396,6 +486,7 @@ exports[`CheckboxCore type:disabled state:default checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="checkbox"
   />
 </div>
@@ -427,7 +518,19 @@ exports[`CheckboxCore type:disabled state:default checked:true 1`] = `
     checked={true}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -446,6 +549,7 @@ exports[`CheckboxCore type:disabled state:default checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="checkbox"
   />
   <svg
@@ -496,7 +600,19 @@ exports[`CheckboxCore type:disabled state:hovered checked:false 1`] = `
     checked={false}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -515,6 +631,7 @@ exports[`CheckboxCore type:disabled state:hovered checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="checkbox"
   />
 </div>
@@ -546,7 +663,19 @@ exports[`CheckboxCore type:disabled state:hovered checked:true 1`] = `
     checked={true}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -565,6 +694,7 @@ exports[`CheckboxCore type:disabled state:hovered checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="checkbox"
   />
   <svg
@@ -615,7 +745,19 @@ exports[`CheckboxCore type:disabled state:pressed checked:false 1`] = `
     checked={false}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -634,6 +776,7 @@ exports[`CheckboxCore type:disabled state:pressed checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="checkbox"
   />
 </div>
@@ -665,7 +808,19 @@ exports[`CheckboxCore type:disabled state:pressed checked:true 1`] = `
     checked={true}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -684,6 +839,7 @@ exports[`CheckboxCore type:disabled state:pressed checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="checkbox"
   />
   <svg
@@ -734,7 +890,19 @@ exports[`CheckboxCore type:error state:default checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -752,6 +920,7 @@ exports[`CheckboxCore type:error state:default checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
 </div>
@@ -783,7 +952,19 @@ exports[`CheckboxCore type:error state:default checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -800,6 +981,7 @@ exports[`CheckboxCore type:error state:default checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
   <svg
@@ -850,7 +1032,19 @@ exports[`CheckboxCore type:error state:hovered checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -868,6 +1062,7 @@ exports[`CheckboxCore type:error state:hovered checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
 </div>
@@ -899,7 +1094,19 @@ exports[`CheckboxCore type:error state:hovered checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -917,6 +1124,7 @@ exports[`CheckboxCore type:error state:hovered checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
   <svg
@@ -967,7 +1175,19 @@ exports[`CheckboxCore type:error state:pressed checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -985,6 +1205,7 @@ exports[`CheckboxCore type:error state:pressed checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
 </div>
@@ -1016,7 +1237,19 @@ exports[`CheckboxCore type:error state:pressed checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1035,6 +1268,7 @@ exports[`CheckboxCore type:error state:pressed checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="checkbox"
   />
   <svg
@@ -1085,7 +1319,19 @@ exports[`RadioCore type:default state:default checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1103,6 +1349,7 @@ exports[`RadioCore type:default state:default checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1134,7 +1381,19 @@ exports[`RadioCore type:default state:default checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1152,6 +1411,7 @@ exports[`RadioCore type:default state:default checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1183,7 +1443,19 @@ exports[`RadioCore type:default state:hovered checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1201,6 +1473,7 @@ exports[`RadioCore type:default state:hovered checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1232,7 +1505,19 @@ exports[`RadioCore type:default state:hovered checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1251,6 +1536,7 @@ exports[`RadioCore type:default state:hovered checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1282,7 +1568,19 @@ exports[`RadioCore type:default state:pressed checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1300,6 +1598,7 @@ exports[`RadioCore type:default state:pressed checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1331,7 +1630,19 @@ exports[`RadioCore type:default state:pressed checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1350,6 +1661,7 @@ exports[`RadioCore type:default state:pressed checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1381,7 +1693,19 @@ exports[`RadioCore type:disabled state:default checked:false 1`] = `
     checked={false}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1400,6 +1724,7 @@ exports[`RadioCore type:disabled state:default checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="radio"
   />
 </div>
@@ -1431,7 +1756,19 @@ exports[`RadioCore type:disabled state:default checked:true 1`] = `
     checked={true}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1450,6 +1787,7 @@ exports[`RadioCore type:disabled state:default checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="radio"
   />
   <div
@@ -1506,7 +1844,19 @@ exports[`RadioCore type:disabled state:hovered checked:false 1`] = `
     checked={false}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1525,6 +1875,7 @@ exports[`RadioCore type:disabled state:hovered checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="radio"
   />
 </div>
@@ -1556,7 +1907,19 @@ exports[`RadioCore type:disabled state:hovered checked:true 1`] = `
     checked={true}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1575,6 +1938,7 @@ exports[`RadioCore type:disabled state:hovered checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="radio"
   />
   <div
@@ -1631,7 +1995,19 @@ exports[`RadioCore type:disabled state:pressed checked:false 1`] = `
     checked={false}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1650,6 +2026,7 @@ exports[`RadioCore type:disabled state:pressed checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="radio"
   />
 </div>
@@ -1681,7 +2058,19 @@ exports[`RadioCore type:disabled state:pressed checked:true 1`] = `
     checked={true}
     className=""
     disabled={true}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1700,6 +2089,7 @@ exports[`RadioCore type:disabled state:pressed checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={-1}
     type="radio"
   />
   <div
@@ -1756,7 +2146,19 @@ exports[`RadioCore type:error state:default checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1774,6 +2176,7 @@ exports[`RadioCore type:error state:default checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1805,7 +2208,19 @@ exports[`RadioCore type:error state:default checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1823,6 +2238,7 @@ exports[`RadioCore type:error state:default checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1854,7 +2270,19 @@ exports[`RadioCore type:error state:hovered checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1872,6 +2300,7 @@ exports[`RadioCore type:error state:hovered checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1903,7 +2332,19 @@ exports[`RadioCore type:error state:hovered checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1922,6 +2363,7 @@ exports[`RadioCore type:error state:hovered checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -1953,7 +2395,19 @@ exports[`RadioCore type:error state:pressed checked:false 1`] = `
     checked={false}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -1971,6 +2425,7 @@ exports[`RadioCore type:error state:pressed checked:false 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>
@@ -2002,7 +2457,19 @@ exports[`RadioCore type:error state:pressed checked:true 1`] = `
     checked={true}
     className=""
     disabled={false}
+    onBlur={[Function]}
     onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
         "MozAppearance": "none",
@@ -2021,6 +2488,7 @@ exports[`RadioCore type:error state:pressed checked:true 1`] = `
         "width": 16,
       }
     }
+    tabIndex={0}
     type="radio"
   />
 </div>

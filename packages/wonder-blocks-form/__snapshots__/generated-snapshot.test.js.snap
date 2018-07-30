@@ -1105,7 +1105,19 @@ exports[`wonder-blocks-form example 4 1`] = `
           data-test-id="algebra-assignment-test"
           disabled={false}
           id="assignment"
+          onBlur={[Function]}
           onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
               "MozAppearance": "none",
@@ -1123,6 +1135,7 @@ exports[`wonder-blocks-form example 4 1`] = `
               "width": 16,
             }
           }
+          tabIndex={0}
           type="checkbox"
         />
       </div>
@@ -1376,7 +1389,19 @@ exports[`wonder-blocks-form example 5 1`] = `
               disabled={false}
               id="Toppings-pepperoni"
               name="Toppings"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -1394,6 +1419,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -1552,7 +1578,19 @@ exports[`wonder-blocks-form example 5 1`] = `
               disabled={false}
               id="Toppings-sausage"
               name="Toppings"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -1570,6 +1608,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -1750,7 +1789,19 @@ exports[`wonder-blocks-form example 5 1`] = `
               disabled={false}
               id="Toppings-cheese"
               name="Toppings"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -1768,6 +1819,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -1926,7 +1978,19 @@ exports[`wonder-blocks-form example 5 1`] = `
               disabled={false}
               id="Toppings-pepper"
               name="Toppings"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -1944,6 +2008,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -2102,7 +2167,19 @@ exports[`wonder-blocks-form example 5 1`] = `
               disabled={false}
               id="Toppings-mushroom"
               name="Toppings"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -2120,6 +2197,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -2278,7 +2356,19 @@ exports[`wonder-blocks-form example 5 1`] = `
               disabled={false}
               id="Toppings-pineapple"
               name="Toppings"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -2295,6 +2385,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
             <svg
@@ -2591,7 +2682,19 @@ exports[`wonder-blocks-form example 6 1`] = `
               disabled={false}
               id="Pokemon-bulb"
               name="Pokemon"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -2609,6 +2712,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="radio"
             />
           </div>
@@ -2767,7 +2871,19 @@ exports[`wonder-blocks-form example 6 1`] = `
               disabled={true}
               id="Pokemon-char"
               name="Pokemon"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -2786,6 +2902,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={-1}
               type="radio"
             />
           </div>
@@ -2967,7 +3084,19 @@ exports[`wonder-blocks-form example 6 1`] = `
               disabled={false}
               id="Pokemon-squirt"
               name="Pokemon"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -2985,6 +3114,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="radio"
             />
           </div>
@@ -3143,7 +3273,19 @@ exports[`wonder-blocks-form example 6 1`] = `
               disabled={false}
               id="Pokemon-pika"
               name="Pokemon"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -3161,6 +3303,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="radio"
             />
           </div>
@@ -3319,7 +3462,19 @@ exports[`wonder-blocks-form example 6 1`] = `
               disabled={false}
               id="Pokemon-infiltrator"
               name="Pokemon"
+              onBlur={[Function]}
               onChange={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
                   "MozAppearance": "none",
@@ -3337,6 +3492,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="radio"
             />
           </div>

@@ -53,6 +53,21 @@ type Props = {|
     variant: "radio" | "checkbox",
 |};
 
+const defaultHandlers = {
+    onClick: () => void 0,
+    onMouseEnter: () => void 0,
+    onMouseLeave: () => void 0,
+    onMouseDown: () => void 0,
+    onMouseUp: () => void 0,
+    onTouchStart: () => void 0,
+    onTouchEnd: () => void 0,
+    onTouchCancel: () => void 0,
+    onKeyDown: () => void 0,
+    onKeyUp: () => void 0,
+    onFocus: () => void 0,
+    onBlur: () => void 0,
+};
+
 /**
  * This is a labeled 🔘 or ☑️ item. This is an internal component that's wrapped
  * by ChoiceField or Choice. Choice should be used in a CheckboxGroup or in a
@@ -113,7 +128,12 @@ type Props = {|
                                 // focus on basis of it being an input element.
                                 tabIndex={-1}
                             >
-                                <ChoiceCore {...coreProps} {...state} />
+                                <ChoiceCore
+                                    {...coreProps}
+                                    {...state}
+                                    {...defaultHandlers}
+                                    tabIndex={disabled ? -1 : 0}
+                                />
                                 <Strut size={Spacing.xSmall} />
                                 <LabelMedium
                                     style={disabled && styles.disabledLabel}

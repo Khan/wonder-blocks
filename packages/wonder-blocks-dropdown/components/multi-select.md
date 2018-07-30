@@ -15,9 +15,6 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    strutLike: {
-        width: 8,
-    }
 });
 
 class ExampleNoneSelected extends React.Component {

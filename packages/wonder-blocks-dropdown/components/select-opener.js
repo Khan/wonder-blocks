@@ -184,6 +184,7 @@ const _generateStyles = (light, hovered, focused, pressed) => {
     let newStyles = {};
     if (light) {
         newStyles = {
+            default: {},
             focus: {
                 boxShadow: `0 0 0 1px ${darkBlue}, 0 0 0 3px ${white}`,
             },
