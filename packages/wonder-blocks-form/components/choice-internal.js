@@ -132,6 +132,7 @@ const defaultHandlers = {
                                     {...coreProps}
                                     {...state}
                                     {...defaultHandlers}
+                                    tabIndex={disabled ? -1 : 0}
                                 />
                                 <Strut size={Spacing.xSmall} />
                                 <LabelMedium

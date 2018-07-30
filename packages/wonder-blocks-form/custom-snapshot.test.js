@@ -31,15 +31,17 @@ describe("CheckboxCore", () => {
                 test(`type:${state} state:${clickableState} checked:${String(
                     checked,
                 )}`, () => {
+                    const disabled = state === "disabled";
                     const tree = renderer
                         .create(
                             <CheckboxCore
                                 checked={checked}
-                                disabled={state === "disabled"}
+                                disabled={disabled}
                                 error={state === "error"}
                                 hovered={clickableState === "hovered"}
                                 pressed={clickableState === "pressed"}
                                 focused={clickableState === "focused"}
+                                tabIndex={disabled ? -1 : 0}
                                 {...defaultHandlers}
                             />,
                         )
@@ -58,15 +60,17 @@ describe("RadioCore", () => {
                 test(`type:${state} state:${clickableState} checked:${String(
                     checked,
                 )}`, () => {
+                    const disabled = state === "disabled";
                     const tree = renderer
                         .create(
                             <RadioCore
                                 checked={checked}
-                                disabled={state === "disabled"}
+                                disabled={disabled}
                                 error={state === "error"}
                                 hovered={clickableState === "hovered"}
                                 pressed={clickableState === "pressed"}
                                 focused={clickableState === "focused"}
+                                tabIndex={disabled ? -1 : 0}
                                 {...defaultHandlers}
                             />,
                         )

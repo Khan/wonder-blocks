@@ -1135,6 +1135,7 @@ exports[`wonder-blocks-form example 4 1`] = `
               "width": 16,
             }
           }
+          tabIndex={0}
           type="checkbox"
         />
       </div>
@@ -1418,6 +1419,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -1606,6 +1608,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -1816,6 +1819,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -2004,6 +2008,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -2192,6 +2197,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
           </div>
@@ -2379,6 +2385,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="checkbox"
             />
             <svg
@@ -2705,6 +2712,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="radio"
             />
           </div>
@@ -2894,6 +2902,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={-1}
               type="radio"
             />
           </div>
@@ -3105,6 +3114,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="radio"
             />
           </div>
@@ -3293,6 +3303,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="radio"
             />
           </div>
@@ -3481,6 +3492,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                   "width": 16,
                 }
               }
+              tabIndex={0}
               type="radio"
             />
           </div>
