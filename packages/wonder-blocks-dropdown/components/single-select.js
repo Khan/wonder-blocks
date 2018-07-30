@@ -117,6 +117,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         const opener = (
             <SelectOpener
                 disabled={disabled}
+                isPlaceholder={!selectedItem}
                 light={light}
                 onClick={() => this.handleOpenChanged(!open)}
                 ref={(node) =>

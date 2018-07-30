@@ -72,7 +72,6 @@ type ActionProps = {|
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
-// $FlowFixMe: need to ensure we're passing 'to' to Link in a way that flow understands
 const StyledLink = addStyle(Link);
 
 export default class ActionItem extends React.Component<ActionProps> {
@@ -81,18 +80,11 @@ export default class ActionItem extends React.Component<ActionProps> {
         indent: false,
     };
 
-    getTag() {
-        const {href, clientNav} = this.props;
-        if (href) {
-            if (clientNav) {
-                return StyledLink;
-            } else {
-                return StyledAnchor;
-            }
-        } else {
-            return StyledButton;
+    handleClick = (e: SyntheticEvent<>) => {
+        if (this.props.disabled) {
+            e.preventDefault();
         }
-    }
+    };
 
     render() {
         const {clientNav, disabled, href, indent, label, onClick} = this.props;
@@ -102,8 +94,6 @@ export default class ActionItem extends React.Component<ActionProps> {
             clientNav,
             this.context.router,
         );
-
-        const Tag = this.getTag();
 
         return (
             <ClickableBehavior
@@ -124,29 +114,48 @@ export default class ActionItem extends React.Component<ActionProps> {
                     ];
 
                     const props = {
-                        style: [defaultStyle],
                         disabled,
+                        style: [defaultStyle],
+                        role: "menuitem",
                         ...handlers,
                     };
 
-                    if (!disabled && href) {
-                        if (clientNav) {
-                            // $FlowFixMe: can't assign 'to' b/c 'to' is missing in object literal
-                            props.to = href;
-                        } else {
-                            // $FlowFixMe: can't assign 'href' b/c 'href' is missing in object literal
-                            props.href = href;
-                        }
-                    }
-
-                    return (
-                        <Tag {...props} role="menuitem">
+                    const children = (
+                        <React.Fragment>
                             {indent && <View style={{width: Spacing.medium}} />}
                             <LabelLarge style={[styles.label]}>
                                 {label}
                             </LabelLarge>
-                        </Tag>
+                        </React.Fragment>
                     );
+
+                    const {href, clientNav} = this.props;
+
+                    if (href) {
+                        return clientNav ? (
+                            <StyledLink
+                                {...props}
+                                onClick={this.handleClick}
+                                to={href}
+                            >
+                                {children}
+                            </StyledLink>
+                        ) : (
+                            <StyledAnchor
+                                {...props}
+                                onClick={this.handleClick}
+                                href={href}
+                            >
+                                {children}
+                            </StyledAnchor>
+                        );
+                    } else {
+                        return (
+                            <StyledButton {...props} disabled={disabled}>
+                                {children}
+                            </StyledButton>
+                        );
+                    }
                 }}
             </ClickableBehavior>
         );

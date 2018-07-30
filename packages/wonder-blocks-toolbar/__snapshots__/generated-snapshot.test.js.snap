@@ -165,6 +165,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               "width": 160,
             }
           }
+          tabIndex={0}
         >
           <span
             className=""
@@ -249,6 +250,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               "width": 160,
             }
           }
+          tabIndex={0}
         >
           <span
             className=""
@@ -397,6 +399,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
               "width": 40,
             }
           }
+          tabIndex={0}
         >
           <svg
             className=""
@@ -651,6 +654,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
               "width": 40,
             }
           }
+          tabIndex={0}
         >
           <svg
             className=""
@@ -838,6 +842,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
               "textDecoration": "none",
             }
           }
+          tabIndex={0}
         >
           <span
             className=""
@@ -1074,6 +1079,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               "width": 140,
             }
           }
+          tabIndex={0}
         >
           <span
             className=""
@@ -1155,6 +1161,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               "width": 140,
             }
           }
+          tabIndex={0}
         >
           <span
             className=""
@@ -1303,6 +1310,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
               "width": 40,
             }
           }
+          tabIndex={0}
         >
           <svg
             className=""
@@ -1497,6 +1505,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
               "textDecoration": "none",
             }
           }
+          tabIndex={0}
         >
           <span
             className=""

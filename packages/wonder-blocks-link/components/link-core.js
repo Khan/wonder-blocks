@@ -107,6 +107,7 @@ const _generateStyles = (kind, light) => {
         },
         active: {
             color: light ? mix(fade(blue, 0.32), white) : mix(offBlack32, blue),
+            textDecoration: "underline currentcolor solid",
             ":visited": {
                 color: light
                     ? mix(fade(blue, 0.32), white)

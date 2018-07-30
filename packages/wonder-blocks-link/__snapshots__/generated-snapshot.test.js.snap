@@ -1,67 +1,177 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`wonder-blocks-link example 1 1`] = `
-<p>
-  Lorem ipsum 
-  <a
-    className=""
-    href="#nonexistent-link"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <p>
+    I am a 
+    <a
+      className=""
+      href="#nonexistent-link"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          ":visited": Object {
+            "color": "#8755ee",
+          },
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "outline": "none",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+    >
+      Primary Link
+    </a>
+    .
+     
+    <span
+      style={
+        Object {
+          "color": "rgba(33,36,44,0.64)",
+        }
+      }
+    >
+      My friend the
+      <a
+        className=""
+        href="#secondary-nonexistent-link"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            ":visited": Object {
+              "color": "#8755ee",
+            },
+            "color": "#21242c",
+            "cursor": "pointer",
+            "outline": "none",
+            "textDecoration": "none",
+          }
+        }
+        tabIndex={0}
+      >
+        Secondary Link
+      </a>
+       
+      is used here with a lighter text.
+    </span>
+     
+    We also have a
+    <a
+      className=""
+      href="#"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          ":visited": Object {
+            "color": "#8755ee",
+          },
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "outline": "none",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+    >
+      Visited Link
+    </a>
+     friend.
+  </p>
+  <p
     style={
       Object {
-        ":visited": Object {
-          "color": "#8755ee",
-        },
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "outline": "none",
-        "textDecoration": "none",
+        "backgroundColor": "#0a2a66",
+        "color": "rgba(255,255,255,0.64)",
+        "padding": 10,
       }
     }
   >
-    Link
-  </a>
-   dolor sit amet, consectetur 
-  <a
-    className=""
-    href="#"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    style={
-      Object {
-        ":visited": Object {
-          "color": "#8755ee",
-        },
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "outline": "none",
-        "textDecoration": "none",
+    I am a
+     
+    <a
+      className=""
+      href="#dark-link"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          ":visited": Object {
+            "color": "#ffffff",
+          },
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "outline": "none",
+          "textDecoration": "none",
+        }
       }
-    }
-  >
-    Visited Link
-  </a>
-   adipiscing elit
-</p>
+      tabIndex={0}
+    >
+      Primary Link
+    </a>
+     
+    used on a dark background. My friend the Secondary Link isn't supported on this dark background.
+  </p>
+</div>
 `;

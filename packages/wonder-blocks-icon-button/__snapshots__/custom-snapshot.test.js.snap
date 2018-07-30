@@ -25,7 +25,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -37,6 +37,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -98,6 +99,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -159,6 +161,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -202,6 +205,10 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#1b50b3",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -216,6 +223,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -262,7 +270,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
       "border": "none",
       "boxSizing": "border-box",
       "color": "#6296f6",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -274,6 +282,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -335,6 +344,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -396,6 +406,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -439,6 +450,10 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#b5cefb",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
@@ -453,6 +468,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -499,7 +515,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -511,6 +527,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -572,6 +589,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -633,6 +651,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -676,6 +695,10 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#1b50b3",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -690,6 +713,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -736,7 +760,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
       "border": "none",
       "boxSizing": "border-box",
       "color": "#6296f6",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -748,6 +772,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -809,6 +834,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -870,6 +896,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -913,6 +940,10 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#b5cefb",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
@@ -927,6 +958,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -973,7 +1005,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -985,6 +1017,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -1046,6 +1079,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1107,6 +1141,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1150,6 +1185,10 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#9e271d",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -1164,6 +1203,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1210,7 +1250,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
       "border": "none",
       "boxSizing": "border-box",
       "color": "#e56d61",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -1222,6 +1262,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -1283,6 +1324,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1344,6 +1386,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1387,6 +1430,10 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#f3bbb4",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
@@ -1401,6 +1448,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1447,7 +1495,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -1459,6 +1507,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -1520,6 +1569,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1581,6 +1631,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1624,6 +1675,10 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#9e271d",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -1638,6 +1693,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1684,7 +1740,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
       "border": "none",
       "boxSizing": "border-box",
       "color": "#e56d61",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -1696,6 +1752,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -1757,6 +1814,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1818,6 +1876,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1861,6 +1920,10 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#f3bbb4",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
@@ -1875,6 +1938,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -1921,7 +1985,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -1933,6 +1997,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -1994,6 +2059,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2055,6 +2121,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2098,6 +2165,10 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#1b50b3",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -2112,6 +2183,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2158,7 +2230,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -2170,6 +2242,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -2231,6 +2304,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2292,6 +2366,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2335,6 +2410,10 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#1b50b3",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -2349,6 +2428,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2395,7 +2475,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -2407,6 +2487,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -2468,6 +2549,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2529,6 +2611,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2572,6 +2655,10 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#9e271d",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -2586,6 +2673,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2632,7 +2720,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -2644,6 +2732,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -2705,6 +2794,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2766,6 +2856,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2809,6 +2900,10 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#9e271d",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -2823,6 +2918,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -2869,7 +2965,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -2881,6 +2977,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -2942,6 +3039,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3003,6 +3101,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3046,6 +3145,10 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#1b50b3",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -3060,6 +3163,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3106,7 +3210,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -3118,6 +3222,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -3179,6 +3284,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3240,6 +3346,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3283,6 +3390,10 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#1b50b3",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
@@ -3297,6 +3408,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3343,7 +3455,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -3355,6 +3467,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -3416,6 +3529,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3477,6 +3591,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3520,6 +3635,10 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#9e271d",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -3534,6 +3653,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3580,7 +3700,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
       "border": "none",
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "auto",
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -3592,6 +3712,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
       "width": 40,
     }
   }
+  tabIndex={-1}
 >
   <svg
     className=""
@@ -3653,6 +3774,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3714,6 +3836,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
@@ -3757,6 +3880,10 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderColor": "#9e271d",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
@@ -3771,6 +3898,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       "width": 40,
     }
   }
+  tabIndex={0}
 >
   <svg
     className=""
