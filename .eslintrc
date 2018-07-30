@@ -4,6 +4,7 @@
     ],
     "rules": {
         "flowtype/require-exact-type": [2, "always"],
-        "react/jsx-handler-names": 2
+        "react/jsx-handler-names": 2,
+        "react/jsx-no-bind": 2
     }
 }

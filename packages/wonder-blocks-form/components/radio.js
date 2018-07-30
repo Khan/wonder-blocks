@@ -44,27 +44,33 @@ type ChoiceComponentProps = {|
  *
  * This component should not really be used by itself because radio buttons are
  * often grouped together. See RadioGroup.
- */
-export default class Radio extends React.Component<ChoiceComponentProps> {
+ */ export default class Radio extends React.Component<ChoiceComponentProps> {
     static defaultProps = {
         disabled: false,
         error: false,
     };
 
+    handleClick = () => {
+        const {checked, onChange} = this.props;
+
+        // Radio buttons cannot be unchecked and therefore only
+        // call onChange if they were not originally checked
+        if (!checked) {
+            onChange(!checked);
+        }
+    };
+
     render() {
-        const {onChange, ...coreProps} = this.props;
+        /* eslint-disable-next-line no-unused-vars */ const {
+            onChange,
+            ...coreProps
+        } = this.props;
         const ClickableBehavior = getClickableBehavior();
 
         return (
             <ClickableBehavior
                 disabled={coreProps.disabled}
-                onClick={() => {
-                    // Radio buttons cannot be unchecked and therefore only
-                    // call onChange if they were not originally checked
-                    if (!coreProps.checked) {
-                        onChange(!coreProps.checked);
-                    }
-                }}
+                onClick={this.handleClick}
             >
                 {(state, handlers) => {
                     return (

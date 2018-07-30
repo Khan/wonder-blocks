@@ -15,6 +15,8 @@ import {
 
 jest.mock("../util/active-tracker.js");
 
+const noop = () => {};
+
 describe("TooltipAnchor", () => {
     beforeEach(async () => {
         if (typeof document.addEventListener.mockReset === "function") {
@@ -46,7 +48,7 @@ describe("TooltipAnchor", () => {
             >);
         const nodes = (
             <View>
-                <TooltipAnchor anchorRef={() => {}}>
+                <TooltipAnchor anchorRef={noop}>
                     {getFakeTooltipPortalMounter}
                 </TooltipAnchor>
             </View>
@@ -87,7 +89,7 @@ describe("TooltipAnchor", () => {
             >);
         const nodes = (
             <View>
-                <TooltipAnchor anchorRef={() => {}}>
+                <TooltipAnchor anchorRef={noop}>
                     {getFakeTooltipPortalMounter}
                 </TooltipAnchor>
             </View>

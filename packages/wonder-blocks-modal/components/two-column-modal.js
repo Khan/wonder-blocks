@@ -119,13 +119,13 @@ class TwoColumnModal extends React.Component<Props> {
         onClickCloseButton: () => {},
     };
 
+    getStyle = (mediaSize: MediaSize) => {
+        return mediaSize === "small" ? styles.smallDialog : styles.dialog;
+    };
+
     render() {
         return (
-            <ModalDialog
-                style={(mediaSize) =>
-                    mediaSize === "small" ? styles.smallDialog : styles.dialog
-                }
-            >
+            <ModalDialog style={this.getStyle}>
                 <ContentWrapper {...this.props} />
             </ModalDialog>
         );

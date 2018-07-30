@@ -40,6 +40,7 @@ describe("MultiSelect", () => {
                         value: "3",
                     },
                 ]}
+                /* eslint-disable-next-line react/jsx-no-bind */
                 onChange={(selectedValues) => {
                     saveUpdate(selectedValues);
                     onClick();

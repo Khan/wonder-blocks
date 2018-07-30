@@ -38,7 +38,7 @@ describe("ActionMenu", () => {
                     },
                 ]}
                 menuText={"Action menu!"}
-                onChange={(selectedValues) => onChange()}
+                onChange={onChange}
                 selectedValues={[]}
             />,
         );

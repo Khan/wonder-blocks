@@ -21,6 +21,8 @@ const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 const StyledInput = addStyle("input");
 
+const noop = () => void 0;
+
 /**
  * The internal stateless 🔘 Radio button
  */ export default class RadioCore extends React.Component<Props> {
@@ -69,7 +71,7 @@ const StyledInput = addStyle("input");
                     // Need to specify because this is a controlled React
                     // form component, but we handle the click via
                     // ClickableBehavior already
-                    onChange={() => void 0}
+                    onChange={noop}
                     style={defaultStyle}
                     {...props}
                 />

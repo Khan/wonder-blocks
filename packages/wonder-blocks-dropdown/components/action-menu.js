@@ -135,13 +135,13 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         };
     }
 
-    handleOpenChanged(open: boolean) {
+    handleOpenChanged = (open: boolean) => {
         this.setState({
             open: open,
         });
-    }
+    };
 
-    handleSelected(selectedValue: string, oldSelectionState: boolean) {
+    handleSelected = (selectedValue: string, oldSelectionState: boolean) => {
         const {onChange, selectedValues} = this.props;
 
         // If either of these are not defined, return.
@@ -160,7 +160,19 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             // Item was newly selected
             onChange([...selectedValues, selectedValue]);
         }
-    }
+    };
+
+    handleToggleOpener = () => {
+        this.handleOpenChanged(!this.state.open);
+    };
+
+    handleToggleItem = (value: string, state: boolean) => {
+        this.handleSelected(value, state);
+    };
+
+    getOpenerRef = (node: any) => {
+        this.openerElement = ((ReactDOM.findDOMNode(node): any): Element);
+    };
 
     render() {
         const {
@@ -177,12 +189,8 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const opener = (
             <ActionMenuOpener
                 disabled={disabled}
-                onClick={() => this.handleOpenChanged(!open)}
-                ref={(node) =>
-                    (this.openerElement = ((ReactDOM.findDOMNode(
-                        node,
-                    ): any): Element))
-                }
+                onClick={this.handleToggleOpener}
+                ref={this.getOpenerRef}
                 style={style}
             >
                 {menuText}
@@ -213,9 +221,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         label={item.label}
                         /* eslint-disable-next-line react/jsx-handler-names */
                         onClick={item.onClick}
-                        onToggle={(value, state) =>
-                            this.handleSelected(value, state)
-                        }
+                        onToggle={this.handleToggleItem}
                         selected={
                             selectedValues
                                 ? selectedValues.includes(item.value)
@@ -236,7 +242,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 alignment={alignment}
                 items={menuItems}
                 light={false}
-                onOpenChanged={(open) => this.handleOpenChanged(open)}
+                onOpenChanged={this.handleOpenChanged}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}

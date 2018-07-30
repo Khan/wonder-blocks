@@ -73,19 +73,36 @@ type Props = {|
             return CheckboxCore;
         }
     }
+    handleClick = (e: SyntheticEvent<>) => {
+        const {checked, onChange, variant} = this.props;
+
+        // Radio buttons cannot be unchecked and do not change
+        // if clicked on when checked
+        if (variant === "radio" && checked) {
+            return;
+        }
+        onChange(!checked);
+    };
+    handleLabelClick = (e: SyntheticEvent<>) => {
+        e.preventDefault();
+    };
     render() {
         const {
             label,
             description,
+            // we don't need this to go into coreProps
+            // eslint-disable-next-line no-unused-vars
             onChange,
             style,
             // we don't need this to go into coreProps
             // eslint-disable-next-line no-unused-vars
             value,
+            // we don't need this to go into coreProps
+            // eslint-disable-next-line no-unused-vars
             variant,
             ...coreProps
         } = this.props;
-        const {checked, disabled, id} = coreProps;
+        const {disabled, id} = coreProps;
 
         const ChoiceCore = this.getChoiceCoreComponent();
         const ClickableBehavior = getClickableBehavior();
@@ -94,14 +111,7 @@ type Props = {|
             <View style={style}>
                 <ClickableBehavior
                     disabled={coreProps.disabled}
-                    onClick={(e) => {
-                        // Radio buttons cannot be unchecked and do not change
-                        // if clicked on when checked
-                        if (variant === "radio" && checked) {
-                            return;
-                        }
-                        onChange(!checked);
-                    }}
+                    onClick={this.handleClick}
                 >
                     {(state, handlers) => {
                         return (
@@ -124,7 +134,7 @@ type Props = {|
                                         // attribute to select the input, but
                                         // we use ClickableBehavior to handle
                                         // this.
-                                        onClick={(e) => e.preventDefault()}
+                                        onClick={this.handleLabelClick}
                                     >
                                         {label}
                                     </label>

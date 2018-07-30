@@ -153,29 +153,22 @@ export default class OptionItem extends React.Component<OptionProps> {
         disabled: false,
     };
 
+    handleClick = () => {
+        const {onClick, onToggle, selected, value} = this.props;
+
+        onToggle(value, selected);
+        if (onClick) {
+            onClick(selected);
+        }
+    };
+
     render() {
-        const {
-            disabled,
-            label,
-            onClick,
-            onToggle,
-            selected,
-            value,
-            variant,
-        } = this.props;
+        const {disabled, label, selected, variant} = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
         return (
-            <ClickableBehavior
-                disabled={disabled}
-                onClick={() => {
-                    onToggle(value, selected);
-                    if (onClick) {
-                        onClick(selected);
-                    }
-                }}
-            >
+            <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
 

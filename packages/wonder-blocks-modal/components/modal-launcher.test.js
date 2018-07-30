@@ -47,6 +47,7 @@ describe("ModalLauncher", () => {
         // Mount the modal launcher. This shouldn't trigger any closing yet,
         // because we shouldn't be calling the `modal` function yet.
         const wrapper = shallow(
+            /* eslint-disable-next-line react/jsx-no-bind */
             <ModalLauncher modal={modalFn} onClose={onClose}>
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
@@ -96,6 +97,7 @@ describe("ModalLauncher", () => {
         // ScrollDisabler is present, and trust ScrollDisabler to do its job.
         const wrapper = shallow(
             <ModalLauncher
+                /* eslint-disable-next-line react/jsx-no-bind */
                 modal={({closeModal}) => {
                     savedCloseModal = closeModal;
                     return <div data-modal-child />;
