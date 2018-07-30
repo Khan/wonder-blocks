@@ -132,12 +132,11 @@ export default class ActionItem extends React.Component<ActionProps> {
                     const {href, clientNav} = this.props;
 
                     if (href) {
-                        const actualHref = !disabled ? href : undefined;
                         return clientNav ? (
                             <StyledLink
                                 {...props}
                                 onClick={this.handleClick}
-                                to={actualHref}
+                                to={href}
                             >
                                 {children}
                             </StyledLink>
@@ -145,7 +144,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                             <StyledAnchor
                                 {...props}
                                 onClick={this.handleClick}
-                                href={actualHref}
+                                href={href}
                             >
                                 {children}
                             </StyledAnchor>

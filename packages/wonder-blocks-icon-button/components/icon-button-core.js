@@ -108,12 +108,11 @@ export default class IconButtonCore extends React.Component<Props> {
         };
 
         if (href) {
-            const actualHref = !disabled ? href : undefined;
             return clientNav ? (
                 <StyledLink
                     {...commonProps}
                     onClick={this.handleClick}
-                    to={actualHref}
+                    to={href}
                 >
                     {child}
                 </StyledLink>
@@ -121,7 +120,7 @@ export default class IconButtonCore extends React.Component<Props> {
                 <StyledAnchor
                     {...commonProps}
                     onClick={this.handleClick}
-                    href={actualHref}
+                    href={href}
                 >
                     {child}
                 </StyledAnchor>
