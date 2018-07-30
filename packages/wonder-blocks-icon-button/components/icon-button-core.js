@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import {StyleSheet} from "aphrodite";
+import {Link} from "react-router-dom";
 
 import Color, {
     SemanticColor,
@@ -51,21 +52,23 @@ type Props = {|
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
+const StyledLink = addStyle(Link);
 
 export default class IconButtonCore extends React.Component<Props> {
     render() {
         const {
-            icon,
+            clientNav,
             color,
+            disabled,
+            focused,
+            hovered,
+            href,
+            icon,
             kind,
             light,
-            disabled,
-            testId,
-            style,
-            hovered,
-            focused,
             pressed,
-            href,
+            style,
+            testId,
             ...handlers
         } = this.props;
 
@@ -87,20 +90,34 @@ export default class IconButtonCore extends React.Component<Props> {
                     : (hovered || focused) && buttonStyles.focus),
         ];
 
-        const Tag = href ? StyledAnchor : StyledButton;
+        const child = <Icon size="medium" color="currentColor" icon={icon} />;
 
-        return (
-            <Tag
-                data-test-id={testId}
-                href={href}
-                disabled={disabled}
-                aria-label={this.props["aria-label"]}
-                style={[defaultStyle, style]}
-                {...handlers}
-            >
-                <Icon size="medium" color="currentColor" icon={icon} />
-            </Tag>
-        );
+        const commonProps = {
+            // TODO(kevinb): figure out a better way of forward ARIA props
+            "aria-disabled": disabled ? "true" : undefined,
+            "aria-label": this.props["aria-label"],
+            "data-test-id": testId,
+            style: [defaultStyle, style],
+            ...handlers,
+        };
+
+        if (href) {
+            return clientNav ? (
+                <StyledLink {...commonProps} to={href}>
+                    {child}
+                </StyledLink>
+            ) : (
+                <StyledAnchor {...commonProps} href={href}>
+                    {child}
+                </StyledAnchor>
+            );
+        } else {
+            return (
+                <StyledButton {...commonProps} disabled={disabled}>
+                    {child}
+                </StyledButton>
+            );
+        }
     }
 }
 

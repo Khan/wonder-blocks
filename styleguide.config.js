@@ -29,8 +29,31 @@ module.exports = {
             name: "Dropdown",
             components: [
                 "packages/wonder-blocks-dropdown/components/action-menu.js",
-                "packages/wonder-blocks-dropdown/components/single-select-menu.js",
-                "packages/wonder-blocks-dropdown/components/multi-select-menu.js",
+                "packages/wonder-blocks-dropdown/components/single-select.js",
+                "packages/wonder-blocks-dropdown/components/multi-select.js",
+            ],
+        },
+        {
+            name: "Form",
+            content: "packages/wonder-blocks-form/docs.md",
+            components: [
+                "packages/wonder-blocks-form/components/checkbox.js",
+                "packages/wonder-blocks-form/components/radio.js",
+                "packages/wonder-blocks-form/components/choice-field.js",
+                "packages/wonder-blocks-form/components/choice.js",
+                "packages/wonder-blocks-form/components/checkbox-group.js",
+                "packages/wonder-blocks-form/components/radio-group.js",
+            ],
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-form/components/checkbox-core.js",
+                        "packages/wonder-blocks-form/components/radio-core.js",
+                        "packages/wonder-blocks-form/components/choice-internal.js",
+                    ],
+                },
             ],
         },
         {
@@ -52,6 +75,7 @@ module.exports = {
         {
             name: "Layout",
             content: "packages/wonder-blocks-layout/docs.md",
+            components: "packages/wonder-blocks-layout/components/*.js",
         },
         {
             name: "Link",
@@ -77,13 +101,14 @@ module.exports = {
                     ],
                 },
                 {
+                    // NOTE(jeresig): Not ready to be used yet, need docs.
+                    private: true,
                     name: "Building Blocks",
                     content: "packages/wonder-blocks-modal/building-blocks.md",
                     components: [
                         "packages/wonder-blocks-modal/components/modal-dialog.js",
                         "packages/wonder-blocks-modal/components/modal-panel.js",
                         "packages/wonder-blocks-modal/components/modal-content.js",
-                        "packages/wonder-blocks-modal/components/modal-title-bar.js",
                         "packages/wonder-blocks-modal/components/modal-header.js",
                         "packages/wonder-blocks-modal/components/modal-footer.js",
                     ],

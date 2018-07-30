@@ -1,6 +1,819 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`wonder-blocks-icon example 1 1`] = `
+<table
+  className=""
+  style={
+    Object {
+      "borderCollapse": "collapse",
+    }
+  }
+>
+  <thead>
+    <tr>
+      <th
+        className="tableBorder_j5cexi"
+      />
+      <th
+        className="tableBorder_j5cexi"
+      >
+        small
+      </th>
+      <th
+        className="tableBorder_j5cexi"
+      >
+        medium
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        add
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M11 11V7a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4zm1 13C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        caretDown
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M17.293 8.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L12 13.586l5.293-5.293z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        caretLeft
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M7.414 8l3.293 3.293a1 1 0 0 1-1.414 1.414l-4-4a1 1 0 0 1 0-1.414l4-4a1 1 0 0 1 1.414 1.414L7.414 8z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M15.707 17.293a1 1 0 0 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L10.414 12l5.293 5.293z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        caretRight
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M8.293 17.293a1 1 0 0 0 1.414 1.414l6-6a1 1 0 0 0 0-1.414l-6-6a1 1 0 0 0-1.414 1.414L13.586 12l-5.293 5.293z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        caretUp
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 7.414l-3.293 3.293a1 1 0 0 1-1.414-1.414l4-4a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1-1.414 1.414L8 7.414z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M17.293 15.707a1 1 0 0 0 1.414-1.414l-6-6a1 1 0 0 0-1.414 0l-6 6a1 1 0 0 0 1.414 1.414L12 10.414l5.293 5.293z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        check
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        contentArticle
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M11 12V8h2v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h3v2H5v8h6zM9.5 6a.5.5 0 0 1-.5-.5V2l4 4H9.5z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm3-6v-4h2v5a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h3v2H9v8h6zm-1.5-6a.5.5 0 0 1-.5-.5V6l4 4h-3.5z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        contentExercise
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M7.5 6.914L5 9.414V11h1.586l2.5-2.5L7.5 6.914zM8.914 5.5L10.5 7.086 11.586 6 10 4.414 8.914 5.5zM3 9a1 1 0 0 1 .293-.707l6-6a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 7 13H4a1 1 0 0 1-1-1V9z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-.5-11.086l1.586 1.586-2.5 2.5H9v-1.586l2.5-2.5zM12.914 9.5L14 8.414 15.586 10 14.5 11.086 12.914 9.5zM12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zM7 13v3a1 1 0 0 0 1 1h3a1 1 0 0 0 .707-.293l6-6a1 1 0 0 0 0-1.414l-3-3a1 1 0 0 0-1.414 0l-6 6A1 1 0 0 0 7 13z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        contentVideo
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M6 5.87v4.263l3.197-2.131L6 5.87zm-.445-2.7l6 4a1 1 0 0 1 0 1.664l-6 4A1 1 0 0 1 4 12.002v-8a1 1 0 0 1 1.555-.832z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM10.555 7.17l6 4a1 1 0 0 1 0 1.664l-6 4A1 1 0 0 1 9 16.002v-8a1 1 0 0 1 1.555-.832zM11 14.133l3.197-2.131L11 9.87v4.263z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        correct
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.928-7.6l6.175-7.058a1 1 0 1 1 1.506 1.317l-6.984 7.981a1 1 0 0 1-1.55-.054l-3.016-3.982a1 1 0 0 1 1.594-1.208l2.275 3.003z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        delete
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-5-9a1 1 0 0 1 0-2h10a1 1 0 0 1 0 2H7z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        dismiss
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 6.586l3.293-3.293a1 1 0 0 1 1.414 1.414L9.414 8l3.293 3.293a1 1 0 0 1-1.414 1.414L8 9.414l-3.293 3.293a1 1 0 1 1-1.414-1.414L6.586 8 3.293 4.707a1 1 0 0 1 1.414-1.414L8 6.586z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        hint
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M10.835 15.993a1 1 0 0 1 1.008-.247 5.5 5.5 0 1 0-3.59-3.59 1 1 0 0 1-.246 1.009L6.172 15 9 17.828l1.835-1.835zm-.78 3.61a1.496 1.496 0 0 1-2.11 0l-3.548-3.549a1.496 1.496 0 0 1 0-2.108l1.787-1.787a7.5 7.5 0 1 1 5.657 5.657l-1.787 1.787zm-6.762.104a1 1 0 0 1 1.414-1.414l1 1a1 1 0 0 1-1.414 1.414l-1-1z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        incorrect
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414L13.414 12l3.293 3.293a1 1 0 0 1-1.414 1.414L12 13.414l-3.293 3.293a1 1 0 1 1-1.414-1.414L10.586 12 7.293 8.707a1 1 0 0 1 1.414-1.414L12 10.586zM12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        info
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm0-2A6 6 0 1 0 8 2a6 6 0 0 0 0 12zM7 8a1 1 0 1 1 2 0v3a1 1 0 0 1-2 0V8zm1-2a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        search
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        sortableArrowDown
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M7 9.586V4a1 1 0 1 1 2 0v5.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L7 9.586z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        sortableArrowUp
+      </td>
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M9 6.414l2.293 2.293a1 1 0 0 0 1.414-1.414l-4-4a1 1 0 0 0-1.414 0l-4 4a1 1 0 0 0 1.414 1.414L7 6.414V12a1 1 0 1 0 2 0V6.414z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        zoomIn
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM12 10h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H8a1 1 0 0 1 0-2h2V8a1 1 0 0 1 2 0v2zm-1 7a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
+      >
+        zoomOut
+      </td>
+      <td
+        className="emptyCell_iltch-o_O-tableBorder_j5cexi"
+      />
+      <td
+        className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm-3-5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2H8z"
+            fill="currentColor"
+          />
+        </svg>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`wonder-blocks-icon example 2 1`] = `
 <svg
   className=""
   height={16}
@@ -18,815 +831,6 @@ exports[`wonder-blocks-icon example 1 1`] = `
     fill="currentColor"
   />
 </svg>
-`;
-
-exports[`wonder-blocks-icon example 2 1`] = `
-<table
-  className=""
-  style={
-    Object {
-      "borderCollapse": "collapse",
-    }
-  }
->
-  <tr>
-    <th
-      className="tableBorder_j5cexi"
-    />
-    <th
-      className="tableBorder_j5cexi"
-    >
-      small
-    </th>
-    <th
-      className="tableBorder_j5cexi"
-    >
-      medium
-    </th>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      add
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M11 11V7a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4zm1 13C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      caretDown
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M17.293 8.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L12 13.586l5.293-5.293z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      caretLeft
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M7.414 8l3.293 3.293a1 1 0 0 1-1.414 1.414l-4-4a1 1 0 0 1 0-1.414l4-4a1 1 0 0 1 1.414 1.414L7.414 8z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M15.707 17.293a1 1 0 0 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 1.414L10.414 12l5.293 5.293z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      caretRight
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M8.293 17.293a1 1 0 0 0 1.414 1.414l6-6a1 1 0 0 0 0-1.414l-6-6a1 1 0 0 0-1.414 1.414L13.586 12l-5.293 5.293z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      caretUp
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8 7.414l-3.293 3.293a1 1 0 0 1-1.414-1.414l4-4a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1-1.414 1.414L8 7.414z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M17.293 15.707a1 1 0 0 0 1.414-1.414l-6-6a1 1 0 0 0-1.414 0l-6 6a1 1 0 0 0 1.414 1.414L12 10.414l5.293 5.293z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      check
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M6.072 10.4l6.175-7.058a1 1 0 1 1 1.506 1.317L6.769 12.64a1 1 0 0 1-1.55-.054L2.203 8.604a1 1 0 1 1 1.594-1.208L6.072 10.4z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      contentArticle
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M11 12V8h2v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h3v2H5v8h6zM9.5 6a.5.5 0 0 1-.5-.5V2l4 4H9.5z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm3-6v-4h2v5a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h3v2H9v8h6zm-1.5-6a.5.5 0 0 1-.5-.5V6l4 4h-3.5z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      contentExercise
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M7.5 6.914L5 9.414V11h1.586l2.5-2.5L7.5 6.914zM8.914 5.5L10.5 7.086 11.586 6 10 4.414 8.914 5.5zM3 9a1 1 0 0 1 .293-.707l6-6a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 7 13H4a1 1 0 0 1-1-1V9z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-.5-11.086l1.586 1.586-2.5 2.5H9v-1.586l2.5-2.5zM12.914 9.5L14 8.414 15.586 10 14.5 11.086 12.914 9.5zM12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zM7 13v3a1 1 0 0 0 1 1h3a1 1 0 0 0 .707-.293l6-6a1 1 0 0 0 0-1.414l-3-3a1 1 0 0 0-1.414 0l-6 6A1 1 0 0 0 7 13z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      contentVideo
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M6 5.87v4.263l3.197-2.131L6 5.87zm-.445-2.7l6 4a1 1 0 0 1 0 1.664l-6 4A1 1 0 0 1 4 12.002v-8a1 1 0 0 1 1.555-.832z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM10.555 7.17l6 4a1 1 0 0 1 0 1.664l-6 4A1 1 0 0 1 9 16.002v-8a1 1 0 0 1 1.555-.832zM11 14.133l3.197-2.131L11 9.87v4.263z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      correct
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-1.928-7.6l6.175-7.058a1 1 0 1 1 1.506 1.317l-6.984 7.981a1 1 0 0 1-1.55-.054l-3.016-3.982a1 1 0 0 1 1.594-1.208l2.275 3.003z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      delete
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-5-9a1 1 0 0 1 0-2h10a1 1 0 0 1 0 2H7z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      dismiss
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8 6.586l3.293-3.293a1 1 0 0 1 1.414 1.414L9.414 8l3.293 3.293a1 1 0 0 1-1.414 1.414L8 9.414l-3.293 3.293a1 1 0 1 1-1.414-1.414L6.586 8 3.293 4.707a1 1 0 0 1 1.414-1.414L8 6.586z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      hint
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M10.835 15.993a1 1 0 0 1 1.008-.247 5.5 5.5 0 1 0-3.59-3.59 1 1 0 0 1-.246 1.009L6.172 15 9 17.828l1.835-1.835zm-.78 3.61a1.496 1.496 0 0 1-2.11 0l-3.548-3.549a1.496 1.496 0 0 1 0-2.108l1.787-1.787a7.5 7.5 0 1 1 5.657 5.657l-1.787 1.787zm-6.762.104a1 1 0 0 1 1.414-1.414l1 1a1 1 0 0 1-1.414 1.414l-1-1z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      incorrect
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M12 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414L13.414 12l3.293 3.293a1 1 0 0 1-1.414 1.414L12 13.414l-3.293 3.293a1 1 0 1 1-1.414-1.414L10.586 12 7.293 8.707a1 1 0 0 1 1.414-1.414L12 10.586zM12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      info
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm0-2A6 6 0 1 0 8 2a6 6 0 0 0 0 12zM7 8a1 1 0 1 1 2 0v3a1 1 0 0 1-2 0V8zm1-2a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      search
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      sortableArrowDown
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M7 9.586V4a1 1 0 1 1 2 0v5.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L7 9.586z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      sortableArrowUp
-    </td>
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M9 6.414l2.293 2.293a1 1 0 0 0 1.414-1.414l-4-4a1 1 0 0 0-1.414 0l-4 4a1 1 0 0 0 1.414 1.414L7 6.414V12a1 1 0 1 0 2 0V6.414z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      zoomIn
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM12 10h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H8a1 1 0 0 1 0-2h2V8a1 1 0 0 1 2 0v2zm-1 7a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="nameCell_1wpn35a-o_O-tableBorder_j5cexi"
-    >
-      zoomOut
-    </td>
-    <td
-      className="emptyCell_iltch-o_O-tableBorder_j5cexi"
-    />
-    <td
-      className="iconCell_zch4q1-o_O-tableBorder_j5cexi"
-    >
-      <svg
-        className=""
-        height={24}
-        style={
-          Object {
-            "display": "inline-block",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={24}
-      >
-        <path
-          d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm-3-5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2H8z"
-          fill="currentColor"
-        />
-      </svg>
-    </td>
-  </tr>
-</table>
 `;
 
 exports[`wonder-blocks-icon example 3 1`] = `

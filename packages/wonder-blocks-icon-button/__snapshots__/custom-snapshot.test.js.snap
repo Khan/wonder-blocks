@@ -2,6 +2,7 @@
 
 exports[`IconButtonCore kind:primary color:default size:default light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -28,6 +29,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -35,7 +37,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -89,6 +90,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -96,7 +98,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -150,6 +151,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -157,7 +159,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -207,6 +208,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -214,7 +216,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -238,6 +239,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
 
 exports[`IconButtonCore kind:primary color:default size:default light:true disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -264,6 +266,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -271,7 +274,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -325,6 +327,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -332,7 +335,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -386,6 +388,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -393,7 +396,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -443,6 +445,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -450,7 +453,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -474,6 +476,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
 
 exports[`IconButtonCore kind:primary color:default size:small light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -500,6 +503,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -507,7 +511,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -561,6 +564,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -568,7 +572,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -622,6 +625,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -629,7 +633,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -679,6 +682,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -686,7 +690,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -710,6 +713,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
 
 exports[`IconButtonCore kind:primary color:default size:small light:true disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -736,6 +740,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -743,7 +748,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -797,6 +801,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -804,7 +809,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -858,6 +862,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -865,7 +870,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -915,6 +919,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -922,7 +927,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -946,6 +950,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -972,6 +977,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -979,7 +985,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -1033,6 +1038,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1040,7 +1046,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1094,6 +1099,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1101,7 +1107,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1151,6 +1156,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1158,7 +1164,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1182,6 +1187,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:true disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1208,6 +1214,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1215,7 +1222,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -1269,6 +1275,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1276,7 +1283,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1330,6 +1336,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1337,7 +1344,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1387,6 +1393,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1394,7 +1401,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1418,6 +1424,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1444,6 +1451,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1451,7 +1459,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -1505,6 +1512,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1512,7 +1520,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1566,6 +1573,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1573,7 +1581,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1623,6 +1630,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1630,7 +1638,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1654,6 +1661,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1680,6 +1688,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1687,7 +1696,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -1741,6 +1749,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1748,7 +1757,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1802,6 +1810,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1809,7 +1818,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1859,6 +1867,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1866,7 +1875,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -1890,6 +1898,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
 
 exports[`IconButtonCore kind:secondary color:default size:default light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1916,6 +1925,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1923,7 +1933,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -1977,6 +1986,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -1984,7 +1994,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2038,6 +2047,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2045,7 +2055,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2095,6 +2104,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2102,7 +2112,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2126,6 +2135,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2152,6 +2162,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2159,7 +2170,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -2213,6 +2223,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2220,7 +2231,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2274,6 +2284,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2281,7 +2292,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2331,6 +2341,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2338,7 +2349,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2362,6 +2372,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
 
 exports[`IconButtonCore kind:secondary color:destructive size:default light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2388,6 +2399,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2395,7 +2407,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -2449,6 +2460,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2456,7 +2468,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2510,6 +2521,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2517,7 +2529,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2567,6 +2578,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2574,7 +2586,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2598,6 +2609,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2624,6 +2636,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2631,7 +2644,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -2685,6 +2697,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2692,7 +2705,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2746,6 +2758,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2753,7 +2766,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2803,6 +2815,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2810,7 +2823,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2834,6 +2846,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 
 exports[`IconButtonCore kind:tertiary color:default size:default light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2860,6 +2873,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2867,7 +2881,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -2921,6 +2934,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2928,7 +2942,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -2982,6 +2995,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -2989,7 +3003,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3039,6 +3052,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3046,7 +3060,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3070,6 +3083,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3096,6 +3110,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3103,7 +3118,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -3157,6 +3171,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3164,7 +3179,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3218,6 +3232,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3225,7 +3240,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3275,6 +3289,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3282,7 +3297,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3306,6 +3320,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
 
 exports[`IconButtonCore kind:tertiary color:destructive size:default light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3332,6 +3347,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3339,7 +3355,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -3393,6 +3408,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3400,7 +3416,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3454,6 +3469,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3461,7 +3477,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3511,6 +3526,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3518,7 +3534,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3542,6 +3557,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
 <button
+  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3568,6 +3584,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3575,7 +3592,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
       "width": 40,
     }
   }
-  tabIndex={-1}
 >
   <svg
     className=""
@@ -3629,6 +3645,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3636,7 +3653,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3690,6 +3706,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3697,7 +3714,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""
@@ -3747,6 +3763,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
+      "margin": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
@@ -3754,7 +3771,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       "width": 40,
     }
   }
-  tabIndex={0}
 >
   <svg
     className=""

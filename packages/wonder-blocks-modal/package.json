@@ -18,10 +18,14 @@
     "@khanacademy/wonder-blocks-core": "^1.0.4",
     "@khanacademy/wonder-blocks-icon": "^1.0.1",
     "@khanacademy/wonder-blocks-icon-button": "^1.0.1",
+    "@khanacademy/wonder-blocks-toolbar": "^0.0.1",
     "@khanacademy/wonder-blocks-typography": "^1.0.4"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "@khanacademy/wonder-blocks-button": "^1.0.1"
   }
 }

@@ -47,6 +47,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",
+        "margin": 0,
         "marginRight": 10,
         "outline": "none",
         "padding": 0,
@@ -55,7 +56,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "width": 40,
       }
     }
-    tabIndex={0}
   >
     <svg
       className=""
@@ -102,6 +102,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",
+        "margin": 0,
         "marginRight": 10,
         "outline": "none",
         "padding": 0,
@@ -110,7 +111,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "width": 40,
       }
     }
-    tabIndex={0}
   >
     <svg
       className=""
@@ -157,6 +157,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",
+        "margin": 0,
         "marginRight": 10,
         "outline": "none",
         "padding": 0,
@@ -165,7 +166,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "width": 40,
       }
     }
-    tabIndex={0}
   >
     <svg
       className=""

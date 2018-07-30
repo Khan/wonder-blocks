@@ -1,0 +1,2023 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxCore type:default state:default checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "rgba(33,36,44,0.50)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:default state:default checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#1865f2",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="#ffffff"
+    />
+  </svg>
+</div>
+`;
+
+exports[`CheckboxCore type:default state:hovered checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1865f2",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:default state:hovered checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#1865f2",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="#ffffff"
+    />
+  </svg>
+</div>
+`;
+
+exports[`CheckboxCore type:default state:pressed checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#dae6fd",
+        "borderColor": "#1865f2",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:default state:pressed checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "background": "#1b50b3",
+        "backgroundColor": "#1865f2",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="#ffffff"
+    />
+  </svg>
+</div>
+`;
+
+exports[`CheckboxCore type:disabled state:default checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:disabled state:default checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="rgba(33,36,44,0.32)"
+    />
+  </svg>
+</div>
+`;
+
+exports[`CheckboxCore type:disabled state:hovered checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:disabled state:hovered checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="rgba(33,36,44,0.32)"
+    />
+  </svg>
+</div>
+`;
+
+exports[`CheckboxCore type:disabled state:pressed checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:disabled state:pressed checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="rgba(33,36,44,0.32)"
+    />
+  </svg>
+</div>
+`;
+
+exports[`CheckboxCore type:error state:default checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#d92916",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:error state:default checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#d92916",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="#ffffff"
+    />
+  </svg>
+</div>
+`;
+
+exports[`CheckboxCore type:error state:hovered checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#d92916",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:error state:hovered checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#d92916",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="#ffffff"
+    />
+  </svg>
+</div>
+`;
+
+exports[`CheckboxCore type:error state:pressed checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#9e271d",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+</div>
+`;
+
+exports[`CheckboxCore type:error state:pressed checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "background": "#9e271d",
+        "backgroundColor": "#d92916",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />
+  <svg
+    className=""
+    height={16}
+    style={
+      Object {
+        "display": "inline-block",
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
+      fill="#ffffff"
+    />
+  </svg>
+</div>
+`;
+
+exports[`RadioCore type:default state:default checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "rgba(33,36,44,0.50)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:default state:default checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1865f2",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 4,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:default state:hovered checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1865f2",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:default state:hovered checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1865f2",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 4,
+        "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:default state:pressed checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#dae6fd",
+        "borderColor": "#1865f2",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:default state:pressed checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1b50b3",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 4,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:disabled state:default checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:disabled state:default checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "rgba(33,36,44,0.32)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 8,
+        "left": 4,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 8,
+        "zIndex": 0,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`RadioCore type:disabled state:hovered checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:disabled state:hovered checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "rgba(33,36,44,0.32)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 8,
+        "left": 4,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 8,
+        "zIndex": 0,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`RadioCore type:disabled state:pressed checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:disabled state:pressed checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "rgba(33,36,44,0.32)",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 8,
+        "left": 4,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 8,
+        "zIndex": 0,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`RadioCore type:error state:default checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#d92916",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:error state:default checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#d92916",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 4,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:error state:hovered checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#d92916",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:error state:hovered checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#d92916",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 4,
+        "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:error state:pressed checked:false 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#9e271d",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;
+
+exports[`RadioCore type:error state:pressed checked:true 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "outline": "none",
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    aria-checked={true}
+    checked={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    style={
+      Object {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#9e271d",
+        "borderRadius": "50%",
+        "borderStyle": "solid",
+        "borderWidth": 4,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="radio"
+  />
+</div>
+`;

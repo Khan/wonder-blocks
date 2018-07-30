@@ -6,9 +6,9 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 import ModalContent from "./modal-content.js";
-import ModalTitleBar from "./modal-title-bar.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
 
@@ -19,7 +19,7 @@ type Props = {|
      */
     content: React.Element<typeof ModalContent> | React.Node,
     /** A title bar (with optional subtitle) to show at the top of the panel. */
-    titleBar?: React.Element<typeof ModalTitleBar>,
+    titleBar?: React.Element<typeof Toolbar>,
     /** A header to show above the contents, but below the title bar. */
     header?: React.Element<typeof ModalHeader> | React.Node,
     /** A footer to show beneath the contents. */
@@ -145,9 +145,9 @@ export default class ModalPanel extends React.Component<Props> {
             <View
                 style={[styles.wrapper, color === "dark" && styles.dark, style]}
             >
+                {this.maybeRenderCloseButton()}
                 {titleBar}
                 {mainContent}
-                {this.maybeRenderCloseButton()}
                 {!footer ||
                 (typeof footer === "object" && footer.type === ModalFooter) ? (
                     footer
@@ -175,6 +175,9 @@ const styles = StyleSheet.create({
         position: "absolute",
         left: 8,
         top: 8,
+        // This is to allow the button to be tab-ordered before the modal
+        // content but still be above the header and content.
+        zIndex: 1,
     },
 
     smallCloseButton: {

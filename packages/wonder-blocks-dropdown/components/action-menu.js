@@ -2,21 +2,22 @@
 // A menu that consists of action items
 
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import ActionItem from "./action-item.js";
-import DropdownCore from "./dropdown-core.js";
-import SelectItem from "./select-item.js";
+import Dropdown from "./dropdown.js";
+import OptionItem from "./option-item.js";
 import SeparatorItem from "./separator-item.js";
 
 import type {
     ActionItemProps,
-    SelectItemProps,
+    OptionItemProps,
     SeparatorProps,
-} from "../utils/types.js";
+} from "../util/types.js";
 
 type OpenerProps = {|
     /**
@@ -68,11 +69,11 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
     }
 }
 
-type ItemProps = ActionItemProps | SelectItemProps | SeparatorProps;
+type ItemProps = ActionItemProps | OptionItemProps | SeparatorProps;
 
 type MenuProps = {|
     /**
-     * The items in this menu.
+     * The items in this dropdown.
      */
     items: Array<ItemProps>,
 
@@ -100,8 +101,8 @@ type MenuProps = {|
     alignment: "left" | "right",
 
     /**
-     * Whether this menu is disabled. A disabled menu may not be opened and
-     * does not support interaction. Defaults to false.
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
      */
     disabled: boolean,
 
@@ -113,12 +114,14 @@ type MenuProps = {|
 
 type State = {|
     /**
-     * Whether or not menu is open.
+     * Whether or not the dropdown is open.
      */
     open: boolean,
 |};
 
 export default class ActionMenu extends React.Component<MenuProps, State> {
+    openerElement: ?Element;
+
     static defaultProps = {
         alignment: "left",
         disabled: false,
@@ -132,15 +135,9 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         };
     }
 
-    toggleMenu() {
-        this.setState((prevState) => ({
-            open: !prevState.open,
-        }));
-    }
-
-    handleClose() {
+    handleOpenChanged(open: boolean) {
         this.setState({
-            open: false,
+            open: open,
         });
     }
 
@@ -180,14 +177,19 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const opener = (
             <ActionMenuOpener
                 disabled={disabled}
-                onClick={() => this.toggleMenu()}
+                onClick={() => this.handleOpenChanged(!open)}
+                ref={(node) =>
+                    (this.openerElement = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
                 style={style}
             >
                 {menuText}
             </ActionMenuOpener>
         );
 
-        const containsSelectItems = Array.isArray(selectedValues);
+        const containsOptionItems = Array.isArray(selectedValues);
 
         const menuItems = items.map((item, index) => {
             if (item.type === "action") {
@@ -195,7 +197,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                     <ActionItem
                         key={index}
                         disabled={item.disabled}
-                        indent={containsSelectItems}
+                        indent={containsOptionItems}
                         label={item.label}
                         href={item.href}
                         clientNav={item.clientNav}
@@ -205,7 +207,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 );
             } else if (item.type === "select") {
                 return (
-                    <SelectItem
+                    <OptionItem
                         key={index}
                         disabled={item.disabled}
                         label={item.label}
@@ -230,13 +232,14 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         });
 
         return (
-            <DropdownCore
+            <Dropdown
                 alignment={alignment}
                 items={menuItems}
                 light={false}
-                onClose={() => this.handleClose()}
+                onOpenChanged={(open) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
+                openerElement={this.openerElement}
                 style={[styles.menuTopSpace, style]}
             />
         );
@@ -257,6 +260,6 @@ const styles = StyleSheet.create({
 
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
-        top: 36,
+        top: -4,
     },
 });

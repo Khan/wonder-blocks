@@ -1,0 +1,19 @@
+{
+    "name": "@khanacademy/wonder-blocks-form",
+    "private": true,
+    "version": "0.0.1",
+    "design": "v1",
+    "description": "Form components for Wonder Blocks.",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "@khanacademy/wonder-blocks-color": "^1.0.4",
+      "@khanacademy/wonder-blocks-core": "^1.0.4",
+      "@khanacademy/wonder-blocks-icon": "^1.0.1",
+      "@khanacademy/wonder-blocks-spacing": "^2.0.2"
+    }
+  }

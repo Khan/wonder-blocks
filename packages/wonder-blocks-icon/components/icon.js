@@ -44,7 +44,7 @@ const StyledSVG = addStyle("svg");
  * <Icon
  *     icon={icons.search}
  *     color={Color.white}
- *     size={"medium"}
+ *     size="medium"
  *     style={{margin: 4}}
  * />
  * ```
@@ -58,8 +58,6 @@ const StyledSVG = addStyle("svg");
  *
  * These icons should fit into a viewport of 16, 24, 48, and 96 pixels,
  * respectively.
- *
- * @version 1.0.0
  */
 export default class Icon extends React.PureComponent<Props> {
     static defaultProps = {
