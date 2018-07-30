@@ -216,6 +216,7 @@ exports[`wonder-blocks-core example 4 1`] = `
           "textDecoration": "none",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""

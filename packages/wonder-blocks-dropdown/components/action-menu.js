@@ -48,7 +48,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
         const {children, disabled, onClick} = this.props;
 
         return (
-            // $FlowFixMe: button doesn't allow 'role' yet
+            // $FlowFixMe: button doesn't allow 'role' prop or Icon as children
             <Button
                 role="menu"
                 color="default"

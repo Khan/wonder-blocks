@@ -76,6 +76,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "textDecoration": "none",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -156,6 +157,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "textDecoration": "none",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -236,6 +238,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "textDecoration": "none",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -416,6 +419,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
                 "width": 40,
               }
             }
+            tabIndex={0}
           >
             <svg
               className=""
@@ -778,6 +782,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
                   "textDecoration": "none",
                 }
               }
+              tabIndex={0}
               type="button"
             >
               <span
@@ -963,6 +968,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
                 "width": 40,
               }
             }
+            tabIndex={0}
           >
             <svg
               className=""
@@ -1380,6 +1386,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
                   "textDecoration": "none",
                 }
               }
+              tabIndex={0}
               type="button"
             >
               <span
@@ -1565,6 +1572,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                 "width": 40,
               }
             }
+            tabIndex={0}
           >
             <svg
               className=""
@@ -1982,6 +1990,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                   "textDecoration": "none",
                 }
               }
+              tabIndex={0}
               type="button"
             >
               <span
@@ -2312,6 +2321,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
                 "width": 40,
               }
             }
+            tabIndex={0}
           >
             <svg
               className=""
@@ -2798,6 +2808,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
                   "textDecoration": "none",
                 }
               }
+              tabIndex={0}
               type="button"
             >
               <span
@@ -3003,6 +3014,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   "width": 40,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 className=""
@@ -3446,6 +3458,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "width": 40,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 className=""
@@ -3812,6 +3825,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                     "textDecoration": "none",
                   }
                 }
+                tabIndex={0}
               >
                 <span
                   className=""
@@ -4017,6 +4031,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                   "width": 40,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 className=""
@@ -4333,6 +4348,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   "width": 40,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 className=""
@@ -4642,6 +4658,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                   "width": 40,
                 }
               }
+              tabIndex={0}
             >
               <svg
                 className=""

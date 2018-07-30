@@ -99,6 +99,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
             "whiteSpace": "nowrap",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
@@ -223,6 +224,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "whiteSpace": "nowrap",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -349,6 +351,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "width": 170,
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -495,6 +498,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "whiteSpace": "nowrap",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -810,6 +814,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
             "whiteSpace": "nowrap",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
@@ -959,6 +964,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           "width": 170,
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -1105,6 +1111,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           "whiteSpace": "nowrap",
         }
       }
+      tabIndex={0}
     >
       <span
         className=""
@@ -1420,6 +1427,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
             "whiteSpace": "nowrap",
           }
         }
+        tabIndex={0}
       >
         <span
           className=""
