@@ -26,6 +26,12 @@ const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
 export default class ButtonCore extends React.Component<Props> {
+    handleClick = (e: SyntheticEvent<>) => {
+        if (this.props.disabled) {
+            e.preventDefault();
+        }
+    };
+
     render() {
         const {
             children,
@@ -75,13 +81,20 @@ export default class ButtonCore extends React.Component<Props> {
         const label = <Label style={sharedStyles.text}>{children}</Label>;
 
         if (href) {
-            const actualHref = !disabled ? href : undefined;
             return clientNav ? (
-                <StyledLink {...commonProps} to={actualHref}>
+                <StyledLink
+                    {...commonProps}
+                    onClick={this.handleClick}
+                    to={href}
+                >
                     {label}
                 </StyledLink>
             ) : (
-                <StyledAnchor {...commonProps} href={actualHref}>
+                <StyledAnchor
+                    {...commonProps}
+                    onClick={this.handleClick}
+                    href={href}
+                >
                     {label}
                 </StyledAnchor>
             );
@@ -162,6 +175,7 @@ const _generateStyles = (color, kind, light) => {
             disabled: {
                 background: light ? mix(fade(white, 0.32), color) : offBlack32,
                 color: light ? color : white64,
+                cursor: "default",
             },
         };
     } else if (kind === "secondary") {
@@ -194,6 +208,7 @@ const _generateStyles = (color, kind, light) => {
             disabled: {
                 color: light ? mix(fade(white, 0.32), color) : offBlack32,
                 borderColor: light ? mix(fade(white, 0.32), color) : offBlack32,
+                cursor: "default",
             },
         };
     } else if (kind === "tertiary") {
@@ -222,6 +237,7 @@ const _generateStyles = (color, kind, light) => {
             },
             disabled: {
                 color: light ? mix(fade(white, 0.32), color) : offBlack32,
+                cursor: "default",
             },
         };
     } else {

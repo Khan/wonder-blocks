@@ -376,7 +376,7 @@ exports[`wonder-blocks-button example 3 1`] = `
         "borderRadius": 4,
         "boxSizing": "border-box",
         "color": "rgba(255,255,255,0.64)",
-        "cursor": "auto",
+        "cursor": "default",
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",
@@ -417,6 +417,7 @@ exports[`wonder-blocks-button example 3 1`] = `
   <a
     aria-disabled="true"
     className=""
+    href="https://khanacademy.org"
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -437,7 +438,7 @@ exports[`wonder-blocks-button example 3 1`] = `
         "borderRadius": 4,
         "boxSizing": "border-box",
         "color": "rgba(255,255,255,0.64)",
-        "cursor": "auto",
+        "cursor": "default",
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",

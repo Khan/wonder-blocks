@@ -80,6 +80,12 @@ export default class ActionItem extends React.Component<ActionProps> {
         indent: false,
     };
 
+    handleClick = (e: SyntheticEvent<>) => {
+        if (this.props.disabled) {
+            e.preventDefault();
+        }
+    };
+
     render() {
         const {clientNav, disabled, href, indent, label, onClick} = this.props;
 
@@ -128,11 +134,19 @@ export default class ActionItem extends React.Component<ActionProps> {
                     if (href) {
                         const actualHref = !disabled ? href : undefined;
                         return clientNav ? (
-                            <StyledLink {...props} to={actualHref}>
+                            <StyledLink
+                                {...props}
+                                onClick={this.handleClick}
+                                to={actualHref}
+                            >
                                 {children}
                             </StyledLink>
                         ) : (
-                            <StyledAnchor {...props} href={actualHref}>
+                            <StyledAnchor
+                                {...props}
+                                onClick={this.handleClick}
+                                href={actualHref}
+                            >
                                 {children}
                             </StyledAnchor>
                         );
