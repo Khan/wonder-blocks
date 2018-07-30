@@ -55,6 +55,12 @@ const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
 export default class IconButtonCore extends React.Component<Props> {
+    handleClick = (e: SyntheticEvent<>) => {
+        if (this.props.disabled) {
+            e.preventDefault();
+        }
+    };
+
     render() {
         const {
             clientNav,
@@ -103,11 +109,19 @@ export default class IconButtonCore extends React.Component<Props> {
 
         if (href) {
             return clientNav ? (
-                <StyledLink {...commonProps} to={href}>
+                <StyledLink
+                    {...commonProps}
+                    onClick={this.handleClick}
+                    to={href}
+                >
                     {child}
                 </StyledLink>
             ) : (
-                <StyledAnchor {...commonProps} href={href}>
+                <StyledAnchor
+                    {...commonProps}
+                    onClick={this.handleClick}
+                    href={href}
+                >
                     {child}
                 </StyledAnchor>
             );
@@ -138,7 +152,7 @@ const sharedStyles = StyleSheet.create({
         background: "none",
     },
     disabled: {
-        cursor: "auto",
+        cursor: "default",
     },
 });
 
@@ -172,6 +186,7 @@ const _generateStyles = (color, kind, light) => {
         },
         disabled: {
             color: light ? mix(fade(white, 0.32), color) : offBlack32,
+            cursor: "default",
         },
     };
     if (kind === "primary") {
