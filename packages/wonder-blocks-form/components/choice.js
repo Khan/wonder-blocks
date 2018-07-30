@@ -69,7 +69,8 @@ type Props = {|
  * examples.
  *
  * If you wish to use just a single field, see the ChoiceField component.
- */ export default class Choice extends React.Component<Props> {
+ */
+export default class Choice extends React.Component<Props> {
     static defaultProps = {
         disabled: false,
     };

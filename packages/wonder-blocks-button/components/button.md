@@ -71,6 +71,64 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+Buttons on a dark blue background:
+```js
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        backgroundColor: Color.darkBlue,
+        padding: 10,
+    },
+    sideMargins: {
+        marginRight: 10,
+    }
+});
+
+<View style={styles.row}>
+    <Button
+        light={true}
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+    >Label</Button>
+    <Button
+        light={true}
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="secondary"
+    >Label</Button>
+    <Button
+        light={true}
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="tertiary"
+    >Label</Button>
+    <Button
+        disabled={true}
+        light={true}
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+    >Disabled</Button>
+    <Button
+        disabled={true}
+        light={true}
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="secondary"
+    >Disabled</Button>
+    <Button
+        disabled={true}
+        light={true}
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="tertiary"
+    >Disabled</Button>
+</View>
+```
+
 Button examples, `style` specified (Supports width, position, margin, and flex styles):
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");

@@ -47,9 +47,42 @@ describe("wonder-blocks-icon-button", () => {
                     onClick={(e) => console.log("hello")}
                     style={styles.sideMargins}
                 />
+                <IconButton
+                    disabled={true}
+                    icon={icons.search}
+                    aria-label="search"
+                    onClick={(e) => console.log("hello")}
+                    style={styles.sideMargins}
+                />
             </View>
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const {StyleSheet} = require("aphrodite");
 
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                backgroundColor: Color.darkBlue,
+                padding: 10,
+            },
+        });
+
+        const example = (
+            <View style={[styles.row]}>
+                <IconButton
+                    icon={icons.search}
+                    aria-label="search"
+                    light={true}
+                    onClick={(e) => console.log("hello")}
+                />
+            </View>
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
