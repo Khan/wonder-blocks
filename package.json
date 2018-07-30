@@ -29,11 +29,10 @@
   },
   "author": "",
   "license": "MIT",
+  "//": [
+    "enzyme-adapter-react-16: TODO(sophie): We should revert back to the latest release of this when the issue at https://github.com/airbnb/enzyme/issues/1509 is fixed"
+  ],
   "devDependencies": {
-    "//": [
-      "TODO(sophie): We should revert back to the latest release of this",
-      "when the issue at https://github.com/airbnb/enzyme/issues/1509 is fixed"
-    ],
     "babel-core": "6.26.3",
     "babel-eslint": "^9.0.0-beta.3",
     "babel-jest": "^22.4.1",
