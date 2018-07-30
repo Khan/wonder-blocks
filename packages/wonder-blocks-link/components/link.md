@@ -2,8 +2,9 @@ Link example:
 
 ```js
 const Color = require("@khanacademy/wonder-blocks-color").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
 
-<React.Fragment>
+<View>
     <p>
     I am a <Link href="#nonexistent-link">Primary Link</Link>. <span
     style={{color: Color.offBlack64}}>My friend the
@@ -16,5 +17,5 @@ const Color = require("@khanacademy/wonder-blocks-color").default;
         a dark background. My friend the Secondary Link isn't supported on this
         dark background.
     </p>
-</React.Fragment>
+</View>
 ```

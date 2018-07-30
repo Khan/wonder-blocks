@@ -13,9 +13,10 @@ import Link from "./components/link.js";
 describe("wonder-blocks-link", () => {
     it("example 1", () => {
         const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
-            <React.Fragment>
+            <View>
                 <p>
                     I am a <Link href="#nonexistent-link">Primary Link</Link>.{" "}
                     <span style={{color: Color.offBlack64}}>
@@ -45,7 +46,7 @@ describe("wonder-blocks-link", () => {
                     used on a dark background. My friend the Secondary Link
                     isn't supported on this dark background.
                 </p>
-            </React.Fragment>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

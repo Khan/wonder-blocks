@@ -1,7 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`wonder-blocks-link example 1 1`] = `
-Array [
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <p>
     I am a 
     <a
@@ -30,29 +48,7 @@ Array [
           "textDecoration": "none",
         }
       }
-<<<<<<< HEAD
-    }
-    tabIndex={0}
-  >
-    Link
-  </a>
-   dolor sit amet, consectetur 
-  <a
-    className=""
-    href="#"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-=======
+      tabIndex={0}
     >
       Primary Link
     </a>
@@ -92,6 +88,7 @@ Array [
             "textDecoration": "none",
           }
         }
+        tabIndex={0}
       >
         Secondary Link
       </a>
@@ -126,13 +123,13 @@ Array [
           "textDecoration": "none",
         }
       }
+      tabIndex={0}
     >
       Visited Link
     </a>
      friend.
-  </p>,
+  </p>
   <p
->>>>>>> Add examples for Link
     style={
       Object {
         "backgroundColor": "#0a2a66",
@@ -140,7 +137,6 @@ Array [
         "padding": 10,
       }
     }
-    tabIndex={0}
   >
     I am a
      
@@ -170,11 +166,12 @@ Array [
           "textDecoration": "none",
         }
       }
+      tabIndex={0}
     >
       Primary Link
     </a>
      
     used on a dark background. My friend the Secondary Link isn't supported on this dark background.
-  </p>,
-]
+  </p>
+</div>
 `;

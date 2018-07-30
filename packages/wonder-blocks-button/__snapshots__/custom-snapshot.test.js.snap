@@ -2340,13 +2340,8 @@ exports[`ButtonCore kind:secondary color:default size:default light:true disable
       "borderStyle": "solid",
       "borderWidth": 1,
       "boxSizing": "border-box",
-<<<<<<< HEAD
-      "color": "#6296f6",
-      "cursor": "default",
-=======
       "color": "#b5cefb",
-      "cursor": "auto",
->>>>>>> Update clickable components to retain focus ring in active state
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -2875,13 +2870,8 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
       "borderStyle": "solid",
       "borderWidth": 1,
       "boxSizing": "border-box",
-<<<<<<< HEAD
-      "color": "#6296f6",
-      "cursor": "default",
-=======
       "color": "#b5cefb",
-      "cursor": "auto",
->>>>>>> Update clickable components to retain focus ring in active state
+      "cursor": "default",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -3410,13 +3400,8 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true dis
       "borderStyle": "solid",
       "borderWidth": 1,
       "boxSizing": "border-box",
-<<<<<<< HEAD
-      "color": "#e56d61",
-      "cursor": "default",
-=======
       "color": "#f3bbb4",
-      "cursor": "auto",
->>>>>>> Update clickable components to retain focus ring in active state
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -3945,13 +3930,8 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
       "borderStyle": "solid",
       "borderWidth": 1,
       "boxSizing": "border-box",
-<<<<<<< HEAD
-      "color": "#e56d61",
-      "cursor": "default",
-=======
       "color": "#f3bbb4",
-      "cursor": "auto",
->>>>>>> Update clickable components to retain focus ring in active state
+      "cursor": "default",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -4492,13 +4472,8 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true disabled
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-<<<<<<< HEAD
-      "color": "#6296f6",
-      "cursor": "default",
-=======
       "color": "#b5cefb",
-      "cursor": "auto",
->>>>>>> Update clickable components to retain focus ring in active state
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -5057,13 +5032,8 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-<<<<<<< HEAD
-      "color": "#6296f6",
-      "cursor": "default",
-=======
       "color": "#b5cefb",
-      "cursor": "auto",
->>>>>>> Update clickable components to retain focus ring in active state
+      "cursor": "default",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -5622,13 +5592,8 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true disa
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-<<<<<<< HEAD
-      "color": "#e56d61",
-      "cursor": "default",
-=======
       "color": "#f3bbb4",
-      "cursor": "auto",
->>>>>>> Update clickable components to retain focus ring in active state
+      "cursor": "default",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -6187,13 +6152,8 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-<<<<<<< HEAD
-      "color": "#e56d61",
-      "cursor": "default",
-=======
       "color": "#f3bbb4",
-      "cursor": "auto",
->>>>>>> Update clickable components to retain focus ring in active state
+      "cursor": "default",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",

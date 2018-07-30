@@ -212,7 +212,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "border": "none",
         "boxSizing": "border-box",
         "color": "rgba(33,36,44,0.32)",
-        "cursor": "auto",
+        "cursor": "default",
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",
@@ -304,6 +304,7 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
         "width": 40,
       }
     }
+    tabIndex={0}
   >
     <svg
       className=""

@@ -537,6 +537,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -600,6 +601,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -660,6 +662,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         "textDecoration": "none",
       }
     }
+    tabIndex={0}
   >
     <span
       className=""
@@ -706,7 +709,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         "borderRadius": 4,
         "boxSizing": "border-box",
         "color": "#1865f2",
-        "cursor": "auto",
+        "cursor": "default",
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",
@@ -771,7 +774,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         "borderWidth": 1,
         "boxSizing": "border-box",
         "color": "#b5cefb",
-        "cursor": "auto",
+        "cursor": "default",
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",
@@ -833,7 +836,7 @@ exports[`wonder-blocks-button example 4 1`] = `
         "borderRadius": 4,
         "boxSizing": "border-box",
         "color": "#b5cefb",
-        "cursor": "auto",
+        "cursor": "default",
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",

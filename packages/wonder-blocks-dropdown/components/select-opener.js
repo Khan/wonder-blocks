@@ -211,15 +211,18 @@ const _generateStyles = (light, hovered, focused, pressed) => {
                 // These values are default padding (16 and 12) minus 1, because
                 // changing the borderWidth to 2 messes up the button width
                 // and causes it to move a couple pixels. This fixes that.
-                paddingLeft: 15,
-                paddingRight: 11,
+                paddingLeft: 16 - 1,
+                paddingRight: 12 - 1,
             },
             active: {
                 background: mix(fade(blue, 0.32), white),
                 borderColor: mix(offBlack32, blue),
                 borderWidth: 2,
-                paddingLeft: 15,
-                paddingRight: 11,
+                // These values are default padding (16 and 12) minus 1, because
+                // changing the borderWidth to 2 messes up the button width
+                // and causes it to move a couple pixels. This fixes that.
+                paddingLeft: 16 - 1,
+                paddingRight: 12 - 1,
             },
             disabled: {
                 borderColor: offBlack16,
