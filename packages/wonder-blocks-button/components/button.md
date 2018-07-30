@@ -1,5 +1,6 @@
-Primary, secondary, tertiary, and small button examples:
-```js
+There are three `kind`s of buttons: `"primary"` (default), `"secondary"`, and
+`"tertiary"`:
+```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
@@ -16,35 +17,69 @@ const styles = StyleSheet.create({
     <Button
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
-    >Label</Button>
+    >
+        Primary
+    </Button>
     <Button
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
-    >Label</Button>
+    >
+        Secondary
+    </Button>
     <Button
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
-    >Label</Button>
-    <Button
-        style={styles.sideMargins}
-        onClick={(e) => console.log("Hello, world!")}
-        size="small"
-    >Label</Button>
+    >
+        Tertiary
+    </Button>
 </View>
 ```
 
-Button example, `href="#button-1"`:
-```js
-<Button
-    onClick={(e) => console.log("Hello, world!")}
-    href="#button-1"
->Label</Button>
+Buttons have a `color` that is either `"default"` (default) or `"destructive"`:
+```jsx
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    sideMargins: {
+        marginRight: 10,
+    }
+});
+
+<View style={styles.row}>
+    <Button
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        color="destructive"
+    >
+        Primary
+    </Button>
+    <Button
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="secondary"
+        color="destructive"
+    >
+        Secondary
+    </Button>
+    <Button
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="tertiary"
+        color="destructive"
+    >
+        Tertiary
+    </Button>
+</View>
 ```
 
-Disabled button example:
-```js
+Buttons can be `disabled`.
+```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
@@ -62,17 +97,30 @@ const styles = StyleSheet.create({
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
         disabled={true}
-    >Label</Button>
+    >
+        Primary
+    </Button>
     <Button
         style={styles.sideMargins}
-        href="https://khanacademy.org"
+        onClick={(e) => console.log("Hello, world!")}
+        kind="secondary"
         disabled={true}
-    >Button with href</Button>
+    >
+        Secondary
+    </Button>
+    <Button
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="tertiary"
+        disabled={true}
+    >
+        Tertiary
+    </Button>
 </View>
 ```
 
-Buttons on a dark blue background:
-```js
+Buttons on a `darkBlue` background should be `light`.
+```jsx
 const Color = require("@khanacademy/wonder-blocks-color").default;
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -93,171 +141,280 @@ const styles = StyleSheet.create({
         light={true}
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
-    >Label</Button>
+    >
+        Primary
+    </Button>
     <Button
         light={true}
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
-    >Label</Button>
+    >
+        Secondary
+    </Button>
     <Button
         light={true}
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
-    >Label</Button>
+    >
+        Tertiary
+    </Button>
     <Button
-        disabled={true}
         light={true}
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
-    >Disabled</Button>
-    <Button
         disabled={true}
+    >
+        Primary
+    </Button>
+    <Button
         light={true}
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
-    >Disabled</Button>
-    <Button
         disabled={true}
+    >
+        Secondary
+    </Button>
+    <Button
         light={true}
         style={styles.sideMargins}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
-    >Disabled</Button>
+        disabled={true}
+    >
+        Tertiary
+    </Button>
 </View>
 ```
 
-Button examples, `style` specified (Supports width, position, margin, and flex styles):
+Buttons have a `size` that's either `"medium"` (default) or `"small"`.
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
 const styles = StyleSheet.create({
     row: {
-        display: "row",
-    },
-    wideButton: {
-        width: 200,
-    },
-    centerInDiv: {
-        display: 'block',
-        margin: '0 auto',
+        flexDirection: "row",
     },
     sideMargins: {
+        marginRight: 10,
+    }
+});
+
+<View style={styles.row}>
+    <Button
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        size="small"
+    >
+        Label
+    </Button>
+    <Button
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="secondary"
+        size="small"
+    >
+        Label
+    </Button>
+    <Button
+        style={styles.sideMargins}
+        onClick={(e) => console.log("Hello, world!")}
+        kind="tertiary"
+        size="small"
+    >
+        Label
+    </Button>
+</View>
+```
+
+Buttons can have an `href` or an `onClick` handler or both.
+
+Being able to use both is necessary to support marking conversions in A/B tests.
+```jsx
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    sideMargins: {
+        marginRight: 10,
+    }
+});
+
+<View style={styles.row}>
+    <Button
+        href="#button-1"
+        style={styles.sideMargins}
+    >
+        href
+    </Button>
+    <Button
+        onClick={(e) => console.log("Hello, world!")}
+        style={styles.sideMargins}
+    >
+        onClick
+    </Button>
+    <Button
+        href="#button-1"
+        onClick={(e) => console.log("Hello, world!")}
+        style={styles.sideMargins}
+    >
+        both
+    </Button>
+</View>
+```
+
+Buttons can have a `style` props which supports width, position, margin,
+and flex styles:
+
+TODO(kevinb): link to front matter section describing the `style` prop in
+more detail.
+
+### Best Practices
+
+In vertical layouts, buttons will stretch horizontally to fill the available
+space.  This is probably not what you want unless you're on a very narrow
+screen.
+
+TODO(kevinb): add section on media queries.
+```jsx
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+<View>
+    <Button>
+        Label
+    </Button>
+</View>
+```
+
+This can be corrected by applying appropriate flex styles to the container.
+
+TODO(kevinb): link to front matter section describing why we use flexbox for
+everything.
+```jsx
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    column: {
+        alignItems: "flex-start",
+    },
+    row: {
+        flexDirection: "row",
+    },
+    gap: {
+        height: 16,
+    },
+    button: {
         marginRight: 10,
     },
 });
 
+<View>
+    <View style={styles.row}>
+        <Button>
+            Button in a row
+        </Button>
+    </View>
+    <View style={styles.gap} />
+    <View style={styles.column}>
+        <Button>
+            Button in a column
+        </Button>
+    </View>
+</View>
+```
 
-<table>
-    <thead>
-        <tr>
-            <th style={{minWidth: '250px'}}>Styles</th>
-            <th style={{width: '100%'}}>Buttons</th>
-        </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>width: '200px'</td>
-        <td>
-            <Button
-                onClick={(e) => console.log("Hello, world!")}
-                style={styles.wideButton}
-            >Label</Button>
-        </td>
-    </tr>
-    <tr>
-        <td>width: '75%'</td>
-        <td>
-            <Button
-                onClick={(e) => console.log("Hello, world!")}
-                style={{width: '75%'}}
-            >Label</Button>
-        </td>
-    </tr>
-    <tr>
-        <td>display: 'block', margin: '0 auto'</td>
-        <td>
-            <Button
-                onClick={(e) => console.log("Hello, world!")}
-                style={styles.centerInDiv}
-            >Label</Button>
-        </td>
-    </tr>
-    <tr>
-        <td>flexGrow: 1</td>
-        <td>
-            <View>
-                <Button
-                    onClick={(e) => console.log("Hello, world!")}
-                    style={{flexGrow: 1}}
-                >Label</Button>
-            </View>
-        </td>
-    </tr>
-    <tr>
-        <td>flexShrink: 2, width: '300px'</td>
-        <td>
-            <View>
-                <Button
-                    onClick={(e) => console.log("Hello, world!")}
-                    style={[
-                        {flexShrink: 2, width: '300px'},
-                        styles.sideMargins
-                    ]}
-                >Label</Button>
-                <View
-                    onClick={(e) => console.log("Hello, world!")}
-                    style={
-                        {
-                            width: '100%',
-                            background: '#eee',
-                            textAlign: 'center',
-                            lineHeight: '40px',
-                        }
-                    }
-                >Not a button</View>
-            </View>
-        </td>
-    </tr>
-    <tr>
-        <td>alignSelf: 'flex-end'</td>
-        <td>
-            <View>
-                <Button
-                    onClick={(e) => console.log("Hello, world!")}
-                    style={[{alignSelf: 'flex-end'}, styles.sideMargins]}
-                >Label</Button>
-                <View
-                    onClick={(e) => console.log("Hello, world!")}
-                    style={
-                        {
-                            background: '#eee',
-                            textAlign: 'center',
-                            lineHeight: '100px',
-                            height: '100px',
-                            padding: '0px 4px',
-                        }
-                    }
-                >Not a button</View>
-            </View>
-        </td>
-    </tr>
-    <tr>
-        <td>justifySelf: 'flex-end'</td>
-        <td>
-            <View>
-                <View style={{display: 'grid', width: '100%'}}>
-                    <Button
-                        onClick={(e) => console.log("Hello, world!")}
-                        style={{justifySelf: 'flex-end'}}
-                    >Label</Button>
-                </View>
-            </View>
-        </td>
-    </tr>
-    </tbody>
-</table>
+Layouts often specify a specific width of button.  When implementing such
+designs use `minWidth` instead of `width`.  It prevents a button from
+resizing to fit content.  This is important for international sites since
+sometimes strings for UI elements can be much longer than their English
+counterparts.
+```jsx
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    gap: {
+        height: 16,
+    },
+    goodButton: {
+        marginRight: 10,
+        width: 144,
+    },
+    badButton: {
+        marginRight: 10,
+        minWidth: 144,
+    },
+});
+
+<View>
+    <View style={styles.row}>
+        <Button
+            style={styles.goodButton}
+            kind="secondary"
+        >
+            label
+        </Button>
+        <Button
+            style={styles.goodButton}
+        >
+            label in a different language
+        </Button>
+    </View>
+    <View style={styles.gap} />
+    <View style={styles.row}>
+        <Button
+            style={styles.badButton}
+            kind="secondary"
+        >
+            label
+        </Button>
+        <Button
+            style={styles.badButton}
+        >
+            label in a different language
+        </Button>
+    </View>
+</View>
+```
+
+Only one button in a layout should be `primary`.
+```jsx
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
+    },
+    button: {
+        marginRight: 10,
+    },
+});
+
+<View>
+    <View style={styles.row}>
+        <Button
+            style={styles.button}
+            kind="tertiary"
+        >
+            Tertiary
+        </Button>
+        <Button
+            style={styles.badButton}
+        >
+            Primary
+        </Button>
+    </View>
+</View>
 ```

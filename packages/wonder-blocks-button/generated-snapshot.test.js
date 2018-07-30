@@ -30,28 +30,21 @@ describe("wonder-blocks-button", () => {
                     style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                 >
-                    Label
+                    Primary
                 </Button>
                 <Button
                     style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                 >
-                    Label
+                    Secondary
                 </Button>
                 <Button
                     style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                 >
-                    Label
-                </Button>
-                <Button
-                    style={styles.sideMargins}
-                    onClick={(e) => console.log("Hello, world!")}
-                    size="small"
-                >
-                    Label
+                    Tertiary
                 </Button>
             </View>
         );
@@ -59,13 +52,44 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            sideMargins: {
+                marginRight: 10,
+            },
+        });
+
         const example = (
-            <Button
-                onClick={(e) => console.log("Hello, world!")}
-                href="#button-1"
-            >
-                Label
-            </Button>
+            <View style={styles.row}>
+                <Button
+                    style={styles.sideMargins}
+                    onClick={(e) => console.log("Hello, world!")}
+                    color="destructive"
+                >
+                    Primary
+                </Button>
+                <Button
+                    style={styles.sideMargins}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="secondary"
+                    color="destructive"
+                >
+                    Secondary
+                </Button>
+                <Button
+                    style={styles.sideMargins}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="tertiary"
+                    color="destructive"
+                >
+                    Tertiary
+                </Button>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
@@ -90,14 +114,23 @@ describe("wonder-blocks-button", () => {
                     onClick={(e) => console.log("Hello, world!")}
                     disabled={true}
                 >
-                    Label
+                    Primary
                 </Button>
                 <Button
                     style={styles.sideMargins}
-                    href="https://khanacademy.org"
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="secondary"
                     disabled={true}
                 >
-                    Button with href
+                    Secondary
+                </Button>
+                <Button
+                    style={styles.sideMargins}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="tertiary"
+                    disabled={true}
+                >
+                    Tertiary
                 </Button>
             </View>
         );
@@ -127,7 +160,7 @@ describe("wonder-blocks-button", () => {
                     style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                 >
-                    Label
+                    Primary
                 </Button>
                 <Button
                     light={true}
@@ -135,7 +168,7 @@ describe("wonder-blocks-button", () => {
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                 >
-                    Label
+                    Secondary
                 </Button>
                 <Button
                     light={true}
@@ -143,33 +176,33 @@ describe("wonder-blocks-button", () => {
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                 >
-                    Label
+                    Tertiary
                 </Button>
                 <Button
-                    disabled={true}
                     light={true}
                     style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
+                    disabled={true}
                 >
-                    Disabled
+                    Primary
                 </Button>
                 <Button
-                    disabled={true}
                     light={true}
                     style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
+                    disabled={true}
                 >
-                    Disabled
+                    Secondary
                 </Button>
                 <Button
-                    disabled={true}
                     light={true}
                     style={styles.sideMargins}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
+                    disabled={true}
                 >
-                    Disabled
+                    Tertiary
                 </Button>
             </View>
         );
@@ -182,14 +215,7 @@ describe("wonder-blocks-button", () => {
 
         const styles = StyleSheet.create({
             row: {
-                display: "row",
-            },
-            wideButton: {
-                width: 200,
-            },
-            centerInDiv: {
-                display: "block",
-                margin: "0 auto",
+                flexDirection: "row",
             },
             sideMargins: {
                 marginRight: 10,
@@ -197,144 +223,183 @@ describe("wonder-blocks-button", () => {
         });
 
         const example = (
-            <table>
-                <thead>
-                    <tr>
-                        <th style={{minWidth: "250px"}}>Styles</th>
-                        <th style={{width: "100%"}}>Buttons</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>width: '200px'</td>
-                        <td>
-                            <Button
-                                onClick={(e) => console.log("Hello, world!")}
-                                style={styles.wideButton}
-                            >
-                                Label
-                            </Button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>width: '75%'</td>
-                        <td>
-                            <Button
-                                onClick={(e) => console.log("Hello, world!")}
-                                style={{width: "75%"}}
-                            >
-                                Label
-                            </Button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>display: 'block', margin: '0 auto'</td>
-                        <td>
-                            <Button
-                                onClick={(e) => console.log("Hello, world!")}
-                                style={styles.centerInDiv}
-                            >
-                                Label
-                            </Button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>flexGrow: 1</td>
-                        <td>
-                            <View>
-                                <Button
-                                    onClick={(e) =>
-                                        console.log("Hello, world!")
-                                    }
-                                    style={{flexGrow: 1}}
-                                >
-                                    Label
-                                </Button>
-                            </View>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>flexShrink: 2, width: '300px'</td>
-                        <td>
-                            <View>
-                                <Button
-                                    onClick={(e) =>
-                                        console.log("Hello, world!")
-                                    }
-                                    style={[
-                                        {flexShrink: 2, width: "300px"},
-                                        styles.sideMargins,
-                                    ]}
-                                >
-                                    Label
-                                </Button>
-                                <View
-                                    onClick={(e) =>
-                                        console.log("Hello, world!")
-                                    }
-                                    style={{
-                                        width: "100%",
-                                        background: "#eee",
-                                        textAlign: "center",
-                                        lineHeight: "40px",
-                                    }}
-                                >
-                                    Not a button
-                                </View>
-                            </View>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>alignSelf: 'flex-end'</td>
-                        <td>
-                            <View>
-                                <Button
-                                    onClick={(e) =>
-                                        console.log("Hello, world!")
-                                    }
-                                    style={[
-                                        {alignSelf: "flex-end"},
-                                        styles.sideMargins,
-                                    ]}
-                                >
-                                    Label
-                                </Button>
-                                <View
-                                    onClick={(e) =>
-                                        console.log("Hello, world!")
-                                    }
-                                    style={{
-                                        background: "#eee",
-                                        textAlign: "center",
-                                        lineHeight: "100px",
-                                        height: "100px",
-                                        padding: "0px 4px",
-                                    }}
-                                >
-                                    Not a button
-                                </View>
-                            </View>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>justifySelf: 'flex-end'</td>
-                        <td>
-                            <View>
-                                <View style={{display: "grid", width: "100%"}}>
-                                    <Button
-                                        onClick={(e) =>
-                                            console.log("Hello, world!")
-                                        }
-                                        style={{justifySelf: "flex-end"}}
-                                    >
-                                        Label
-                                    </Button>
-                                </View>
-                            </View>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <View style={styles.row}>
+                <Button
+                    style={styles.sideMargins}
+                    onClick={(e) => console.log("Hello, world!")}
+                    size="small"
+                >
+                    Label
+                </Button>
+                <Button
+                    style={styles.sideMargins}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="secondary"
+                    size="small"
+                >
+                    Label
+                </Button>
+                <Button
+                    style={styles.sideMargins}
+                    onClick={(e) => console.log("Hello, world!")}
+                    kind="tertiary"
+                    size="small"
+                >
+                    Label
+                </Button>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            sideMargins: {
+                marginRight: 10,
+            },
+        });
+
+        const example = (
+            <View style={styles.row}>
+                <Button href="#button-1" style={styles.sideMargins}>
+                    href
+                </Button>
+                <Button
+                    onClick={(e) => console.log("Hello, world!")}
+                    style={styles.sideMargins}
+                >
+                    onClick
+                </Button>
+                <Button
+                    href="#button-1"
+                    onClick={(e) => console.log("Hello, world!")}
+                    style={styles.sideMargins}
+                >
+                    both
+                </Button>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 7", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const example = (
+            <View>
+                <Button>Label</Button>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            column: {
+                alignItems: "flex-start",
+            },
+            row: {
+                flexDirection: "row",
+            },
+            gap: {
+                height: 16,
+            },
+            button: {
+                marginRight: 10,
+            },
+        });
+
+        const example = (
+            <View>
+                <View style={styles.row}>
+                    <Button>Button in a row</Button>
+                </View>
+                <View style={styles.gap} />
+                <View style={styles.column}>
+                    <Button>Button in a column</Button>
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 9", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            gap: {
+                height: 16,
+            },
+            goodButton: {
+                marginRight: 10,
+                width: 144,
+            },
+            badButton: {
+                marginRight: 10,
+                minWidth: 144,
+            },
+        });
+
+        const example = (
+            <View>
+                <View style={styles.row}>
+                    <Button style={styles.goodButton} kind="secondary">
+                        label
+                    </Button>
+                    <Button style={styles.goodButton}>
+                        label in a different language
+                    </Button>
+                </View>
+                <View style={styles.gap} />
+                <View style={styles.row}>
+                    <Button style={styles.badButton} kind="secondary">
+                        label
+                    </Button>
+                    <Button style={styles.badButton}>
+                        label in a different language
+                    </Button>
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 10", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                justifyContent: "flex-end",
+            },
+            button: {
+                marginRight: 10,
+            },
+        });
+
+        const example = (
+            <View>
+                <View style={styles.row}>
+                    <Button style={styles.button} kind="tertiary">
+                        Tertiary
+                    </Button>
+                    <Button style={styles.badButton}>Primary</Button>
+                </View>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
