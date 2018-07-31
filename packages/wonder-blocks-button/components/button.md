@@ -331,10 +331,10 @@ const styles = StyleSheet.create({
 ```
 
 Layouts often specify a specific width of button.  When implementing such
-designs use `minWidth` instead of `width`.  It prevents a button from
-resizing to fit content.  This is important for international sites since
-sometimes strings for UI elements can be much longer than their English
-counterparts.
+designs use `minWidth` instead of `width`.  `minWidth` allows the button
+to resize to fit the content whereas `width` does not.  This is important
+for international sites since sometimes strings for UI elements can be much
+longer in other languages.
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -348,11 +348,11 @@ const styles = StyleSheet.create({
     },
     goodButton: {
         marginRight: 10,
-        width: 144,
+        minWidth: 144,
     },
     badButton: {
         marginRight: 10,
-        minWidth: 144,
+        width: 144,
     },
 });
 

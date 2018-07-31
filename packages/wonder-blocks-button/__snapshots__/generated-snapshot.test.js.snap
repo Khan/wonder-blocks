@@ -1874,6 +1874,7 @@ exports[`wonder-blocks-button example 9 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "marginRight": 10,
+          "minWidth": 144,
           "outline": "none",
           "paddingBottom": 0,
           "paddingLeft": 16,
@@ -1881,7 +1882,6 @@ exports[`wonder-blocks-button example 9 1`] = `
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
-          "width": 144,
         }
       }
       tabIndex={0}
@@ -1939,6 +1939,7 @@ exports[`wonder-blocks-button example 9 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "marginRight": 10,
+          "minWidth": 144,
           "outline": "none",
           "paddingBottom": 0,
           "paddingLeft": 16,
@@ -1946,7 +1947,6 @@ exports[`wonder-blocks-button example 9 1`] = `
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
-          "width": 144,
         }
       }
       tabIndex={0}
@@ -2047,7 +2047,6 @@ exports[`wonder-blocks-button example 9 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "marginRight": 10,
-          "minWidth": 144,
           "outline": "none",
           "paddingBottom": 0,
           "paddingLeft": 16,
@@ -2055,6 +2054,7 @@ exports[`wonder-blocks-button example 9 1`] = `
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "width": 144,
         }
       }
       tabIndex={0}
@@ -2112,7 +2112,6 @@ exports[`wonder-blocks-button example 9 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "marginRight": 10,
-          "minWidth": 144,
           "outline": "none",
           "paddingBottom": 0,
           "paddingLeft": 16,
@@ -2120,6 +2119,7 @@ exports[`wonder-blocks-button example 9 1`] = `
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "width": 144,
         }
       }
       tabIndex={0}

@@ -345,11 +345,11 @@ describe("wonder-blocks-button", () => {
             },
             goodButton: {
                 marginRight: 10,
-                width: 144,
+                minWidth: 144,
             },
             badButton: {
                 marginRight: 10,
-                minWidth: 144,
+                width: 144,
             },
         });
 
