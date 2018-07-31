@@ -28,20 +28,20 @@ describe("wonder-blocks-button", () => {
             <View style={styles.row}>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                 >
                     Primary
                 </Button>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="secondary"
                 >
                     Secondary
                 </Button>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="tertiary"
                 >
                     Tertiary
@@ -68,14 +68,14 @@ describe("wonder-blocks-button", () => {
             <View style={styles.row}>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     color="destructive"
                 >
                     Primary
                 </Button>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="secondary"
                     color="destructive"
                 >
@@ -83,7 +83,7 @@ describe("wonder-blocks-button", () => {
                 </Button>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="tertiary"
                     color="destructive"
                 >
@@ -111,14 +111,14 @@ describe("wonder-blocks-button", () => {
             <View style={styles.row}>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     disabled={true}
                 >
                     Primary
                 </Button>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="secondary"
                     disabled={true}
                 >
@@ -126,7 +126,7 @@ describe("wonder-blocks-button", () => {
                 </Button>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="tertiary"
                     disabled={true}
                 >
@@ -158,14 +158,14 @@ describe("wonder-blocks-button", () => {
                 <Button
                     light={true}
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                 >
                     Primary
                 </Button>
                 <Button
                     light={true}
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="secondary"
                 >
                     Secondary
@@ -173,7 +173,7 @@ describe("wonder-blocks-button", () => {
                 <Button
                     light={true}
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="tertiary"
                 >
                     Tertiary
@@ -181,7 +181,7 @@ describe("wonder-blocks-button", () => {
                 <Button
                     light={true}
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     disabled={true}
                 >
                     Primary
@@ -189,7 +189,7 @@ describe("wonder-blocks-button", () => {
                 <Button
                     light={true}
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="secondary"
                     disabled={true}
                 >
@@ -198,7 +198,7 @@ describe("wonder-blocks-button", () => {
                 <Button
                     light={true}
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="tertiary"
                     disabled={true}
                 >
@@ -226,14 +226,14 @@ describe("wonder-blocks-button", () => {
             <View style={styles.row}>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     size="small"
                 >
                     Label
                 </Button>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="secondary"
                     size="small"
                 >
@@ -241,7 +241,7 @@ describe("wonder-blocks-button", () => {
                 </Button>
                 <Button
                     style={styles.button}
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     kind="tertiary"
                     size="small"
                 >
@@ -272,7 +272,7 @@ describe("wonder-blocks-button", () => {
                 </Button>
                 <Button
                     kind="secondary"
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     style={styles.button}
                 >
                     onClick
@@ -280,7 +280,7 @@ describe("wonder-blocks-button", () => {
                 <Button
                     kind="tertiary"
                     href="#button-1"
-                    onClick={(e) => console.log("Hello, world!")}
+                    onClick={(e) => window.alert("Hello, world!")}
                     style={styles.button}
                 >
                     both
@@ -383,35 +383,20 @@ describe("wonder-blocks-button", () => {
             gap: {
                 height: 16,
             },
-            goodButton: {
+            button: {
                 marginRight: 10,
                 minWidth: 144,
-            },
-            badButton: {
-                marginRight: 10,
-                width: 144,
             },
         });
 
         const example = (
-            <View>
-                <View style={styles.row}>
-                    <Button style={styles.goodButton} kind="secondary">
-                        label
-                    </Button>
-                    <Button style={styles.goodButton}>
-                        label in a different language
-                    </Button>
-                </View>
-                <View style={styles.gap} />
-                <View style={styles.row}>
-                    <Button style={styles.badButton} kind="secondary">
-                        label
-                    </Button>
-                    <Button style={styles.badButton}>
-                        label in a different language
-                    </Button>
-                </View>
+            <View style={styles.row}>
+                <Button style={styles.button} kind="secondary">
+                    label
+                </Button>
+                <Button style={styles.button}>
+                    label in a different language
+                </Button>
             </View>
         );
         const tree = renderer.create(example).toJSON();

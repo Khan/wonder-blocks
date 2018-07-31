@@ -1546,6 +1546,9 @@ exports[`wonder-blocks-button example 7 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1897,7 +1900,7 @@ exports[`wonder-blocks-button example 10 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "column",
+      "flexDirection": "row",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1907,332 +1910,139 @@ exports[`wonder-blocks-button example 10 1`] = `
     }
   }
 >
-  <div
+  <button
     className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
-        "alignItems": "stretch",
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "borderColor": "rgba(33,36,44,0.50)",
+        "borderRadius": 4,
         "borderStyle": "solid",
-        "borderWidth": 0,
+        "borderWidth": 1,
         "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "row",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
         "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
+        "marginRight": 10,
+        "minWidth": 144,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
         "position": "relative",
-        "zIndex": 0,
+        "textDecoration": "none",
       }
     }
+    tabIndex={0}
   >
-    <button
+    <span
       className=""
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
       style={
         Object {
-          "::-moz-focus-inner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "none",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
-          "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 1,
-          "boxSizing": "border-box",
-          "color": "#1865f2",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "marginRight": 10,
-          "minWidth": 144,
-          "outline": "none",
-          "paddingBottom": 0,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 0,
-          "position": "relative",
-          "textDecoration": "none",
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": Array [
+            "Lato",
+            "sans-serif",
+          ],
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
         }
       }
-      tabIndex={0}
     >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
-            "fontSize": 16,
-            "fontWeight": "bold",
-            "lineHeight": "20px",
-            "pointerEvents": "none",
-          }
-        }
-      >
-        label
-      </span>
-    </button>
-    <button
-      className=""
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      style={
-        Object {
-          "::-moz-focus-inner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "#1865f2",
-          "border": "none",
-          "borderRadius": 4,
-          "boxSizing": "border-box",
-          "color": "#ffffff",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "marginRight": 10,
-          "minWidth": 144,
-          "outline": "none",
-          "paddingBottom": 0,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 0,
-          "position": "relative",
-          "textDecoration": "none",
-        }
-      }
-      tabIndex={0}
-    >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
-            "fontSize": 16,
-            "fontWeight": "bold",
-            "lineHeight": "20px",
-            "pointerEvents": "none",
-          }
-        }
-      >
-        label in a different language
-      </span>
-    </button>
-  </div>
-  <div
+      label
+    </span>
+  </button>
+  <button
     className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
     style={
       Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
         "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "height": 16,
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
         "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
+        "marginRight": 10,
+        "minWidth": 144,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
         "position": "relative",
-        "zIndex": 0,
+        "textDecoration": "none",
       }
     }
-  />
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
+    tabIndex={0}
   >
-    <button
+    <span
       className=""
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
       style={
         Object {
-          "::-moz-focus-inner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "none",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
-          "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 1,
-          "boxSizing": "border-box",
-          "color": "#1865f2",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "marginRight": 10,
-          "outline": "none",
-          "paddingBottom": 0,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 0,
-          "position": "relative",
-          "textDecoration": "none",
-          "width": 144,
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": Array [
+            "Lato",
+            "sans-serif",
+          ],
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
         }
       }
-      tabIndex={0}
     >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
-            "fontSize": 16,
-            "fontWeight": "bold",
-            "lineHeight": "20px",
-            "pointerEvents": "none",
-          }
-        }
-      >
-        label
-      </span>
-    </button>
-    <button
-      className=""
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      style={
-        Object {
-          "::-moz-focus-inner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "#1865f2",
-          "border": "none",
-          "borderRadius": 4,
-          "boxSizing": "border-box",
-          "color": "#ffffff",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "marginRight": 10,
-          "outline": "none",
-          "paddingBottom": 0,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 0,
-          "position": "relative",
-          "textDecoration": "none",
-          "width": 144,
-        }
-      }
-      tabIndex={0}
-    >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
-            "fontSize": 16,
-            "fontWeight": "bold",
-            "lineHeight": "20px",
-            "pointerEvents": "none",
-          }
-        }
-      >
-        label in a different language
-      </span>
-    </button>
-  </div>
+      label in a different language
+    </span>
+  </button>
 </div>
 `;
 
