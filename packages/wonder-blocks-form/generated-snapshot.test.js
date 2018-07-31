@@ -10,7 +10,6 @@ import renderer from "react-test-renderer";
 jest.mock("react-dom");
 import Checkbox from "./components/checkbox.js";
 import Radio from "./components/radio.js";
-import ChoiceField from "./components/choice-field.js";
 import Choice from "./components/choice.js";
 import CheckboxGroup from "./components/checkbox-group.js";
 import RadioGroup from "./components/radio-group.js";
@@ -89,6 +88,62 @@ describe("wonder-blocks-form", () => {
         } = require("@khanacademy/wonder-blocks-typography");
         const {StyleSheet} = require("aphrodite");
 
+        class Settings extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    assignment: false,
+                };
+            }
+
+            handleChange(choiceKey, checked) {
+                this.setState({
+                    [choiceKey]: checked,
+                });
+                // Potentially do something here with this updated state information.
+            }
+
+            render() {
+                const handleChanged = (checked) =>
+                    console.log(
+                        `clicked on checkbox with checked=${checked.toString()}`,
+                    );
+                const headingText = "Functions";
+                const descriptionText = `A great cook knows how to take basic ingredients and
+                prepare a delicious meal. In this topic, you will become function-chefs! You
+                will learn how to combine functions with arithmetic operations and how to
+                compose functions.`;
+                return (
+                    <View>
+                        <Checkbox
+                            label="Receive assignment reminders for Algebra"
+                            description="You will receive a reminder 24 hours before each deadline"
+                            checked={this.state.assignment}
+                            id="assignment"
+                            onChange={(checked) =>
+                                this.handleChange("assignment", checked)
+                            }
+                            testId="algebra-assignment-test"
+                            variant="checkbox"
+                        />
+                    </View>
+                );
+            }
+        }
+
+        const example = <Settings />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {
+            LabelMedium,
+            LabelSmall,
+        } = require("@khanacademy/wonder-blocks-typography");
+        const {StyleSheet} = require("aphrodite");
+
         const styles = StyleSheet.create({
             wrapper: {
                 flexDirection: "row",
@@ -147,7 +202,7 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -212,61 +267,6 @@ describe("wonder-blocks-form", () => {
                 />
             </View>
         );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 4", () => {
-        const React = require("react");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            LabelMedium,
-            LabelSmall,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {StyleSheet} = require("aphrodite");
-
-        class Settings extends React.Component {
-            constructor() {
-                super();
-                this.state = {
-                    assignment: false,
-                };
-            }
-
-            handleChange(choiceKey, checked) {
-                this.setState({
-                    [choiceKey]: checked,
-                });
-                // Potentially do something here with this updated state information.
-            }
-
-            render() {
-                const handleChanged = (checked) =>
-                    console.log(
-                        `clicked on checkbox with checked=${checked.toString()}`,
-                    );
-                const headingText = "Functions";
-                const descriptionText = `A great cook knows how to take basic ingredients and
-                prepare a delicious meal. In this topic, you will become function-chefs! You
-                will learn how to combine functions with arithmetic operations and how to
-                compose functions.`;
-                return (
-                    <View>
-                        <ChoiceField
-                            label="Receive assignment reminders for Algebra"
-                            checked={this.state.assignment}
-                            id="assignment"
-                            onChange={(checked) =>
-                                this.handleChange("assignment", checked)
-                            }
-                            testId="algebra-assignment-test"
-                            variant="checkbox"
-                        />
-                    </View>
-                );
-            }
-        }
-
-        const example = <Settings />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

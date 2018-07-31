@@ -24,9 +24,59 @@ const handleChanged = (checked) => console.log(`clicked on checkbox, will be che
 </View>
 ```
 
-Sometimes one may wish to use a solo checkbox somewhere, like in this
-example content item. Use a `<label htmlFor={id}>` element that matches the `id`
-prop of the Checkbox for accessibility purposes. Doing this also automatically
+The checkbox can have a optional label and description. This allows it to be
+used as a settings-like item. The user of this component is responsible for
+keeping track of checked state and providing an onChange callback.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {LabelMedium, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
+const {StyleSheet} = require("aphrodite");
+
+class Settings extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            assignment: false,
+        }
+    }
+
+    handleChange(choiceKey, checked) {
+        this.setState({
+            [choiceKey]: checked,
+        });
+        // Potentially do something here with this updated state information.
+    }
+
+    render() {
+        const handleChanged = (checked) => console.log(`clicked on checkbox with checked=${checked.toString()}`);
+        const headingText = "Functions";
+        const descriptionText = `A great cook knows how to take basic ingredients and
+        prepare a delicious meal. In this topic, you will become function-chefs! You
+        will learn how to combine functions with arithmetic operations and how to
+        compose functions.`;
+        return <View>
+            <Checkbox
+                label="Receive assignment reminders for Algebra"
+                description="You will receive a reminder 24 hours before each deadline"
+                checked={this.state.assignment}
+                id="assignment"
+                onChange={(checked) => this.handleChange("assignment", checked)}
+                testId="algebra-assignment-test"
+                variant="checkbox"
+            />
+        </View>;
+    }
+}
+
+<Settings />
+```
+
+Sometimes one may wish to use a checkbox in a different context (label may not
+be right next to the checkbox), like in this example content item. Use a
+`<label htmlFor={id}>` element where the id matches the `id` prop of the
+Checkbox. This is for accessibility purposes, and doing this also automatically
 makes the label a click target for the checkbox.
 ```js
 const React = require("react");

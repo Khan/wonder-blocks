@@ -13,15 +13,6 @@ import CheckboxCore from "./checkbox-core.js";
 import RadioCore from "./radio-core.js";
 
 type Props = {|
-    /** Label for the field. */
-    label: string,
-
-    /** Optional description for the field. */
-    description?: string,
-
-    /** Should be distinct for each item in the group. */
-    value?: string,
-
     /** Whether this choice is checked. */
     checked: boolean,
 
@@ -31,8 +22,8 @@ type Props = {|
     /** Whether this choice is in error mode. */
     error: boolean,
 
-    /** Auto-populated by parent's groupName prop if in a group. */
-    groupName?: string,
+    /** Returns the new checked state of the component. */
+    onChange: (newCheckedState: boolean) => void,
 
     /**
      * Used for accessibility purposes, where the label id should match the
@@ -40,41 +31,34 @@ type Props = {|
      */
     id?: string,
 
-    /** Returns the new checked state of the component. */
-    onChange: (newCheckedState: boolean) => void,
-
     /** Optional additional styling. */
     style?: any,
 
     /** Optional id for testing purposes. */
     testId?: string,
 
+    /** Label for the field. */
+    label?: string,
+
+    /** Optional description for the field. */
+    description?: string,
+
+    /** Auto-populated by parent's groupName prop if in a group. */
+    groupName?: string,
+
     /** Takes either "radio" or "checkbox" value. */
     variant: "radio" | "checkbox",
 |};
 
-const defaultHandlers = {
-    onClick: () => void 0,
-    onMouseEnter: () => void 0,
-    onMouseLeave: () => void 0,
-    onMouseDown: () => void 0,
-    onMouseUp: () => void 0,
-    onTouchStart: () => void 0,
-    onTouchEnd: () => void 0,
-    onTouchCancel: () => void 0,
-    onKeyDown: () => void 0,
-    onKeyUp: () => void 0,
-    onFocus: () => void 0,
-    onBlur: () => void 0,
-};
-
 /**
- * This is a labeled 🔘 or ☑️ item. This is an internal component that's wrapped
- * by ChoiceField or Choice. Choice should be used in a CheckboxGroup or in a
- * RadioGroup. ChoiceField is the variant used outside of such a group. The two
- * are different to allow for more explicit flow typing. Choice has many of its
- * props auto-populated, but ChoiceField does not.
- */ export default class ChoiceInternal extends React.Component<Props> {
+ * This is a potentially labeled 🔘 or ☑️ item. This is an internal component
+ * that's wrapped by Checkbox and Radio. Choice is a wrapper for Checkbox and
+ * Radio with many of its props auto-populated, to be used with CheckboxGroup
+ * and RadioGroup. This design allows for more explicit prop typing. For
+ * example, we can make onChange a required prop on Checkbox but not on Choice
+ * (because for Choice, that prop would be auto-populated by CheckboxGroup).
+ */
+export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps = {
         checked: false,
         disabled: false,
@@ -88,19 +72,38 @@ const defaultHandlers = {
             return CheckboxCore;
         }
     }
+    getLabel() {
+        const {disabled, id, label} = this.props;
+        return (
+            <LabelMedium style={disabled && styles.disabledLabel}>
+                <label
+                    htmlFor={id}
+                    // Browsers automatically use the for attribute to select
+                    // the input, but we use ClickableBehavior to handle this.
+                    onClick={(e) => e.preventDefault()}
+                >
+                    {label}
+                </label>
+            </LabelMedium>
+        );
+    }
+    getDescription() {
+        const {description} = this.props;
+        return (
+            <LabelSmall style={styles.description}>{description}</LabelSmall>
+        );
+    }
     render() {
         const {
             label,
             description,
             onChange,
             style,
-            // we don't need this to go into coreProps
-            // eslint-disable-next-line no-unused-vars
-            value,
             variant,
             ...coreProps
         } = this.props;
-        const {checked, disabled, id} = coreProps;
+
+        const {checked} = coreProps;
 
         const ChoiceCore = this.getChoiceCoreComponent();
         const ClickableBehavior = getClickableBehavior();
@@ -128,36 +131,14 @@ const defaultHandlers = {
                                 // focus on basis of it being an input element.
                                 tabIndex={-1}
                             >
-                                <ChoiceCore
-                                    {...coreProps}
-                                    {...state}
-                                    {...defaultHandlers}
-                                    tabIndex={disabled ? -1 : 0}
-                                />
+                                <ChoiceCore {...coreProps} {...state} />
                                 <Strut size={Spacing.xSmall} />
-                                <LabelMedium
-                                    style={disabled && styles.disabledLabel}
-                                >
-                                    <label
-                                        htmlFor={id}
-                                        // Browsers automatically use the for
-                                        // attribute to select the input, but
-                                        // we use ClickableBehavior to handle
-                                        // this.
-                                        onClick={(e) => e.preventDefault()}
-                                    >
-                                        {label}
-                                    </label>
-                                </LabelMedium>
+                                {label && this.getLabel()}
                             </View>
                         );
                     }}
                 </ClickableBehavior>
-                {description && (
-                    <LabelSmall style={styles.description}>
-                        {description}
-                    </LabelSmall>
-                )}
+                {description && this.getDescription()}
             </View>
         );
     }

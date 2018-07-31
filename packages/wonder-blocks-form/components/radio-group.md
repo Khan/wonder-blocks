@@ -51,7 +51,7 @@ class RadioGroupPokemonExample extends React.Component {
             onChange={(change) => this.handleChange(change)}
             selectedValue={this.state.selectedValue}
         >
-            <Choice label="Bulbasaur" value="bulb"  />
+            <Choice label="Bulbasaur" value="bulb" />
             <Choice label="Charmander" value="char" description="Oops, we ran out of Charmanders" disabled />
             <Choice label="Squirtle" value="squirt" />
             <Choice label="Pikachu" value="pika" />

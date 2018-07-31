@@ -2,7 +2,8 @@
 
 import * as React from "react";
 
-import ChoiceInternal from "./choice-internal.js";
+import Checkbox from "./checkbox.js";
+import Radio from "./radio.js";
 
 type Props = {|
     /** User-defined. Label for the field. */
@@ -68,14 +69,26 @@ type Props = {|
  * and not shown in the documentation here. See those components for usage
  * examples.
  *
- * If you wish to use just a single field, see the ChoiceField component.
+ * If you wish to use just a single field, use Checkbox or Radio with the
+ * optional label and description props.
  */
 export default class Choice extends React.Component<Props> {
     static defaultProps = {
         disabled: false,
     };
 
+    getChoiceComponent(variant: ?string) {
+        if (variant === "checkbox") {
+            return Checkbox;
+        } else {
+            return Radio;
+        }
+    }
     render() {
-        return <ChoiceInternal {...this.props} />;
+        // we don't need this going into the ChoiceComponent
+        // eslint-disable-next-line no-unused-vars
+        const {value, variant, ...remainingProps} = this.props;
+        const ChoiceComponent = this.getChoiceComponent(variant);
+        return <ChoiceComponent {...remainingProps} />;
     }
 }

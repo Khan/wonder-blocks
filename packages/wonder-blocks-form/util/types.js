@@ -9,9 +9,9 @@ export type ChoiceCoreProps = {|
     /** Whether this component is checked */
     checked: boolean,
     /** Whether this component is disabled */
-    disabled?: boolean,
+    disabled: boolean,
     /** Whether this component should show an error state */
-    error?: boolean,
+    error: boolean,
     /** Name for the checkbox or radio button group */
     groupName?: string,
     /** Unique identifier attached to the HTML input element. If used, need to
@@ -20,8 +20,6 @@ export type ChoiceCoreProps = {|
     id?: string,
     /** Optional test ID for e2e testing */
     testId?: string,
-    /** Optional styling for the container. Does not style the component. */
-    style?: any,
 |};
 
 // Props for checkbox and radio button
@@ -30,6 +28,14 @@ export type ChoiceComponentProps = {|
     /** Callback when this component is selected. The newCheckedState is the
      * new checked state of the component. */
     onChange: (newCheckedState: boolean) => void,
+    /** Optional label for the field. */
+    label?: string,
+    /** Optional description for the field. */
+    description?: string,
+    /** Ignored because only applicable to Choice components in a group. */
+    value?: string,
+    /** Optional styling for the container. Does not style the component. */
+    style?: any,
 |};
 
 import typeof Choice from "../components/choice.js";
