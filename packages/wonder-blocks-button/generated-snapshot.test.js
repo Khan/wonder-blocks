@@ -19,7 +19,7 @@ describe("wonder-blocks-button", () => {
             row: {
                 flexDirection: "row",
             },
-            sideMargins: {
+            button: {
                 marginRight: 10,
             },
         });
@@ -27,20 +27,20 @@ describe("wonder-blocks-button", () => {
         const example = (
             <View style={styles.row}>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                 >
                     Primary
                 </Button>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                 >
                     Secondary
                 </Button>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                 >
@@ -59,7 +59,7 @@ describe("wonder-blocks-button", () => {
             row: {
                 flexDirection: "row",
             },
-            sideMargins: {
+            button: {
                 marginRight: 10,
             },
         });
@@ -67,14 +67,14 @@ describe("wonder-blocks-button", () => {
         const example = (
             <View style={styles.row}>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     color="destructive"
                 >
                     Primary
                 </Button>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                     color="destructive"
@@ -82,7 +82,7 @@ describe("wonder-blocks-button", () => {
                     Secondary
                 </Button>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                     color="destructive"
@@ -102,7 +102,7 @@ describe("wonder-blocks-button", () => {
             row: {
                 flexDirection: "row",
             },
-            sideMargins: {
+            button: {
                 marginRight: 10,
             },
         });
@@ -110,14 +110,14 @@ describe("wonder-blocks-button", () => {
         const example = (
             <View style={styles.row}>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     disabled={true}
                 >
                     Primary
                 </Button>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                     disabled={true}
@@ -125,7 +125,7 @@ describe("wonder-blocks-button", () => {
                     Secondary
                 </Button>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                     disabled={true}
@@ -148,7 +148,7 @@ describe("wonder-blocks-button", () => {
                 backgroundColor: Color.darkBlue,
                 padding: 10,
             },
-            sideMargins: {
+            button: {
                 marginRight: 10,
             },
         });
@@ -157,14 +157,14 @@ describe("wonder-blocks-button", () => {
             <View style={styles.row}>
                 <Button
                     light={true}
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                 >
                     Primary
                 </Button>
                 <Button
                     light={true}
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                 >
@@ -172,7 +172,7 @@ describe("wonder-blocks-button", () => {
                 </Button>
                 <Button
                     light={true}
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                 >
@@ -180,7 +180,7 @@ describe("wonder-blocks-button", () => {
                 </Button>
                 <Button
                     light={true}
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     disabled={true}
                 >
@@ -188,7 +188,7 @@ describe("wonder-blocks-button", () => {
                 </Button>
                 <Button
                     light={true}
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                     disabled={true}
@@ -197,7 +197,7 @@ describe("wonder-blocks-button", () => {
                 </Button>
                 <Button
                     light={true}
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                     disabled={true}
@@ -217,7 +217,7 @@ describe("wonder-blocks-button", () => {
             row: {
                 flexDirection: "row",
             },
-            sideMargins: {
+            button: {
                 marginRight: 10,
             },
         });
@@ -225,14 +225,14 @@ describe("wonder-blocks-button", () => {
         const example = (
             <View style={styles.row}>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     size="small"
                 >
                     Label
                 </Button>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="secondary"
                     size="small"
@@ -240,7 +240,7 @@ describe("wonder-blocks-button", () => {
                     Label
                 </Button>
                 <Button
-                    style={styles.sideMargins}
+                    style={styles.button}
                     onClick={(e) => console.log("Hello, world!")}
                     kind="tertiary"
                     size="small"
@@ -260,26 +260,28 @@ describe("wonder-blocks-button", () => {
             row: {
                 flexDirection: "row",
             },
-            sideMargins: {
+            button: {
                 marginRight: 10,
             },
         });
 
         const example = (
             <View style={styles.row}>
-                <Button href="#button-1" style={styles.sideMargins}>
+                <Button href="#button-1" style={styles.button}>
                     href
                 </Button>
                 <Button
+                    kind="secondary"
                     onClick={(e) => console.log("Hello, world!")}
-                    style={styles.sideMargins}
+                    style={styles.button}
                 >
                     onClick
                 </Button>
                 <Button
+                    kind="tertiary"
                     href="#button-1"
                     onClick={(e) => console.log("Hello, world!")}
-                    style={styles.sideMargins}
+                    style={styles.button}
                 >
                     both
                 </Button>
@@ -289,6 +291,44 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 7", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {MemoryRouter, Route, Switch} = require("react-router-dom");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                alignItems: "center",
+            },
+            button: {
+                marginRight: 10,
+            },
+        });
+
+        // NOTE: In actual code you would use BrowserRouter instead
+        const example = (
+            <MemoryRouter>
+                <View style={styles.row}>
+                    <Button
+                        testId="button"
+                        href="/foo"
+                        clientNav={true}
+                        style={styles.button}
+                    >
+                        Click me!
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <View id="foo">Hello, world!</View>
+                        </Route>
+                    </Switch>
+                </View>
+            </MemoryRouter>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
@@ -299,7 +339,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -332,7 +372,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -377,14 +417,13 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                justifyContent: "flex-end",
             },
             button: {
                 marginRight: 10,

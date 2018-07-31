@@ -8,27 +8,27 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    sideMargins: {
+    button: {
         marginRight: 10,
     }
 });
 
 <View style={styles.row}>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
     >
         Primary
     </Button>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
     >
         Secondary
     </Button>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
     >
@@ -46,21 +46,21 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    sideMargins: {
+    button: {
         marginRight: 10,
     }
 });
 
 <View style={styles.row}>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         color="destructive"
     >
         Primary
     </Button>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
         color="destructive"
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         Secondary
     </Button>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
         color="destructive"
@@ -87,21 +87,21 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    sideMargins: {
+    button: {
         marginRight: 10,
     }
 });
 
 <View style={styles.row}>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         disabled={true}
     >
         Primary
     </Button>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
         disabled={true}
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         Secondary
     </Button>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
         disabled={true}
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         backgroundColor: Color.darkBlue,
         padding: 10,
     },
-    sideMargins: {
+    button: {
         marginRight: 10,
     }
 });
@@ -139,14 +139,14 @@ const styles = StyleSheet.create({
 <View style={styles.row}>
     <Button
         light={true}
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
     >
         Primary
     </Button>
     <Button
         light={true}
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
     >
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     </Button>
     <Button
         light={true}
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
     >
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     </Button>
     <Button
         light={true}
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         disabled={true}
     >
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     </Button>
     <Button
         light={true}
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
         disabled={true}
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     </Button>
     <Button
         light={true}
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
         disabled={true}
@@ -198,21 +198,21 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    sideMargins: {
+    button: {
         marginRight: 10,
     }
 });
 
 <View style={styles.row}>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         size="small"
     >
         Label
     </Button>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="secondary"
         size="small"
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
         Label
     </Button>
     <Button
-        style={styles.sideMargins}
+        style={styles.button}
         onClick={(e) => console.log("Hello, world!")}
         kind="tertiary"
         size="small"
@@ -232,7 +232,9 @@ const styles = StyleSheet.create({
 
 Buttons can have an `href` or an `onClick` handler or both.
 
-Being able to use both is necessary to support marking conversions in A/B tests.
+Being able to use both is necessary to support marking conversions in A/B
+tests.  There is however no built-in facility for doing A/B testing in
+`wonder-blocks` itself.
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -241,7 +243,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    sideMargins: {
+    button: {
         marginRight: 10,
     }
 });
@@ -249,24 +251,57 @@ const styles = StyleSheet.create({
 <View style={styles.row}>
     <Button
         href="#button-1"
-        style={styles.sideMargins}
+        style={styles.button}
     >
         href
     </Button>
     <Button
+        kind="secondary"
         onClick={(e) => console.log("Hello, world!")}
-        style={styles.sideMargins}
+        style={styles.button}
     >
         onClick
     </Button>
     <Button
+        kind="tertiary"
         href="#button-1"
         onClick={(e) => console.log("Hello, world!")}
-        style={styles.sideMargins}
+        style={styles.button}
     >
         both
     </Button>
 </View>
+```
+
+Buttons can do client-side navigation if `clientNav` is `true`.
+```jsx
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {MemoryRouter, Route, Switch} = require("react-router-dom");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    button: {
+        marginRight: 10,
+    }
+});
+
+// NOTE: In actual code you would use BrowserRouter instead
+<MemoryRouter>
+    <View style={styles.row}>
+        <Button testId="button" href="/foo" clientNav={true} style={styles.button}>
+            Click me!
+        </Button>
+        <Switch>
+            <Route path="/foo">
+                <View id="foo">Hello, world!</View>
+            </Route>
+        </Switch>
+    </View>
+</MemoryRouter>
 ```
 
 Buttons can have a `style` props which supports width, position, margin,
@@ -281,7 +316,6 @@ In vertical layouts, buttons will stretch horizontally to fill the available
 space.  This is probably not what you want unless you're on a very narrow
 screen.
 
-TODO(kevinb): add section on media queries.
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -395,7 +429,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        justifyContent: "flex-end",
     },
     button: {
         marginRight: 10,
@@ -418,3 +451,5 @@ const styles = StyleSheet.create({
     </View>
 </View>
 ```
+
+TODO(kevinb): add section on media queries.

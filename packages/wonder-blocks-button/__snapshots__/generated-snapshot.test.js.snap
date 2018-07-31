@@ -1396,11 +1396,14 @@ exports[`wonder-blocks-button example 6 1`] = `
           "border": 0,
         },
         "alignItems": "center",
-        "background": "#1865f2",
+        "background": "none",
         "border": "none",
+        "borderColor": "rgba(33,36,44,0.50)",
         "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 1,
         "boxSizing": "border-box",
-        "color": "#ffffff",
+        "color": "#1865f2",
         "cursor": "pointer",
         "display": "inline-flex",
         "height": 40,
@@ -1460,6 +1463,90 @@ exports[`wonder-blocks-button example 6 1`] = `
           "border": 0,
         },
         "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 4,
+        "paddingRight": 4,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": Array [
+            "Lato",
+            "sans-serif",
+          ],
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
+        }
+      }
+    >
+      both
+    </span>
+  </a>
+</div>
+`;
+
+exports[`wonder-blocks-button example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <a
+    className=""
+    data-test-id="button"
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
         "borderRadius": 4,
@@ -1499,13 +1586,13 @@ exports[`wonder-blocks-button example 6 1`] = `
         }
       }
     >
-      both
+      Click me!
     </span>
   </a>
 </div>
 `;
 
-exports[`wonder-blocks-button example 7 1`] = `
+exports[`wonder-blocks-button example 8 1`] = `
 <div
   className=""
   style={
@@ -1591,7 +1678,7 @@ exports[`wonder-blocks-button example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 8 1`] = `
+exports[`wonder-blocks-button example 9 1`] = `
 <div
   className=""
   style={
@@ -1800,7 +1887,7 @@ exports[`wonder-blocks-button example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 9 1`] = `
+exports[`wonder-blocks-button example 10 1`] = `
 <div
   className=""
   style={
@@ -2149,7 +2236,7 @@ exports[`wonder-blocks-button example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 10 1`] = `
+exports[`wonder-blocks-button example 11 1`] = `
 <div
   className=""
   style={
@@ -2179,7 +2266,6 @@ exports[`wonder-blocks-button example 10 1`] = `
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "row",
-        "justifyContent": "flex-end",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
