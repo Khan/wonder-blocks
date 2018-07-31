@@ -150,6 +150,9 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         background: "none",
+        "::-moz-focus-inner": {
+            border: 0,
+        },
     },
     disabled: {
         cursor: "default",

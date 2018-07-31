@@ -78,6 +78,9 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
         role="menu"
         style={
           Object {
+            "::-moz-focus-inner": Object {
+              "border": 0,
+            },
             "alignItems": "center",
             "background": "none",
             "border": "none",
@@ -203,6 +206,9 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       role="menu"
       style={
         Object {
+          "::-moz-focus-inner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "background": "none",
           "border": "none",

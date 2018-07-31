@@ -125,6 +125,9 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
+        "::-moz-focus-inner": {
+            border: 0,
+        },
     },
     disabled: {
         cursor: "auto",

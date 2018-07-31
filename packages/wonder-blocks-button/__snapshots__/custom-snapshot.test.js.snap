@@ -19,6 +19,9 @@ exports[`ButtonCore kind:primary color:default size:default light:false disabled
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
@@ -82,6 +85,9 @@ exports[`ButtonCore kind:primary color:default size:default light:false focused 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
@@ -146,6 +152,9 @@ exports[`ButtonCore kind:primary color:default size:default light:false hovered 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
@@ -210,6 +219,9 @@ exports[`ButtonCore kind:primary color:default size:default light:false pressed 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#1b50b3",
       "border": "none",
@@ -275,6 +287,9 @@ exports[`ButtonCore kind:primary color:default size:default light:true disabled 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#b5cefb",
       "border": "none",
@@ -338,6 +353,9 @@ exports[`ButtonCore kind:primary color:default size:default light:true focused 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -402,6 +420,9 @@ exports[`ButtonCore kind:primary color:default size:default light:true hovered 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -466,6 +487,9 @@ exports[`ButtonCore kind:primary color:default size:default light:true pressed 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#b5cefb",
       "border": "none",
@@ -531,6 +555,9 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
@@ -594,6 +621,9 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
@@ -658,6 +688,9 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#1865f2",
       "border": "none",
@@ -722,6 +755,9 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#1b50b3",
       "border": "none",
@@ -787,6 +823,9 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#b5cefb",
       "border": "none",
@@ -850,6 +889,9 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -914,6 +956,9 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -978,6 +1023,9 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#b5cefb",
       "border": "none",
@@ -1043,6 +1091,9 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false disa
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
@@ -1106,6 +1157,9 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false focu
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
@@ -1170,6 +1224,9 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false hove
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
@@ -1234,6 +1291,9 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false pres
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#9e271d",
       "border": "none",
@@ -1299,6 +1359,9 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true disab
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#f3bbb4",
       "border": "none",
@@ -1362,6 +1425,9 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true focus
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -1426,6 +1492,9 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true hover
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -1490,6 +1559,9 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true press
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#f3bbb4",
       "border": "none",
@@ -1555,6 +1627,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
@@ -1618,6 +1693,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
@@ -1682,6 +1760,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#d92916",
       "border": "none",
@@ -1746,6 +1827,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#9e271d",
       "border": "none",
@@ -1811,6 +1895,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#f3bbb4",
       "border": "none",
@@ -1874,6 +1961,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -1938,6 +2028,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -2002,6 +2095,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#f3bbb4",
       "border": "none",
@@ -2067,6 +2163,9 @@ exports[`ButtonCore kind:secondary color:default size:default light:false disabl
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2133,6 +2232,9 @@ exports[`ButtonCore kind:secondary color:default size:default light:false focuse
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -2199,6 +2301,9 @@ exports[`ButtonCore kind:secondary color:default size:default light:false hovere
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -2265,6 +2370,9 @@ exports[`ButtonCore kind:secondary color:default size:default light:false presse
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#b5cefb",
       "border": "none",
@@ -2332,6 +2440,9 @@ exports[`ButtonCore kind:secondary color:default size:default light:true disable
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2398,6 +2509,9 @@ exports[`ButtonCore kind:secondary color:default size:default light:true focused
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "transparent",
       "border": "none",
@@ -2464,6 +2578,9 @@ exports[`ButtonCore kind:secondary color:default size:default light:true hovered
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "transparent",
       "border": "none",
@@ -2530,6 +2647,9 @@ exports[`ButtonCore kind:secondary color:default size:default light:true pressed
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#1b50b3",
       "border": "none",
@@ -2597,6 +2717,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2663,6 +2786,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -2729,6 +2855,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -2795,6 +2924,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#b5cefb",
       "border": "none",
@@ -2862,6 +2994,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2928,6 +3063,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "transparent",
       "border": "none",
@@ -2994,6 +3132,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "transparent",
       "border": "none",
@@ -3060,6 +3201,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#1b50b3",
       "border": "none",
@@ -3127,6 +3271,9 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false di
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3193,6 +3340,9 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false fo
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -3259,6 +3409,9 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false ho
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -3325,6 +3478,9 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false pr
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#f3bbb4",
       "border": "none",
@@ -3392,6 +3548,9 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true dis
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3458,6 +3617,9 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true foc
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "transparent",
       "border": "none",
@@ -3524,6 +3686,9 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true hov
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "transparent",
       "border": "none",
@@ -3590,6 +3755,9 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true pre
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#9e271d",
       "border": "none",
@@ -3657,6 +3825,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3723,6 +3894,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -3789,6 +3963,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#ffffff",
       "border": "none",
@@ -3855,6 +4032,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#f3bbb4",
       "border": "none",
@@ -3922,6 +4102,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3988,6 +4171,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "transparent",
       "border": "none",
@@ -4054,6 +4240,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "transparent",
       "border": "none",
@@ -4120,6 +4309,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "#9e271d",
       "border": "none",
@@ -4187,6 +4379,9 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false disable
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4250,6 +4445,9 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false focused
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#1865f2",
         "borderRadius": 2,
@@ -4322,6 +4520,9 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false hovered
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#1865f2",
         "borderRadius": 2,
@@ -4394,6 +4595,9 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false pressed
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#1b50b3",
         "borderRadius": 2,
@@ -4467,6 +4671,9 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true disabled
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4530,6 +4737,9 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true focused 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -4602,6 +4812,9 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true hovered 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -4674,6 +4887,9 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true pressed 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#b5cefb",
         "borderRadius": 2,
@@ -4747,6 +4963,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4810,6 +5029,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#1865f2",
         "borderRadius": 2,
@@ -4882,6 +5104,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#1865f2",
         "borderRadius": 2,
@@ -4954,6 +5179,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#1b50b3",
         "borderRadius": 2,
@@ -5027,6 +5255,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -5090,6 +5321,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -5162,6 +5396,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -5234,6 +5471,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#b5cefb",
         "borderRadius": 2,
@@ -5307,6 +5547,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false dis
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -5370,6 +5613,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false foc
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#d92916",
         "borderRadius": 2,
@@ -5442,6 +5688,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false hov
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#d92916",
         "borderRadius": 2,
@@ -5514,6 +5763,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false pre
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#9e271d",
         "borderRadius": 2,
@@ -5587,6 +5839,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true disa
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -5650,6 +5905,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true focu
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -5722,6 +5980,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true hove
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -5794,6 +6055,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true pres
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#f3bbb4",
         "borderRadius": 2,
@@ -5867,6 +6131,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -5930,6 +6197,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#d92916",
         "borderRadius": 2,
@@ -6002,6 +6272,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#d92916",
         "borderRadius": 2,
@@ -6074,6 +6347,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#9e271d",
         "borderRadius": 2,
@@ -6147,6 +6423,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -6210,6 +6489,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -6282,6 +6564,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -6354,6 +6639,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
   onTouchStart={[Function]}
   style={
     Object {
+      "::-moz-focus-inner": Object {
+        "border": 0,
+      },
       ":after": Object {
         "background": "#f3bbb4",
         "borderRadius": 2,

@@ -56,6 +56,9 @@ exports[`wonder-blocks-modal example 1 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
+          "::-moz-focus-inner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "background": "#1865f2",
           "border": "none",
@@ -137,6 +140,9 @@ exports[`wonder-blocks-modal example 1 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
+          "::-moz-focus-inner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "background": "#1865f2",
           "border": "none",
@@ -218,6 +224,9 @@ exports[`wonder-blocks-modal example 1 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
+          "::-moz-focus-inner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "background": "#1865f2",
           "border": "none",
@@ -402,6 +411,9 @@ exports[`wonder-blocks-modal example 2 1`] = `
             onTouchStart={[Function]}
             style={
               Object {
+                "::-moz-focus-inner": Object {
+                  "border": 0,
+                },
                 "alignItems": "center",
                 "background": "none",
                 "border": "none",
@@ -764,6 +776,9 @@ exports[`wonder-blocks-modal example 2 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "#1865f2",
                   "border": "none",
@@ -953,6 +968,9 @@ exports[`wonder-blocks-modal example 3 1`] = `
             onTouchStart={[Function]}
             style={
               Object {
+                "::-moz-focus-inner": Object {
+                  "border": 0,
+                },
                 "alignItems": "center",
                 "background": "none",
                 "border": "none",
@@ -1370,6 +1388,9 @@ exports[`wonder-blocks-modal example 3 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "#1865f2",
                   "border": "none",
@@ -1559,6 +1580,9 @@ exports[`wonder-blocks-modal example 4 1`] = `
             onTouchStart={[Function]}
             style={
               Object {
+                "::-moz-focus-inner": Object {
+                  "border": 0,
+                },
                 "alignItems": "center",
                 "background": "none",
                 "border": "none",
@@ -1976,6 +2000,9 @@ exports[`wonder-blocks-modal example 4 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "#1865f2",
                   "border": "none",
@@ -2310,6 +2337,9 @@ exports[`wonder-blocks-modal example 5 1`] = `
             onTouchStart={[Function]}
             style={
               Object {
+                "::-moz-focus-inner": Object {
+                  "border": 0,
+                },
                 "alignItems": "center",
                 "background": "none",
                 "border": "none",
@@ -2796,6 +2826,9 @@ exports[`wonder-blocks-modal example 5 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "#1865f2",
                   "border": "none",
@@ -3005,6 +3038,9 @@ exports[`wonder-blocks-modal example 6 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "none",
                   "border": "none",
@@ -3449,6 +3485,9 @@ exports[`wonder-blocks-modal example 7 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "none",
                   "border": "none",
@@ -3813,6 +3852,9 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 onTouchStart={[Function]}
                 style={
                   Object {
+                    "::-moz-focus-inner": Object {
+                      "border": 0,
+                    },
                     "alignItems": "center",
                     "background": "#1865f2",
                     "border": "none",
@@ -4022,6 +4064,9 @@ exports[`wonder-blocks-modal example 8 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "none",
                   "border": "none",
@@ -4339,6 +4384,9 @@ exports[`wonder-blocks-modal example 9 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "none",
                   "border": "none",
@@ -4649,6 +4697,9 @@ exports[`wonder-blocks-modal example 10 1`] = `
               onTouchStart={[Function]}
               style={
                 Object {
+                  "::-moz-focus-inner": Object {
+                    "border": 0,
+                  },
                   "alignItems": "center",
                   "background": "none",
                   "border": "none",
