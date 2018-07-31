@@ -62,6 +62,9 @@ type SelectOpenerProps = {|
     style?: any,
 |};
 
+/**
+ * An opener that opens selects.
+ */
 export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static defaultProps = {
         disabled: false,
@@ -150,7 +153,6 @@ const styles = StyleSheet.create({
         paddingRight: 12,
         border: "none",
         borderRadius: buttonRadius,
-        cursor: "pointer",
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",

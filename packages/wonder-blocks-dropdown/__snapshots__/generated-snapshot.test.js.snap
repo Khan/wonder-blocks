@@ -11,7 +11,6 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 250,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -159,7 +158,6 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 250,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -286,7 +284,6 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 180,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -342,19 +339,16 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "borderWidth": 1,
           "boxSizing": "border-box",
           "color": "#21242c",
-          "cursor": "pointer",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
           "margin": 0,
-          "maxWidth": 170,
           "outline": "none",
           "paddingLeft": 16,
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
-          "width": 170,
         }
       }
       tabIndex={0}
@@ -437,7 +431,6 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 180,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -493,7 +486,6 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "borderWidth": 1,
           "boxSizing": "border-box",
           "color": "#21242c",
-          "cursor": "pointer",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
@@ -527,7 +519,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           }
         }
       >
-        Banana juice!!!
+        Banana juice
       </span>
       <div
         className=""
@@ -584,7 +576,6 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 50,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -675,7 +666,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
           }
         }
       >
-        Banana juice!!!
+        Banana juice
       </span>
       <div
         className=""
@@ -809,7 +800,6 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
             "borderRadius": 4,
             "boxSizing": "border-box",
             "color": "#21242c",
-            "cursor": "pointer",
             "display": "inline-flex",
             "height": 40,
             "justifyContent": "space-between",
@@ -903,7 +893,6 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 250,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -959,19 +948,16 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           "borderWidth": 1,
           "boxSizing": "border-box",
           "color": "#21242c",
-          "cursor": "pointer",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
           "margin": 0,
-          "maxWidth": 170,
           "outline": "none",
           "paddingLeft": 16,
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
-          "width": 170,
         }
       }
       tabIndex={0}
@@ -996,7 +982,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           }
         }
       >
-        Choose some colors
+        Color palette
       </span>
       <div
         className=""
@@ -1054,7 +1040,6 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
-      "height": 350,
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1110,7 +1095,6 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           "borderWidth": 1,
           "boxSizing": "border-box",
           "color": "#21242c",
-          "cursor": "pointer",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
@@ -1144,7 +1128,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           }
         }
       >
-        Red
+        Sophie
       </span>
       <div
         className=""
@@ -1195,13 +1179,12 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
   className=""
   style={
     Object {
-      "alignItems": "stretch",
+      "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row",
-      "height": 50,
+      "flexDirection": "column",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1215,7 +1198,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
     className=""
     style={
       Object {
-        "alignItems": "flex-start",
+        "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -1232,7 +1215,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
   >
     <button
       className=""
-      disabled={true}
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
@@ -1245,32 +1228,32 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
       style={
         Object {
+          "::-moz-focus-inner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
-          "backgroundColor": "#ffffff",
+          "background": "#1865f2",
           "border": "none",
-          "borderColor": "rgba(33,36,44,0.16)",
           "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 1,
           "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "auto",
+          "color": "#ffffff",
+          "cursor": "pointer",
           "display": "inline-flex",
           "height": 40,
-          "justifyContent": "space-between",
+          "justifyContent": "center",
           "margin": 0,
           "outline": "none",
+          "paddingBottom": 0,
           "paddingLeft": 16,
-          "paddingRight": 12,
+          "paddingRight": 16,
+          "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
-          "whiteSpace": "nowrap",
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
     >
       <span
         className=""
@@ -1278,231 +1261,21 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "color": "rgba(33,36,44,0.16)",
             "display": "block",
             "fontFamily": Array [
               "Lato",
               "sans-serif",
             ],
             "fontSize": 16,
-            "fontWeight": 400,
+            "fontWeight": "bold",
             "lineHeight": "20px",
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
+            "pointerEvents": "none",
           }
         }
       >
-        Choose some colors
+        Open modal!
       </span>
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 8,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "color": "rgba(33,36,44,0.16)",
-            "display": "inline-block",
-            "minWidth": 16,
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
-        />
-      </svg>
     </button>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-dropdown example 10 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "row",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "backgroundColor": "#0a2a66",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "height": 370,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "paddingRight": 10,
-        "paddingTop": 10,
-        "position": "relative",
-        "width": 350,
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "flex-end",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "column",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    >
-      <button
-        className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        role="menu"
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "border": "none",
-            "borderRadius": 4,
-            "boxSizing": "border-box",
-            "color": "#21242c",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "space-between",
-            "margin": 0,
-            "outline": "none",
-            "paddingLeft": 16,
-            "paddingRight": 12,
-            "position": "relative",
-            "textDecoration": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-        tabIndex={0}
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "display": "block",
-              "fontFamily": Array [
-                "Lato",
-                "sans-serif",
-              ],
-              "fontSize": 16,
-              "fontWeight": 400,
-              "lineHeight": "20px",
-              "overflow": "hidden",
-              "textOverflow": "ellipsis",
-            }
-          }
-        >
-          the philosopher's stone
-        </span>
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 8,
-              "padding": 0,
-              "position": "relative",
-              "zIndex": 0,
-            }
-          }
-        />
-        <svg
-          className=""
-          height={16}
-          style={
-            Object {
-              "display": "inline-block",
-              "minWidth": 16,
-              "overflow": "hidden",
-              "textOverflow": "ellipsis",
-              "verticalAlign": "text-bottom",
-            }
-          }
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
-    </div>
   </div>
 </div>
 `;

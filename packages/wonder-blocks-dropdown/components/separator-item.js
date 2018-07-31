@@ -9,6 +9,9 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
+/**
+ * A separator used in a dropdown menu.
+ */
 export default class SeparatorItem extends React.Component<{}> {
     render() {
         return <View style={styles.separator} />;
