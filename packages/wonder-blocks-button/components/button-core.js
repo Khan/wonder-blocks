@@ -126,6 +126,7 @@ const sharedStyles = StyleSheet.create({
         textDecoration: "none",
         boxSizing: "border-box",
         "::-moz-focus-inner": {
+            // Remove inner focus ring from buttons in Firefox
             border: 0,
         },
     },
