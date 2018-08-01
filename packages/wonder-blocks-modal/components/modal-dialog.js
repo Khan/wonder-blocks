@@ -2,7 +2,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {MediaLayout, MEDIA_MODAL_SPEC} from "@khanacademy/wonder-blocks-core";
+import {
+    View,
+    MediaLayout,
+    MEDIA_MODAL_SPEC,
+} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     children: React.Node,
@@ -13,17 +17,18 @@ export default class ModalDialog extends React.Component<Props> {
     render() {
         const {style, children} = this.props;
         return (
-            <MediaLayout
-                spec={MEDIA_MODAL_SPEC}
-                style={[
-                    styles.wrapper,
-                    (mediaSize) => mediaSize === "small" && styles.small,
-                    style,
-                ]}
-                role="dialog"
-                aria-labelledby="wb-modal-title"
-            >
-                {children}
+            <MediaLayout spec={MEDIA_MODAL_SPEC}>
+                <View
+                    style={[
+                        styles.wrapper,
+                        (mediaSize) => mediaSize === "small" && styles.small,
+                        style,
+                    ]}
+                    role="dialog"
+                    aria-labelledby="wb-modal-title"
+                >
+                    {children}
+                </View>
             </MediaLayout>
         );
     }
