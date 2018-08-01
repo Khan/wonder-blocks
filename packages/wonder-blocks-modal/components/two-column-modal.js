@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
     },
 
     smallColumn: {
-        flex: "1",
+        flex: "0 0 auto",
+        height: "auto",
     },
 
     contentFooterWrapper: {
