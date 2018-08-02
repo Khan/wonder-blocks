@@ -11,7 +11,7 @@ import ModalPanel from "./modal-panel.js";
 
 import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
-type Props = {|
+type BaseProps = {|
     /** The sidebar contents (which becomes the header on mobile screens). */
     sidebar: React.Node,
 
@@ -35,6 +35,10 @@ type Props = {|
      * @ignore
      */
     onClickCloseButton?: () => void,
+|};
+
+type WrappedProps = {|
+    ...BaseProps,
 
     /**
      * The size of the media layout being used. Populated by MediaLayoutWrapper.
@@ -43,7 +47,7 @@ type Props = {|
     mediaSize: MediaSize,
 |};
 
-class ContentWrapper extends React.Component<Props> {
+class ContentWrapper extends React.Component<WrappedProps> {
     static defaultProps = {
         onClickCloseButton: () => {},
     };
@@ -111,10 +115,12 @@ class ContentWrapper extends React.Component<Props> {
     }
 }
 
+const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
+
 /**
  * A two-column modal layout.
  */
-class TwoColumnModal extends React.Component<Props> {
+export default class TwoColumnModal extends React.Component<BaseProps> {
     static defaultProps = {
         onClickCloseButton: () => {},
     };
@@ -126,17 +132,16 @@ class TwoColumnModal extends React.Component<Props> {
                     mediaSize === "small" ? styles.smallDialog : styles.dialog
                 }
             >
-                <ContentWrapper {...this.props} />
+                <WrappedContentWrapper {...this.props} />
             </ModalDialog>
         );
     }
 }
 
-export default MediaLayoutWrapper(TwoColumnModal);
-
 const styles = StyleSheet.create({
     dialog: {
         width: "86.72%",
+        maxWidth: 888,
         height: "60.42%",
         minHeight: 464,
     },
@@ -150,7 +155,8 @@ const styles = StyleSheet.create({
     },
 
     smallColumn: {
-        flex: "0 0",
+        flex: "0 0 auto",
+        height: "auto",
     },
 
     contentFooterWrapper: {

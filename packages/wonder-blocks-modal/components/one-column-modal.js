@@ -11,7 +11,7 @@ import ModalFooter from "./modal-footer.js";
 
 import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
-type Props = {|
+type BaseProps = {|
     /** The modal's content. */
     content: React.Node,
 
@@ -32,6 +32,10 @@ type Props = {|
      * @ignore
      */
     onClickCloseButton?: () => void,
+|};
+
+type WrappedProps = {|
+    ...BaseProps,
 
     /**
      * The size of the media layout being used. Populated by MediaLayoutWrapper.
@@ -40,7 +44,7 @@ type Props = {|
     mediaSize: MediaSize,
 |};
 
-class ContentWrapper extends React.Component<Props> {
+class ContentWrapper extends React.Component<WrappedProps> {
     static defaultProps = {
         onClickCloseButton: () => {},
     };
@@ -89,10 +93,12 @@ class ContentWrapper extends React.Component<Props> {
     }
 }
 
+const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
+
 /**
  * A one-column modal layout.
  */
-class OneColumnModal extends React.Component<Props> {
+export default class OneColumnModal extends React.Component<BaseProps> {
     static defaultProps = {
         onClickCloseButton: () => {},
     };
@@ -105,13 +111,11 @@ class OneColumnModal extends React.Component<Props> {
                     (mediaSize) => mediaSize !== "small" && styles.largeDialog,
                 ]}
             >
-                <ContentWrapper {...this.props} />
+                <WrappedContentWrapper {...this.props} />
             </ModalDialog>
         );
     }
 }
-
-export default MediaLayoutWrapper(OneColumnModal);
 
 const styles = StyleSheet.create({
     dialog: {
@@ -120,6 +124,8 @@ const styles = StyleSheet.create({
 
     largeDialog: {
         width: "64.65%",
+        maxWidth: 662,
+        maxHeight: "90%",
     },
 
     contentFooterWrapper: {
