@@ -48,9 +48,9 @@ export type SharedProps = {|
     light: boolean,
 
     /**
-     * The size of the button. "default" = height: 40; "small" = height: 32
+     * The size of the button. "medium" = height: 40; "small" = height: 32
      */
-    size: "default" | "small",
+    size: "medium" | "small",
 
     /**
      * Whether the button is disabled.
@@ -138,7 +138,7 @@ export default class Button extends React.Component<SharedProps> {
         color: "default",
         kind: "primary",
         light: false,
-        size: "default",
+        size: "medium",
         disabled: false,
     };
 

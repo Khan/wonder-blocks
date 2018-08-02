@@ -22,7 +22,7 @@ const defaultHandlers = {
 describe("ButtonCore", () => {
     for (const kind of ["primary", "secondary", "tertiary"]) {
         for (const color of ["default", "destructive"]) {
-            for (const size of ["default", "small"]) {
+            for (const size of ["medium", "small"]) {
                 for (const light of [true, false]) {
                     for (const state of [
                         "disabled",
