@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ButtonCore kind:primary color:default size:default light:false disabled 1`] = `
+exports[`ButtonCore kind:primary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -67,7 +67,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false disabled
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:default size:default light:false focused 1`] = `
+exports[`ButtonCore kind:primary color:default size:medium light:false focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -134,7 +134,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false focused 
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:default size:default light:false hovered 1`] = `
+exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -201,7 +201,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false hovered 
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:default size:default light:false pressed 1`] = `
+exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -268,7 +268,7 @@ exports[`ButtonCore kind:primary color:default size:default light:false pressed 
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:default size:default light:true disabled 1`] = `
+exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -335,7 +335,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true disabled 
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:default size:default light:true focused 1`] = `
+exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -402,7 +402,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true focused 1
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:default size:default light:true hovered 1`] = `
+exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -469,7 +469,7 @@ exports[`ButtonCore kind:primary color:default size:default light:true hovered 1
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:default size:default light:true pressed 1`] = `
+exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -1072,7 +1072,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:destructive size:default light:false disabled 1`] = `
+exports[`ButtonCore kind:primary color:destructive size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -1139,7 +1139,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false disa
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:destructive size:default light:false focused 1`] = `
+exports[`ButtonCore kind:primary color:destructive size:medium light:false focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -1206,7 +1206,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false focu
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:destructive size:default light:false hovered 1`] = `
+exports[`ButtonCore kind:primary color:destructive size:medium light:false hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -1273,7 +1273,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false hove
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:destructive size:default light:false pressed 1`] = `
+exports[`ButtonCore kind:primary color:destructive size:medium light:false pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -1340,7 +1340,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:false pres
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:destructive size:default light:true disabled 1`] = `
+exports[`ButtonCore kind:primary color:destructive size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -1407,7 +1407,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true disab
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:destructive size:default light:true focused 1`] = `
+exports[`ButtonCore kind:primary color:destructive size:medium light:true focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -1474,7 +1474,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true focus
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:destructive size:default light:true hovered 1`] = `
+exports[`ButtonCore kind:primary color:destructive size:medium light:true hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -1541,7 +1541,7 @@ exports[`ButtonCore kind:primary color:destructive size:default light:true hover
 </button>
 `;
 
-exports[`ButtonCore kind:primary color:destructive size:default light:true pressed 1`] = `
+exports[`ButtonCore kind:primary color:destructive size:medium light:true pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -2144,7 +2144,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:default size:default light:false disabled 1`] = `
+exports[`ButtonCore kind:secondary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -2214,7 +2214,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false disabl
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:default size:default light:false focused 1`] = `
+exports[`ButtonCore kind:secondary color:default size:medium light:false focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -2283,7 +2283,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false focuse
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:default size:default light:false hovered 1`] = `
+exports[`ButtonCore kind:secondary color:default size:medium light:false hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -2352,7 +2352,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false hovere
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:default size:default light:false pressed 1`] = `
+exports[`ButtonCore kind:secondary color:default size:medium light:false pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -2421,7 +2421,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:false presse
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:default size:default light:true disabled 1`] = `
+exports[`ButtonCore kind:secondary color:default size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -2491,7 +2491,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true disable
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:default size:default light:true focused 1`] = `
+exports[`ButtonCore kind:secondary color:default size:medium light:true focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -2560,7 +2560,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true focused
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:default size:default light:true hovered 1`] = `
+exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -2629,7 +2629,7 @@ exports[`ButtonCore kind:secondary color:default size:default light:true hovered
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:default size:default light:true pressed 1`] = `
+exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -3252,7 +3252,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:destructive size:default light:false disabled 1`] = `
+exports[`ButtonCore kind:secondary color:destructive size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -3322,7 +3322,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false di
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:destructive size:default light:false focused 1`] = `
+exports[`ButtonCore kind:secondary color:destructive size:medium light:false focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -3391,7 +3391,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false fo
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:destructive size:default light:false hovered 1`] = `
+exports[`ButtonCore kind:secondary color:destructive size:medium light:false hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -3460,7 +3460,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false ho
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:destructive size:default light:false pressed 1`] = `
+exports[`ButtonCore kind:secondary color:destructive size:medium light:false pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -3529,7 +3529,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:false pr
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:destructive size:default light:true disabled 1`] = `
+exports[`ButtonCore kind:secondary color:destructive size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -3599,7 +3599,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true dis
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:destructive size:default light:true focused 1`] = `
+exports[`ButtonCore kind:secondary color:destructive size:medium light:true focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -3668,7 +3668,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true foc
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:destructive size:default light:true hovered 1`] = `
+exports[`ButtonCore kind:secondary color:destructive size:medium light:true hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -3737,7 +3737,7 @@ exports[`ButtonCore kind:secondary color:destructive size:default light:true hov
 </button>
 `;
 
-exports[`ButtonCore kind:secondary color:destructive size:default light:true pressed 1`] = `
+exports[`ButtonCore kind:secondary color:destructive size:medium light:true pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -4360,7 +4360,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:default size:default light:false disabled 1`] = `
+exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -4427,7 +4427,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false disable
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:default size:default light:false focused 1`] = `
+exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -4502,7 +4502,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false focused
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:default size:default light:false hovered 1`] = `
+exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -4577,7 +4577,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false hovered
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:default size:default light:false pressed 1`] = `
+exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -4652,7 +4652,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:false pressed
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:default size:default light:true disabled 1`] = `
+exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -4719,7 +4719,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true disabled
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:default size:default light:true focused 1`] = `
+exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -4794,7 +4794,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true focused 
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:default size:default light:true hovered 1`] = `
+exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -4869,7 +4869,7 @@ exports[`ButtonCore kind:tertiary color:default size:default light:true hovered 
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:default size:default light:true pressed 1`] = `
+exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -5528,7 +5528,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:destructive size:default light:false disabled 1`] = `
+exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -5595,7 +5595,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false dis
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:destructive size:default light:false focused 1`] = `
+exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -5670,7 +5670,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false foc
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:destructive size:default light:false hovered 1`] = `
+exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -5745,7 +5745,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false hov
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:destructive size:default light:false pressed 1`] = `
+exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pressed 1`] = `
 <button
   className=""
   disabled={false}
@@ -5820,7 +5820,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:false pre
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:destructive size:default light:true disabled 1`] = `
+exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
   className=""
@@ -5887,7 +5887,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true disa
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:destructive size:default light:true focused 1`] = `
+exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focused 1`] = `
 <button
   className=""
   disabled={false}
@@ -5962,7 +5962,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true focu
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:destructive size:default light:true hovered 1`] = `
+exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hovered 1`] = `
 <button
   className=""
   disabled={false}
@@ -6037,7 +6037,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:default light:true hove
 </button>
 `;
 
-exports[`ButtonCore kind:tertiary color:destructive size:default light:true pressed 1`] = `
+exports[`ButtonCore kind:tertiary color:destructive size:medium light:true pressed 1`] = `
 <button
   className=""
   disabled={false}
