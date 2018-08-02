@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
@@ -128,6 +129,8 @@ export default class IconButton extends React.Component<SharedProps> {
         light: false,
         disabled: false,
     };
+
+    static contextTypes = {router: PropTypes.any};
 
     render() {
         const {onClick, href, clientNav, ...sharedProps} = this.props;
