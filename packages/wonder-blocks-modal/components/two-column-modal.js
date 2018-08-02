@@ -141,7 +141,7 @@ export default class TwoColumnModal extends React.Component<BaseProps> {
 const styles = StyleSheet.create({
     dialog: {
         width: "86.72%",
-        maxWidth: 960,
+        maxWidth: 888,
         height: "60.42%",
         minHeight: 464,
     },

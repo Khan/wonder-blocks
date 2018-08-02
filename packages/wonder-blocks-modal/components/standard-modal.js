@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
         width: "93.75%",
         maxWidth: 960,
         height: "81.25%",
-        minHeight: 200,
         maxHeight: 624,
     },
 

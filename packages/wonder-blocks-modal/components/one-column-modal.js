@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
 
     largeDialog: {
         width: "64.65%",
-        maxWidth: 960,
+        maxWidth: 662,
+        maxHeight: "90%",
     },
 
     contentFooterWrapper: {
