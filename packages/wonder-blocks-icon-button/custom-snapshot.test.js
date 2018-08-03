@@ -34,8 +34,9 @@ describe("IconButtonCore", () => {
                         "hovered",
                         "pressed",
                     ]) {
+                        const disabled = state === "disabled";
                         const stateProps = {
-                            disabled: state === "disabled",
+                            disabled,
                             focused: state === "focused",
                             hovered: state === "hovered",
                             pressed: state === "pressed",
@@ -51,9 +52,9 @@ describe("IconButtonCore", () => {
                                         kind={kind}
                                         color={color}
                                         light={light}
+                                        tabIndex={disabled ? -1 : 0}
                                         {...stateProps}
                                         {...defaultHandlers}
-                                        tabIndex={stateProps.disabled ? -1 : 0}
                                     />,
                                 )
                                 .toJSON();

@@ -1,8 +1,10 @@
-The single select menu allows the selection of one item. Clients are
-responsible for keeping track of the selected item in the menu.
+The single select allows the selection of one item. Clients are responsible for
+keeping track of the selected item in the select.
 
-This menu has a starting placeholder and a set width. One item is wider than
-the width, and it ellipses.
+### Single select with placeholder
+
+This single select has a starting placeholder and a set width. One item is wider
+than the width, and so the text ellipses.
 
 ```js
 const React = require("react");
@@ -12,7 +14,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 180,
     },
 });
 
@@ -32,20 +33,11 @@ class ExampleWithPlaceholder extends React.Component {
     }
 
     render() {
-        return <SingleSelectMenu
+        return <SingleSelect
             items={[
-                {
-                    label: "Banana wrapped in a peel",
-                    value: "banana",
-                },
-                {
-                    label: "Apple",
-                    value: "apple",
-                },
-                {
-                    label: "Grape",
-                    value: "grape",
-                },
+                {label: "Vine-ripened tomatoes", value: "tomato"},
+                {label: "Watermelon", value: "watermelon"},
+                {label: "Strawberry", value: "strawberry"},
             ]}
             light={false}
             onChange={(selected) => this.handleChange(selected)}
@@ -64,7 +56,9 @@ class ExampleWithPlaceholder extends React.Component {
 </View>
 ```
 
-This menu starts with a starting selected item. One of the items is disabled
+### Single select with starting selected item and disabled item
+
+This select starts with a starting selected item. One of the items is disabled
 and thus cannot be selected.
 
 ```js
@@ -75,7 +69,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 180,
     },
 });
 
@@ -95,21 +88,11 @@ class ExampleWithStartingSelection extends React.Component {
     }
 
     render() {
-        return <SingleSelectMenu
+        return <SingleSelect
             items={[
-                {
-                    label: "Banana juice!!!",
-                    value: "banana",
-                },
-                {
-                    disabled: true,
-                    label: "Apple juice!!!",
-                    value: "apple",
-                },
-                {
-                    label: "Grape juice!!!",
-                    value: "grape",
-                },
+                {label: "Banana juice", value: "banana"},
+                {label: "Guava juice", value: "guava", disabled: true},
+                {label: "White grape juice", value: "grape"},
             ]}
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Choose a juice"
@@ -123,8 +106,9 @@ class ExampleWithStartingSelection extends React.Component {
 </View>
 ```
 
-This is a disabled menu.
+### Disabled select
 
+This select is disabled.
 ```js
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -133,7 +117,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 50,
     },
 });
 
@@ -153,24 +136,15 @@ class DisabledExample extends React.Component {
     }
 
     render() {
-        return <SingleSelectMenu
+        return <SingleSelect
             disabled={true}
             items={[
-                {
-                    label: "Banana juice!!!",
-                    value: "banana",
-                },
-                {
-                    label: "Apple juice!!!",
-                    value: "apple",
-                },
-                {
-                    label: "Grape juice!!!",
-                    value: "grape",
-                },
+                {label: "Banana juice", value: "banana"},
+                {label: "Guava juice", value: "guava", disabled: true},
+                {label: "White grape juice", value: "grape"},
             ]}
             onChange={(selected) => this.handleChange(selected)}
-            placeholder="Choose a fruit"
+            placeholder="Choose a juice"
             selectedValue={this.state.selectedValue}
         />;
     }
@@ -181,7 +155,9 @@ class DisabledExample extends React.Component {
 </View>
 ```
 
-This menu is on a dark background and is also right-aligned.
+### Select on dark background, right-aligned
+
+This single select is on a dark background and is also right-aligned.
 
 ```js
 const React = require("react");
@@ -218,20 +194,11 @@ class LightRightAlignedExample extends React.Component {
     }
 
     render() {
-        return <SingleSelectMenu
+        return <SingleSelect
             items={[
-                {
-                    label: "Regular milk tea with boba",
-                    value: "regular",
-                },
-                {
-                    label: "Wintermelon milk tea with boba",
-                    value: "wintermelon",
-                },
-                {
-                    label: "Taro milk tea, half sugar",
-                    value: "taro",
-                },
+                {label: "Regular milk tea with boba", value: "regular"},
+                {label: "Wintermelon milk tea with boba", value: "wintermelon"},
+                {label: "Taro milk tea, half sugar", value: "taro"},
             ]}
             light={true}
             onChange={(selected) => this.handleChange(selected)}
@@ -241,7 +208,6 @@ class LightRightAlignedExample extends React.Component {
         />;
     }
 }
-
 
 <View style={[styles.row]}>
     <View style={[styles.darkBackgroundWrapper]}>

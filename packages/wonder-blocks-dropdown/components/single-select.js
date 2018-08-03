@@ -1,23 +1,23 @@
 // @flow
-// A menu that consists of action items
+// A menu that consists of items to be selected, single-choice
 
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import ReactDOM from "react-dom";
 
-import DropdownCore from "./dropdown-core.js";
-import SelectBox from "./select-box.js";
-import SelectItem from "./select-item.js";
-import type {SelectItemProps} from "../utils/types.js";
+import Dropdown from "./dropdown.js";
+import SelectOpener from "./select-opener.js";
+import OptionItem from "./option-item.js";
+import type {OptionItemProps} from "../util/types.js";
 
 type Props = {|
     /**
-     * The items in this menu.
+     * The items in this select.
      */
-    items: Array<SelectItemProps>,
+    items: Array<OptionItemProps>,
 
     /**
-     * Callback for when the selection of the menu changes. Parameter is the
-     * newly selected item.
+     * Callback for when the selection. Parameter is the value of the newly
+     * selected item.
      */
     onChange: (selectedValue: string) => void,
 
@@ -27,42 +27,44 @@ type Props = {|
     placeholder: string,
 
     /**
-     * Value of the currently selected item for this menu.
+     * Value of the currently selected item.
      */
     selectedValue?: string,
 
     /**
-     * Whether this menu should be left-aligned or right-aligned with the
+     * Whether this dropdown should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
     alignment: "left" | "right",
 
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean,
-
-    /**
-     * Whether this menu is disabled. A disabled menu may not be opened and
-     * does not support interaction. Defaults to false.
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
      */
     disabled: boolean,
 
     /**
-     * Optional styling to add to dropdown.
+     * Whether to display the "light" version of this component instead, for
+     * use when the component is used on a dark background.
+     */
+    light: boolean,
+
+    /**
+     * Optional styling to add.
      */
     style?: any,
 |};
 
 type State = {|
     /**
-     * Whether or not menu is open.
+     * Whether or not the dropdown is open.
      */
     open: boolean,
 |};
 
-export default class SingleSelectMenu extends React.Component<Props, State> {
+export default class SingleSelect extends React.Component<Props, State> {
+    openerElement: ?Element;
+
     static defaultProps = {
         alignment: "left",
         disabled: false,
@@ -77,15 +79,9 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         };
     }
 
-    toggleMenu() {
-        this.setState((prevState) => ({
-            open: !prevState.open,
-        }));
-    }
-
-    handleClose() {
+    handleOpenChanged(open: boolean) {
         this.setState({
-            open: false,
+            open: open,
         });
     }
 
@@ -119,19 +115,25 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         const menuText = selectedItem ? selectedItem.label : placeholder;
 
         const opener = (
-            <SelectBox
+            <SelectOpener
                 disabled={disabled}
+                isPlaceholder={!selectedItem}
                 light={light}
-                onClick={() => this.toggleMenu()}
+                onClick={() => this.handleOpenChanged(!open)}
+                ref={(node) =>
+                    (this.openerElement = ((ReactDOM.findDOMNode(
+                        node,
+                    ): any): Element))
+                }
                 style={style}
             >
                 {menuText}
-            </SelectBox>
+            </SelectOpener>
         );
 
         const menuItems = items.map((item, index) => {
             return (
-                <SelectItem
+                <OptionItem
                     disabled={item.disabled}
                     key={item.value}
                     label={item.label}
@@ -144,23 +146,17 @@ export default class SingleSelectMenu extends React.Component<Props, State> {
         });
 
         return (
-            <DropdownCore
+            <Dropdown
                 alignment={alignment}
+                dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 items={menuItems}
                 light={light}
-                onClose={() => this.handleClose()}
+                onOpenChanged={(open, source) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
-                style={[styles.menuSpacer, style]}
+                openerElement={this.openerElement}
+                style={style}
             />
         );
     }
 }
-
-const styles = StyleSheet.create({
-    // This is to add extra space on top of the menu options to separate the
-    // options from the opener component.
-    menuSpacer: {
-        top: 48,
-    },
-});

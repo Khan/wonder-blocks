@@ -1,9 +1,10 @@
 //@flow
 import React from "react";
-import {mount} from "enzyme";
+
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import ActionItem from "./action-item.js";
-import SelectItem from "./select-item.js";
+import OptionItem from "./option-item.js";
 import ActionMenu from "./action-menu.js";
 
 const keyCodes = {
@@ -11,36 +12,45 @@ const keyCodes = {
     space: 32,
 };
 
-describe("MultiSelectMenu", () => {
+describe("ActionMenu", () => {
+    let menu;
     const onClick = jest.fn();
     const onToggle = jest.fn();
     const onChange = jest.fn();
-    const menu = mount(
-        <ActionMenu
-            items={[
-                {
-                    type: "action",
-                    label: "Action",
-                    onClick: () => onClick(),
-                },
-                {
-                    type: "separator",
-                },
-                {
-                    type: "select",
-                    label: "Toggle",
-                    onClick: () => onToggle(),
-                    value: "toggle",
-                },
-            ]}
-            menuText="Action menu!"
-            onChange={(selectedValues) => onChange()}
-            selectedValues={[]}
-        />,
-    );
-    const opener = menu.find("ActionMenuOpener");
+
+    beforeEach(() => {
+        menu = mount(
+            <ActionMenu
+                items={[
+                    {
+                        type: "action",
+                        label: "Action",
+                        onClick: () => onClick(),
+                    },
+                    {
+                        type: "separator",
+                    },
+                    {
+                        type: "select",
+                        label: "Toggle",
+                        onClick: () => onToggle(),
+                        value: "toggle",
+                    },
+                ]}
+                menuText={"Action menu!"}
+                onChange={(selectedValues) => onChange()}
+                selectedValues={[]}
+            />,
+        );
+    });
+
+    afterEach(() => {
+        unmountAll();
+    });
 
     it("closes/opens the menu on mouse click, space, and enter", () => {
+        const opener = menu.find("ActionMenuOpener");
+
         expect(menu.state("open")).toEqual(false);
 
         // Open menu with mouse
@@ -63,18 +73,22 @@ describe("MultiSelectMenu", () => {
     });
 
     it("triggers actions and toggles select items as expected", () => {
-        expect(menu.state("open")).toEqual(true);
+        menu.setState({open: true});
 
+        const noop = jest.fn();
+        const nativeEvent = {
+            nativeEvent: {stopImmediatePropagation: noop},
+        };
         const actionItem = menu.find(ActionItem);
         actionItem.simulate("mousedown");
-        actionItem.simulate("mouseup");
+        actionItem.simulate("mouseup", nativeEvent);
         actionItem.simulate("click");
         expect(onClick).toHaveBeenCalledTimes(1);
 
-        const selectItem = menu.find(SelectItem);
-        selectItem.simulate("mousedown");
-        selectItem.simulate("mouseup");
-        selectItem.simulate("click");
+        const optionItem = menu.find(OptionItem);
+        optionItem.simulate("mousedown");
+        optionItem.simulate("mouseup", nativeEvent);
+        optionItem.simulate("click", nativeEvent);
         expect(onToggle).toHaveBeenCalledTimes(1);
         expect(onChange).toHaveBeenCalledTimes(1);
     });

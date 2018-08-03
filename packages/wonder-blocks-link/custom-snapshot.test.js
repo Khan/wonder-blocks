@@ -17,6 +17,7 @@ const defaultHandlers = {
     onKeyUp: () => void 0,
     onFocus: () => void 0,
     onBlur: () => void 0,
+    tabIndex: 0,
 };
 
 describe("LinkCore", () => {
@@ -41,7 +42,6 @@ describe("LinkCore", () => {
                                     light={light}
                                     {...stateProps}
                                     {...defaultHandlers}
-                                    tabIndex={0}
                                 >
                                     Click me
                                 </LinkCore>,

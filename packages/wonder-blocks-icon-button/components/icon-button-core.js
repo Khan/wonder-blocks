@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import {StyleSheet} from "aphrodite";
+import {Link} from "react-router-dom";
 
 import Color, {
     SemanticColor,
@@ -51,21 +52,29 @@ type Props = {|
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
+const StyledLink = addStyle(Link);
 
 export default class IconButtonCore extends React.Component<Props> {
+    handleClick = (e: SyntheticEvent<>) => {
+        if (this.props.disabled) {
+            e.preventDefault();
+        }
+    };
+
     render() {
         const {
-            icon,
+            clientNav,
             color,
+            disabled,
+            focused,
+            hovered,
+            href,
+            icon,
             kind,
             light,
-            disabled,
-            testId,
-            style,
-            hovered,
-            focused,
             pressed,
-            href,
+            style,
+            testId,
             ...handlers
         } = this.props;
 
@@ -87,20 +96,42 @@ export default class IconButtonCore extends React.Component<Props> {
                     : (hovered || focused) && buttonStyles.focus),
         ];
 
-        const Tag = href ? StyledAnchor : StyledButton;
+        const child = <Icon size="medium" color="currentColor" icon={icon} />;
 
-        return (
-            <Tag
-                data-test-id={testId}
-                href={href}
-                disabled={disabled}
-                aria-label={this.props["aria-label"]}
-                style={[defaultStyle, style]}
-                {...handlers}
-            >
-                <Icon size="medium" color="currentColor" icon={icon} />
-            </Tag>
-        );
+        const commonProps = {
+            // TODO(kevinb): figure out a better way of forward ARIA props
+            "aria-disabled": disabled ? "true" : undefined,
+            "aria-label": this.props["aria-label"],
+            "data-test-id": testId,
+            style: [defaultStyle, style],
+            ...handlers,
+        };
+
+        if (href) {
+            return clientNav ? (
+                <StyledLink
+                    {...commonProps}
+                    onClick={this.handleClick}
+                    to={href}
+                >
+                    {child}
+                </StyledLink>
+            ) : (
+                <StyledAnchor
+                    {...commonProps}
+                    onClick={this.handleClick}
+                    href={href}
+                >
+                    {child}
+                </StyledAnchor>
+            );
+        } else {
+            return (
+                <StyledButton {...commonProps} disabled={disabled}>
+                    {child}
+                </StyledButton>
+            );
+        }
     }
 }
 
@@ -119,9 +150,13 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         background: "none",
+        "::-moz-focus-inner": {
+            // Remove inner focus ring from buttons in Firefox
+            border: 0,
+        },
     },
     disabled: {
-        cursor: "auto",
+        cursor: "default",
     },
 });
 
@@ -152,9 +187,16 @@ const _generateStyles = (color, kind, light) => {
             color: light
                 ? mix(fade(color, 0.32), white)
                 : mix(offBlack32, color),
+            borderWidth: 2,
+            borderColor: light
+                ? mix(fade(color, 0.32), white)
+                : mix(offBlack32, color),
+            borderStyle: "solid",
+            borderRadius: 4,
         },
         disabled: {
             color: light ? mix(fade(white, 0.32), color) : offBlack32,
+            cursor: "default",
         },
     };
     if (kind === "primary") {

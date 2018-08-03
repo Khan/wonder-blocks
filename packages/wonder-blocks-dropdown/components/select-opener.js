@@ -1,5 +1,5 @@
 // @flow
-// A menu opener
+// A select opener
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -16,17 +16,25 @@ import {
 
 const StyledButton = addStyle("button");
 
-const {blue, white, offBlack, offBlack16, offBlack32, offBlack50} = Color;
+const {
+    blue,
+    darkBlue,
+    white,
+    offBlack,
+    offBlack16,
+    offBlack32,
+    offBlack50,
+} = Color;
 
-type SelectBoxProps = {|
+type SelectOpenerProps = {|
     /**
-     * Display text in the SelectBox.
+     * Display text in the SelectOpener.
      */
     children: string,
 
     /**
-     * Whether the SelectBox opener is disabled. If disabled, disallows
-     * interaction. Default false.
+     * Whether the SelectOpener is disabled. If disabled, disallows interaction.
+     * Default false.
      */
     disabled?: boolean,
 
@@ -43,7 +51,7 @@ type SelectBoxProps = {|
     light?: boolean,
 
     /**
-     * Callback for when the SelectBox is pressed.
+     * Callback for when the SelectOpener is pressed.
      */
     onClick: () => void,
 
@@ -53,7 +61,7 @@ type SelectBoxProps = {|
     style?: any,
 |};
 
-export default class SelectBox extends React.Component<SelectBoxProps> {
+export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static defaultProps = {
         disabled: false,
         light: false,
@@ -103,7 +111,7 @@ export default class SelectBox extends React.Component<SelectBoxProps> {
                             ]}
                             {...handlers}
                         >
-                            <LabelMedium style={[textStyles]}>
+                            <LabelMedium style={textStyles}>
                                 {children}
                             </LabelMedium>
                             <View style={[styles.spacing]} />
@@ -132,8 +140,6 @@ const styles = StyleSheet.create({
         color: offBlack,
         backgroundColor: white,
         height: 40,
-        marginTop: Spacing.xxxSmall,
-        marginBottom: Spacing.xxxSmall,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.
@@ -175,29 +181,18 @@ const styles = StyleSheet.create({
 });
 
 const _generateStyles = (light, hovered, focused, pressed) => {
-    const focusRingGap = 1;
-    const focusRingWidth = 2;
-    const focusRingOutset = focusRingGap + focusRingWidth;
-    const focusRingRadius = buttonRadius + focusRingOutset;
-
     let newStyles = {};
     if (light) {
         newStyles = {
+            default: {},
             focus: {
-                ":before": {
-                    content: "''",
-                    position: "absolute",
-                    top: -focusRingOutset,
-                    left: -focusRingOutset,
-                    right: -focusRingOutset,
-                    bottom: -focusRingOutset,
-                    borderColor: white,
-                    borderStyle: "solid",
-                    borderWidth: focusRingWidth,
-                    borderRadius: focusRingRadius,
-                },
+                boxShadow: `0 0 0 1px ${darkBlue}, 0 0 0 3px ${white}`,
             },
             active: {
+                boxShadow: `0 0 0 1px ${darkBlue}, 0 0 0 3px ${mix(
+                    fade(blue, 0.32),
+                    white,
+                )}`,
                 background: mix(fade(blue, 0.32), white),
             },
             disabled: {
@@ -213,24 +208,25 @@ const _generateStyles = (light, hovered, focused, pressed) => {
             },
             focus: {
                 borderColor: blue,
-                borderStyle: "solid",
-                borderWidth: focusRingWidth,
+                borderWidth: 2,
                 // These values are default padding (16 and 12) minus 1, because
                 // changing the borderWidth to 2 messes up the button width
                 // and causes it to move a couple pixels. This fixes that.
-                paddingLeft: 15,
-                paddingRight: 11,
+                paddingLeft: 16 - 1,
+                paddingRight: 12 - 1,
             },
             active: {
                 background: mix(fade(blue, 0.32), white),
                 borderColor: mix(offBlack32, blue),
-                borderStyle: "solid",
-                borderWidth: 1,
+                borderWidth: 2,
+                // These values are default padding (16 and 12) minus 1, because
+                // changing the borderWidth to 2 messes up the button width
+                // and causes it to move a couple pixels. This fixes that.
+                paddingLeft: 16 - 1,
+                paddingRight: 12 - 1,
             },
             disabled: {
                 borderColor: offBlack16,
-                borderStyle: "solid",
-                borderWidth: 1,
                 cursor: "auto",
             },
         };

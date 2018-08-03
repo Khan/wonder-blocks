@@ -204,7 +204,7 @@ describe("ClickableBehavior", () => {
         );
 
         expect(onClick).not.toHaveBeenCalled();
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(onClick).not.toHaveBeenCalled();
 
         expect(button.state("hovered")).toEqual(false);

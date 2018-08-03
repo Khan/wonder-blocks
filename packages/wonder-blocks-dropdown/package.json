@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.3",
   "design": "v1",
-  "description": "Dropdown menu variants for Wonder Blocks.",
+  "description": "Dropdown variants for Wonder Blocks.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,7 @@
     "@khanacademy/wonder-blocks-color": "^1.0.4",
     "@khanacademy/wonder-blocks-core": "^1.0.4",
     "@khanacademy/wonder-blocks-icon": "1.0.1",
-    "@khanacademy/wonder-blocks-spacing": "^1.0.0",
+    "@khanacademy/wonder-blocks-spacing": "^2.0.2",
     "@khanacademy/wonder-blocks-typography": "^1.0.4"
   },
   "peerDependencies": {

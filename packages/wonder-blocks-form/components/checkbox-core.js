@@ -1,21 +1,18 @@
 // @flow
-// The internal stateless ☑️ Checkbox.
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import type {ChoiceCoreProps} from "../util/types.js";
 
 type Props = {|
     ...ChoiceCoreProps,
-    ...ClickableHandlers,
     hovered: boolean,
     focused: boolean,
     pressed: boolean,
@@ -30,6 +27,9 @@ const checkboxCheck: IconAsset = {
         "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
 };
 
+/**
+ * The internal stateless ☑️ Checkbox
+ */
 export default class CheckboxCore extends React.Component<Props> {
     render() {
         const {
@@ -39,11 +39,9 @@ export default class CheckboxCore extends React.Component<Props> {
             groupName,
             id,
             testId,
-            style,
             hovered,
             focused,
             pressed,
-            ...handlers
         } = this.props;
 
         const stateStyles = _generateStyles(checked, error);
@@ -61,11 +59,10 @@ export default class CheckboxCore extends React.Component<Props> {
 
         const props = {
             "data-test-id": testId,
-            ...handlers,
         };
 
         return (
-            <View style={[sharedStyles.wrapper, style]} {...props}>
+            <React.Fragment>
                 <StyledInput
                     type="checkbox"
                     aria-checked={checked}
@@ -78,7 +75,7 @@ export default class CheckboxCore extends React.Component<Props> {
                     // ClickableBehavior already
                     onChange={() => void 0}
                     style={defaultStyle}
-                    tabIndex={-1}
+                    {...props}
                 />
                 {checked && (
                     <Icon
@@ -88,16 +85,14 @@ export default class CheckboxCore extends React.Component<Props> {
                         style={sharedStyles.checkIcon}
                     />
                 )}
-            </View>
+            </React.Fragment>
         );
     }
 }
 
-const sharedStyles = StyleSheet.create({
-    wrapper: {
-        outline: "none",
-    },
+const size = 16;
 
+const sharedStyles = StyleSheet.create({
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -106,10 +101,11 @@ const sharedStyles = StyleSheet.create({
     },
 
     default: {
-        height: 16,
-        width: 16,
+        height: size,
+        width: size,
+        minHeight: size,
+        minWidth: size,
         margin: 0,
-        cursor: "pointer",
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
@@ -152,7 +148,7 @@ const styles = {};
 
 const _generateStyles = (checked, error) => {
     // "hash" the parameters
-    const styleKey = `${checked}-${error}`;
+    const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
         return styles[styleKey];
     }
@@ -170,6 +166,7 @@ const _generateStyles = (checked, error) => {
                 boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
             },
             active: {
+                boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.active}`,
                 background: palette.active,
             },
         };
@@ -187,6 +184,7 @@ const _generateStyles = (checked, error) => {
             active: {
                 backgroundColor: palette.faded,
                 borderColor: error ? activeRed : blue,
+                borderWidth: 2,
             },
         };
     }

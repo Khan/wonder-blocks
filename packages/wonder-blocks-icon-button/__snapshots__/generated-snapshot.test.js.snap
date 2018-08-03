@@ -38,6 +38,9 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
         "alignItems": "center",
         "background": "none",
         "border": "none",
@@ -94,6 +97,9 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
         "alignItems": "center",
         "background": "none",
         "border": "none",
@@ -150,6 +156,9 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
         "alignItems": "center",
         "background": "none",
         "border": "none",
@@ -161,6 +170,148 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "justifyContent": "center",
         "margin": 0,
         "marginRight": 10,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "width": 40,
+      }
+    }
+    tabIndex={0}
+  >
+    <svg
+      className=""
+      height={24}
+      style={
+        Object {
+          "display": "inline-block",
+          "verticalAlign": "text-bottom",
+        }
+      }
+      viewBox="0 0 24 24"
+      width={24}
+    >
+      <path
+        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+  <button
+    aria-disabled="true"
+    aria-label="search"
+    className=""
+    disabled={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "rgba(33,36,44,0.32)",
+        "cursor": "default",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "marginRight": 10,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "width": 40,
+      }
+    }
+    tabIndex={-1}
+  >
+    <svg
+      className=""
+      height={24}
+      style={
+        Object {
+          "display": "inline-block",
+          "verticalAlign": "text-bottom",
+        }
+      }
+      viewBox="0 0 24 24"
+      width={24}
+    >
+      <path
+        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-icon-button example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "backgroundColor": "#0a2a66",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 10,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-label="search"
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
         "outline": "none",
         "padding": 0,
         "position": "relative",

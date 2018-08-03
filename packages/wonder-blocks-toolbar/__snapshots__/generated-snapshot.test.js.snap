@@ -13,9 +13,11 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       "display": "flex",
       "flexDirection": "row",
       "margin": 0,
-      "minHeight": 48,
+      "minHeight": 50,
       "minWidth": 0,
-      "padding": 4,
+      "padding": 0,
+      "paddingLeft": 4,
+      "paddingRight": 4,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -142,6 +144,9 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
+              "::-moz-focus-inner": Object {
+                "border": 0,
+              },
               "alignItems": "center",
               "background": "#1865f2",
               "border": "none",
@@ -160,6 +165,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
+              "width": 160,
             }
           }
           tabIndex={0}
@@ -171,7 +177,10 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
@@ -220,6 +229,9 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
+              "::-moz-focus-inner": Object {
+                "border": 0,
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
@@ -241,6 +253,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
+              "width": 160,
             }
           }
           tabIndex={0}
@@ -252,7 +265,10 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
@@ -282,9 +298,11 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
       "display": "flex",
       "flexDirection": "row",
       "margin": 0,
-      "minHeight": 64,
+      "minHeight": 66,
       "minWidth": 0,
-      "padding": 4,
+      "padding": 0,
+      "paddingLeft": 4,
+      "paddingRight": 4,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -369,6 +387,9 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
+              "::-moz-focus-inner": Object {
+                "border": 0,
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
@@ -379,11 +400,12 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
+              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
               "textDecoration": "none",
-              "width": 28,
+              "width": 40,
             }
           }
           tabIndex={0}
@@ -445,7 +467,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 0,
+          "padding": 12,
           "position": "relative",
           "textAlign": "center",
           "zIndex": 0,
@@ -460,7 +482,10 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato",
+            "fontFamily": Array [
+              "Lato",
+              "sans-serif",
+            ],
             "fontSize": 20,
             "fontWeight": 700,
             "lineHeight": "24px",
@@ -531,9 +556,11 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
       "display": "flex",
       "flexDirection": "row",
       "margin": 0,
-      "minHeight": 64,
+      "minHeight": 66,
       "minWidth": 0,
-      "padding": 4,
+      "padding": 0,
+      "paddingLeft": 4,
+      "paddingRight": 4,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -618,6 +645,9 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
+              "::-moz-focus-inner": Object {
+                "border": 0,
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
@@ -628,11 +658,12 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
+              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
               "textDecoration": "none",
-              "width": 28,
+              "width": 40,
             }
           }
           tabIndex={0}
@@ -694,7 +725,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 0,
+          "padding": 12,
           "position": "relative",
           "textAlign": "center",
           "zIndex": 0,
@@ -709,7 +740,10 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato",
+            "fontFamily": Array [
+              "Lato",
+              "sans-serif",
+            ],
             "fontSize": 20,
             "fontWeight": 700,
             "lineHeight": "24px",
@@ -800,6 +834,9 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
+              "::-moz-focus-inner": Object {
+                "border": 0,
+              },
               "alignItems": "center",
               "background": "#1865f2",
               "border": "none",
@@ -829,7 +866,10 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
@@ -859,9 +899,11 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
       "display": "flex",
       "flexDirection": "row",
       "margin": 0,
-      "minHeight": 64,
+      "minHeight": 66,
       "minWidth": 0,
-      "padding": 4,
+      "padding": 0,
+      "paddingLeft": 4,
+      "paddingRight": 4,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -978,9 +1020,12 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato",
+              "fontFamily": Array [
+                "Lato",
+                "sans-serif",
+              ],
               "fontSize": 16,
-              "fontWeight": 400,
+              "fontWeight": 700,
               "lineHeight": "20px",
             }
           }
@@ -1025,6 +1070,9 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
+              "::-moz-focus-inner": Object {
+                "border": 0,
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
@@ -1046,6 +1094,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
+              "width": 140,
             }
           }
           tabIndex={0}
@@ -1057,7 +1106,10 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
@@ -1106,6 +1158,9 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
+              "::-moz-focus-inner": Object {
+                "border": 0,
+              },
               "alignItems": "center",
               "background": "#1865f2",
               "border": "none",
@@ -1124,6 +1179,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               "paddingTop": 0,
               "position": "relative",
               "textDecoration": "none",
+              "width": 140,
             }
           }
           tabIndex={0}
@@ -1135,7 +1191,10 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
@@ -1165,9 +1224,11 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
       "display": "flex",
       "flexDirection": "row",
       "margin": 0,
-      "minHeight": 64,
+      "minHeight": 66,
       "minWidth": 0,
-      "padding": 4,
+      "padding": 0,
+      "paddingLeft": 4,
+      "paddingRight": 4,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -1252,6 +1313,9 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
+              "::-moz-focus-inner": Object {
+                "border": 0,
+              },
               "alignItems": "center",
               "background": "none",
               "border": "none",
@@ -1262,11 +1326,12 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
+              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
               "textDecoration": "none",
-              "width": 28,
+              "width": 40,
             }
           }
           tabIndex={0}
@@ -1328,7 +1393,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
-          "padding": 0,
+          "padding": 12,
           "position": "relative",
           "textAlign": "center",
           "zIndex": 0,
@@ -1343,7 +1408,10 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato",
+            "fontFamily": Array [
+              "Lato",
+              "sans-serif",
+            ],
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1360,7 +1428,10 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "WebkitFontSmoothing": "antialiased",
             "color": "rgba(33, 36, 44, 0.64)",
             "display": "block",
-            "fontFamily": "Lato",
+            "fontFamily": Array [
+              "Lato",
+              "sans-serif",
+            ],
             "fontSize": 14,
             "fontWeight": 400,
             "lineHeight": "18px",
@@ -1460,24 +1531,25 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           }
           tabIndex={0}
         >
-          Go to exercise 
-          <svg
+          <span
             className=""
-            height={16}
             style={
               Object {
-                "display": "inline-block",
-                "verticalAlign": "text-bottom",
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": Array [
+                  "Lato",
+                  "sans-serif",
+                ],
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
               }
             }
-            viewBox="0 0 16 16"
-            width={16}
           >
-            <path
-              d="M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z"
-              fill="currentColor"
-            />
-          </svg>
+            Go to exercise
+          </span>
         </a>
       </div>
     </div>
@@ -1524,9 +1596,11 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "margin": 0,
-        "minHeight": 64,
+        "minHeight": 66,
         "minWidth": 0,
-        "padding": 4,
+        "padding": 0,
+        "paddingLeft": 4,
+        "paddingRight": 4,
         "position": "relative",
         "width": "100%",
         "zIndex": 0,
@@ -1611,7 +1685,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 0,
+            "padding": 12,
             "position": "relative",
             "textAlign": "center",
             "zIndex": 0,
@@ -1626,7 +1700,10 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato",
+              "fontFamily": Array [
+                "Lato",
+                "sans-serif",
+              ],
               "fontSize": 20,
               "fontWeight": 700,
               "lineHeight": "24px",
@@ -1682,6 +1759,5 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
       />
     </div>
   </div>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </div>
 `;

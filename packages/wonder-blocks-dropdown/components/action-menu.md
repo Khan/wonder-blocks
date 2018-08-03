@@ -1,11 +1,16 @@
-The action menu is mainly for items that trigger actions, such as navigating to
+The action menu is used for items that trigger actions, such as navigating to
 a different page or opening a modal.
 
-This menu demonstrates an action menu with
-- a separator
-- a disabled item
-- items that redirect to a link
-- items with an onClick callback (could be used for conversion loggin)
+### Basic, right-aligned action menu
+
+This menu shows different type of possible items in this type of menu:
+
+1. leads to a different page (the profile)
+2. leads to the teacher dashboard
+3. has an onClick callback, which could be used for conversion logging
+4. is a disabled item
+5. is a separator
+6. leads to the logout link
 
 This menu is also right-aligned.
 
@@ -16,7 +21,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 250,
     },
     wrapper: {
         width: "100%",
@@ -63,9 +67,11 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+### Hybrid menu of action items and option items
+
 The following menu demonstrates a hybrid menu with both action items and items
 that can toggle to change the state of the application. The user of this menu
-must keep track of the selected items.
+must keep track of the state of the selected items.
 
 ```js
 const React = require("react");
@@ -75,7 +81,6 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
-        height: 250,
     },
 });
 

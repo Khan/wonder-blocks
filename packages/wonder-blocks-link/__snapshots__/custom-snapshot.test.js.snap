@@ -90,7 +90,7 @@ exports[`LinkCore kind:primary href:# light:false pressed 1`] = `
       "color": "#1b50b3",
       "cursor": "pointer",
       "outline": "none",
-      "textDecoration": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -189,7 +189,7 @@ exports[`LinkCore kind:primary href:# light:true pressed 1`] = `
       "color": "#b5cefb",
       "cursor": "pointer",
       "outline": "none",
-      "textDecoration": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -288,7 +288,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false pressed 1`] =
       "color": "#1b50b3",
       "cursor": "pointer",
       "outline": "none",
-      "textDecoration": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -387,7 +387,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true pressed 1`] = 
       "color": "#b5cefb",
       "cursor": "pointer",
       "outline": "none",
-      "textDecoration": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -486,7 +486,7 @@ exports[`LinkCore kind:secondary href:# light:false pressed 1`] = `
       "color": "#1b50b3",
       "cursor": "pointer",
       "outline": "none",
-      "textDecoration": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -585,7 +585,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false pressed 1`]
       "color": "#1b50b3",
       "cursor": "pointer",
       "outline": "none",
-      "textDecoration": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}

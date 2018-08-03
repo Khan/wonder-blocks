@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import View from "./view.js";
 
 import {MEDIA_DEFAULT_SPEC, VALID_MEDIA_SIZES} from "../util/specs.js";
 import {mediaContextTypes} from "../util/util.js";
@@ -29,15 +28,6 @@ type Props = {|
 
     /** The contents of the page */
     children: React.Node,
-
-    /**
-     * Style the layout container
-     */
-    style?: any,
-
-    // TODO(kevinb): provide a way to "mixin" allowed roles and aria props
-    role?: "dialog",
-    "aria-labelledby"?: string,
 |};
 
 /**
@@ -88,11 +78,11 @@ export default class MediaLayout extends React.Component<
     },
 > {
     watchHandlers: {
-        [size: MediaSize]: any,
+        [query: string]: any,
     };
 
     static WATCHERS: {
-        [size: MediaSize]: any,
+        [query: string]: any,
     } = {};
 
     static defaultProps = {
@@ -138,15 +128,15 @@ export default class MediaLayout extends React.Component<
             }
 
             // Create a new matchMedia watcher if one doesn't exist yet
-            if (!MediaLayout.WATCHERS[size]) {
-                MediaLayout.WATCHERS[size] = window.matchMedia(query);
+            if (!MediaLayout.WATCHERS[query]) {
+                MediaLayout.WATCHERS[query] = window.matchMedia(query);
             }
 
-            const watcher = MediaLayout.WATCHERS[size];
+            const watcher = MediaLayout.WATCHERS[query];
 
             // Attach a handler that watches for the change, saving a
             // references to it so we can remove it later
-            const handler = (this.watchHandlers[size] = (e) => {
+            const handler = (this.watchHandlers[query] = (e) => {
                 if (e.matches) {
                     this.setState({size});
                 }
@@ -173,12 +163,12 @@ export default class MediaLayout extends React.Component<
 
         // We go through the component and remove all of the listeners
         // that this MediaLayout attached.
-        for (const size of VALID_MEDIA_SIZES) {
-            const watcher = MediaLayout.WATCHERS[size];
+        for (const query of Object.keys(MediaLayout.WATCHERS)) {
+            const watcher = MediaLayout.WATCHERS[query];
             if (watcher) {
-                const handler = this.watchHandlers[size];
+                const handler = this.watchHandlers[query];
                 watcher.removeListener(handler);
-                delete this.watchHandlers[size];
+                delete this.watchHandlers[query];
             }
         }
     }
@@ -223,10 +213,6 @@ class MediaLayoutContext extends React.Component<{
     }
 
     render() {
-        // TODO(jeresig): Switch to be a React.Fragment once we upgrade to
-        // React 16.2+.
-        // eslint-disable-next-line no-unused-vars
-        const {size, spec, children, ...otherProps} = this.props;
-        return <View {...otherProps}>{children}</View>;
+        return <React.Fragment>{this.props.children}</React.Fragment>;
     }
 }

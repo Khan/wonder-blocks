@@ -23,37 +23,30 @@ type Props = {|
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
-// $FlowFixMe: pass props directly to StyledLink instead of to Tag
 const StyledLink = addStyle(Link);
 
 export default class ButtonCore extends React.Component<Props> {
-    getTag() {
-        const {href, clientNav} = this.props;
-        if (href) {
-            if (clientNav) {
-                return StyledLink;
-            } else {
-                return StyledAnchor;
-            }
-        } else {
-            return StyledButton;
+    handleClick = (e: SyntheticEvent<>) => {
+        if (this.props.disabled) {
+            e.preventDefault();
         }
-    }
+    };
 
-    getProps() {
+    render() {
         const {
+            children,
+            clientNav,
             color,
+            disabled,
+            focused,
+            hovered,
+            href,
             kind,
             light,
-            size,
-            testId,
-            style,
-            disabled,
-            hovered,
-            focused,
             pressed,
-            href,
-            clientNav,
+            size,
+            style,
+            testId,
             ...handlers
         } = this.props;
 
@@ -76,37 +69,42 @@ export default class ButtonCore extends React.Component<Props> {
             size === "small" && sharedStyles.small,
         ];
 
-        const props = {
-            style: [defaultStyle, style],
-            disabled,
+        const commonProps = {
+            "aria-disabled": disabled ? "true" : undefined,
             "data-test-id": testId,
+            style: [defaultStyle, style],
             ...handlers,
         };
 
-        if (!disabled && href) {
-            if (clientNav) {
-                // $FlowFixMe
-                props.to = href;
-            } else {
-                // $FlowFixMe
-                props.href = href;
-            }
-        }
-
-        return props;
-    }
-
-    render() {
-        const {children, size} = this.props;
-
-        const Tag = this.getTag();
-        const props = this.getProps();
         const Label = size === "small" ? LabelSmall : LabelLarge;
-        return (
-            <Tag {...props}>
-                <Label style={sharedStyles.text}>{children}</Label>
-            </Tag>
-        );
+
+        const label = <Label style={sharedStyles.text}>{children}</Label>;
+
+        if (href) {
+            return clientNav ? (
+                <StyledLink
+                    {...commonProps}
+                    onClick={this.handleClick}
+                    to={href}
+                >
+                    {label}
+                </StyledLink>
+            ) : (
+                <StyledAnchor
+                    {...commonProps}
+                    onClick={this.handleClick}
+                    href={href}
+                >
+                    {label}
+                </StyledAnchor>
+            );
+        } else {
+            return (
+                <StyledButton {...commonProps} disabled={disabled}>
+                    {label}
+                </StyledButton>
+            );
+        }
     }
 }
 
@@ -127,6 +125,10 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
+        "::-moz-focus-inner": {
+            // Remove inner focus ring from buttons in Firefox
+            border: 0,
+        },
     },
     disabled: {
         cursor: "auto",
@@ -149,6 +151,8 @@ const _generateStyles = (color, kind, light) => {
     }
 
     const {white, white64, offBlack32, offBlack50, darkBlue} = Color;
+    const fadedColor = mix(fade(color, 0.32), white);
+    const activeColor = mix(offBlack32, color);
 
     let newStyles = {};
     if (kind === "primary") {
@@ -167,16 +171,16 @@ const _generateStyles = (color, kind, light) => {
                 }`,
             },
             active: {
-                background: light
-                    ? mix(fade(color, 0.32), white)
-                    : mix(offBlack32, color),
-                color: light
-                    ? mix(offBlack32, color)
-                    : mix(fade(color, 0.32), white),
+                boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 3px ${
+                    light ? fadedColor : activeColor
+                }`,
+                background: light ? fadedColor : activeColor,
+                color: light ? activeColor : fadedColor,
             },
             disabled: {
-                background: light ? mix(fade(white, 0.32), color) : offBlack32,
+                background: light ? fadedColor : offBlack32,
                 color: light ? color : white64,
+                cursor: "default",
             },
         };
     } else if (kind === "secondary") {
@@ -196,19 +200,17 @@ const _generateStyles = (color, kind, light) => {
                 paddingRight: 15,
             },
             active: {
-                background: light
-                    ? mix(offBlack32, color)
-                    : mix(fade(color, 0.32), white),
-                color: light
-                    ? mix(fade(color, 0.32), white)
-                    : mix(offBlack32, color),
-                borderColor: light
-                    ? mix(fade(color, 0.32), white)
-                    : mix(offBlack32, color),
+                background: light ? activeColor : fadedColor,
+                color: light ? fadedColor : activeColor,
+                borderColor: light ? fadedColor : activeColor,
+                borderWidth: 2,
+                paddingLeft: 15,
+                paddingRight: 15,
             },
             disabled: {
-                color: light ? mix(fade(white, 0.32), color) : offBlack32,
-                borderColor: light ? mix(fade(white, 0.32), color) : offBlack32,
+                color: light ? fadedColor : offBlack32,
+                borderColor: light ? fadedColor : offBlack32,
+                cursor: "default",
             },
         };
     } else if (kind === "tertiary") {
@@ -231,12 +233,20 @@ const _generateStyles = (color, kind, light) => {
                 },
             },
             active: {
-                color: light
-                    ? mix(fade(color, 0.32), white)
-                    : mix(offBlack32, color),
+                color: light ? fadedColor : activeColor,
+                ":after": {
+                    content: "''",
+                    position: "absolute",
+                    height: 2,
+                    width: "calc(100% - 8px)",
+                    bottom: "calc(50% - 11px)",
+                    background: light ? fadedColor : activeColor,
+                    borderRadius: 2,
+                },
             },
             disabled: {
-                color: light ? mix(fade(white, 0.32), color) : offBlack32,
+                color: light ? fadedColor : offBlack32,
+                cursor: "default",
             },
         };
     } else {

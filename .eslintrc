@@ -4,6 +4,7 @@
     ],
     "rules": {
         "flowtype/require-exact-type": [2, "always"],
+        "flowtype/no-types-missing-file-annotation": 2,
         "react/jsx-handler-names": 2
     }
 }

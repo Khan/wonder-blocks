@@ -29,8 +29,8 @@ module.exports = {
             name: "Dropdown",
             components: [
                 "packages/wonder-blocks-dropdown/components/action-menu.js",
-                "packages/wonder-blocks-dropdown/components/single-select-menu.js",
-                "packages/wonder-blocks-dropdown/components/multi-select-menu.js",
+                "packages/wonder-blocks-dropdown/components/single-select.js",
+                "packages/wonder-blocks-dropdown/components/multi-select.js",
             ],
         },
         {
@@ -39,6 +39,9 @@ module.exports = {
             components: [
                 "packages/wonder-blocks-form/components/checkbox.js",
                 "packages/wonder-blocks-form/components/radio.js",
+                "packages/wonder-blocks-form/components/choice.js",
+                "packages/wonder-blocks-form/components/checkbox-group.js",
+                "packages/wonder-blocks-form/components/radio-group.js",
             ],
             sections: [
                 {
@@ -47,6 +50,7 @@ module.exports = {
                     components: [
                         "packages/wonder-blocks-form/components/checkbox-core.js",
                         "packages/wonder-blocks-form/components/radio-core.js",
+                        "packages/wonder-blocks-form/components/choice-internal.js",
                     ],
                 },
             ],

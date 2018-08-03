@@ -300,6 +300,8 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                   onKeyUp: this.handleKeyUp,
                   onFocus: this.handleFocus,
                   onBlur: this.handleBlur,
+                  // We set tabIndex to 0 so that users can tab to clickable
+                  // things that aren't buttons or anchors.
                   tabIndex: 0,
               };
         const {children} = this.props;

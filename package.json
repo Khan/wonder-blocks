@@ -11,6 +11,7 @@
     "build:all": "webpack && node utils/package-flow-types.js",
     "watch:all": "webpack -w",
     "flow": "flow",
+    "flow-coverage": "flow-coverage-report -t text -t html -f ./node_modules/.bin/flow -i 'packages/wonder-blocks-*/**/*.js' -x 'packages/wonder-blocks-*/dist/*.js' -x '**/*.test.js' -x '**/node_modules/**/*.js'",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "gen-styleguide-prod-config": "node utils/gen-styleguide-prod-config.js && prettier --write styleguide.prod.config.js",
     "jest": "jest",
@@ -28,7 +29,14 @@
   },
   "author": "",
   "license": "MIT",
+  "//": [
+    "enzyme-adapter-react-16: TODO(sophie): We should revert back to the latest release of this when the issue at https://github.com/airbnb/enzyme/issues/1509 is fixed"
+  ],
   "devDependencies": {
+    "//": [
+      "TODO(sophie): We should revert back to the latest release of this",
+      "when the issue at https://github.com/airbnb/enzyme/issues/1509 is fixed"
+    ],
     "babel-core": "6.26.3",
     "babel-eslint": "^9.0.0-beta.3",
     "babel-jest": "^22.4.1",
@@ -43,7 +51,7 @@
     "codecov": "^3.0.4",
     "concurrently": "^3.6.0",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-adapter-react-16": "npm:enzyme-react-adapter-future",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "2.6.0",
     "eslint-plugin-flowtype": "^2.25.0",
@@ -53,6 +61,7 @@
     "eslint-plugin-react-native-animation-linter": "0.1.1",
     "eslint-watch": "^4.0.1",
     "flow-bin": "0.75.0",
+    "flow-coverage-report": "^0.5.0",
     "glob": "^7.1.2",
     "jest": "^23.3.0",
     "jest-enzyme": "^6.0.2",

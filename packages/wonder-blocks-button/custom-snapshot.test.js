@@ -22,7 +22,7 @@ const defaultHandlers = {
 describe("ButtonCore", () => {
     for (const kind of ["primary", "secondary", "tertiary"]) {
         for (const color of ["default", "destructive"]) {
-            for (const size of ["default", "small"]) {
+            for (const size of ["medium", "small"]) {
                 for (const light of [true, false]) {
                     for (const state of [
                         "disabled",
@@ -30,8 +30,9 @@ describe("ButtonCore", () => {
                         "hovered",
                         "pressed",
                     ]) {
+                        const disabled = state === "disabled";
                         const stateProps = {
-                            disabled: state === "disabled",
+                            disabled,
                             focused: state === "focused",
                             hovered: state === "hovered",
                             pressed: state === "pressed",
@@ -46,9 +47,9 @@ describe("ButtonCore", () => {
                                         size={size}
                                         color={color}
                                         light={light}
+                                        tabIndex={disabled ? -1 : 0}
                                         {...stateProps}
                                         {...defaultHandlers}
-                                        tabIndex={stateProps.disabled ? -1 : 0}
                                     >
                                         Click me
                                     </ButtonCore>,

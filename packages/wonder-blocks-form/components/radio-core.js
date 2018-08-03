@@ -1,17 +1,15 @@
 // @flow
-// The internal stateless 🔘 Radio
+
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
-import type {ChoiceProps} from "../util/types.js";
+import type {ChoiceCoreProps} from "../util/types.js";
 
 type Props = {|
-    ...ChoiceProps,
-    ...ClickableHandlers,
+    ...ChoiceCoreProps,
     hovered: boolean,
     focused: boolean,
     pressed: boolean,
@@ -21,7 +19,9 @@ const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 const StyledInput = addStyle("input");
 
-export default class RadioCore extends React.Component<Props> {
+/**
+ * The internal stateless 🔘 Radio button
+ */ export default class RadioCore extends React.Component<Props> {
     render() {
         const {
             checked,
@@ -30,11 +30,9 @@ export default class RadioCore extends React.Component<Props> {
             groupName,
             id,
             testId,
-            style,
             hovered,
             focused,
             pressed,
-            ...handlers
         } = this.props;
 
         const stateStyles = _generateStyles(checked, error);
@@ -52,11 +50,10 @@ export default class RadioCore extends React.Component<Props> {
 
         const props = {
             "data-test-id": testId,
-            ...handlers,
         };
 
         return (
-            <View style={[sharedStyles.wrapper, style]} {...props}>
+            <React.Fragment>
                 <StyledInput
                     type="radio"
                     aria-checked={checked}
@@ -69,20 +66,27 @@ export default class RadioCore extends React.Component<Props> {
                     // ClickableBehavior already
                     onChange={() => void 0}
                     style={defaultStyle}
-                    tabIndex={-1}
+                    {...props}
                 />
-                {disabled &&
-                    checked && <View style={[sharedStyles.disabledChecked]} />}
-            </View>
+                {disabled && checked && <span style={disabledChecked} />}
+            </React.Fragment>
         );
     }
 }
-const size = 16;
+const size = 16; // circle with a different color. Here, we add that center circle.
+
+// If the checkbox is disabled and selected, it has a border but also an inner
+const disabledChecked = {
+    position: "absolute",
+    top: size / 4,
+    left: size / 4,
+    height: size / 2,
+    width: size / 2,
+    borderRadius: "50%",
+    backgroundColor: offBlack32,
+};
 
 const sharedStyles = StyleSheet.create({
-    wrapper: {
-        outline: "none",
-    },
     // Reset the default styled input element
     inputReset: {
         appearance: "none",
@@ -92,8 +96,9 @@ const sharedStyles = StyleSheet.create({
     default: {
         height: size,
         width: size,
+        minHeight: size,
+        minWidth: size,
         margin: 0,
-        cursor: "pointer",
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
@@ -105,18 +110,6 @@ const sharedStyles = StyleSheet.create({
         backgroundColor: offWhite,
         borderColor: offBlack16,
         borderWidth: 1,
-    },
-    // If the checkbox is disabled and selected, it has a border but also an
-    // inner circle with a different color. Here, we add an element for that
-    // specific center circle.
-    disabledChecked: {
-        position: "absolute",
-        top: size / 4,
-        left: size / 4,
-        height: size / 2,
-        width: size / 2,
-        borderRadius: "50%",
-        backgroundColor: offBlack32,
     },
 });
 
@@ -142,7 +135,7 @@ const styles = {};
 
 const _generateStyles = (checked, error) => {
     // "hash" the parameters
-    const styleKey = `${checked}-${error}`;
+    const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
         return styles[styleKey];
     }
@@ -160,6 +153,7 @@ const _generateStyles = (checked, error) => {
                 boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
             },
             active: {
+                boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.active}`,
                 borderColor: palette.active,
             },
         };
@@ -177,6 +171,7 @@ const _generateStyles = (checked, error) => {
             active: {
                 backgroundColor: palette.faded,
                 borderColor: error ? activeRed : blue,
+                borderWidth: 2,
             },
         };
     }

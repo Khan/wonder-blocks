@@ -110,6 +110,7 @@ export default class Toolbar extends React.Component<Props> {
                     >
                         <View
                             style={[
+                                sharedStyles.titles,
                                 sharedStyles.verticalAlign,
                                 sharedStyles.center,
                             ]}
@@ -145,13 +146,15 @@ const sharedStyles = StyleSheet.create({
         border: "1px solid rgba(33, 36, 44, 0.16)",
         display: "flex",
         flexDirection: "row",
-        minHeight: 64,
-        padding: 4,
+        minHeight: 66,
+        paddingLeft: 4,
+        paddingRight: 4,
         position: "relative",
         width: "100%",
     },
     small: {
-        minHeight: 48,
+        minHeight: 50,
+        padding: 0,
     },
     dark: {
         backgroundColor: Color.darkBlue,
@@ -180,5 +183,8 @@ const sharedStyles = StyleSheet.create({
     },
     content: {
         padding: 8,
+    },
+    titles: {
+        padding: 12,
     },
 });
