@@ -5,6 +5,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -79,6 +80,8 @@ export default class ActionItem extends React.Component<ActionProps> {
         disabled: false,
         indent: false,
     };
+
+    static contextTypes = {router: PropTypes.any};
 
     handleClick = (e: SyntheticEvent<>) => {
         if (this.props.disabled) {

@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import PropTypes from "prop-types";
 
 import LinkCore from "./link-core.js";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
@@ -103,6 +104,8 @@ export default class Link extends React.Component<SharedProps> {
         kind: "primary",
         light: false,
     };
+
+    static contextTypes = {router: PropTypes.any};
 
     render() {
         const {onClick, href, clientNav, children, ...sharedProps} = this.props;

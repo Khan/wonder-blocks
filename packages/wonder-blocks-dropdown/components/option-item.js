@@ -4,6 +4,7 @@
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
@@ -152,6 +153,8 @@ export default class OptionItem extends React.Component<OptionProps> {
     static defaultProps = {
         disabled: false,
     };
+
+    static contextTypes = {router: PropTypes.any};
 
     render() {
         const {
