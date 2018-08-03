@@ -8,7 +8,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import getClickableBehavior from "../../wonder-blocks-core/util/get-clickable-behavior";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core.js";
 import RadioCore from "./radio-core.js";
 
@@ -57,8 +57,7 @@ type Props = {|
  * and RadioGroup. This design allows for more explicit prop typing. For
  * example, we can make onChange a required prop on Checkbox but not on Choice
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
- */
-export default class ChoiceInternal extends React.Component<Props> {
+ */ export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps = {
         checked: false,
         disabled: false,
