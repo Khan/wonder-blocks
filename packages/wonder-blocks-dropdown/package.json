@@ -23,6 +23,7 @@
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "popper.js": "^1.14.1",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-popper": "^1.0.0",
