@@ -101,8 +101,10 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
                     {label && (
-                        <legend>
-                            <LabelMedium>{label}</LabelMedium>
+                        <legend style={{padding: 0}}>
+                            <LabelMedium style={styles.title}>
+                                {label}
+                            </LabelMedium>
                         </legend>
                     )}
                     {description && (
@@ -115,7 +117,9 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                             {errorMessage}
                         </LabelSmall>
                     )}
-                    <Strut size={Spacing.xSmall} />
+                    {(label || description || errorMessage) && (
+                        <Strut size={2} />
+                    )}
 
                     {React.Children.map(children, (child, index) => {
                         const {value} = child.props;
@@ -151,13 +155,17 @@ const styles = StyleSheet.create({
         margin: 0,
     },
 
+    title: {
+        marginBottom: Spacing.xxSmall,
+    },
+
     description: {
-        marginTop: Spacing.xxSmall,
+        marginBottom: Spacing.xxSmall,
         color: Color.offBlack64,
     },
 
     error: {
-        marginTop: Spacing.xxSmall,
+        marginBottom: Spacing.xxSmall,
         color: Color.red,
     },
 });
