@@ -8,12 +8,12 @@ describe("getClickableBehavior", () => {
     test("Without href, returns ClickableBehavior", () => {
         // Arrange
         const url = undefined;
-        const clientNav = undefined;
+        const directNav = undefined;
         const router = undefined;
         const expectation = ClickableBehavior;
 
         // Act
-        const result = getClickableBehavior(url, clientNav, router);
+        const result = getClickableBehavior(url, directNav, router);
 
         // Assert
         expect(result).toBe(expectation);
@@ -23,28 +23,28 @@ describe("getClickableBehavior", () => {
         test("External URL, returns ClickableBehavior", () => {
             // Arrange
             const url = "http://google.com";
-            const clientNav = undefined;
+            const directNav = undefined;
             const router = <MemoryRouter />;
             const expectation = ClickableBehavior;
 
             // Act
-            const result = getClickableBehavior(url, clientNav, router);
+            const result = getClickableBehavior(url, directNav, router);
 
             // Assert
             expect(result).toBe(expectation);
         });
 
         describe("Internal URL", () => {
-            describe("Client navigation is undefined", () => {
+            describe("Direct navigation is undefined", () => {
                 test("No router, returns ClickableBehavior", () => {
                     // Arrange
                     const url = "/prep/lsat";
-                    const clientNav = undefined;
+                    const directNav = undefined;
                     const router = undefined;
                     const expectation = ClickableBehavior;
 
                     // Act
-                    const result = getClickableBehavior(url, clientNav, router);
+                    const result = getClickableBehavior(url, directNav, router);
 
                     // Assert
                     expect(result).toBe(expectation);
@@ -53,44 +53,44 @@ describe("getClickableBehavior", () => {
                 test("Router, returns ClickableBehaviorWithRouter", () => {
                     // Arrange
                     const url = "/prep/lsat";
-                    const clientNav = undefined;
+                    const directNav = undefined;
                     const router = <MemoryRouter />;
                     const expectation = "withRouter(ClickableBehavior)";
 
                     // Act
-                    const result = getClickableBehavior(url, clientNav, router);
+                    const result = getClickableBehavior(url, directNav, router);
 
                     // Assert
                     expect(result.displayName).toBe(expectation);
                 });
             });
 
-            test("Client navigation is false, returns ClickableBehavior", () => {
+            test("Direct navigation is false, returns ClickableBehaviorWithRouter", () => {
                 // Arrange
                 const url = "/prep/lsat";
-                const clientNav = false;
+                const directNav = false;
+                const router = <MemoryRouter />;
+                const expectation = "withRouter(ClickableBehavior)";
+
+                // Act
+                const result = getClickableBehavior(url, directNav, router);
+
+                // Assert
+                expect(result.displayName).toBe(expectation);
+            });
+
+            test("Direct navigation is true, returns ClickableBehavior", () => {
+                // Arrange
+                const url = "/prep/lsat";
+                const directNav = true;
                 const router = <MemoryRouter />;
                 const expectation = ClickableBehavior;
 
                 // Act
-                const result = getClickableBehavior(url, clientNav, router);
+                const result = getClickableBehavior(url, directNav, router);
 
                 // Assert
                 expect(result).toBe(expectation);
-            });
-
-            test("Client navigation is true, returns ClickableBehaviorWithRouter", () => {
-                // Arrange
-                const url = "/prep/lsat";
-                const clientNav = true;
-                const router = undefined;
-                const expectation = "withRouter(ClickableBehavior)";
-
-                // Act
-                const result = getClickableBehavior(url, clientNav, router);
-
-                // Assert
-                expect(result.displayName).toBe(expectation);
             });
         });
     });

@@ -309,12 +309,7 @@ describe("wonder-blocks-button", () => {
         const example = (
             <MemoryRouter>
                 <View style={styles.row}>
-                    <Button
-                        testId="button"
-                        href="/foo"
-                        clientNav={true}
-                        style={styles.button}
-                    >
+                    <Button testId="button" href="/foo" style={styles.button}>
                         Click me!
                     </Button>
                     <Switch>

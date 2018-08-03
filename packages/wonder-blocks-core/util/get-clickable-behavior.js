@@ -2,11 +2,8 @@
 /**
  * Returns either the default ClickableBehavior or a react-router aware version.
  *
- * The react-router aware version is return if the following conditions are met:
- *
- * - `href` is an external URL
- * - `clientNav` is `true`
- * - `router` is a react-router-dom router.
+ * The react-router aware version is returned if `router` is a react-router-dom
+ * router, `directNav` is not `true`, and `href` is an internal URL.
  *
  * The `router` can be accessed via this.context.router from a component rendered
  * as a descendant of a BrowserRouter.
@@ -23,26 +20,22 @@ function isExternalUrl(url: string) {
 const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
 
 export default function getClickableBehavior(
+    /**
+     * The URL to navigate to.
+     */
     href?: string,
-    clientNav?: boolean,
+    /**
+     * Should we skip using the react router and go to the page directly.
+     */
+    directNav?: boolean,
     /**
      * router object added to the React context object by react-router-dom.
      */
     router?: any,
 ) {
-    if (!href) {
-        return ClickableBehavior;
-    } else if (isExternalUrl(href)) {
-        return ClickableBehavior;
-    } else if (clientNav != null) {
-        if (clientNav) {
-            return ClickableBehaviorWithRouter;
-        } else {
-            return ClickableBehavior;
-        }
-    } else if (router) {
+    if (router && directNav !== true && href && !isExternalUrl(href)) {
         return ClickableBehaviorWithRouter;
-    } else {
-        return ClickableBehavior;
     }
+
+    return ClickableBehavior;
 }

@@ -2,6 +2,7 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Color, {
     SemanticColor,
@@ -55,6 +56,8 @@ const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
 export default class IconButtonCore extends React.Component<Props> {
+    static contextTypes = {router: PropTypes.any};
+
     handleClick = (e: SyntheticEvent<>) => {
         if (this.props.disabled) {
             e.preventDefault();
@@ -63,7 +66,7 @@ export default class IconButtonCore extends React.Component<Props> {
 
     render() {
         const {
-            clientNav,
+            directNav,
             color,
             disabled,
             focused,
@@ -77,6 +80,7 @@ export default class IconButtonCore extends React.Component<Props> {
             testId,
             ...handlers
         } = this.props;
+        const {router} = this.context;
 
         const buttonColor =
             color === "destructive"
@@ -108,7 +112,7 @@ export default class IconButtonCore extends React.Component<Props> {
         };
 
         if (href) {
-            return clientNav ? (
+            return router && !directNav ? (
                 <StyledLink
                     {...commonProps}
                     onClick={this.handleClick}

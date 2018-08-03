@@ -78,14 +78,18 @@ export type SharedProps = {|
     href?: string,
 
     /**
-     * Whether to use client-side navigation.
+     * Whether to avoid using client-side navigation.
      *
      * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then use ReactRouter to do a client side
-     * navigation by doing history.push(this.props.href) using
-     * ReactRouter's history object
+     * /math/algebra/eval-exprs, then it tries to use react-router-dom's Link
+     * component which handles the client-side navigation. You can set
+     * `directNav` to true avoid using client-side nav entirely.
+     *
+     * NOTE: All URLs containing a protocol are considered external, e.g.
+     * https://khanacademy.org/math/algebra/eval-exprs will trigger a full
+     * page reload.
      */
-    clientNav?: boolean,
+    directNav?: boolean,
 
     /**
      * Function to call when button is clicked.
@@ -133,11 +137,11 @@ export default class IconButton extends React.Component<SharedProps> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
-        const {onClick, href, clientNav, ...sharedProps} = this.props;
+        const {onClick, href, directNav, ...sharedProps} = this.props;
 
         const ClickableBehavior = getClickableBehavior(
             href,
-            clientNav,
+            directNav,
             this.context.router,
         );
 
@@ -153,7 +157,7 @@ export default class IconButton extends React.Component<SharedProps> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
-                            clientNav={clientNav}
+                            directNav={directNav}
                             href={href}
                         />
                     );

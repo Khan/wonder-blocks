@@ -158,15 +158,12 @@ const startState = {
  * (https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
  *
  * WARNING: Do not use this component directly, use getClickableBehavior
- * instead. getClickableBehavior takes three arguments (href, clientNav, and
+ * instead. getClickableBehavior takes three arguments (href, directtNav, and
  * router) and returns either the default ClickableBehavior or a react-router
  * aware version.
  *
- * The react-router aware version is return if the following conditions are met:
- *
- * - `href` is an external URL
- * - `clientNav` is `true`
- * - `router` is a react-router-dom router.
+ * The react-router aware version is returned if `router` is a react-router-dom
+ * router, `directNav` is not `true`, and `href` is an internal URL.
  *
  * The `router` can be accessed via this.context.router from a component
  * rendered as a descendant of a BrowserRouter.

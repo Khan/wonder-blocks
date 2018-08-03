@@ -48,7 +48,6 @@ describe("IconButton", () => {
                         aria-label="search"
                         testId="icon-button"
                         href="/foo"
-                        clientNav={true}
                     />
                     <Switch>
                         <Route path="/foo">
@@ -69,7 +68,37 @@ describe("IconButton", () => {
         expect(wrapper.find("#foo").exists()).toBe(true);
     });
 
-    test("client-side navigation without 'clientNav' prop fails", () => {
+    test("client-side navigation with unknown URL fails", () => {
+        // Arrange
+        const wrapper = mount(
+            <MemoryRouter>
+                <div>
+                    <IconButton
+                        icon={icons.search}
+                        aria-label="search"
+                        testId="icon-button"
+                        href="/unknown"
+                    />
+                    <Switch>
+                        <Route path="/foo">
+                            <div id="foo">Hello, world!</div>
+                        </Route>
+                    </Switch>
+                </div>
+            </MemoryRouter>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper
+            .find(`[data-test-id="icon-button"]`)
+            .first();
+        buttonWrapper.simulate("click", {button: 0});
+
+        // Assert
+        expect(wrapper.find("#foo").exists()).toBe(false);
+    });
+
+    test("client-side navigation with `directNav` set to `true` fails", () => {
         // Arrange
         const wrapper = mount(
             <MemoryRouter>
@@ -79,6 +108,7 @@ describe("IconButton", () => {
                         aria-label="search"
                         testId="icon-button"
                         href="/foo"
+                        directNav
                     />
                     <Switch>
                         <Route path="/foo">

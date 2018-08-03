@@ -44,17 +44,18 @@ type ActionProps = {|
     href?: string,
 
     /**
-     * Whether to use client-side navigation.
+     * Whether to avoid using client-side navigation.
      *
      * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then it uses react-router-dom's Link
-     * component which handles the client-side navigation.
+     * /math/algebra/eval-exprs, then it tries to use react-router-dom's Link
+     * component which handles the client-side navigation. You can set
+     * `directNav` to true avoid using client-side nav entirely.
      *
      * NOTE: All URLs containing a protocol are considered external, e.g.
      * https://khanacademy.org/math/algebra/eval-exprs will trigger a full
      * page reload.
      */
-    clientNav?: boolean,
+    directNav?: boolean,
 
     /**
      * Function to call when button is clicked.
@@ -90,13 +91,10 @@ export default class ActionItem extends React.Component<ActionProps> {
     };
 
     render() {
-        const {clientNav, disabled, href, indent, label, onClick} = this.props;
+        const {directNav, disabled, href, indent, label, onClick} = this.props;
+        const {router} = this.context;
 
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            clientNav,
-            this.context.router,
-        );
+        const ClickableBehavior = getClickableBehavior(href, directNav, router);
 
         return (
             <ClickableBehavior
@@ -132,10 +130,8 @@ export default class ActionItem extends React.Component<ActionProps> {
                         </React.Fragment>
                     );
 
-                    const {href, clientNav} = this.props;
-
                     if (href) {
-                        return clientNav ? (
+                        return router && !directNav ? (
                             <StyledLink
                                 {...props}
                                 onClick={this.handleClick}

@@ -2,6 +2,7 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
@@ -22,11 +23,13 @@ const StyledAnchor = addStyle("a");
 const StyledLink = addStyle(Link);
 
 export default class LinkCore extends React.Component<Props> {
+    static contextTypes = {router: PropTypes.any};
+
     render() {
         const {
             caret, // eslint-disable-line no-unused-vars
             children,
-            clientNav,
+            directNav,
             focused,
             hovered,
             href,
@@ -37,6 +40,7 @@ export default class LinkCore extends React.Component<Props> {
             testId,
             ...handlers
         } = this.props;
+        const {router} = this.context;
 
         const linkStyles = _generateStyles(kind, light);
 
@@ -54,7 +58,7 @@ export default class LinkCore extends React.Component<Props> {
             ...handlers,
         };
 
-        return clientNav ? (
+        return router && !directNav ? (
             <StyledLink {...commonProps} to={href}>
                 {children}
             </StyledLink>

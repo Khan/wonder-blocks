@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-Buttons can do client-side navigation if `clientNav` is `true`.
+Buttons do client-side navigation by default, if React Router exists:
 ```jsx
 const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
 // NOTE: In actual code you would use BrowserRouter instead
 <MemoryRouter>
     <View style={styles.row}>
-        <Button testId="button" href="/foo" clientNav={true} style={styles.button}>
+        <Button testId="button" href="/foo" style={styles.button}>
             Click me!
         </Button>
         <Switch>
