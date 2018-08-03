@@ -15,6 +15,8 @@
     "@khanacademy/wonder-blocks-color": "^1.0.4",
     "@khanacademy/wonder-blocks-core": "^1.0.4",
     "@khanacademy/wonder-blocks-icon": "1.0.1",
+    "@khanacademy/wonder-blocks-icon-button": "^1.0.1",
+    "@khanacademy/wonder-blocks-modal": "^1.0.1",
     "@khanacademy/wonder-blocks-spacing": "^2.0.2",
     "@khanacademy/wonder-blocks-typography": "^1.0.4"
   },
@@ -23,6 +25,7 @@
     "popper.js": "^1.14.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-popper": "^1.0.0"
+    "react-popper": "^1.0.0",
+    "react-router-dom": "^4.2.2"
   }
 }
