@@ -91,9 +91,7 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
                 <View style={style}>
                     {label && (
                         <legend style={{padding: 0}}>
-                            <LabelMedium style={styles.title}>
-                                {label}
-                            </LabelMedium>
+                            <LabelMedium>{label}</LabelMedium>
                         </legend>
                     )}
                     {description && (
@@ -107,7 +105,7 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
                         </LabelSmall>
                     )}
                     {(label || description || errorMessage) && (
-                        <Strut size={2} />
+                        <Strut size={Spacing.xSmall} />
                     )}
 
                     {React.Children.map(children, (child, index) => {
@@ -142,17 +140,13 @@ const styles = StyleSheet.create({
         margin: 0,
     },
 
-    title: {
-        marginBottom: Spacing.xxSmall,
-    },
-
     description: {
-        marginBottom: Spacing.xxSmall,
+        marginTop: Spacing.xxSmall,
         color: Color.offBlack64,
     },
 
     error: {
-        marginBottom: Spacing.xxSmall,
+        marginTop: Spacing.xxSmall,
         color: Color.red,
     },
 });

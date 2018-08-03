@@ -1854,7 +1854,6 @@ exports[`wonder-blocks-form example 5 1`] = `
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
-              "marginBottom": 6,
             }
           }
         >
@@ -1876,7 +1875,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "fontSize": 14,
             "fontWeight": 400,
             "lineHeight": "18px",
-            "marginBottom": 6,
+            "marginTop": 6,
           }
         }
       >
@@ -1887,15 +1886,15 @@ exports[`wonder-blocks-form example 5 1`] = `
         className=""
         style={
           Object {
-            "MsFlexBasis": 2,
-            "MsFlexPreferredSize": 2,
-            "WebkitFlexBasis": 2,
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 2,
+            "flexBasis": 8,
             "flexDirection": "column",
             "flexShrink": 0,
             "margin": 0,
@@ -3980,7 +3979,6 @@ exports[`wonder-blocks-form example 7 1`] = `
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
-              "marginBottom": 6,
             }
           }
         >
@@ -4002,7 +4000,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "fontSize": 14,
             "fontWeight": 400,
             "lineHeight": "18px",
-            "marginBottom": 6,
+            "marginTop": 6,
           }
         }
       >
@@ -4013,15 +4011,15 @@ exports[`wonder-blocks-form example 7 1`] = `
         className=""
         style={
           Object {
-            "MsFlexBasis": 2,
-            "MsFlexPreferredSize": 2,
-            "WebkitFlexBasis": 2,
+            "MsFlexBasis": 8,
+            "MsFlexPreferredSize": 8,
+            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 2,
+            "flexBasis": 8,
             "flexDirection": "column",
             "flexShrink": 0,
             "margin": 0,
