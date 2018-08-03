@@ -2,14 +2,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
-
-import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
@@ -49,6 +46,12 @@ type Props = {|
     preview?: React.Node,
 
     /**
+     * An optional id parameter for the title. If not specified, a unique id
+     * will be generated using the Toolbar.
+     */
+    id?: string,
+
+    /**
      * Called when the close button is clicked.
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
@@ -68,13 +71,11 @@ type Props = {|
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
-    static titleId = "wb-modal-title";
-
     static defaultProps = {
         onClickCloseButton: () => {},
     };
 
-    renderModal(ids?: IIdentifierFactory) {
+    render() {
         const {
             onClickCloseButton,
             title,
@@ -83,11 +84,8 @@ export default class StandardModal extends React.Component<Props> {
             footer,
             content,
             preview,
+            id,
         } = this.props;
-
-        const titleId = ids
-            ? ids.get(StandardModal.titleId)
-            : StandardModal.titleId;
 
         return (
             <ModalDialog
@@ -101,7 +99,7 @@ export default class StandardModal extends React.Component<Props> {
                             title={title}
                             subtitle={subtitle}
                             color={header ? "dark" : "light"}
-                            titleId={titleId}
+                            id={id}
                         />
                     }
                     header={header}
@@ -124,14 +122,6 @@ export default class StandardModal extends React.Component<Props> {
                     />
                 )}
             </ModalDialog>
-        );
-    }
-
-    render() {
-        return (
-            <UniqueIDProvider>
-                {(ids) => this.renderModal(ids)}
-            </UniqueIDProvider>
         );
     }
 }

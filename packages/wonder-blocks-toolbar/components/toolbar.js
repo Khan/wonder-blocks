@@ -6,12 +6,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
 import {
     HeadingSmall,
     LabelLarge,
     LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
+
+import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
@@ -19,6 +21,12 @@ type Props = {|
      * darker blue scheme.
      */
     color?: "dark" | "light",
+
+    /**
+     * An optional id to provide a selector for the title element. If one is
+     * not provided, a unique id will be generated.
+     */
+    id?: string,
 
     /**
      * A list of nodes to render on the left side of the toolbar. This will
@@ -49,15 +57,11 @@ type Props = {|
      * The main title rendered in larger bold text.
      */
     title?: string,
-
-    /**
-     * An optional id to provide a selector for the title element. Uses
-     * "wb-toolbar-title" as a default if titleId is not specified.
-     */
-    titleId?: string,
 |};
 
 export default class Toolbar extends React.Component<Props> {
+    static defaultTitleId = "wb-title";
+
     static defaultProps = {
         color: "light",
         leftContent: [],
@@ -78,7 +82,7 @@ export default class Toolbar extends React.Component<Props> {
         ));
     }
 
-    render() {
+    renderToolbar(ids?: IIdentifierFactory) {
         const {
             color,
             leftContent,
@@ -86,8 +90,10 @@ export default class Toolbar extends React.Component<Props> {
             size,
             subtitle,
             title,
-            titleId,
+            id,
         } = this.props;
+
+        const titleId = ids ? ids.get(Toolbar.defaultTitleId) : id;
 
         const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
 
@@ -115,7 +121,7 @@ export default class Toolbar extends React.Component<Props> {
                                 sharedStyles.center,
                             ]}
                         >
-                            <TitleComponent id={titleId || "wb-toolbar-title"}>
+                            <TitleComponent id={titleId}>
                                 {title}
                             </TitleComponent>
                             {subtitle && (
@@ -138,6 +144,19 @@ export default class Toolbar extends React.Component<Props> {
                 </View>
             </View>
         );
+    }
+
+    render() {
+        const {id} = this.props;
+        if (id) {
+            return this.renderToolbar();
+        } else {
+            return (
+                <UniqueIDProvider scope="toolbar" mockOnFirstRender={true}>
+                    {(ids) => this.renderToolbar(ids)}
+                </UniqueIDProvider>
+            );
+        }
     }
 }
 

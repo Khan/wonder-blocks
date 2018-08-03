@@ -476,7 +476,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
     >
       <h4
         className=""
-        id="wb-toolbar-title"
+        id="uid-toolbar-1-wb-title"
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -734,7 +734,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
     >
       <h4
         className=""
-        id="wb-toolbar-title"
+        id="uid-toolbar-2-wb-title"
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1402,7 +1402,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
     >
       <span
         className=""
-        id="wb-toolbar-title"
+        id="uid-toolbar-4-wb-title"
         style={
           Object {
             "MozOsxFontSmoothing": "grayscale",
@@ -1694,7 +1694,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
       >
         <h4
           className=""
-          id="wb-toolbar-title"
+          id="uid-toolbar-5-wb-title"
           style={
             Object {
               "MozOsxFontSmoothing": "grayscale",
