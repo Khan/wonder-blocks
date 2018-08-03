@@ -383,7 +383,6 @@ describe("wonder-blocks-form", () => {
             render() {
                 return (
                     <CheckboxGroup
-                        errorMessage={this.state.error}
                         groupName="science-classes"
                         onChange={(change) => this.handleChange(change)}
                         selectedValues={this.state.selectedValues}
