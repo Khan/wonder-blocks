@@ -11,24 +11,25 @@ const packages = fs
     .map((dir) => path.join(__dirname, "packages", dir));
 
 const genWebpackConfig = function(subPkgRoot) {
-    const subPkgJson = require(path.join(subPkgRoot, "./package.json"));
-    const subPkgDeps = subPkgJson.dependencies
-        ? Object.keys(subPkgJson.dependencies)
+    const pkgJson = require(path.join(subPkgRoot, "./package.json"));
+    const pkgDeps = pkgJson.dependencies
+        ? Object.keys(pkgJson.dependencies)
         : [];
-
-    const rootPkgJson = require(path.join(subPkgRoot, "../../package.json"));
-    const rootPkgDeps = rootPkgJson.dependencies
-        ? Object.keys(rootPkgJson.dependencies)
+    const pkgPeerDeps = pkgJson.peerDependencies
+        ? Object.keys(pkgJson.peerDependencies)
         : [];
 
     return {
         entry: path.join(subPkgRoot, "index.js"),
         output: {
             libraryTarget: "commonjs2",
-            filename: "dist/index.js",
-            path: path.join(subPkgRoot),
+            filename: path.relative(
+                __dirname,
+                path.join(subPkgRoot, "dist/index.js"),
+            ),
+            path: path.join(__dirname),
         },
-        externals: [...rootPkgDeps, ...subPkgDeps],
+        externals: [...pkgPeerDeps, pkgDeps],
         module: {
             rules: [
                 {

@@ -8,7 +8,7 @@
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
     "lint": "eslint --config ./eslint/eslintrc packages",
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
-    "build:all": "webpack && node utils/package-flow-types.js",
+    "build:all": "webpack --display-modules && node utils/package-flow-types.js",
     "watch:all": "webpack -w",
     "flow": "flow",
     "flow-coverage": "flow-coverage-report -t text -t html -f ./node_modules/.bin/flow -i 'packages/wonder-blocks-*/**/*.js' -x 'packages/wonder-blocks-*/dist/*.js' -x '**/*.test.js' -x '**/node_modules/**/*.js'",
@@ -81,8 +81,10 @@
   "dependencies": {
     "aphrodite": "^1.2.5",
     "prop-types": "^15.6.2",
+    "popper.js": "^1.14.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-popper": "^1.0.0",
     "react-router-dom": "^4.2.2"
   },
   "workspaces": [
