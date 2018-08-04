@@ -1530,7 +1530,6 @@ exports[`wonder-blocks-button example 7 1`] = `
 >
   <a
     className=""
-    data-test-id="button"
     href="/foo"
     onBlur={[Function]}
     onClick={[Function]}
@@ -1589,7 +1588,70 @@ exports[`wonder-blocks-button example 7 1`] = `
         }
       }
     >
-      Click me!
+      Uses Client-side Nav
+    </span>
+  </a>
+  <a
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "::-moz-focus-inner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": Array [
+            "Lato",
+            "sans-serif",
+          ],
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "pointerEvents": "none",
+        }
+      }
+    >
+      Avoids Client-side Nav
     </span>
   </a>
 </div>

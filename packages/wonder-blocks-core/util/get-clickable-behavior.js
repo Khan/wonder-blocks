@@ -3,7 +3,7 @@
  * Returns either the default ClickableBehavior or a react-router aware version.
  *
  * The react-router aware version is returned if `router` is a react-router-dom
- * router, `directNav` is not `true`, and `href` is an internal URL.
+ * router, `skipClientNav` is not `true`, and `href` is an internal URL.
  *
  * The `router` can be accessed via this.context.router from a component rendered
  * as a descendant of a BrowserRouter.
@@ -27,13 +27,13 @@ export default function getClickableBehavior(
     /**
      * Should we skip using the react router and go to the page directly.
      */
-    directNav?: boolean,
+    skipClientNav?: boolean,
     /**
      * router object added to the React context object by react-router-dom.
      */
     router?: any,
 ) {
-    if (router && directNav !== true && href && !isExternalUrl(href)) {
+    if (router && skipClientNav !== true && href && !isExternalUrl(href)) {
         return ClickableBehaviorWithRouter;
     }
 

@@ -66,7 +66,7 @@ export default class IconButtonCore extends React.Component<Props> {
 
     render() {
         const {
-            directNav,
+            skipClientNav,
             color,
             disabled,
             focused,
@@ -112,7 +112,7 @@ export default class IconButtonCore extends React.Component<Props> {
         };
 
         if (href) {
-            return router && !directNav ? (
+            return router && !skipClientNav ? (
                 <StyledLink
                     {...commonProps}
                     onClick={this.handleClick}

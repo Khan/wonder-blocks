@@ -163,7 +163,7 @@ const startState = {
  * aware version.
  *
  * The react-router aware version is returned if `router` is a react-router-dom
- * router, `directNav` is not `true`, and `href` is an internal URL.
+ * router, `skipClientNav` is not `true`, and `href` is an internal URL.
  *
  * The `router` can be accessed via this.context.router from a component
  * rendered as a descendant of a BrowserRouter.

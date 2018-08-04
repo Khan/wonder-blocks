@@ -60,12 +60,12 @@ describe("Button", () => {
         expect(wrapper.find("#foo").exists()).toBe(false);
     });
 
-    test("client-side navigation with `directNav` set to `true` fails", () => {
+    test("client-side navigation with `skipClientNav` set to `true` fails", () => {
         // Arrange
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Button testId="button" href="/foo" directNav>
+                    <Button testId="button" href="/foo" skipClientNav>
                         Click me!
                     </Button>
                     <Switch>

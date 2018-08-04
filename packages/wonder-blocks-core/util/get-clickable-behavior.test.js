@@ -8,12 +8,12 @@ describe("getClickableBehavior", () => {
     test("Without href, returns ClickableBehavior", () => {
         // Arrange
         const url = undefined;
-        const directNav = undefined;
+        const skipClientNav = undefined;
         const router = undefined;
         const expectation = ClickableBehavior;
 
         // Act
-        const result = getClickableBehavior(url, directNav, router);
+        const result = getClickableBehavior(url, skipClientNav, router);
 
         // Assert
         expect(result).toBe(expectation);
@@ -23,28 +23,32 @@ describe("getClickableBehavior", () => {
         test("External URL, returns ClickableBehavior", () => {
             // Arrange
             const url = "http://google.com";
-            const directNav = undefined;
+            const skipClientNav = undefined;
             const router = <MemoryRouter />;
             const expectation = ClickableBehavior;
 
             // Act
-            const result = getClickableBehavior(url, directNav, router);
+            const result = getClickableBehavior(url, skipClientNav, router);
 
             // Assert
             expect(result).toBe(expectation);
         });
 
         describe("Internal URL", () => {
-            describe("Direct navigation is undefined", () => {
+            describe("skipClientNav is undefined", () => {
                 test("No router, returns ClickableBehavior", () => {
                     // Arrange
                     const url = "/prep/lsat";
-                    const directNav = undefined;
+                    const skipClientNav = undefined;
                     const router = undefined;
                     const expectation = ClickableBehavior;
 
                     // Act
-                    const result = getClickableBehavior(url, directNav, router);
+                    const result = getClickableBehavior(
+                        url,
+                        skipClientNav,
+                        router,
+                    );
 
                     // Assert
                     expect(result).toBe(expectation);
@@ -53,41 +57,45 @@ describe("getClickableBehavior", () => {
                 test("Router, returns ClickableBehaviorWithRouter", () => {
                     // Arrange
                     const url = "/prep/lsat";
-                    const directNav = undefined;
+                    const skipClientNav = undefined;
                     const router = <MemoryRouter />;
                     const expectation = "withRouter(ClickableBehavior)";
 
                     // Act
-                    const result = getClickableBehavior(url, directNav, router);
+                    const result = getClickableBehavior(
+                        url,
+                        skipClientNav,
+                        router,
+                    );
 
                     // Assert
                     expect(result.displayName).toBe(expectation);
                 });
             });
 
-            test("Direct navigation is false, returns ClickableBehaviorWithRouter", () => {
+            test("skipClientNav is false, returns ClickableBehaviorWithRouter", () => {
                 // Arrange
                 const url = "/prep/lsat";
-                const directNav = false;
+                const skipClientNav = false;
                 const router = <MemoryRouter />;
                 const expectation = "withRouter(ClickableBehavior)";
 
                 // Act
-                const result = getClickableBehavior(url, directNav, router);
+                const result = getClickableBehavior(url, skipClientNav, router);
 
                 // Assert
                 expect(result.displayName).toBe(expectation);
             });
 
-            test("Direct navigation is true, returns ClickableBehavior", () => {
+            test("skipClientNav is true, returns ClickableBehavior", () => {
                 // Arrange
                 const url = "/prep/lsat";
-                const directNav = true;
+                const skipClientNav = true;
                 const router = <MemoryRouter />;
                 const expectation = ClickableBehavior;
 
                 // Act
-                const result = getClickableBehavior(url, directNav, router);
+                const result = getClickableBehavior(url, skipClientNav, router);
 
                 // Assert
                 expect(result).toBe(expectation);

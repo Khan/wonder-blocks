@@ -29,7 +29,7 @@ export default class LinkCore extends React.Component<Props> {
         const {
             caret, // eslint-disable-line no-unused-vars
             children,
-            directNav,
+            skipClientNav,
             focused,
             hovered,
             href,
@@ -58,7 +58,7 @@ export default class LinkCore extends React.Component<Props> {
             ...handlers,
         };
 
-        return router && !directNav ? (
+        return router && !skipClientNav ? (
             <StyledLink {...commonProps} to={href}>
                 {children}
             </StyledLink>

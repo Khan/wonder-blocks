@@ -38,7 +38,7 @@ export default class ButtonCore extends React.Component<Props> {
     render() {
         const {
             children,
-            directNav,
+            skipClientNav,
             color,
             disabled,
             focused,
@@ -85,7 +85,7 @@ export default class ButtonCore extends React.Component<Props> {
         const label = <Label style={sharedStyles.text}>{children}</Label>;
 
         if (href) {
-            return router && !directNav ? (
+            return router && !skipClientNav ? (
                 <StyledLink
                     {...commonProps}
                     onClick={this.handleClick}

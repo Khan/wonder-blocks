@@ -293,8 +293,11 @@ const styles = StyleSheet.create({
 // NOTE: In actual code you would use BrowserRouter instead
 <MemoryRouter>
     <View style={styles.row}>
-        <Button testId="button" href="/foo" style={styles.button}>
-            Click me!
+        <Button href="/foo" style={styles.button}>
+            Uses Client-side Nav
+        </Button>
+        <Button  href="/foo" style={styles.button} skipClientNav>
+            Avoids Client-side Nav
         </Button>
         <Switch>
             <Route path="/foo">
