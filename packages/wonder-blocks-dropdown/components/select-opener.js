@@ -10,6 +10,8 @@ import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 const StyledButton = addStyle("button");
 
 const {

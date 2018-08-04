@@ -6,6 +6,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalHeader from "./modal-header.js";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 type Props = {|
     /** An optional header to display above the content. */
     header?: React.Element<typeof ModalHeader> | React.Node,

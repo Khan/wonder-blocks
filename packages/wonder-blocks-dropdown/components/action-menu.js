@@ -8,11 +8,13 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Dropdown from "./dropdown.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 
 import type {Item, DropdownItem} from "../util/types.js";
+
 
 type OpenerProps = {|
     /**

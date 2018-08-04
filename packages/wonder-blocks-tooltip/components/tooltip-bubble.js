@@ -10,6 +10,7 @@ import TooltipContent from "./tooltip-content.js";
 import TooltipTail from "./tooltip-tail.js";
 
 import type {getRefFn, Offset, Placement} from "../util/types.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 export type TooltipBubbleProps = {|
     /** The placement of the bubble with respect to the anchor. */

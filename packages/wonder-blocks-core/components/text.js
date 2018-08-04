@@ -6,6 +6,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {processStyleList} from "../util/util.js";
 
 import type {AriaProps, TextTag} from "../util/types.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = AriaProps & {
     style?: StyleType,

@@ -11,6 +11,15 @@ import type {
 import FlexCell from "./flex-cell.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 
+<<<<<<< HEAD
+=======
+import type {
+    MediaSize,
+    MediaSpec,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
+
+>>>>>>> Enforce style types for all `style` props.
 type Props = {|
     /** The number of columns this cell should span on a Small Grid. */
     smallCols?: number,

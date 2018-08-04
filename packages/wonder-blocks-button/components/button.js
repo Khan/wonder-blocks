@@ -7,6 +7,8 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import ButtonCore from "./button-core.js";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 export type SharedProps = {|
     /**
      * Text to appear on the button.
