@@ -10,6 +10,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import typeof Choice from "./choice.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 // Keep synced with RadioGroupProps in ../util/types.js
 type RadioGroupProps = {|
@@ -45,7 +46,7 @@ type RadioGroupProps = {|
     /**
      * Custom styling for this group of checkboxes.
      */
-    style?: any,
+    style?: StyleType,
 
     /**
      * Callback for when the selected value of the radio group has changed.

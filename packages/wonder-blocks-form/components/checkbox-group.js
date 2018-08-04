@@ -10,6 +10,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import typeof Choice from "./choice.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 // Keep synced with CheckboxGroupProps in ../util/types.js
 type CheckboxGroupProps = {|
@@ -45,7 +46,7 @@ type CheckboxGroupProps = {|
     /**
      * Custom styling for this group of checkboxes.
      */
-    style?: any,
+    style?: StyleType,
 
     /**
      * Callback for when selection of the group has changed. Passes the newly

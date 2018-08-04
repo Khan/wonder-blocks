@@ -7,6 +7,7 @@ import Dropdown from "./dropdown.js";
 import SelectOpener from "./select-opener.js";
 
 import typeof OptionItem from "./option-item.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
@@ -51,12 +52,12 @@ type Props = {|
     /**
      * Optional styling to add to the opener component.
      */
-    openerStyle?: any,
+    openerStyle?: StyleType,
 
     /**
      * Optional styling to add to the dropdown wrapper.
      */
-    dropdownStyle?: any,
+    dropdownStyle?: StyleType,
 |};
 
 type State = {|

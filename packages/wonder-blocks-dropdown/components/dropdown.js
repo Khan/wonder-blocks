@@ -12,9 +12,11 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
+
 import typeof ActionItem from "./action-item.js";
 import typeof OptionItem from "./option-item.js";
 import typeof SeparatorItem from "./separator-item.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type DropdownProps = {|
     /**
@@ -58,7 +60,7 @@ type DropdownProps = {|
     /**
      * Styling specific to the dropdown component that isn't part of the opener.
      */
-    dropdownStyle?: any,
+    dropdownStyle?: StyleType,
 |};
 
 /**

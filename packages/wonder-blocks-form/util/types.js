@@ -3,6 +3,7 @@
 // from imported types. We've duplicated the shared props for each component
 // they apply to, so that the prop definitions will show up on the generated
 // guide.
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 // Shared props for radio-core and checkbox-core
 export type ChoiceCoreProps = {|
@@ -35,7 +36,7 @@ export type ChoiceComponentProps = {|
     /** Ignored because only applicable to Choice components in a group. */
     value?: string,
     /** Optional styling for the container. Does not style the component. */
-    style?: any,
+    style?: StyleType,
 |};
 
 import typeof Choice from "../components/choice.js";
@@ -55,7 +56,7 @@ export type SharedGroupProps = {|
      * simply do not supply this prop, or pass along null. */
     errorMessage?: string,
     /** Custom styling for this group of checkboxes. */
-    style?: any,
+    style?: StyleType,
 |};
 
 export type CheckboxGroupProps = {|

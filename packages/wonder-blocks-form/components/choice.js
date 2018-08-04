@@ -5,6 +5,8 @@ import * as React from "react";
 import Checkbox from "./checkbox.js";
 import Radio from "./radio.js";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 type Props = {|
     /** User-defined. Label for the field. */
     label: string,
@@ -22,7 +24,7 @@ type Props = {|
     testId?: string,
 
     /** User-defined. Optional additional styling. */
-    style?: any,
+    style?: StyleType,
 
     /**
      * Auto-populated by parent. Whether this choice is checked.
@@ -71,8 +73,7 @@ type Props = {|
  *
  * If you wish to use just a single field, use Checkbox or Radio with the
  * optional label and description props.
- */
-export default class Choice extends React.Component<Props> {
+ */ export default class Choice extends React.Component<Props> {
     static defaultProps = {
         disabled: false,
     };

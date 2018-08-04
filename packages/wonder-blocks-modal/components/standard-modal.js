@@ -80,7 +80,9 @@ export default class StandardModal extends React.Component<Props> {
 
         return (
             <ModalDialog
-                style={(mediaSize) => mediaSize !== "small" && styles.wrapper}
+                // TODO(jeresig): Replace with <Layout/>
+                //style={(mediaSize) => mediaSize !== "small" && styles.wrapper}
+                style={styles.wrapper}
             >
                 <ModalPanel
                     showCloseButton
@@ -99,11 +101,12 @@ export default class StandardModal extends React.Component<Props> {
                 {preview && (
                     <ModalPanel
                         color="dark"
-                        style={
-                            (styles.preview,
-                            (mediaSize) =>
-                                mediaSize === "small" && styles.smallPreview)
-                        }
+                        style={[
+                            styles.preview,
+                            // TODO(jeresig): Replace with <Layout/>
+                            //(mediaSize) =>
+                            //    mediaSize === "small" && styles.smallPreview
+                        ]}
                         content={
                             <ModalContent style={styles.previewContent}>
                                 {preview}

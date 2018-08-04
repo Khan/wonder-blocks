@@ -12,6 +12,8 @@ import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import SeparatorItem from "./separator-item.js";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 type OpenerProps = {|
     /**
      * Display text for the opener.
@@ -29,7 +31,7 @@ type OpenerProps = {|
     /**
      * Style to apply to the opener.
      */
-    style?: any,
+    style?: StyleType,
 |};
 
 class ActionMenuOpener extends React.Component<OpenerProps> {
@@ -104,12 +106,12 @@ type MenuProps = {|
     /**
      * Optional styling to add to the opener component.
      */
-    openerStyle?: any,
+    openerStyle?: StyleType,
 
     /**
      * Optional styling to add to the dropdown wrapper.
      */
-    dropdownStyle?: any,
+    dropdownStyle?: StyleType,
 |};
 
 type State = {|

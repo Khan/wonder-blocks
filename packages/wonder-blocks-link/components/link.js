@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import LinkCore from "./link-core.js";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 export type SharedProps = {|
     /**
      * Text to appear on the link.
@@ -54,7 +56,7 @@ export type SharedProps = {|
     /**
      * Custom styles.
      */
-    style?: any,
+    style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
     /*
     style?: Style<Exact<{

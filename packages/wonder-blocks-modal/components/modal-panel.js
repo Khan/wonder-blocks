@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
@@ -11,6 +10,8 @@ import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
+
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
@@ -34,7 +35,7 @@ type Props = {|
     /** The color of the panel (defaults to light). */
     color: "light" | "dark",
     /** Any optional styling to apply to the panel. */
-    style?: any,
+    style?: StyleType,
 
     /**
      * Called when the close button is clicked.
@@ -80,8 +81,9 @@ export default class ModalPanel extends React.Component<Props> {
             <View
                 style={[
                     styles.closeButton,
-                    (mediaSize) =>
-                        mediaSize === "small" && styles.smallCloseButton,
+                    // TODO(jeresig): Replace with <Layout/>
+                    //(mediaSize) =>
+                    //    mediaSize === "small" && styles.smallCloseButton,
                 ]}
             >
                 <IconButton
@@ -104,7 +106,6 @@ export default class ModalPanel extends React.Component<Props> {
             titleBar,
             header,
             footer,
-            showCloseButton,
             scrollOverflow,
             color,
             style,
@@ -129,13 +130,14 @@ export default class ModalPanel extends React.Component<Props> {
                 // shown. We have to do this here as the ModalContent doesn't
                 // know about things being positioned around it.
                 style: [
-                    titleBar && styles.hasTitleBar,
-                    footer && styles.hasFooter,
-                    showCloseButton &&
-                        !titleBar &&
-                        ((mediaSize) =>
-                            mediaSize === "small" &&
-                            styles.smallWithCloseButton),
+                    !!titleBar && styles.hasTitleBar,
+                    !!footer && styles.hasFooter,
+                    // TODO(jeresig): Replace with <Layout/>
+                    //showCloseButton &&
+                    //    !titleBar &&
+                    //    ((mediaSize) =>
+                    //        mediaSize === "small" &&
+                    //        styles.smallWithCloseButton),
                     mainContent.props.style,
                 ],
             });

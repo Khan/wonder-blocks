@@ -1,7 +1,6 @@
 // @flow
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -10,6 +9,7 @@ import TooltipContent from "./tooltip-content.js";
 import TooltipTail from "./tooltip-tail.js";
 
 import type {getRefFn, Offset, Placement} from "../util/types.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 export type TooltipBubbleProps = {|
     /** The placement of the bubble with respect to the anchor. */
@@ -28,7 +28,7 @@ export type TooltipBubbleProps = {|
     tailOffset?: Offset,
 
     /** Additional styles to be applied by the bubble. */
-    style?: any,
+    style?: StyleType,
 |};
 
 export type Props = {|

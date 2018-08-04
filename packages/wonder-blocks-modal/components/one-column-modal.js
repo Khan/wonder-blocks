@@ -106,7 +106,9 @@ export default class OneColumnModal extends React.Component<BaseProps> {
             <ModalDialog
                 style={[
                     styles.dialog,
-                    (mediaSize) => mediaSize !== "small" && styles.largeDialog,
+                    // TODO(jeresig): Replace with <Layout/>
+                    //(mediaSize) => mediaSize !== "small" && styles.largeDialog,
+                    styles.largeDialog,
                 ]}
             >
                 <WrappedContentWrapper {...this.props} />

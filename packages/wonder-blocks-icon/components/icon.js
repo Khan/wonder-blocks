@@ -3,8 +3,10 @@ import React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import type {IconAsset, IconSize} from "../util/icon-assets.js";
 import {getPathForIcon, viewportPixelsForSize} from "../util/icon-util.js";
+
+import type {IconAsset, IconSize} from "../util/icon-assets.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
@@ -30,7 +32,7 @@ type Props = {|
      * Styles that can be processed by `addStyle` — bare style objects,
      * Aphrodite style objects, or arrays thereof.
      */
-    style?: any,
+    style?: StyleType,
 |};
 
 const StyledSVG = addStyle("svg");

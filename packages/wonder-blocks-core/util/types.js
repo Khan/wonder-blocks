@@ -1,13 +1,14 @@
 // @flow
+import * as React from "react";
 
-// TODO(kevinb): better flow typings for style after updating flow
-// type NestedArray<T> = $ReadOnlyArray<T | NestedArray<T>>;
-// type Falsy = false | 0 | null | void;
-// type StyleList<T> = T | Falsy | NestedArray<T | Falsy>;
+import type {CSSProperties} from "aphrodite";
 
-// export type StyleType<T: Object> = StyleList<$ReadOnly<T>>;
-
-export type StyleType<T: Object> = any; // eslint-disable-line no-unused-vars
+type NestedArray<T> = $ReadOnlyArray<T | NestedArray<T>>;
+type Falsy = false | 0 | null | void;
+export type StyleType =
+    | CSSProperties
+    | Falsy
+    | NestedArray<CSSProperties | Falsy>;
 
 export type TextTag = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
@@ -134,8 +135,8 @@ export type AriaProps = {
 };
 
 export type Props = AriaProps & {
-    style?: any,
-    children?: any,
+    style?: StyleType,
+    children?: React.Node,
     [otherProp: string]: any,
 };
 

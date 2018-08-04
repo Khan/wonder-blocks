@@ -6,6 +6,8 @@ import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButtonCore from "./icon-button-core.js";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 export type SharedProps = {|
     /**
      * A Wonder Blocks icon asset, an object specifing paths for one or more of
@@ -54,7 +56,7 @@ export type SharedProps = {|
     /**
      * The content of the modal, appearing between the titlebar and footer.
      */
-    style?: any,
+    style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
     /*
     style?: Style<Exact<{

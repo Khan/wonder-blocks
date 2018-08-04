@@ -4,6 +4,8 @@ import * as React from "react";
 
 import ChoiceInternal from "./choice-internal.js";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 // Keep synced with ChoiceComponentProps in ../util/types.js
 type ChoiceComponentProps = {|
     /**
@@ -47,7 +49,7 @@ type ChoiceComponentProps = {|
     /**
      * Optional styling for the container. Does not style the component.
      */
-    style?: any,
+    style?: StyleType,
 
     /**
      * Optional test ID for e2e testing
@@ -68,8 +70,7 @@ type ChoiceComponentProps = {|
  *
  * This component should not really be used by itself because radio buttons are
  * often grouped together. See RadioGroup.
- */
-export default class Radio extends React.Component<ChoiceComponentProps> {
+ */ export default class Radio extends React.Component<ChoiceComponentProps> {
     static defaultProps = {
         disabled: false,
         error: false,

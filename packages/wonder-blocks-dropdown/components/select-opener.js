@@ -15,6 +15,8 @@ import {
     getClickableBehavior,
 } from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 const StyledButton = addStyle("button");
 
 const {
@@ -59,7 +61,7 @@ type SelectOpenerProps = {|
     /**
      * Custom style. Mostly used for preferred width of this select box.
      */
-    style?: any,
+    style?: StyleType,
 |};
 
 /**

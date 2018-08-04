@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import ButtonCore from "./button-core.js";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 export type SharedProps = {|
     /**
      * Text to appear on the button.
@@ -86,7 +88,7 @@ export type SharedProps = {|
     /**
      * The content of the modal, appearing between the titlebar and footer.
      */
-    style?: any,
+    style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
     /*
     style?: Style<Exact<{
