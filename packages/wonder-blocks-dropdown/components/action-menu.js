@@ -200,7 +200,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         indent={containsOptionItems}
                         label={item.label}
                         href={item.href}
-                        clientNav={item.clientNav}
+                        skipClientNav={item.skipClientNav}
                         /* eslint-disable-next-line react/jsx-handler-names */
                         onClick={item.onClick}
                     />

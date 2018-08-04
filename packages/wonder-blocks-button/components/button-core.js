@@ -2,6 +2,7 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Color, {
@@ -26,6 +27,8 @@ const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
 export default class ButtonCore extends React.Component<Props> {
+    static contextTypes = {router: PropTypes.any};
+
     handleClick = (e: SyntheticEvent<>) => {
         if (this.props.disabled) {
             e.preventDefault();
@@ -35,7 +38,7 @@ export default class ButtonCore extends React.Component<Props> {
     render() {
         const {
             children,
-            clientNav,
+            skipClientNav,
             color,
             disabled,
             focused,
@@ -49,6 +52,7 @@ export default class ButtonCore extends React.Component<Props> {
             testId,
             ...handlers
         } = this.props;
+        const {router} = this.context;
 
         const buttonColor =
             color === "destructive"
@@ -81,7 +85,7 @@ export default class ButtonCore extends React.Component<Props> {
         const label = <Label style={sharedStyles.text}>{children}</Label>;
 
         if (href) {
-            return clientNav ? (
+            return router && !skipClientNav ? (
                 <StyledLink
                     {...commonProps}
                     onClick={this.handleClick}

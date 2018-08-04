@@ -38,17 +38,18 @@ export type SharedProps = {|
     testId?: string,
 
     /**
-     * Whether to use client-side navigation.
+     * Whether to avoid using client-side navigation.
      *
      * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then it uses react-router-dom's Link
-     * component which handles the client-side navigation.
+     * /math/algebra/eval-exprs, then it tries to use react-router-dom's Link
+     * component which handles the client-side navigation. You can set
+     * `skipClientNav` to true avoid using client-side nav entirely.
      *
      * NOTE: All URLs containing a protocol are considered external, e.g.
      * https://khanacademy.org/math/algebra/eval-exprs will trigger a full
      * page reload.
      */
-    clientNav?: boolean,
+    skipClientNav?: boolean,
 
     /**
      * Custom styles.
@@ -108,11 +109,17 @@ export default class Link extends React.Component<SharedProps> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
-        const {onClick, href, clientNav, children, ...sharedProps} = this.props;
+        const {
+            onClick,
+            href,
+            skipClientNav,
+            children,
+            ...sharedProps
+        } = this.props;
 
         const ClickableBehavior = getClickableBehavior(
             href,
-            clientNav,
+            skipClientNav,
             this.context.router,
         );
 
@@ -124,7 +131,7 @@ export default class Link extends React.Component<SharedProps> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
-                            clientNav={clientNav}
+                            skipClientNav={skipClientNav}
                             href={href}
                         >
                             {children}

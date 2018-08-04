@@ -8,8 +8,8 @@ export type ActionItemProps = {|
     label: string,
     /** URL to navigate to. */
     href?: string,
-    /** Whether to use client-side navigation. */
-    clientNav?: boolean,
+    /** Whether to avoid using client-side navigation. */
+    skipClientNav?: boolean,
     /** Callback on the action. */
     onClick?: () => void,
 |};
