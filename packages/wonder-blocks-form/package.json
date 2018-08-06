@@ -1,6 +1,5 @@
 {
     "name": "@khanacademy/wonder-blocks-form",
-    "private": true,
     "version": "0.0.1",
     "design": "v1",
     "description": "Form components for Wonder Blocks.",
