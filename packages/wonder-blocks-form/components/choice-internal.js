@@ -74,7 +74,9 @@ type Props = {|
     getLabel() {
         const {disabled, id, label} = this.props;
         return (
-            <LabelMedium style={disabled && styles.disabledLabel}>
+            <LabelMedium
+                style={[styles.label, disabled && styles.disabledLabel]}
+            >
                 <label
                     htmlFor={id}
                     // Browsers automatically use the for attribute to select
@@ -145,16 +147,23 @@ type Props = {|
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
-        alignItems: "center",
+        alignItems: "flex-start",
         outline: "none",
+    },
+    label: {
+        // NOTE: The checkbox/radio button (height 16px) should be center
+        // aligned with the first line of the label. However, LabelMedium has a
+        // declared line height of 20px, so we need to adjust the top to get the
+        // desired alignment.
+        marginTop: -2,
+    },
+    disabledLabel: {
+        color: Color.offBlack32,
     },
     description: {
         // 16 for icon + 8 for spacing strut
         marginLeft: Spacing.medium + Spacing.xSmall,
-        marginTop: Spacing.xxSmall,
+        marginTop: Spacing.xxxSmall,
         color: Color.offBlack64,
-    },
-    disabledLabel: {
-        color: Color.offBlack32,
     },
 });
