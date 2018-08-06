@@ -43,5 +43,8 @@ export default function addStyle<T: Object>(
 const overrides = StyleSheet.create({
     button: {
         margin: 0, // Safari adds 2px left/right margins
+        "::-moz-focus-inner": {
+            border: 0, // Firefox adds an inner focus ring around text
+        },
     },
 });

@@ -56,7 +56,14 @@ export function processStyleList<T: Object>(
                 // It doesn't accept kebab-case in media queries and instead
                 // prefers camelCase.
                 for (const [key, value] of Object.entries(child._definition)) {
-                    def[key.replace("-width", "Width")] = value;
+                    // This regex converts all instances of -{lowercaseLetter}
+                    // to the uppercase version of that letter, without the
+                    // leading dash.
+                    def[
+                        key.replace(new RegExp("-[a-z]", "g"), (match) =>
+                            match[1].toUpperCase(),
+                        )
+                    ] = value;
                 }
                 inlineStyles.push(def);
             } else {

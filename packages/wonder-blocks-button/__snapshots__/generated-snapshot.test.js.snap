@@ -37,7 +37,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -101,7 +101,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -168,7 +168,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -255,7 +255,7 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -319,7 +319,7 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -386,7 +386,7 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -474,7 +474,7 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -539,7 +539,7 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -607,7 +607,7 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -695,7 +695,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -759,7 +759,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -826,7 +826,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -891,7 +891,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -956,7 +956,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1024,7 +1024,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1111,7 +1111,7 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1175,7 +1175,7 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1242,7 +1242,7 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1329,9 +1329,6 @@ exports[`wonder-blocks-button example 6 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
-          "border": 0,
-        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1392,7 +1389,7 @@ exports[`wonder-blocks-button example 6 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1459,9 +1456,6 @@ exports[`wonder-blocks-button example 6 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
-          "border": 0,
-        },
         "alignItems": "center",
         "background": "none",
         "border": "none",
@@ -1545,9 +1539,6 @@ exports[`wonder-blocks-button example 7 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
-          "border": 0,
-        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1608,9 +1599,6 @@ exports[`wonder-blocks-button example 7 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
-          "border": 0,
-        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1694,7 +1682,7 @@ exports[`wonder-blocks-button example 8 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1799,7 +1787,7 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -1902,7 +1890,7 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -1989,7 +1977,7 @@ exports[`wonder-blocks-button example 10 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -2057,7 +2045,7 @@ exports[`wonder-blocks-button example 10 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -2164,7 +2152,7 @@ exports[`wonder-blocks-button example 11 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -2228,7 +2216,7 @@ exports[`wonder-blocks-button example 11 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
