@@ -10,6 +10,9 @@
   },
   "author": "",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@khanacademy/wonder-blocks-button": "^1.0.1",
     "@khanacademy/wonder-blocks-color": "^1.0.4",
