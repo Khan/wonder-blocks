@@ -890,7 +890,7 @@ exports[`wonder-blocks-form example 2 1`] = `
           "fontWeight": 400,
           "lineHeight": "18px",
           "marginLeft": 24,
-          "marginTop": 6,
+          "marginTop": 4,
         }
       }
     >
@@ -1834,11 +1834,7 @@ exports[`wonder-blocks-form example 5 1`] = `
       }
     >
       <legend
-        style={
-          Object {
-            "padding": 0,
-          }
-        }
+        className="legend_1gyjybc"
       >
         <span
           className=""
@@ -1875,7 +1871,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "fontSize": 14,
             "fontWeight": 400,
             "lineHeight": "18px",
-            "marginTop": 6,
+            "marginTop": 4,
           }
         }
       >
@@ -1886,15 +1882,15 @@ exports[`wonder-blocks-form example 5 1`] = `
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
+            "MsFlexBasis": 12,
+            "MsFlexPreferredSize": 12,
+            "WebkitFlexBasis": 12,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
+            "flexBasis": 12,
             "flexDirection": "column",
             "flexShrink": 0,
             "margin": 0,
@@ -2212,7 +2208,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               "fontWeight": 400,
               "lineHeight": "18px",
               "marginLeft": 24,
-              "marginTop": 6,
+              "marginTop": 4,
             }
           }
         >
@@ -2884,7 +2880,7 @@ exports[`wonder-blocks-form example 5 1`] = `
               "fontWeight": 400,
               "lineHeight": "18px",
               "marginLeft": 24,
-              "marginTop": 6,
+              "marginTop": 4,
             }
           }
         >
@@ -3959,11 +3955,7 @@ exports[`wonder-blocks-form example 7 1`] = `
       }
     >
       <legend
-        style={
-          Object {
-            "padding": 0,
-          }
-        }
+        className="legend_1gyjybc"
       >
         <span
           className=""
@@ -4000,7 +3992,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "fontSize": 14,
             "fontWeight": 400,
             "lineHeight": "18px",
-            "marginTop": 6,
+            "marginTop": 4,
           }
         }
       >
@@ -4011,15 +4003,15 @@ exports[`wonder-blocks-form example 7 1`] = `
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
+            "MsFlexBasis": 12,
+            "MsFlexPreferredSize": 12,
+            "WebkitFlexBasis": 12,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
+            "flexBasis": 12,
             "flexDirection": "column",
             "flexShrink": 0,
             "margin": 0,
@@ -4339,7 +4331,7 @@ exports[`wonder-blocks-form example 7 1`] = `
               "fontWeight": 400,
               "lineHeight": "18px",
               "marginLeft": 24,
-              "marginTop": 6,
+              "marginTop": 4,
             }
           }
         >

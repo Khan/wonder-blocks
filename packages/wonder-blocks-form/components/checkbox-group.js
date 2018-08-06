@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {StyleSheet, css} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
@@ -101,7 +101,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
                     {label && (
-                        <legend style={{padding: 0}}>
+                        <legend className={css(styles.legend)}>
                             <LabelMedium>{label}</LabelMedium>
                         </legend>
                     )}
@@ -116,7 +116,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                         </LabelSmall>
                     )}
                     {(label || description || errorMessage) && (
-                        <Strut size={Spacing.xSmall} />
+                        <Strut size={Spacing.small} />
                     )}
 
                     {React.Children.map(children, (child, index) => {
@@ -153,13 +153,17 @@ const styles = StyleSheet.create({
         margin: 0,
     },
 
+    legend: {
+        padding: 0,
+    },
+
     description: {
-        marginTop: Spacing.xxSmall,
+        marginTop: Spacing.xxxSmall,
         color: Color.offBlack64,
     },
 
     error: {
-        marginTop: Spacing.xxSmall,
+        marginTop: Spacing.xxxSmall,
         color: Color.red,
     },
 });

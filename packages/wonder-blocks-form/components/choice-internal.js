@@ -57,8 +57,7 @@ type Props = {|
  * and RadioGroup. This design allows for more explicit prop typing. For
  * example, we can make onChange a required prop on Checkbox but not on Choice
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
- */
-export default class ChoiceInternal extends React.Component<Props> {
+ */ export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps = {
         checked: false,
         disabled: false,
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
     description: {
         // 16 for icon + 8 for spacing strut
         marginLeft: Spacing.medium + Spacing.xSmall,
-        marginTop: Spacing.xxSmall,
+        marginTop: Spacing.xxxSmall,
         color: Color.offBlack64,
     },
 });
