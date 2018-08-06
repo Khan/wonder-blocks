@@ -14,9 +14,6 @@ const styles = StyleSheet.create({
     wrapper: {
         width: 300,
     },
-    marginRight: {
-        marginRight: 16,
-    }
 });
 
 class RadioGroupPokemonExample extends React.Component {
