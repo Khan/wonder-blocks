@@ -38,7 +38,7 @@ glob(
                     {
                         type: "confirm",
                         name: "skipWarnings",
-                        default: true,
+                        default: false,
                         message:
                             "There are some potential problems, do you wish to continue?",
                     },
