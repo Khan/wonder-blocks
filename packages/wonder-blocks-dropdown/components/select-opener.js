@@ -3,6 +3,7 @@
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
@@ -67,6 +68,8 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         light: false,
         isPlaceholder: false,
     };
+
+    static contextTypes = {router: PropTypes.any};
 
     render() {
         const {

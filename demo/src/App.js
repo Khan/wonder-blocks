@@ -25,10 +25,10 @@ class App extends React.Component<{}> {
                         </Route>
                     </Switch>
                     <View style={styles.buttonContainer}>
-                        <Button style={styles.button} href="/foo" clientNav>
+                        <Button style={styles.button} href="/foo">
                             Foo
                         </Button>
-                        <Button style={styles.button} href="/bar" clientNav>
+                        <Button style={styles.button} href="/bar">
                             Bar
                         </Button>
                         <Button
@@ -39,11 +39,8 @@ class App extends React.Component<{}> {
                         </Button>
                     </View>
                     <Body style={styles.body}>
-                        Click{" "}
-                        <Link href="/" clientNav>
-                            Home
-                        </Link>{" "}
-                        to return to the homepage.
+                        Click <Link href="/">Home</Link> to return to the
+                        homepage.
                     </Body>
                 </View>
             </BrowserRouter>

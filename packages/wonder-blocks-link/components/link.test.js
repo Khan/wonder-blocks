@@ -15,7 +15,7 @@ describe("Link", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Link testId="link" href="/foo" clientNav={true}>
+                    <Link testId="link" href="/foo">
                         Click me!
                     </Link>
                     <Switch>
@@ -35,12 +35,37 @@ describe("Link", () => {
         expect(wrapper.find("#foo").exists()).toBe(true);
     });
 
-    test("client-side navigation without 'clientNav' prop fails", () => {
+    test("client-side navigation with unknown URL fails", () => {
         // Arrange
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Link testId="link" href="/foo">
+                    <Link testId="link" href="/unknown">
+                        Click me!
+                    </Link>
+                    <Switch>
+                        <Route path="/foo">
+                            <div id="foo">Hello, world!</div>
+                        </Route>
+                    </Switch>
+                </div>
+            </MemoryRouter>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
+        buttonWrapper.simulate("click", {button: 0});
+
+        // Assert
+        expect(wrapper.find("#foo").exists()).toBe(false);
+    });
+
+    test("client-side navigation with `skipClientNav` set to `true` fails", () => {
+        // Arrange
+        const wrapper = mount(
+            <MemoryRouter>
+                <div>
+                    <Link testId="link" href="/foo" skipClientNav>
                         Click me!
                     </Link>
                     <Switch>
