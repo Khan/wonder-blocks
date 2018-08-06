@@ -25,7 +25,8 @@
     "build:styleguidist": "yarn run gen-styleguide-prod-config && styleguidist build --config styleguide.prod.config.js",
     "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
     "pretty-quick": "pretty-quick --staged",
-    "publish": "git diff --stat --exit-code HEAD && yarn build:all && lerna publish"
+    "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:all && lerna publish",
+    "dry-run-publish": "yarn run publish --no-npm --no-git"
   },
   "author": "",
   "license": "MIT",
@@ -80,8 +81,9 @@
   },
   "dependencies": {
     "aphrodite": "^1.2.5",
-    "prop-types": "^15.6.2",
+    "inquirer": "^6.0.0",
     "popper.js": "^1.14.1",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-popper": "^1.0.0",
