@@ -144,7 +144,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              "::-moz-focus-inner": Object {
+              "::MozFocusInner": Object {
                 "border": 0,
               },
               "alignItems": "center",
@@ -229,7 +229,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              "::-moz-focus-inner": Object {
+              "::MozFocusInner": Object {
                 "border": 0,
               },
               "alignItems": "center",
@@ -387,7 +387,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              "::-moz-focus-inner": Object {
+              "::MozFocusInner": Object {
                 "border": 0,
               },
               "alignItems": "center",
@@ -645,7 +645,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              "::-moz-focus-inner": Object {
+              "::MozFocusInner": Object {
                 "border": 0,
               },
               "alignItems": "center",
@@ -834,7 +834,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              "::-moz-focus-inner": Object {
+              "::MozFocusInner": Object {
                 "border": 0,
               },
               "alignItems": "center",
@@ -1070,7 +1070,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              "::-moz-focus-inner": Object {
+              "::MozFocusInner": Object {
                 "border": 0,
               },
               "alignItems": "center",
@@ -1158,7 +1158,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              "::-moz-focus-inner": Object {
+              "::MozFocusInner": Object {
                 "border": 0,
               },
               "alignItems": "center",
@@ -1313,7 +1313,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              "::-moz-focus-inner": Object {
+              "::MozFocusInner": Object {
                 "border": 0,
               },
               "alignItems": "center",

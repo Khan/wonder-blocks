@@ -77,7 +77,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
         role="menu"
         style={
           Object {
-            "::-moz-focus-inner": Object {
+            "::MozFocusInner": Object {
               "border": 0,
             },
             "alignItems": "center",
@@ -204,7 +204,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       role="menu"
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -330,6 +330,9 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       role="menu"
       style={
         Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "backgroundColor": "#ffffff",
           "border": "none",
@@ -478,6 +481,9 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       role="menu"
       style={
         Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "backgroundColor": "#ffffff",
           "border": "none",
@@ -623,6 +629,9 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       role="menu"
       style={
         Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "backgroundColor": "#ffffff",
           "border": "none",
@@ -795,6 +804,9 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         role="menu"
         style={
           Object {
+            "::MozFocusInner": Object {
+              "border": 0,
+            },
             "alignItems": "center",
             "backgroundColor": "#ffffff",
             "border": "none",
@@ -940,6 +952,9 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
       role="menu"
       style={
         Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "backgroundColor": "#ffffff",
           "border": "none",
@@ -1088,6 +1103,9 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       role="menu"
       style={
         Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
           "alignItems": "center",
           "backgroundColor": "#ffffff",
           "border": "none",
@@ -1233,7 +1251,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
