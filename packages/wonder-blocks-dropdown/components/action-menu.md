@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         width: "100%",
     }
 });
-<View style={[styles.row]}>
-    <View style={[styles.wrapper]}>
+<View style={styles.row}>
+    <View style={styles.wrapper}>
         <ActionMenu
             alignment="right"
             menuText="Betsy Appleseed"
@@ -92,7 +92,7 @@ class HybridMenu extends React.Component {
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <HybridMenu />
 </View>
 ```

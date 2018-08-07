@@ -120,7 +120,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             <LabelMedium style={textStyles}>
                                 {children}
                             </LabelMedium>
-                            <View style={[styles.spacing]} />
+                            <View style={styles.spacing} />
                             <Icon
                                 icon={icons.caretDown}
                                 size="small"

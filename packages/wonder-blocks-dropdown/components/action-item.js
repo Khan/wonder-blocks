@@ -138,7 +138,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                     const children = (
                         <React.Fragment>
                             {indent && <View style={{width: Spacing.medium}} />}
-                            <LabelLarge style={[styles.label]}>
+                            <LabelLarge style={styles.label}>
                                 {label}
                             </LabelLarge>
                         </React.Fragment>
@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         height: 40,
+        minHeight: 40,
         paddingLeft: Spacing.medium,
         paddingRight: Spacing.medium,
     },

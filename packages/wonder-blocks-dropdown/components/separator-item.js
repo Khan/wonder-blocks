@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     separator: {
         backgroundColor: Color.offBlack16,
         height: 1,
+        minHeight: 1,
         marginTop: Spacing.xxxSmall,
         marginBottom: Spacing.xxxSmall,
     },

@@ -30,8 +30,8 @@ describe("wonder-blocks-dropdown", () => {
             },
         });
         const example = (
-            <View style={[styles.row]}>
-                <View style={[styles.wrapper]}>
+            <View style={styles.row}>
+                <View style={styles.wrapper}>
                     <ActionMenu alignment="right" menuText="Betsy Appleseed">
                         <ActionItem
                             label="Profile"
@@ -139,7 +139,7 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <HybridMenu />
             </View>
         );
@@ -154,6 +154,9 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
+            },
+            setWidth: {
+                width: 170,
             },
         });
 
@@ -178,10 +181,8 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={(selected) => this.handleChange(selected)}
                         placeholder="Choose a fruit"
                         selectedValue={this.state.selectedValue}
-                        style={{
-                            width: 170,
-                            maxWidth: 170,
-                        }}
+                        openerStyle={styles.setWidth}
+                        dropdownStyle={styles.setWidth}
                     >
                         <OptionItem
                             label="Vine-ripened tomatoes"
@@ -195,7 +196,7 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <ExampleWithPlaceholder />
             </View>
         );
@@ -248,7 +249,7 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <ExampleWithStartingSelection />
             </View>
         );
@@ -302,7 +303,7 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <DisabledExample />
             </View>
         );
@@ -370,8 +371,8 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const example = (
-            <View style={[styles.row]}>
-                <View style={[styles.darkBackgroundWrapper]}>
+            <View style={styles.row}>
+                <View style={styles.darkBackgroundWrapper}>
                     <LightRightAlignedExample />
                 </View>
             </View>
@@ -388,6 +389,9 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
+            },
+            setWidth: {
+                width: 170,
             },
         });
 
@@ -415,10 +419,8 @@ describe("wonder-blocks-dropdown", () => {
                         placeholder="Color palette"
                         selectedValues={this.state.selectedValues}
                         selectItemType="colors"
-                        style={{
-                            width: 170,
-                            maxWidth: 170,
-                        }}
+                        openerStyle={styles.setWidth}
+                        dropdownStyle={styles.setWidth}
                     >
                         <OptionItem label="Red" value="1" />
                         <OptionItem label="Yellow" value="2" disabled />
@@ -430,7 +432,7 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <ExampleNoneSelected />
             </View>
         );
@@ -445,6 +447,9 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
+            },
+            setWidth: {
+                width: 150,
             },
         });
 
@@ -472,9 +477,8 @@ describe("wonder-blocks-dropdown", () => {
                         }
                         selectedValues={this.state.selectedValues}
                         selectItemType="interns"
-                        style={{
-                            width: 150,
-                        }}
+                        openerStyle={styles.setWidth}
+                        dropdownStyle={styles.setWidth}
                     >
                         <OptionItem label="Anesu" value="very mobile" />
                         <OptionItem label="Ioana" value="lives in roma" />
@@ -500,7 +504,7 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <ExampleWithShortcuts />
             </View>
         );
@@ -529,6 +533,9 @@ describe("wonder-blocks-dropdown", () => {
                 margin: 10,
                 padding: 20,
             },
+            setWidth: {
+                width: 170,
+            },
         });
 
         class SimpleMultiSelect extends React.Component {
@@ -554,10 +561,8 @@ describe("wonder-blocks-dropdown", () => {
                         }
                         selectedValues={this.state.selectedValues}
                         selectItemType="Great Houses"
-                        style={{
-                            width: 170,
-                            maxWidth: 170,
-                        }}
+                        openerStyle={styles.setWidth}
+                        dropdownStyle={styles.setWidth}
                     >
                         <OptionItem label="Stark" value="1" />
                         <OptionItem label="Arryn" value="2" />

@@ -126,7 +126,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                                 {...state}
                             />
                             <Strut size={8} />
-                            <LabelLarge style={[styles.label]}>
+                            <LabelLarge style={styles.label}>
                                 {label}
                             </LabelLarge>
                         </View>
@@ -137,13 +137,16 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
-const {blue, white, offBlack32} = Color;
+const {blue, white, offBlack, offBlack32} = Color;
 
 const styles = StyleSheet.create({
     itemContainer: {
+        backgroundColor: white,
+        color: offBlack,
         flexDirection: "row",
         alignItems: "center",
         height: 40,
+        minHeight: 40,
         outline: 0,
         paddingLeft: Spacing.xSmall,
         paddingRight: Spacing.medium,

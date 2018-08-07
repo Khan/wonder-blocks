@@ -41,12 +41,18 @@ export default function Check(props: CheckProps) {
                         ? white
                         : offBlack
             }
-            style={!selected && styles.hide}
+            style={[styles.bounds, !selected && styles.hide]}
         />
     );
 }
 
 const styles = StyleSheet.create({
+    bounds: {
+        // Semantically, this are the constants for a small-sized icon
+        minHeight: 16,
+        minWidth: 16,
+    },
+
     hide: {
         visibility: "hidden",
     },

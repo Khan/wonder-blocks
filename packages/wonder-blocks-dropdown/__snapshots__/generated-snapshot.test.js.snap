@@ -349,6 +349,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
+          "width": 170,
         }
       }
       tabIndex={0}
@@ -958,6 +959,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
+          "width": 170,
         }
       }
       tabIndex={0}
@@ -1105,6 +1107,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
+          "width": 150,
         }
       }
       tabIndex={0}

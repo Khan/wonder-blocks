@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
+    setWidth: {
+        width: 170,
+    },
 });
 
 class ExampleWithPlaceholder extends React.Component {
@@ -34,10 +37,8 @@ class ExampleWithPlaceholder extends React.Component {
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
-            style={{
-                width: 170,
-                maxWidth: 170,
-            }}
+            openerStyle={styles.setWidth}
+            dropdownStyle={styles.setWidth}
         >
             <OptionItem label="Vine-ripened tomatoes" value="tomato" />
             <OptionItem label="Watermelon" value="watermelon" />
@@ -46,7 +47,7 @@ class ExampleWithPlaceholder extends React.Component {
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <ExampleWithPlaceholder />
 </View>
 ```
@@ -95,7 +96,7 @@ class ExampleWithStartingSelection extends React.Component {
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <ExampleWithStartingSelection />
 </View>
 ```
@@ -143,7 +144,7 @@ class DisabledExample extends React.Component {
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <DisabledExample />
 </View>
 ```
@@ -201,8 +202,8 @@ class LightRightAlignedExample extends React.Component {
     }
 }
 
-<View style={[styles.row]}>
-    <View style={[styles.darkBackgroundWrapper]}>
+<View style={styles.row}>
+    <View style={styles.darkBackgroundWrapper}>
         <LightRightAlignedExample />
     </View>
 </View>

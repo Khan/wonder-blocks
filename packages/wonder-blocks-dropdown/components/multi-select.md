@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
+    setWidth: {
+        width: 170,
+    },
 });
 
 class ExampleNoneSelected extends React.Component {
@@ -35,10 +38,8 @@ class ExampleNoneSelected extends React.Component {
             placeholder="Color palette"
             selectedValues={this.state.selectedValues}
             selectItemType="colors"
-            style={{
-                width: 170,
-                maxWidth: 170,
-            }}
+            openerStyle={styles.setWidth}
+            dropdownStyle={styles.setWidth}
         >
             <OptionItem label="Red" value="1" />
             <OptionItem label="Yellow" value="2" disabled />
@@ -48,7 +49,7 @@ class ExampleNoneSelected extends React.Component {
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <ExampleNoneSelected />
 </View>
 ```
@@ -66,6 +67,9 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+    },
+    setWidth: {
+        width: 150,
     },
 });
 
@@ -90,9 +94,8 @@ class ExampleWithShortcuts extends React.Component {
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
             selectItemType="interns"
-            style={{
-                width: 150,
-            }}
+            openerStyle={styles.setWidth}
+            dropdownStyle={styles.setWidth}
         >
             <OptionItem label="Anesu" value="very mobile" />
             <OptionItem label="Ioana" value="lives in roma" />
@@ -107,7 +110,7 @@ class ExampleWithShortcuts extends React.Component {
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <ExampleWithShortcuts />
 </View>
 ```
@@ -135,6 +138,9 @@ const styles = StyleSheet.create({
         margin: 10,
         padding: 20,
     },
+    setWidth: {
+        width: 170,
+    },
 });
 
 class SimpleMultiSelect extends React.Component {
@@ -157,10 +163,8 @@ class SimpleMultiSelect extends React.Component {
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
             selectedValues={this.state.selectedValues}
             selectItemType="Great Houses"
-            style={{
-                width: 170,
-                maxWidth: 170,
-            }}
+            openerStyle={styles.setWidth}
+            dropdownStyle={styles.setWidth}
         >
             <OptionItem label="Stark" value="1" />
             <OptionItem label="Arryn" value="2" />
