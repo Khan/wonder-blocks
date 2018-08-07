@@ -1,43 +1,23 @@
 // @flow
-// For option items that can be selected, selection denoted either with a
-// check ✔️ or a checkbox ☑️
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import {
-    View,
-    addStyle,
-    getClickableBehavior,
-} from "@khanacademy/wonder-blocks-core";
+import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-
-const {
-    blue,
-    white,
-    offBlack,
-    offBlack16,
-    offBlack32,
-    offBlack50,
-    offWhite,
-} = Color;
+import Check from "./check.js";
+import Checkbox from "./checkbox.js";
 
 type OptionProps = {|
     /**
      * Display text of the option item.
      */
     label: string,
-
-    /**
-     * Whether this item is selected.
-     */
-    selected: boolean,
 
     /**
      * Value of the item, used as a key of sorts for the parent to manage its
@@ -47,114 +27,57 @@ type OptionProps = {|
     value: string,
 
     /**
-     * Whether the item should show a check or checkbox to indicate selection
-     * state.
+     * Whether this option item is disabled.
      */
-    variant: "check" | "checkbox",
+    disabled: boolean,
+
+    /**
+     * Optional user-supplied callback when this item is called.
+     */
+    onClick?: (oldSelectionState: boolean) => void,
 
     /**
      * Callback for when this item is pressed to change its selection state.
-     * Passes value of the item and its old selection state. Should be handled
-     * by an implementation of Menu.
+     * Passes value of the item and its old selection state. Auto-populated by
+     * menu or select.
+     * @ignore
      */
     onToggle: (value: string, oldSelectionState: boolean) => void,
 
     /**
-     * Whether this option item is disabled. A disabled item may not be
-     * selected.
+     * Whether this item is selected. Auto-populated by menu or select.
+     * @ignore
      */
-    disabled: boolean,
+    selected: boolean,
 
     /**
-     * Optional client-supplied callback when this item is called.
+     * Whether the item should show a check or checkbox to indicate selection
+     * state. Auto-populated by menu or select.
+     * @ignore
      */
-    onClick?: (oldSelectionState: boolean) => void,
+    variant?: "check" | "checkbox",
 |};
 
-const StyledButton = addStyle("button");
-
-type CheckProps = {|
-    disabled: boolean,
-    selected: boolean,
-    pressed: boolean,
-    hovered: boolean,
-    focused: boolean,
-|};
-
-const Check = (props: CheckProps) => {
-    const {selected, pressed, hovered, focused} = props;
-    return (
-        <View style={[styles.check, !selected && styles.hide]}>
-            <Icon
-                icon={icons.check}
-                size="small"
-                color={pressed || hovered || focused ? white : offBlack}
-            />
-        </View>
-    );
-};
-
-// NOTE(sophie): This is a smaller check specifically for use in checkboxes.
-// Please don't copy it automatically and check with designers before using.
-// If the intended icon is a check without a checkbox, you should be using
-// icons.check from the Wonder Blocks Icon package.
-const checkboxCheck: IconAsset = {
-    small:
-        "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
-};
-
-const Checkbox = (props: CheckProps) => {
-    const {disabled, selected, pressed, hovered, focused} = props;
-    const activeBlue = mix(offBlack32, blue);
-    const bgColor = disabled
-        ? offWhite
-        : selected && !(pressed || hovered || focused)
-            ? blue
-            : white;
-
-    return (
-        <View
-            style={[
-                styles.check,
-                styles.checkbox,
-                !selected &&
-                    !(pressed || hovered || focused) &&
-                    styles.borderedCheckbox,
-                !selected &&
-                    (pressed || hovered || focused) &&
-                    styles.invertBackground,
-                disabled && styles.disabledCheckbox,
-                {backgroundColor: bgColor},
-            ]}
-        >
-            {selected && (
-                <Icon
-                    icon={checkboxCheck}
-                    size="small"
-                    color={
-                        disabled
-                            ? offBlack32
-                            : hovered || focused
-                                ? blue
-                                : pressed
-                                    ? activeBlue
-                                    : white
-                    }
-                    style={[
-                        disabled && selected && styles.disabledCheckFormatting,
-                    ]}
-                />
-            )}
-        </View>
-    );
-};
-
+/**
+ * For option items that can be selected in a dropdown, selection denoted either
+ * with a check ✔️ or a checkbox ☑️
+ */
 export default class OptionItem extends React.Component<OptionProps> {
     static defaultProps = {
         disabled: false,
+        onToggle: () => void 0,
+        selected: false,
     };
 
     static contextTypes = {router: PropTypes.any};
+
+    getCheckComponent() {
+        if (this.props.variant === "check") {
+            return Check;
+        } else {
+            return Checkbox;
+        }
+    }
 
     render() {
         const {
@@ -164,10 +87,10 @@ export default class OptionItem extends React.Component<OptionProps> {
             onToggle,
             selected,
             value,
-            variant,
         } = this.props;
 
-        const ClickableBehavior = getClickableBehavior(this.context.router);
+        const ClickableBehavior = getClickableBehavior();
+        const CheckComponent = this.getCheckComponent();
 
         return (
             <ClickableBehavior
@@ -183,40 +106,30 @@ export default class OptionItem extends React.Component<OptionProps> {
                     const {pressed, hovered, focused} = state;
 
                     const defaultStyle = [
-                        styles.shared,
+                        styles.itemContainer,
+                        pressed
+                            ? styles.active
+                            : (hovered || focused) && styles.focus,
                         disabled && styles.disabled,
-                        !disabled &&
-                            (pressed
-                                ? styles.active
-                                : (hovered || focused) && styles.focus),
                     ];
 
                     return (
-                        <StyledButton style={[defaultStyle]} {...handlers}>
-                            <View
-                                style={[styles.itemContainer]}
-                                role="menuitemcheckbox"
-                                aria-checked={selected ? "true" : "false"}
-                            >
-                                {variant === "check" ? (
-                                    <Check
-                                        disabled={disabled}
-                                        selected={selected}
-                                        {...state}
-                                    />
-                                ) : (
-                                    <Checkbox
-                                        disabled={disabled}
-                                        selected={selected}
-                                        {...state}
-                                    />
-                                )}
-                                <View style={[styles.spacing]} />
-                                <LabelLarge style={[styles.label]}>
-                                    {label}
-                                </LabelLarge>
-                            </View>
-                        </StyledButton>
+                        <View
+                            style={defaultStyle}
+                            aria-checked={selected ? "true" : "false"}
+                            role="menuitemcheckbox"
+                            {...handlers}
+                        >
+                            <CheckComponent
+                                disabled={disabled}
+                                selected={selected}
+                                {...state}
+                            />
+                            <Strut size={8} />
+                            <LabelLarge style={styles.label}>
+                                {label}
+                            </LabelLarge>
+                        </View>
                     );
                 }}
             </ClickableBehavior>
@@ -224,15 +137,36 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
+const {blue, white, offBlack, offBlack32} = Color;
+
 const styles = StyleSheet.create({
-    shared: {
-        background: white,
+    itemContainer: {
+        backgroundColor: white,
         color: offBlack,
-        cursor: "pointer",
-        border: "none",
-        outline: "none",
-        margin: 0,
-        padding: 0,
+        flexDirection: "row",
+        alignItems: "center",
+        height: 40,
+        minHeight: 40,
+        outline: 0,
+        paddingLeft: Spacing.xSmall,
+        paddingRight: Spacing.medium,
+        whiteSpace: "nowrap",
+        cursor: "default",
+    },
+
+    focus: {
+        color: white,
+        background: blue,
+    },
+
+    active: {
+        color: mix(fade(blue, 0.32), white),
+        background: mix(offBlack32, blue),
+    },
+
+    disabled: {
+        color: offBlack32,
+        background: white,
     },
 
     label: {
@@ -240,67 +174,6 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         textOverflow: "ellipsis",
         textAlign: "left",
-    },
-
-    // hover and focus states
-    focus: {
-        color: white,
-        background: blue,
-    },
-
-    // active and pressed states
-    active: {
-        color: mix(fade(blue, 0.32), white),
-        background: mix(offBlack32, blue),
-    },
-
-    // disabled state
-    disabled: {
-        color: offBlack32,
-        cursor: "default",
-    },
-
-    itemContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        height: 40,
-        paddingLeft: Spacing.xSmall,
-        paddingRight: Spacing.medium,
-        whiteSpace: "nowrap",
-    },
-
-    check: {
-        // Semantically, this are the constants for a small-sized icon
-        minHeight: 16,
-        minWidth: 16,
-    },
-
-    checkbox: {
-        borderRadius: 3,
-    },
-
-    borderedCheckbox: {
-        borderColor: offBlack50,
-        borderStyle: "solid",
-        borderWidth: 1,
-    },
-
-    invertBackground: {
-        borderColor: white,
-    },
-
-    disabledCheckbox: {
-        borderColor: offBlack16,
-        borderWidth: 1,
-        backgroundColor: offWhite,
-    },
-
-    // The border of 1px on the selected, disabled checkbox pushes the check out
-    // of place. Move it back.
-    disabledCheckFormatting: {
-        position: "absolute",
-        top: -1,
-        left: -1,
     },
 
     spacing: {

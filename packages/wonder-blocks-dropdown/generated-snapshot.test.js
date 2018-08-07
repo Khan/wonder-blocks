@@ -8,9 +8,13 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import ActionItem from "./components/action-item.js";
+import SeparatorItem from "./components/separator-item.js";
+import OptionItem from "./components/option-item.js";
 import ActionMenu from "./components/action-menu.js";
-import SingleSelectMenu from "./components/single-select.js";
-import MultiSelectMenu from "./components/multi-select.js";
+import SingleSelect from "./components/single-select.js";
+import MultiSelect from "./components/multi-select.js";
+import Dropdown from "./components/dropdown.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
@@ -20,51 +24,42 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 250,
             },
             wrapper: {
                 width: "100%",
             },
         });
         const example = (
-            <View style={[styles.row]}>
-                <View style={[styles.wrapper]}>
-                    <ActionMenu
-                        items={[
-                            {
-                                type: "action",
-                                label: "Profile",
-                                href: "http://khanacademy.org/profile",
-                            },
-                            {
-                                type: "action",
-                                label: "Teacher dashboard",
-                                href: "http://khanacademy.org/coach/dashboard",
-                            },
-                            {
-                                type: "action",
-                                label: "Settings (onClick)",
-                                onClick: () =>
-                                    console.log("user clicked on settings"),
-                            },
-                            {
-                                type: "action",
-                                disabled: true,
-                                label: "Help",
-                                onClick: () => console.log("help"),
-                            },
-                            {
-                                type: "separator",
-                            },
-                            {
-                                type: "action",
-                                label: "Log out",
-                                href: "http://khanacademy.org/logout",
-                            },
-                        ]}
-                        menuText={"Betsy Appleseed"}
-                        alignment={"right"}
-                    />
+            <View style={styles.row}>
+                <View style={styles.wrapper}>
+                    <ActionMenu alignment="right" menuText="Betsy Appleseed">
+                        <ActionItem
+                            label="Profile"
+                            href="http://khanacademy.org/profile"
+                        />
+                        <ActionItem
+                            label="Teacher dashboard"
+                            href="http://khanacademy.org/coach/dashboard"
+                        />
+                        <ActionItem
+                            label="Settings (onClick)"
+                            onClick={() =>
+                                console.log("user clicked on settings")
+                            }
+                        />
+                        <ActionItem
+                            label="Help"
+                            disabled={true}
+                            onClick={() =>
+                                console.log("this item is disabled...")
+                            }
+                        />
+                        <SeparatorItem />
+                        <ActionItem
+                            label="Log out"
+                            href="http://khanacademy.org/logout"
+                        />
+                    </ActionMenu>
                 </View>
             </View>
         );
@@ -79,7 +74,6 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 250,
             },
         });
 
@@ -91,7 +85,7 @@ describe("wonder-blocks-dropdown", () => {
                 };
             }
 
-            handleChanges(update) {
+            handleChange(update) {
                 this.setState({
                     selectedValues: update,
                 });
@@ -100,58 +94,52 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <ActionMenu
-                        items={[
-                            {
-                                type: "action",
-                                label: "Create...",
-                                onClick: () => console.log("create action"),
-                            },
-                            {
-                                type: "action",
-                                label: "Edit...",
-                                disabled: true,
-                                onClick: () => console.log("edit action"),
-                            },
-                            {
-                                type: "action",
-                                label: "Delete",
-                                disabled: true,
-                                onClick: () => console.log("delete action"),
-                            },
-                            {
-                                type: "separator",
-                            },
-                            {
-                                type: "select",
-                                label: "Show homework assignments",
-                                onClick: (state) =>
-                                    console.log(
-                                        `Show homework assignments ${(!state).toString()}`,
-                                    ),
-                                value: "homework",
-                            },
-                            {
-                                type: "select",
-                                label: "Show in-class assignments",
-                                onClick: (state) =>
-                                    console.log(
-                                        `Show in-class assignments ${(!state).toString()}`,
-                                    ),
-                                value: "in-class",
-                            },
-                        ]}
-                        menuText={"Assignments"}
+                        menuText="Assignments"
                         onChange={(selectedValues) =>
-                            this.handleChanges(selectedValues)
+                            this.handleChange(selectedValues)
                         }
                         selectedValues={this.state.selectedValues}
-                    />
+                    >
+                        <ActionItem
+                            label="Create..."
+                            onClick={() => console.log("create action")}
+                        />
+                        <ActionItem
+                            label="Edit..."
+                            disabled={true}
+                            onClick={() => console.log("edit action")}
+                        />
+                        <ActionItem
+                            label="Delete"
+                            disabled={true}
+                            onClick={() => console.log("delete action")}
+                        />
+                        <SeparatorItem />
+                        <OptionItem
+                            label="Show homework assignments"
+                            value="homework"
+                            onClick={(state) =>
+                                console.log(
+                                    `Show homework assignments ${(!state).toString()}`,
+                                )
+                            }
+                        />
+                        <OptionItem
+                            label="Show in-class assignments"
+                            value="in-class"
+                            onClick={(state) =>
+                                console.log(
+                                    `Show in-class assignments ${(!state).toString()}`,
+                                )
+                            }
+                        />
+                    </ActionMenu>
                 );
             }
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <HybridMenu />
             </View>
         );
@@ -166,7 +154,9 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 180,
+            },
+            setWidth: {
+                width: 170,
             },
         });
 
@@ -187,36 +177,26 @@ describe("wonder-blocks-dropdown", () => {
 
             render() {
                 return (
-                    <SingleSelectMenu
-                        items={[
-                            {
-                                label: "Banana wrapped in a peel",
-                                value: "banana",
-                            },
-                            {
-                                label: "Apple",
-                                value: "apple",
-                            },
-                            {
-                                label: "Grape",
-                                value: "grape",
-                            },
-                        ]}
-                        light={false}
+                    <SingleSelect
                         onChange={(selected) => this.handleChange(selected)}
-                        placeholder={"Choose a fruit"}
+                        placeholder="Choose a fruit"
                         selectedValue={this.state.selectedValue}
-                        style={{
-                            width: 170,
-                            maxWidth: 170,
-                        }}
-                    />
+                        openerStyle={styles.setWidth}
+                        dropdownStyle={styles.setWidth}
+                    >
+                        <OptionItem
+                            label="Vine-ripened tomatoes"
+                            value="tomato"
+                        />
+                        <OptionItem label="Watermelon" value="watermelon" />
+                        <OptionItem label="Strawberry" value="strawberry" />
+                    </SingleSelect>
                 );
             }
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <ExampleWithPlaceholder />
             </View>
         );
@@ -231,7 +211,6 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 180,
             },
         });
 
@@ -252,32 +231,25 @@ describe("wonder-blocks-dropdown", () => {
 
             render() {
                 return (
-                    <SingleSelectMenu
-                        items={[
-                            {
-                                label: "Banana juice!!!",
-                                value: "banana",
-                            },
-                            {
-                                disabled: true,
-                                label: "Apple juice!!!",
-                                value: "apple",
-                            },
-                            {
-                                label: "Grape juice!!!",
-                                value: "grape",
-                            },
-                        ]}
+                    <SingleSelect
                         onChange={(selected) => this.handleChange(selected)}
-                        placeholder={"Choose a juice"}
+                        placeholder="Choose a juice"
                         selectedValue={this.state.selectedValue}
-                    />
+                    >
+                        <OptionItem label="Banana juice" value="banana" />
+                        <OptionItem
+                            label="Guava juice"
+                            value="guava"
+                            disabled
+                        />
+                        <OptionItem label="White grape juice" value="grape" />
+                    </SingleSelect>
                 );
             }
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <ExampleWithStartingSelection />
             </View>
         );
@@ -292,7 +264,6 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 50,
             },
         });
 
@@ -313,32 +284,26 @@ describe("wonder-blocks-dropdown", () => {
 
             render() {
                 return (
-                    <SingleSelectMenu
+                    <SingleSelect
                         disabled={true}
-                        items={[
-                            {
-                                label: "Banana juice!!!",
-                                value: "banana",
-                            },
-                            {
-                                label: "Apple juice!!!",
-                                value: "apple",
-                            },
-                            {
-                                label: "Grape juice!!!",
-                                value: "grape",
-                            },
-                        ]}
                         onChange={(selected) => this.handleChange(selected)}
-                        placeholder={"Choose a fruit"}
+                        placeholder="Choose a juice"
                         selectedValue={this.state.selectedValue}
-                    />
+                    >
+                        <OptionItem label="Banana juice" value="banana" />
+                        <OptionItem
+                            label="Guava juice"
+                            value="guava"
+                            disabled
+                        />
+                        <OptionItem label="White grape juice" value="grape" />
+                    </SingleSelect>
                 );
             }
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <DisabledExample />
             </View>
         );
@@ -381,34 +346,33 @@ describe("wonder-blocks-dropdown", () => {
 
             render() {
                 return (
-                    <SingleSelectMenu
-                        items={[
-                            {
-                                label: "Regular milk tea with boba",
-                                value: "regular",
-                            },
-                            {
-                                label: "Wintermelon milk tea with boba",
-                                value: "wintermelon",
-                            },
-                            {
-                                label: "Taro milk tea, half sugar",
-                                value: "taro",
-                            },
-                        ]}
+                    <SingleSelect
+                        alignment="right"
                         light={true}
                         onChange={(selected) => this.handleChange(selected)}
-                        placeholder={"Boba order"}
+                        placeholder="Boba order"
                         selectedValue={this.state.selectedValue}
-                        alignment={"right"}
-                    />
+                    >
+                        <OptionItem
+                            label="Regular milk tea with boba"
+                            value="regular"
+                        />
+                        <OptionItem
+                            label="Wintermelon milk tea with boba"
+                            value="wintermelon"
+                        />
+                        <OptionItem
+                            label="Taro milk tea, half sugar"
+                            value="taro"
+                        />
+                    </SingleSelect>
                 );
             }
         }
 
         const example = (
-            <View style={[styles.row]}>
-                <View style={[styles.darkBackgroundWrapper]}>
+            <View style={styles.row}>
+                <View style={styles.darkBackgroundWrapper}>
                     <LightRightAlignedExample />
                 </View>
             </View>
@@ -425,10 +389,9 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 250,
             },
-            strutLike: {
-                width: 8,
+            setWidth: {
+                width: 170,
             },
         });
 
@@ -449,47 +412,27 @@ describe("wonder-blocks-dropdown", () => {
 
             render() {
                 return (
-                    <MultiSelectMenu
-                        items={[
-                            {
-                                label: "Red",
-                                value: "1",
-                            },
-                            {
-                                disabled: true,
-                                label: "Orange",
-                                value: "2",
-                            },
-                            {
-                                label: "Yellow",
-                                value: "3",
-                            },
-                            {
-                                label: "Green",
-                                value: "4",
-                            },
-                            {
-                                label: "Blue",
-                                value: "5",
-                            },
-                        ]}
+                    <MultiSelect
                         onChange={(selectedValues) =>
                             this.handleChanges(selectedValues)
                         }
-                        placeholder={"Choose some colors"}
+                        placeholder="Color palette"
                         selectedValues={this.state.selectedValues}
-                        selectItemType={"colors"}
-                        style={{
-                            width: 170,
-                            maxWidth: 170,
-                        }}
-                    />
+                        selectItemType="colors"
+                        openerStyle={styles.setWidth}
+                        dropdownStyle={styles.setWidth}
+                    >
+                        <OptionItem label="Red" value="1" />
+                        <OptionItem label="Yellow" value="2" disabled />
+                        <OptionItem label="Green" value="3" />
+                        <OptionItem label="Blue" value="4" />
+                    </MultiSelect>
                 );
             }
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <ExampleNoneSelected />
             </View>
         );
@@ -504,7 +447,9 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-                height: 350,
+            },
+            setWidth: {
+                width: 150,
             },
         });
 
@@ -512,11 +457,11 @@ describe("wonder-blocks-dropdown", () => {
             constructor() {
                 super();
                 this.state = {
-                    selectedValues: ["1"],
+                    selectedValues: ["wonderblocks 4ever"],
                 };
             }
 
-            handleChanges(update) {
+            handleChange(update) {
                 console.log("changes happened!");
                 this.setState({
                     selectedValues: update,
@@ -525,42 +470,41 @@ describe("wonder-blocks-dropdown", () => {
 
             render() {
                 return (
-                    <MultiSelectMenu
-                        items={[
-                            {
-                                label: "Red",
-                                value: "1",
-                            },
-                            {
-                                label: "Orange",
-                                value: "2",
-                            },
-                            {
-                                label: "Yellow",
-                                value: "3",
-                            },
-                            {
-                                label: "Green",
-                                value: "4",
-                            },
-                            {
-                                label: "Blue",
-                                value: "5",
-                            },
-                        ]}
+                    <MultiSelect
                         shortcuts={true}
                         onChange={(selectedValues) =>
-                            this.handleChanges(selectedValues)
+                            this.handleChange(selectedValues)
                         }
                         selectedValues={this.state.selectedValues}
-                        selectItemType={"colors"}
-                    />
+                        selectItemType="interns"
+                        openerStyle={styles.setWidth}
+                        dropdownStyle={styles.setWidth}
+                    >
+                        <OptionItem label="Anesu" value="very mobile" />
+                        <OptionItem label="Ioana" value="lives in roma" />
+                        <OptionItem label="Jennie" value="master of dominion" />
+                        <OptionItem
+                            label="Kelsey"
+                            value="pipelines and kotlin"
+                        />
+                        <OptionItem label="Mary" value="flow-distress" />
+                        <OptionItem
+                            label="Nisha"
+                            value="on the growth boat boat"
+                        />
+                        <OptionItem label="Sophie" value="wonderblocks 4ever" />
+                        <OptionItem
+                            label="Stephanie"
+                            value="ramen izakaya fan"
+                        />
+                        <OptionItem label="Yeva" value="boba enthusiast" />
+                    </MultiSelect>
                 );
             }
         }
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <ExampleWithShortcuts />
             </View>
         );
@@ -568,18 +512,33 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 9", () => {
-        const React = require("react");
-        const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
+        const React = require("react");
+        const {View, Text} = require("@khanacademy/wonder-blocks-core");
+        const {
+            StandardModal,
+            ModalLauncher,
+        } = require("@khanacademy/wonder-blocks-modal");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
-            row: {
-                flexDirection: "row",
-                height: 50,
+            wrapper: {
+                alignItems: "center",
+            },
+            scrolledWrapper: {
+                height: 200,
+                overflow: "auto",
+                border: "1px solid grey",
+                borderRadius: 4,
+                margin: 10,
+                padding: 20,
+            },
+            setWidth: {
+                width: 170,
             },
         });
 
-        class ExampleNoneSelected extends React.Component {
+        class SimpleMultiSelect extends React.Component {
             constructor() {
                 super();
                 this.state = {
@@ -596,113 +555,56 @@ describe("wonder-blocks-dropdown", () => {
 
             render() {
                 return (
-                    <MultiSelectMenu
-                        items={[
-                            {
-                                label: "Red",
-                                value: "1",
-                            },
-                        ]}
-                        disabled={true}
-                        onChange={(selectedValues) =>
-                            this.handleChanges(selectedValues)
-                        }
-                        placeholder={"Choose some colors"}
-                        selectedValues={this.state.selectedValues}
-                        selectItemType={"colors"}
-                    />
-                );
-            }
-        }
-
-        const example = (
-            <View style={[styles.row]}>
-                <ExampleNoneSelected />
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 10", () => {
-        const React = require("react");
-        const Color = require("@khanacademy/wonder-blocks-color");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            row: {
-                flexDirection: "row",
-            },
-            darkBackgroundWrapper: {
-                backgroundColor: Color.default.darkBlue,
-                width: 350,
-                height: 370,
-                paddingRight: 10,
-                paddingTop: 10,
-            },
-        });
-
-        class LightRightAlignedExample extends React.Component {
-            constructor() {
-                super();
-                this.state = {
-                    selectedValues: ["1"],
-                };
-            }
-
-            handleChanges(update) {
-                console.log("changes happened!");
-                this.setState({
-                    selectedValues: update,
-                });
-            }
-
-            render() {
-                return (
-                    <MultiSelectMenu
-                        items={[
-                            {
-                                label: "the philosopher's stone",
-                                value: "1",
-                            },
-                            {
-                                label: "the chamber of secrets",
-                                value: "2",
-                            },
-                            {
-                                label: "the prisoner of azkaban",
-                                value: "3",
-                            },
-                            {
-                                label: "the goblet of fire",
-                                value: "4",
-                            },
-                            {
-                                label: "the order of the phoenix",
-                                value: "5",
-                            },
-                        ]}
-                        alignment={"right"}
-                        light={true}
-                        shortcuts={true}
+                    <MultiSelect
                         onChange={(selectedValues) =>
                             this.handleChanges(selectedValues)
                         }
                         selectedValues={this.state.selectedValues}
-                        selectItemType={"harry potter books"}
-                    />
+                        selectItemType="Great Houses"
+                        openerStyle={styles.setWidth}
+                        dropdownStyle={styles.setWidth}
+                    >
+                        <OptionItem label="Stark" value="1" />
+                        <OptionItem label="Arryn" value="2" />
+                        <OptionItem label="Baratheon" value="3" />
+                        <OptionItem label="Tully" value="4" />
+                        <OptionItem label="Greyjoy" value="5" />
+                        <OptionItem label="Lannister" value="6" />
+                        <OptionItem label="Tyrell" value="7" />
+                        <OptionItem label="Martell" value="8" />
+                        <OptionItem label="Targaryen" value="9" />
+                    </MultiSelect>
                 );
             }
         }
 
-        const example = (
-            <View style={[styles.row]}>
-                <View style={[styles.darkBackgroundWrapper]}>
-                    <LightRightAlignedExample />
+        const modalContent = (
+            <View style={{height: "200vh"}}>
+                <View style={styles.scrolledWrapper}>
+                    <View style={{minHeight: "100vh"}}>
+                        <SimpleMultiSelect />
+                    </View>
                 </View>
             </View>
         );
 
+        const modal = (
+            <StandardModal
+                title="Westerosi modal"
+                footer=""
+                content={modalContent}
+            />
+        );
+
+        const example = (
+            <View style={styles.wrapper}>
+                <ModalLauncher modal={modal}>
+                    {({openModal}) => (
+                        <Button onClick={openModal}>Open modal!</Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

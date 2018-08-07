@@ -26,43 +26,19 @@ const styles = StyleSheet.create({
         width: "100%",
     }
 });
-<View style={[styles.row]}>
-    <View style={[styles.wrapper]}>
+<View style={styles.row}>
+    <View style={styles.wrapper}>
         <ActionMenu
-            items={[
-                {
-                    type: "action",
-                    label: "Profile",
-                    href: "http://khanacademy.org/profile",
-                },
-                {
-                    type: "action",
-                    label: "Teacher dashboard",
-                    href: "http://khanacademy.org/coach/dashboard",
-                },
-                {
-                    type: "action",
-                    label: "Settings (onClick)",
-                    onClick: () => console.log("user clicked on settings")
-                },
-                {
-                    type: "action",
-                    disabled: true,
-                    label: "Help",
-                    onClick: () => console.log("help")
-                },
-                {
-                    type: "separator"
-                },
-                {
-                    type: "action",
-                    label: "Log out",
-                    href: "http://khanacademy.org/logout",
-                }
-            ]}
-            menuText="Betsy Appleseed"
             alignment="right"
-        />
+            menuText="Betsy Appleseed"
+        >
+            <ActionItem label="Profile" href="http://khanacademy.org/profile" />
+            <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" />
+            <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} />
+            <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} />
+            <SeparatorItem />
+            <ActionItem label="Log out" href="http://khanacademy.org/logout" />
+        </ActionMenu>
     </View>
 </View>
 ```
@@ -100,49 +76,23 @@ class HybridMenu extends React.Component {
 
     render() {
         return <ActionMenu
-            items={[
-                {
-                    type: "action",
-                    label: "Create...",
-                    onClick: () => console.log("create action")
-                },
-                {
-                    type: "action",
-                    label: "Edit...",
-                    disabled: true,
-                    onClick: () => console.log("edit action")
-                },
-                {
-                    type: "action",
-                    label: "Delete",
-                    disabled: true,
-                    onClick: () => console.log("delete action")
-                },
-                {
-                    type: "separator"
-                },
-                {
-                    type: "select",
-                    label: "Show homework assignments",
-                    onClick: (state) => console.log(`Show homework assignments ${(!state).toString()}`),
-                    value: "homework"
-                },
-                {
-                    type: "select",
-                    label: "Show in-class assignments",
-                    onClick: (state) => console.log(`Show in-class assignments ${(!state).toString()}`),
-                    value: "in-class"
-                },
-
-            ]}
             menuText="Assignments"
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
-        />
+        >
+            <ActionItem label="Create..." onClick={() => console.log("create action")} />
+            <ActionItem label="Edit..." disabled={true} onClick={() => console.log("edit action")} />
+            <ActionItem label="Delete" disabled={true} onClick={() => console.log("delete action")} />
+            <SeparatorItem />
+            <OptionItem label="Show homework assignments" value="homework"
+                onClick={(state) => console.log(`Show homework assignments ${(!state).toString()}`)} />
+            <OptionItem label="Show in-class assignments" value="in-class"
+                onClick={(state) => console.log(`Show in-class assignments ${(!state).toString()}`)} />
+        </ActionMenu>
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <HybridMenu />
 </View>
 ```

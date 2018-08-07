@@ -5,6 +5,7 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
+import SeparatorItem from "./separator-item.js";
 import ActionMenu from "./action-menu.js";
 
 const keyCodes = {
@@ -21,26 +22,18 @@ describe("ActionMenu", () => {
     beforeEach(() => {
         menu = mount(
             <ActionMenu
-                items={[
-                    {
-                        type: "action",
-                        label: "Action",
-                        onClick: () => onClick(),
-                    },
-                    {
-                        type: "separator",
-                    },
-                    {
-                        type: "select",
-                        label: "Toggle",
-                        onClick: () => onToggle(),
-                        value: "toggle",
-                    },
-                ]}
                 menuText={"Action menu!"}
                 onChange={(selectedValues) => onChange()}
                 selectedValues={[]}
-            />,
+            >
+                <ActionItem label="Action" onClick={() => onClick()} />
+                <SeparatorItem />
+                <OptionItem
+                    label="Toggle"
+                    value="toggle"
+                    onClick={() => onToggle()}
+                />
+            </ActionMenu>,
         );
     });
 

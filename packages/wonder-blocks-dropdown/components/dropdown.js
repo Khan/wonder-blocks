@@ -20,7 +20,7 @@ type DropdownProps = {|
     /**
      * Items for the menu.
      */
-    items: Array<React.Element<ActionItem | OptionItem | SeparatorItem>>,
+    children: Array<React.Element<ActionItem | OptionItem | SeparatorItem>>,
 
     /**
      * Whether the menu is open or not.
@@ -59,13 +59,13 @@ type DropdownProps = {|
      * Styling specific to the dropdown component that isn't part of the opener.
      */
     dropdownStyle?: any,
-
-    /**
-     * Optional styling to add to the entire menu.
-     */
-    style?: any,
 |};
 
+/**
+ * A core dropdown component that takes an opener and children to display as
+ * part of the dropdown menu. Renders the dropdown as a portal to avoid clipping
+ * in overflow: auto containers.
+ */
 export default class Dropdown extends React.Component<DropdownProps> {
     element: ?Element;
 
@@ -129,7 +129,7 @@ export default class Dropdown extends React.Component<DropdownProps> {
     };
 
     renderMenu(outOfBoundaries: ?boolean) {
-        const {items, light, dropdownStyle, style} = this.props;
+        const {children, light, dropdownStyle} = this.props;
 
         return (
             <View
@@ -143,10 +143,9 @@ export default class Dropdown extends React.Component<DropdownProps> {
                     light && styles.light,
                     outOfBoundaries && styles.hidden,
                     dropdownStyle,
-                    style,
                 ]}
             >
-                {items}
+                {children}
             </View>
         );
     }
@@ -170,7 +169,10 @@ export default class Dropdown extends React.Component<DropdownProps> {
                     }
                     modifiers={{
                         wbVisibility: visibilityModifierDefaultConfig,
-                        preventOverflow: {boundariesElement: "viewport"},
+                        preventOverflow: {
+                            boundariesElement: "viewport",
+                            escapeWithReference: true,
+                        },
                     }}
                 >
                     {({placement, ref, style, outOfBoundaries}) => {

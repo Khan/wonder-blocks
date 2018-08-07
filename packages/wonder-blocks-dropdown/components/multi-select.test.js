@@ -23,23 +23,6 @@ describe("MultiSelect", () => {
     beforeEach(() => {
         select = mount(
             <MultiSelect
-                items={[
-                    {
-                        type: "select",
-                        label: "item 1",
-                        value: "1",
-                    },
-                    {
-                        type: "select",
-                        label: "item 2",
-                        value: "2",
-                    },
-                    {
-                        type: "select",
-                        label: "item 3",
-                        value: "3",
-                    },
-                ]}
                 onChange={(selectedValues) => {
                     saveUpdate(selectedValues);
                     onClick();
@@ -48,7 +31,11 @@ describe("MultiSelect", () => {
                 selectItemType="students"
                 selectedValues={["2"]}
                 shortcuts={true}
-            />,
+            >
+                <OptionItem label="item 1" value="1" />
+                <OptionItem label="item 2" value="2" />
+                <OptionItem label="item 3" value="3" />
+            </MultiSelect>,
         );
     });
 
