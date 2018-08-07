@@ -196,7 +196,7 @@ exports[`wonder-blocks-core example 4 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",

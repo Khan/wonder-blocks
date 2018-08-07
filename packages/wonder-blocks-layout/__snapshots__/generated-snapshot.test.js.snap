@@ -38,7 +38,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -127,7 +127,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -216,7 +216,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -301,7 +301,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -390,7 +390,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
