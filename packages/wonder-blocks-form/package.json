@@ -1,26 +1,26 @@
 {
-    "name": "@khanacademy/wonder-blocks-form",
-    "version": "0.0.1",
-    "design": "v1",
-    "description": "Form components for Wonder Blocks.",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "MIT",
-    "publishConfig": {
-      "access": "public"
-    },
-    "dependencies": {
-      "@khanacademy/wonder-blocks-color": "^1.0.4",
-      "@khanacademy/wonder-blocks-core": "^1.0.4",
-      "@khanacademy/wonder-blocks-icon": "^1.0.1",
-      "@khanacademy/wonder-blocks-spacing": "^2.0.2",
-      "@khanacademy/wonder-blocks-typography": "^1.0.4"
-    },
-    "peerDependencies": {
-      "aphrodite": "^1.2.5",
-      "react": "^16.4.1"
-    }
+  "name": "@khanacademy/wonder-blocks-form",
+  "version": "1.0.0",
+  "design": "v1",
+  "description": "Form components for Wonder Blocks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-color": "^1.0.5",
+    "@khanacademy/wonder-blocks-core": "^1.1.0",
+    "@khanacademy/wonder-blocks-icon": "^1.0.2",
+    "@khanacademy/wonder-blocks-spacing": "^2.0.3",
+    "@khanacademy/wonder-blocks-typography": "^1.0.5"
+  },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "^16.4.1"
   }
+}
