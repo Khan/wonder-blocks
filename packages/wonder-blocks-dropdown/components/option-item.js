@@ -10,7 +10,8 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
-import {Check, Checkbox} from "./check-icons.js";
+import Check from "./check.js";
+import Checkbox from "./checkbox.js";
 
 type OptionProps = {|
     /**

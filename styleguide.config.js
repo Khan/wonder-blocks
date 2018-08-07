@@ -36,6 +36,15 @@ module.exports = {
                 "packages/wonder-blocks-dropdown/components/single-select.js",
                 "packages/wonder-blocks-dropdown/components/multi-select.js",
             ],
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-dropdown/components/dropdown.js",
+                    ],
+                },
+            ],
         },
         {
             name: "Form",

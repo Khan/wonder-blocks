@@ -1,46 +1,13 @@
 // @flow
 
-/**
- * Check and checkbox components used by option item.
- */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import Icon from "@khanacademy/wonder-blocks-icon";
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-
-const {
-    blue,
-    white,
-    offBlack,
-    offBlack16,
-    offBlack32,
-    offBlack50,
-    offWhite,
-} = Color;
-
-type CheckProps = {|
-    disabled: boolean,
-    selected: boolean,
-    pressed: boolean,
-    hovered: boolean,
-    focused: boolean,
-|};
-
-export const Check = (props: CheckProps) => {
-    const {selected, pressed, hovered, focused} = props;
-    return (
-        <Icon
-            icon={icons.check}
-            size="small"
-            color={pressed || hovered || focused ? white : offBlack}
-            style={[styles.check, !selected && styles.hide]}
-        />
-    );
-};
 
 // NOTE(sophie): This is a smaller check specifically for use in checkboxes.
 // Please don't copy it automatically and check with designers before using.
@@ -50,8 +17,29 @@ const checkboxCheck: IconAsset = {
     small:
         "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
 };
+const {blue, white, offBlack16, offBlack32, offBlack50, offWhite} = Color;
 
-export const Checkbox = (props: CheckProps) => {
+/**
+ * Props describing the state of the OptionItem, shared by the check
+ * component,
+ */
+type CheckProps = {|
+    /** Whether option item is disabled. */
+    disabled: boolean,
+    /** Whether option item is selected. */
+    selected: boolean,
+    /** Whether option item is pressed. */
+    pressed: boolean,
+    /** Whether option item is hovered. */
+    hovered: boolean,
+    /** Whether option item is focused. */
+    focused: boolean,
+|};
+
+/**
+ * The checkbox component used by OptionItem.
+ */
+export default function Checkbox(props: CheckProps) {
     const {disabled, selected, pressed, hovered, focused} = props;
     const activeBlue = mix(offBlack32, blue);
     const clickInteraction = pressed || hovered || focused;
@@ -72,7 +60,6 @@ export const Checkbox = (props: CheckProps) => {
     return (
         <View
             style={[
-                styles.check,
                 styles.checkbox,
                 (clickInteraction || (selected && !disabled)) &&
                     styles.noBorder,
@@ -92,16 +79,13 @@ export const Checkbox = (props: CheckProps) => {
             )}
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
-    check: {
+    checkbox: {
         // Semantically, this are the constants for a small-sized icon
         minHeight: 16,
         minWidth: 16,
-    },
-
-    checkbox: {
         borderRadius: 3,
         borderWidth: 1,
         borderStyle: "solid",
@@ -123,9 +107,5 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: -1,
         left: -1,
-    },
-
-    hide: {
-        visibility: "hidden",
     },
 });

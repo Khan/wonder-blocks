@@ -169,7 +169,10 @@ export default class Dropdown extends React.Component<DropdownProps> {
                     }
                     modifiers={{
                         wbVisibility: visibilityModifierDefaultConfig,
-                        preventOverflow: {boundariesElement: "viewport"},
+                        preventOverflow: {
+                            boundariesElement: "viewport",
+                            escapeWithReference: true,
+                        },
                     }}
                 >
                     {({placement, ref, style, outOfBoundaries}) => {

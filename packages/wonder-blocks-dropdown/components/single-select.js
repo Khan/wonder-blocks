@@ -109,7 +109,6 @@ export default class SingleSelect extends React.Component<Props, State> {
         return React.Children.map(children, (option) => {
             const {value} = option.props;
             return React.cloneElement(option, {
-                key: value,
                 onToggle: (value, state) => this.handleToggle(value),
                 selected: selectedValue === value,
                 variant: "check",

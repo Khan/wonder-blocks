@@ -176,12 +176,10 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         return React.Children.map(children, (item, index) => {
             if (item.type === ActionItem) {
                 return React.cloneElement(item, {
-                    key: index,
                     indent: containsOptionItems,
                 });
             } else if (item.type === OptionItem) {
                 return React.cloneElement(item, {
-                    key: index,
                     onToggle: (value, state) =>
                         this.handleSelected(value, state),
                     selected: selectedValues
@@ -190,9 +188,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                     variant: "check",
                 });
             } else {
-                return React.cloneElement(item, {
-                    key: index,
-                });
+                return item;
             }
         });
     }

@@ -204,7 +204,6 @@ export default class MultiSelect extends React.Component<Props, State> {
         return React.Children.map(children, (option) => {
             const {value} = option.props;
             return React.cloneElement(option, {
-                key: value,
                 onToggle: (value, state) => this.handleToggle(value, state),
                 selected: selectedValues.includes(value),
                 variant: "checkbox",
