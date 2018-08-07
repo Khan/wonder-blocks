@@ -60,7 +60,7 @@ export function processStyleList<T: Object>(
                     // to the uppercase version of that letter, without the
                     // leading dash.
                     def[
-                        key.replace(new RegExp("-[a-z]", "g"), (match) =>
+                        key.replace(/-[a-z]/g, (match) =>
                             match[1].toUpperCase(),
                         )
                     ] = value;
