@@ -1,10 +1,10 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.5",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,14 +14,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-button": "^1.0.1",
-    "@khanacademy/wonder-blocks-color": "^1.0.4",
-    "@khanacademy/wonder-blocks-core": "^1.0.4",
-    "@khanacademy/wonder-blocks-icon": "1.0.1",
-    "@khanacademy/wonder-blocks-icon-button": "^1.0.1",
-    "@khanacademy/wonder-blocks-modal": "^1.0.1",
-    "@khanacademy/wonder-blocks-spacing": "^2.0.2",
-    "@khanacademy/wonder-blocks-typography": "^1.0.4"
+    "@khanacademy/wonder-blocks-button": "^2.0.0",
+    "@khanacademy/wonder-blocks-color": "^1.0.5",
+    "@khanacademy/wonder-blocks-core": "^1.1.0",
+    "@khanacademy/wonder-blocks-icon": "^1.0.2",
+    "@khanacademy/wonder-blocks-icon-button": "^2.0.0",
+    "@khanacademy/wonder-blocks-modal": "^1.1.0",
+    "@khanacademy/wonder-blocks-spacing": "^2.0.3",
+    "@khanacademy/wonder-blocks-typography": "^1.0.5"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
