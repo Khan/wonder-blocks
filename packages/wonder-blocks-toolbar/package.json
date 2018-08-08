@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-toolbar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -14,8 +14,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.0.5",
-    "@khanacademy/wonder-blocks-core": "^1.1.0"
+    "@khanacademy/wonder-blocks-color": "^1.0.6",
+    "@khanacademy/wonder-blocks-core": "^1.1.1"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
