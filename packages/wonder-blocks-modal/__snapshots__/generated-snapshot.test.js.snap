@@ -4201,14 +4201,12 @@ exports[`wonder-blocks-modal example 9 1`] = `
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexDirection": "row",
-            "height": "100%",
+            "flexDirection": "column",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": "100%",
             "zIndex": 0,
           }
         }
@@ -4510,14 +4508,12 @@ exports[`wonder-blocks-modal example 10 1`] = `
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexDirection": "row",
-            "height": "100%",
+            "flexDirection": "column",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": "100%",
             "zIndex": 0,
           }
         }
@@ -4667,9 +4663,82 @@ exports[`wonder-blocks-modal example 10 1`] = `
                 }
               }
             >
-              <span>
-                Foo
-              </span>
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h1
+                  className=""
+                  style={
+                    Object {
+                      "@media (maxWidth: 1023px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "@media (minWidth: 1024px)": Object {
+                        "fontSize": 36,
+                        "lineHeight": "40px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontWeight": 900,
+                      "marginBottom": 16,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Title
+                </h1>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+              </div>
             </div>
           </div>
           <div
@@ -4700,8 +4769,65 @@ exports[`wonder-blocks-modal example 10 1`] = `
               }
             }
           >
-            <button>
-              Bar
+            <button
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "#1865f2",
+                  "border": "none",
+                  "borderRadius": 4,
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 0,
+                  "outline": "none",
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                }
+              }
+              tabIndex={0}
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato, sans-serif",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "lineHeight": "20px",
+                    "pointerEvents": "none",
+                  }
+                }
+              >
+                Ok
+              </span>
             </button>
           </div>
         </div>

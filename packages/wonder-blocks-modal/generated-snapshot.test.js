@@ -814,8 +814,38 @@ describe("wonder-blocks-modal", () => {
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
                     <OneColumnModal
-                        content={<span>Foo</span>}
-                        footer={<button>Bar</button>}
+                        content={
+                            <View>
+                                <Title style={styles.title}>Title</Title>
+                                <Body>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure
+                                    dolor in reprehenderit in voluptate velit
+                                    esse cillum dolore eu fugiat nulla pariatur.
+                                    Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt
+                                    mollit anim id est.
+                                </Body>
+                                <Body>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure
+                                    dolor in reprehenderit in voluptate velit
+                                    esse cillum dolore eu fugiat nulla pariatur.
+                                    Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt
+                                    mollit anim id est.
+                                </Body>
+                            </View>
+                        }
+                        footer={<Button>Ok</Button>}
                         onClickCloseButton={() =>
                             alert("This would close the modal.")
                         }

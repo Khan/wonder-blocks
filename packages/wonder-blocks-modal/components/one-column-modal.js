@@ -54,7 +54,7 @@ class ContentWrapper extends React.Component<WrappedProps> {
 
         if (mediaSize !== "small") {
             return (
-                <View style={styles.contentWrapper}>
+                <View>
                     <ModalPanel
                         showCloseButton
                         onClickCloseButton={onClickCloseButton}
@@ -67,9 +67,7 @@ class ContentWrapper extends React.Component<WrappedProps> {
 
         return (
             <View style={styles.contentFooterWrapper}>
-                <View
-                    style={[styles.contentWrapper, styles.smallContentWrapper]}
-                >
+                <View style={styles.smallContentWrapper}>
                     <ModalPanel
                         showCloseButton
                         onClickCloseButton={onClickCloseButton}
@@ -131,12 +129,6 @@ const styles = StyleSheet.create({
     contentFooterWrapper: {
         flexDirection: "column",
         height: "100%",
-    },
-
-    contentWrapper: {
-        flexDirection: "row",
-        height: "100%",
-        width: "100%",
     },
 
     smallContentWrapper: {
