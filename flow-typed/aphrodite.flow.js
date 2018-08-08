@@ -122,7 +122,7 @@ type CSSProperties = {|
     float?: any,
     flowFrom?: any,
     font?: any,
-    fontFamily?: any,
+    fontFamily?: string,
     fontKerning?: any,
     fontSize?: number | string,
     fontSizeAdjust?: any,
