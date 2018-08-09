@@ -429,6 +429,7 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 4,
         "zIndex": 0,
       }
     }
@@ -509,6 +510,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 4,
         "zIndex": 0,
       }
     }

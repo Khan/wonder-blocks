@@ -14,12 +14,13 @@ type Props = {|
  */
 export default class Strut extends React.Component<Props> {
     render() {
-        return <View aria-hidden="true" style={flexBasis(this.props.size)} />;
+        return <View aria-hidden="true" style={strutStyle(this.props.size)} />;
     }
 }
 
-const flexBasis = (size) => {
+const strutStyle = (size) => {
     return {
+        width: size,
         MsFlexBasis: size,
         MsFlexPreferredSize: size,
         WebkitFlexBasis: size,

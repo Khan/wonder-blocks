@@ -282,6 +282,7 @@ exports[`wonder-blocks-core example 4 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
@@ -459,6 +460,7 @@ exports[`wonder-blocks-core example 5 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
@@ -747,6 +749,7 @@ exports[`wonder-blocks-core example 7 1`] = `
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": "2em",
           "zIndex": 0,
         }
       }

@@ -103,6 +103,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
@@ -189,6 +190,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
@@ -357,6 +359,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
