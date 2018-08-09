@@ -119,8 +119,8 @@ class Row extends React.Component<{
                 <View
                     style={[
                         styles.row,
-                        maxWidth && styles.rowMaxWidth,
-                        maxWidth && {maxWidth},
+                        !!maxWidth && styles.rowMaxWidth,
+                        !!maxWidth && {maxWidth},
                     ]}
                 >
                     <FixedWidthCell width={marginWidth} />
