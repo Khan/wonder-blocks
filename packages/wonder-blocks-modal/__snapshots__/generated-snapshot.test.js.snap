@@ -4207,6 +4207,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": "100%",
             "zIndex": 0,
           }
         }
@@ -4514,6 +4515,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": "100%",
             "zIndex": 0,
           }
         }
