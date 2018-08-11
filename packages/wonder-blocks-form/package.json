@@ -4,6 +4,8 @@
   "design": "v1",
   "description": "Form components for Wonder Blocks.",
   "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "source": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +18,7 @@
     "@khanacademy/wonder-blocks-color": "^1.0.6",
     "@khanacademy/wonder-blocks-core": "^1.1.1",
     "@khanacademy/wonder-blocks-icon": "^1.0.3",
+    "@khanacademy/wonder-blocks-layout": "^1.0.3",
     "@khanacademy/wonder-blocks-spacing": "^2.0.4",
     "@khanacademy/wonder-blocks-typography": "^1.0.6"
   },
