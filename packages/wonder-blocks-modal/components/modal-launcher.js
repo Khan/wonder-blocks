@@ -1,8 +1,6 @@
 // @flow
 import * as React from "react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
-
 import ModalLauncherPortal from "./modal-launcher-portal.js";
 import ModalBackdrop from "./modal-backdrop.js";
 import ScrollDisabler from "./scroll-disabler.js";
@@ -93,8 +91,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
         });
 
         return (
-            // TODO(mdr): This can be a fragment once we're on React 16.
-            <View>
+            <React.Fragment>
                 {renderedChildren}
                 {this.state.opened && (
                     <ModalLauncherPortal>
@@ -109,7 +106,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                     />
                 )}
                 {this.state.opened && <ScrollDisabler />}
-            </View>
+            </React.Fragment>
         );
     }
 }
