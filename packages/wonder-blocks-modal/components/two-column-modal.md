@@ -194,3 +194,72 @@ const styles = StyleSheet.create({
     </View>
 </View>;
 ```
+
+The example shows an example of a TwoColumnModal with a fullbleed-style image as
+the sidebar.
+```js
+const {StyleSheet, css} = require("aphrodite");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+const {HeadingLarge, Body} = require("@khanacademy/wonder-blocks-typography");
+
+const styles = StyleSheet.create({
+    previewSizer: {
+        height: 512,
+    },
+
+    modalPositioner: {
+        // Checkerboard background
+        backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        backgroundSize: "20px 20px",
+        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    },
+
+    imageContainer: {
+        position: "absolute",
+        left: 0,
+        bottom: 0,
+        backgroundImage: "url('pencilHand-800x.png')",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center bottom",
+        width: "100%",
+        height: "100%",
+    },
+});
+
+<View style={styles.previewSizer}>
+    <View style={styles.modalPositioner}>
+        <TwoColumnModal
+            sidebar={<View style={styles.imageContainer} />}
+            content={
+                <View>
+                    <HeadingLarge>
+                        Welcome to your class.
+                    </HeadingLarge>
+                    <Strut size={Spacing.medium} />
+                    <Body>
+                        Assignments or goals your teacher creates for you will
+                        appear at the top of your Khan Academy home page.
+                    </Body>
+                </View>
+            }
+            footer={<Button>Onward! (no-op)</Button>}
+            onClickCloseButton={() => alert("This would close the modal.")}
+        />
+    </View>
+</View>;
+```
