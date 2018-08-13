@@ -240,7 +240,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         if (
             this.props.href
                 ? keyCode === keyCodes.enter
-                : (keyCode === keyCodes.enter || keyCode === keyCodes.space)
+                : keyCode === keyCodes.space
         ) {
             this.keyboardClick = true;
             this.setState({pressed: true});
@@ -252,7 +252,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         if (
             this.props.href
                 ? keyCode === keyCodes.enter
-                : (keyCode === keyCodes.enter || keyCode === keyCodes.space)
+                : keyCode === keyCodes.space
         ) {
             this.setState({pressed: false, focused: true});
             if (this.props.onClick) {

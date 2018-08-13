@@ -2,9 +2,8 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 
-// import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import ButtonCore from "./button-core.js";
-import getClickableBehavior from "../../wonder-blocks-core/util/get-clickable-behavior";
 
 export type SharedProps = {|
     /**
@@ -85,7 +84,7 @@ export type SharedProps = {|
     skipClientNav?: boolean,
 
     /**
-     * The content of the modal, appearing between the titlebar and footer.
+     * Optional custom styles.
      */
     style?: any,
     // TODO(yejia): use this if ADR #47 has been implemented
