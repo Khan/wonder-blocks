@@ -1,7 +1,9 @@
 ### Single select with placeholder
 
-This single select has a starting placeholder and a set width. One item is wider
-than the width, and so the text ellipses.
+This single select has a starting placeholder and a set minWidth and maxWidth.
+Notice how the dropdown is always at least as wide as the opener. Also, when
+the first item is chosen, the text in the opener would exceed the maxWidth. It
+ellipses instead.
 
 ```js
 const React = require("react");
@@ -13,7 +15,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     setWidth: {
-        width: 170,
+        minWidth: 170,
+        maxWidth: 190,
     },
 });
 
@@ -37,8 +40,7 @@ class ExampleWithPlaceholder extends React.Component {
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
-            openerStyle={styles.setWidth}
-            dropdownStyle={styles.setWidth}
+            style={styles.setWidth}
         >
             <OptionItem label="Vine-ripened tomatoes" value="tomato" />
             <OptionItem label="Watermelon" value="watermelon" />
@@ -164,6 +166,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     darkBackgroundWrapper: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
         backgroundColor: Color.default.darkBlue,
         width: 350,
         height: 200,
