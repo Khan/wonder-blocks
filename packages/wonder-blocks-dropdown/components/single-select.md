@@ -1,4 +1,4 @@
-### Single select with placeholder
+### Single select with placeholder and set widths
 
 This single select has a starting placeholder and a set minWidth and maxWidth.
 Notice how the dropdown is always at least as wide as the opener. Also, when
@@ -25,7 +25,8 @@ class ExampleWithPlaceholder extends React.Component {
         super();
         this.state = {
             selectedValue: null,
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(selected) {
@@ -37,7 +38,7 @@ class ExampleWithPlaceholder extends React.Component {
 
     render() {
         return <SingleSelect
-            onChange={(selected) => this.handleChange(selected)}
+            onChange={this.handleChange}
             placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
             style={styles.setWidth}
@@ -75,7 +76,8 @@ class ExampleWithStartingSelection extends React.Component {
         super();
         this.state = {
             selectedValue: "banana",
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(selected) {
@@ -87,7 +89,7 @@ class ExampleWithStartingSelection extends React.Component {
 
     render() {
         return <SingleSelect
-            onChange={(selected) => this.handleChange(selected)}
+            onChange={this.handleChange}
             placeholder="Choose a juice"
             selectedValue={this.state.selectedValue}
         >
@@ -122,7 +124,8 @@ class DisabledExample extends React.Component {
         super();
         this.state = {
             selectedValue: "banana",
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(selected) {
@@ -135,7 +138,7 @@ class DisabledExample extends React.Component {
     render() {
         return <SingleSelect
             disabled={true}
-            onChange={(selected) => this.handleChange(selected)}
+            onChange={this.handleChange}
             placeholder="Choose a juice"
             selectedValue={this.state.selectedValue}
         >
@@ -181,7 +184,8 @@ class LightRightAlignedExample extends React.Component {
         super();
         this.state = {
             selectedValue: null,
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(selected) {
@@ -195,7 +199,7 @@ class LightRightAlignedExample extends React.Component {
         return <SingleSelect
             alignment="right"
             light={true}
-            onChange={(selected) => this.handleChange(selected)}
+            onChange={this.handleChange}
             placeholder="Boba order"
             selectedValue={this.state.selectedValue}
         >

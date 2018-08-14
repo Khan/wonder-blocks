@@ -1,5 +1,4 @@
 // @flow
-// A select opener
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -37,28 +36,33 @@ type SelectOpenerProps = {|
      * Whether the SelectOpener is disabled. If disabled, disallows interaction.
      * Default false.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Whether the displayed text is a placeholder, determined by the creator
      * of this component. A placeholder has more faded text colors and styles.
      */
-    isPlaceholder?: boolean,
+    isPlaceholder: boolean,
 
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
      */
-    light?: boolean,
+    light: boolean,
 
     /**
      * Callback for when the SelectOpener is pressed.
      */
-    onClick: () => void,
+    onOpenChanged: (open: boolean, keyboard: boolean) => void,
+
+    /**
+     * Whether the dropdown is open.
+     */
+    open: boolean,
 |};
 
 /**
- * An opener that opens selects.
+ * An opener that opens select boxes.
  */
 export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static defaultProps = {
@@ -69,8 +73,14 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
     static contextTypes = {router: PropTypes.any};
 
+    handleClick = (e: SyntheticEvent<>) => {
+        const {open} = this.props;
+        // TODO: also detect enter click events
+        this.props.onOpenChanged(!open, e.type === "keyup");
+    };
+
     render() {
-        const {children, disabled, isPlaceholder, light, onClick} = this.props;
+        const {children, disabled, isPlaceholder, light} = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
@@ -86,7 +96,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         return (
             <ClickableBehavior
                 disabled={disabled}
-                onClick={onClick}
+                onClick={this.handleClick}
                 triggerOnEnter={false}
             >
                 {(state, handlers) => {

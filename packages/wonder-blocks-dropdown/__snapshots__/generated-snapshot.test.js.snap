@@ -23,6 +23,8 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -155,6 +157,8 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -287,6 +291,8 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -441,6 +447,8 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -592,6 +600,8 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -771,6 +781,8 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
   >
     <div
       className=""
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
       style={
         Object {
           "alignItems": "stretch",
@@ -922,6 +934,8 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -1075,6 +1089,8 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
         "alignItems": "stretch",

@@ -6,26 +6,23 @@ import SelectOpener from "./select-opener.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import MultiSelect from "./multi-select.js";
-
-const keyCodes = {
-    enter: 13,
-    space: 32,
-};
+import {keyCodes} from "../util/constants.js";
 
 describe("MultiSelect", () => {
+    global.scrollTo = jest.fn();
     let select;
     const allChanges = [];
     const saveUpdate = (update) => {
         allChanges.push(update);
     };
-    const onClick = jest.fn();
+    const onChange = jest.fn();
 
     beforeEach(() => {
         select = mount(
             <MultiSelect
                 onChange={(selectedValues) => {
                     saveUpdate(selectedValues);
-                    onClick();
+                    onChange();
                 }}
                 placeholder="Choose"
                 selectItemType="students"
@@ -82,7 +79,7 @@ describe("MultiSelect", () => {
         item.simulate("click");
 
         // Expect select's onChange callback to have been called
-        expect(onClick).toHaveBeenCalledTimes(1);
+        expect(onChange).toHaveBeenCalledTimes(1);
         expect(allChanges.length).toEqual(1);
         const currentlySelected = allChanges.pop();
 

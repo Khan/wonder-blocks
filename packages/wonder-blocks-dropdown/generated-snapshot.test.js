@@ -75,6 +75,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: ["homework"],
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(update) {
@@ -87,9 +88,7 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <ActionMenu
                         menuText="Assignments"
-                        onChange={(selectedValues) =>
-                            this.handleChange(selectedValues)
-                        }
+                        onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                     >
                         <ActionItem
@@ -155,6 +154,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: null,
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(selected) {
@@ -167,7 +167,7 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <SingleSelect
-                        onChange={(selected) => this.handleChange(selected)}
+                        onChange={this.handleChange}
                         placeholder="Choose a fruit"
                         selectedValue={this.state.selectedValue}
                         style={styles.setWidth}
@@ -208,6 +208,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: "banana",
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(selected) {
@@ -220,7 +221,7 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <SingleSelect
-                        onChange={(selected) => this.handleChange(selected)}
+                        onChange={this.handleChange}
                         placeholder="Choose a juice"
                         selectedValue={this.state.selectedValue}
                     >
@@ -261,6 +262,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: "banana",
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(selected) {
@@ -274,7 +276,7 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <SingleSelect
                         disabled={true}
-                        onChange={(selected) => this.handleChange(selected)}
+                        onChange={this.handleChange}
                         placeholder="Choose a juice"
                         selectedValue={this.state.selectedValue}
                     >
@@ -325,6 +327,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: null,
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(selected) {
@@ -339,7 +342,7 @@ describe("wonder-blocks-dropdown", () => {
                     <SingleSelect
                         alignment="right"
                         light={true}
-                        onChange={(selected) => this.handleChange(selected)}
+                        onChange={this.handleChange}
                         placeholder="Boba order"
                         selectedValue={this.state.selectedValue}
                     >
@@ -391,9 +394,10 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: [],
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
-            handleChanges(update) {
+            handleChange(update) {
                 console.log("changes happened!");
                 this.setState({
                     selectedValues: update,
@@ -403,15 +407,17 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <MultiSelect
-                        onChange={(selectedValues) =>
-                            this.handleChanges(selectedValues)
-                        }
+                        onChange={this.handleChange}
                         placeholder="Color palette"
                         selectedValues={this.state.selectedValues}
                         selectItemType="colors"
                         style={styles.setWidth}
                     >
-                        <OptionItem label="Red" value="1" />
+                        <OptionItem
+                            label="Red"
+                            value="1"
+                            onClick={() => console.log("Roses are red")}
+                        />
                         <OptionItem label="Yellow" value="2" disabled />
                         <OptionItem label="Green" value="3" />
                         <OptionItem label="Blue" value="4" />
@@ -445,6 +451,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: ["wonderblocks 4ever"],
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(update) {
@@ -458,9 +465,7 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <MultiSelect
                         shortcuts={true}
-                        onChange={(selectedValues) =>
-                            this.handleChange(selectedValues)
-                        }
+                        onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                         selectItemType="interns"
                     >
@@ -528,9 +533,10 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: [],
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
-            handleChanges(update) {
+            handleChange(update) {
                 console.log("changes happened!");
                 this.setState({
                     selectedValues: update,
@@ -540,9 +546,7 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <MultiSelect
-                        onChange={(selectedValues) =>
-                            this.handleChanges(selectedValues)
-                        }
+                        onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                         selectItemType="Great Houses"
                         style={styles.setWidth}

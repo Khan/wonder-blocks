@@ -62,6 +62,7 @@ class HybridMenu extends React.Component {
         this.state = {
             selectedValues: ["homework"],
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(update) {
@@ -73,7 +74,7 @@ class HybridMenu extends React.Component {
     render() {
         return <ActionMenu
             menuText="Assignments"
-            onChange={(selectedValues) => this.handleChange(selectedValues)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
         >
             <ActionItem label="Create..." onClick={() => console.log("create action")} />
