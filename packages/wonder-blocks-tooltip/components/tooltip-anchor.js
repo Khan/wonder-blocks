@@ -20,7 +20,7 @@ type Props = {|
      * A method that renders the content for anchoring the tooltip.
      * This must return a TooltipPortalMounter component.
      */
-    children: (active: boolean) => React.Element<typeof TooltipPortalMounter>,
+    children: (active: boolean) => React.Fragment,
 
     /**
      * Callback to be invoked when the anchored content is mounted.

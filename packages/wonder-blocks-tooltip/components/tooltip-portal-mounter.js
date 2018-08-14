@@ -12,7 +12,8 @@ type Props = {|
      * The child element to be rendered within the main React tree.
      * This is the component to which the tooltip is anchored.
      */
-    anchor: React.Element<*>,
+    // anchor: React.Element<*>,
+    anchorNode: ?HTMLElement,
 
     /** The tooltip that will be rendered in the portal. */
     children: ?React.Element<typeof TooltipPopper>,
@@ -51,7 +52,7 @@ export default class TooltipPortalMounter extends React.Component<Props> {
     }
 
     _getPortalParent() {
-        const anchorNode = ReactDOM.findDOMNode(this);
+        const anchorNode = this.props.anchorNode; //  ReactDOM.findDOMNode(this);
         if (!anchorNode) {
             return null;
         }
@@ -153,6 +154,14 @@ export default class TooltipPortalMounter extends React.Component<Props> {
     }
 
     render() {
-        return this.props.anchor;
+        return null;
+        // return this.props.anchor;
+        // return <React.Fragment>
+        //     {ReactDOM.createPortal(
+        //         this.props.children,
+        //         this._destination,
+        //     )}
+        //     {this.props.anchor}
+        // </React.Fragment>;
     }
 }

@@ -107,6 +107,7 @@ export default class Tooltip extends React.Component<Props, State> {
 
     _updateAnchorElement(ref: ?Element) {
         if (ref && ref !== this.state.anchorElement) {
+            console.log(ref);
             this.setState({anchorElement: ((ref: any): HTMLElement)});
         }
     }
@@ -181,13 +182,15 @@ export default class Tooltip extends React.Component<Props, State> {
                 forceAnchorFocusivity={forceAnchorFocusivity}
                 anchorRef={(r) => this._updateAnchorElement(r)}
             >
-                {(active) => (
-                    <TooltipPortalMounter
-                        anchor={this._renderAnchorElement(ids)}
-                    >
-                        {this._renderPopper(active, ids)}
-                    </TooltipPortalMounter>
-                )}
+                {(active) => {
+                    console.log(active);
+                    return <React.Fragment>
+                        {this._renderAnchorElement(ids)}
+                        <TooltipPortalMounter anchorNode={this.state.anchorElement}>
+                            {this._renderPopper(active, ids)}
+                        </TooltipPortalMounter>
+                    </React.Fragment>
+                }}
             </TooltipAnchor>
         );
     }
