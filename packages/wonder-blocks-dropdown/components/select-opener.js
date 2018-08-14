@@ -55,11 +55,6 @@ type SelectOpenerProps = {|
      * Callback for when the SelectOpener is pressed.
      */
     onClick: () => void,
-
-    /**
-     * Custom style. Mostly used for preferred width of this select box.
-     */
-    style?: any,
 |};
 
 /**
@@ -75,14 +70,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
-        const {
-            children,
-            disabled,
-            isPlaceholder,
-            light,
-            onClick,
-            style,
-        } = this.props;
+        const {children, disabled, isPlaceholder, light, onClick} = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
@@ -113,7 +101,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                                         ? stateStyles.active
                                         : (hovered || focused) &&
                                           stateStyles.focus),
-                                style,
                             ]}
                             {...handlers}
                         >

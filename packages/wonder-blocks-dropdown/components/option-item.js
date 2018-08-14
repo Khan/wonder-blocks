@@ -5,7 +5,6 @@ import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
@@ -34,15 +33,14 @@ type OptionProps = {|
     /**
      * Optional user-supplied callback when this item is called.
      */
-    onClick?: (oldSelectionState: boolean) => void,
+    onClick?: () => void,
 
     /**
      * Callback for when this item is pressed to change its selection state.
-     * Passes value of the item and its old selection state. Auto-populated by
-     * menu or select.
+     * Passes value of the item. Auto-populated by menu or select.
      * @ignore
      */
-    onToggle: (value: string, oldSelectionState: boolean) => void,
+    onToggle: (value: string) => void,
 
     /**
      * Whether this item is selected. Auto-populated by menu or select.
@@ -60,7 +58,8 @@ type OptionProps = {|
 
 /**
  * For option items that can be selected in a dropdown, selection denoted either
- * with a check ✔️ or a checkbox ☑️
+ * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
+ * MultiSelect.
  */
 export default class OptionItem extends React.Component<OptionProps> {
     static defaultProps = {
@@ -96,9 +95,9 @@ export default class OptionItem extends React.Component<OptionProps> {
             <ClickableBehavior
                 disabled={disabled}
                 onClick={() => {
-                    onToggle(value, selected);
+                    onToggle(value);
                     if (onClick) {
-                        onClick(selected);
+                        onClick();
                     }
                 }}
             >
@@ -125,7 +124,6 @@ export default class OptionItem extends React.Component<OptionProps> {
                                 selected={selected}
                                 {...state}
                             />
-                            <Strut size={8} />
                             <LabelLarge style={styles.label}>
                                 {label}
                             </LabelLarge>
@@ -171,13 +169,7 @@ const styles = StyleSheet.create({
 
     label: {
         whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        textAlign: "left",
-    },
-
-    spacing: {
-        minWidth: 8,
+        marginLeft: Spacing.xSmall,
     },
 
     hide: {

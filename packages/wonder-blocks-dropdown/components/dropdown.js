@@ -59,6 +59,11 @@ type DropdownProps = {|
      * Styling specific to the dropdown component that isn't part of the opener.
      */
     dropdownStyle?: any,
+
+    /**
+     * User-supplied optional styling.
+     */
+    style?: any,
 |};
 
 /**
@@ -114,7 +119,8 @@ export default class Dropdown extends React.Component<DropdownProps> {
     handleInteract = (event: {target: any}) => {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target;
-        if (open && this.element && !this.element.contains(target)) {
+        const thisElement = ReactDOM.findDOMNode(this);
+        if (open && thisElement && !thisElement.contains(target)) {
             onOpenChanged(false);
         }
     };
@@ -129,7 +135,13 @@ export default class Dropdown extends React.Component<DropdownProps> {
     };
 
     renderMenu(outOfBoundaries: ?boolean) {
-        const {children, light, dropdownStyle} = this.props;
+        const {children, dropdownStyle, light, openerElement} = this.props;
+
+        // The dropdown width is at least the width of the opener.
+        const openerStyle = window.getComputedStyle(openerElement);
+        const minDropdownWidth = openerStyle
+            ? openerStyle.getPropertyValue("width")
+            : 0;
 
         return (
             <View
@@ -142,6 +154,7 @@ export default class Dropdown extends React.Component<DropdownProps> {
                     styles.dropdown,
                     light && styles.light,
                     outOfBoundaries && styles.hidden,
+                    {minWidth: minDropdownWidth},
                     dropdownStyle,
                 ]}
             >
@@ -193,20 +206,10 @@ export default class Dropdown extends React.Component<DropdownProps> {
     }
 
     render() {
-        const {alignment, open, opener} = this.props;
+        const {open, opener, style} = this.props;
 
         return (
-            <View
-                ref={(node) =>
-                    (this.element = ((ReactDOM.findDOMNode(
-                        node,
-                    ): any): Element))
-                }
-                style={[
-                    styles.menuWrapper,
-                    alignment === "right" && styles.rightAlign,
-                ]}
-            >
+            <View style={[styles.menuWrapper, style]}>
                 {opener}
                 {open && this.renderDropdown()}
             </View>
@@ -216,11 +219,7 @@ export default class Dropdown extends React.Component<DropdownProps> {
 
 const styles = StyleSheet.create({
     menuWrapper: {
-        alignItems: "flex-start",
-    },
-
-    rightAlign: {
-        alignItems: "flex-end",
+        width: "fit-content",
     },
 
     dropdown: {
