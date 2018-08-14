@@ -29,11 +29,5 @@ function maybeGetNextAncestorModalLauncherPortal(element: ?(Element | Text)) {
 export default function maybeGetPortalMountedModalHostElement(
     element: ?(Element | Text),
 ) {
-    const modalLauncherPortal = maybeGetNextAncestorModalLauncherPortal(
-        element,
-    );
-    // If we have a portal, then the first child should be the actual
-    // data-react-root that contains the modal, which is what we want to
-    // return.
-    return modalLauncherPortal; //  && modalLauncherPortal.firstElementChild;
+    return maybeGetNextAncestorModalLauncherPortal(element);
 }
