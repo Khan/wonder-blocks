@@ -177,18 +177,20 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         disabled: false,
     };
 
+    static getDerivedStateFromProps(props: Props, state: State) {
+        // If new props are disabled, reset the hovered/focused/pressed states
+        if (props.disabled) {
+            return startState;
+        } else {
+            // Cannot return undefined
+            return null;
+        }
+    }
+
     constructor(props: Props) {
         super(props);
 
         this.state = startState;
-    }
-
-    // TODO(sophie): This method is deprecated in React 16. Once we update to
-    // React 16, we should use static getDerivedStateFromProps instead.
-    componentWillReceiveProps(nextProps: Props) {
-        if (nextProps.disabled) {
-            this.setState(startState);
-        }
     }
 
     handleClick = (e: SyntheticMouseEvent<>) => {

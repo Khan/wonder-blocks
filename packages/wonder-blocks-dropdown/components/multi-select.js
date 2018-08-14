@@ -64,14 +64,9 @@ type Props = {|
     light: boolean,
 
     /**
-     * Optional styling to add to the opener component.
+     * Optional styling to add to the opener component wrapper.
      */
-    openerStyle?: any,
-
-    /**
-     * Optional styling to add to the dropdown wrapper.
-     */
-    dropdownStyle?: any,
+    style?: any,
 |};
 
 type State = {|
@@ -82,9 +77,12 @@ type State = {|
 |};
 
 /**
- *  A dropdown that consists of multiple selection items. This select allows
+ * A dropdown that consists of multiple selection items. This select allows
  * multiple options to be selected. Clients are responsible for keeping track
  * of the selected items.
+ *
+ * The multi select stays open until closed by the user. The onChange callback
+ * happens every time there is a change in the selection of the items.
  */
 export default class MultiSelect extends React.Component<Props, State> {
     openerElement: ?Element;
@@ -109,10 +107,10 @@ export default class MultiSelect extends React.Component<Props, State> {
         });
     }
 
-    handleToggle(selectedValue: string, oldSelectionState: boolean) {
+    handleToggle(selectedValue: string) {
         const {onChange, selectedValues} = this.props;
 
-        if (oldSelectionState) {
+        if (selectedValues.includes(selectedValue)) {
             const index = selectedValues.indexOf(selectedValue);
             const updatedSelection = [
                 ...selectedValues.slice(0, index),
@@ -204,7 +202,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         return React.Children.map(children, (option) => {
             const {value} = option.props;
             return React.cloneElement(option, {
-                onToggle: (value, state) => this.handleToggle(value, state),
+                onToggle: (value) => this.handleToggle(value),
                 selected: selectedValues.includes(value),
                 variant: "checkbox",
             });
@@ -212,14 +210,7 @@ export default class MultiSelect extends React.Component<Props, State> {
     }
 
     render() {
-        const {
-            alignment,
-            disabled,
-            light,
-            placeholder,
-            openerStyle,
-            dropdownStyle,
-        } = this.props;
+        const {alignment, disabled, light, placeholder, style} = this.props;
 
         const {open} = this.state;
 
@@ -236,7 +227,6 @@ export default class MultiSelect extends React.Component<Props, State> {
                         node,
                     ): any): Element))
                 }
-                style={openerStyle}
             >
                 {menuText}
             </SelectOpener>
@@ -247,12 +237,13 @@ export default class MultiSelect extends React.Component<Props, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={[{marginTop: 8, marginBottom: 8}, dropdownStyle]}
+                dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 light={light}
                 onOpenChanged={(open) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
+                style={style}
             >
                 {items}
             </Dropdown>

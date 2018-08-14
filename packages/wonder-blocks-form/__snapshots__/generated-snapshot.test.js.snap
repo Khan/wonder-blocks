@@ -121,6 +121,7 @@ exports[`wonder-blocks-form example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -246,6 +247,7 @@ exports[`wonder-blocks-form example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -353,6 +355,7 @@ exports[`wonder-blocks-form example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -478,6 +481,7 @@ exports[`wonder-blocks-form example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -586,6 +590,7 @@ exports[`wonder-blocks-form example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -713,6 +718,7 @@ exports[`wonder-blocks-form example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -844,6 +850,7 @@ exports[`wonder-blocks-form example 2 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1076,6 +1083,7 @@ exports[`wonder-blocks-form example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1207,6 +1215,7 @@ exports[`wonder-blocks-form example 4 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1315,6 +1324,7 @@ exports[`wonder-blocks-form example 4 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1423,6 +1433,7 @@ exports[`wonder-blocks-form example 4 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1531,6 +1542,7 @@ exports[`wonder-blocks-form example 4 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1640,6 +1652,7 @@ exports[`wonder-blocks-form example 4 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1762,6 +1775,7 @@ exports[`wonder-blocks-form example 4 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -1880,6 +1894,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 12,
             "zIndex": 0,
           }
         }
@@ -1986,6 +2001,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -2035,6 +2051,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -2141,6 +2158,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -2209,6 +2227,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -2315,6 +2334,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -2364,6 +2384,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -2470,6 +2491,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -2519,6 +2541,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -2625,6 +2648,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -2674,6 +2698,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -2798,6 +2823,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -3023,6 +3049,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -3072,6 +3099,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -3180,6 +3208,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -3229,6 +3258,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -3337,6 +3367,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -3386,6 +3417,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -3494,6 +3526,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -3543,6 +3576,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -3651,6 +3685,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -3700,6 +3735,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -3808,6 +3844,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -3950,6 +3987,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 12,
             "zIndex": 0,
           }
         }
@@ -4056,6 +4094,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -4105,6 +4144,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -4212,6 +4252,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -4281,6 +4322,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -4387,6 +4429,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -4436,6 +4479,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -4542,6 +4586,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }
@@ -4591,6 +4636,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 8,
             "zIndex": 0,
           }
         }
@@ -4697,6 +4743,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
+                "width": 8,
                 "zIndex": 0,
               }
             }

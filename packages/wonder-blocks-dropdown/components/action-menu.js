@@ -25,11 +25,6 @@ type OpenerProps = {|
      * Callback for when the opener is pressed.
      */
     onClick: () => void,
-
-    /**
-     * Style to apply to the opener.
-     */
-    style?: any,
 |};
 
 class ActionMenuOpener extends React.Component<OpenerProps> {
@@ -38,7 +33,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
     };
 
     render() {
-        const {children, disabled, onClick, style} = this.props;
+        const {children, disabled, onClick} = this.props;
 
         return (
             // $FlowFixMe: button doesn't allow 'role' prop or Icon as children
@@ -49,7 +44,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
                 kind="tertiary"
                 light={false}
                 onClick={onClick}
-                style={[styles.opener, style]}
+                style={styles.opener}
             >
                 {children}
                 <Icon
@@ -102,14 +97,9 @@ type MenuProps = {|
     disabled: boolean,
 
     /**
-     * Optional styling to add to the opener component.
+     * Optional styling to add to the opener component wrapper.
      */
-    openerStyle?: any,
-
-    /**
-     * Optional styling to add to the dropdown wrapper.
-     */
-    dropdownStyle?: any,
+    style?: any,
 |};
 
 type State = {|
@@ -144,7 +134,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         });
     }
 
-    handleSelected(selectedValue: string, oldSelectionState: boolean) {
+    handleSelected(selectedValue: string) {
         const {onChange, selectedValues} = this.props;
 
         // If either of these are not defined, return.
@@ -152,7 +142,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             return;
         }
 
-        if (oldSelectionState) {
+        if (selectedValues.includes(selectedValue)) {
             const index = selectedValues.indexOf(selectedValue);
             const updatedSelection = [
                 ...selectedValues.slice(0, index),
@@ -180,8 +170,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 });
             } else if (item.type === OptionItem) {
                 return React.cloneElement(item, {
-                    onToggle: (value, state) =>
-                        this.handleSelected(value, state),
+                    onToggle: (value) => this.handleSelected(value),
                     selected: selectedValues
                         ? selectedValues.includes(item.props.value)
                         : false,
@@ -194,13 +183,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
     }
 
     render() {
-        const {
-            alignment,
-            disabled,
-            menuText,
-            openerStyle,
-            dropdownStyle,
-        } = this.props;
+        const {alignment, disabled, menuText, style} = this.props;
 
         const {open} = this.state;
 
@@ -213,7 +196,6 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         node,
                     ): any): Element))
                 }
-                style={openerStyle}
             >
                 {menuText}
             </ActionMenuOpener>
@@ -222,12 +204,13 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
+                dropdownStyle={styles.menuTopSpace}
                 light={false}
                 onOpenChanged={(open) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
+                style={style}
             >
                 {this.getMenuItems()}
             </Dropdown>

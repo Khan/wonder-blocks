@@ -49,14 +49,9 @@ type Props = {|
     light: boolean,
 
     /**
-     * Optional styling to add to the opener component.
+     * Optional styling to add to the opener component wrapper.
      */
-    openerStyle?: any,
-
-    /**
-     * Optional styling to add to the dropdown wrapper.
-     */
-    dropdownStyle?: any,
+    style?: any,
 |};
 
 type State = {|
@@ -124,8 +119,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             light,
             placeholder,
             selectedValue,
-            openerStyle,
-            dropdownStyle,
+            style,
         } = this.props;
 
         const {open} = this.state;
@@ -148,7 +142,6 @@ export default class SingleSelect extends React.Component<Props, State> {
                         node,
                     ): any): Element))
                 }
-                style={openerStyle}
             >
                 {menuText}
             </SelectOpener>
@@ -159,12 +152,13 @@ export default class SingleSelect extends React.Component<Props, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={[{marginTop: 8, marginBottom: 8}, dropdownStyle]}
+                dropdownStyle={{marginTop: 8, marginBottom: 8}}
                 light={light}
                 onOpenChanged={(open, source) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
+                style={style}
             >
                 {items}
             </Dropdown>

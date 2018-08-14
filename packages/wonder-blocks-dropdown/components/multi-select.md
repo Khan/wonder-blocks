@@ -1,7 +1,7 @@
 ### Basic multi select
 
 This multi select starts with nothing selected and has no selection shortcuts.
-It also has a set width, and one of the items is disabled.
+It also has a set minWidth, and one of the items is disabled.
 
 ```js
 const React = require("react");
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     setWidth: {
-        width: 170,
+        minWidth: 170,
     },
 });
 
@@ -38,8 +38,7 @@ class ExampleNoneSelected extends React.Component {
             placeholder="Color palette"
             selectedValues={this.state.selectedValues}
             selectItemType="colors"
-            openerStyle={styles.setWidth}
-            dropdownStyle={styles.setWidth}
+            style={styles.setWidth}
         >
             <OptionItem label="Red" value="1" />
             <OptionItem label="Yellow" value="2" disabled />
@@ -68,9 +67,6 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    setWidth: {
-        width: 150,
-    },
 });
 
 class ExampleWithShortcuts extends React.Component {
@@ -94,8 +90,6 @@ class ExampleWithShortcuts extends React.Component {
             onChange={(selectedValues) => this.handleChange(selectedValues)}
             selectedValues={this.state.selectedValues}
             selectItemType="interns"
-            openerStyle={styles.setWidth}
-            dropdownStyle={styles.setWidth}
         >
             <OptionItem label="Anesu" value="very mobile" />
             <OptionItem label="Ioana" value="lives in roma" />
@@ -139,7 +133,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     setWidth: {
-        width: 170,
+        minWidth: 170,
     },
 });
 
@@ -163,8 +157,7 @@ class SimpleMultiSelect extends React.Component {
             onChange={(selectedValues) => this.handleChanges(selectedValues)}
             selectedValues={this.state.selectedValues}
             selectItemType="Great Houses"
-            openerStyle={styles.setWidth}
-            dropdownStyle={styles.setWidth}
+            style={styles.setWidth}
         >
             <OptionItem label="Stark" value="1" />
             <OptionItem label="Arryn" value="2" />
@@ -176,8 +169,6 @@ class SimpleMultiSelect extends React.Component {
             <OptionItem label="Martell" value="8" />
             <OptionItem label="Targaryen" value="9" />
         </MultiSelect>;
-
-        ;
     }
 }
 
