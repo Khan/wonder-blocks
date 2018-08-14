@@ -35,5 +35,5 @@ export default function maybeGetPortalMountedModalHostElement(
     // If we have a portal, then the first child should be the actual
     // data-react-root that contains the modal, which is what we want to
     // return.
-    return modalLauncherPortal && modalLauncherPortal.firstElementChild;
+    return modalLauncherPortal; //  && modalLauncherPortal.firstElementChild;
 }

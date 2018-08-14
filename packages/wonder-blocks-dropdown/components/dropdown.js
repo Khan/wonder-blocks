@@ -156,6 +156,7 @@ export default class Dropdown extends React.Component<DropdownProps> {
         // by using the helper function from the modal package on the opener
         // element.
         // If we are not in a modal, we use body as the location to portal to.
+        // debugger;
         const modalHost =
             maybeGetPortalMountedModalHostElement(openerElement) ||
             document.querySelector("body");
