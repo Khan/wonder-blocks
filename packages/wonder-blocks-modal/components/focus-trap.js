@@ -2,6 +2,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import {View} from "@khanacademy/wonder-blocks-core";
+
 /**
  * This component ensures that focus stays within itself. If the user uses Tab
  * at the end of the modal, or Shift-Tab at the start of the modal, then this
@@ -141,6 +143,21 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
     };
 
     render() {
-        return this.props.children;
+        return (
+            <View>
+                {/* When you press Tab on the last focusable node of the
+                  * document, some browsers will move your tab focus outside of
+                  * the document. But we want to capture that as a focus event,
+                  * and move focus back into the modal! So, we add focusable
+                  * sentinel nodes. That way, tabbing out of the modal should
+                  * take you to a sentinel node, rather than taking you out of
+                  * the document. These sentinels aren't critical to focus
+                  * wrapping, though; we're resilient to any kind of focus
+                  * shift, whether it's to the sentinels or somewhere else! */}
+                <div tabIndex="0" />
+                {this.props.children}
+                <div tabIndex="0" />
+            </View>
+        );
     }
 }
