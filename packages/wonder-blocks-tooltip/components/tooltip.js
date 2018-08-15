@@ -19,10 +19,11 @@
  *                     callout to the anchor content)
  */
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 import {Text, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
+import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
-import TooltipPortalMounter from "./tooltip-portal-mounter";
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
@@ -144,11 +145,7 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(active: boolean, ids?: IIdentifierFactory) {
-        if (!active) {
-            return null;
-        }
-
+    _renderPopper(ids?: IIdentifierFactory) {
         const {id} = this.props;
         const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
         if (!bubbleId) {
@@ -180,6 +177,12 @@ export default class Tooltip extends React.Component<Props, State> {
 
     _renderTooltipAnchor(ids?: IIdentifierFactory) {
         const {forceAnchorFocusivity} = this.props;
+        const {active, anchorElement} = this.state;
+
+        const popperHost =
+            maybeGetPortalMountedModalHostElement(anchorElement) ||
+            document.querySelector("body");
+
         return (
             <React.Fragment>
                 <TooltipAnchor
@@ -189,10 +192,8 @@ export default class Tooltip extends React.Component<Props, State> {
                 >
                     {this._renderAnchorElement(ids)}
                 </TooltipAnchor>
-                {this.state.active &&
-                    <TooltipPortalMounter anchorNode={this.state.anchorElement}>
-                        {this._renderPopper(this.state.active, ids)}
-                    </TooltipPortalMounter>}
+                {popperHost && active &&
+                    ReactDOM.createPortal(this._renderPopper(ids), popperHost)}
             </React.Fragment>
         );
     }

@@ -44,6 +44,12 @@ type Props = {|
      */
     forceAnchorFocusivity?: boolean,
 
+    /**
+     * Callback to pass active state back to Tooltip.
+     *
+     * `active` will be true whenever the anchor is hovered or focused and false
+     * otherwise.
+     */
     onActiveChanged: (active: boolean) => void,
 |};
 

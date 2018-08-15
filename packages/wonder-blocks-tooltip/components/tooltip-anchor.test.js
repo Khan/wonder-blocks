@@ -7,7 +7,6 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import TooltipAnchor from "./tooltip-anchor.js";
-import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 import {
     TooltipAppearanceDelay,
     TooltipDisappearanceDelay,
