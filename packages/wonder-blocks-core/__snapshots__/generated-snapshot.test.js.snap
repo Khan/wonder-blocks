@@ -194,6 +194,7 @@ exports[`wonder-blocks-core example 4 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -220,6 +221,7 @@ exports[`wonder-blocks-core example 4 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
