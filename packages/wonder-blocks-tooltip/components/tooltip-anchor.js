@@ -6,7 +6,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import TooltipPortalMounter from "./tooltip-portal-mounter.js";
 import ActiveTracker from "../util/active-tracker.js";
 import {
     TooltipAppearanceDelay,
@@ -17,10 +16,10 @@ import type {IActiveTrackerSubscriber} from "../util/active-tracker.js";
 
 type Props = {|
     /**
-     * A method that renders the content for anchoring the tooltip.
-     * This must return a TooltipPortalMounter component.
+     * Child element that the tooltip will adorn.
+     * TODO(kevinb): move _renderAnchorElement from tooltip.js to this component
      */
-    children: (active: boolean) => React.Fragment,
+    children: React.Element<*>,
 
     /**
      * Callback to be invoked when the anchored content is mounted.
@@ -44,6 +43,8 @@ type Props = {|
      * appear using the mouse, so verify those use-cases.
      */
     forceAnchorFocusivity?: boolean,
+
+    onActiveChanged: (active: boolean) => void,
 |};
 
 type State = {|
@@ -179,6 +180,7 @@ export default class TooltipAnchor extends React.Component<Props, State>
         this._focused = focused;
 
         this._setActiveState(hovered || focused);
+        this.props.onActiveChanged(hovered || focused);
     }
 
     _clearPendingAction() {
@@ -268,6 +270,6 @@ export default class TooltipAnchor extends React.Component<Props, State>
     };
 
     render() {
-        return this.props.children(this.state.active);
+        return this.props.children;
     }
 }

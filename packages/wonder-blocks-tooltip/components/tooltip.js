@@ -93,6 +93,7 @@ type Props = {|
 |};
 
 type State = {|
+    active: boolean,
     anchorElement: ?HTMLElement,
 |};
 
@@ -103,11 +104,13 @@ export default class Tooltip extends React.Component<Props, State> {
         placement: "top",
     };
 
-    state = {anchorElement: null};
+    state = {
+        active: false,
+        anchorElement: null,
+    };
 
     _updateAnchorElement(ref: ?Element) {
         if (ref && ref !== this.state.anchorElement) {
-            console.log(ref);
             this.setState({anchorElement: ((ref: any): HTMLElement)});
         }
     }
@@ -178,20 +181,19 @@ export default class Tooltip extends React.Component<Props, State> {
     _renderTooltipAnchor(ids?: IIdentifierFactory) {
         const {forceAnchorFocusivity} = this.props;
         return (
-            <TooltipAnchor
-                forceAnchorFocusivity={forceAnchorFocusivity}
-                anchorRef={(r) => this._updateAnchorElement(r)}
-            >
-                {(active) => {
-                    console.log(active);
-                    return <React.Fragment>
-                        {this._renderAnchorElement(ids)}
-                        <TooltipPortalMounter anchorNode={this.state.anchorElement}>
-                            {this._renderPopper(active, ids)}
-                        </TooltipPortalMounter>
-                    </React.Fragment>
-                }}
-            </TooltipAnchor>
+            <React.Fragment>
+                <TooltipAnchor
+                    forceAnchorFocusivity={forceAnchorFocusivity}
+                    anchorRef={(r) => this._updateAnchorElement(r)}
+                    onActiveChanged={(active) => this.setState({active})}
+                >
+                    {this._renderAnchorElement(ids)}
+                </TooltipAnchor>
+                {this.state.active &&
+                    <TooltipPortalMounter anchorNode={this.state.anchorElement}>
+                        {this._renderPopper(this.state.active, ids)}
+                    </TooltipPortalMounter>}
+            </React.Fragment>
         );
     }
 
