@@ -6,6 +6,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import {Text as WBText} from "@khanacademy/wonder-blocks-core";
+
 import ActiveTracker from "../util/active-tracker.js";
 import {
     TooltipAppearanceDelay,
@@ -13,13 +15,14 @@ import {
 } from "../util/constants.js";
 
 import type {IActiveTrackerSubscriber} from "../util/active-tracker.js";
+import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
-     * Child element that the tooltip will adorn.
-     * TODO(kevinb): move _renderAnchorElement from tooltip.js to this component
+     * The content for anchoring the tooltip.
+     * This component will be used to position the tooltip.
      */
-    children: React.Element<*>,
+    children: React.Element<any> | string,
 
     /**
      * Callback to be invoked when the anchored content is mounted.
@@ -51,6 +54,11 @@ type Props = {|
      * otherwise.
      */
     onActiveChanged: (active: boolean) => void,
+
+    /**
+     * Optional unique id factory.
+     */
+    ids?: IIdentifierFactory,
 |};
 
 type State = {|
@@ -70,13 +78,20 @@ export default class TooltipAnchor extends React.Component<Props, State>
     _unsubscribeFromTracker: ?() => void;
     _timeoutID: ?TimeoutID;
 
+    static ariaContentId = "aria-content";
     static defaultProps = {
         forceAnchorFocusivity: true,
     };
 
-    state = {
-        active: false,
-    };
+    constructor(props: Props) {
+        super(props);
+
+        this._focused = false;
+        this._hovered = false;
+        this.state = {
+            active: false,
+        };
+    }
 
     componentDidMount() {
         const anchorNode = ReactDOM.findDOMNode(this);
@@ -186,7 +201,6 @@ export default class TooltipAnchor extends React.Component<Props, State>
         this._focused = focused;
 
         this._setActiveState(hovered || focused);
-        this.props.onActiveChanged(hovered || focused);
     }
 
     _clearPendingAction() {
@@ -221,6 +235,7 @@ export default class TooltipAnchor extends React.Component<Props, State>
                 document.removeEventListener("keyup", this._handleKeyUp);
             }
             this.setState({active});
+            this.props.onActiveChanged(active);
             if (!this._stolenFromUs && !active) {
                 // Only the very last thing going inactive will giveup
                 // the stolen active state.
@@ -276,6 +291,24 @@ export default class TooltipAnchor extends React.Component<Props, State>
     };
 
     render() {
-        return this.props.children;
+        // We need to make sure we can anchor on our content.
+        // If the content is just a string, we wrap it in a Text element
+        // so as not to affect styling or layout but still have an element
+        // to anchor to.
+        const {children, ids} = this.props;
+        const anchorableChildren =
+            typeof children === "string" ? (
+                <WBText>{children}</WBText>
+            ) : (
+                children
+            );
+
+        if (ids) {
+            return React.cloneElement(anchorableChildren, {
+                "aria-describedby": ids.get(TooltipAnchor.ariaContentId),
+            });
+        } else {
+            return anchorableChildren;
+        }
     }
 }

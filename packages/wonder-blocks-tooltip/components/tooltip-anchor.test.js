@@ -39,14 +39,10 @@ describe("TooltipAnchor", () => {
 
     test("on mount, subscribes to focus and hover events", () => {
         // Arrange
-        const getFakeTooltipPortalMounter = (active) =>
-            ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                typeof TooltipPortalMounter,
-            >);
         const nodes = (
             <View>
-                <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+                    Anchor text
                 </TooltipAnchor>
             </View>
         );
@@ -80,14 +76,10 @@ describe("TooltipAnchor", () => {
 
     test("on unmount, unsubscribes from focus and hover events", () => {
         // Arrange
-        const getFakeTooltipPortalMounter = (active) =>
-            ((<View>{active ? "true" : "false"}</View>: any): React.Element<
-                typeof TooltipPortalMounter,
-            >);
         const nodes = (
             <View>
-                <TooltipAnchor anchorRef={() => {}}>
-                    {getFakeTooltipPortalMounter}
+                <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+                    Anchor text
                 </TooltipAnchor>
             </View>
         );
@@ -124,16 +116,14 @@ describe("TooltipAnchor", () => {
         test("if not set, sets tabindex on anchor target", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
-                    <View id="portal">This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={true}
                             anchorRef={resolve}
+                            onActiveChanged={() => {}}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            <View id="portal">This is the anchor</View>
                         </TooltipAnchor>
                     </View>
                 );
@@ -150,16 +140,14 @@ describe("TooltipAnchor", () => {
         test("if tabindex already set, leaves it as-is", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
-                    <View tabIndex="-1">This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={true}
                             anchorRef={resolve}
+                            onActiveChanged={() => {}}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            <View tabIndex="-1">This is the anchor</View>
                         </TooltipAnchor>
                     </View>
                 );
@@ -178,16 +166,14 @@ describe("TooltipAnchor", () => {
         test("does not set tabindex on anchor target", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
-                    <View>This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={false}
                             anchorRef={resolve}
+                            onActiveChanged={() => {}}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            <View>This is the anchor</View>
                         </TooltipAnchor>
                     </View>
                 );
@@ -205,17 +191,14 @@ describe("TooltipAnchor", () => {
             // Arrange
             let wrapper;
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
-                    <View>This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
-
                 const TestFixture = (props: any) => (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={props.force}
                             anchorRef={resolve}
+                            onActiveChanged={() => {}}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            <View>This is the anchor</View>
                         </TooltipAnchor>
                     </View>
                 );
@@ -236,17 +219,14 @@ describe("TooltipAnchor", () => {
         test("if we had not added tabindex, leaves it", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const fakeTooltipPortalMounter = (((
-                    <View tabIndex="-1">This is the anchor</View>
-                ): any): React.Element<typeof TooltipPortalMounter>);
-
                 const TestFixture = (props: any) => (
                     <View>
                         <TooltipAnchor
                             forceAnchorFocusivity={props.force}
                             anchorRef={resolve}
+                            onActiveChanged={() => {}}
                         >
-                            {(active) => fakeTooltipPortalMounter}
+                            <View tabIndex="-1">This is the anchor</View>
                         </TooltipAnchor>
                     </View>
                 );
@@ -274,15 +254,18 @@ describe("TooltipAnchor", () => {
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => false);
 
+            let activeState = false;
+
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -295,18 +278,16 @@ describe("TooltipAnchor", () => {
             // fake directly because there's no real browser here handling
             // focus and real events.
             ref && ref.dispatchEvent(new FocusEvent("focusin"));
-            const before = ref && ref.innerHTML;
             // Check that we didn't go active before the delay
-            expect(before).toBe("false");
+            expect(activeState).toBe(false);
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            const result = ref && ref.innerHTML;
 
             // Assert
-            expect(result).toBe("true");
+            expect(activeState).toBe(true);
         });
 
         test("active state was stolen, set active immediately", async () => {
@@ -320,15 +301,18 @@ describe("TooltipAnchor", () => {
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => true);
 
+            let activeState = false;
+
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -341,48 +325,51 @@ describe("TooltipAnchor", () => {
             // fake directly because there's no real browser here handling
             // focus and real events.
             ref && ref.dispatchEvent(new FocusEvent("focusin"));
-            const result = ref && ref.innerHTML;
 
             // Assert
-            expect(result).toBe("true");
+            expect(activeState).toBe(true);
         });
     });
 
     describe("loses keyboard focus", () => {
         test("active state was not stolen, active is set to false with delay", async () => {
             // Arrange
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
+                    <View>
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
+                        </TooltipAnchor>
+                    </View>
                 );
                 mount(nodes);
             });
+
             ref && ref.dispatchEvent(new FocusEvent("focusin"));
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
 
             // Act
             ref && ref.dispatchEvent(new FocusEvent("focusout"));
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            const result = ref && ref.innerHTML;
 
             // Assert
-            expect(result).toBe("false");
+            expect(activeState).toBe(false);
         });
 
         test("active state was not stolen, gives up active state", async () => {
@@ -392,29 +379,35 @@ describe("TooltipAnchor", () => {
             } = await import("../util/active-tracker.js");
             // Flow doesn't know this is a mock $FlowFixMe
             const mockTracker = ActiveTracker.mock.instances[0];
+
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
+                    <View>
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
+                        </TooltipAnchor>
+                    </View>
                 );
                 mount(nodes);
             });
+
             ref && ref.dispatchEvent(new FocusEvent("focusin"));
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
 
             // Act
             ref && ref.dispatchEvent(new FocusEvent("focusout"));
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
@@ -428,33 +421,41 @@ describe("TooltipAnchor", () => {
         test("active state was stolen, active is set to false immediately", async () => {
             // Arrange
             let wrapper;
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
+                    <View>
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
+                        </TooltipAnchor>
+                    </View>
                 );
                 wrapper = mount(nodes);
             });
+
             ref && ref.dispatchEvent(new FocusEvent("focusin"));
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
 
             // Act
             ref && ref.dispatchEvent(new FocusEvent("focusout"));
-            wrapper && wrapper.instance().activeStateStolen();
+            wrapper &&
+                wrapper
+                    .find(TooltipAnchor)
+                    .instance()
+                    .activeStateStolen();
 
             // Assert
-            const result = ref && ref.innerHTML;
-            expect(result).toBe("false");
+            expect(activeState).toBe(false);
         });
 
         test("active state was stolen, so it does not have it to give up", async () => {
@@ -466,15 +467,19 @@ describe("TooltipAnchor", () => {
             const mockTracker = ActiveTracker.mock.instances[0];
             // Arrange
             let wrapper;
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
+                    <View>
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
+                        </TooltipAnchor>
+                    </View>
                 );
                 wrapper = mount(nodes);
             });
@@ -484,11 +489,15 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
 
             // Act
             ref && ref.dispatchEvent(new FocusEvent("focusout"));
-            wrapper && wrapper.instance().activeStateStolen();
+            wrapper &&
+                wrapper
+                    .find(TooltipAnchor)
+                    .instance()
+                    .activeStateStolen();
 
             // Assert
             expect(mockTracker.giveup).not.toHaveBeenCalled();
@@ -496,15 +505,17 @@ describe("TooltipAnchor", () => {
 
         test("if hovered, remains active", async () => {
             // Arrange
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -524,7 +535,7 @@ describe("TooltipAnchor", () => {
 
             // Assert
             // Make sure that we're not delay hiding as well.
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
             expect(setTimeout).not.toHaveBeenCalled();
         });
     });
@@ -541,15 +552,17 @@ describe("TooltipAnchor", () => {
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => false);
 
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -558,18 +571,16 @@ describe("TooltipAnchor", () => {
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            const before = ref && ref.innerHTML;
             // Check that we didn't go active before the delay
-            expect(before).toBe("false");
+            expect(activeState).toBe(false);
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            const result = ref && ref.innerHTML;
 
             // Assert
-            expect(result).toBe("true");
+            expect(activeState).toBe(true);
         });
 
         test("active state was stolen, set active immediately", async () => {
@@ -583,15 +594,17 @@ describe("TooltipAnchor", () => {
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => true);
 
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -600,25 +613,28 @@ describe("TooltipAnchor", () => {
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            const result = ref && ref.innerHTML;
 
             // Assert
-            expect(result).toBe("true");
+            expect(activeState).toBe(true);
         });
     });
 
     describe("is unhovered", () => {
         test("active state was not stolen, active is set to false with delay", async () => {
             // Arrange
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
+                    <View>
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
+                        </TooltipAnchor>
+                    </View>
                 );
                 mount(nodes);
             });
@@ -628,20 +644,19 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            const result = ref && ref.innerHTML;
 
             // Assert
-            expect(result).toBe("false");
+            expect(activeState).toBe(false);
         });
 
         test("active state was not stolen, gives up active state", async () => {
@@ -651,15 +666,19 @@ describe("TooltipAnchor", () => {
             } = await import("../util/active-tracker.js");
             // Flow doesn't know this is a mock $FlowFixMe
             const mockTracker = ActiveTracker.mock.instances[0];
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
+                    <View>
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
+                        </TooltipAnchor>
+                    </View>
                 );
                 mount(nodes);
             });
@@ -669,11 +688,11 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
             expect(setTimeout).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
@@ -687,15 +706,19 @@ describe("TooltipAnchor", () => {
         test("active state was stolen, active is set to false immediately", async () => {
             // Arrange
             let wrapper;
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
+                    <View>
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
+                        </TooltipAnchor>
+                    </View>
                 );
                 wrapper = mount(nodes);
             });
@@ -705,15 +728,18 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
-            wrapper && wrapper.instance().activeStateStolen();
+            wrapper &&
+                wrapper
+                    .find(TooltipAnchor)
+                    .instance()
+                    .activeStateStolen();
 
             // Assert
-            const result = ref && ref.innerHTML;
-            expect(result).toBe("false");
+            expect(activeState).toBe(false);
         });
 
         test("active state was stolen, so it does not have it to give up", async () => {
@@ -725,15 +751,19 @@ describe("TooltipAnchor", () => {
             const mockTracker = ActiveTracker.mock.instances[0];
             // Arrange
             let wrapper;
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
-                    <TooltipAnchor anchorRef={resolve}>
-                        {getFakeTooltipPortalMounter}
-                    </TooltipAnchor>
+                    <View>
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
+                        </TooltipAnchor>
+                    </View>
                 );
                 wrapper = mount(nodes);
             });
@@ -743,11 +773,15 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
-            wrapper && wrapper.instance().activeStateStolen();
+            wrapper &&
+                wrapper
+                    .find(TooltipAnchor)
+                    .instance()
+                    .activeStateStolen();
 
             // Assert
             expect(mockTracker.giveup).not.toHaveBeenCalled();
@@ -755,15 +789,17 @@ describe("TooltipAnchor", () => {
 
         test("if focused, remains active", async () => {
             // Arrange
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -783,7 +819,7 @@ describe("TooltipAnchor", () => {
 
             // Assert
             // Make sure that we're not delay hiding as well.
-            expect(ref && ref.innerHTML).toBe("true");
+            expect(activeState).toBe(true);
             expect(setTimeout).not.toHaveBeenCalled();
         });
     });
@@ -793,14 +829,13 @@ describe("TooltipAnchor", () => {
             // Arrange
             const spy = jest.spyOn(document, "addEventListener");
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={() => {}}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -824,14 +859,13 @@ describe("TooltipAnchor", () => {
             // Arrange
             const spy = jest.spyOn(document, "addEventListener");
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={() => {}}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -859,14 +893,13 @@ describe("TooltipAnchor", () => {
             // Arrange
             const spy = jest.spyOn(document, "removeEventListener");
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={() => {}}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -898,14 +931,13 @@ describe("TooltipAnchor", () => {
             let wrapper;
             const spy = jest.spyOn(document, "removeEventListener");
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={() => {}}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -929,15 +961,17 @@ describe("TooltipAnchor", () => {
 
         test("when active, escape dismisses tooltip", async () => {
             // Arrange
+            let activeState = false;
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={(active) => {
+                                activeState = active;
+                            }}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );
@@ -964,20 +998,19 @@ describe("TooltipAnchor", () => {
             jest.runOnlyPendingTimers();
 
             // Assert
-            expect(ref && ref.innerHTML).toBe("false");
+            expect(activeState).toBe(false);
         });
 
         test("when active, escape stops event propagation", async () => {
             // Arrange
             const ref = await new Promise((resolve) => {
-                const getFakeTooltipPortalMounter = (active) =>
-                    (((
-                        <View>{active ? "true" : "false"}</View>
-                    ): any): React.Element<typeof TooltipPortalMounter>);
                 const nodes = (
                     <View>
-                        <TooltipAnchor anchorRef={resolve}>
-                            {getFakeTooltipPortalMounter}
+                        <TooltipAnchor
+                            anchorRef={resolve}
+                            onActiveChanged={() => {}}
+                        >
+                            Anchor Text
                         </TooltipAnchor>
                     </View>
                 );

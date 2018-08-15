@@ -21,7 +21,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {Text, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
+import {UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
 import TooltipAnchor from "./tooltip-anchor.js";
@@ -116,24 +116,6 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderAnchorElement(ids?: IIdentifierFactory) {
-        // We need to make sure we can anchor on our content.
-        // If the content is just a string, we wrap it in a Text element
-        // so as not to affect styling or layout but still have an element
-        // to anchor to.
-        const {children} = this.props;
-        const anchorableChildren =
-            typeof children === "string" ? <Text>{children}</Text> : children;
-
-        if (ids) {
-            return React.cloneElement(anchorableChildren, {
-                "aria-describedby": ids.get(Tooltip.ariaContentId),
-            });
-        } else {
-            return anchorableChildren;
-        }
-    }
-
     _renderBubbleContent() {
         const {title, content} = this.props;
         if (typeof content === "string") {
@@ -176,7 +158,7 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderTooltipAnchor(ids?: IIdentifierFactory) {
-        const {forceAnchorFocusivity} = this.props;
+        const {children, forceAnchorFocusivity} = this.props;
         const {active, anchorElement} = this.state;
 
         const popperHost =
@@ -189,10 +171,12 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
+                    ids={ids}
                 >
-                    {this._renderAnchorElement(ids)}
+                    {children}
                 </TooltipAnchor>
-                {popperHost && active &&
+                {popperHost &&
+                    active &&
                     ReactDOM.createPortal(this._renderPopper(ids), popperHost)}
             </React.Fragment>
         );
