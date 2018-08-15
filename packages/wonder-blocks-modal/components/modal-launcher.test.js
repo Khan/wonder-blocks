@@ -1,19 +1,26 @@
 // @flow
 import React from "react";
-import {shallow, mount} from "enzyme";
+import {shallow} from "enzyme";
 
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import ModalLauncher from "./modal-launcher.js";
 
 describe("ModalLauncher", () => {
+    beforeEach(() => {
+        unmountAll();
+    });
+
     test("Children can launch the modal", () => {
-        const wrapper = shallow(
+        const wrapper = mount(
             <ModalLauncher modal={<div />}>
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
-        expect(wrapper.find("ModalLauncherPortal")).toHaveLength(0);
         wrapper.find("button").simulate("click");
-        expect(wrapper.find("ModalLauncherPortal")).toHaveLength(1);
+        const portal = global.document.querySelector(
+            "[data-modal-launcher-portal]",
+        );
+        expect(portal instanceof HTMLDivElement).toBe(true);
     });
 
     test("Modal can close itself after launching", (done) => {
@@ -40,24 +47,29 @@ describe("ModalLauncher", () => {
         // finish the test.
         const onClose = () => {
             wrapper.update();
-            expect(wrapper.find("ModalLauncherPortal")).toHaveLength(0);
+            expect(wrapper.find("ModalBackdrop")).toHaveLength(0);
             done();
         };
 
         // Mount the modal launcher. This shouldn't trigger any closing yet,
         // because we shouldn't be calling the `modal` function yet.
-        const wrapper = shallow(
+        const wrapper = mount(
             <ModalLauncher modal={modalFn} onClose={onClose}>
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
-        expect(wrapper.find("ModalLauncherPortal")).toHaveLength(0);
+        expect(
+            global.document.querySelector("[data-modal-launcher-portal]"),
+        ).toBeNull();
 
         // Launch the modal. This should trigger closing, because we'll call
         // the modal function.
         opened = true;
         wrapper.find("button").simulate("click");
-        expect(wrapper.find("ModalLauncherPortal")).toHaveLength(1);
+        const portal = global.document.querySelector(
+            "[data-modal-launcher-portal]",
+        );
+        expect(portal instanceof HTMLDivElement).toBe(true);
     });
 
     test("Pressing Escape closes the modal", async () => {
