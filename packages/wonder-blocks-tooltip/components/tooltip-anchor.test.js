@@ -40,11 +40,9 @@ describe("TooltipAnchor", () => {
     test("on mount, subscribes to focus and hover events", () => {
         // Arrange
         const nodes = (
-            <View>
-                <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
-                    Anchor text
-                </TooltipAnchor>
-            </View>
+            <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+                Anchor text
+            </TooltipAnchor>
         );
         const addEventListenerSpy = jest.spyOn(
             HTMLElement.prototype,
@@ -77,11 +75,9 @@ describe("TooltipAnchor", () => {
     test("on unmount, unsubscribes from focus and hover events", () => {
         // Arrange
         const nodes = (
-            <View>
-                <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
-                    Anchor text
-                </TooltipAnchor>
-            </View>
+            <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+                Anchor text
+            </TooltipAnchor>
         );
         const removeEventListenerSpy = jest.spyOn(
             HTMLElement.prototype,
@@ -117,15 +113,13 @@ describe("TooltipAnchor", () => {
             // Arrange
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            forceAnchorFocusivity={true}
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            <View id="portal">This is the anchor</View>
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        forceAnchorFocusivity={true}
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        <View id="portal">This is the anchor</View>
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -141,15 +135,13 @@ describe("TooltipAnchor", () => {
             // Arrange
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            forceAnchorFocusivity={true}
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            <View tabIndex="-1">This is the anchor</View>
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        forceAnchorFocusivity={true}
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        <View tabIndex="-1">This is the anchor</View>
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -167,15 +159,13 @@ describe("TooltipAnchor", () => {
             // Arrange
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            forceAnchorFocusivity={false}
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            <View>This is the anchor</View>
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        forceAnchorFocusivity={false}
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        <View>This is the anchor</View>
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -192,15 +182,13 @@ describe("TooltipAnchor", () => {
             let wrapper;
             const ref = await new Promise((resolve) => {
                 const TestFixture = (props: any) => (
-                    <View>
-                        <TooltipAnchor
-                            forceAnchorFocusivity={props.force}
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            <View>This is the anchor</View>
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        forceAnchorFocusivity={props.force}
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        <View>This is the anchor</View>
+                    </TooltipAnchor>
                 );
                 wrapper = mount(<TestFixture force={true} />);
             });
@@ -220,15 +208,13 @@ describe("TooltipAnchor", () => {
             // Arrange
             const ref = await new Promise((resolve) => {
                 const TestFixture = (props: any) => (
-                    <View>
-                        <TooltipAnchor
-                            forceAnchorFocusivity={props.force}
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            <View tabIndex="-1">This is the anchor</View>
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        forceAnchorFocusivity={props.force}
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        <View tabIndex="-1">This is the anchor</View>
+                    </TooltipAnchor>
                 );
                 const wrapper = mount(<TestFixture force={true} />);
                 wrapper.setProps({force: false});
@@ -258,16 +244,14 @@ describe("TooltipAnchor", () => {
 
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -305,16 +289,14 @@ describe("TooltipAnchor", () => {
 
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -337,16 +319,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -383,16 +363,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -424,16 +402,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 wrapper = mount(nodes);
             });
@@ -448,11 +424,7 @@ describe("TooltipAnchor", () => {
 
             // Act
             ref && ref.dispatchEvent(new FocusEvent("focusout"));
-            wrapper &&
-                wrapper
-                    .find(TooltipAnchor)
-                    .instance()
-                    .activeStateStolen();
+            wrapper && wrapper.instance().activeStateStolen();
 
             // Assert
             expect(activeState).toBe(false);
@@ -470,16 +442,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 wrapper = mount(nodes);
             });
@@ -493,11 +463,7 @@ describe("TooltipAnchor", () => {
 
             // Act
             ref && ref.dispatchEvent(new FocusEvent("focusout"));
-            wrapper &&
-                wrapper
-                    .find(TooltipAnchor)
-                    .instance()
-                    .activeStateStolen();
+            wrapper && wrapper.instance().activeStateStolen();
 
             // Assert
             expect(mockTracker.giveup).not.toHaveBeenCalled();
@@ -508,16 +474,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -555,16 +519,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -597,16 +559,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -625,16 +585,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -669,16 +627,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -709,16 +665,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 wrapper = mount(nodes);
             });
@@ -732,11 +686,7 @@ describe("TooltipAnchor", () => {
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
-            wrapper &&
-                wrapper
-                    .find(TooltipAnchor)
-                    .instance()
-                    .activeStateStolen();
+            wrapper && wrapper.instance().activeStateStolen();
 
             // Assert
             expect(activeState).toBe(false);
@@ -754,16 +704,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 wrapper = mount(nodes);
             });
@@ -777,11 +725,7 @@ describe("TooltipAnchor", () => {
 
             // Act
             ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
-            wrapper &&
-                wrapper
-                    .find(TooltipAnchor)
-                    .instance()
-                    .activeStateStolen();
+            wrapper && wrapper.instance().activeStateStolen();
 
             // Assert
             expect(mockTracker.giveup).not.toHaveBeenCalled();
@@ -792,16 +736,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -830,14 +772,12 @@ describe("TooltipAnchor", () => {
             const spy = jest.spyOn(document, "addEventListener");
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -860,14 +800,12 @@ describe("TooltipAnchor", () => {
             const spy = jest.spyOn(document, "addEventListener");
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -894,14 +832,12 @@ describe("TooltipAnchor", () => {
             const spy = jest.spyOn(document, "removeEventListener");
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -932,14 +868,12 @@ describe("TooltipAnchor", () => {
             const spy = jest.spyOn(document, "removeEventListener");
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 wrapper = mount(nodes);
             });
@@ -964,16 +898,14 @@ describe("TooltipAnchor", () => {
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={(active) => {
-                                activeState = active;
-                            }}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={(active) => {
+                            activeState = active;
+                        }}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
@@ -1005,14 +937,12 @@ describe("TooltipAnchor", () => {
             // Arrange
             const ref = await new Promise((resolve) => {
                 const nodes = (
-                    <View>
-                        <TooltipAnchor
-                            anchorRef={resolve}
-                            onActiveChanged={() => {}}
-                        >
-                            Anchor Text
-                        </TooltipAnchor>
-                    </View>
+                    <TooltipAnchor
+                        anchorRef={resolve}
+                        onActiveChanged={() => {}}
+                    >
+                        Anchor Text
+                    </TooltipAnchor>
                 );
                 mount(nodes);
             });
