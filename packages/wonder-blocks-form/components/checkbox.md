@@ -39,12 +39,13 @@ class Settings extends React.Component {
         super();
         this.state = {
             assignment: false,
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(choiceKey, checked) {
+    handleChange(checked) {
         this.setState({
-            [choiceKey]: checked,
+            assignment: checked,
         });
         // Potentially do something here with this updated state information.
     }
@@ -62,7 +63,7 @@ class Settings extends React.Component {
                 description="You will receive a reminder 24 hours before each deadline"
                 checked={this.state.assignment}
                 id="assignment"
-                onChange={(checked) => this.handleChange("assignment", checked)}
+                onChange={this.handleChange}
                 testId="algebra-assignment-test"
                 variant="checkbox"
             />

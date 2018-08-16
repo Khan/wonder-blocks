@@ -64,6 +64,19 @@ type Props = {|
         error: false,
     };
 
+    handleLabelClick = (event: SyntheticEvent<>) => {
+        // Browsers automatically use the for attribute to select the input,
+        // but we use ClickableBehavior to handle this.
+        event.preventDefault();
+    };
+    handleClick = () => {
+        const {checked, onChange, variant} = this.props;
+        // Radio buttons cannot be unchecked
+        if (variant === "radio" && checked) {
+            return;
+        }
+        onChange(!checked);
+    };
     getChoiceCoreComponent() {
         if (this.props.variant === "radio") {
             return RadioCore;
@@ -77,12 +90,7 @@ type Props = {|
             <LabelMedium
                 style={[styles.label, disabled && styles.disabledLabel]}
             >
-                <label
-                    htmlFor={id}
-                    // Browsers automatically use the for attribute to select
-                    // the input, but we use ClickableBehavior to handle this.
-                    onClick={(e) => e.preventDefault()}
-                >
+                <label htmlFor={id} onClick={this.handleLabelClick}>
                     {label}
                 </label>
             </LabelMedium>
@@ -98,13 +106,13 @@ type Props = {|
         const {
             label,
             description,
+            // eslint-disable-next-line no-unused-vars
             onChange,
             style,
+            // eslint-disable-next-line no-unused-vars
             variant,
             ...coreProps
         } = this.props;
-
-        const {checked} = coreProps;
 
         const ChoiceCore = this.getChoiceCoreComponent();
         const ClickableBehavior = getClickableBehavior();
@@ -113,14 +121,7 @@ type Props = {|
             <View style={style}>
                 <ClickableBehavior
                     disabled={coreProps.disabled}
-                    onClick={(e) => {
-                        // Radio buttons cannot be unchecked and do not change
-                        // if clicked on when checked
-                        if (variant === "radio" && checked) {
-                            return;
-                        }
-                        onChange(!checked);
-                    }}
+                    onClick={this.handleClick}
                 >
                     {(state, handlers) => {
                         return (

@@ -94,11 +94,12 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     assignment: false,
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
-            handleChange(choiceKey, checked) {
+            handleChange(checked) {
                 this.setState({
-                    [choiceKey]: checked,
+                    assignment: checked,
                 });
                 // Potentially do something here with this updated state information.
             }
@@ -120,9 +121,7 @@ describe("wonder-blocks-form", () => {
                             description="You will receive a reminder 24 hours before each deadline"
                             checked={this.state.assignment}
                             id="assignment"
-                            onChange={(checked) =>
-                                this.handleChange("assignment", checked)
-                            }
+                            onChange={this.handleChange}
                             testId="algebra-assignment-test"
                             variant="checkbox"
                         />
@@ -287,6 +286,7 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     selectedValues: ["pineapple"],
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(change) {
@@ -311,7 +311,7 @@ describe("wonder-blocks-form", () => {
                         description="You may choose at most three toppings"
                         errorMessage={this.state.error}
                         groupName="Toppings"
-                        onChange={(change) => this.handleChange(change)}
+                        onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                     >
                         <Choice label="Pepperoni" value="pepperoni" />
@@ -371,6 +371,7 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     selectedValues: [],
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(change) {
@@ -384,7 +385,7 @@ describe("wonder-blocks-form", () => {
                 return (
                     <CheckboxGroup
                         groupName="science-classes"
-                        onChange={(change) => this.handleChange(change)}
+                        onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                         style={styles.group}
                     >
@@ -448,6 +449,7 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     selectedValue: null,
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(change) {
@@ -472,7 +474,7 @@ describe("wonder-blocks-form", () => {
                         description="Your first Pokemon"
                         errorMessage={this.state.error}
                         groupName="Pokemon"
-                        onChange={(change) => this.handleChange(change)}
+                        onChange={this.handleChange}
                         selectedValue={this.state.selectedValue}
                     >
                         <Choice label="Bulbasaur" value="bulb" />
