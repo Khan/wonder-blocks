@@ -73,7 +73,11 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -134,7 +138,11 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -195,7 +203,11 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -738,7 +750,11 @@ exports[`wonder-blocks-modal example 2 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -1332,7 +1348,11 @@ exports[`wonder-blocks-modal example 3 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -1926,7 +1946,11 @@ exports[`wonder-blocks-modal example 4 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -2722,7 +2746,11 @@ exports[`wonder-blocks-modal example 5 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -3719,7 +3747,11 @@ exports[`wonder-blocks-modal example 7 1`] = `
                       "fontSize": 16,
                       "fontWeight": "bold",
                       "lineHeight": "20px",
+                      "overflow": "hidden",
                       "pointerEvents": "none",
+                      "textOverflow": "ellipsis",
+                      "userSelect": "none",
+                      "whiteSpace": "nowrap",
                     }
                   }
                 >
@@ -4764,7 +4796,11 @@ exports[`wonder-blocks-modal example 10 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >

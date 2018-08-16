@@ -55,7 +55,11 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -119,7 +123,11 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -183,7 +191,11 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -247,7 +259,11 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -311,7 +327,11 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -375,7 +395,11 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -439,7 +463,11 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -503,7 +531,11 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -567,7 +599,11 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -631,7 +667,11 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -695,7 +735,11 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -759,7 +803,11 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -823,7 +871,11 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -887,7 +939,11 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -951,7 +1007,11 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1015,7 +1075,11 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1079,7 +1143,11 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1143,7 +1211,11 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1207,7 +1279,11 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1271,7 +1347,11 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1335,7 +1415,11 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1399,7 +1483,11 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1463,7 +1551,11 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1527,7 +1619,11 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1591,7 +1687,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1655,7 +1755,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1719,7 +1823,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1783,7 +1891,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1847,7 +1959,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1911,7 +2027,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1975,7 +2095,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2039,7 +2163,11 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2106,7 +2234,11 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2172,7 +2304,11 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2238,7 +2374,11 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2304,7 +2444,11 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2371,7 +2515,11 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2437,7 +2585,11 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2503,7 +2655,11 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2569,7 +2725,11 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2636,7 +2796,11 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2702,7 +2866,11 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2768,7 +2936,11 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2834,7 +3006,11 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2901,7 +3077,11 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2967,7 +3147,11 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3033,7 +3217,11 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3099,7 +3287,11 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3166,7 +3358,11 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3232,7 +3428,11 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3298,7 +3498,11 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3364,7 +3568,11 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3431,7 +3639,11 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3497,7 +3709,11 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3563,7 +3779,11 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3629,7 +3849,11 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3696,7 +3920,11 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3762,7 +3990,11 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3828,7 +4060,11 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3894,7 +4130,11 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3961,7 +4201,11 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4027,7 +4271,11 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4093,7 +4341,11 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4159,7 +4411,11 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4223,7 +4479,11 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4295,7 +4555,11 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4367,7 +4631,11 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4439,7 +4707,11 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4503,7 +4775,11 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4575,7 +4851,11 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4647,7 +4927,11 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4719,7 +5003,11 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4783,7 +5071,11 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4855,7 +5147,11 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4927,7 +5223,11 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4999,7 +5299,11 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5063,7 +5367,11 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5135,7 +5443,11 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5207,7 +5519,11 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5279,7 +5595,11 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5343,7 +5663,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5415,7 +5739,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5487,7 +5815,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5559,7 +5891,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5623,7 +5959,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5695,7 +6035,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5767,7 +6111,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5839,7 +6187,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5903,7 +6255,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5975,7 +6331,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6047,7 +6407,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6119,7 +6483,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6183,7 +6551,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6255,7 +6627,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6327,7 +6703,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6399,7 +6779,11 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >

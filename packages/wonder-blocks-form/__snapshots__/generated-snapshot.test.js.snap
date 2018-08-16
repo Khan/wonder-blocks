@@ -867,6 +867,7 @@ exports[`wonder-blocks-form example 2 1`] = `
             "fontWeight": 400,
             "lineHeight": "20px",
             "marginTop": -2,
+            "userSelect": "none",
           }
         }
       >
@@ -2012,6 +2013,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -2169,6 +2171,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -2345,6 +2348,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -2502,6 +2506,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -2659,6 +2664,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -2834,6 +2840,7 @@ exports[`wonder-blocks-form example 5 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -3060,6 +3067,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -3219,6 +3227,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -3378,6 +3387,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -3537,6 +3547,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -3696,6 +3707,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -3855,6 +3867,7 @@ exports[`wonder-blocks-form example 6 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -4105,6 +4118,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -4264,6 +4278,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -4440,6 +4455,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -4597,6 +4613,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >
@@ -4754,6 +4771,7 @@ exports[`wonder-blocks-form example 7 1`] = `
                 "fontWeight": 400,
                 "lineHeight": "20px",
                 "marginTop": -2,
+                "userSelect": "none",
               }
             }
           >

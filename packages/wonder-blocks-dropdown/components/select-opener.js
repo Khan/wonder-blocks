@@ -159,6 +159,8 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        whiteSpace: "nowrap",
+        userSelect: "none",
         overflow: "hidden",
         textOverflow: "ellipsis",
     },
