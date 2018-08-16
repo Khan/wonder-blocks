@@ -20,6 +20,7 @@ export type SharedProps = {|
 
     /**
      * If true, replaces the contents with a spinner.
+     * TODO(kevinb): support spinner + light once we have designs
      */
     spinner: boolean,
 
