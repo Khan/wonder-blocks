@@ -280,6 +280,9 @@ describe("ClickableBehavior", () => {
         button.simulate("blur");
         expect(button.state("pressed")).toEqual(false);
 
+        button.simulate("focus");
+        expect(button.state("focused")).toEqual(false);
+
         const anchor = shallow(
             <ClickableBehavior
                 disabled={true}
@@ -417,13 +420,7 @@ describe("ClickableBehavior", () => {
                     // The base element here doesn't matter in this testing
                     // environment, but the simulated events in the test are in
                     // line with what browsers do for this element.
-                    return (
-                        <input
-                            type="checkbox"
-                            href="https://khanacademy.org/"
-                            {...handlers}
-                        />
-                    );
+                    return <input type="checkbox" {...handlers} />;
                 }}
             </ClickableBehavior>,
         );
@@ -518,5 +515,30 @@ describe("ClickableBehavior", () => {
         clickableDiv.simulate("click");
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
+    });
+
+    it("doesn't trigger enter key when browser doesn't stop the click", () => {
+        const onClick = jest.fn();
+        // Use mount instead of a shallow render to trigger event defaults
+        const checkbox = mount(
+            <ClickableBehavior
+                triggerOnEnter={false}
+                onClick={(e) => onClick(e)}
+            >
+                {(state, handlers) => {
+                    // The base element here doesn't matter in this testing
+                    // environment, but the simulated events in the test are in
+                    // line with what browsers do for this element.
+                    return <input type="checkbox" {...handlers} />;
+                }}
+            </ClickableBehavior>,
+        );
+
+        // Enter press should not do anything
+        checkbox.simulate("keydown", {keyCode: keyCodes.enter});
+        // This element still wants to have a click on enter press
+        checkbox.simulate("click");
+        checkbox.simulate("keyup", {keyCode: keyCodes.enter});
+        expect(onClick).toHaveBeenCalledTimes(0);
     });
 });
