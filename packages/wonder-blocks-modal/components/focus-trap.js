@@ -30,6 +30,8 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
      */
     _ignoreFocusChanges: boolean;
 
+    modalRoot: Element;
+
     componentDidMount() {
         window.addEventListener("focus", this._handleGlobalFocus, true);
     }
@@ -40,17 +42,6 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
 
     _lastNodeFocusedInModal = null;
     _ignoreFocusChanges = false;
-
-    /** Get the outermost DOM node of our children. */
-    _getModalRoot(): Node {
-        const modalRoot = ReactDOM.findDOMNode(this);
-        if (!modalRoot) {
-            throw new Error(
-                "Assertion error: modal root should exist after mount",
-            );
-        }
-        return modalRoot;
-    }
 
     /** Try to focus the given node. Return true iff successful. */
     _tryToFocus(node: Node) {
@@ -115,7 +106,7 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
             return;
         }
 
-        const modalRoot = this._getModalRoot();
+        const modalRoot = this.modalRoot;
         if (modalRoot.contains(target)) {
             // If the newly focused node is inside the modal, we just keep track
             // of that.
@@ -155,7 +146,13 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
                   * wrapping, though; we're resilient to any kind of focus
                   * shift, whether it's to the sentinels or somewhere else! */}
                 <div tabIndex="0" />
-                {this.props.children}
+                <View
+                    ref={(node) =>
+                        (this.modalRoot = (ReactDOM.findDOMNode(node): any))
+                    }
+                >
+                    {this.props.children}
+                </View>
                 <div tabIndex="0" />
             </View>
         );
