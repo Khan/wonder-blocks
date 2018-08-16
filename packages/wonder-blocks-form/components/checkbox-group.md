@@ -21,6 +21,7 @@ class CheckboxGroupPizzaExample extends React.Component {
         this.state = {
             selectedValues: ["pineapple"],
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(change) {
@@ -44,7 +45,7 @@ class CheckboxGroupPizzaExample extends React.Component {
             description="You may choose at most three toppings"
             errorMessage={this.state.error}
             groupName="Toppings"
-            onChange={(change) => this.handleChange(change)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
         >
             <Choice label="Pepperoni" value="pepperoni" />
@@ -97,6 +98,7 @@ class ClassSelectorExample extends React.Component {
         this.state = {
             selectedValues: [],
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(change) {
@@ -109,7 +111,7 @@ class ClassSelectorExample extends React.Component {
     render() {
         return <CheckboxGroup
             groupName="science-classes"
-            onChange={(change) => this.handleChange(change)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
             style={styles.group}
         >
