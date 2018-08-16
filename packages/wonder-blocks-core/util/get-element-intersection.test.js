@@ -79,7 +79,13 @@ describe("getElementIntersection", () => {
             // First, let's fake out some scroll parent.
             // Flow doesn't like jest mocks $FlowFixMe
             enumerateScrollAncestors.mockImplementation(() => [
-                {getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0))},
+                {
+                    getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
+                    currentStyle: {
+                        overflowX: "auto",
+                        overflowY: "auto",
+                    },
+                },
             ]);
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -113,6 +119,10 @@ describe("getElementIntersection", () => {
                         getBoundingClientRect: jest.fn(() =>
                             rect(0, 100, 100, 0),
                         ),
+                        currentStyle: {
+                            overflowX: "auto",
+                            overflowY: "auto",
+                        },
                     },
                 ]);
                 const ref = await new Promise((resolve) => {
@@ -148,6 +158,10 @@ describe("getElementIntersection", () => {
                         getBoundingClientRect: jest.fn(() =>
                             rect(0, 100, 100, 0),
                         ),
+                        currentStyle: {
+                            overflowX: "auto",
+                            overflowY: "auto",
+                        },
                     },
                 ]);
                 const ref = await new Promise((resolve) => {
@@ -185,6 +199,10 @@ describe("getElementIntersection", () => {
                         getBoundingClientRect: jest.fn(() =>
                             rect(0, 100, 100, 0),
                         ),
+                        currentStyle: {
+                            overflowX: "auto",
+                            overflowY: "auto",
+                        },
                     },
                 ]);
                 const ref = await new Promise((resolve) => {
@@ -220,6 +238,10 @@ describe("getElementIntersection", () => {
                         getBoundingClientRect: jest.fn(() =>
                             rect(0, 100, 100, 0),
                         ),
+                        currentStyle: {
+                            overflowX: "auto",
+                            overflowY: "auto",
+                        },
                     },
                 ]);
                 const ref = await new Promise((resolve) => {
@@ -252,7 +274,13 @@ describe("getElementIntersection", () => {
             // First, let's fake out some scroll parent.
             // Flow doesn't like jest mocks $FlowFixMe
             enumerateScrollAncestors.mockImplementation(() => [
-                {getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0))},
+                {
+                    getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
+                    currentStyle: {
+                        overflowX: "auto",
+                        overflowY: "auto",
+                    },
+                },
             ]);
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -278,13 +306,62 @@ describe("getElementIntersection", () => {
             });
         });
 
+        test("element is before or after, but parent overflow is visible, returns within", async () => {
+            // Arrange
+            // First, let's fake out some scroll parent.
+            // Flow doesn't like jest mocks $FlowFixMe
+            enumerateScrollAncestors.mockImplementation(() => [
+                {
+                    getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
+                    currentStyle: {
+                        overflowX: "visible",
+                        overflowY: "visible",
+                    },
+                },
+            ]);
+            const ref = await new Promise((resolve) => {
+                const nodes = (
+                    <div>
+                        <div ref={resolve}>Test</div>
+                    </div>
+                );
+
+                mount(nodes);
+            });
+            const element = (ReactDOM.findDOMNode(ref): any);
+            element.getBoundingClientRect = jest.fn(() =>
+                rect(-50, 150, -25, 125),
+            );
+
+            // Act
+            const result = getElementIntersection(element);
+
+            // Assert
+            expect(result).toMatchObject({
+                horizontal: "within",
+                vertical: "within",
+            });
+        });
+
         test("multiple scroll ancestors, stops enumeration on first before/after", async () => {
             // Arrange
             // First, let's fake out some scroll parent.
             // Flow doesn't like jest mocks $FlowFixMe
             enumerateScrollAncestors.mockImplementation(() => [
-                {getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0))},
-                {getBoundingClientRect: jest.fn(() => rect(50, 200, 250, 0))},
+                {
+                    getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
+                    currentStyle: {
+                        overflowX: "auto",
+                        overflowY: "auto",
+                    },
+                },
+                {
+                    getBoundingClientRect: jest.fn(() => rect(50, 200, 250, 0)),
+                    currentStyle: {
+                        overflowX: "auto",
+                        overflowY: "auto",
+                    },
+                },
                 null,
             ]);
             const ref = await new Promise((resolve) => {
@@ -312,6 +389,10 @@ describe("getElementIntersection", () => {
             // Arrange
             const fakeParentElement = ({
                 getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
+                currentStyle: {
+                    overflowX: "auto",
+                    overflowY: "auto",
+                },
             }: any);
             const ref = await new Promise((resolve) => {
                 const nodes = (
