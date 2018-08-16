@@ -16,6 +16,7 @@
   "dependencies": {
     "@khanacademy/wonder-blocks-color": "^1.0.6",
     "@khanacademy/wonder-blocks-core": "^1.1.1",
+    "@khanacademy/wonder-blocks-progress-spinner": "^1.0.3",
     "@khanacademy/wonder-blocks-typography": "^1.0.6"
   },
   "peerDependencies": {

@@ -20,8 +20,7 @@ export type SharedProps = {|
     /**
      * If true, replaces the contents with a spinner.
      */
-    // TODO(yejia): Implement once spinner is implemented.
-    // spinner: boolean,
+    spinner: boolean,
 
     /**
      * The color of the button, either blue or red.
@@ -141,6 +140,7 @@ export default class Button extends React.Component<SharedProps> {
         light: false,
         size: "medium",
         disabled: false,
+        spinner: false,
     };
 
     static contextTypes = {router: PropTypes.any};
@@ -151,6 +151,8 @@ export default class Button extends React.Component<SharedProps> {
             href,
             children,
             skipClientNav,
+            spinner,
+            disabled,
             ...sharedProps
         } = this.props;
 
@@ -162,7 +164,7 @@ export default class Button extends React.Component<SharedProps> {
 
         return (
             <ClickableBehavior
-                disabled={sharedProps.disabled}
+                disabled={spinner || disabled}
                 onClick={onClick}
                 href={href}
             >
@@ -172,6 +174,8 @@ export default class Button extends React.Component<SharedProps> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
+                            disabled={spinner || disabled}
+                            spinner={spinner}
                             skipClientNav={skipClientNav}
                             href={href}
                         >
