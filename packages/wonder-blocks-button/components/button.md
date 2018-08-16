@@ -363,13 +363,14 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-Layouts often specify a specific width of button.  When implementing such
-designs use `minWidth` instead of `width`.  `minWidth` allows the button
-to resize to fit the content whereas `width` does not.  This is important
+Layouts often specify a specific width of button. When implementing such
+designs use `minWidth` instead of `width`. `minWidth` allows the button
+to resize to fit the content whereas `width` does not. This is important
 for international sites since sometimes strings for UI elements can be much
-longer in other languages.  Both of the buttons below have a "natural" width
-of 144px.  The one on the right is wider but it accommodates the full string
-instead of wrapping or truncating it.
+longer in other languages. Both of the buttons below have a "natural" width
+of 144px. The one on the right is wider but it accommodates the full string
+instead of wrapping it. Try to avoid setting a `maxWidth`, but if one is set,
+the text truncates.
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");

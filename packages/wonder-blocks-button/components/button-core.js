@@ -138,6 +138,10 @@ const sharedStyles = StyleSheet.create({
     },
     text: {
         fontWeight: "bold",
+        userSelect: "none",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
 });

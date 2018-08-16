@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
 
     label: {
         whiteSpace: "nowrap",
+        userSelect: "none",
         marginLeft: Spacing.xSmall,
     },
 
