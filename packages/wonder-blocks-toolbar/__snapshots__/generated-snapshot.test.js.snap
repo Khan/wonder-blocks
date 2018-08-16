@@ -181,7 +181,11 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -266,7 +270,11 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -858,7 +866,11 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -1092,7 +1104,11 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -1174,7 +1190,11 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >

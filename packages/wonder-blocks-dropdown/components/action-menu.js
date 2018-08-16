@@ -228,6 +228,9 @@ const styles = StyleSheet.create({
         paddingLeft: 8,
         paddingRight: 8,
         whiteSpace: "nowrap",
+        userSelect: "none",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     // This is to adjust the space between the menu and the opener.
