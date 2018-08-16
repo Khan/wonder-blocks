@@ -1171,7 +1171,6 @@ exports[`wonder-blocks-form example 4 1`] = `
         checked={false}
         className=""
         disabled={false}
-        name="group"
         onChange={[Function]}
         style={
           Object {
@@ -1280,7 +1279,6 @@ exports[`wonder-blocks-form example 4 1`] = `
         checked={true}
         className=""
         disabled={false}
-        name="group"
         onChange={[Function]}
         style={
           Object {
@@ -1389,7 +1387,6 @@ exports[`wonder-blocks-form example 4 1`] = `
         checked={false}
         className=""
         disabled={false}
-        name="group"
         onChange={[Function]}
         style={
           Object {
@@ -1498,7 +1495,6 @@ exports[`wonder-blocks-form example 4 1`] = `
         checked={true}
         className=""
         disabled={false}
-        name="group"
         onChange={[Function]}
         style={
           Object {
@@ -1607,7 +1603,6 @@ exports[`wonder-blocks-form example 4 1`] = `
         checked={false}
         className=""
         disabled={true}
-        name="group"
         onChange={[Function]}
         style={
           Object {
@@ -1717,7 +1712,6 @@ exports[`wonder-blocks-form example 4 1`] = `
         checked={true}
         className=""
         disabled={true}
-        name="group"
         onChange={[Function]}
         style={
           Object {

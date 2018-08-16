@@ -31,48 +31,48 @@ describe("wonder-blocks-form", () => {
             },
         });
 
-        const handleChanged = (checked) =>
+        const handleChange = (checked) =>
             console.log(
                 `clicked on checkbox, will be checked=${checked.toString()}`,
             );
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <Checkbox
                     error={false}
                     checked={false}
-                    style={[styles.marginRight]}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Checkbox
                     error={false}
                     checked={true}
-                    style={[styles.marginRight]}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Checkbox
                     error={true}
                     checked={false}
-                    style={[styles.marginRight]}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Checkbox
                     error={true}
                     checked={true}
-                    style={[styles.marginRight]}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Checkbox
                     disabled={true}
                     checked={false}
-                    style={[styles.marginRight]}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Checkbox
                     disabled={true}
                     checked={true}
-                    style={[styles.marginRight]}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
             </View>
         );
@@ -214,55 +214,48 @@ describe("wonder-blocks-form", () => {
             },
         });
 
-        const handleChanged = (checked) =>
+        const handleChange = (checked) =>
             console.log(
                 `clicked on radio, will be checked=${checked.toString()}`,
             );
-        const groupName = "group";
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={styles.row}>
                 <Radio
                     error={false}
                     checked={false}
-                    style={[styles.marginRight]}
-                    groupName={groupName}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Radio
                     error={false}
                     checked={true}
-                    style={[styles.marginRight]}
-                    groupName={groupName}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Radio
                     error={true}
                     checked={false}
-                    style={[styles.marginRight]}
-                    groupName={groupName}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Radio
                     error={true}
                     checked={true}
-                    style={[styles.marginRight]}
-                    groupName={groupName}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Radio
                     disabled={true}
                     checked={false}
-                    style={[styles.marginRight]}
-                    groupName={groupName}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
                 <Radio
                     disabled={true}
                     checked={true}
-                    style={[styles.marginRight]}
-                    groupName={groupName}
-                    onChange={(checked) => handleChanged(checked)}
+                    style={styles.marginRight}
+                    onChange={handleChange}
                 />
             </View>
         );
