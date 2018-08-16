@@ -132,7 +132,7 @@ export default class ChoiceInternal extends React.Component<Props> {
                     {(state, handlers) => {
                         return (
                             <View
-                                style={[styles.wrapper]}
+                                style={styles.wrapper}
                                 {...handlers}
                                 // We are resetting the tabIndex=0 from handlers
                                 // because the ChoiceCore component will receive
