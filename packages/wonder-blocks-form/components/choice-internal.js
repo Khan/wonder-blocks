@@ -57,7 +57,8 @@ type Props = {|
  * and RadioGroup. This design allows for more explicit prop typing. For
  * example, we can make onChange a required prop on Checkbox but not on Choice
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
- */ export default class ChoiceInternal extends React.Component<Props> {
+ */
+export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps = {
         checked: false,
         disabled: false,
@@ -86,6 +87,7 @@ type Props = {|
             return CheckboxCore;
         }
     }
+
     getLabel() {
         const {disabled, id, label} = this.props;
         return (
@@ -98,12 +100,14 @@ type Props = {|
             </LabelMedium>
         );
     }
+
     getDescription() {
         const {description} = this.props;
         return (
             <LabelSmall style={styles.description}>{description}</LabelSmall>
         );
     }
+
     render() {
         const {
             label,
@@ -147,12 +151,14 @@ type Props = {|
         );
     }
 }
+
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
         alignItems: "flex-start",
         outline: "none",
     },
+
     label: {
         userSelect: "none",
         // NOTE: The checkbox/radio button (height 16px) should be center
@@ -161,9 +167,11 @@ const styles = StyleSheet.create({
         // desired alignment.
         marginTop: -2,
     },
+
     disabledLabel: {
         color: Color.offBlack32,
     },
+
     description: {
         // 16 for icon + 8 for spacing strut
         marginLeft: Spacing.medium + Spacing.xSmall,

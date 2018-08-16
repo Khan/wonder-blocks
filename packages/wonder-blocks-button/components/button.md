@@ -369,8 +369,8 @@ to resize to fit the content whereas `width` does not. This is important
 for international sites since sometimes strings for UI elements can be much
 longer in other languages. Both of the buttons below have a "natural" width
 of 144px. The one on the right is wider but it accommodates the full string
-instead of wrapping it. Try to avoid setting a `maxWidth`, but if one is set,
-the text truncates.
+instead of wrapping it. Note that if the parent container of the button doesn't
+have enough room to accommodate the width of the button, the text will truncate.
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
