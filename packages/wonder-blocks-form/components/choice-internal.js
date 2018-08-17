@@ -128,6 +128,7 @@ export default class ChoiceInternal extends React.Component<Props> {
                 <ClickableBehavior
                     disabled={coreProps.disabled}
                     onClick={this.handleClick}
+                    triggerOnEnter={false}
                 >
                     {(state, handlers) => {
                         return (
