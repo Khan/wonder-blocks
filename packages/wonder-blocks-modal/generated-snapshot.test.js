@@ -526,6 +526,7 @@ describe("wonder-blocks-modal", () => {
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
                     <TwoColumnModal
+                        fullBleedSidebar={false}
                         sidebar={
                             <View>
                                 <Title style={styles.title}>Sidebar</Title>
@@ -605,6 +606,7 @@ describe("wonder-blocks-modal", () => {
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
                     <TwoColumnModal
+                        fullBleedSidebar={false}
                         sidebar={
                             <View>
                                 <Title style={styles.title}>Sidebar</Title>
@@ -697,6 +699,7 @@ describe("wonder-blocks-modal", () => {
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
                     <TwoColumnModal
+                        fullBleedSidebar={false}
                         sidebar={<span>foo</span>}
                         content={<span>bar</span>}
                         onClickCloseButton={() =>
@@ -746,14 +749,12 @@ describe("wonder-blocks-modal", () => {
 
             imageContainer: {
                 position: "absolute",
-                left: 0,
-                bottom: 0,
+                width: "100%",
+                height: "100%",
                 backgroundImage: "url('pencilHand-800x.png')",
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center bottom",
-                width: "100%",
-                height: "100%",
             },
         });
 
@@ -762,6 +763,7 @@ describe("wonder-blocks-modal", () => {
                 <View style={styles.modalPositioner}>
                     <TwoColumnModal
                         sidebar={<View style={styles.imageContainer} />}
+                        fullBleedSidebar={true}
                         content={
                             <View>
                                 <HeadingLarge>

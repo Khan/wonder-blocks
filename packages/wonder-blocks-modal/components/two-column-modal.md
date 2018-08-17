@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <TwoColumnModal
+            fullBleedSidebar={false}
             sidebar={
                 <View>
                     <Title style={styles.title}>Sidebar</Title>
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <TwoColumnModal
+            fullBleedSidebar={false}
             sidebar={
                 <View>
                     <Title style={styles.title}>Sidebar</Title>
@@ -187,6 +189,7 @@ const styles = StyleSheet.create({
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <TwoColumnModal
+            fullBleedSidebar={false}
             sidebar={<span>foo</span>}
             content={<span>bar</span>}
             onClickCloseButton={() => alert("This would close the modal.")}
@@ -195,9 +198,9 @@ const styles = StyleSheet.create({
 </View>;
 ```
 
-The example shows an example of a TwoColumnModal with a fullbleed-style image as
-the sidebar.
-```js
+This example shows a TwoColumnModal with a full bleed sidebar.
+
+```jsx
 const {StyleSheet, css} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -230,14 +233,12 @@ const styles = StyleSheet.create({
 
     imageContainer: {
         position: "absolute",
-        left: 0,
-        bottom: 0,
+        width: "100%",
+        height: "100%",
         backgroundImage: "url('pencilHand-800x.png')",
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center bottom",
-        width: "100%",
-        height: "100%",
     },
 });
 
@@ -245,6 +246,7 @@ const styles = StyleSheet.create({
     <View style={styles.modalPositioner}>
         <TwoColumnModal
             sidebar={<View style={styles.imageContainer} />}
+            fullBleedSidebar={true}
             content={
                 <View>
                     <HeadingLarge>
