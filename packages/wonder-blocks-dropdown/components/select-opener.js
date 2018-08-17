@@ -95,7 +95,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                     return (
                         <StyledButton
                             disabled={disabled}
-                            role="button"
+                            role="listbox"
                             type="button"
                             style={[
                                 styles.shared,

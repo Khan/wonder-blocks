@@ -21,10 +21,11 @@ type Props = {|
     /**
      * A URL.
      *
-     * If specified, we will assume the rendered component should react like an
-     * `<a>` tag and respond to enter/return key press but not space key press.
-     * If not specified, the component will react to both enter and space key
-     * presses.
+     * If specified, clicking on the component will navigate to the location
+     * provided.
+     * For keyboard navigation, the default is that both an enter and space
+     * press would also navigate to this location. See the triggerOnEnter and
+     * triggerOnSpace props for more details.
      */
     href?: string,
 
@@ -43,8 +44,7 @@ type Props = {|
      * Trigger onClick callback and href navigation, if present, on enter key
      * press. Default true. Only set to false if the component should definitely
      * NOT trigger onClick on enter. An example of a component that shouldn't
-     * trigger on enter is Checkbox.
-     * @ignore
+     * trigger on enter is a Checkbox or some other form component.
      */
     triggerOnEnter: boolean,
 
@@ -52,7 +52,6 @@ type Props = {|
      * Trigger onClick callback on space key press. Only set to false if the
      * component should definitely NOT trigger onClick on space. An example of a
      * component that shouldn't trigger on space is Link.
-     * @ignore
      */
     triggerOnSpace: boolean,
 |};
@@ -154,6 +153,9 @@ const startState = {
  * to false if one of those keys shouldn't count as a click on this component.
  * Be careful about setting those to false -- make certain that the component
  * shouldn't process that key.
+ *
+ * See [this document](https://docs.google.com/document/d/1DG5Rg2f0cawIL5R8UqnPQpd7pbdObk8OyjO5ryYQmBM/edit#)
+ * for a more thorough explanation of expected behaviors and potential cavaets.
  *
  * `ClickableBehavior` accepts a function as `children` which is passed state
  * and an object containing event handlers. The `children` function should
