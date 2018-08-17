@@ -128,6 +128,7 @@ export default class ChoiceInternal extends React.Component<Props> {
                 <ClickableBehavior
                     disabled={coreProps.disabled}
                     onClick={this.handleClick}
+                    triggerOnEnter={false}
                 >
                     {(state, handlers) => {
                         return (
@@ -151,6 +152,7 @@ export default class ChoiceInternal extends React.Component<Props> {
         );
     }
 }
+
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
@@ -159,6 +161,7 @@ const styles = StyleSheet.create({
     },
 
     label: {
+        userSelect: "none",
         // NOTE: The checkbox/radio button (height 16px) should be center
         // aligned with the first line of the label. However, LabelMedium has a
         // declared line height of 20px, so we need to adjust the top to get the
