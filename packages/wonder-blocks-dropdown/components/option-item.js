@@ -116,7 +116,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                         <View
                             style={defaultStyle}
                             aria-checked={selected ? "true" : "false"}
-                            role="menuitemcheckbox"
+                            role="option"
                             {...handlers}
                         >
                             <CheckComponent

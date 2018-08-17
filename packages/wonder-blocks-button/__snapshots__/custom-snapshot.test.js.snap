@@ -17,6 +17,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -43,6 +44,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -84,6 +86,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -111,6 +114,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -152,6 +156,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -179,6 +184,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -220,6 +226,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -247,6 +254,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -289,6 +297,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -315,6 +324,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -356,6 +366,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -383,6 +394,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -424,6 +436,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -451,6 +464,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -492,6 +506,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -519,6 +534,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -561,6 +577,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -587,6 +604,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -628,6 +646,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -655,6 +674,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -696,6 +716,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -723,6 +744,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -764,6 +786,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -791,6 +814,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -833,6 +857,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -859,6 +884,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -900,6 +926,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -927,6 +954,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -968,6 +996,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -995,6 +1024,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1036,6 +1066,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1063,6 +1094,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1105,6 +1137,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1131,6 +1164,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -1172,6 +1206,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1199,6 +1234,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1240,6 +1276,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1267,6 +1304,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1308,6 +1346,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1335,6 +1374,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1377,6 +1417,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1403,6 +1444,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -1444,6 +1486,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1471,6 +1514,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1512,6 +1556,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1539,6 +1584,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1580,6 +1626,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1607,6 +1654,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1649,6 +1697,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1675,6 +1724,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -1716,6 +1766,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1743,6 +1794,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1784,6 +1836,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1811,6 +1864,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1852,6 +1906,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1879,6 +1934,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1921,6 +1977,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -1947,6 +2004,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -1988,6 +2046,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2015,6 +2074,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2056,6 +2116,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2083,6 +2144,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2124,6 +2186,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2151,6 +2214,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2193,6 +2257,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2222,6 +2287,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -2263,6 +2329,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2292,6 +2359,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2333,6 +2401,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2362,6 +2431,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2403,6 +2473,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2432,6 +2503,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2474,6 +2546,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2503,6 +2576,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -2544,6 +2618,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2573,6 +2648,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2614,6 +2690,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2643,6 +2720,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2684,6 +2762,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2713,6 +2792,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2755,6 +2835,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2784,6 +2865,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -2825,6 +2907,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2854,6 +2937,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2895,6 +2979,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2924,6 +3009,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2965,6 +3051,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2994,6 +3081,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3036,6 +3124,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3065,6 +3154,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -3106,6 +3196,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3135,6 +3226,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3176,6 +3268,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3205,6 +3298,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3246,6 +3340,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3275,6 +3370,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3317,6 +3413,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3346,6 +3443,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -3387,6 +3485,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3416,6 +3515,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3457,6 +3557,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3486,6 +3587,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3527,6 +3629,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3556,6 +3659,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3598,6 +3702,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3627,6 +3732,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -3668,6 +3774,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3697,6 +3804,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3738,6 +3846,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3767,6 +3876,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3808,6 +3918,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3837,6 +3948,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3879,6 +3991,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3908,6 +4021,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -3949,6 +4063,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -3978,6 +4093,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4019,6 +4135,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4048,6 +4165,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4089,6 +4207,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4118,6 +4237,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4160,6 +4280,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4189,6 +4310,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4230,6 +4352,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4259,6 +4382,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4300,6 +4424,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4329,6 +4454,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4370,6 +4496,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4399,6 +4526,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4441,6 +4569,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4467,6 +4596,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4508,6 +4638,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4543,6 +4674,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4584,6 +4716,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4619,6 +4752,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4660,6 +4794,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4695,6 +4830,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4737,6 +4873,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4763,6 +4900,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4804,6 +4942,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4839,6 +4978,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4880,6 +5020,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4915,6 +5056,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4956,6 +5098,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4991,6 +5134,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5033,6 +5177,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5059,6 +5204,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -5100,6 +5246,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5135,6 +5282,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5176,6 +5324,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5211,6 +5360,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5252,6 +5402,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5287,6 +5438,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5329,6 +5481,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5355,6 +5508,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -5396,6 +5550,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5431,6 +5586,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5472,6 +5628,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5507,6 +5664,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5548,6 +5706,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5583,6 +5742,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5625,6 +5785,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5651,6 +5812,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -5692,6 +5854,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5727,6 +5890,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5768,6 +5932,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5803,6 +5968,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5844,6 +6010,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5879,6 +6046,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5921,6 +6089,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -5947,6 +6116,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -5988,6 +6158,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6023,6 +6194,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6064,6 +6236,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6099,6 +6272,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6140,6 +6314,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6175,6 +6350,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6217,6 +6393,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6243,6 +6420,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -6284,6 +6462,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6319,6 +6498,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6360,6 +6540,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6395,6 +6576,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6436,6 +6618,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6471,6 +6654,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6513,6 +6697,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6539,6 +6724,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -6580,6 +6766,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6615,6 +6802,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6656,6 +6844,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6691,6 +6880,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6732,6 +6922,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -6767,6 +6958,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
