@@ -40,7 +40,6 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
 
     handleClick = (e: SyntheticEvent<>) => {
         const {open} = this.props;
-        // TODO: also detect enter click events
         this.props.onOpenChanged(!open, e.type === "keyup");
     };
 
@@ -185,8 +184,11 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const containsOptionItems = Array.isArray(selectedValues);
 
         return React.Children.map(children, (item) => {
-            if (item.type === ActionItem) {
-                const {disabled} = item.props;
+            const {
+                type,
+                props: {disabled, value},
+            } = item;
+            if (type === ActionItem) {
                 return {
                     component: item,
                     focusable: !disabled,
@@ -194,8 +196,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         indent: containsOptionItems,
                     },
                 };
-            } else if (item.type === OptionItem) {
-                const {disabled, value} = item.props;
+            } else if (type === OptionItem) {
                 return {
                     component: item,
                     focusable: !disabled,

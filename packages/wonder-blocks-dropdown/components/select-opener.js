@@ -75,7 +75,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
     handleClick = (e: SyntheticEvent<>) => {
         const {open} = this.props;
-        // TODO: also detect enter click events
         this.props.onOpenChanged(!open, e.type === "keyup");
     };
 

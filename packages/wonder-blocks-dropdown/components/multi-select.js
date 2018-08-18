@@ -181,12 +181,12 @@ export default class MultiSelect extends React.Component<Props, State> {
         if (shortcuts) {
             const numOptions = React.Children.count(children);
 
-            // TODO(sophie): translate for i18n
             const selectAllDisabled = numOptions === selectedValues.length;
             const selectAll = {
                 component: (
                     <ActionItem
                         disabled={selectAllDisabled}
+                        // TODO(sophie): translate for i18n
                         label={`Select all (${numOptions})`}
                         indent={true}
                         onClick={this.handleSelectAll}
@@ -201,6 +201,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 component: (
                     <ActionItem
                         disabled={selectNoneDisabled}
+                        // TODO(sophie): translate for i18n
                         label="Select none"
                         indent={true}
                         onClick={this.handleSelectNone}

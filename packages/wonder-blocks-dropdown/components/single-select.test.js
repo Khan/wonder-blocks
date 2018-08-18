@@ -8,11 +8,11 @@ import SingleSelect from "./single-select.js";
 import {keyCodes} from "../util/constants.js";
 
 describe("SingleSelect", () => {
-    global.scrollTo = jest.fn();
     let select;
     const onChange = jest.fn();
 
     beforeEach(() => {
+        window.scrollTo = jest.fn();
         select = mount(
             <SingleSelect onChange={onChange} placeholder="Choose">
                 <OptionItem label="item 1" value="1" />
@@ -23,6 +23,7 @@ describe("SingleSelect", () => {
     });
 
     afterEach(() => {
+        window.scrollTo.mockClear();
         unmountAll();
     });
 

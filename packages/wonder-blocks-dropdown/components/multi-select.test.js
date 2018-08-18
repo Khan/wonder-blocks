@@ -9,7 +9,6 @@ import MultiSelect from "./multi-select.js";
 import {keyCodes} from "../util/constants.js";
 
 describe("MultiSelect", () => {
-    global.scrollTo = jest.fn();
     let select;
     const allChanges = [];
     const saveUpdate = (update) => {
@@ -18,6 +17,7 @@ describe("MultiSelect", () => {
     const onChange = jest.fn();
 
     beforeEach(() => {
+        window.scrollTo = jest.fn();
         select = mount(
             <MultiSelect
                 onChange={(selectedValues) => {
@@ -37,6 +37,7 @@ describe("MultiSelect", () => {
     });
 
     afterEach(() => {
+        window.scrollTo.mockClear();
         unmountAll();
     });
 

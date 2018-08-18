@@ -318,8 +318,6 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     };
 
     handleBlur = (e: SyntheticFocusEvent<*>) => {
-        this.keyboardClick = false;
-        this.waitingForClick = false;
         this.setState({focused: false, pressed: false});
     };
 

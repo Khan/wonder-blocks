@@ -23,6 +23,7 @@ class ExampleNoneSelected extends React.Component {
         this.state = {
             selectedValues: [],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -78,6 +79,7 @@ class ExampleWithShortcuts extends React.Component {
         this.state = {
             selectedValues: ["wonderblocks 4ever"],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -147,6 +149,7 @@ class SimpleMultiSelect extends React.Component {
         this.state = {
             selectedValues: [],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
         this.handleChange = this.handleChange.bind(this);
     }
 

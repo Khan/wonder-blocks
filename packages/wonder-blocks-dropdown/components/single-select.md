@@ -77,6 +77,7 @@ class ExampleWithStartingSelection extends React.Component {
         this.state = {
             selectedValue: "banana",
         };
+        // Styleguidist doesn't support arrow functions in class field properties
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -125,6 +126,7 @@ class DisabledExample extends React.Component {
         this.state = {
             selectedValue: "banana",
         };
+        // Styleguidist doesn't support arrow functions in class field properties
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -185,6 +187,7 @@ class LightRightAlignedExample extends React.Component {
         this.state = {
             selectedValue: null,
         };
+        // Styleguidist doesn't support arrow functions in class field properties
         this.handleChange = this.handleChange.bind(this);
     }
 

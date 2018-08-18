@@ -10,13 +10,13 @@ import ActionMenu from "./action-menu.js";
 import {keyCodes} from "../util/constants.js";
 
 describe("ActionMenu", () => {
-    global.scrollTo = jest.fn();
     let menu;
     const onClick = jest.fn();
     const onToggle = jest.fn();
     const onChange = jest.fn();
 
     beforeEach(() => {
+        window.scrollTo = jest.fn();
         menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
@@ -31,6 +31,7 @@ describe("ActionMenu", () => {
     });
 
     afterEach(() => {
+        window.scrollTo.mockClear();
         unmountAll();
     });
 

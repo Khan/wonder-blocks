@@ -75,6 +75,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: ["homework"],
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -208,6 +209,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: "banana",
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -262,6 +264,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: "banana",
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -327,6 +330,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: null,
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -394,6 +398,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: [],
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -451,6 +456,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: ["wonderblocks 4ever"],
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -533,6 +539,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: [],
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
             }
 

@@ -276,7 +276,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         }
     };
 
-    focusCurrentItem = () => {
+    focusCurrentItem() {
         // Because the dropdown menu is portalled, focusing this element
         // will scroll the window all the way to the top of the screen.
         const x = window.scrollX;
@@ -293,27 +293,27 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             ].originalIndex;
         }
         window.scrollTo(x, y);
-    };
+    }
 
-    focusPreviousItem = () => {
+    focusPreviousItem() {
         if (this.focusedIndex === 0) {
             this.focusedIndex = this.state.itemRefs.length - 1;
         } else {
             this.focusedIndex -= 1;
         }
         this.focusCurrentItem();
-    };
+    }
 
-    focusNextItem = () => {
+    focusNextItem() {
         if (this.focusedIndex === this.state.itemRefs.length - 1) {
             this.focusedIndex = 0;
         } else {
             this.focusedIndex += 1;
         }
         this.focusCurrentItem();
-    };
+    }
 
-    restoreTabOrder = () => {
+    restoreTabOrder() {
         // NOTE: Because the dropdown is portalled out of its natural
         // position in the DOM, we need to manually return focus to the
         // opener element before we let the natural propagation of tab
@@ -321,7 +321,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         if (this.props.openerElement) {
             this.props.openerElement.focus();
         }
-    };
+    }
 
     handleKeyDown = (event: SyntheticKeyboardEvent<>) => {
         const {initialFocusedIndex, onOpenChanged, open} = this.props;
@@ -391,7 +391,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         }
     };
 
-    handleClickFocus = (index: number) => {
+    handleClickFocus(index: number) {
         // Turn keyboard nav on so pressing up or down would focus the
         // appropriate item in handleKeyDown
         this.keyboardNavOn = true;
@@ -399,7 +399,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         this.focusedOriginalIndex = this.state.itemRefs[
             this.focusedIndex
         ].originalIndex;
-    };
+    }
 
     handleDropdownMouseUp = (event: SyntheticMouseEvent<>) => {
         event.nativeEvent.stopImmediatePropagation();

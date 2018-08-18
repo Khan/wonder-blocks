@@ -132,7 +132,6 @@ const {blue, white, offBlack, offBlack32} = Color;
 
 const styles = StyleSheet.create({
     itemContainer: {
-        display: "flex",
         flexDirection: "row",
         backgroundColor: white,
         color: offBlack,
