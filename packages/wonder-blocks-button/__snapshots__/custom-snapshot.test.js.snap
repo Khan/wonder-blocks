@@ -17,9 +17,10 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -43,6 +44,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -51,14 +53,15 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -83,9 +86,10 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -110,6 +114,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -118,14 +123,15 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -150,9 +156,10 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -177,6 +184,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -185,14 +193,15 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -217,9 +226,10 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -244,6 +254,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -252,14 +263,15 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -285,9 +297,10 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -311,6 +324,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -319,14 +333,15 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -351,9 +366,10 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -378,6 +394,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -386,14 +403,15 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -418,9 +436,10 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -445,6 +464,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -453,14 +473,15 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -485,9 +506,10 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -512,6 +534,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -520,14 +543,15 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -553,9 +577,10 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -579,6 +604,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -587,14 +613,15 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -619,9 +646,10 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -646,6 +674,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -654,14 +683,15 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -686,9 +716,10 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -713,6 +744,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -721,14 +753,15 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -753,9 +786,10 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -780,6 +814,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -788,14 +823,15 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -821,9 +857,10 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -847,6 +884,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -855,14 +893,15 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -887,9 +926,10 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -914,6 +954,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -922,14 +963,15 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -954,9 +996,10 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -981,6 +1024,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -989,14 +1033,15 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1021,9 +1066,10 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1048,6 +1094,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1056,14 +1103,15 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1089,9 +1137,10 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1115,6 +1164,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -1123,14 +1173,15 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1155,9 +1206,10 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1182,6 +1234,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1190,14 +1243,15 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1222,9 +1276,10 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1249,6 +1304,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1257,14 +1313,15 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1289,9 +1346,10 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1316,6 +1374,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1324,14 +1383,15 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1357,9 +1417,10 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1383,6 +1444,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -1391,14 +1453,15 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1423,9 +1486,10 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1450,6 +1514,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1458,14 +1523,15 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1490,9 +1556,10 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1517,6 +1584,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1525,14 +1593,15 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1557,9 +1626,10 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1584,6 +1654,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1592,14 +1663,15 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1625,9 +1697,10 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1651,6 +1724,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -1659,14 +1733,15 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1691,9 +1766,10 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1718,6 +1794,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1726,14 +1803,15 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1758,9 +1836,10 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1785,6 +1864,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1793,14 +1873,15 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1825,9 +1906,10 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1852,6 +1934,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1860,14 +1943,15 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1893,9 +1977,10 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1919,6 +2004,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -1927,14 +2013,15 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -1959,9 +2046,10 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1986,6 +2074,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -1994,14 +2083,15 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2026,9 +2116,10 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2053,6 +2144,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2061,14 +2153,15 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2093,9 +2186,10 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2120,6 +2214,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2128,14 +2223,15 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2161,9 +2257,10 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2190,6 +2287,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -2198,14 +2296,15 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2230,9 +2329,10 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2259,6 +2359,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2267,14 +2368,15 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2299,9 +2401,10 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2328,6 +2431,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2336,14 +2440,15 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2368,9 +2473,10 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2397,6 +2503,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2405,14 +2512,15 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2438,9 +2546,10 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2467,6 +2576,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -2475,14 +2585,15 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2507,9 +2618,10 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2536,6 +2648,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2544,14 +2657,15 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2576,9 +2690,10 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2605,6 +2720,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2613,14 +2729,15 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2645,9 +2762,10 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2674,6 +2792,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2682,14 +2801,15 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2715,9 +2835,10 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2744,6 +2865,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -2752,14 +2874,15 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2784,9 +2907,10 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2813,6 +2937,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2821,14 +2946,15 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2853,9 +2979,10 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2882,6 +3009,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2890,14 +3018,15 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2922,9 +3051,10 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2951,6 +3081,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -2959,14 +3090,15 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2992,9 +3124,10 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3021,6 +3154,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -3029,14 +3163,15 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3061,9 +3196,10 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3090,6 +3226,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3098,14 +3235,15 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3130,9 +3268,10 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3159,6 +3298,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3167,14 +3307,15 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3199,9 +3340,10 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3228,6 +3370,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3236,14 +3379,15 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3269,9 +3413,10 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3298,6 +3443,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -3306,14 +3452,15 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3338,9 +3485,10 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3367,6 +3515,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3375,14 +3524,15 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3407,9 +3557,10 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3436,6 +3587,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3444,14 +3596,15 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3476,9 +3629,10 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3505,6 +3659,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3513,14 +3668,15 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3546,9 +3702,10 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3575,6 +3732,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -3583,14 +3741,15 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3615,9 +3774,10 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3644,6 +3804,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3652,14 +3813,15 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3684,9 +3846,10 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3713,6 +3876,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3721,14 +3885,15 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3753,9 +3918,10 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3782,6 +3948,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3790,14 +3957,15 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3823,9 +3991,10 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3852,6 +4021,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -3860,14 +4030,15 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3892,9 +4063,10 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3921,6 +4093,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3929,14 +4102,15 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -3961,9 +4135,10 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3990,6 +4165,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -3998,14 +4174,15 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4030,9 +4207,10 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4059,6 +4237,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4067,14 +4246,15 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4100,9 +4280,10 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4129,6 +4310,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4137,14 +4319,15 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4169,9 +4352,10 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4198,6 +4382,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4206,14 +4391,15 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4238,9 +4424,10 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4267,6 +4454,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4275,14 +4463,15 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4307,9 +4496,10 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4336,6 +4526,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4344,14 +4535,15 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4377,9 +4569,10 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4403,6 +4596,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4411,14 +4605,15 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4443,9 +4638,10 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -4478,6 +4674,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4486,14 +4683,15 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4518,9 +4716,10 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -4553,6 +4752,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4561,14 +4761,15 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4593,9 +4794,10 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -4628,6 +4830,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4636,14 +4839,15 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4669,9 +4873,10 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4695,6 +4900,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4703,14 +4909,15 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4735,9 +4942,10 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -4770,6 +4978,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4778,14 +4987,15 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4810,9 +5020,10 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -4845,6 +5056,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4853,14 +5065,15 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4885,9 +5098,10 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -4920,6 +5134,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -4928,14 +5143,15 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4961,9 +5177,10 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4987,6 +5204,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4995,14 +5213,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5027,9 +5246,10 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5062,6 +5282,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5070,14 +5291,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5102,9 +5324,10 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5137,6 +5360,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5145,14 +5369,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5177,9 +5402,10 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5212,6 +5438,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5220,14 +5447,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5253,9 +5481,10 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -5279,6 +5508,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -5287,14 +5517,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5319,9 +5550,10 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5354,6 +5586,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5362,14 +5595,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5394,9 +5628,10 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5429,6 +5664,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5437,14 +5673,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5469,9 +5706,10 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5504,6 +5742,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5512,14 +5751,15 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5545,9 +5785,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -5571,6 +5812,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -5579,14 +5821,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5611,9 +5854,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5646,6 +5890,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5654,14 +5899,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5686,9 +5932,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5721,6 +5968,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5729,14 +5977,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5761,9 +6010,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5796,6 +6046,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5804,14 +6055,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5837,9 +6089,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -5863,6 +6116,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -5871,14 +6125,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5903,9 +6158,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -5938,6 +6194,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -5946,14 +6203,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -5978,9 +6236,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -6013,6 +6272,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6021,14 +6281,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6053,9 +6314,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -6088,6 +6350,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6096,14 +6359,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6129,9 +6393,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -6155,6 +6420,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -6163,14 +6429,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6195,9 +6462,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -6230,6 +6498,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6238,14 +6507,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6270,9 +6540,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -6305,6 +6576,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6313,14 +6585,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6345,9 +6618,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -6380,6 +6654,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6388,14 +6663,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6421,9 +6697,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -6447,6 +6724,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -6455,14 +6733,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6487,9 +6766,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -6522,6 +6802,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6530,14 +6811,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6562,9 +6844,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -6597,6 +6880,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6605,14 +6889,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -6637,9 +6922,10 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       ":after": Object {
@@ -6672,6 +6958,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <span
     className=""
@@ -6680,14 +6967,15 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
       }
     }
   >

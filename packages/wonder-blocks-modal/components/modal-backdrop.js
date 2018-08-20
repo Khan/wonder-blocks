@@ -5,6 +5,7 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {ModalLauncherPortalAttributeName} from "../util/constants.js";
 
 import FocusTrap from "./focus-trap.js";
 import type {ModalElement} from "../util/types.js";
@@ -68,9 +69,16 @@ export default class ModalBackdrop extends React.Component<Props> {
                 this.props.onCloseModal();
             },
         });
+        const backdropProps = {
+            [ModalLauncherPortalAttributeName]: true,
+        };
 
         return (
-            <View style={styles.modalPositioner} onClick={this.handleClick}>
+            <View
+                style={styles.modalPositioner}
+                onClick={this.handleClick}
+                {...backdropProps}
+            >
                 {/* When you press Tab on the last focusable node of the
                   * document, some browsers will move your tab focus outside of
                   * the document. But we want to capture that as a focus event,

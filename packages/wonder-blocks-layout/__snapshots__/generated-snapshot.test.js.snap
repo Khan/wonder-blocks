@@ -36,9 +36,10 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -63,6 +64,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -71,14 +73,15 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -106,6 +109,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
@@ -125,9 +129,10 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -152,6 +157,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -160,14 +166,15 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -195,6 +202,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
@@ -214,9 +222,10 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -241,6 +250,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -249,14 +259,15 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -299,9 +310,10 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -326,6 +338,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -334,14 +347,15 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -369,6 +383,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
@@ -388,9 +403,10 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -415,6 +431,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -423,19 +440,210 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
       Accept
     </span>
   </button>
+</div>
+`;
+
+exports[`wonder-blocks-layout example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    This should
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+    not wrap.
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-layout example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    No
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+    overlap!
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    No
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+    overlap!
+  </div>
 </div>
 `;

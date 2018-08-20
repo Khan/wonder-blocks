@@ -67,9 +67,7 @@ class ContentWrapper extends React.Component<WrappedProps> {
 
         return (
             <View style={styles.contentFooterWrapper}>
-                <View
-                    style={[styles.contentWrapper, styles.smallContentWrapper]}
-                >
+                <View style={styles.smallContentWrapper}>
                     <ModalPanel
                         showCloseButton
                         onClickCloseButton={onClickCloseButton}
@@ -134,14 +132,14 @@ const styles = StyleSheet.create({
     },
 
     contentWrapper: {
-        flexDirection: "row",
-        height: "100%",
         width: "100%",
     },
 
     smallContentWrapper: {
         flexDirection: "column",
         overflow: "auto",
+        height: "100%",
+        width: "100%",
     },
 
     smallFooter: {

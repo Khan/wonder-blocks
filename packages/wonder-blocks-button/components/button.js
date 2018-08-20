@@ -84,7 +84,7 @@ export type SharedProps = {|
     skipClientNav?: boolean,
 
     /**
-     * The content of the modal, appearing between the titlebar and footer.
+     * Optional custom styles.
      */
     style?: any,
     // TODO(yejia): use this if ADR #47 has been implemented
@@ -163,8 +163,8 @@ export default class Button extends React.Component<SharedProps> {
         return (
             <ClickableBehavior
                 disabled={sharedProps.disabled}
-                onClick={onClick}
                 href={href}
+                onClick={onClick}
             >
                 {(state, handlers) => {
                     return (

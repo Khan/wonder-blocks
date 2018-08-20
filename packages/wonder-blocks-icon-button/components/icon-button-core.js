@@ -58,12 +58,6 @@ const StyledLink = addStyle(Link);
 export default class IconButtonCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
-    handleClick = (e: SyntheticEvent<>) => {
-        if (this.props.disabled) {
-            e.preventDefault();
-        }
-    };
-
     render() {
         const {
             skipClientNav,
@@ -113,25 +107,21 @@ export default class IconButtonCore extends React.Component<Props> {
 
         if (href) {
             return router && !skipClientNav ? (
-                <StyledLink
-                    {...commonProps}
-                    onClick={this.handleClick}
-                    to={href}
-                >
+                <StyledLink {...commonProps} to={href}>
                     {child}
                 </StyledLink>
             ) : (
-                <StyledAnchor
-                    {...commonProps}
-                    onClick={this.handleClick}
-                    href={href}
-                >
+                <StyledAnchor {...commonProps} href={href}>
                     {child}
                 </StyledAnchor>
             );
         } else {
             return (
-                <StyledButton {...commonProps} disabled={disabled}>
+                <StyledButton
+                    type="button"
+                    {...commonProps}
+                    disabled={disabled}
+                >
                     {child}
                 </StyledButton>
             );
@@ -154,10 +144,6 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         background: "none",
-        "::-moz-focus-inner": {
-            // Remove inner focus ring from buttons in Firefox
-            border: 0,
-        },
     },
     disabled: {
         cursor: "default",

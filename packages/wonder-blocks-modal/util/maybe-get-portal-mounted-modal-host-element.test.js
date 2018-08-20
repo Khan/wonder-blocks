@@ -113,7 +113,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                     // Assert
                     expect(result).toBeTruthy();
 
-                    const modalPortalElement = result && result.parentElement;
+                    const modalPortalElement = result;
                     expect(modalPortalElement).not.toBe(null);
 
                     const isModalPortal =

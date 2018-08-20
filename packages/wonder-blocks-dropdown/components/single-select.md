@@ -1,10 +1,9 @@
-The single select allows the selection of one item. Clients are responsible for
-keeping track of the selected item in the select.
-
 ### Single select with placeholder
 
-This single select has a starting placeholder and a set width. One item is wider
-than the width, and so the text ellipses.
+This single select has a starting placeholder and a set minWidth and maxWidth.
+Notice how the dropdown is always at least as wide as the opener. Also, when
+the first item is chosen, the text in the opener would exceed the maxWidth. It
+ellipses instead.
 
 ```js
 const React = require("react");
@@ -14,6 +13,10 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+    },
+    setWidth: {
+        minWidth: 170,
+        maxWidth: 190,
     },
 });
 
@@ -34,24 +37,19 @@ class ExampleWithPlaceholder extends React.Component {
 
     render() {
         return <SingleSelect
-            items={[
-                {label: "Vine-ripened tomatoes", value: "tomato"},
-                {label: "Watermelon", value: "watermelon"},
-                {label: "Strawberry", value: "strawberry"},
-            ]}
-            light={false}
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
-            style={{
-                width: 170,
-                maxWidth: 170,
-            }}
-        />;
+            style={styles.setWidth}
+        >
+            <OptionItem label="Vine-ripened tomatoes" value="tomato" />
+            <OptionItem label="Watermelon" value="watermelon" />
+            <OptionItem label="Strawberry" value="strawberry" />
+        </SingleSelect>;
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <ExampleWithPlaceholder />
 </View>
 ```
@@ -89,19 +87,18 @@ class ExampleWithStartingSelection extends React.Component {
 
     render() {
         return <SingleSelect
-            items={[
-                {label: "Banana juice", value: "banana"},
-                {label: "Guava juice", value: "guava", disabled: true},
-                {label: "White grape juice", value: "grape"},
-            ]}
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Choose a juice"
             selectedValue={this.state.selectedValue}
-        />;
+        >
+            <OptionItem label="Banana juice" value="banana" />
+            <OptionItem label="Guava juice" value="guava" disabled />
+            <OptionItem label="White grape juice" value="grape" />
+        </SingleSelect>;
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <ExampleWithStartingSelection />
 </View>
 ```
@@ -138,19 +135,18 @@ class DisabledExample extends React.Component {
     render() {
         return <SingleSelect
             disabled={true}
-            items={[
-                {label: "Banana juice", value: "banana"},
-                {label: "Guava juice", value: "guava", disabled: true},
-                {label: "White grape juice", value: "grape"},
-            ]}
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Choose a juice"
             selectedValue={this.state.selectedValue}
-        />;
+        >
+            <OptionItem label="Banana juice" value="banana" />
+            <OptionItem label="Guava juice" value="guava" disabled />
+            <OptionItem label="White grape juice" value="grape" />
+        </SingleSelect>;
     }
 }
 
-<View style={[styles.row]}>
+<View style={styles.row}>
     <DisabledExample />
 </View>
 ```
@@ -170,6 +166,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     darkBackgroundWrapper: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
         backgroundColor: Color.default.darkBlue,
         width: 350,
         height: 200,
@@ -195,22 +193,21 @@ class LightRightAlignedExample extends React.Component {
 
     render() {
         return <SingleSelect
-            items={[
-                {label: "Regular milk tea with boba", value: "regular"},
-                {label: "Wintermelon milk tea with boba", value: "wintermelon"},
-                {label: "Taro milk tea, half sugar", value: "taro"},
-            ]}
+            alignment="right"
             light={true}
             onChange={(selected) => this.handleChange(selected)}
             placeholder="Boba order"
             selectedValue={this.state.selectedValue}
-            alignment="right"
-        />;
+        >
+            <OptionItem label="Regular milk tea with boba" value="regular" />
+            <OptionItem label="Wintermelon milk tea with boba" value="wintermelon" />
+            <OptionItem label="Taro milk tea, half sugar" value="taro" />
+        </SingleSelect>;
     }
 }
 
-<View style={[styles.row]}>
-    <View style={[styles.darkBackgroundWrapper]}>
+<View style={styles.row}>
+    <View style={styles.darkBackgroundWrapper}>
         <LightRightAlignedExample />
     </View>
 </View>

@@ -31,6 +31,11 @@ const checkboxCheck: IconAsset = {
  * The internal stateless ☑️ Checkbox
  */
 export default class CheckboxCore extends React.Component<Props> {
+    handleChange = () => {
+        // Empty because change is handled by ClickableBehavior
+        return;
+    };
+
     render() {
         const {
             checked,
@@ -70,10 +75,9 @@ export default class CheckboxCore extends React.Component<Props> {
                     disabled={disabled}
                     id={id}
                     name={groupName}
-                    // Need to specify because this is a controlled React
-                    // form component, but we handle the click via
-                    // ClickableBehavior already
-                    onChange={() => void 0}
+                    // Need to specify because this is a controlled React form
+                    // component, but we handle the click via ClickableBehavior
+                    onChange={this.handleChange}
                     style={defaultStyle}
                     {...props}
                 />

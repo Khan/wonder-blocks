@@ -20,7 +20,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -41,6 +41,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -81,7 +82,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -106,6 +107,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -146,7 +148,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -171,6 +173,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -211,7 +214,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -236,6 +239,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -277,7 +281,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -298,6 +302,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -338,7 +343,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -363,6 +368,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -403,7 +409,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -428,6 +434,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -468,7 +475,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -493,6 +500,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -534,7 +542,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -555,6 +563,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -595,7 +604,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -620,6 +629,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -660,7 +670,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -685,6 +695,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -725,7 +736,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -750,6 +761,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -791,7 +803,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -812,6 +824,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -852,7 +865,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -877,6 +890,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -917,7 +931,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -942,6 +956,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -982,7 +997,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1007,6 +1022,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1048,7 +1064,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1069,6 +1085,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -1109,7 +1126,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1134,6 +1151,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1174,7 +1192,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1199,6 +1217,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1239,7 +1258,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1264,6 +1283,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1305,7 +1325,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1326,6 +1346,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -1366,7 +1387,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1391,6 +1412,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1431,7 +1453,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1456,6 +1478,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1496,7 +1519,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1521,6 +1544,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1562,7 +1586,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1583,6 +1607,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -1623,7 +1648,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1648,6 +1673,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1688,7 +1714,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1713,6 +1739,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1753,7 +1780,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1778,6 +1805,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1819,7 +1847,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1840,6 +1868,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -1880,7 +1909,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1905,6 +1934,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -1945,7 +1975,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -1970,6 +2000,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2010,7 +2041,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2035,6 +2066,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2076,7 +2108,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2097,6 +2129,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -2137,7 +2170,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2162,6 +2195,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2202,7 +2236,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2227,6 +2261,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2267,7 +2302,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2292,6 +2327,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2333,7 +2369,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2354,6 +2390,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -2394,7 +2431,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2419,6 +2456,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2459,7 +2497,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2484,6 +2522,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2524,7 +2563,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2549,6 +2588,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2590,7 +2630,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2611,6 +2651,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -2651,7 +2692,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2676,6 +2717,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2716,7 +2758,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2741,6 +2783,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2781,7 +2824,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2806,6 +2849,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2847,7 +2891,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2868,6 +2912,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -2908,7 +2953,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2933,6 +2978,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -2973,7 +3019,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -2998,6 +3044,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3038,7 +3085,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3063,6 +3110,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3104,7 +3152,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3125,6 +3173,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -3165,7 +3214,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3190,6 +3239,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3230,7 +3280,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3255,6 +3305,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3295,7 +3346,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3320,6 +3371,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3361,7 +3413,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3382,6 +3434,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -3422,7 +3475,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3447,6 +3500,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3487,7 +3541,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3512,6 +3566,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3552,7 +3607,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3577,6 +3632,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3618,7 +3674,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3639,6 +3695,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -3679,7 +3736,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3704,6 +3761,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3744,7 +3802,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3769,6 +3827,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3809,7 +3868,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3834,6 +3893,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -3875,7 +3935,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3896,6 +3956,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <svg
     className=""
@@ -3936,7 +3997,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -3961,6 +4022,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -4001,7 +4063,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4026,6 +4088,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""
@@ -4066,7 +4129,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
   onTouchStart={[Function]}
   style={
     Object {
-      "::-moz-focus-inner": Object {
+      "::MozFocusInner": Object {
         "border": 0,
       },
       "alignItems": "center",
@@ -4091,6 +4154,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
     }
   }
   tabIndex={0}
+  type="button"
 >
   <svg
     className=""

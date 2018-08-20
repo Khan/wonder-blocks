@@ -20,7 +20,7 @@ type DropdownProps = {|
     /**
      * Items for the menu.
      */
-    items: Array<React.Element<ActionItem | OptionItem | SeparatorItem>>,
+    children: Array<React.Element<ActionItem | OptionItem | SeparatorItem>>,
 
     /**
      * Whether the menu is open or not.
@@ -61,11 +61,16 @@ type DropdownProps = {|
     dropdownStyle?: any,
 
     /**
-     * Optional styling to add to the entire menu.
+     * User-supplied optional styling.
      */
     style?: any,
 |};
 
+/**
+ * A core dropdown component that takes an opener and children to display as
+ * part of the dropdown menu. Renders the dropdown as a portal to avoid clipping
+ * in overflow: auto containers.
+ */
 export default class Dropdown extends React.Component<DropdownProps> {
     element: ?Element;
 
@@ -114,7 +119,8 @@ export default class Dropdown extends React.Component<DropdownProps> {
     handleInteract = (event: {target: any}) => {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target;
-        if (open && this.element && !this.element.contains(target)) {
+        const thisElement = ReactDOM.findDOMNode(this);
+        if (open && thisElement && !thisElement.contains(target)) {
             onOpenChanged(false);
         }
     };
@@ -129,7 +135,13 @@ export default class Dropdown extends React.Component<DropdownProps> {
     };
 
     renderMenu(outOfBoundaries: ?boolean) {
-        const {items, light, dropdownStyle, style} = this.props;
+        const {children, dropdownStyle, light, openerElement} = this.props;
+
+        // The dropdown width is at least the width of the opener.
+        const openerStyle = window.getComputedStyle(openerElement);
+        const minDropdownWidth = openerStyle
+            ? openerStyle.getPropertyValue("width")
+            : 0;
 
         return (
             <View
@@ -142,11 +154,11 @@ export default class Dropdown extends React.Component<DropdownProps> {
                     styles.dropdown,
                     light && styles.light,
                     outOfBoundaries && styles.hidden,
+                    {minWidth: minDropdownWidth},
                     dropdownStyle,
-                    style,
                 ]}
             >
-                {items}
+                {children}
             </View>
         );
     }
@@ -170,7 +182,10 @@ export default class Dropdown extends React.Component<DropdownProps> {
                     }
                     modifiers={{
                         wbVisibility: visibilityModifierDefaultConfig,
-                        preventOverflow: {boundariesElement: "viewport"},
+                        preventOverflow: {
+                            boundariesElement: "viewport",
+                            escapeWithReference: true,
+                        },
                     }}
                 >
                     {({placement, ref, style, outOfBoundaries}) => {
@@ -191,20 +206,10 @@ export default class Dropdown extends React.Component<DropdownProps> {
     }
 
     render() {
-        const {alignment, open, opener} = this.props;
+        const {open, opener, style} = this.props;
 
         return (
-            <View
-                ref={(node) =>
-                    (this.element = ((ReactDOM.findDOMNode(
-                        node,
-                    ): any): Element))
-                }
-                style={[
-                    styles.menuWrapper,
-                    alignment === "right" && styles.rightAlign,
-                ]}
-            >
+            <View style={[styles.menuWrapper, style]}>
                 {opener}
                 {open && this.renderDropdown()}
             </View>
@@ -214,11 +219,7 @@ export default class Dropdown extends React.Component<DropdownProps> {
 
 const styles = StyleSheet.create({
     menuWrapper: {
-        alignItems: "flex-start",
-    },
-
-    rightAlign: {
-        alignItems: "flex-end",
+        width: "fit-content",
     },
 
     dropdown: {

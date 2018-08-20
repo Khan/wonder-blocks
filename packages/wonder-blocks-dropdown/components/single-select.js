@@ -1,19 +1,18 @@
 // @flow
-// A menu that consists of items to be selected, single-choice
 
 import * as React from "react";
 import ReactDOM from "react-dom";
 
 import Dropdown from "./dropdown.js";
 import SelectOpener from "./select-opener.js";
-import OptionItem from "./option-item.js";
-import type {OptionItemProps} from "../util/types.js";
+
+import typeof OptionItem from "./option-item.js";
 
 type Props = {|
     /**
      * The items in this select.
      */
-    items: Array<OptionItemProps>,
+    children: Array<React.Element<OptionItem>>,
 
     /**
      * Callback for when the selection. Parameter is the value of the newly
@@ -50,7 +49,7 @@ type Props = {|
     light: boolean,
 
     /**
-     * Optional styling to add.
+     * Optional styling to add to the opener component wrapper.
      */
     style?: any,
 |};
@@ -62,6 +61,10 @@ type State = {|
     open: boolean,
 |};
 
+/**
+ * The single select allows the selection of one item. Clients are responsible
+ * for keeping track of the selected item in the select.
+ */
 export default class SingleSelect extends React.Component<Props, State> {
     openerElement: ?Element;
 
@@ -85,7 +88,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         });
     }
 
-    handleSelected(selectedValue: string) {
+    handleToggle(selectedValue: string) {
         this.setState({
             open: false, // close the menu upon selection
         });
@@ -96,11 +99,23 @@ export default class SingleSelect extends React.Component<Props, State> {
         }
     }
 
+    getMenuItems(): Array<React.Element<OptionItem>> {
+        const {children, selectedValue} = this.props;
+        return React.Children.map(children, (option) => {
+            const {value} = option.props;
+            return React.cloneElement(option, {
+                onToggle: (value, state) => this.handleToggle(value),
+                selected: selectedValue === value,
+                variant: "check",
+            });
+        });
+    }
+
     render() {
         const {
             alignment,
+            children,
             disabled,
-            items,
             light,
             placeholder,
             selectedValue,
@@ -109,10 +124,12 @@ export default class SingleSelect extends React.Component<Props, State> {
 
         const {open} = this.state;
 
-        const selectedItem = items.find((item) => item.value === selectedValue);
+        const selectedItem = React.Children.toArray(children).find(
+            (option) => option.props.value === selectedValue,
+        );
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
-        const menuText = selectedItem ? selectedItem.label : placeholder;
+        const menuText = selectedItem ? selectedItem.props.label : placeholder;
 
         const opener = (
             <SelectOpener
@@ -125,38 +142,26 @@ export default class SingleSelect extends React.Component<Props, State> {
                         node,
                     ): any): Element))
                 }
-                style={style}
             >
                 {menuText}
             </SelectOpener>
         );
 
-        const menuItems = items.map((item, index) => {
-            return (
-                <OptionItem
-                    disabled={item.disabled}
-                    key={item.value}
-                    label={item.label}
-                    onToggle={(value, state) => this.handleSelected(value)}
-                    selected={selectedValue === item.value}
-                    value={item.value}
-                    variant="check"
-                />
-            );
-        });
+        const items = [...this.getMenuItems()];
 
         return (
             <Dropdown
                 alignment={alignment}
                 dropdownStyle={{marginTop: 8, marginBottom: 8}}
-                items={menuItems}
                 light={light}
                 onOpenChanged={(open, source) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
                 style={style}
-            />
+            >
+                {items}
+            </Dropdown>
         );
     }
 }

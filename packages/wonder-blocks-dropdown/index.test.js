@@ -10,7 +10,14 @@ describe("@khanacademy/wonder-blocks-dropdown", () => {
 
         // Assert
         expect(Object.keys(result).sort()).toEqual(
-            ["ActionMenu", "MultiSelect", "SingleSelect"].sort(),
+            [
+                "ActionItem",
+                "ActionMenu",
+                "MultiSelect",
+                "OptionItem",
+                "SeparatorItem",
+                "SingleSelect",
+            ].sort(),
         );
     });
 });

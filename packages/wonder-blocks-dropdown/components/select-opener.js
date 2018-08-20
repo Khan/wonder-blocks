@@ -55,13 +55,11 @@ type SelectOpenerProps = {|
      * Callback for when the SelectOpener is pressed.
      */
     onClick: () => void,
-
-    /**
-     * Custom style. Mostly used for preferred width of this select box.
-     */
-    style?: any,
 |};
 
+/**
+ * An opener that opens selects.
+ */
 export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static defaultProps = {
         disabled: false,
@@ -72,14 +70,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
-        const {
-            children,
-            disabled,
-            isPlaceholder,
-            light,
-            onClick,
-            style,
-        } = this.props;
+        const {children, disabled, isPlaceholder, light, onClick} = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
@@ -93,14 +84,19 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         ];
 
         return (
-            <ClickableBehavior disabled={disabled} onClick={onClick}>
+            <ClickableBehavior
+                disabled={disabled}
+                onClick={onClick}
+                triggerOnEnter={false}
+            >
                 {(state, handlers) => {
                     const stateStyles = _generateStyles(light, {...state});
                     const {hovered, focused, pressed} = state;
                     return (
                         <StyledButton
                             disabled={disabled}
-                            role="menu"
+                            role="listbox"
+                            type="button"
                             style={[
                                 styles.shared,
                                 stateStyles.default,
@@ -110,14 +106,13 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                                         ? stateStyles.active
                                         : (hovered || focused) &&
                                           stateStyles.focus),
-                                style,
                             ]}
                             {...handlers}
                         >
                             <LabelMedium style={textStyles}>
                                 {children}
                             </LabelMedium>
-                            <View style={[styles.spacing]} />
+                            <View style={styles.spacing} />
                             <Icon
                                 icon={icons.caretDown}
                                 size="small"
@@ -150,7 +145,6 @@ const styles = StyleSheet.create({
         paddingRight: 12,
         border: "none",
         borderRadius: buttonRadius,
-        cursor: "pointer",
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
@@ -170,6 +164,8 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        whiteSpace: "nowrap",
+        userSelect: "none",
         overflow: "hidden",
         textOverflow: "ellipsis",
     },

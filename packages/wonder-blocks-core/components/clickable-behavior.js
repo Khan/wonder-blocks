@@ -21,10 +21,11 @@ type Props = {|
     /**
      * A URL.
      *
-     * If specified, we will assume the rendered component should react like an
-     * `<a>` tag and respond to enter/return key press. Otherwise, we will
-     * assume the rendered component should react like a `<button>` tag and
-     * respond to spacebar key press.
+     * If specified, clicking on the component will navigate to the location
+     * provided.
+     * For keyboard navigation, the default is that both an enter and space
+     * press would also navigate to this location. See the triggerOnEnter and
+     * triggerOnSpace props for more details.
      */
     href?: string,
 
@@ -35,8 +36,24 @@ type Props = {|
 
     /**
      * Passed in by withRouter HOC.
+     * @ignore
      */
     history?: any,
+
+    /**
+     * Trigger onClick callback and href navigation, if present, on enter key
+     * press. Default true. Only set to false if the component should definitely
+     * NOT trigger onClick on enter. An example of a component that shouldn't
+     * trigger on enter is a Checkbox or some other form component.
+     */
+    triggerOnEnter: boolean,
+
+    /**
+     * Trigger onClick callback on space key press. Only set to false if the
+     * component should definitely NOT trigger onClick on space. An example of a
+     * component that shouldn't trigger on space is Link.
+     */
+    triggerOnSpace: boolean,
 |};
 
 type State = {|
@@ -126,6 +143,20 @@ const startState = {
  * 2. Keydown (spacebar/enter) -> active state
  * 3. Keyup (spacebar/enter) -> focus state
  *
+ * Warning: The event handlers returned (onClick, onMouseEnter, onMouseLeave,
+ * onMouseDown, onMouseUp, onTouchStart, onTouchEnd, onTouchCancel, onKeyDown,
+ * onKeyUp, onFocus, onBlur, tabIndex) should be passed on to the component
+ * that has the ClickableBehavior. You cannot override these handlers without
+ * potentially breaking the functionality of ClickableBehavior.
+ *
+ * There are internal props triggerOnEnter and triggerOnSpace that can be set
+ * to false if one of those keys shouldn't count as a click on this component.
+ * Be careful about setting those to false -- make certain that the component
+ * shouldn't process that key.
+ *
+ * See [this document](https://docs.google.com/document/d/1DG5Rg2f0cawIL5R8UqnPQpd7pbdObk8OyjO5ryYQmBM/edit#)
+ * for a more thorough explanation of expected behaviors and potential cavaets.
+ *
  * `ClickableBehavior` accepts a function as `children` which is passed state
  * and an object containing event handlers. The `children` function should
  * return a clickable React Element of some sort.
@@ -171,11 +202,23 @@ const startState = {
  */
 export default class ClickableBehavior extends React.Component<Props, State> {
     waitingForClick: boolean;
-    keyboardClick: boolean;
+    enterClick: boolean;
 
     static defaultProps = {
         disabled: false,
+        triggerOnEnter: true,
+        triggerOnSpace: true,
     };
+
+    static getDerivedStateFromProps(props: Props, state: State) {
+        // If new props are disabled, reset the hovered/focused/pressed states
+        if (props.disabled) {
+            return startState;
+        } else {
+            // Cannot return undefined
+            return null;
+        }
+    }
 
     constructor(props: Props) {
         super(props);
@@ -183,18 +226,9 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         this.state = startState;
     }
 
-    // TODO(sophie): This method is deprecated in React 16. Once we update to
-    // React 16, we should use static getDerivedStateFromProps instead.
-    componentWillReceiveProps(nextProps: Props) {
-        if (nextProps.disabled) {
-            this.setState(startState);
-        }
-    }
-
     handleClick = (e: SyntheticMouseEvent<>) => {
-        if (this.keyboardClick) {
-            this.keyboardClick = false;
-            e.preventDefault();
+        if (this.enterClick) {
+            return;
         } else if (this.props.onClick) {
             this.waitingForClick = false;
             this.props.onClick(e);
@@ -237,28 +271,45 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
+        const {triggerOnEnter, triggerOnSpace} = this.props;
         if (
-            this.props.href
-                ? keyCode === keyCodes.enter
-                : keyCode === keyCodes.space
+            (triggerOnEnter && keyCode === keyCodes.enter) ||
+            (triggerOnSpace && keyCode === keyCodes.space)
         ) {
-            this.keyboardClick = true;
+            // This prevents space from scrolling down. It also prevents the
+            // space and enter keys from triggering click events. We manually
+            // call the supplied onClick and handle potential navigation in
+            // handleKeyUp instead.
+            e.preventDefault();
             this.setState({pressed: true});
+        } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
+            // If the component isn't supposed to trigger on enter, we have to
+            // keep track of the enter keydown to negate the onClick callback
+            this.enterClick = true;
         }
     };
 
     handleKeyUp = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
+        const {triggerOnEnter, triggerOnSpace} = this.props;
         if (
-            this.props.href
-                ? keyCode === keyCodes.enter
-                : keyCode === keyCodes.space
+            (triggerOnEnter && keyCode === keyCodes.enter) ||
+            (triggerOnSpace && keyCode === keyCodes.space)
         ) {
+            // NOTE: In Firefox, the keyup event needs to be preventDefault-ed
+            // for space.
+            // https://stackoverflow.com/questions/24383722/unable-to-prevent-spacebar-default-action-in-firefox
+            if (keyCode === keyCodes.space) {
+                e.preventDefault();
+            }
+
             this.setState({pressed: false, focused: true});
             if (this.props.onClick) {
                 this.props.onClick(e);
             }
             this.maybeNavigate();
+        } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
+            this.enterClick = false;
         }
     };
 

@@ -1,5 +1,4 @@
 // @flow
-// A menu that consists of action items
 
 import * as React from "react";
 import ReactDOM from "react-dom";
@@ -8,16 +7,10 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
-import ActionItem from "./action-item.js";
 import Dropdown from "./dropdown.js";
+import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import SeparatorItem from "./separator-item.js";
-
-import type {
-    ActionItemProps,
-    OptionItemProps,
-    SeparatorProps,
-} from "../util/types.js";
 
 type OpenerProps = {|
     /**
@@ -32,11 +25,6 @@ type OpenerProps = {|
      * Callback for when the opener is pressed.
      */
     onClick: () => void,
-
-    /**
-     * Style to apply to the opener.
-     */
-    style?: any,
 |};
 
 class ActionMenuOpener extends React.Component<OpenerProps> {
@@ -56,7 +44,7 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
                 kind="tertiary"
                 light={false}
                 onClick={onClick}
-                style={[styles.opener]}
+                style={styles.opener}
             >
                 {children}
                 <Icon
@@ -69,13 +57,15 @@ class ActionMenuOpener extends React.Component<OpenerProps> {
     }
 }
 
-type ItemProps = ActionItemProps | OptionItemProps | SeparatorProps;
-
 type MenuProps = {|
     /**
      * The items in this dropdown.
      */
-    items: Array<ItemProps>,
+    children: Array<
+        React.Element<
+            typeof ActionItem | typeof OptionItem | typeof SeparatorItem,
+        >,
+    >,
 
     /**
      * Text for the opener of this menu.
@@ -107,7 +97,7 @@ type MenuProps = {|
     disabled: boolean,
 
     /**
-     * Optional styling to add.
+     * Optional styling to add to the opener component wrapper.
      */
     style?: any,
 |};
@@ -119,6 +109,9 @@ type State = {|
     open: boolean,
 |};
 
+/**
+ * A menu that consists of various types of items.
+ */
 export default class ActionMenu extends React.Component<MenuProps, State> {
     openerElement: ?Element;
 
@@ -141,7 +134,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         });
     }
 
-    handleSelected(selectedValue: string, oldSelectionState: boolean) {
+    handleSelected(selectedValue: string) {
         const {onChange, selectedValues} = this.props;
 
         // If either of these are not defined, return.
@@ -149,7 +142,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             return;
         }
 
-        if (oldSelectionState) {
+        if (selectedValues.includes(selectedValue)) {
             const index = selectedValues.indexOf(selectedValue);
             const updatedSelection = [
                 ...selectedValues.slice(0, index),
@@ -162,15 +155,35 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         }
     }
 
+    getMenuItems(): Array<
+        React.Element<
+            typeof ActionItem | typeof OptionItem | typeof SeparatorItem,
+        >,
+    > {
+        const {children, selectedValues} = this.props;
+        const containsOptionItems = Array.isArray(selectedValues);
+
+        return React.Children.map(children, (item, index) => {
+            if (item.type === ActionItem) {
+                return React.cloneElement(item, {
+                    indent: containsOptionItems,
+                });
+            } else if (item.type === OptionItem) {
+                return React.cloneElement(item, {
+                    onToggle: (value) => this.handleSelected(value),
+                    selected: selectedValues
+                        ? selectedValues.includes(item.props.value)
+                        : false,
+                    variant: "check",
+                });
+            } else {
+                return item;
+            }
+        });
+    }
+
     render() {
-        const {
-            alignment,
-            disabled,
-            items,
-            menuText,
-            selectedValues,
-            style,
-        } = this.props;
+        const {alignment, disabled, menuText, style} = this.props;
 
         const {open} = this.state;
 
@@ -183,65 +196,24 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         node,
                     ): any): Element))
                 }
-                style={style}
             >
                 {menuText}
             </ActionMenuOpener>
         );
 
-        const containsOptionItems = Array.isArray(selectedValues);
-
-        const menuItems = items.map((item, index) => {
-            if (item.type === "action") {
-                return (
-                    <ActionItem
-                        key={index}
-                        disabled={item.disabled}
-                        indent={containsOptionItems}
-                        label={item.label}
-                        href={item.href}
-                        skipClientNav={item.skipClientNav}
-                        /* eslint-disable-next-line react/jsx-handler-names */
-                        onClick={item.onClick}
-                    />
-                );
-            } else if (item.type === "select") {
-                return (
-                    <OptionItem
-                        key={index}
-                        disabled={item.disabled}
-                        label={item.label}
-                        /* eslint-disable-next-line react/jsx-handler-names */
-                        onClick={item.onClick}
-                        onToggle={(value, state) =>
-                            this.handleSelected(value, state)
-                        }
-                        selected={
-                            selectedValues
-                                ? selectedValues.includes(item.value)
-                                : false
-                        }
-                        value={item.value}
-                        variant="check"
-                    />
-                );
-            } else {
-                // Remaining possibility is type = "separator"
-                return <SeparatorItem key={index} />;
-            }
-        });
-
         return (
             <Dropdown
                 alignment={alignment}
-                items={menuItems}
+                dropdownStyle={styles.menuTopSpace}
                 light={false}
                 onOpenChanged={(open) => this.handleOpenChanged(open)}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
-                style={[styles.menuTopSpace, style]}
-            />
+                style={style}
+            >
+                {this.getMenuItems()}
+            </Dropdown>
         );
     }
 }
@@ -256,6 +228,9 @@ const styles = StyleSheet.create({
         paddingLeft: 8,
         paddingRight: 8,
         whiteSpace: "nowrap",
+        userSelect: "none",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     // This is to adjust the space between the menu and the opener.

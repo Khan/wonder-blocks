@@ -194,9 +194,10 @@ exports[`wonder-blocks-core example 4 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      role="button"
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -220,6 +221,7 @@ exports[`wonder-blocks-core example 4 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -228,14 +230,15 @@ exports[`wonder-blocks-core example 4 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
+            "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -285,6 +288,7 @@ exports[`wonder-blocks-core example 4 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
@@ -296,10 +300,7 @@ exports[`wonder-blocks-core example 4 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -336,10 +337,7 @@ exports[`wonder-blocks-core example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": 400,
           "lineHeight": "22px",
@@ -382,10 +380,7 @@ exports[`wonder-blocks-core example 5 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -422,10 +417,7 @@ exports[`wonder-blocks-core example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Inconsolata",
-            "monospace",
-          ],
+          "fontFamily": "Inconsolata, monospace",
           "fontSize": 17,
           "fontWeight": 400,
           "lineHeight": "22px",
@@ -442,10 +434,7 @@ exports[`wonder-blocks-core example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Inconsolata",
-            "monospace",
-          ],
+          "fontFamily": "Inconsolata, monospace",
           "fontSize": 17,
           "fontWeight": 400,
           "lineHeight": "22px",
@@ -477,6 +466,7 @@ exports[`wonder-blocks-core example 5 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
@@ -488,10 +478,7 @@ exports[`wonder-blocks-core example 5 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -528,10 +515,7 @@ exports[`wonder-blocks-core example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Inconsolata",
-            "monospace",
-          ],
+          "fontFamily": "Inconsolata, monospace",
           "fontSize": 17,
           "fontWeight": 400,
           "lineHeight": "22px",
@@ -548,10 +532,7 @@ exports[`wonder-blocks-core example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Inconsolata",
-            "monospace",
-          ],
+          "fontFamily": "Inconsolata, monospace",
           "fontSize": 17,
           "fontWeight": 400,
           "lineHeight": "22px",
@@ -592,10 +573,7 @@ exports[`wonder-blocks-core example 6 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -632,10 +610,7 @@ exports[`wonder-blocks-core example 6 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": 400,
           "lineHeight": "22px",
@@ -653,10 +628,7 @@ exports[`wonder-blocks-core example 6 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Lato",
-          "sans-serif",
-        ],
+        "fontFamily": "Lato, sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -693,10 +665,7 @@ exports[`wonder-blocks-core example 6 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": 400,
           "lineHeight": "22px",
@@ -737,10 +706,7 @@ exports[`wonder-blocks-core example 7 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Inconsolata",
-          "monospace",
-        ],
+        "fontFamily": "Inconsolata, monospace",
         "fontSize": 17,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -789,6 +755,7 @@ exports[`wonder-blocks-core example 7 1`] = `
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": "2em",
           "zIndex": 0,
         }
       }
@@ -800,10 +767,7 @@ exports[`wonder-blocks-core example 7 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Inconsolata",
-            "monospace",
-          ],
+          "fontFamily": "Inconsolata, monospace",
           "fontSize": 17,
           "fontWeight": 400,
           "lineHeight": "22px",
@@ -820,10 +784,7 @@ exports[`wonder-blocks-core example 7 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": Array [
-          "Inconsolata",
-          "monospace",
-        ],
+        "fontFamily": "Inconsolata, monospace",
         "fontSize": 17,
         "fontWeight": 400,
         "lineHeight": "22px",

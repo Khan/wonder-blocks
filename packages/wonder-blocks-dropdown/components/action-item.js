@@ -1,6 +1,4 @@
 // @flow
-// For menu items that trigger an action, such as going to a new page or
-// opening a modal.
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -10,31 +8,20 @@ import PropTypes from "prop-types";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import {
-    View,
-    addStyle,
-    getClickableBehavior,
-} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 const {blue, white, offBlack, offBlack32} = Color;
 
 type ActionProps = {|
     /**
-     * Display text of the menu item.
+     * Display text of the action item.
      */
     label: string,
 
     /**
-     * Whether this menu item is disabled. A disabled item may not be selected.
+     * Whether this action item is disabled.
      */
     disabled: boolean,
-
-    /**
-     * Whether this item should be indented to have menu items left-align in
-     * text when an ActionItem is used in the same menu as items that have
-     * checks or checkboxes.
-     */
-    indent?: boolean,
 
     /**
      * URL to navigate to.
@@ -70,12 +57,25 @@ type ActionProps = {|
      * href is not
      */
     onClick?: () => void,
+
+    /**
+     * Whether this item should be indented to have menu items left-align in
+     * text when an ActionItem is used in the same menu as items that have
+     * checks or checkboxes. Auto-populated by menu.
+     * @ignore
+     */
+    indent: boolean,
 |};
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
+/**
+ * The action item trigger actions, such as navigating to a different page or
+ * opening a modal. Supply the href and/or onClick props. Used as a child of
+ * ActionMenu.
+ */
 export default class ActionItem extends React.Component<ActionProps> {
     static defaultProps = {
         disabled: false,
@@ -83,12 +83,6 @@ export default class ActionItem extends React.Component<ActionProps> {
     };
 
     static contextTypes = {router: PropTypes.any};
-
-    handleClick = (e: SyntheticEvent<>) => {
-        if (this.props.disabled) {
-            e.preventDefault();
-        }
-    };
 
     render() {
         const {
@@ -134,8 +128,9 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     const children = (
                         <React.Fragment>
-                            {indent && <View style={{width: Spacing.medium}} />}
-                            <LabelLarge style={[styles.label]}>
+                            <LabelLarge
+                                style={[indent && styles.indent, styles.label]}
+                            >
                                 {label}
                             </LabelLarge>
                         </React.Fragment>
@@ -143,25 +138,21 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     if (href) {
                         return router && !skipClientNav ? (
-                            <StyledLink
-                                {...props}
-                                onClick={this.handleClick}
-                                to={href}
-                            >
+                            <StyledLink {...props} to={href}>
                                 {children}
                             </StyledLink>
                         ) : (
-                            <StyledAnchor
-                                {...props}
-                                onClick={this.handleClick}
-                                href={href}
-                            >
+                            <StyledAnchor {...props} href={href}>
                                 {children}
                             </StyledAnchor>
                         );
                     } else {
                         return (
-                            <StyledButton {...props} disabled={disabled}>
+                            <StyledButton
+                                type="button"
+                                {...props}
+                                disabled={disabled}
+                            >
                                 {children}
                             </StyledButton>
                         );
@@ -176,7 +167,6 @@ const styles = StyleSheet.create({
     shared: {
         background: white,
         color: offBlack,
-        cursor: "pointer",
         textDecoration: "none",
         border: "none",
         outline: "none",
@@ -184,15 +174,18 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         height: 40,
+        minHeight: 40,
         paddingLeft: Spacing.medium,
         paddingRight: Spacing.medium,
     },
 
     label: {
         whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        textAlign: "left",
+        userSelect: "none",
+    },
+
+    indent: {
+        marginLeft: Spacing.medium,
     },
 
     // hover and focus states

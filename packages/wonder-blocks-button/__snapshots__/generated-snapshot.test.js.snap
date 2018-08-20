@@ -35,9 +35,10 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -62,6 +63,7 @@ exports[`wonder-blocks-button example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -70,14 +72,15 @@ exports[`wonder-blocks-button example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -99,9 +102,10 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -129,6 +133,7 @@ exports[`wonder-blocks-button example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -137,14 +142,15 @@ exports[`wonder-blocks-button example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -166,9 +172,10 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -193,6 +200,7 @@ exports[`wonder-blocks-button example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -201,14 +209,15 @@ exports[`wonder-blocks-button example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -253,9 +262,10 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -280,6 +290,7 @@ exports[`wonder-blocks-button example 2 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -288,14 +299,15 @@ exports[`wonder-blocks-button example 2 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -317,9 +329,10 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -347,6 +360,7 @@ exports[`wonder-blocks-button example 2 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -355,14 +369,15 @@ exports[`wonder-blocks-button example 2 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -384,9 +399,10 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -411,6 +427,7 @@ exports[`wonder-blocks-button example 2 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -419,14 +436,15 @@ exports[`wonder-blocks-button example 2 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -472,9 +490,10 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -499,6 +518,7 @@ exports[`wonder-blocks-button example 3 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -507,14 +527,15 @@ exports[`wonder-blocks-button example 3 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -537,9 +558,10 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -567,6 +589,7 @@ exports[`wonder-blocks-button example 3 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -575,14 +598,15 @@ exports[`wonder-blocks-button example 3 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -605,9 +629,10 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -632,6 +657,7 @@ exports[`wonder-blocks-button example 3 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -640,14 +666,15 @@ exports[`wonder-blocks-button example 3 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -693,9 +720,10 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -720,6 +748,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -728,14 +757,15 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -757,9 +787,10 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -787,6 +818,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -795,14 +827,15 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -824,9 +857,10 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -851,6 +885,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -859,14 +894,15 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -889,9 +925,10 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -916,6 +953,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -924,14 +962,15 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -954,9 +993,10 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -984,6 +1024,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -992,14 +1033,15 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1022,9 +1064,10 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1049,6 +1092,7 @@ exports[`wonder-blocks-button example 4 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -1057,14 +1101,15 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1109,9 +1154,10 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1136,6 +1182,7 @@ exports[`wonder-blocks-button example 5 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -1144,14 +1191,15 @@ exports[`wonder-blocks-button example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
           "lineHeight": "18px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1173,9 +1221,10 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1203,6 +1252,7 @@ exports[`wonder-blocks-button example 5 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -1211,14 +1261,15 @@ exports[`wonder-blocks-button example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
           "lineHeight": "18px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1240,9 +1291,10 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1267,6 +1319,7 @@ exports[`wonder-blocks-button example 5 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -1275,14 +1328,15 @@ exports[`wonder-blocks-button example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
           "lineHeight": "18px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1327,11 +1381,9 @@ exports[`wonder-blocks-button example 6 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
-          "border": 0,
-        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1361,14 +1413,15 @@ exports[`wonder-blocks-button example 6 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1390,9 +1443,10 @@ exports[`wonder-blocks-button example 6 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1420,6 +1474,7 @@ exports[`wonder-blocks-button example 6 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -1428,14 +1483,15 @@ exports[`wonder-blocks-button example 6 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1457,11 +1513,9 @@ exports[`wonder-blocks-button example 6 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
-          "border": 0,
-        },
         "alignItems": "center",
         "background": "none",
         "border": "none",
@@ -1491,14 +1545,15 @@ exports[`wonder-blocks-button example 6 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1543,11 +1598,9 @@ exports[`wonder-blocks-button example 7 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
-          "border": 0,
-        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1577,14 +1630,15 @@ exports[`wonder-blocks-button example 7 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1606,11 +1660,9 @@ exports[`wonder-blocks-button example 7 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
-          "border": 0,
-        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1640,14 +1692,15 @@ exports[`wonder-blocks-button example 7 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1692,9 +1745,10 @@ exports[`wonder-blocks-button example 8 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -1718,6 +1772,7 @@ exports[`wonder-blocks-button example 8 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -1726,14 +1781,15 @@ exports[`wonder-blocks-button example 8 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1797,9 +1853,10 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      role="button"
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -1823,6 +1880,7 @@ exports[`wonder-blocks-button example 9 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -1831,14 +1889,15 @@ exports[`wonder-blocks-button example 9 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
+            "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -1900,9 +1959,10 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      role="button"
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -1926,6 +1986,7 @@ exports[`wonder-blocks-button example 9 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -1934,14 +1995,15 @@ exports[`wonder-blocks-button example 9 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
+            "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -1987,9 +2049,10 @@ exports[`wonder-blocks-button example 10 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -2018,6 +2081,7 @@ exports[`wonder-blocks-button example 10 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -2026,14 +2090,15 @@ exports[`wonder-blocks-button example 10 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -2055,9 +2120,10 @@ exports[`wonder-blocks-button example 10 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "::-moz-focus-inner": Object {
+        "::MozFocusInner": Object {
           "border": 0,
         },
         "alignItems": "center",
@@ -2083,6 +2149,7 @@ exports[`wonder-blocks-button example 10 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -2091,14 +2158,15 @@ exports[`wonder-blocks-button example 10 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": Array [
-            "Lato",
-            "sans-serif",
-          ],
+          "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -2162,9 +2230,10 @@ exports[`wonder-blocks-button example 11 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      role="button"
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -2189,6 +2258,7 @@ exports[`wonder-blocks-button example 11 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -2197,14 +2267,15 @@ exports[`wonder-blocks-button example 11 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
+            "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -2226,9 +2297,10 @@ exports[`wonder-blocks-button example 11 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      role="button"
       style={
         Object {
-          "::-moz-focus-inner": Object {
+          "::MozFocusInner": Object {
             "border": 0,
           },
           "alignItems": "center",
@@ -2252,6 +2324,7 @@ exports[`wonder-blocks-button example 11 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -2260,14 +2333,15 @@ exports[`wonder-blocks-button example 11 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": Array [
-              "Lato",
-              "sans-serif",
-            ],
+            "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >

@@ -18,26 +18,13 @@ describe("SingleSelect", () => {
     beforeEach(() => {
         select = mount(
             <SingleSelect
-                items={[
-                    {
-                        type: "select",
-                        label: "item 1",
-                        value: "1",
-                    },
-                    {
-                        type: "select",
-                        label: "item 2",
-                        value: "2",
-                    },
-                    {
-                        type: "select",
-                        label: "item 3",
-                        value: "3",
-                    },
-                ]}
                 onChange={(selectedValue) => onClick()}
                 placeholder="Choose"
-            />,
+            >
+                <OptionItem label="item 1" value="1" />
+                <OptionItem label="item 2" value="2" />
+                <OptionItem label="item 3" value="3" />
+            </SingleSelect>,
         );
     });
 
@@ -58,14 +45,12 @@ describe("SingleSelect", () => {
         // Close select with space
         opener.simulate("keydown", {keyCode: keyCodes.space});
         opener.simulate("keyup", {keyCode: keyCodes.space});
-        opener.simulate("click", {preventDefault: jest.fn()});
         expect(select.state("open")).toEqual(false);
 
-        // Open select again with enter
+        // Shouldn't open with enter
         opener.simulate("keydown", {keyCode: keyCodes.enter});
-        opener.simulate("click", {preventDefault: jest.fn()});
         opener.simulate("keyup", {keyCode: keyCodes.enter});
-        expect(select.state("open")).toEqual(true);
+        expect(select.state("open")).toEqual(false);
     });
 
     it("displays selected item label as expected", () => {
