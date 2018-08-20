@@ -4287,6 +4287,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <svg
                 className=""
@@ -4572,6 +4573,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
+              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
@@ -4598,6 +4600,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <span
                 className=""
@@ -4610,7 +4613,11 @@ exports[`wonder-blocks-modal example 9 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -4804,6 +4811,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <svg
                 className=""
@@ -5068,6 +5076,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
+              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
@@ -5094,6 +5103,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <span
                 className=""
@@ -5106,7 +5116,11 @@ exports[`wonder-blocks-modal example 10 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
