@@ -20,7 +20,10 @@ import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 type Props = {|
     /**
      * The content for anchoring the tooltip.
-     * This component will be used to position the tooltip.
+     * This element will be used to position the tooltip.
+     * If a string is passed as children we wrap it in a Text element.
+     * We allow children to be a string so that we can add tooltips to
+     * words within a large block of text easily.
      */
     children: React.Element<any> | string,
 
@@ -290,25 +293,31 @@ export default class TooltipAnchor extends React.Component<Props, State>
         }
     };
 
+    _renderAnchorableChildren() {
+        const {children} = this.props;
+        return typeof children === "string" ? (
+            <WBText>{children}</WBText>
+        ) : (
+            children
+        );
+    }
+
+    _renderAccessibleChildren(ids: IIdentifierFactory) {
+        const anchorableChildren = this._renderAnchorableChildren();
+
+        return React.cloneElement(anchorableChildren, {
+            "aria-describedby": ids.get(TooltipAnchor.ariaContentId),
+        });
+    }
+
     render() {
         // We need to make sure we can anchor on our content.
         // If the content is just a string, we wrap it in a Text element
         // so as not to affect styling or layout but still have an element
         // to anchor to.
-        const {children, ids} = this.props;
-        const anchorableChildren =
-            typeof children === "string" ? (
-                <WBText>{children}</WBText>
-            ) : (
-                children
-            );
-
-        if (ids) {
-            return React.cloneElement(anchorableChildren, {
-                "aria-describedby": ids.get(TooltipAnchor.ariaContentId),
-            });
-        } else {
-            return anchorableChildren;
+        if (this.props.ids) {
+            return this._renderAccessibleChildren(this.props.ids);
         }
+        return this._renderAnchorableChildren();
     }
 }

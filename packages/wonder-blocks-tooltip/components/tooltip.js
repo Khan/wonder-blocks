@@ -157,14 +157,22 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
+    _getHost() {
+        const {anchorElement} = this.state;
+
+        return (
+            maybeGetPortalMountedModalHostElement(anchorElement) ||
+            document.body
+        );
+    }
+
     _renderTooltipAnchor(ids?: IIdentifierFactory) {
         const {children, forceAnchorFocusivity} = this.props;
-        const {active, anchorElement} = this.state;
+        const {active} = this.state;
 
-        const popperHost =
-            maybeGetPortalMountedModalHostElement(anchorElement) ||
-            document.querySelector("body");
+        const popperHost = this._getHost();
 
+        // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
         return (
             <React.Fragment>
                 <TooltipAnchor
