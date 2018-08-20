@@ -11,6 +11,7 @@ jest.mock("react-dom");
 import ClickableBehavior from "./components/clickable-behavior.js";
 import MediaLayout from "./components/media-layout.js";
 import NoSSR from "./components/no-ssr.js";
+import ProviderGroup from "./components/provider-group.js";
 import Text from "./components/text.js";
 import UniqueIDProvider from "./components/unique-id-provider.js";
 import View from "./components/view.js";
