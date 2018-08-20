@@ -35,7 +35,10 @@ export default class FocusTrap extends React.Component<Props> {
      */
     ignoreFocusChanges: boolean;
 
-    modalRoot: Node;
+    /**
+     * Tabbing is restricted to descendents of this element.
+     */
+    modalRoot: ?Node;
 
     constructor(props: Props) {
         super(props);
@@ -131,6 +134,10 @@ export default class FocusTrap extends React.Component<Props> {
         }
 
         const modalRoot = this.modalRoot;
+        if (!modalRoot) {
+            return;
+        }
+
         if (modalRoot.contains(target)) {
             // If the newly focused node is inside the modal, we just keep track
             // of that.
@@ -159,7 +166,7 @@ export default class FocusTrap extends React.Component<Props> {
 
     render() {
         return (
-            <View>
+            <React.Fragment>
                 {/* When you press Tab on the last focusable node of the
                   * document, some browsers will move your tab focus outside of
                   * the document. But we want to capture that as a focus event,
@@ -172,7 +179,7 @@ export default class FocusTrap extends React.Component<Props> {
                 <div tabIndex="0" />
                 <View ref={this.getModalRoot}>{this.props.children}</View>
                 <div tabIndex="0" />
-            </View>
+            </React.Fragment>
         );
     }
 }
