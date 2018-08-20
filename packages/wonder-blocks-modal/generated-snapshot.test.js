@@ -790,6 +790,83 @@ describe("wonder-blocks-modal", () => {
     });
     it("example 10", () => {
         const {StyleSheet, css} = require("aphrodite");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+        const {
+            HeadingLarge,
+            Body,
+        } = require("@khanacademy/wonder-blocks-typography");
+
+        const styles = StyleSheet.create({
+            previewSizer: {
+                height: 512,
+            },
+
+            modalPositioner: {
+                // Checkerboard background
+                backgroundImage:
+                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+                backgroundSize: "20px 20px",
+                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+            },
+
+            image: {
+                width: "100%",
+                marginBottom: 0,
+                marginTop: "auto",
+            },
+        });
+
+        const example = (
+            <View style={styles.previewSizer}>
+                <View style={styles.modalPositioner}>
+                    <TwoColumnModal
+                        sidebar={
+                            <img
+                                src="pencilHand-800x.png"
+                                className={css(styles.image)}
+                            />
+                        }
+                        fullBleedSidebar={true}
+                        content={
+                            <View>
+                                <HeadingLarge>
+                                    Welcome to your class.
+                                </HeadingLarge>
+                                <Strut size={Spacing.medium} />
+                                <Body>
+                                    Assignments or goals your teacher creates
+                                    for you will appear at the top of your Khan
+                                    Academy home page.
+                                </Body>
+                            </View>
+                        }
+                        footer={<Button>Onward! (no-op)</Button>}
+                        onClickCloseButton={() =>
+                            alert("This would close the modal.")
+                        }
+                    />
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 11", () => {
+        const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
 
@@ -854,7 +931,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
