@@ -199,7 +199,8 @@ const styles = StyleSheet.create({
 ```
 
 This example shows a TwoColumnModal with a full bleed sidebar that has a
-background image.
+background image. With the `background-image` approach, the image is not
+draggable from its original position.
 
 ```jsx
 const {StyleSheet, css} = require("aphrodite");
@@ -268,7 +269,7 @@ const styles = StyleSheet.create({
 ```
 
 This example shows the same image as above, except the image here is inserted
-as an `<img>` instead of as the `background-color` of a `View`.
+as an `<img>` instead of as the `background-image` of a `View`.
 
 ```jsx
 const {StyleSheet, css} = require("aphrodite");
