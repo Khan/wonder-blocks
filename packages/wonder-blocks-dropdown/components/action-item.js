@@ -8,11 +8,7 @@ import PropTypes from "prop-types";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import {
-    View,
-    addStyle,
-    getClickableBehavior,
-} from "@khanacademy/wonder-blocks-core";
+import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 const {blue, white, offBlack, offBlack32} = Color;
 
@@ -77,7 +73,8 @@ const StyledLink = addStyle(Link);
 
 /**
  * The action item trigger actions, such as navigating to a different page or
- * opening a modal. Supply the href and/or onClick props.
+ * opening a modal. Supply the href and/or onClick props. Used as a child of
+ * ActionMenu.
  */
 export default class ActionItem extends React.Component<ActionProps> {
     static defaultProps = {
@@ -86,12 +83,6 @@ export default class ActionItem extends React.Component<ActionProps> {
     };
 
     static contextTypes = {router: PropTypes.any};
-
-    handleClick = (e: SyntheticEvent<>) => {
-        if (this.props.disabled) {
-            e.preventDefault();
-        }
-    };
 
     render() {
         const {
@@ -137,8 +128,9 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     const children = (
                         <React.Fragment>
-                            {indent && <View style={{width: Spacing.medium}} />}
-                            <LabelLarge style={styles.label}>
+                            <LabelLarge
+                                style={[indent && styles.indent, styles.label]}
+                            >
                                 {label}
                             </LabelLarge>
                         </React.Fragment>
@@ -146,25 +138,21 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     if (href) {
                         return router && !skipClientNav ? (
-                            <StyledLink
-                                {...props}
-                                onClick={this.handleClick}
-                                to={href}
-                            >
+                            <StyledLink {...props} to={href}>
                                 {children}
                             </StyledLink>
                         ) : (
-                            <StyledAnchor
-                                {...props}
-                                onClick={this.handleClick}
-                                href={href}
-                            >
+                            <StyledAnchor {...props} href={href}>
                                 {children}
                             </StyledAnchor>
                         );
                     } else {
                         return (
-                            <StyledButton {...props} disabled={disabled}>
+                            <StyledButton
+                                type="button"
+                                {...props}
+                                disabled={disabled}
+                            >
                                 {children}
                             </StyledButton>
                         );
@@ -193,9 +181,11 @@ const styles = StyleSheet.create({
 
     label: {
         whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        textAlign: "left",
+        userSelect: "none",
+    },
+
+    indent: {
+        marginLeft: Spacing.medium,
     },
 
     // hover and focus states

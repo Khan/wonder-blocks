@@ -21,25 +21,21 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+        justifyContent: "flex-end",
     },
-    wrapper: {
-        width: "100%",
-    }
 });
 <View style={styles.row}>
-    <View style={styles.wrapper}>
-        <ActionMenu
-            alignment="right"
-            menuText="Betsy Appleseed"
-        >
-            <ActionItem label="Profile" href="http://khanacademy.org/profile" />
-            <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" />
-            <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} />
-            <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} />
-            <SeparatorItem />
-            <ActionItem label="Log out" href="http://khanacademy.org/logout" />
-        </ActionMenu>
-    </View>
+    <ActionMenu
+        alignment="right"
+        menuText="Betsy Appleseed"
+    >
+        <ActionItem label="Profile" href="http://khanacademy.org/profile" />
+        <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" />
+        <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} />
+        <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} />
+        <SeparatorItem />
+        <ActionItem label="Log out" href="http://khanacademy.org/logout" />
+    </ActionMenu>
 </View>
 ```
 
@@ -66,6 +62,8 @@ class HybridMenu extends React.Component {
         this.state = {
             selectedValues: ["homework"],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(update) {
@@ -77,7 +75,7 @@ class HybridMenu extends React.Component {
     render() {
         return <ActionMenu
             menuText="Assignments"
-            onChange={(selectedValues) => this.handleChange(selectedValues)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
         >
             <ActionItem label="Create..." onClick={() => console.log("create action")} />
@@ -85,9 +83,9 @@ class HybridMenu extends React.Component {
             <ActionItem label="Delete" disabled={true} onClick={() => console.log("delete action")} />
             <SeparatorItem />
             <OptionItem label="Show homework assignments" value="homework"
-                onClick={(state) => console.log(`Show homework assignments ${(!state).toString()}`)} />
+                onClick={() => console.log(`Show homework assignments toggled`)} />
             <OptionItem label="Show in-class assignments" value="in-class"
-                onClick={(state) => console.log(`Show in-class assignments ${(!state).toString()}`)} />
+                onClick={() => console.log(`Show in-class assignments toggled`)} />
         </ActionMenu>
     }
 }

@@ -84,6 +84,7 @@ export default class Choice extends React.Component<Props> {
             return Radio;
         }
     }
+
     render() {
         // we don't need this going into the ChoiceComponent
         // eslint-disable-next-line no-unused-vars

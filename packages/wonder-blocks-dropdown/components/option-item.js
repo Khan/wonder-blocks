@@ -5,7 +5,6 @@ import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
@@ -34,15 +33,14 @@ type OptionProps = {|
     /**
      * Optional user-supplied callback when this item is called.
      */
-    onClick?: (oldSelectionState: boolean) => void,
+    onClick?: () => void,
 
     /**
      * Callback for when this item is pressed to change its selection state.
-     * Passes value of the item and its old selection state. Auto-populated by
-     * menu or select.
+     * Passes value of the item. Auto-populated by menu or select.
      * @ignore
      */
-    onToggle: (value: string, oldSelectionState: boolean) => void,
+    onToggle: (value: string) => void,
 
     /**
      * Whether this item is selected. Auto-populated by menu or select.
@@ -60,7 +58,8 @@ type OptionProps = {|
 
 /**
  * For option items that can be selected in a dropdown, selection denoted either
- * with a check ✔️ or a checkbox ☑️
+ * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
+ * MultiSelect.
  */
 export default class OptionItem extends React.Component<OptionProps> {
     static defaultProps = {
@@ -79,29 +78,22 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     }
 
+    handleClick = () => {
+        const {onClick, onToggle, value} = this.props;
+        onToggle(value);
+        if (onClick) {
+            onClick();
+        }
+    };
+
     render() {
-        const {
-            disabled,
-            label,
-            onClick,
-            onToggle,
-            selected,
-            value,
-        } = this.props;
+        const {disabled, label, selected} = this.props;
 
         const ClickableBehavior = getClickableBehavior();
         const CheckComponent = this.getCheckComponent();
 
         return (
-            <ClickableBehavior
-                disabled={disabled}
-                onClick={() => {
-                    onToggle(value, selected);
-                    if (onClick) {
-                        onClick(selected);
-                    }
-                }}
-            >
+            <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
 
@@ -117,7 +109,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                         <View
                             style={defaultStyle}
                             aria-checked={selected ? "true" : "false"}
-                            role="menuitemcheckbox"
+                            role="option"
                             {...handlers}
                         >
                             <CheckComponent
@@ -125,7 +117,6 @@ export default class OptionItem extends React.Component<OptionProps> {
                                 selected={selected}
                                 {...state}
                             />
-                            <Strut size={8} />
                             <LabelLarge style={styles.label}>
                                 {label}
                             </LabelLarge>
@@ -141,12 +132,13 @@ const {blue, white, offBlack, offBlack32} = Color;
 
 const styles = StyleSheet.create({
     itemContainer: {
+        flexDirection: "row",
         backgroundColor: white,
         color: offBlack,
-        flexDirection: "row",
         alignItems: "center",
         height: 40,
         minHeight: 40,
+        border: 0,
         outline: 0,
         paddingLeft: Spacing.xSmall,
         paddingRight: Spacing.medium,
@@ -171,13 +163,8 @@ const styles = StyleSheet.create({
 
     label: {
         whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        textAlign: "left",
-    },
-
-    spacing: {
-        minWidth: 8,
+        userSelect: "none",
+        marginLeft: Spacing.xSmall,
     },
 
     hide: {

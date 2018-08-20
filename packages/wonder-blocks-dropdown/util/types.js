@@ -1,31 +1,15 @@
 // @flow
 
-export type ActionItemProps = {|
-    type: "action",
-    /** Whether this item is disabled. Default false. */
-    disabled?: boolean,
-    /** Display text of the item. */
-    label: string,
-    /** URL to navigate to. */
-    href?: string,
-    /** Whether to avoid using client-side navigation. */
-    skipClientNav?: boolean,
-    /** Callback on the action. */
-    onClick?: () => void,
-|};
+import * as React from "react";
+import typeof ActionItem from "../components/action-item.js";
+import typeof OptionItem from "../components/option-item.js";
+import typeof SeparatorItem from "../components/separator-item.js";
 
-export type OptionItemProps = {|
-    type: "select",
-    /** Whether this item is disabled. Default false. */
-    disabled?: boolean,
-    /** Display text of the item. */
-    label: string,
-    /** Value of this item. Treat as a key. */
-    value: string,
-    /** Optional extra callback. Passes whether this item is selected. */
-    onClick?: (selected: boolean) => void,
-|};
+//TODO: rename into something more descriptive
+export type Item = ActionItem | OptionItem | SeparatorItem;
 
-export type SeparatorProps = {|
-    type: "separator",
+export type DropdownItem = {|
+    component: React.Element<ActionItem | OptionItem | SeparatorItem>,
+    focusable: boolean,
+    populatedProps: any,
 |};

@@ -11,6 +11,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
+      "justifyContent": "flex-end",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -22,6 +23,8 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
         "alignItems": "stretch",
@@ -35,150 +38,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": "100%",
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "flex-end",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "column",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "zIndex": 0,
-        }
-      }
-    >
-      <button
-        className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        role="menu"
-        style={
-          Object {
-            "::MozFocusInner": Object {
-              "border": 0,
-            },
-            "alignItems": "center",
-            "background": "none",
-            "border": "none",
-            "borderRadius": 4,
-            "boxSizing": "border-box",
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
-            "margin": 0,
-            "outline": "none",
-            "paddingBottom": 0,
-            "paddingLeft": 8,
-            "paddingRight": 8,
-            "paddingTop": 0,
-            "position": "relative",
-            "textDecoration": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-        tabIndex={0}
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "display": "block",
-              "fontFamily": "Lato, sans-serif",
-              "fontSize": 16,
-              "fontWeight": "bold",
-              "lineHeight": "20px",
-              "pointerEvents": "none",
-            }
-          }
-        >
-          Betsy Appleseed
-          <svg
-            className=""
-            height={16}
-            style={
-              Object {
-                "display": "inline-block",
-                "marginLeft": 4,
-                "verticalAlign": "text-bottom",
-              }
-            }
-            viewBox="0 0 16 16"
-            width={16}
-          >
-            <path
-              d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-dropdown example 2 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "row",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "flex-start",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -216,16 +76,20 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "outline": "none",
+          "overflow": "hidden",
           "paddingBottom": 0,
           "paddingLeft": 8,
           "paddingRight": 8,
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -238,7 +102,145 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Betsy Appleseed
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "marginLeft": 4,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="menu"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "overflow": "hidden",
+          "paddingBottom": 0,
+          "paddingLeft": 8,
+          "paddingRight": 8,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -289,19 +291,23 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
-        "alignItems": "flex-start",
+        "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
         "flexDirection": "column",
         "margin": 0,
+        "maxWidth": 190,
         "minHeight": 0,
-        "minWidth": 0,
+        "minWidth": 170,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -321,7 +327,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -346,10 +352,10 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
-          "width": 170,
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -365,6 +371,8 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -399,7 +407,9 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -437,9 +447,11 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
-        "alignItems": "flex-start",
+        "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -450,6 +462,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -469,7 +482,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -497,6 +510,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -511,6 +525,8 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -544,7 +560,9 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -582,9 +600,11 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
-        "alignItems": "flex-start",
+        "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -595,6 +615,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -614,7 +635,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -643,6 +664,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         }
       }
       tabIndex={-1}
+      type="button"
     >
       <span
         className=""
@@ -658,6 +680,8 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -692,7 +716,9 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -738,8 +764,9 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexDirection": "column",
+        "flexDirection": "row",
         "height": 200,
+        "justifyContent": "flex-end",
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
@@ -754,9 +781,11 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
   >
     <div
       className=""
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
       style={
         Object {
-          "alignItems": "flex-end",
+          "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -767,6 +796,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": "fit-content",
           "zIndex": 0,
         }
       }
@@ -786,7 +816,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
-        role="menu"
+        role="listbox"
         style={
           Object {
             "::MozFocusInner": Object {
@@ -811,6 +841,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
           }
         }
         tabIndex={0}
+        type="button"
       >
         <span
           className=""
@@ -826,6 +857,8 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
               "lineHeight": "20px",
               "overflow": "hidden",
               "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
             }
           }
         >
@@ -860,7 +893,9 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
               "minWidth": 16,
               "overflow": "hidden",
               "textOverflow": "ellipsis",
+              "userSelect": "none",
               "verticalAlign": "text-bottom",
+              "whiteSpace": "nowrap",
             }
           }
           viewBox="0 0 16 16"
@@ -899,9 +934,11 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
-        "alignItems": "flex-start",
+        "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -909,9 +946,10 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
         "flexDirection": "column",
         "margin": 0,
         "minHeight": 0,
-        "minWidth": 0,
+        "minWidth": 170,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -931,7 +969,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -956,10 +994,10 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
-          "width": 170,
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -975,6 +1013,8 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -1009,7 +1049,9 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -1047,9 +1089,11 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
 >
   <div
     className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
     style={
       Object {
-        "alignItems": "flex-start",
+        "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
@@ -1060,6 +1104,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -1079,7 +1124,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -1104,10 +1149,10 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           "position": "relative",
           "textDecoration": "none",
           "whiteSpace": "nowrap",
-          "width": 150,
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -1122,6 +1167,8 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -1155,7 +1202,9 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -1191,85 +1240,71 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
     }
   }
 >
-  <div
+  <button
     className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
     style={
       Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
         "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
         "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
         "position": "relative",
-        "zIndex": 0,
+        "textDecoration": "none",
       }
     }
+    tabIndex={0}
+    type="button"
   >
-    <button
+    <span
       className=""
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
       style={
         Object {
-          "::MozFocusInner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "#1865f2",
-          "border": "none",
-          "borderRadius": 4,
-          "boxSizing": "border-box",
-          "color": "#ffffff",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "outline": "none",
-          "paddingBottom": 0,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 0,
-          "position": "relative",
-          "textDecoration": "none",
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
-      tabIndex={0}
     >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, sans-serif",
-            "fontSize": 16,
-            "fontWeight": "bold",
-            "lineHeight": "20px",
-            "pointerEvents": "none",
-          }
-        }
-      >
-        Open modal!
-      </span>
-    </button>
-  </div>
+      Open modal!
+    </span>
+  </button>
 </div>
 `;

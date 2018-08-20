@@ -7,6 +7,7 @@ import Dropdown from "./dropdown.js";
 import SelectOpener from "./select-opener.js";
 
 import typeof OptionItem from "./option-item.js";
+import type {DropdownItem} from "../util/types.js";
 
 type Props = {|
     /**
@@ -49,14 +50,9 @@ type Props = {|
     light: boolean,
 
     /**
-     * Optional styling to add to the opener component.
+     * Optional styling to add to the opener component wrapper.
      */
-    openerStyle?: any,
-
-    /**
-     * Optional styling to add to the dropdown wrapper.
-     */
-    dropdownStyle?: any,
+    style?: any,
 |};
 
 type State = {|
@@ -64,14 +60,22 @@ type State = {|
      * Whether or not the dropdown is open.
      */
     open: boolean,
+    /**
+     * Whether or not last open state change was triggered by a keyboard click.
+     */
+    keyboard?: boolean,
 |};
 
 /**
  * The single select allows the selection of one item. Clients are responsible
  * for keeping track of the selected item in the select.
+ *
+ * The single select dropdown closes after the selection of an item. If the
+ * same item is selected, there is no callback.
  */
 export default class SingleSelect extends React.Component<Props, State> {
-    openerElement: ?Element;
+    openerElement: ?HTMLElement;
+    selectedIndex: number;
 
     static defaultProps = {
         alignment: "left",
@@ -82,39 +86,67 @@ export default class SingleSelect extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
+        this.selectedIndex = 0;
+
         this.state = {
             open: false,
         };
     }
 
-    handleOpenChanged(open: boolean) {
+    handleOpenChanged = (open: boolean, keyboard?: boolean) => {
         this.setState({
-            open: open,
+            open,
+            keyboard,
         });
-    }
+    };
 
-    handleToggle(selectedValue: string) {
-        this.setState({
-            open: false, // close the menu upon selection
-        });
-
-        // Call callback if selection changes.
+    handleToggle = (selectedValue: string) => {
+        // Call callback if selection changed.
         if (selectedValue !== this.props.selectedValue) {
             this.props.onChange(selectedValue);
         }
-    }
 
-    getMenuItems(): Array<React.Element<OptionItem>> {
+        // Bring focus back to the opener element.
+        if (open && this.openerElement) {
+            this.openerElement.focus();
+        }
+
+        this.setState({
+            open: false, // close the menu upon selection
+        });
+    };
+
+    getMenuItems(): Array<DropdownItem> {
         const {children, selectedValue} = this.props;
+        // Figure out which index should receive focus when this select opens
+        // Needs to exclude counting items that are disabled
+        let indexCounter = 0;
+        this.selectedIndex = 0;
+
         return React.Children.map(children, (option) => {
-            const {value} = option.props;
-            return React.cloneElement(option, {
-                onToggle: (value, state) => this.handleToggle(value),
-                selected: selectedValue === value,
-                variant: "check",
-            });
+            const {disabled, value} = option.props;
+            const selected = selectedValue === value;
+            if (selected) {
+                this.selectedIndex = indexCounter;
+            }
+            if (!disabled) {
+                indexCounter += 1;
+            }
+            return {
+                component: option,
+                focusable: !disabled,
+                populatedProps: {
+                    onToggle: this.handleToggle,
+                    selected: selected,
+                    variant: "check",
+                },
+            };
         });
     }
+
+    handleOpenerRef = (node: any) => {
+        this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+    };
 
     render() {
         const {
@@ -124,10 +156,8 @@ export default class SingleSelect extends React.Component<Props, State> {
             light,
             placeholder,
             selectedValue,
-            openerStyle,
-            dropdownStyle,
+            style,
         } = this.props;
-
         const {open} = this.state;
 
         const selectedItem = React.Children.toArray(children).find(
@@ -142,32 +172,30 @@ export default class SingleSelect extends React.Component<Props, State> {
                 disabled={disabled}
                 isPlaceholder={!selectedItem}
                 light={light}
-                onClick={() => this.handleOpenChanged(!open)}
-                ref={(node) =>
-                    (this.openerElement = ((ReactDOM.findDOMNode(
-                        node,
-                    ): any): Element))
-                }
-                style={openerStyle}
+                onOpenChanged={this.handleOpenChanged}
+                open={open}
+                ref={this.handleOpenerRef}
             >
                 {menuText}
             </SelectOpener>
         );
 
-        const items = [...this.getMenuItems()];
+        const items = this.getMenuItems();
 
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={[{marginTop: 8, marginBottom: 8}, dropdownStyle]}
+                dropdownStyle={{marginTop: 8, marginBottom: 8}}
+                initialFocusedIndex={this.selectedIndex}
+                items={items}
+                keyboard={this.state.keyboard}
                 light={light}
-                onOpenChanged={(open, source) => this.handleOpenChanged(open)}
+                onOpenChanged={this.handleOpenChanged}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
-            >
-                {items}
-            </Dropdown>
+                style={style}
+            />
         );
     }
 }
