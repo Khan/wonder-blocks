@@ -124,7 +124,12 @@ export default class Link extends React.Component<SharedProps> {
         );
 
         return (
-            <ClickableBehavior disabled={false} onClick={onClick} href={href}>
+            <ClickableBehavior
+                disabled={false}
+                onClick={onClick}
+                href={href}
+                triggerOnSpace={false}
+            >
                 {(state, handlers) => {
                     return (
                         <LinkCore

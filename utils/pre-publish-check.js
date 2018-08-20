@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 /**
  * Pre-publish checks to verify that our publish will go smoothly.
  */
 const path = require("path");
 const glob = require("glob");
+const {exec} = require("child_process");
 
 const inquirer = require("inquirer");
 
@@ -16,15 +18,20 @@ glob(
             const {publishConfig, name} = pkgJson;
 
             if (!publishConfig || publishConfig.access !== "public") {
-                // eslint-disable-next-line no-console
                 console.error(
                     `ERROR: ${name} is missing a "publishConfig": {"access": "public"} section.`,
                 );
                 process.exit(1);
             }
 
+            if (pkgJson.main !== "dist/index.js") {
+                console.error(
+                    `ERROR: ${name} must have a "main" set to "dist/index.js".`,
+                );
+                process.exit(1);
+            }
+
             if (pkgJson.private) {
-                // eslint-disable-next-line no-console
                 console.warn(
                     `${name} is private and won't be published to NPM.`,
                 );
@@ -32,23 +39,34 @@ glob(
             }
         }
 
-        if (warnings) {
-            inquirer
-                .prompt([
-                    {
-                        type: "confirm",
-                        name: "skipWarnings",
-                        default: false,
-                        message:
-                            "There are some potential problems, do you wish to continue?",
-                    },
-                ])
-                .then(({skipWarnings}) => {
-                    // If we're not skipping then we need to exit with an error
-                    if (!skipWarnings) {
-                        process.exit(1);
-                    }
-                });
-        }
+        exec("npm whoami", (err, currentUser) => {
+            if (currentUser.trim() !== "khanacademy") {
+                console.error(
+                    `ERROR: You are not logged in to NPM as "khanacademy". ` +
+                        `Run "npm login" and use the password from: ` +
+                        `https://phabricator.khanacademy.org/K207`,
+                );
+                process.exit(1);
+            }
+
+            if (warnings) {
+                inquirer
+                    .prompt([
+                        {
+                            type: "confirm",
+                            name: "skipWarnings",
+                            default: false,
+                            message:
+                                "There are some potential problems, do you wish to continue?",
+                        },
+                    ])
+                    .then(({skipWarnings}) => {
+                        // If we're not skipping then we need to exit with an error
+                        if (!skipWarnings) {
+                            process.exit(1);
+                        }
+                    });
+            }
+        });
     },
 );

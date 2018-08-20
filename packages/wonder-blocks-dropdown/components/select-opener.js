@@ -84,14 +84,19 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         ];
 
         return (
-            <ClickableBehavior disabled={disabled} onClick={onClick}>
+            <ClickableBehavior
+                disabled={disabled}
+                onClick={onClick}
+                triggerOnEnter={false}
+            >
                 {(state, handlers) => {
                     const stateStyles = _generateStyles(light, {...state});
                     const {hovered, focused, pressed} = state;
                     return (
                         <StyledButton
                             disabled={disabled}
-                            role="menu"
+                            role="listbox"
+                            type="button"
                             style={[
                                 styles.shared,
                                 stateStyles.default,
@@ -159,6 +164,8 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        whiteSpace: "nowrap",
+        userSelect: "none",
         overflow: "hidden",
         textOverflow: "ellipsis",
     },
