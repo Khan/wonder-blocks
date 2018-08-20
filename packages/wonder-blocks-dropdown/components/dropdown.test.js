@@ -66,28 +66,24 @@ describe("Dropdown", () => {
             open: true,
         });
 
-        const option0 = dropdown.find("OptionItem").at(0);
-        const option1 = dropdown.find("OptionItem").at(1);
-        const option2 = dropdown.find("OptionItem").at(2);
-
         expect(dropdown.instance().focusedIndex).toBe(0);
 
         // navigate down three times
-        option0.simulate("keydown", {keyCode: keyCodes.down});
-        option0.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(1);
 
-        option1.simulate("keydown", {keyCode: keyCodes.down});
-        option1.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(2);
 
-        option2.simulate("keydown", {keyCode: keyCodes.down});
-        option2.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(0);
 
         // navigate up back to last item
-        option0.simulate("keydown", {keyCode: keyCodes.up});
-        option0.simulate("keyup", {keyCode: keyCodes.up});
+        dropdown.simulate("keydown", {keyCode: keyCodes.up});
+        dropdown.simulate("keyup", {keyCode: keyCodes.up});
         expect(dropdown.instance().focusedIndex).toBe(2);
     });
 
@@ -98,14 +94,13 @@ describe("Dropdown", () => {
             open: true,
         });
 
-        const option0 = dropdown.find("OptionItem").at(0);
-
         // "close" some menus
-        option0.simulate("keydown", {keyCode: keyCodes.tab});
-        option0.simulate("keyup", {keyCode: keyCodes.tab});
-        option0.simulate("keydown", {keyCode: keyCodes.escape});
-        option0.simulate("keyup", {keyCode: keyCodes.escape});
+        dropdown.simulate("keydown", {keyCode: keyCodes.tab});
+        dropdown.simulate("keyup", {keyCode: keyCodes.tab});
+        dropdown.simulate("keydown", {keyCode: keyCodes.escape});
+        dropdown.simulate("keyup", {keyCode: keyCodes.escape});
         expect(handleOpen).toHaveBeenCalledTimes(2);
+        // Test that we pass "false" to handleOpenChanged both times
         expect(handleOpen.mock.calls[0][0]).toBe(false);
         expect(handleOpen.mock.calls[1][0]).toBe(false);
     });
@@ -159,13 +154,11 @@ describe("Dropdown", () => {
             open: true,
         });
 
-        const option2 = dropdown.find("OptionItem").at(2);
-
         expect(dropdown.instance().focusedIndex).toBe(2);
 
         // navigate down
-        option2.simulate("keydown", {keyCode: keyCodes.down});
-        option2.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(0);
     });
 
@@ -194,8 +187,8 @@ describe("Dropdown", () => {
         option1.simulate("click");
 
         // When starting to use keyboard behavior, should move to next item
-        option1.simulate("keydown", {keyCode: keyCodes.down});
-        option1.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(2);
     });
 
@@ -213,8 +206,8 @@ describe("Dropdown", () => {
         option1.simulate("click");
 
         // When starting to use keyboard behavior, should move to next item
-        option1.simulate("keydown", {keyCode: keyCodes.down});
-        option1.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(2);
     });
 
@@ -242,20 +235,17 @@ describe("Dropdown", () => {
             open: true,
         });
 
-        const option0 = dropdown.find("OptionItem").at(0);
-        const option2 = dropdown.find("OptionItem").at(2);
-
         expect(dropdown.instance().focusedIndex).toBe(0);
 
         // Should select option2
-        option0.simulate("keydown", {keyCode: keyCodes.down});
-        option0.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(1);
         expect(dropdown.instance().focusedOriginalIndex).toBe(2);
 
         // Should select option0
-        option2.simulate("keydown", {keyCode: keyCodes.down});
-        option2.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(0);
         expect(dropdown.instance().focusedOriginalIndex).toBe(0);
     });
@@ -267,13 +257,11 @@ describe("Dropdown", () => {
             open: true,
         });
 
-        const option0 = dropdown.find("OptionItem").at(0);
-
         expect(dropdown.instance().focusedIndex).toBe(0);
 
         // Should select option1
-        option0.simulate("keydown", {keyCode: keyCodes.down});
-        option0.simulate("keyup", {keyCode: keyCodes.down});
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(1);
 
         dropdown.setProps({
@@ -306,6 +294,10 @@ describe("Dropdown", () => {
             open: true,
         });
 
+        expect(dropdown.instance().focusedIndex).toBe(0);
+
+        const option0 = dropdown.find("OptionItem").at(0);
+        option0.simulate("click");
         expect(dropdown.instance().focusedIndex).toBe(0);
 
         dropdown.setProps({
