@@ -12,11 +12,10 @@ const keyCodes = {
 };
 
 describe("ClickableBehavior", () => {
-    // Note: window.location.assign needs a mock function in the testing
-    // environment.
-    window.location.assign = jest.fn();
-
     beforeEach(() => {
+        // Note: window.location.assign needs a mock function in the testing
+        // environment.
+        window.location.assign = jest.fn();
         unmountAll();
     });
 
