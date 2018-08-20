@@ -2,6 +2,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import {View} from "@khanacademy/wonder-blocks-core";
+
 /**
  * This component ensures that focus stays within itself. If the user uses Tab
  * at the end of the modal, or Shift-Tab at the start of the modal, then this
@@ -18,48 +20,66 @@ import * as ReactDOM from "react-dom";
  *     actually coupled to the modal, and these could be renamed "children"
  *     instead if we were to generalize!
  */
-export default class FocusTrap extends React.Component<{children: React.Node}> {
+
+type Props = {|
+    children: React.Node,
+|};
+
+export default class FocusTrap extends React.Component<Props> {
     /** The most recent node _inside this component_ to receive focus. */
-    _lastNodeFocusedInModal: ?Node;
+    lastNodeFocusedInModal: ?Node;
 
     /**
      * Whether we're currently applying programmatic focus, and should therefore
      * ignore focus change events.
      */
-    _ignoreFocusChanges: boolean;
+    ignoreFocusChanges: boolean;
+
+    /**
+     * Tabbing is restricted to descendents of this element.
+     */
+    modalRoot: ?Node;
+
+    constructor(props: Props) {
+        super(props);
+
+        this.lastNodeFocusedInModal = null;
+        this.ignoreFocusChanges = false;
+    }
 
     componentDidMount() {
-        window.addEventListener("focus", this._handleGlobalFocus, true);
+        window.addEventListener("focus", this.handleGlobalFocus, true);
     }
 
     componentWillUnmount() {
-        window.removeEventListener("focus", this._handleGlobalFocus, true);
+        window.removeEventListener("focus", this.handleGlobalFocus, true);
     }
 
-    _lastNodeFocusedInModal = null;
-    _ignoreFocusChanges = false;
+    getModalRoot = (node: any) => {
+        if (!node) {
+            // The component is being umounted
+            return;
+        }
 
-    /** Get the outermost DOM node of our children. */
-    _getModalRoot(): Node {
-        const modalRoot = ReactDOM.findDOMNode(this);
+        const modalRoot = ReactDOM.findDOMNode(node);
         if (!modalRoot) {
             throw new Error(
                 "Assertion error: modal root should exist after mount",
             );
         }
-        return modalRoot;
-    }
+        this.modalRoot = modalRoot;
+    };
 
     /** Try to focus the given node. Return true iff successful. */
-    _tryToFocus(node: Node) {
+    tryToFocus(node: Node) {
         if (node instanceof HTMLElement) {
-            this._ignoreFocusChanges = true;
+            this.ignoreFocusChanges = true;
             try {
                 node.focus();
             } catch (e) {
                 // ignore error
             }
-            this._ignoreFocusChanges = false;
+            this.ignoreFocusChanges = false;
 
             return document.activeElement === node;
         }
@@ -71,11 +91,11 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
      * Return true if we succeed. Or, if the given node has no focusable
      * descendants, return false.
      */
-    _focusFirstElementIn(currentParent: Node) {
+    focusFirstElementIn(currentParent: Node) {
         const children = currentParent.childNodes;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
-            if (this._tryToFocus(child) || this._focusFirstElementIn(child)) {
+            if (this.tryToFocus(child) || this.focusFirstElementIn(child)) {
                 return true;
             }
         }
@@ -88,11 +108,11 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
      * Return true if we succeed. Or, if the given node has no focusable
      * descendants, return false.
      */
-    _focusLastElementIn(currentParent: Node) {
+    focusLastElementIn(currentParent: Node) {
         const children = currentParent.childNodes;
         for (let i = children.length - 1; i >= 0; i--) {
             const child = children[i];
-            if (this._tryToFocus(child) || this._focusLastElementIn(child)) {
+            if (this.tryToFocus(child) || this.focusLastElementIn(child)) {
                 return true;
             }
         }
@@ -100,10 +120,10 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
     }
 
     /** This method is called when any node on the page is focused. */
-    _handleGlobalFocus = (e: FocusEvent) => {
+    handleGlobalFocus = (e: FocusEvent) => {
         // If we're busy applying our own programmatic focus, we ignore focus
         // changes, to avoid an infinite loop.
-        if (this._ignoreFocusChanges) {
+        if (this.ignoreFocusChanges) {
             return;
         }
 
@@ -113,34 +133,53 @@ export default class FocusTrap extends React.Component<{children: React.Node}> {
             return;
         }
 
-        const modalRoot = this._getModalRoot();
+        const modalRoot = this.modalRoot;
+        if (!modalRoot) {
+            return;
+        }
+
         if (modalRoot.contains(target)) {
             // If the newly focused node is inside the modal, we just keep track
             // of that.
-            this._lastNodeFocusedInModal = target;
+            this.lastNodeFocusedInModal = target;
         } else {
             // If the newly focused node is outside the modal, we try refocusing
             // the first focusable node of the modal. (This could be the user
             // pressing Tab on the last node of the modal, or focus escaping in
             // some other way.)
-            this._focusFirstElementIn(modalRoot);
+            this.focusFirstElementIn(modalRoot);
 
             // But, if it turns out that the first focusable node of the modal
             // was what we were previously focusing, then this is probably the
             // user pressing Shift-Tab on the first node, wanting to go to the
             // end. So, we instead try focusing the last focusable node of the
             // modal.
-            if (document.activeElement === this._lastNodeFocusedInModal) {
-                this._focusLastElementIn(modalRoot);
+            if (document.activeElement === this.lastNodeFocusedInModal) {
+                this.focusLastElementIn(modalRoot);
             }
 
             // Focus should now be inside the modal, so record the newly-focused
             // node as the last node focused in the modal.
-            this._lastNodeFocusedInModal = document.activeElement;
+            this.lastNodeFocusedInModal = document.activeElement;
         }
     };
 
     render() {
-        return this.props.children;
+        return (
+            <React.Fragment>
+                {/* When you press Tab on the last focusable node of the
+                  * document, some browsers will move your tab focus outside of
+                  * the document. But we want to capture that as a focus event,
+                  * and move focus back into the modal! So, we add focusable
+                  * sentinel nodes. That way, tabbing out of the modal should
+                  * take you to a sentinel node, rather than taking you out of
+                  * the document. These sentinels aren't critical to focus
+                  * wrapping, though; we're resilient to any kind of focus
+                  * shift, whether it's to the sentinels or somewhere else! */}
+                <div tabIndex="0" />
+                <View ref={this.getModalRoot}>{this.props.children}</View>
+                <div tabIndex="0" />
+            </React.Fragment>
+        );
     }
 }

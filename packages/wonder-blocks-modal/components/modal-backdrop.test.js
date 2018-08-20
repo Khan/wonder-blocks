@@ -39,6 +39,7 @@ describe("ModalBackdrop", () => {
         );
 
         expect(onCloseModal).not.toHaveBeenCalled();
+
         wrapper.simulate("click");
         expect(onCloseModal).toHaveBeenCalled();
     });
