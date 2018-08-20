@@ -74,16 +74,20 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "outline": "none",
+          "overflow": "hidden",
           "paddingBottom": 0,
           "paddingLeft": 8,
           "paddingRight": 8,
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -96,7 +100,11 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -198,16 +206,20 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "outline": "none",
+          "overflow": "hidden",
           "paddingBottom": 0,
           "paddingLeft": 8,
           "paddingRight": 8,
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -220,7 +232,11 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -305,7 +321,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -333,6 +349,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -348,6 +365,8 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -382,7 +401,9 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -453,7 +474,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -481,6 +502,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -495,6 +517,8 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -528,7 +552,9 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -599,7 +625,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -628,6 +654,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         }
       }
       tabIndex={-1}
+      type="button"
     >
       <span
         className=""
@@ -643,6 +670,8 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -677,7 +706,9 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -773,7 +804,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
-        role="menu"
+        role="listbox"
         style={
           Object {
             "::MozFocusInner": Object {
@@ -798,6 +829,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
           }
         }
         tabIndex={0}
+        type="button"
       >
         <span
           className=""
@@ -813,6 +845,8 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
               "lineHeight": "20px",
               "overflow": "hidden",
               "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
             }
           }
         >
@@ -847,7 +881,9 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
               "minWidth": 16,
               "overflow": "hidden",
               "textOverflow": "ellipsis",
+              "userSelect": "none",
               "verticalAlign": "text-bottom",
+              "whiteSpace": "nowrap",
             }
           }
           viewBox="0 0 16 16"
@@ -919,7 +955,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -947,6 +983,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -962,6 +999,8 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -996,7 +1035,9 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -1067,7 +1108,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      role="listbox"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -1095,6 +1136,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -1109,6 +1151,8 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -1142,7 +1186,9 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
             "minWidth": 16,
             "overflow": "hidden",
             "textOverflow": "ellipsis",
+            "userSelect": "none",
             "verticalAlign": "text-bottom",
+            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -1193,6 +1239,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1219,6 +1266,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -1231,7 +1279,11 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >

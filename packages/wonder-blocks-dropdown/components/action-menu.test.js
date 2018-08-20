@@ -55,12 +55,10 @@ describe("ActionMenu", () => {
         // Close menu with space
         opener.simulate("keydown", {keyCode: keyCodes.space});
         opener.simulate("keyup", {keyCode: keyCodes.space});
-        opener.simulate("click", {preventDefault: jest.fn()});
         expect(menu.state("open")).toEqual(false);
 
         // Open menu again with enter
         opener.simulate("keydown", {keyCode: keyCodes.enter});
-        opener.simulate("click", {preventDefault: jest.fn()});
         opener.simulate("keyup", {keyCode: keyCodes.enter});
         expect(menu.state("open")).toEqual(true);
     });
