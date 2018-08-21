@@ -2,11 +2,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
-
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import Tooltip from "./tooltip.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
