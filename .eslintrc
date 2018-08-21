@@ -2,9 +2,18 @@
     "extends": [
         "./eslint/eslintrc"
     ],
+    "plugins": [
+        "promise"
+    ],
     "rules": {
-        "flowtype/require-exact-type": [2, "always"],
-        "flowtype/no-types-missing-file-annotation": 2,
-        "react/jsx-handler-names": 2
+        "flowtype/require-exact-type": ["error", "always"],
+        "flowtype/no-types-missing-file-annotation": "error",
+        "promise/always-return": "error",
+        "promise/no-return-wrap": "error",
+        "promise/param-names": "error",
+        "promise/catch-or-return": "error",
+        "promise/no-new-statics": "error",
+        "promise/no-return-in-finally": "error",
+        "react/jsx-handler-names": "error"
     }
 }
