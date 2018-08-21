@@ -12,8 +12,6 @@ import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
 type Props = {|
     /**
      * The main contents of the ModalPanel. All other parts of the panel

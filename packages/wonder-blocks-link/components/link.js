@@ -6,8 +6,6 @@ import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import LinkCore from "./link-core.js";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
 export type SharedProps = {|
     /**
      * Text to appear on the link.

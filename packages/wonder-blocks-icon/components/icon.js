@@ -1,19 +1,11 @@
 // @flow
 import React from "react";
 import {StyleSheet} from "aphrodite";
-
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-<<<<<<< HEAD
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import {getPathForIcon, viewportPixelsForSize} from "../util/icon-util.js";
 
-import type {IconAsset, IconSize} from "../util/icon-assets.js";
-=======
 import {getPathForIcon, viewportPixelsForSize} from "../util/icon-util.js";
-
 import type {IconAsset, IconSize} from "../util/icon-assets.js";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
->>>>>>> Enforce style types for all `style` props.
 
 type Props = {|
     /**

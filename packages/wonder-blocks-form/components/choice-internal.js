@@ -12,8 +12,6 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core.js";
 import RadioCore from "./radio-core.js";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
 type Props = {|
     /** Whether this choice is checked. */
     checked: boolean,

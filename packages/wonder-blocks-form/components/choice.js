@@ -6,8 +6,6 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Checkbox from "./checkbox.js";
 import Radio from "./radio.js";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
 type Props = {|
     /** User-defined. Label for the field. */
     label: string,
@@ -86,7 +84,6 @@ type Props = {|
             return Radio;
         }
     }
-
     render() {
         // we don't need this going into the ChoiceComponent
         // eslint-disable-next-line no-unused-vars

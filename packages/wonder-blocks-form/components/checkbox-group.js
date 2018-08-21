@@ -11,7 +11,6 @@ import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import typeof Choice from "./choice.js";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 // Keep synced with CheckboxGroupProps in ../util/types.js
 type CheckboxGroupProps = {|
