@@ -38,6 +38,7 @@ export default class CheckboxCore extends React.Component<Props> {
 
     render() {
         const {
+            ariaLabel,
             checked,
             disabled,
             error,
@@ -71,6 +72,7 @@ export default class CheckboxCore extends React.Component<Props> {
                 <StyledInput
                     type="checkbox"
                     aria-checked={checked}
+                    aria-label={ariaLabel}
                     checked={checked}
                     disabled={disabled}
                     id={id}

@@ -28,6 +28,13 @@ type ChoiceComponentProps = {|
     onChange: (newCheckedState: boolean) => void,
 
     /**
+     * Optional label if it is not obvious from the context what the radio
+     * does. If the label and id props are defined, this props does not need to
+     * be provided as the label would be matched to this input.
+     */
+    ariaLabel?: string,
+
+    /**
      * Optional label for the field.
      */
     label?: string,

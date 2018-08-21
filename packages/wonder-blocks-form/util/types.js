@@ -12,6 +12,10 @@ export type ChoiceCoreProps = {|
     disabled: boolean,
     /** Whether this component should show an error state */
     error: boolean,
+    /** Optional label if it is not obvious from the context what the checkbox
+     * does. If the label and id props are defined, this props does not need to
+     * be provided as the label would be matched to this input. */
+    ariaLabel?: string,
     /** Name for the checkbox or radio button group */
     groupName?: string,
     /** Unique identifier attached to the HTML input element. If used, need to
