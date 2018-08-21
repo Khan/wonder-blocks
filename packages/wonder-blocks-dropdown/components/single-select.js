@@ -3,11 +3,11 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Dropdown from "./dropdown.js";
 import SelectOpener from "./select-opener.js";
 
 import typeof OptionItem from "./option-item.js";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {DropdownItem} from "../util/types.js";
 
 type Props = {|

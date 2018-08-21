@@ -3,9 +3,8 @@ import * as React from "react";
 import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
-import ButtonCore from "./button-core.js";
-
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import ButtonCore from "./button-core.js";
 
 export type SharedProps = {|
     /**

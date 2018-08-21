@@ -9,8 +9,8 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import typeof Choice from "./choice.js";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import typeof Choice from "./choice.js";
 
 // Keep synced with CheckboxGroupProps in ../util/types.js
 type CheckboxGroupProps = {|

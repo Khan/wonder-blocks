@@ -2,9 +2,8 @@
 
 import * as React from "react";
 
-import ChoiceInternal from "./choice-internal.js";
-
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import ChoiceInternal from "./choice-internal.js";
 
 // Keep synced with ChoiceComponentProps in ../util/types.js
 type ChoiceComponentProps = {|

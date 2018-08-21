@@ -7,11 +7,10 @@ import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
-
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**

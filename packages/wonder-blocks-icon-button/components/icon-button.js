@@ -4,9 +4,8 @@ import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-import IconButtonCore from "./icon-button-core.js";
-
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import IconButtonCore from "./icon-button-core.js";
 
 export type SharedProps = {|
     /**

@@ -3,9 +3,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import ModalHeader from "./modal-header.js";
-
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import ModalHeader from "./modal-header.js";
 
 type Props = {|
     /** An optional header to display above the content. */
