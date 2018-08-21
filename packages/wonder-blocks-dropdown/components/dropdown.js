@@ -117,6 +117,8 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
     focusedOriginalIndex: number;
     // Whether keyboard nav has been activated
     keyboardNavOn: boolean;
+    // Whether any items have been selected since the menu was opened
+    itemsClicked: boolean;
 
     static defaultProps = {
         alignment: "left",
@@ -217,10 +219,21 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                     // Can't find the originally focused item, return focus to
                     // the first item that IS focusable
                     this.focusedIndex = 0;
+                    // Reset the knowlege that things had been clicked
+                    this.itemsClicked = false;
+                    if (this.keyboardNavOn) {
+                        // If keyboard navigation was already on, use that
+                        this.focusCurrentItem();
+                    } else {
+                        // Otherwise shift focus to the original focus item
+                        // (the opener) to listen for further keyboard events
+                        if (this.props.openerElement) {
+                            this.props.openerElement.focus();
+                        }
+                    }
                 } else {
                     this.focusedIndex = newFocusableIndex;
                 }
-                this.focusCurrentItem();
             }
         }
     }
@@ -246,6 +259,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         } else if (!open) {
             // If the dropdown has been closed, reset the keyboardNavOn boolean
             this.keyboardNavOn = false;
+            this.itemsClicked = false;
         }
     }
 
@@ -337,17 +351,19 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             return;
         }
 
-        // This is the first use of keyboard navigation and no items have been
-        // clicked yet, so we should focus the original intended first index
+        // This is the first use of keyboard navigation
         if (
             !this.keyboardNavOn &&
-            this.focusedIndex === initialFocusedIndex &&
             (keyCode === keyCodes.up || keyCode === keyCodes.down)
         ) {
-            event.preventDefault();
             this.keyboardNavOn = true;
-            this.focusCurrentItem();
-            return;
+            // No items have been clicked so we focus the initial item
+            if (!this.itemsClicked) {
+                event.preventDefault();
+                this.focusedIndex = initialFocusedIndex;
+                this.focusCurrentItem();
+                return;
+            }
         }
 
         // Handle all other key behavior
@@ -373,7 +389,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
 
     // Some keys should be handled during the keyup event instead.
     handleKeyUp = (event: SyntheticKeyboardEvent<>) => {
-        const {onOpenChanged} = this.props;
+        const {onOpenChanged, open} = this.props;
         const keyCode = event.which || event.keyCode;
 
         switch (keyCode) {
@@ -384,17 +400,19 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             case keyCodes.escape:
                 // Close only the dropdown, not other elements that are
                 // listening for an escape press
-                event.stopPropagation();
-                this.restoreTabOrder();
-                onOpenChanged(false, true);
+                if (open) {
+                    event.stopPropagation();
+                    this.restoreTabOrder();
+                    onOpenChanged(false, true);
+                }
                 return;
         }
     };
 
     handleClickFocus(index: number) {
-        // Turn keyboard nav on so pressing up or down would focus the
+        // Turn itemsClicked on so pressing up or down would focus the
         // appropriate item in handleKeyDown
-        this.keyboardNavOn = true;
+        this.itemsClicked = true;
         this.focusedIndex = index;
         this.focusedOriginalIndex = this.state.itemRefs[
             this.focusedIndex

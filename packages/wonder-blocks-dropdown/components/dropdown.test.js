@@ -325,6 +325,23 @@ describe("Dropdown", () => {
         expect(dropdown.instance().focusedOriginalIndex).toBe(1);
     });
 
+    it("doesn't immediately turn on keyboard navigation on item selection", () => {
+        dropdown.setProps({
+            initialFocusedIndex: 0,
+            keyboard: false,
+            open: true,
+        });
+
+        expect(dropdown.instance().focusedIndex).toBe(0);
+
+        const option0 = dropdown.find("OptionItem").at(0);
+        option0.simulate("click");
+
+        // Keyboard nav isn't on, but itemsClicked is
+        expect(dropdown.instance().keyboardNavOn).toBe(false);
+        expect(dropdown.instance().itemsClicked).toBe(true);
+    });
+
     it("calls correct onclick for an option item", () => {
         const onClick0 = jest.fn();
         const onClick1 = jest.fn();
