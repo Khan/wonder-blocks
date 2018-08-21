@@ -38,7 +38,7 @@ export default class CheckboxCore extends React.Component<Props> {
 
     render() {
         const {
-            ariaLabel,
+            "aria-label": ariaLabel,
             checked,
             disabled,
             error,

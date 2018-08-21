@@ -32,7 +32,7 @@ type ChoiceComponentProps = {|
      * does. If the label and id props are defined, this props does not need to
      * be provided as the label would be matched to this input.
      */
-    ariaLabel?: string,
+    "aria-label"?: string,
 
     /**
      * Optional label for the field.

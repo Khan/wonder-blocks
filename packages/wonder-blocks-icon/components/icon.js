@@ -11,7 +11,7 @@ type Props = {|
      * Passed transparently to the SVG. If not provided, we assume the SVG is
      * purely decorative and it is invisible to screenreaders.
      */
-    ariaLabel?: string,
+    "aria-label"?: string,
     /**
      * The color of the icon. Will default to `currentColor`, which means that
      * it will take on the CSS `color` value from the parent element.
@@ -77,7 +77,7 @@ export default class Icon extends React.PureComponent<Props> {
     };
 
     render() {
-        const {ariaLabel, color, icon, size, style} = this.props;
+        const {"aria-label": ariaLabel, color, icon, size, style} = this.props;
         const {assetSize, path} = getPathForIcon(icon, size);
         const pixelSize = viewportPixelsForSize(size);
         const viewboxPixelSize = viewportPixelsForSize(assetSize);

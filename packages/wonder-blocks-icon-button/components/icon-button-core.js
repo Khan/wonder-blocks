@@ -61,7 +61,7 @@ export default class IconButtonCore extends React.Component<Props> {
     render() {
         const {
             skipClientNav,
-            ariaLabel,
+            "aria-label": ariaLabel,
             color,
             disabled,
             focused,

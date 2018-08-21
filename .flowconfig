@@ -1,5 +1,5 @@
 [version]
-0.75.0
+0.79.1
 
 [ignore]
 <PROJECT_ROOT>/node_modules/react-element-to-jsx-string

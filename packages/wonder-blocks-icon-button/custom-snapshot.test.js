@@ -48,7 +48,7 @@ describe("IconButtonCore", () => {
                                 .create(
                                     <IconButtonCore
                                         icon={icons.search}
-                                        ariaLabel="search"
+                                        aria-label="search"
                                         kind={kind}
                                         color={color}
                                         light={light}
