@@ -17,7 +17,7 @@ describe("IconButton", () => {
         const wrapper = shallow(
             <IconButton
                 icon={icons.search}
-                aria-label="search"
+                ariaLabel="search"
                 onClick={() => done()}
             />,
         );
@@ -29,7 +29,7 @@ describe("IconButton", () => {
             mount(
                 <IconButton
                     icon={icons.search}
-                    aria-label="search"
+                    ariaLabel="search"
                     kind="secondary"
                     light={true}
                     onClick={() => void 0}
@@ -45,7 +45,7 @@ describe("IconButton", () => {
                 <div>
                     <IconButton
                         icon={icons.search}
-                        aria-label="search"
+                        ariaLabel="search"
                         testId="icon-button"
                         href="/foo"
                     />
@@ -75,7 +75,7 @@ describe("IconButton", () => {
                 <div>
                     <IconButton
                         icon={icons.search}
-                        aria-label="search"
+                        ariaLabel="search"
                         testId="icon-button"
                         href="/unknown"
                     />
@@ -105,7 +105,7 @@ describe("IconButton", () => {
                 <div>
                     <IconButton
                         icon={icons.search}
-                        aria-label="search"
+                        ariaLabel="search"
                         testId="icon-button"
                         href="/foo"
                         skipClientNav
