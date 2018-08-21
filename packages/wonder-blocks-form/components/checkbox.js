@@ -2,6 +2,7 @@
 
 import * as React from "react";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ChoiceInternal from "./choice-internal.js";
 
 // Keep synced with ChoiceComponentProps in ../util/types.js
@@ -54,7 +55,7 @@ type ChoiceComponentProps = {|
     /**
      * Optional styling for the container. Does not style the component.
      */
-    style?: any,
+    style?: StyleType,
 
     /**
      * Optional test ID for e2e testing

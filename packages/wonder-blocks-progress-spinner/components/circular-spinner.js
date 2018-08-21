@@ -1,9 +1,10 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
+
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 const heights = {
     xsmall: 16,
@@ -76,7 +77,7 @@ type Props = {|
     light: boolean,
 
     /** Any (optional) styling to apply to the spinner container. */
-    style?: any,
+    style?: StyleType,
 |};
 
 /**

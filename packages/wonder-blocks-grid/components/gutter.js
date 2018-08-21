@@ -2,11 +2,10 @@
 import * as React from "react";
 
 import {MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
 import {matchesSize} from "../util/utils.js";
 import FixedWidthCell from "./fixed-width-cell.js";
-
-import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
 /**
  * Gutter is a form of [FixedWidthCell](#fixedwidthcell) whose width is set based on the size

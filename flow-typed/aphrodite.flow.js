@@ -5,12 +5,12 @@
  *
  * It was then modified in a couple ways:
  *  1) The StyleDeclaration type was enforced on the input of create().
- *  2) The CSSProperties type was made strict to not allow any extra
+ *  2) The _CSSProperties type was made strict to not allow any extra
  *     properties.
- *  3) Missing CSS properties were added to CSSProperties to support all
+ *  3) Missing CSS properties were added to _CSSProperties to support all
  *     the cases currently used in our stylesheets.
  */
-type CSSProperties = {|
+type _CSSProperties = {|
     alignContent?: any,
     alignItems?: any,
     alignSelf?: any,
@@ -306,8 +306,6 @@ type CSSProperties = {|
     writingMode?: any,
     zIndex?: "auto" | number,
     zoom?: "auto" | number,
-    "-webkit-font-smoothing"?: string,
-    "-moz-osx-font-smoothing"?: string,
 
     // NOTE(jeresig): What follows are all of the custom properties that we've
     // added to this file.
@@ -323,67 +321,51 @@ type CSSProperties = {|
     WebkitBoxOrient?: string,
     WebkitLineClamp?: number,
     WebkitOverflowScrolling?: any,
-    msFlexPreferredSize?: number,
-    "::-ms-clear"?: CSSProperties,
-    "::-ms-expand"?: CSSProperties,
-    "::-webkit-scrollbar-thumb"?: CSSProperties,
-    "::-webkit-scrollbar"?: CSSProperties,
+    WebkitFlexBasis?: any,
+    MsFlexBasis?: any,
+    MsFlexPreferredSize?: any,
 
     // States
-    ":active"?: CSSProperties,
-    ":hover"?: CSSProperties,
-    ":focus"?: CSSProperties,
-    ":link"?: CSSProperties,
-    ":visited"?: CSSProperties,
-    ":disabled"?: CSSProperties,
-    "::-moz-focus-inner"?: CSSProperties,
-
-    // Filters
-    ":first-of-type"?: CSSProperties,
-    ":not(:first-of-type)"?: CSSProperties,
-    ":last-of-type"?: CSSProperties,
-    ":not(:last-of-type)"?: CSSProperties,
-    ":first-child"?: CSSProperties,
-    ":not(:first-child)"?: CSSProperties,
-    ":last-child"?: CSSProperties,
-    ":not(:last-child)"?: CSSProperties,
+    ":active"?: _CSSProperties,
+    ":hover"?: _CSSProperties,
+    ":focus"?: _CSSProperties,
+    ":link"?: _CSSProperties,
+    ":visited"?: _CSSProperties,
+    ":disabled"?: _CSSProperties,
+    "::-moz-focus-inner"?: _CSSProperties,
 
     // Contents
-    ":first-letter"?: CSSProperties,
-    ":before"?: CSSProperties,
-    "::before"?: CSSProperties,
-    ":after"?: CSSProperties,
-    "::after"?: CSSProperties,
-    "::placeholder"?: CSSProperties,
+    ":first-letter"?: _CSSProperties,
+    ":before"?: _CSSProperties,
+    "::before"?: _CSSProperties,
+    ":after"?: _CSSProperties,
+    "::after"?: _CSSProperties,
+    "::placeholder"?: _CSSProperties,
 
     // Media Queries
-    // TODO(jeresig): We should make sure that these align with the queries
-    // in media-queries.js (and delete all others)
-    "@media (min-width: 1168px)"?: CSSProperties,
-    "@media (max-width: 374px), (max-height: 351px)"?: CSSProperties,
-    "@media (max-width: 767px)"?: CSSProperties,
-    "@media (max-width: 1024px)"?: CSSProperties,
-    "@media (max-width: 1023px)"?: CSSProperties,
-    "@media (min-width: 1024px)"?: CSSProperties,
-    "@media (-webkit-min-device-pixel-ratio: 2.0)"?: CSSProperties,
-    "@media screen and (max-height: 800px)"?: CSSProperties,
-    "@media screen and (max-height: 640px)"?: CSSProperties,
-    "@media screen and (max-height: 480px)"?: CSSProperties,
-    "@media not all and (min-resolution:.001dpcm)"?: CSSProperties,
-    "@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0)"?: CSSProperties,
+    // These two are used by wonder-blocks-typography/util/styles.js
+    // and should probably be replaced with something else.
+    "@media (max-width: 1023px)"?: _CSSProperties,
+    "@media (min-width: 1024px)"?: _CSSProperties,
 
-    // Hacks
-    // NOTE(jeresig): All of these are hacks and abuses of Aphrodite and
-    // should be removed.
-    ":hover .chevron"?: CSSProperties,
+    // This is used by wonder-blocks-grid/util/styles.js
+    "@media (min-width: 1168px)"?: _CSSProperties,
+
+    // Aphrodite Internal
+    _definition?: _CSSProperties,
 |};
 
 declare module "aphrodite" {
     /**
+     * A CSS property definition.
+     */
+    declare type CSSProperties = _CSSProperties;
+
+    /**
      * Aphrodite style declaration
      */
     declare type StyleDeclaration = {
-        [key: string]: CSSProperties,
+        [key: string]: _CSSProperties,
     };
 
     declare interface StyleSheetStatic {

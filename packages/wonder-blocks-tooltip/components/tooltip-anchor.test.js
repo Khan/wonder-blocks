@@ -1,11 +1,9 @@
 /* eslint-disable max-lines */
 // @flow
 import * as React from "react";
-
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
-
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import TooltipAnchor from "./tooltip-anchor.js";
 import {
     TooltipAppearanceDelay,

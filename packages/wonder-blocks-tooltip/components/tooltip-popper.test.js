@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
-
 import {View} from "@khanacademy/wonder-blocks-core";
+
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipPopper from "./tooltip-popper.js";
 

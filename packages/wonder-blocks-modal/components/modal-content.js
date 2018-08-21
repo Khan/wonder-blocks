@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalHeader from "./modal-header.js";
 
 type Props = {|
@@ -14,7 +14,7 @@ type Props = {|
     /** The contents of the ModalContent */
     children: React.Node,
     /** Optional styling to apply to the contents. */
-    style?: any,
+    style?: StyleType,
 |};
 
 export default class ModalContent extends React.Component<Props> {
@@ -41,7 +41,8 @@ export default class ModalContent extends React.Component<Props> {
                 <View
                     style={[
                         styles.content,
-                        (mediaSize) => mediaSize === "small" && styles.small,
+                        // TODO(jeresig): Replace with <Layout/>
+                        //(mediaSize) => mediaSize === "small" && styles.small,
                         style,
                     ]}
                 >

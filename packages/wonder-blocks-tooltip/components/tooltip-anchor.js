@@ -7,6 +7,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {Text as WBText} from "@khanacademy/wonder-blocks-core";
+import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 
 import ActiveTracker from "../util/active-tracker.js";
 import {
@@ -15,7 +16,6 @@ import {
 } from "../util/constants.js";
 
 import type {IActiveTrackerSubscriber} from "../util/active-tracker.js";
-import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
