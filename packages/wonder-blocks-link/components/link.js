@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 import PropTypes from "prop-types";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 import LinkCore from "./link-core.js";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 export type SharedProps = {|
     /**

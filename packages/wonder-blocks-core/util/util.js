@@ -3,8 +3,7 @@ import {StyleSheet, css} from "aphrodite";
 import * as React from "react";
 import propTypes from "prop-types";
 
-import type {MediaSize, MediaSpec} from "./types.js";
-import type {StyleType} from "./types.js";
+import type {MediaSize, MediaSpec, StyleType} from "./types.js";
 
 function flatten<T: Object>(
     list?: StyleType<T>,

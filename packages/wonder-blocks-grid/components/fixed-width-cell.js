@@ -1,11 +1,10 @@
 // @flow
 import * as React from "react";
 import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
 import styles from "../util/styles.js";
 import {flexBasis} from "../util/utils.js";
-
-import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /** The width of this cell on a Small Grid (in pixels, %, or other). */

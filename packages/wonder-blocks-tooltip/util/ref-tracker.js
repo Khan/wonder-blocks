@@ -8,7 +8,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import type {getRefFn} from "../util/types.js";
+import type {getRefFn} from "./types.js";
 
 export default class RefTracker {
     updateRef: getRefFn;

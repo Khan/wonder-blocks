@@ -3,6 +3,7 @@
 // from imported types. We've duplicated the shared props for each component
 // they apply to, so that the prop definitions will show up on the generated
 // guide.
+import typeof Choice from "../components/choice.js";
 
 // Shared props for radio-core and checkbox-core
 export type ChoiceCoreProps = {|
@@ -38,7 +39,6 @@ export type ChoiceComponentProps = {|
     style?: any,
 |};
 
-import typeof Choice from "../components/choice.js";
 export type SharedGroupProps = {|
     /** Children should be Choice components. */
     children: Choice,

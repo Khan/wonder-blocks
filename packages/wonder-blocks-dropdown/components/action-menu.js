@@ -11,8 +11,7 @@ import Dropdown from "./dropdown.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 
-import type {Item} from "../util/types.js";
-import type {DropdownItem} from "../util/types.js";
+import type {Item, DropdownItem} from "../util/types.js";
 
 type OpenerProps = {|
     /**

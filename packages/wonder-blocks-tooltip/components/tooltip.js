@@ -21,17 +21,18 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
+import {
+    UniqueIDProvider,
+    type IIdentifierFactory,
+} from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
+import {type Typography} from "@khanacademy/wonder-blocks-typography";
 
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
 import TooltipPopper from "./tooltip-popper.js";
-
-import type {Placement} from "../util/types.js";
-import type {Typography} from "@khanacademy/wonder-blocks-typography";
-import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
+import {type Placement} from "../util/types.js";
 
 type Props = {|
     /**
