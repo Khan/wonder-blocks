@@ -14,3 +14,7 @@ export const selectDropdownStyle = {
     marginTop: Spacing.xSmall,
     marginBottom: Spacing.xSmall,
 };
+
+// Amount of padding between the edge of the dropdown and the viewport
+// boundaries.
+export const dropdownPopperPadding = 20;

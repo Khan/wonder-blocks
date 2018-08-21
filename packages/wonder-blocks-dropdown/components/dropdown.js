@@ -14,7 +14,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
 import SeparatorItem from "./separator-item.js";
-import {keyCodes} from "../util/constants.js";
+import {dropdownPopperPadding, keyCodes} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 
 type DropdownProps = {|
@@ -424,8 +424,32 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         event.nativeEvent.stopImmediatePropagation();
     };
 
-    renderItems(outOfBoundaries: ?boolean) {
+    // How much vertical space there is above and below the opener
+    getVerticalSpace() {
+        const {openerElement} = this.props;
+        if (openerElement) {
+            const bounds = openerElement.getBoundingClientRect();
+            if (bounds) {
+                return {
+                    top: bounds.top,
+                    bottom: window.innerHeight - bounds.bottom,
+                };
+            }
+        }
+        return {
+            top: window.innerHeight,
+            bottom: window.innerHeight,
+        };
+    }
+
+    renderItems(outOfBoundaries: ?boolean, placement: string) {
         const {items, dropdownStyle, light, openerElement} = this.props;
+
+        const {top, bottom} = this.getVerticalSpace();
+        const maxDropdownHeight =
+            placement && placement.includes("bottom")
+                ? bottom - dropdownPopperPadding
+                : top - dropdownPopperPadding;
 
         // The dropdown width is at least the width of the opener.
         const openerStyle = window.getComputedStyle(openerElement);
@@ -444,7 +468,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                     styles.dropdown,
                     light && styles.light,
                     outOfBoundaries && styles.hidden,
-                    {minWidth: minDropdownWidth},
+                    {minWidth: minDropdownWidth, maxHeight: maxDropdownHeight},
                     dropdownStyle,
                 ]}
             >
@@ -486,6 +510,9 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             maybeGetPortalMountedModalHostElement(openerElement) ||
             document.querySelector("body");
 
+        const {top, bottom} = this.getVerticalSpace();
+        const moreTopSpace = top > bottom;
+
         if (modalHost) {
             return ReactDOM.createPortal(
                 <Popper
@@ -497,7 +524,19 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                         wbVisibility: visibilityModifierDefaultConfig,
                         preventOverflow: {
                             boundariesElement: "viewport",
-                            escapeWithReference: true,
+                            // For some unidentified reason of react-popper,
+                            // escapeWithReference works better here when the
+                            // dropdown is positioned beneath the opener.
+                            escapeWithReference: !moreTopSpace,
+                        },
+                        flip: {
+                            padding: dropdownPopperPadding,
+                            // We are disabling flipping when there's more
+                            // bottom space because if there are many items,
+                            // react-popper detects that the popper takes up
+                            // more space than available and starts off the
+                            // popper above the opener.
+                            enabled: moreTopSpace,
                         },
                     }}
                 >
@@ -508,7 +547,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                                 style={style}
                                 data-placement={placement}
                             >
-                                {this.renderItems(outOfBoundaries)}
+                                {this.renderItems(outOfBoundaries, placement)}
                             </div>
                         );
                     }}

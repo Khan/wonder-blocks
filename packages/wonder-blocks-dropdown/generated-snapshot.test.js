@@ -507,6 +507,58 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 9", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
+        class ManyOptions extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                };
+            }
+
+            handleChange(update) {
+                console.log("changes happened!");
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                const items = Array(24).fill(0);
+                const children = items.map((item, index) => (
+                    <OptionItem label="Balloon 🎈" value={index} key={index} />
+                ));
+                return (
+                    <MultiSelect
+                        onChange={(selectedValues) =>
+                            this.handleChange(selectedValues)
+                        }
+                        selectedValues={this.state.selectedValues}
+                        selectItemType="balloons"
+                    >
+                        {children}
+                    </MultiSelect>
+                );
+            }
+        }
+        const example = (
+            <View style={styles.row}>
+                <ManyOptions />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 10", () => {
         const {StyleSheet} = require("aphrodite");
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
@@ -542,14 +594,12 @@ describe("wonder-blocks-dropdown", () => {
                 // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
             }
-
             handleChange(update) {
                 console.log("changes happened!");
                 this.setState({
                     selectedValues: update,
                 });
             }
-
             render() {
                 return (
                     <MultiSelect
@@ -571,7 +621,6 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
-
         const modalContent = (
             <View style={{height: "200vh"}}>
                 <View style={styles.scrolledWrapper}>

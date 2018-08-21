@@ -115,6 +115,57 @@ class ExampleWithShortcuts extends React.Component {
 </View>
 ```
 
+### Multi select with lots of options
+
+This example has 24 options. It shows the implemented flip and dropdown scroll
+behavior.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+class ManyOptions extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValues: [],
+        };
+    }
+
+    handleChange(update) {
+        console.log("changes happened!");
+        this.setState({
+           selectedValues: update,
+        });
+    }
+
+    render() {
+        const items = Array(24).fill(0);
+        const children = items.map((item, index) => (
+            <OptionItem label="Balloon 🎈" value={index} key={index} />
+        ));
+        return <MultiSelect
+            onChange={(selectedValues) => this.handleChange(selectedValues)}
+            selectedValues={this.state.selectedValues}
+            selectItemType="balloons"
+        >
+            {children}
+        </MultiSelect>;
+    }
+}
+
+<View style={styles.row}>
+    <ManyOptions />
+</View>
+```
+
 ### Multi select in a modal
 
 This multi select is in a modal.
