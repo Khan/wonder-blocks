@@ -6,6 +6,8 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import ModalLauncher from "./modal-launcher.js";
 
 describe("ModalLauncher", () => {
+    window.scrollTo = jest.fn();
+
     beforeEach(() => {
         unmountAll();
     });

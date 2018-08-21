@@ -7,8 +7,8 @@ import Dropdown from "./dropdown.js";
 import {keyCodes} from "../util/constants.js";
 
 describe("Dropdown", () => {
-    global.scrollTo = jest.fn();
-    global.getComputedStyle = jest.fn();
+    window.scrollTo = jest.fn();
+    window.getComputedStyle = jest.fn();
 
     let dropdown;
 
