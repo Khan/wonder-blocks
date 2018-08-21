@@ -16,7 +16,7 @@ export type SharedProps = {|
     /**
      * Text to display as the title of the svg element.
      */
-    "aria-Label": string,
+    "aria-label": string,
 
     /**
      * The color of the icon button, either blue or red.
