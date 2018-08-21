@@ -14,8 +14,6 @@ import {
     getClickableBehavior,
 } from "@khanacademy/wonder-blocks-core";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
 const StyledButton = addStyle("button");
 
 const {
