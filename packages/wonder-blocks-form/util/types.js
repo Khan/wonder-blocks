@@ -5,6 +5,8 @@
 // guide.
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import typeof Choice from "../components/choice.js";
+
 // Shared props for radio-core and checkbox-core
 export type ChoiceCoreProps = {|
     /** Whether this component is checked */
@@ -43,7 +45,6 @@ export type ChoiceComponentProps = {|
     style?: StyleType,
 |};
 
-import typeof Choice from "../components/choice.js";
 export type SharedGroupProps = {|
     /** Children should be Choice components. */
     children: Choice,

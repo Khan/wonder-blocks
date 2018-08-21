@@ -11,7 +11,7 @@
  * See https://popper.js.org/popper-documentation.html#modifiers for more
  * details on popper.js modifiers.
  */
-import {default as PopperJS} from "popper.js";
+import PopperJS from "popper.js";
 
 import {getElementIntersection} from "@khanacademy/wonder-blocks-core";
 

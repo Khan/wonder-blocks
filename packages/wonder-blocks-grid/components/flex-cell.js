@@ -1,15 +1,14 @@
 // @flow
 import * as React from "react";
 import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-
-import styles from "../util/styles.js";
-import {matchesSize} from "../util/utils.js";
-
 import type {
     MediaSize,
     MediaSpec,
     StyleType,
 } from "@khanacademy/wonder-blocks-core";
+
+import styles from "../util/styles.js";
+import {matchesSize} from "../util/utils.js";
 
 type Props = {|
     /** Should this cell be shown on a Small Grid? */
