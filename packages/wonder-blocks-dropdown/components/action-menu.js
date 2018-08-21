@@ -7,6 +7,7 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Dropdown from "./dropdown.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
@@ -105,7 +106,7 @@ type MenuProps = {|
     /**
      * Optional styling to add to the opener component wrapper.
      */
-    style?: any,
+    style?: StyleType,
 |};
 
 type State = {|

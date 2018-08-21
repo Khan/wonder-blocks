@@ -3,25 +3,24 @@ import * as React from "react";
 import propTypes from "prop-types";
 import {StyleSheet} from "aphrodite";
 
-import {processStyleList, MediaLayoutWrapper} from "./util.js";
+import {processStyleList} from "./util.js";
 
-import type {MediaSize, MediaSpec} from "./types.js";
+import type {StyleType} from "./types.js";
 
 export default function addStyle<T: Object>(
     Component: React.ComponentType<T> | string,
-    defaultStyle?: any,
-): React.ComponentType<T & {style: any}> {
-    function StyleComponent(
-        props: T & {style: any, mediaSize: MediaSize, mediaSpec: MediaSpec},
-    ) {
-        const {style, mediaSize, mediaSpec, ...otherProps} = props;
+    defaultStyle?: StyleType,
+): React.ComponentType<T & {style: StyleType}> {
+    function StyleComponent(props: T & {style: StyleType}) {
+        const {style, ...otherProps} = props;
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
 
-        const {className, style: inlineStyles} = processStyleList(
-            [reset, defaultStyle, style],
-            mediaSize,
-        );
+        const {className, style: inlineStyles} = processStyleList([
+            reset,
+            defaultStyle,
+            style,
+        ]);
 
         return (
             <Component
@@ -32,7 +31,7 @@ export default function addStyle<T: Object>(
         );
     }
 
-    return MediaLayoutWrapper(StyleComponent);
+    return StyleComponent;
 }
 
 /**

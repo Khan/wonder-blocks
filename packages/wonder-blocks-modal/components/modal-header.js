@@ -1,13 +1,14 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 type Props = {|
     children: React.Node,
-    style?: any,
+    style?: StyleType,
     color: "light" | "dark",
 |};
 
@@ -23,7 +24,8 @@ export default class ModalHeader extends React.Component<Props> {
                 style={[
                     styles.header,
                     color === "dark" && styles.dark,
-                    (mediaSize) => mediaSize === "small" && styles.small,
+                    // TODO(jeresig): Replace with <Layout/>
+                    //(mediaSize) => mediaSize === "small" && styles.small,
                     style,
                 ]}
             >

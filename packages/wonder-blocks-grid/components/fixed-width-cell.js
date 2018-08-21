@@ -1,7 +1,11 @@
 // @flow
 import * as React from "react";
 import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
+import type {
+    MediaSize,
+    MediaSpec,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import styles from "../util/styles.js";
 import {flexBasis} from "../util/utils.js";
@@ -28,7 +32,7 @@ type Props = {|
               width: number | string,
           }) => React.Node),
     /** The styling to apply to the cell. */
-    style?: any,
+    style?: StyleType,
     /**
      * The size of the media layout being used. Populated by MediaLayoutWrapper.
      * @ignore

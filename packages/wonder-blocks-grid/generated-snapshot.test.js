@@ -47,7 +47,9 @@ describe("wonder-blocks-grid", () => {
             },
         });
 
-        const cellStyles = [styles.cell, (size) => styles[size]];
+        // TODO(jeresig): Replace with <Layout/>
+        //const cellStyles = [styles.cell, (mediaSize) => styles[mediaSize]];
+        const cellStyles = [styles.cell, styles.large];
 
         const example = (
             <View style={styles.background}>
@@ -296,7 +298,9 @@ describe("wonder-blocks-grid", () => {
             },
         });
 
-        const cellStyles = [styles.cell, (size) => styles[size]];
+        // TODO(jeresig): Replace with <Layout/>
+        //const cellStyles = [styles.cell, (mediaSize) => styles[mediaSize]];
+        const cellStyles = [styles.cell, styles.large];
 
         const example = (
             <View style={styles.background}>

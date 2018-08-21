@@ -6,6 +6,7 @@ import type {
     TextTag,
     MediaSize,
     MediaSpec,
+    StyleType,
 } from "./util/types.js";
 import type {Intersection} from "./util/get-element-intersection.js";
 
@@ -33,4 +34,5 @@ export type {
     TextTag,
     MediaSize,
     MediaSpec,
+    StyleType,
 };
