@@ -3,11 +3,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import {
-    View,
-    MediaLayoutWrapper,
-    type MediaSize,
-} from "@khanacademy/wonder-blocks-core";
+import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
