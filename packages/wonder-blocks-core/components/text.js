@@ -2,11 +2,13 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {processStyleList} from "../util/util.js";
+
 import type {AriaProps, TextTag} from "../util/types.js";
 
 type Props = AriaProps & {
-    style?: any,
+    style?: StyleType,
     tag: TextTag,
     children?: any,
     [otherProp: string]: any,

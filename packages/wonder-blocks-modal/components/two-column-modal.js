@@ -149,9 +149,11 @@ export default class TwoColumnModal extends React.Component<BaseProps> {
     render() {
         return (
             <ModalDialog
-                style={(mediaSize) =>
-                    mediaSize === "small" ? styles.smallDialog : styles.dialog
-                }
+                // TODO(jeresig): Replace with <Layout/>
+                //style={(mediaSize) =>
+                //    mediaSize === "small" ? styles.smallDialog : styles.dialog
+                //}
+                style={styles.dialog}
             >
                 <WrappedContentWrapper {...this.props} />
             </ModalDialog>

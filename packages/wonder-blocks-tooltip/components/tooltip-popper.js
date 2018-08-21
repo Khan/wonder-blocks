@@ -51,7 +51,15 @@ export default class TooltipPopper extends React.Component<Props> {
         // to our own TooltipBubbleProps.
         const bubbleProps = {
             placement: placement,
-            style: popperProps.style,
+            style: {
+                // NOTE(jeresig): We can't just use `popperProps.style` here
+                // as the Flow type doesn't match Aphrodite's CSS flow props
+                // (as it doesn't camelCase props). So we just copy over the
+                // props that we need, instead.
+                top: popperProps.style.top,
+                left: popperProps.style.left,
+                position: popperProps.style.position,
+            },
             updateBubbleRef: this._bubbleRefTracker.updateRef,
             tailOffset: {
                 top: popperProps.arrowProps.style.top,

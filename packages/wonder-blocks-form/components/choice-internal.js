@@ -8,6 +8,7 @@ import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core.js";
 import RadioCore from "./radio-core.js";
 
@@ -38,7 +39,7 @@ type Props = {|
     id?: string,
 
     /** Optional additional styling. */
-    style?: any,
+    style?: StyleType,
 
     /** Optional id for testing purposes. */
     testId?: string,
