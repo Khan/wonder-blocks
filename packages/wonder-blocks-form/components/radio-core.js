@@ -30,6 +30,7 @@ export default class RadioCore extends React.Component<Props> {
 
     render() {
         const {
+            ariaLabel,
             checked,
             disabled,
             error,
@@ -63,6 +64,7 @@ export default class RadioCore extends React.Component<Props> {
                 <StyledInput
                     type="radio"
                     aria-checked={checked}
+                    aria-label={ariaLabel}
                     checked={checked}
                     disabled={disabled}
                     id={id}
@@ -78,6 +80,7 @@ export default class RadioCore extends React.Component<Props> {
         );
     }
 }
+
 const size = 16; // circle with a different color. Here, we add that center circle.
 
 // If the checkbox is disabled and selected, it has a border but also an inner
