@@ -7,6 +7,7 @@
   },
   "description": "",
   "main": "dist/index.js",
+  "module": "dist/es/index.js",
   "source": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "@khanacademy/wonder-blocks-color": "^1.0.6",
-    "@khanacademy/wonder-blocks-core": "^1.1.1"
+    "@khanacademy/wonder-blocks-core": "^1.1.1",
+    "@khanacademy/wonder-blocks-typography": "^1.0.6"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",

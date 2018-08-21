@@ -1,5 +1,4 @@
 // @flow
-// A select opener
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -39,33 +38,33 @@ type SelectOpenerProps = {|
      * Whether the SelectOpener is disabled. If disabled, disallows interaction.
      * Default false.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Whether the displayed text is a placeholder, determined by the creator
      * of this component. A placeholder has more faded text colors and styles.
      */
-    isPlaceholder?: boolean,
+    isPlaceholder: boolean,
 
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
      */
-    light?: boolean,
+    light: boolean,
 
     /**
      * Callback for when the SelectOpener is pressed.
      */
-    onClick: () => void,
+    onOpenChanged: (open: boolean, keyboard: boolean) => void,
 
     /**
-     * Custom style. Mostly used for preferred width of this select box.
+     * Whether the dropdown is open.
      */
-    style?: StyleType,
+    open: boolean,
 |};
 
 /**
- * An opener that opens selects.
+ * An opener that opens select boxes.
  */
 export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static defaultProps = {
@@ -76,15 +75,13 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
     static contextTypes = {router: PropTypes.any};
 
+    handleClick = (e: SyntheticEvent<>) => {
+        const {open} = this.props;
+        this.props.onOpenChanged(!open, e.type === "keyup");
+    };
+
     render() {
-        const {
-            children,
-            disabled,
-            isPlaceholder,
-            light,
-            onClick,
-            style,
-        } = this.props;
+        const {children, disabled, isPlaceholder, light} = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
@@ -98,14 +95,19 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         ];
 
         return (
-            <ClickableBehavior disabled={disabled} onClick={onClick}>
+            <ClickableBehavior
+                disabled={disabled}
+                onClick={this.handleClick}
+                triggerOnEnter={false}
+            >
                 {(state, handlers) => {
                     const stateStyles = _generateStyles(light, {...state});
                     const {hovered, focused, pressed} = state;
                     return (
                         <StyledButton
                             disabled={disabled}
-                            role="menu"
+                            role="listbox"
+                            type="button"
                             style={[
                                 styles.shared,
                                 stateStyles.default,
@@ -115,7 +117,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                                         ? stateStyles.active
                                         : (hovered || focused) &&
                                           stateStyles.focus),
-                                style,
                             ]}
                             {...handlers}
                         >
@@ -174,6 +175,8 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        whiteSpace: "nowrap",
+        userSelect: "none",
         overflow: "hidden",
         textOverflow: "ellipsis",
     },

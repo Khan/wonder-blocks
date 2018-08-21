@@ -1,7 +1,9 @@
-### Single select with placeholder
+### Single select with placeholder and set widths
 
-This single select has a starting placeholder and a set width. One item is wider
-than the width, and so the text ellipses.
+This single select has a starting placeholder and a set minWidth and maxWidth.
+Notice how the dropdown is always at least as wide as the opener. Also, when
+the first item is chosen, the text in the opener would exceed the maxWidth. It
+ellipses instead.
 
 ```js
 const React = require("react");
@@ -13,7 +15,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     setWidth: {
-        width: 170,
+        minWidth: 170,
+        maxWidth: 190,
     },
 });
 
@@ -22,7 +25,8 @@ class ExampleWithPlaceholder extends React.Component {
         super();
         this.state = {
             selectedValue: null,
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(selected) {
@@ -34,11 +38,10 @@ class ExampleWithPlaceholder extends React.Component {
 
     render() {
         return <SingleSelect
-            onChange={(selected) => this.handleChange(selected)}
+            onChange={this.handleChange}
             placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
-            openerStyle={styles.setWidth}
-            dropdownStyle={styles.setWidth}
+            style={styles.setWidth}
         >
             <OptionItem label="Vine-ripened tomatoes" value="tomato" />
             <OptionItem label="Watermelon" value="watermelon" />
@@ -73,7 +76,9 @@ class ExampleWithStartingSelection extends React.Component {
         super();
         this.state = {
             selectedValue: "banana",
-        }
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(selected) {
@@ -85,7 +90,7 @@ class ExampleWithStartingSelection extends React.Component {
 
     render() {
         return <SingleSelect
-            onChange={(selected) => this.handleChange(selected)}
+            onChange={this.handleChange}
             placeholder="Choose a juice"
             selectedValue={this.state.selectedValue}
         >
@@ -120,7 +125,9 @@ class DisabledExample extends React.Component {
         super();
         this.state = {
             selectedValue: "banana",
-        }
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(selected) {
@@ -133,7 +140,7 @@ class DisabledExample extends React.Component {
     render() {
         return <SingleSelect
             disabled={true}
-            onChange={(selected) => this.handleChange(selected)}
+            onChange={this.handleChange}
             placeholder="Choose a juice"
             selectedValue={this.state.selectedValue}
         >
@@ -164,6 +171,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     darkBackgroundWrapper: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
         backgroundColor: Color.default.darkBlue,
         width: 350,
         height: 200,
@@ -177,7 +186,9 @@ class LightRightAlignedExample extends React.Component {
         super();
         this.state = {
             selectedValue: null,
-        }
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(selected) {
@@ -191,7 +202,7 @@ class LightRightAlignedExample extends React.Component {
         return <SingleSelect
             alignment="right"
             light={true}
-            onChange={(selected) => this.handleChange(selected)}
+            onChange={this.handleChange}
             placeholder="Boba order"
             selectedValue={this.state.selectedValue}
         >

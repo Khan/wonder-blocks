@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
 
     content: {
         flex: 1,
+        minHeight: "100%",
         padding: 64,
         boxSizing: "border-box",
     },

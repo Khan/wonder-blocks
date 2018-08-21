@@ -74,7 +74,7 @@ class Row extends React.Component<{
 
     render() {
         const {style, mediaSize, mediaSpec, children} = this.props;
-        const {marginWidth, hasMaxWidth, totalColumns} = mediaSpec[mediaSize];
+        const {marginWidth, maxWidth, totalColumns} = mediaSpec[mediaSize];
         const shouldDisplay = matchesSize(this.props, mediaSize);
 
         // Don't render the row if it's been disabled at this size
@@ -120,7 +120,13 @@ class Row extends React.Component<{
 
         return (
             <View style={[styles.rowWrap, style]}>
-                <View style={[styles.row, hasMaxWidth && styles.rowMaxWidth]}>
+                <View
+                    style={[
+                        styles.row,
+                        !!maxWidth && styles.rowMaxWidth,
+                        !!maxWidth && {maxWidth},
+                    ]}
+                >
                     <FixedWidthCell width={marginWidth} />
                     {filteredContents}
                     <FixedWidthCell width={marginWidth} />

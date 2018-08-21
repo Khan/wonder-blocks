@@ -7,6 +7,7 @@
   },
   "description": "Link component for Wonder Blocks design system.",
   "main": "dist/index.js",
+  "module": "dist/es/index.js",
   "source": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

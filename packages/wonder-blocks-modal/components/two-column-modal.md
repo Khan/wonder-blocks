@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <TwoColumnModal
+            fullBleedSidebar={false}
             sidebar={
                 <View>
                     <Title style={styles.title}>Sidebar</Title>
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <TwoColumnModal
+            fullBleedSidebar={false}
             sidebar={
                 <View>
                     <Title style={styles.title}>Sidebar</Title>
@@ -187,8 +189,144 @@ const styles = StyleSheet.create({
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <TwoColumnModal
+            fullBleedSidebar={false}
             sidebar={<span>foo</span>}
             content={<span>bar</span>}
+            onClickCloseButton={() => alert("This would close the modal.")}
+        />
+    </View>
+</View>;
+```
+
+This example shows a TwoColumnModal with a full bleed sidebar that has a
+background image. With the `background-image` approach, the image is not
+draggable from its original position.
+
+```jsx
+const {StyleSheet, css} = require("aphrodite");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+const {HeadingLarge, Body} = require("@khanacademy/wonder-blocks-typography");
+
+const styles = StyleSheet.create({
+    previewSizer: {
+        height: 512,
+    },
+
+    modalPositioner: {
+        // Checkerboard background
+        backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        backgroundSize: "20px 20px",
+        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    },
+
+    imageContainer: {
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        backgroundImage: "url('pencilHand-800x.png')",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center bottom",
+    },
+});
+
+<View style={styles.previewSizer}>
+    <View style={styles.modalPositioner}>
+        <TwoColumnModal
+            sidebar={<View style={styles.imageContainer} />}
+            fullBleedSidebar={true}
+            content={
+                <View>
+                    <HeadingLarge>
+                        Welcome to your class.
+                    </HeadingLarge>
+                    <Strut size={Spacing.medium} />
+                    <Body>
+                        Assignments or goals your teacher creates for you will
+                        appear at the top of your Khan Academy home page.
+                    </Body>
+                </View>
+            }
+            footer={<Button>Onward! (no-op)</Button>}
+            onClickCloseButton={() => alert("This would close the modal.")}
+        />
+    </View>
+</View>;
+```
+
+This example shows the same image as above, except the image here is inserted
+as an `<img>` instead of as the `background-image` of a `View`.
+
+```jsx
+const {StyleSheet, css} = require("aphrodite");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+const {HeadingLarge, Body} = require("@khanacademy/wonder-blocks-typography");
+
+const styles = StyleSheet.create({
+    previewSizer: {
+        height: 512,
+    },
+
+    modalPositioner: {
+        // Checkerboard background
+        backgroundImage: "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        backgroundSize: "20px 20px",
+        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    },
+
+    image: {
+        width: "100%",
+        marginBottom: 0,
+        marginTop: "auto",
+    },
+});
+
+<View style={styles.previewSizer}>
+    <View style={styles.modalPositioner}>
+        <TwoColumnModal
+            sidebar={<img src="pencilHand-800x.png" className={css(styles.image)} />}
+            fullBleedSidebar={true}
+            content={
+                <View>
+                    <HeadingLarge>
+                        Welcome to your class.
+                    </HeadingLarge>
+                    <Strut size={Spacing.medium} />
+                    <Body>
+                        Assignments or goals your teacher creates for you will
+                        appear at the top of your Khan Academy home page.
+                    </Body>
+                </View>
+            }
+            footer={<Button>Onward! (no-op)</Button>}
             onClickCloseButton={() => alert("This would close the modal.")}
         />
     </View>

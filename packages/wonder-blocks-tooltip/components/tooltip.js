@@ -19,10 +19,11 @@
  *                     callout to the anchor content)
  */
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-import {Text, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
+import {UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
+import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
-import TooltipPortalMounter from "./tooltip-portal-mounter";
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
@@ -93,6 +94,7 @@ type Props = {|
 |};
 
 type State = {|
+    active: boolean,
     anchorElement: ?HTMLElement,
 |};
 
@@ -103,29 +105,14 @@ export default class Tooltip extends React.Component<Props, State> {
         placement: "top",
     };
 
-    state = {anchorElement: null};
+    state = {
+        active: false,
+        anchorElement: null,
+    };
 
     _updateAnchorElement(ref: ?Element) {
         if (ref && ref !== this.state.anchorElement) {
             this.setState({anchorElement: ((ref: any): HTMLElement)});
-        }
-    }
-
-    _renderAnchorElement(ids?: IIdentifierFactory) {
-        // We need to make sure we can anchor on our content.
-        // If the content is just a string, we wrap it in a Text element
-        // so as not to affect styling or layout but still have an element
-        // to anchor to.
-        const {children} = this.props;
-        const anchorableChildren =
-            typeof children === "string" ? <Text>{children}</Text> : children;
-
-        if (ids) {
-            return React.cloneElement(anchorableChildren, {
-                "aria-describedby": ids.get(Tooltip.ariaContentId),
-            });
-        } else {
-            return anchorableChildren;
         }
     }
 
@@ -140,11 +127,7 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(active: boolean, ids?: IIdentifierFactory) {
-        if (!active) {
-            return null;
-        }
-
+    _renderPopper(ids?: IIdentifierFactory) {
         const {id} = this.props;
         const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
         if (!bubbleId) {
@@ -174,21 +157,36 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
-    _renderTooltipAnchor(ids?: IIdentifierFactory) {
-        const {forceAnchorFocusivity} = this.props;
+    _getHost() {
+        const {anchorElement} = this.state;
+
         return (
-            <TooltipAnchor
-                forceAnchorFocusivity={forceAnchorFocusivity}
-                anchorRef={(r) => this._updateAnchorElement(r)}
-            >
-                {(active) => (
-                    <TooltipPortalMounter
-                        anchor={this._renderAnchorElement(ids)}
-                    >
-                        {this._renderPopper(active, ids)}
-                    </TooltipPortalMounter>
-                )}
-            </TooltipAnchor>
+            maybeGetPortalMountedModalHostElement(anchorElement) ||
+            document.body
+        );
+    }
+
+    _renderTooltipAnchor(ids?: IIdentifierFactory) {
+        const {children, forceAnchorFocusivity} = this.props;
+        const {active} = this.state;
+
+        const popperHost = this._getHost();
+
+        // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
+        return (
+            <React.Fragment>
+                <TooltipAnchor
+                    forceAnchorFocusivity={forceAnchorFocusivity}
+                    anchorRef={(r) => this._updateAnchorElement(r)}
+                    onActiveChanged={(active) => this.setState({active})}
+                    ids={ids}
+                >
+                    {children}
+                </TooltipAnchor>
+                {popperHost &&
+                    active &&
+                    ReactDOM.createPortal(this._renderPopper(ids), popperHost)}
+            </React.Fragment>
         );
     }
 

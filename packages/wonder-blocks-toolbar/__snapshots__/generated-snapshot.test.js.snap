@@ -142,6 +142,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           onTouchCancel={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
+          role="button"
           style={
             Object {
               "::MozFocusInner": Object {
@@ -169,6 +170,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
             }
           }
           tabIndex={0}
+          type="button"
         >
           <span
             className=""
@@ -181,7 +183,11 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -224,6 +230,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           onTouchCancel={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
+          role="button"
           style={
             Object {
               "::MozFocusInner": Object {
@@ -254,6 +261,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
             }
           }
           tabIndex={0}
+          type="button"
         >
           <span
             className=""
@@ -266,7 +274,11 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
                 "fontSize": 14,
                 "fontWeight": "bold",
                 "lineHeight": "18px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -403,6 +415,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             }
           }
           tabIndex={0}
+          type="button"
         >
           <svg
             className=""
@@ -658,6 +671,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             }
           }
           tabIndex={0}
+          type="button"
         >
           <svg
             className=""
@@ -820,6 +834,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           onTouchCancel={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
+          role="button"
           style={
             Object {
               "::MozFocusInner": Object {
@@ -846,6 +861,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             }
           }
           tabIndex={0}
+          type="button"
         >
           <span
             className=""
@@ -858,7 +874,11 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -1050,6 +1070,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           onTouchCancel={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
+          role="button"
           style={
             Object {
               "::MozFocusInner": Object {
@@ -1080,6 +1101,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
             }
           }
           tabIndex={0}
+          type="button"
         >
           <span
             className=""
@@ -1092,7 +1114,11 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -1135,6 +1161,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           onTouchCancel={[Function]}
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
+          role="button"
           style={
             Object {
               "::MozFocusInner": Object {
@@ -1162,6 +1189,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
             }
           }
           tabIndex={0}
+          type="button"
         >
           <span
             className=""
@@ -1174,7 +1202,11 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
                 "fontSize": 16,
                 "fontWeight": "bold",
                 "lineHeight": "20px",
+                "overflow": "hidden",
                 "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
               }
             }
           >
@@ -1311,6 +1343,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             }
           }
           tabIndex={0}
+          type="button"
         >
           <svg
             className=""

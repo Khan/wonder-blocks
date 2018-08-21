@@ -15,10 +15,6 @@ const styles = StyleSheet.create({
     },
 
     rowMaxWidth: {
-        // TODO(jeresig): Compute this dynamically rather than using a static
-        // width, make it specified inside sizes.js.
-        maxWidth: 1120,
-
         [WIDE_SCREEN]: {
             margin: "0 auto",
         },

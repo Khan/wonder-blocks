@@ -154,8 +154,8 @@ export type MediaSpec = {
         gutterWidth: number,
         /** The width of the margin, wrapping the row, in pixels. */
         marginWidth: number,
-        /** Is there a maximum width enabled on this spec. */
-        hasMaxWidth?: boolean,
+        /** The maximum width for this spec, including margins, in pixels. */
+        maxWidth?: number,
     },
 };
 

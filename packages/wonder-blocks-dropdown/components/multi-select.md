@@ -1,7 +1,7 @@
 ### Basic multi select
 
 This multi select starts with nothing selected and has no selection shortcuts.
-It also has a set width, and one of the items is disabled.
+It also has a set minWidth, and one of the items is disabled.
 
 ```js
 const React = require("react");
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     setWidth: {
-        width: 170,
+        minWidth: 170,
     },
 });
 
@@ -23,9 +23,11 @@ class ExampleNoneSelected extends React.Component {
         this.state = {
             selectedValues: [],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChanges(update) {
+    handleChange(update) {
         console.log("changes happened!");
         this.setState({
            selectedValues: update,
@@ -34,14 +36,15 @@ class ExampleNoneSelected extends React.Component {
 
     render() {
         return <MultiSelect
-            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            onChange={this.handleChange}
             placeholder="Color palette"
             selectedValues={this.state.selectedValues}
             selectItemType="colors"
-            openerStyle={styles.setWidth}
-            dropdownStyle={styles.setWidth}
+            style={styles.setWidth}
         >
-            <OptionItem label="Red" value="1" />
+            <OptionItem label="Red" value="1"
+                onClick={() => console.log("Roses are red")}
+            />
             <OptionItem label="Yellow" value="2" disabled />
             <OptionItem label="Green" value="3" />
             <OptionItem label="Blue" value="4" />
@@ -68,9 +71,6 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
     },
-    setWidth: {
-        width: 150,
-    },
 });
 
 class ExampleWithShortcuts extends React.Component {
@@ -79,6 +79,8 @@ class ExampleWithShortcuts extends React.Component {
         this.state = {
             selectedValues: ["wonderblocks 4ever"],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(update) {
@@ -91,11 +93,9 @@ class ExampleWithShortcuts extends React.Component {
     render() {
         return <MultiSelect
             shortcuts={true}
-            onChange={(selectedValues) => this.handleChange(selectedValues)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
             selectItemType="interns"
-            openerStyle={styles.setWidth}
-            dropdownStyle={styles.setWidth}
         >
             <OptionItem label="Anesu" value="very mobile" />
             <OptionItem label="Ioana" value="lives in roma" />
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     setWidth: {
-        width: 170,
+        minWidth: 170,
     },
 });
 
@@ -149,9 +149,11 @@ class SimpleMultiSelect extends React.Component {
         this.state = {
             selectedValues: [],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChanges(update) {
+    handleChange(update) {
         console.log("changes happened!");
         this.setState({
            selectedValues: update,
@@ -160,11 +162,10 @@ class SimpleMultiSelect extends React.Component {
 
     render() {
         return <MultiSelect
-            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
             selectItemType="Great Houses"
-            openerStyle={styles.setWidth}
-            dropdownStyle={styles.setWidth}
+            style={styles.setWidth}
         >
             <OptionItem label="Stark" value="1" />
             <OptionItem label="Arryn" value="2" />
@@ -176,8 +177,6 @@ class SimpleMultiSelect extends React.Component {
             <OptionItem label="Martell" value="8" />
             <OptionItem label="Targaryen" value="9" />
         </MultiSelect>;
-
-        ;
     }
 }
 

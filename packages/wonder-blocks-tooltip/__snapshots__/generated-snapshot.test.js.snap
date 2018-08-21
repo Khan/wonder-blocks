@@ -141,31 +141,11 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
 `;
 
 exports[`wonder-blocks-tooltip example 4 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
+<button
+  onClick={[Function]}
 >
-  <button
-    onClick={[Function]}
-  >
-    Click here!
-  </button>
-</div>
+  Click here!
+</button>
 `;
 
 exports[`wonder-blocks-tooltip example 5 1`] = `
@@ -429,6 +409,7 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 4,
         "zIndex": 0,
       }
     }
@@ -509,6 +490,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 4,
         "zIndex": 0,
       }
     }

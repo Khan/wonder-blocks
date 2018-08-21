@@ -7,6 +7,8 @@ import type {MediaSize, MediaSpec} from "./types.js";
 // All possible valid media sizes
 export const VALID_MEDIA_SIZES: Array<MediaSize> = ["small", "medium", "large"];
 
+const mediaDefaultSpecLargeMarginWidth = Spacing.large;
+
 // The default spec for media layout, currently available in
 // three different settings (roughly mobile, tablet, and desktop).
 export const MEDIA_DEFAULT_SPEC: MediaSpec = {
@@ -26,8 +28,8 @@ export const MEDIA_DEFAULT_SPEC: MediaSpec = {
         query: "(min-width: 1024px)",
         totalColumns: 12,
         gutterWidth: Spacing.xLarge,
-        marginWidth: Spacing.large,
-        hasMaxWidth: true,
+        marginWidth: mediaDefaultSpecLargeMarginWidth,
+        maxWidth: 1120 + mediaDefaultSpecLargeMarginWidth * 2,
     },
 };
 

@@ -21,30 +21,29 @@ export type SharedProps = {|
     "aria-label": string,
 
     /**
-     * The color of the button, either blue or red.
+     * The color of the icon button, either blue or red.
      */
     color: "default" | "destructive",
 
     /**
-     * The kind of the button, either primary, secondary, or tertiary.
+     * The kind of the icon button, either primary, secondary, or tertiary.
      *
      * In default state:
-     * - Primary buttons have background colors
-     * - Secondary buttons have a border and no background color
-     * - Tertiary buttons have no background or border
+     * - Primary icon buttons are color: props.color
+     * - Secondary buttons are offBlack
+     * - Tertiary buttons are offBlack64
+     *
+     * In the hover/focus/press states, all variants have a border.
      */
     kind: "primary" | "secondary" | "tertiary",
 
     /**
-     * Whether the button is on a dark/colored background.
-     *
-     * Sets primary button background color to white, and secondary and
-     * tertiary button title to color.
+     * Whether the icon button is on a dark/colored background.
      */
     light: boolean,
 
     /**
-     * Whether the button is disabled.
+     * Whether the icon button is disabled.
      */
     disabled: boolean,
 
@@ -54,7 +53,7 @@ export type SharedProps = {|
     testId?: string,
 
     /**
-     * The content of the modal, appearing between the titlebar and footer.
+     * Optional custom styles.
      */
     style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented

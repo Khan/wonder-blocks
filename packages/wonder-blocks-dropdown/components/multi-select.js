@@ -10,6 +10,7 @@ import SeparatorItem from "./separator-item.js";
 
 import typeof OptionItem from "./option-item.js";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {DropdownItem} from "../util/types.js";
 
 type Props = {|
     /**
@@ -65,14 +66,9 @@ type Props = {|
     light: boolean,
 
     /**
-     * Optional styling to add to the opener component.
+     * Optional styling to add to the opener component wrapper.
      */
-    openerStyle?: StyleType,
-
-    /**
-     * Optional styling to add to the dropdown wrapper.
-     */
-    dropdownStyle?: StyleType,
+    style?: StyleType,
 |};
 
 type State = {|
@@ -80,15 +76,22 @@ type State = {|
      * Whether or not the dropdown is open.
      */
     open: boolean,
+    /**
+     * Whether or not last open state change was triggered by a keyboard click.
+     */
+    keyboard?: boolean,
 |};
 
 /**
- *  A dropdown that consists of multiple selection items. This select allows
+ * A dropdown that consists of multiple selection items. This select allows
  * multiple options to be selected. Clients are responsible for keeping track
  * of the selected items.
+ *
+ * The multi select stays open until closed by the user. The onChange callback
+ * happens every time there is a change in the selection of the items.
  */
 export default class MultiSelect extends React.Component<Props, State> {
-    openerElement: ?Element;
+    openerElement: ?HTMLElement;
 
     static defaultProps = {
         alignment: "left",
@@ -99,21 +102,23 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
+
         this.state = {
             open: false,
         };
     }
 
-    handleOpenChanged(open: boolean) {
+    handleOpenChanged = (open: boolean, keyboard?: boolean) => {
         this.setState({
-            open: open,
+            open,
+            keyboard,
         });
-    }
+    };
 
-    handleToggle(selectedValue: string, oldSelectionState: boolean) {
+    handleToggle = (selectedValue: string) => {
         const {onChange, selectedValues} = this.props;
 
-        if (oldSelectionState) {
+        if (selectedValues.includes(selectedValue)) {
             const index = selectedValues.indexOf(selectedValue);
             const updatedSelection = [
                 ...selectedValues.slice(0, index),
@@ -124,21 +129,21 @@ export default class MultiSelect extends React.Component<Props, State> {
             // Item was newly selected
             onChange([...selectedValues, selectedValue]);
         }
-    }
+    };
 
-    handleSelectAll() {
+    handleSelectAll = () => {
         const {children, onChange} = this.props;
         const selected = React.Children.map(
             children,
             (option) => option.props.value,
         );
         onChange(selected);
-    }
+    };
 
-    handleSelectNone() {
+    handleSelectNone = () => {
         const {onChange} = this.props;
         onChange([]);
-    }
+    };
 
     // TODO(sophie): need to configure for i18n for the word "All" and
     // potentially the concept of plurals
@@ -171,57 +176,76 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     }
 
-    getShortcuts(): Array<
-        React.Element<typeof ActionItem | typeof SeparatorItem>,
-    > {
+    getShortcuts(): Array<DropdownItem> {
         const {children, selectedValues, shortcuts} = this.props;
-        const numOptions = React.Children.count(children);
-        // TODO(sophie): translate for i18n
+
         if (shortcuts) {
-            return [
-                <ActionItem
-                    disabled={numOptions === selectedValues.length}
-                    key="select-all"
-                    label={`Select all (${numOptions})`}
-                    indent={true}
-                    onClick={() => this.handleSelectAll()}
-                />,
-                <ActionItem
-                    disabled={selectedValues.length === 0}
-                    key="select-none"
-                    label="Select none"
-                    indent={true}
-                    onClick={() => this.handleSelectNone()}
-                />,
-                <SeparatorItem key="shortcuts-separator" />,
-            ];
+            const numOptions = React.Children.count(children);
+
+            const selectAllDisabled = numOptions === selectedValues.length;
+            const selectAll = {
+                component: (
+                    <ActionItem
+                        disabled={selectAllDisabled}
+                        // TODO(sophie): translate for i18n
+                        label={`Select all (${numOptions})`}
+                        indent={true}
+                        onClick={this.handleSelectAll}
+                    />
+                ),
+                focusable: !selectAllDisabled,
+                populatedProps: {},
+            };
+
+            const selectNoneDisabled = selectedValues.length === 0;
+            const selectNone = {
+                component: (
+                    <ActionItem
+                        disabled={selectNoneDisabled}
+                        // TODO(sophie): translate for i18n
+                        label="Select none"
+                        indent={true}
+                        onClick={this.handleSelectNone}
+                    />
+                ),
+                focusable: !selectNoneDisabled,
+                populatedProps: {},
+            };
+
+            const separator = {
+                component: <SeparatorItem key="shortcuts-separator" />,
+                focusable: false,
+                populatedProps: {},
+            };
+
+            return [selectAll, selectNone, separator];
         } else {
             return [];
         }
     }
 
-    getMenuItems(): Array<React.Element<OptionItem>> {
+    getMenuItems(): Array<DropdownItem> {
         const {children, selectedValues} = this.props;
         return React.Children.map(children, (option) => {
-            const {value} = option.props;
-            return React.cloneElement(option, {
-                onToggle: (value, state) => this.handleToggle(value, state),
-                selected: selectedValues.includes(value),
-                variant: "checkbox",
-            });
+            const {disabled, value} = option.props;
+            return {
+                component: option,
+                focusable: !disabled,
+                populatedProps: {
+                    onToggle: this.handleToggle,
+                    selected: selectedValues.includes(value),
+                    variant: "checkbox",
+                },
+            };
         });
     }
 
-    render() {
-        const {
-            alignment,
-            disabled,
-            light,
-            placeholder,
-            openerStyle,
-            dropdownStyle,
-        } = this.props;
+    handleOpenerRef = (node: any) => {
+        this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+    };
 
+    render() {
+        const {alignment, disabled, light, placeholder, style} = this.props;
         const {open} = this.state;
 
         const menuText = this.getMenuText();
@@ -231,13 +255,9 @@ export default class MultiSelect extends React.Component<Props, State> {
                 disabled={disabled}
                 isPlaceholder={menuText === placeholder}
                 light={light}
-                onClick={() => this.handleOpenChanged(!open)}
-                ref={(node) =>
-                    (this.openerElement = ((ReactDOM.findDOMNode(
-                        node,
-                    ): any): Element))
-                }
-                style={openerStyle}
+                onOpenChanged={this.handleOpenChanged}
+                open={open}
+                ref={this.handleOpenerRef}
             >
                 {menuText}
             </SelectOpener>
@@ -248,15 +268,16 @@ export default class MultiSelect extends React.Component<Props, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={[{marginTop: 8, marginBottom: 8}, dropdownStyle]}
+                dropdownStyle={{marginTop: 8, marginBottom: 8}}
+                items={items}
+                keyboard={this.state.keyboard}
                 light={light}
-                onOpenChanged={(open) => this.handleOpenChanged(open)}
+                onOpenChanged={this.handleOpenChanged}
                 open={open}
                 opener={opener}
                 openerElement={this.openerElement}
-            >
-                {items}
-            </Dropdown>
+                style={style}
+            />
         );
     }
 }

@@ -7,11 +7,7 @@ import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import SeparatorItem from "./separator-item.js";
 import ActionMenu from "./action-menu.js";
-
-const keyCodes = {
-    enter: 13,
-    space: 32,
-};
+import {keyCodes} from "../util/constants.js";
 
 describe("ActionMenu", () => {
     let menu;
@@ -20,24 +16,22 @@ describe("ActionMenu", () => {
     const onChange = jest.fn();
 
     beforeEach(() => {
+        window.scrollTo = jest.fn();
         menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
-                onChange={(selectedValues) => onChange()}
+                onChange={onChange}
                 selectedValues={[]}
             >
-                <ActionItem label="Action" onClick={() => onClick()} />
+                <ActionItem label="Action" onClick={onClick} />
                 <SeparatorItem />
-                <OptionItem
-                    label="Toggle"
-                    value="toggle"
-                    onClick={() => onToggle()}
-                />
+                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
             </ActionMenu>,
         );
     });
 
     afterEach(() => {
+        window.scrollTo.mockClear();
         unmountAll();
     });
 
@@ -55,12 +49,10 @@ describe("ActionMenu", () => {
         // Close menu with space
         opener.simulate("keydown", {keyCode: keyCodes.space});
         opener.simulate("keyup", {keyCode: keyCodes.space});
-        opener.simulate("click", {preventDefault: jest.fn()});
         expect(menu.state("open")).toEqual(false);
 
         // Open menu again with enter
         opener.simulate("keydown", {keyCode: keyCodes.enter});
-        opener.simulate("click", {preventDefault: jest.fn()});
         opener.simulate("keyup", {keyCode: keyCodes.enter});
         expect(menu.state("open")).toEqual(true);
     });
@@ -77,6 +69,9 @@ describe("ActionMenu", () => {
         actionItem.simulate("mouseup", nativeEvent);
         actionItem.simulate("click");
         expect(onClick).toHaveBeenCalledTimes(1);
+
+        // Have to reopen menu because menu closes after an item is selected
+        menu.setState({open: true});
 
         const optionItem = menu.find(OptionItem);
         optionItem.simulate("mousedown");

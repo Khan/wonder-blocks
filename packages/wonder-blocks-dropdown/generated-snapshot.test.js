@@ -24,43 +24,35 @@ describe("wonder-blocks-dropdown", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
-            },
-            wrapper: {
-                width: "100%",
+                justifyContent: "flex-end",
             },
         });
         const example = (
             <View style={styles.row}>
-                <View style={styles.wrapper}>
-                    <ActionMenu alignment="right" menuText="Betsy Appleseed">
-                        <ActionItem
-                            label="Profile"
-                            href="http://khanacademy.org/profile"
-                        />
-                        <ActionItem
-                            label="Teacher dashboard"
-                            href="http://khanacademy.org/coach/dashboard"
-                        />
-                        <ActionItem
-                            label="Settings (onClick)"
-                            onClick={() =>
-                                console.log("user clicked on settings")
-                            }
-                        />
-                        <ActionItem
-                            label="Help"
-                            disabled={true}
-                            onClick={() =>
-                                console.log("this item is disabled...")
-                            }
-                        />
-                        <SeparatorItem />
-                        <ActionItem
-                            label="Log out"
-                            href="http://khanacademy.org/logout"
-                        />
-                    </ActionMenu>
-                </View>
+                <ActionMenu alignment="right" menuText="Betsy Appleseed">
+                    <ActionItem
+                        label="Profile"
+                        href="http://khanacademy.org/profile"
+                    />
+                    <ActionItem
+                        label="Teacher dashboard"
+                        href="http://khanacademy.org/coach/dashboard"
+                    />
+                    <ActionItem
+                        label="Settings (onClick)"
+                        onClick={() => console.log("user clicked on settings")}
+                    />
+                    <ActionItem
+                        label="Help"
+                        disabled={true}
+                        onClick={() => console.log("this item is disabled...")}
+                    />
+                    <SeparatorItem />
+                    <ActionItem
+                        label="Log out"
+                        href="http://khanacademy.org/logout"
+                    />
+                </ActionMenu>
             </View>
         );
         const tree = renderer.create(example).toJSON();
@@ -83,6 +75,8 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: ["homework"],
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(update) {
@@ -95,9 +89,7 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <ActionMenu
                         menuText="Assignments"
-                        onChange={(selectedValues) =>
-                            this.handleChange(selectedValues)
-                        }
+                        onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                     >
                         <ActionItem
@@ -118,19 +110,15 @@ describe("wonder-blocks-dropdown", () => {
                         <OptionItem
                             label="Show homework assignments"
                             value="homework"
-                            onClick={(state) =>
-                                console.log(
-                                    `Show homework assignments ${(!state).toString()}`,
-                                )
+                            onClick={() =>
+                                console.log(`Show homework assignments toggled`)
                             }
                         />
                         <OptionItem
                             label="Show in-class assignments"
                             value="in-class"
-                            onClick={(state) =>
-                                console.log(
-                                    `Show in-class assignments ${(!state).toString()}`,
-                                )
+                            onClick={() =>
+                                console.log(`Show in-class assignments toggled`)
                             }
                         />
                     </ActionMenu>
@@ -156,7 +144,8 @@ describe("wonder-blocks-dropdown", () => {
                 flexDirection: "row",
             },
             setWidth: {
-                width: 170,
+                minWidth: 170,
+                maxWidth: 190,
             },
         });
 
@@ -166,6 +155,7 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: null,
                 };
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(selected) {
@@ -178,11 +168,10 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <SingleSelect
-                        onChange={(selected) => this.handleChange(selected)}
+                        onChange={this.handleChange}
                         placeholder="Choose a fruit"
                         selectedValue={this.state.selectedValue}
-                        openerStyle={styles.setWidth}
-                        dropdownStyle={styles.setWidth}
+                        style={styles.setWidth}
                     >
                         <OptionItem
                             label="Vine-ripened tomatoes"
@@ -220,6 +209,8 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: "banana",
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(selected) {
@@ -232,7 +223,7 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <SingleSelect
-                        onChange={(selected) => this.handleChange(selected)}
+                        onChange={this.handleChange}
                         placeholder="Choose a juice"
                         selectedValue={this.state.selectedValue}
                     >
@@ -273,6 +264,8 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: "banana",
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(selected) {
@@ -286,7 +279,7 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <SingleSelect
                         disabled={true}
-                        onChange={(selected) => this.handleChange(selected)}
+                        onChange={this.handleChange}
                         placeholder="Choose a juice"
                         selectedValue={this.state.selectedValue}
                     >
@@ -321,6 +314,8 @@ describe("wonder-blocks-dropdown", () => {
                 flexDirection: "row",
             },
             darkBackgroundWrapper: {
+                flexDirection: "row",
+                justifyContent: "flex-end",
                 backgroundColor: Color.default.darkBlue,
                 width: 350,
                 height: 200,
@@ -335,6 +330,8 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValue: null,
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(selected) {
@@ -349,7 +346,7 @@ describe("wonder-blocks-dropdown", () => {
                     <SingleSelect
                         alignment="right"
                         light={true}
-                        onChange={(selected) => this.handleChange(selected)}
+                        onChange={this.handleChange}
                         placeholder="Boba order"
                         selectedValue={this.state.selectedValue}
                     >
@@ -391,7 +388,7 @@ describe("wonder-blocks-dropdown", () => {
                 flexDirection: "row",
             },
             setWidth: {
-                width: 170,
+                minWidth: 170,
             },
         });
 
@@ -401,9 +398,11 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: [],
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
             }
 
-            handleChanges(update) {
+            handleChange(update) {
                 console.log("changes happened!");
                 this.setState({
                     selectedValues: update,
@@ -413,16 +412,17 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <MultiSelect
-                        onChange={(selectedValues) =>
-                            this.handleChanges(selectedValues)
-                        }
+                        onChange={this.handleChange}
                         placeholder="Color palette"
                         selectedValues={this.state.selectedValues}
                         selectItemType="colors"
-                        openerStyle={styles.setWidth}
-                        dropdownStyle={styles.setWidth}
+                        style={styles.setWidth}
                     >
-                        <OptionItem label="Red" value="1" />
+                        <OptionItem
+                            label="Red"
+                            value="1"
+                            onClick={() => console.log("Roses are red")}
+                        />
                         <OptionItem label="Yellow" value="2" disabled />
                         <OptionItem label="Green" value="3" />
                         <OptionItem label="Blue" value="4" />
@@ -448,9 +448,6 @@ describe("wonder-blocks-dropdown", () => {
             row: {
                 flexDirection: "row",
             },
-            setWidth: {
-                width: 150,
-            },
         });
 
         class ExampleWithShortcuts extends React.Component {
@@ -459,6 +456,8 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: ["wonderblocks 4ever"],
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
             }
 
             handleChange(update) {
@@ -472,13 +471,9 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <MultiSelect
                         shortcuts={true}
-                        onChange={(selectedValues) =>
-                            this.handleChange(selectedValues)
-                        }
+                        onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                         selectItemType="interns"
-                        openerStyle={styles.setWidth}
-                        dropdownStyle={styles.setWidth}
                     >
                         <OptionItem label="Anesu" value="very mobile" />
                         <OptionItem label="Ioana" value="lives in roma" />
@@ -534,7 +529,7 @@ describe("wonder-blocks-dropdown", () => {
                 padding: 20,
             },
             setWidth: {
-                width: 170,
+                minWidth: 170,
             },
         });
 
@@ -544,9 +539,11 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: [],
                 };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
             }
 
-            handleChanges(update) {
+            handleChange(update) {
                 console.log("changes happened!");
                 this.setState({
                     selectedValues: update,
@@ -556,13 +553,10 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <MultiSelect
-                        onChange={(selectedValues) =>
-                            this.handleChanges(selectedValues)
-                        }
+                        onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                         selectItemType="Great Houses"
-                        openerStyle={styles.setWidth}
-                        dropdownStyle={styles.setWidth}
+                        style={styles.setWidth}
                     >
                         <OptionItem label="Stark" value="1" />
                         <OptionItem label="Arryn" value="2" />

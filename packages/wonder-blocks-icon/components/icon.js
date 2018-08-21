@@ -41,7 +41,7 @@ const StyledSVG = addStyle("svg");
  * An Icon displays a small informational or decorative image as an SVG.
  *
  * ```js
- * import Icon, {icons} from "@khanacademy/wonder-blocks-icon"
+ * import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
  *
  * <Icon
  *     icon={icons.search}
@@ -52,8 +52,19 @@ const StyledSVG = addStyle("svg");
  * ```
  *
  * Wonder Blocks comes with a fixed set of icons available by importing `icons`,
- * but you can provide your own `IconAsset` in the following format:
+ * but you can also provide your own `IconAsset`.
  *
+ * ```js
+ * import Icon from "@khanacademy/wonder-blocks-icon";
+ * import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+ *
+ * // Easter egg: what shape am I?
+ * const customIcon: IconAsset = {
+ *     small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
+ * };
+ * ```
+ *
+ * `IconAsset` should be in the following format:
  * ```js
  * {small?: string, medium?: string, large?: string, xlarge?: string}
  * ```

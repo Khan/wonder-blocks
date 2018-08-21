@@ -194,6 +194,7 @@ exports[`wonder-blocks-core example 4 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -220,6 +221,7 @@ exports[`wonder-blocks-core example 4 1`] = `
         }
       }
       tabIndex={0}
+      type="button"
     >
       <span
         className=""
@@ -232,7 +234,11 @@ exports[`wonder-blocks-core example 4 1`] = `
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
+            "overflow": "hidden",
             "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
           }
         }
       >
@@ -282,6 +288,7 @@ exports[`wonder-blocks-core example 4 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
@@ -459,6 +466,7 @@ exports[`wonder-blocks-core example 5 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
@@ -747,6 +755,7 @@ exports[`wonder-blocks-core example 7 1`] = `
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": "2em",
           "zIndex": 0,
         }
       }

@@ -23,6 +23,11 @@ const StyledInput = addStyle("input");
  * The internal stateless 🔘 Radio button
  */
 export default class RadioCore extends React.Component<Props> {
+    handleChange = () => {
+        // Empty because change is handled by ClickableBehavior
+        return;
+    };
+
     render() {
         const {
             checked,
@@ -62,10 +67,9 @@ export default class RadioCore extends React.Component<Props> {
                     disabled={disabled}
                     id={id}
                     name={groupName}
-                    // Need to specify because this is a controlled React
-                    // form component, but we handle the click via
-                    // ClickableBehavior already
-                    onChange={() => void 0}
+                    // Need to specify because this is a controlled React form
+                    // component, but we handle the click via ClickableBehavior
+                    onChange={this.handleChange}
                     style={defaultStyle}
                     {...props}
                 />
@@ -94,6 +98,7 @@ const sharedStyles = StyleSheet.create({
         WebkitAppearance: "none",
         MozAppearance: "none",
     },
+
     default: {
         height: size,
         width: size,
@@ -106,6 +111,7 @@ const sharedStyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: "50%",
     },
+
     disabled: {
         cursor: "auto",
         backgroundColor: offWhite,

@@ -60,6 +60,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <svg
       className=""
@@ -119,6 +120,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <svg
       className=""
@@ -178,6 +180,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <svg
       className=""
@@ -238,6 +241,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <svg
       className=""
@@ -320,6 +324,7 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <svg
       className=""
