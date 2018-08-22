@@ -30,7 +30,7 @@ type Props = {|
      * does. If the label and id props are defined, this props does not need to
      * be provided as the label would be matched to this input.
      */
-    ariaLabel?: string,
+    "aria-label"?: string,
 
     /**
      * Used for accessibility purposes, where the label id should match the
