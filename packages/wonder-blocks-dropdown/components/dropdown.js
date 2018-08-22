@@ -11,6 +11,7 @@ import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
 import SeparatorItem from "./separator-item.js";
 import {keyCodes} from "../util/constants.js";
@@ -72,12 +73,12 @@ type DropdownProps = {|
      * Styling specific to the dropdown component that isn't part of the opener,
      * passed by the specific implementation of the dropdown menu,
      */
-    dropdownStyle?: any,
+    dropdownStyle?: StyleType,
 
     /**
      * Optional styling for the entire dropdown component.
      */
-    style?: any,
+    style?: StyleType,
 |};
 
 type State = {|

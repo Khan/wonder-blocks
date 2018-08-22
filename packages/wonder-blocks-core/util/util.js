@@ -2,25 +2,18 @@
 import {StyleSheet, css} from "aphrodite";
 import * as React from "react";
 import propTypes from "prop-types";
+import type {CSSProperties} from "aphrodite";
 
-import type {MediaSize, MediaSpec} from "./types.js";
-import type {StyleType} from "./types.js";
+import type {MediaSize, MediaSpec, StyleType} from "./types.js";
 
-function flatten<T: Object>(
-    list?: StyleType<T>,
-    mediaSize: MediaSize,
-): Array<T> {
-    const result: Array<T> = [];
-
-    if (typeof list === "function") {
-        list = list(mediaSize);
-    }
+function flatten(list?: StyleType): Array<CSSProperties> {
+    const result: Array<CSSProperties> = [];
 
     if (!list) {
         return result;
     } else if (Array.isArray(list)) {
         for (const item of list) {
-            result.push(...flatten(item, mediaSize));
+            result.push(...flatten(item));
         }
     } else {
         result.push(list);
@@ -29,10 +22,7 @@ function flatten<T: Object>(
     return result;
 }
 
-export function processStyleList<T: Object>(
-    style?: StyleType<T>,
-    mediaSize: MediaSize = "large",
-) {
+export function processStyleList(style?: StyleType) {
     const stylesheetStyles = [];
     const inlineStyles = [];
 
@@ -47,7 +37,7 @@ export function processStyleList<T: Object>(
     const shouldInlineStyles =
         typeof global !== "undefined" && global.SNAPSHOT_INLINE_APHRODITE;
 
-    flatten(style, mediaSize).forEach((child: T) => {
+    flatten(style).forEach((child) => {
         // Check for aphrodite internal property
         if ((child: any)._definition) {
             if (shouldInlineStyles) {

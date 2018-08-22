@@ -385,7 +385,7 @@ export default class TooltipTail extends React.Component<Props> {
             <View
                 style={[
                     styles.tailContainer,
-                    offset,
+                    {...offset},
                     this._getContainerStyle(),
                 ]}
                 data-placement={placement}

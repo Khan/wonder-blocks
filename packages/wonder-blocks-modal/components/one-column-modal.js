@@ -2,14 +2,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
+import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalFooter from "./modal-footer.js";
-
-import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
 type BaseProps = {|
     /** The modal's content. */
@@ -106,7 +105,9 @@ export default class OneColumnModal extends React.Component<BaseProps> {
             <ModalDialog
                 style={[
                     styles.dialog,
-                    (mediaSize) => mediaSize !== "small" && styles.largeDialog,
+                    // TODO(jeresig): Replace with <Layout/>
+                    //(mediaSize) => mediaSize !== "small" && styles.largeDialog,
+                    styles.largeDialog,
                 ]}
             >
                 <WrappedContentWrapper {...this.props} />
