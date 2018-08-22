@@ -23,8 +23,14 @@ const StyledInput = addStyle("input");
  * The internal stateless 🔘 Radio button
  */
 export default class RadioCore extends React.Component<Props> {
+    handleChange = () => {
+        // Empty because change is handled by ClickableBehavior
+        return;
+    };
+
     render() {
         const {
+            ariaLabel,
             checked,
             disabled,
             error,
@@ -58,14 +64,14 @@ export default class RadioCore extends React.Component<Props> {
                 <StyledInput
                     type="radio"
                     aria-checked={checked}
+                    aria-label={ariaLabel}
                     checked={checked}
                     disabled={disabled}
                     id={id}
                     name={groupName}
-                    // Need to specify because this is a controlled React
-                    // form component, but we handle the click via
-                    // ClickableBehavior already
-                    onChange={() => void 0}
+                    // Need to specify because this is a controlled React form
+                    // component, but we handle the click via ClickableBehavior
+                    onChange={this.handleChange}
                     style={defaultStyle}
                     {...props}
                 />
@@ -74,6 +80,7 @@ export default class RadioCore extends React.Component<Props> {
         );
     }
 }
+
 const size = 16; // circle with a different color. Here, we add that center circle.
 
 // If the checkbox is disabled and selected, it has a border but also an inner
@@ -94,6 +101,7 @@ const sharedStyles = StyleSheet.create({
         WebkitAppearance: "none",
         MozAppearance: "none",
     },
+
     default: {
         height: size,
         width: size,
@@ -106,6 +114,7 @@ const sharedStyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: "50%",
     },
+
     disabled: {
         cursor: "auto",
         backgroundColor: offWhite,

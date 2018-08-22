@@ -36,6 +36,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -63,6 +64,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -75,7 +77,11 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -123,6 +129,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -150,6 +157,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -162,7 +170,11 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -210,6 +222,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -237,6 +250,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -249,7 +263,11 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -292,6 +310,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -319,6 +338,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -331,7 +351,11 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -379,6 +403,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -406,6 +431,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -418,7 +444,11 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >

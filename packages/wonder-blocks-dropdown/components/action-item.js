@@ -84,12 +84,6 @@ export default class ActionItem extends React.Component<ActionProps> {
 
     static contextTypes = {router: PropTypes.any};
 
-    handleClick = (e: SyntheticEvent<>) => {
-        if (this.props.disabled) {
-            e.preventDefault();
-        }
-    };
-
     render() {
         const {
             skipClientNav,
@@ -144,25 +138,21 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     if (href) {
                         return router && !skipClientNav ? (
-                            <StyledLink
-                                {...props}
-                                onClick={this.handleClick}
-                                to={href}
-                            >
+                            <StyledLink {...props} to={href}>
                                 {children}
                             </StyledLink>
                         ) : (
-                            <StyledAnchor
-                                {...props}
-                                onClick={this.handleClick}
-                                href={href}
-                            >
+                            <StyledAnchor {...props} href={href}>
                                 {children}
                             </StyledAnchor>
                         );
                     } else {
                         return (
-                            <StyledButton {...props} disabled={disabled}>
+                            <StyledButton
+                                type="button"
+                                {...props}
+                                disabled={disabled}
+                            >
                                 {children}
                             </StyledButton>
                         );
@@ -191,6 +181,7 @@ const styles = StyleSheet.create({
 
     label: {
         whiteSpace: "nowrap",
+        userSelect: "none",
     },
 
     indent: {

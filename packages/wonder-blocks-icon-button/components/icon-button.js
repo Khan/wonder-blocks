@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import IconButtonCore from "./icon-button-core.js";
 
 export type SharedProps = {|
@@ -16,7 +17,7 @@ export type SharedProps = {|
     /**
      * Text to display as the title of the svg element.
      */
-    "aria-label": string,
+    ariaLabel: string,
 
     /**
      * The color of the icon button, either blue or red.
@@ -53,7 +54,7 @@ export type SharedProps = {|
     /**
      * Optional custom styles.
      */
-    style?: any,
+    style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
     /*
     style?: Style<Exact<{
@@ -109,7 +110,7 @@ export type SharedProps = {|
  * An IconButton is a button whose contents are an SVG image.
  *
  * To use, supply an onClick function, a wonder-blocks icon asset (see
- * the Icon section) and an aria-label to describe the button functionality.
+ * the Icon section) and an ariaLabel to describe the button functionality.
  * Optionally specify href (URL), clientSideNav, color
  * (Wonder Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"),
  * light (whether the IconButton will be rendered on a dark background),
@@ -120,7 +121,7 @@ export type SharedProps = {|
  *
  * <IconButton
  *     icon={icons.anIcon}
- *     aria-label="An Icon"
+ *     ariaLabel="An Icon"
  *     onClick={(e) => console.log("Hello, world!")}
  * />
  * ```

@@ -4,11 +4,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core.js";
 import RadioCore from "./radio-core.js";
 
@@ -26,13 +26,20 @@ type Props = {|
     onChange: (newCheckedState: boolean) => void,
 
     /**
+     * Optional label if it is not obvious from the context what the checkbox
+     * does. If the label and id props are defined, this props does not need to
+     * be provided as the label would be matched to this input.
+     */
+    ariaLabel?: string,
+
+    /**
      * Used for accessibility purposes, where the label id should match the
      * input id.
      */
     id?: string,
 
     /** Optional additional styling. */
-    style?: any,
+    style?: StyleType,
 
     /** Optional id for testing purposes. */
     testId?: string,
@@ -64,6 +71,21 @@ type Props = {|
         error: false,
     };
 
+    handleLabelClick = (event: SyntheticEvent<>) => {
+        // Browsers automatically use the for attribute to select the input,
+        // but we use ClickableBehavior to handle this.
+        event.preventDefault();
+    };
+
+    handleClick = () => {
+        const {checked, onChange, variant} = this.props;
+        // Radio buttons cannot be unchecked
+        if (variant === "radio" && checked) {
+            return;
+        }
+        onChange(!checked);
+    };
+
     getChoiceCoreComponent() {
         if (this.props.variant === "radio") {
             return RadioCore;
@@ -77,12 +99,7 @@ type Props = {|
             <LabelMedium
                 style={[styles.label, disabled && styles.disabledLabel]}
             >
-                <label
-                    htmlFor={id}
-                    // Browsers automatically use the for attribute to select
-                    // the input, but we use ClickableBehavior to handle this.
-                    onClick={(e) => e.preventDefault()}
-                >
+                <label htmlFor={id} onClick={this.handleLabelClick}>
                     {label}
                 </label>
             </LabelMedium>
@@ -98,13 +115,13 @@ type Props = {|
         const {
             label,
             description,
+            // eslint-disable-next-line no-unused-vars
             onChange,
             style,
+            // eslint-disable-next-line no-unused-vars
             variant,
             ...coreProps
         } = this.props;
-
-        const {checked} = coreProps;
 
         const ChoiceCore = this.getChoiceCoreComponent();
         const ClickableBehavior = getClickableBehavior();
@@ -113,19 +130,13 @@ type Props = {|
             <View style={style}>
                 <ClickableBehavior
                     disabled={coreProps.disabled}
-                    onClick={(e) => {
-                        // Radio buttons cannot be unchecked and do not change
-                        // if clicked on when checked
-                        if (variant === "radio" && checked) {
-                            return;
-                        }
-                        onChange(!checked);
-                    }}
+                    onClick={this.handleClick}
+                    triggerOnEnter={false}
                 >
                     {(state, handlers) => {
                         return (
                             <View
-                                style={[styles.wrapper]}
+                                style={styles.wrapper}
                                 {...handlers}
                                 // We are resetting the tabIndex=0 from handlers
                                 // because the ChoiceCore component will receive
@@ -151,6 +162,7 @@ const styles = StyleSheet.create({
         outline: "none",
     },
     label: {
+        userSelect: "none",
         // NOTE: The checkbox/radio button (height 16px) should be center
         // aligned with the first line of the label. However, LabelMedium has a
         // declared line height of 20px, so we need to adjust the top to get the

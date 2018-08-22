@@ -1,8 +1,5 @@
 // @flow
-import {
-    default as ActiveTracker,
-    IActiveTrackerSubscriber,
-} from "./active-tracker.js";
+import ActiveTracker, {IActiveTrackerSubscriber} from "./active-tracker.js";
 
 class MockSubscriber implements IActiveTrackerSubscriber {
     activeStateStolen = jest.fn();

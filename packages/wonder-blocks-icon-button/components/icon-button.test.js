@@ -2,10 +2,9 @@
 import React from "react";
 import {shallow} from "enzyme";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import IconButton from "./icon-button.js";
 
 describe("IconButton", () => {
@@ -17,7 +16,7 @@ describe("IconButton", () => {
         const wrapper = shallow(
             <IconButton
                 icon={icons.search}
-                aria-label="search"
+                ariaLabel="search"
                 onClick={() => done()}
             />,
         );
@@ -29,7 +28,7 @@ describe("IconButton", () => {
             mount(
                 <IconButton
                     icon={icons.search}
-                    aria-label="search"
+                    ariaLabel="search"
                     kind="secondary"
                     light={true}
                     onClick={() => void 0}
@@ -45,7 +44,7 @@ describe("IconButton", () => {
                 <div>
                     <IconButton
                         icon={icons.search}
-                        aria-label="search"
+                        ariaLabel="search"
                         testId="icon-button"
                         href="/foo"
                     />
@@ -75,7 +74,7 @@ describe("IconButton", () => {
                 <div>
                     <IconButton
                         icon={icons.search}
-                        aria-label="search"
+                        ariaLabel="search"
                         testId="icon-button"
                         href="/unknown"
                     />
@@ -105,7 +104,7 @@ describe("IconButton", () => {
                 <div>
                     <IconButton
                         icon={icons.search}
-                        aria-label="search"
+                        ariaLabel="search"
                         testId="icon-button"
                         href="/foo"
                         skipClientNav

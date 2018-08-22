@@ -62,6 +62,8 @@ class HybridMenu extends React.Component {
         this.state = {
             selectedValues: ["homework"],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(update) {
@@ -73,7 +75,7 @@ class HybridMenu extends React.Component {
     render() {
         return <ActionMenu
             menuText="Assignments"
-            onChange={(selectedValues) => this.handleChange(selectedValues)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
         >
             <ActionItem label="Create..." onClick={() => console.log("create action")} />

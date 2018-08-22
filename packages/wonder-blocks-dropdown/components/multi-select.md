@@ -23,9 +23,11 @@ class ExampleNoneSelected extends React.Component {
         this.state = {
             selectedValues: [],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChanges(update) {
+    handleChange(update) {
         console.log("changes happened!");
         this.setState({
            selectedValues: update,
@@ -34,13 +36,15 @@ class ExampleNoneSelected extends React.Component {
 
     render() {
         return <MultiSelect
-            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            onChange={this.handleChange}
             placeholder="Color palette"
             selectedValues={this.state.selectedValues}
             selectItemType="colors"
             style={styles.setWidth}
         >
-            <OptionItem label="Red" value="1" />
+            <OptionItem label="Red" value="1"
+                onClick={() => console.log("Roses are red")}
+            />
             <OptionItem label="Yellow" value="2" disabled />
             <OptionItem label="Green" value="3" />
             <OptionItem label="Blue" value="4" />
@@ -75,6 +79,8 @@ class ExampleWithShortcuts extends React.Component {
         this.state = {
             selectedValues: ["wonderblocks 4ever"],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(update) {
@@ -87,7 +93,7 @@ class ExampleWithShortcuts extends React.Component {
     render() {
         return <MultiSelect
             shortcuts={true}
-            onChange={(selectedValues) => this.handleChange(selectedValues)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
             selectItemType="interns"
         >
@@ -143,9 +149,11 @@ class SimpleMultiSelect extends React.Component {
         this.state = {
             selectedValues: [],
         };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChanges(update) {
+    handleChange(update) {
         console.log("changes happened!");
         this.setState({
            selectedValues: update,
@@ -154,7 +162,7 @@ class SimpleMultiSelect extends React.Component {
 
     render() {
         return <MultiSelect
-            onChange={(selectedValues) => this.handleChanges(selectedValues)}
+            onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
             selectItemType="Great Houses"
             style={styles.setWidth}

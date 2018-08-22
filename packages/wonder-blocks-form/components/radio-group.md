@@ -22,6 +22,7 @@ class RadioGroupPokemonExample extends React.Component {
         this.state = {
             selectedValue: null,
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(change) {
@@ -45,7 +46,7 @@ class RadioGroupPokemonExample extends React.Component {
             description="Your first Pokemon"
             errorMessage={this.state.error}
             groupName="Pokemon"
-            onChange={(change) => this.handleChange(change)}
+            onChange={this.handleChange}
             selectedValue={this.state.selectedValue}
         >
             <Choice label="Bulbasaur" value="bulb" />

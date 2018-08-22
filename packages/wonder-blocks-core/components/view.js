@@ -41,8 +41,6 @@ const StyledDiv = addStyle("div", styles.default);
  * - An array combining the above
  */
 export default class View extends React.Component<Props> {
-    props: Props;
-
     render() {
         return <StyledDiv {...this.props} />;
     }

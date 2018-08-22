@@ -31,7 +31,8 @@ jobs:
           paths:
             - node_modules
       - run: yarn run gen-snapshot-tests
-      - run: yarn run build:all
+      - run: yarn run build:cjs
+      - run: yarn run build:es6
       - run: yarn run jest --coverage
       - run: yarn run codecov
 workflows:

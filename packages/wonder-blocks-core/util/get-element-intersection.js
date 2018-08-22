@@ -66,19 +66,29 @@ function getElementIntersectionAgainstParent(
     intersectingRect: ClientRect | DOMRect,
     boundsElement: Element,
 ): Intersection {
+    // We need to check that it matters if we're out of bounds. If the parent
+    // element isn't clipping or otherwise hiding things outside its bounds,
+    // then checking against bounds isn't going to be much use.
+    // So, let's get the style for the element and use the overflow values.
+    const style =
+        ((boundsElement: any).currentStyle: ?CSSStyleDeclaration) ||
+        window.getComputedStyle(boundsElement);
+
     const boundsRect = boundsElement.getBoundingClientRect();
 
-    const horizontal = getAxisIntersection(
-        intersectingRect,
-        boundsRect,
-        "horizontal",
-    );
+    // We assume we're within this specific bounds element if it's overflow is
+    // visible.
+    const horizontal =
+        style.overflowX === "visible"
+            ? "within"
+            : getAxisIntersection(intersectingRect, boundsRect, "horizontal");
 
-    const vertical = getAxisIntersection(
-        intersectingRect,
-        boundsRect,
-        "vertical",
-    );
+    // We assume we're within this specific bounds element if it's overflow is
+    // visible.
+    const vertical =
+        style.overflowY === "visible"
+            ? "within"
+            : getAxisIntersection(intersectingRect, boundsRect, "vertical");
 
     return {horizontal, vertical};
 }

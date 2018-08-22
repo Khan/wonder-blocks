@@ -31,12 +31,6 @@ const StyledLink = addStyle(Link);
 export default class ButtonCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
-    handleClick = (e: SyntheticEvent<>) => {
-        if (this.props.disabled) {
-            e.preventDefault();
-        }
-    };
-
     render() {
         const {
             children,
@@ -79,6 +73,7 @@ export default class ButtonCore extends React.Component<Props> {
         const commonProps = {
             "aria-disabled": disabled ? "true" : undefined,
             "data-test-id": testId,
+            role: "button",
             style: [defaultStyle, style],
             ...handlers,
         };
@@ -95,25 +90,21 @@ export default class ButtonCore extends React.Component<Props> {
 
         if (href) {
             return router && !skipClientNav ? (
-                <StyledLink
-                    {...commonProps}
-                    onClick={this.handleClick}
-                    to={href}
-                >
+                <StyledLink {...commonProps} to={href}>
                     {label}
                 </StyledLink>
             ) : (
-                <StyledAnchor
-                    {...commonProps}
-                    onClick={this.handleClick}
-                    href={href}
-                >
+                <StyledAnchor {...commonProps} href={href}>
                     {label}
                 </StyledAnchor>
             );
         } else {
             return (
-                <StyledButton {...commonProps} disabled={disabled}>
+                <StyledButton
+                    type="button"
+                    {...commonProps}
+                    disabled={disabled}
+                >
                     {label}
                     {spinner && (
                         <CircularSpinner
@@ -154,6 +145,10 @@ const sharedStyles = StyleSheet.create({
     },
     text: {
         fontWeight: "bold",
+        userSelect: "none",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
     hiddenText: {

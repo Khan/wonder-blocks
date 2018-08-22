@@ -5,22 +5,16 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import SelectOpener from "./select-opener.js";
 import OptionItem from "./option-item.js";
 import SingleSelect from "./single-select.js";
-
-const keyCodes = {
-    enter: 13,
-    space: 32,
-};
+import {keyCodes} from "../util/constants.js";
 
 describe("SingleSelect", () => {
     let select;
-    const onClick = jest.fn();
+    const onChange = jest.fn();
 
     beforeEach(() => {
+        window.scrollTo = jest.fn();
         select = mount(
-            <SingleSelect
-                onChange={(selectedValue) => onClick()}
-                placeholder="Choose"
-            >
+            <SingleSelect onChange={onChange} placeholder="Choose">
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
                 <OptionItem label="item 3" value="3" />
@@ -29,6 +23,7 @@ describe("SingleSelect", () => {
     });
 
     afterEach(() => {
+        window.scrollTo.mockClear();
         unmountAll();
     });
 
@@ -45,14 +40,12 @@ describe("SingleSelect", () => {
         // Close select with space
         opener.simulate("keydown", {keyCode: keyCodes.space});
         opener.simulate("keyup", {keyCode: keyCodes.space});
-        opener.simulate("click", {preventDefault: jest.fn()});
         expect(select.state("open")).toEqual(false);
 
-        // Open select again with enter
+        // Shouldn't open with enter
         opener.simulate("keydown", {keyCode: keyCodes.enter});
-        opener.simulate("click", {preventDefault: jest.fn()});
         opener.simulate("keyup", {keyCode: keyCodes.enter});
-        expect(select.state("open")).toEqual(true);
+        expect(select.state("open")).toEqual(false);
     });
 
     it("displays selected item label as expected", () => {
@@ -72,7 +65,7 @@ describe("SingleSelect", () => {
         item.simulate("click");
 
         // Expect select's onChange callback to have been called
-        expect(onClick).toHaveBeenCalledTimes(1);
+        expect(onChange).toHaveBeenCalledTimes(1);
 
         // This select should close afer a single item selection
         expect(select.state("open")).toEqual(false);

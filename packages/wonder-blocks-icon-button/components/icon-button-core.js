@@ -58,15 +58,10 @@ const StyledLink = addStyle(Link);
 export default class IconButtonCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
-    handleClick = (e: SyntheticEvent<>) => {
-        if (this.props.disabled) {
-            e.preventDefault();
-        }
-    };
-
     render() {
         const {
             skipClientNav,
+            ariaLabel,
             color,
             disabled,
             focused,
@@ -105,7 +100,7 @@ export default class IconButtonCore extends React.Component<Props> {
         const commonProps = {
             // TODO(kevinb): figure out a better way of forward ARIA props
             "aria-disabled": disabled ? "true" : undefined,
-            "aria-label": this.props["aria-label"],
+            "aria-label": ariaLabel,
             "data-test-id": testId,
             style: [defaultStyle, style],
             ...handlers,
@@ -113,25 +108,21 @@ export default class IconButtonCore extends React.Component<Props> {
 
         if (href) {
             return router && !skipClientNav ? (
-                <StyledLink
-                    {...commonProps}
-                    onClick={this.handleClick}
-                    to={href}
-                >
+                <StyledLink {...commonProps} to={href}>
                     {child}
                 </StyledLink>
             ) : (
-                <StyledAnchor
-                    {...commonProps}
-                    onClick={this.handleClick}
-                    href={href}
-                >
+                <StyledAnchor {...commonProps} href={href}>
                     {child}
                 </StyledAnchor>
             );
         } else {
             return (
-                <StyledButton {...commonProps} disabled={disabled}>
+                <StyledButton
+                    type="button"
+                    {...commonProps}
+                    disabled={disabled}
+                >
                     {child}
                 </StyledButton>
             );

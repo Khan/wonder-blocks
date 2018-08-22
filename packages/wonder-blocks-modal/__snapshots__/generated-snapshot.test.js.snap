@@ -35,6 +35,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -61,6 +62,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -73,7 +75,11 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -96,6 +102,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -122,6 +129,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -134,7 +142,11 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -157,6 +169,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -183,6 +196,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -195,7 +209,11 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -363,6 +381,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
               }
             }
             tabIndex={0}
+            type="button"
           >
             <svg
               className=""
@@ -588,7 +607,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
                 "flex": 1,
                 "flexDirection": "column",
                 "margin": 0,
-                "minHeight": 0,
+                "minHeight": "100%",
                 "minWidth": 0,
                 "padding": 64,
                 "paddingBottom": 32,
@@ -699,6 +718,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
+              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
@@ -738,7 +758,11 @@ exports[`wonder-blocks-modal example 2 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -911,6 +935,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
               }
             }
             tabIndex={0}
+            type="button"
           >
             <svg
               className=""
@@ -1151,7 +1176,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
                 "flex": 1,
                 "flexDirection": "column",
                 "margin": 0,
-                "minHeight": 0,
+                "minHeight": "100%",
                 "minWidth": 0,
                 "padding": 64,
                 "paddingBottom": 32,
@@ -1293,6 +1318,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
+              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
@@ -1332,7 +1358,11 @@ exports[`wonder-blocks-modal example 3 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -1505,6 +1535,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
               }
             }
             tabIndex={0}
+            type="button"
           >
             <svg
               className=""
@@ -1745,7 +1776,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                 "flex": 1,
                 "flexDirection": "column",
                 "margin": 0,
-                "minHeight": 0,
+                "minHeight": "100%",
                 "minWidth": 0,
                 "padding": 64,
                 "paddingBottom": 32,
@@ -1887,6 +1918,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
+              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
@@ -1926,7 +1958,11 @@ exports[`wonder-blocks-modal example 4 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -1947,10 +1983,11 @@ exports[`wonder-blocks-modal example 4 1`] = `
             "boxSizing": "border-box",
             "color": "#ffffff",
             "display": "flex",
-            "flex": "1 1 auto",
+            "flex": "1 0 auto",
             "flexDirection": "column",
             "height": "100%",
             "margin": 0,
+            "maxWidth": 392,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -1993,7 +2030,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                 "flex": 1,
                 "flexDirection": "column",
                 "margin": 0,
-                "minHeight": 0,
+                "minHeight": "100%",
                 "minWidth": 0,
                 "padding": "0 64px 0 0",
                 "position": "relative",
@@ -2235,6 +2272,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
               }
             }
             tabIndex={0}
+            type="button"
           >
             <svg
               className=""
@@ -2541,7 +2579,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
                 "flex": 1,
                 "flexDirection": "column",
                 "margin": 0,
-                "minHeight": 0,
+                "minHeight": "100%",
                 "minWidth": 0,
                 "padding": 64,
                 "paddingBottom": 32,
@@ -2683,6 +2721,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
+              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
@@ -2722,7 +2761,11 @@ exports[`wonder-blocks-modal example 5 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >
@@ -2916,6 +2959,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <svg
                 className=""
@@ -2969,7 +3013,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   "flex": 1,
                   "flexDirection": "column",
                   "margin": 0,
-                  "minHeight": 0,
+                  "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
                   "position": "relative",
@@ -3096,7 +3140,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   "flex": 1,
                   "flexDirection": "column",
                   "margin": 0,
-                  "minHeight": 0,
+                  "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
                   "position": "relative",
@@ -3352,6 +3396,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <svg
                 className=""
@@ -3405,7 +3450,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "flex": 1,
                   "flexDirection": "column",
                   "margin": 0,
-                  "minHeight": 0,
+                  "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
                   "position": "relative",
@@ -3532,7 +3577,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "flex": 1,
                   "flexDirection": "column",
                   "margin": 0,
-                  "minHeight": 0,
+                  "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
                   "paddingBottom": 32,
@@ -3681,6 +3726,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 onTouchCancel={[Function]}
                 onTouchEnd={[Function]}
                 onTouchStart={[Function]}
+                role="button"
                 style={
                   Object {
                     "::MozFocusInner": Object {
@@ -3707,6 +3753,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   }
                 }
                 tabIndex={0}
+                type="button"
               >
                 <span
                   className=""
@@ -3719,7 +3766,11 @@ exports[`wonder-blocks-modal example 7 1`] = `
                       "fontSize": 16,
                       "fontWeight": "bold",
                       "lineHeight": "20px",
+                      "overflow": "hidden",
                       "pointerEvents": "none",
+                      "textOverflow": "ellipsis",
+                      "userSelect": "none",
+                      "whiteSpace": "nowrap",
                     }
                   }
                 >
@@ -3914,6 +3965,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <svg
                 className=""
@@ -3967,7 +4019,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                   "flex": 1,
                   "flexDirection": "column",
                   "margin": 0,
-                  "minHeight": 0,
+                  "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
                   "position": "relative",
@@ -4037,7 +4089,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                   "flex": 1,
                   "flexDirection": "column",
                   "margin": 0,
-                  "minHeight": 0,
+                  "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
                   "position": "relative",
@@ -4058,6 +4110,1033 @@ exports[`wonder-blocks-modal example 8 1`] = `
 `;
 
 exports[`wonder-blocks-modal example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": "60.42%",
+          "margin": 0,
+          "maxWidth": 888,
+          "minHeight": 464,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "86.72%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "height": "100%",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#0a2a66",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "display": "flex",
+              "flex": "0 0 50%",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "left": 8,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "absolute",
+                "top": 8,
+                "zIndex": 1,
+              }
+            }
+          >
+            <button
+              aria-label="Close modal"
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 0,
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "width": 40,
+                }
+              }
+              tabIndex={0}
+              type="button"
+            >
+              <svg
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": "100%",
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "backgroundImage": "url('pencilHand-800x.png')",
+                    "backgroundPosition": "center bottom",
+                    "backgroundRepeat": "no-repeat",
+                    "backgroundSize": "contain",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "height": "100%",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                    "zIndex": 0,
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "white",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 50%",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": "100%",
+                  "minWidth": 0,
+                  "padding": 64,
+                  "paddingBottom": 32,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h2
+                  className=""
+                  style={
+                    Object {
+                      "@media (maxWidth: 1023px)": Object {
+                        "fontSize": 24,
+                        "lineHeight": "28px",
+                      },
+                      "@media (minWidth: 1024px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontWeight": 700,
+                      "marginBottom": 0,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Welcome to your class.
+                </h2>
+                <div
+                  aria-hidden="true"
+                  className=""
+                  style={
+                    Object {
+                      "MsFlexBasis": 16,
+                      "MsFlexPreferredSize": 16,
+                      "WebkitFlexBasis": 16,
+                      "alignItems": "stretch",
+                      "borderStyle": "solid",
+                      "borderWidth": 0,
+                      "boxSizing": "border-box",
+                      "display": "flex",
+                      "flexBasis": 16,
+                      "flexDirection": "column",
+                      "flexShrink": 0,
+                      "margin": 0,
+                      "minHeight": 0,
+                      "minWidth": 0,
+                      "padding": 0,
+                      "position": "relative",
+                      "width": 16,
+                      "zIndex": 0,
+                    }
+                  }
+                />
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Assignments or goals your teacher creates for you will appear at the top of your Khan Academy home page.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderTopColor": "rgba(33,36,44,0.16)",
+                "borderTopStyle": "solid",
+                "borderTopWidth": 1,
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": "0 0 auto",
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+                "margin": 0,
+                "minHeight": 64,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              role="button"
+              style={
+                Object {
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "#1865f2",
+                  "border": "none",
+                  "borderRadius": 4,
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 0,
+                  "outline": "none",
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                }
+              }
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato, sans-serif",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "lineHeight": "20px",
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+              >
+                Onward! (no-op)
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 10 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "height": "60.42%",
+          "margin": 0,
+          "maxWidth": 888,
+          "minHeight": 464,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "86.72%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "height": "100%",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "#0a2a66",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "display": "flex",
+              "flex": "0 0 50%",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "left": 8,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "absolute",
+                "top": 8,
+                "zIndex": 1,
+              }
+            }
+          >
+            <button
+              aria-label="Close modal"
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              style={
+                Object {
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 0,
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "width": 40,
+                }
+              }
+              tabIndex={0}
+              type="button"
+            >
+              <svg
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": "100%",
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <img
+                className="image_1wiipio"
+                src="pencilHand-800x.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "white",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "0 0 50%",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": "100%",
+                  "minWidth": 0,
+                  "padding": 64,
+                  "paddingBottom": 32,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h2
+                  className=""
+                  style={
+                    Object {
+                      "@media (maxWidth: 1023px)": Object {
+                        "fontSize": 24,
+                        "lineHeight": "28px",
+                      },
+                      "@media (minWidth: 1024px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontWeight": 700,
+                      "marginBottom": 0,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Welcome to your class.
+                </h2>
+                <div
+                  aria-hidden="true"
+                  className=""
+                  style={
+                    Object {
+                      "MsFlexBasis": 16,
+                      "MsFlexPreferredSize": 16,
+                      "WebkitFlexBasis": 16,
+                      "alignItems": "stretch",
+                      "borderStyle": "solid",
+                      "borderWidth": 0,
+                      "boxSizing": "border-box",
+                      "display": "flex",
+                      "flexBasis": 16,
+                      "flexDirection": "column",
+                      "flexShrink": 0,
+                      "margin": 0,
+                      "minHeight": 0,
+                      "minWidth": 0,
+                      "padding": 0,
+                      "position": "relative",
+                      "width": 16,
+                      "zIndex": 0,
+                    }
+                  }
+                />
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Assignments or goals your teacher creates for you will appear at the top of your Khan Academy home page.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "center",
+                "borderStyle": "solid",
+                "borderTopColor": "rgba(33,36,44,0.16)",
+                "borderTopStyle": "solid",
+                "borderTopWidth": 1,
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flex": "0 0 auto",
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+                "margin": 0,
+                "minHeight": 64,
+                "minWidth": 0,
+                "padding": 0,
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <button
+              className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+              role="button"
+              style={
+                Object {
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "#1865f2",
+                  "border": "none",
+                  "borderRadius": 4,
+                  "boxSizing": "border-box",
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 0,
+                  "outline": "none",
+                  "paddingBottom": 0,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                }
+              }
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className=""
+                style={
+                  Object {
+                    "MozOsxFontSmoothing": "grayscale",
+                    "WebkitFontSmoothing": "antialiased",
+                    "display": "block",
+                    "fontFamily": "Lato, sans-serif",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "lineHeight": "20px",
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+              >
+                Onward! (no-op)
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 11 1`] = `
 <div
   className=""
   style={
@@ -4235,6 +5314,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <svg
                 className=""
@@ -4288,7 +5368,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   "flex": 1,
                   "flexDirection": "column",
                   "margin": 0,
-                  "minHeight": 0,
+                  "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
                   "position": "relative",
@@ -4365,7 +5445,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 10 1`] = `
+exports[`wonder-blocks-modal example 12 1`] = `
 <div
   className=""
   style={
@@ -4543,6 +5623,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <svg
                 className=""
@@ -4596,7 +5677,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                   "flex": 1,
                   "flexDirection": "column",
                   "margin": 0,
-                  "minHeight": 0,
+                  "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
                   "paddingBottom": 32,
@@ -4726,6 +5807,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
+              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
@@ -4752,6 +5834,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                 }
               }
               tabIndex={0}
+              type="button"
             >
               <span
                 className=""
@@ -4764,7 +5847,11 @@ exports[`wonder-blocks-modal example 10 1`] = `
                     "fontSize": 16,
                     "fontWeight": "bold",
                     "lineHeight": "20px",
+                    "overflow": "hidden",
                     "pointerEvents": "none",
+                    "textOverflow": "ellipsis",
+                    "userSelect": "none",
+                    "whiteSpace": "nowrap",
                   }
                 }
               >

@@ -1,9 +1,10 @@
 // @flow
 import * as React from "react";
 import PropTypes from "prop-types";
-
-import LinkCore from "./link-core.js";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import LinkCore from "./link-core.js";
 
 export type SharedProps = {|
     /**
@@ -54,7 +55,7 @@ export type SharedProps = {|
     /**
      * Custom styles.
      */
-    style?: any,
+    style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
     /*
     style?: Style<Exact<{
@@ -124,7 +125,12 @@ export default class Link extends React.Component<SharedProps> {
         );
 
         return (
-            <ClickableBehavior disabled={false} onClick={onClick} href={href}>
+            <ClickableBehavior
+                disabled={false}
+                onClick={onClick}
+                href={href}
+                triggerOnSpace={false}
+            >
                 {(state, handlers) => {
                     return (
                         <LinkCore

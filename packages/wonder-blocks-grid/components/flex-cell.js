@@ -1,11 +1,14 @@
 // @flow
 import * as React from "react";
 import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import type {
+    MediaSize,
+    MediaSpec,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import styles from "../util/styles.js";
 import {matchesSize} from "../util/utils.js";
-
-import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /** Should this cell be shown on a Small Grid? */
@@ -26,7 +29,7 @@ type Props = {|
               totalColumns: number,
           }) => React.Node),
     /** The styling to apply to the cell. */
-    style?: any,
+    style?: StyleType,
     /**
      * The size of the media layout being used. Populated by MediaLayoutWrapper.
      * @ignore

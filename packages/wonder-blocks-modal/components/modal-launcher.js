@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import FocusTrap from "./focus-trap.js";
 import ModalBackdrop from "./modal-backdrop.js";
 import ScrollDisabler from "./scroll-disabler.js";
 import type {ModalElement} from "../util/types.js";
@@ -99,9 +100,11 @@ export default class ModalLauncher extends React.Component<Props, State> {
                 {renderedChildren}
                 {this.state.opened &&
                     ReactDOM.createPortal(
-                        <ModalBackdrop onCloseModal={this.handleCloseModal}>
-                            {this._renderModal()}
-                        </ModalBackdrop>,
+                        <FocusTrap>
+                            <ModalBackdrop onCloseModal={this.handleCloseModal}>
+                                {this._renderModal()}
+                            </ModalBackdrop>
+                        </FocusTrap>,
                         body,
                     )}
                 {this.state.opened && (
