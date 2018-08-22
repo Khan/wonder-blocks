@@ -1746,6 +1746,7 @@ exports[`wonder-blocks-button example 8 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1773,6 +1774,7 @@ exports[`wonder-blocks-button example 8 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -1785,8 +1787,12 @@ exports[`wonder-blocks-button example 8 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
           "visibility": "hidden",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -1866,6 +1872,7 @@ exports[`wonder-blocks-button example 8 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1893,6 +1900,7 @@ exports[`wonder-blocks-button example 8 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -1905,8 +1913,12 @@ exports[`wonder-blocks-button example 8 1`] = `
           "fontSize": 14,
           "fontWeight": "bold",
           "lineHeight": "18px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
           "visibility": "hidden",
+          "whiteSpace": "nowrap",
         }
       }
     >
@@ -2650,6 +2662,7 @@ exports[`wonder-blocks-button example 13 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -2676,6 +2689,7 @@ exports[`wonder-blocks-button example 13 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <span
       className=""
@@ -2688,7 +2702,11 @@ exports[`wonder-blocks-button example 13 1`] = `
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
+          "overflow": "hidden",
           "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
         }
       }
     >

@@ -166,7 +166,7 @@ export default class Button extends React.Component<SharedProps> {
 
         return (
             <ClickableBehavior
-                disabled={spinner || sharedProps.disabled}
+                disabled={spinner || disabled}
                 href={href}
                 onClick={onClick}
             >

@@ -2257,6 +2257,7 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2283,6 +2284,7 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -2295,8 +2297,12 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
         "visibility": "hidden",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -2379,6 +2385,7 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -2405,6 +2412,7 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -2417,8 +2425,12 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
         "visibility": "hidden",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4813,6 +4825,7 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4842,6 +4855,7 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4854,8 +4868,12 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
         "visibility": "hidden",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -4938,6 +4956,7 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -4967,6 +4986,7 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -4979,8 +4999,12 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
         "visibility": "hidden",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -7495,6 +7519,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -7521,6 +7546,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -7533,8 +7559,12 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
         "visibility": "hidden",
+        "whiteSpace": "nowrap",
       }
     }
   >
@@ -7617,6 +7647,7 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  role="button"
   style={
     Object {
       "::MozFocusInner": Object {
@@ -7643,6 +7674,7 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
     }
   }
   tabIndex={-1}
+  type="button"
 >
   <span
     className=""
@@ -7655,8 +7687,12 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
         "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "userSelect": "none",
         "visibility": "hidden",
+        "whiteSpace": "nowrap",
       }
     }
   >
