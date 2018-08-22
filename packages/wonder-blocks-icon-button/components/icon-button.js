@@ -150,6 +150,7 @@ export default class IconButton extends React.Component<SharedProps> {
                 disabled={sharedProps.disabled}
                 href={href}
                 onClick={onClick}
+                role="button"
             >
                 {(state, handlers) => {
                     return (

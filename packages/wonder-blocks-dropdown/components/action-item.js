@@ -106,6 +106,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                 disabled={disabled}
                 onClick={onClick}
                 href={href}
+                role="menuitem"
             >
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
@@ -122,7 +123,6 @@ export default class ActionItem extends React.Component<ActionProps> {
                     const props = {
                         disabled,
                         style: [defaultStyle],
-                        role: "menuitem",
                         ...handlers,
                     };
 

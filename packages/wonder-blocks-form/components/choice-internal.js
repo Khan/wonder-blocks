@@ -118,7 +118,6 @@ type Props = {|
             // eslint-disable-next-line no-unused-vars
             onChange,
             style,
-            // eslint-disable-next-line no-unused-vars
             variant,
             ...coreProps
         } = this.props;
@@ -131,7 +130,7 @@ type Props = {|
                 <ClickableBehavior
                     disabled={coreProps.disabled}
                     onClick={this.handleClick}
-                    triggerOnEnter={false}
+                    role={variant}
                 >
                     {(state, handlers) => {
                         return (

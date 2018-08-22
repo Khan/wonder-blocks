@@ -1,6 +1,44 @@
 // @flow
 import React from "react";
 
+// NOTE: Potentially add to this as more cases come up.
+type ClickableRole =
+    | "button"
+    | "link"
+    | "checkbox"
+    | "radio"
+    | "listbox"
+    | "option"
+    | "menuitem";
+
+const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
+    switch (role) {
+        // Triggers on ENTER, but not SPACE
+        case "link":
+            return {
+                triggerOnEnter: true,
+                triggerOnSpace: false,
+            };
+        // Triggers on SPACE, but not ENTER
+        case "checkbox":
+        case "radio":
+        case "listbox":
+        case "option":
+            return {
+                triggerOnEnter: false,
+                triggerOnSpace: true,
+            };
+        // Triggers on both ENTER and SPACE
+        case "button":
+        case "menuitem":
+        default:
+            return {
+                triggerOnEnter: true,
+                triggerOnSpace: true,
+            };
+    }
+};
+
 type Props = {|
     /**
      * A function that returns the a React `Element`.
@@ -41,19 +79,12 @@ type Props = {|
     history?: any,
 
     /**
-     * Trigger onClick callback and href navigation, if present, on enter key
-     * press. Default true. Only set to false if the component should definitely
-     * NOT trigger onClick on enter. An example of a component that shouldn't
-     * trigger on enter is a Checkbox or some other form component.
+     * A role that encapsulates how the clickable component should behave, which
+     * affects which keyboard actions trigger the component. For example, a
+     * component with role="button" should be able to be clicked with both the
+     * enter and space keys.
      */
-    triggerOnEnter: boolean,
-
-    /**
-     * Trigger onClick callback on space key press. Only set to false if the
-     * component should definitely NOT trigger onClick on space. An example of a
-     * component that shouldn't trigger on space is Link.
-     */
-    triggerOnSpace: boolean,
+    role?: ClickableRole,
 |};
 
 type State = {|
@@ -203,11 +234,13 @@ const startState = {
 export default class ClickableBehavior extends React.Component<Props, State> {
     waitingForClick: boolean;
     enterClick: boolean;
+    triggers: {
+        triggerOnEnter: boolean,
+        triggerOnSpace: boolean,
+    };
 
     static defaultProps = {
         disabled: false,
-        triggerOnEnter: true,
-        triggerOnSpace: true,
     };
 
     static getDerivedStateFromProps(props: Props, state: State) {
@@ -224,6 +257,9 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         super(props);
 
         this.state = startState;
+        this.waitingForClick = false;
+        this.enterClick = false;
+        this.triggers = getAppropriateTriggersForRole(this.props.role);
     }
 
     handleClick = (e: SyntheticMouseEvent<>) => {
@@ -271,7 +307,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
-        const {triggerOnEnter, triggerOnSpace} = this.props;
+        const {triggerOnEnter, triggerOnSpace} = this.triggers;
         if (
             (triggerOnEnter && keyCode === keyCodes.enter) ||
             (triggerOnSpace && keyCode === keyCodes.space)
@@ -291,7 +327,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyUp = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
-        const {triggerOnEnter, triggerOnSpace} = this.props;
+        const {triggerOnEnter, triggerOnSpace} = this.triggers;
         if (
             (triggerOnEnter && keyCode === keyCodes.enter) ||
             (triggerOnSpace && keyCode === keyCodes.space)

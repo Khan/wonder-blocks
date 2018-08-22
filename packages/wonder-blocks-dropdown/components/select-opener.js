@@ -96,7 +96,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
             <ClickableBehavior
                 disabled={disabled}
                 onClick={this.handleClick}
-                triggerOnEnter={false}
+                role="listbox"
             >
                 {(state, handlers) => {
                     const stateStyles = _generateStyles(light, {...state});
