@@ -186,7 +186,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={{marginTop: 8, marginBottom: 8}}
+                dropdownStyle={{marginTop: 6, marginBottom: 6}}
                 initialFocusedIndex={this.selectedIndex}
                 items={items}
                 keyboard={this.state.keyboard}

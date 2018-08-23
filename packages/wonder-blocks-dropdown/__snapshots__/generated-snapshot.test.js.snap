@@ -334,14 +334,12 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
             "border": 0,
           },
           "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
+          "borderColor": "rgba(33,36,44,0.16)",
           "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "color": "#21242c",
+          "color": "rgba(33,36,44,0.64)",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
@@ -363,7 +361,6 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "color": "rgba(33,36,44,0.50)",
             "display": "block",
             "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
@@ -402,14 +399,9 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         height={16}
         style={
           Object {
-            "color": "rgba(33,36,44,0.50)",
             "display": "inline-block",
             "minWidth": 16,
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
-            "userSelect": "none",
             "verticalAlign": "text-bottom",
-            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -417,7 +409,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       >
         <path
           d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
+          fill="rgba(33,36,44,0.64)"
         />
       </svg>
     </button>
@@ -489,9 +481,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
             "border": 0,
           },
           "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
+          "borderColor": "rgba(33,36,44,0.16)",
           "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 1,
@@ -558,11 +548,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           Object {
             "display": "inline-block",
             "minWidth": 16,
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
-            "userSelect": "none",
             "verticalAlign": "text-bottom",
-            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -570,7 +556,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       >
         <path
           d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
+          fill="rgba(33,36,44,0.64)"
         />
       </svg>
     </button>
@@ -642,14 +628,12 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
             "border": 0,
           },
           "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
           "borderColor": "rgba(33,36,44,0.16)",
           "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "color": "#21242c",
+          "color": "rgba(33,36,44,0.64)",
           "cursor": "auto",
           "display": "inline-flex",
           "height": 40,
@@ -672,7 +656,6 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "color": "rgba(33,36,44,0.32)",
             "display": "block",
             "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
@@ -711,14 +694,9 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         height={16}
         style={
           Object {
-            "color": "rgba(33,36,44,0.32)",
             "display": "inline-block",
             "minWidth": 16,
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
-            "userSelect": "none",
             "verticalAlign": "text-bottom",
-            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -726,7 +704,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       >
         <path
           d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
+          fill="rgba(33,36,44,0.32)"
         />
       </svg>
     </button>
@@ -823,11 +801,13 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
               "border": 0,
             },
             "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "border": "none",
+            "backgroundColor": "transparent",
+            "borderColor": "rgba(255,255,255,0.50)",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 1,
             "boxSizing": "border-box",
-            "color": "#21242c",
+            "color": "rgba(255,255,255,0.50)",
             "display": "inline-flex",
             "height": 40,
             "justifyContent": "space-between",
@@ -849,7 +829,6 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
             Object {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
-              "color": "rgba(33,36,44,0.50)",
               "display": "block",
               "fontFamily": "Lato, sans-serif",
               "fontSize": 16,
@@ -888,14 +867,9 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
           height={16}
           style={
             Object {
-              "color": "rgba(33,36,44,0.50)",
               "display": "inline-block",
               "minWidth": 16,
-              "overflow": "hidden",
-              "textOverflow": "ellipsis",
-              "userSelect": "none",
               "verticalAlign": "text-bottom",
-              "whiteSpace": "nowrap",
             }
           }
           viewBox="0 0 16 16"
@@ -903,7 +877,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         >
           <path
             d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            fill="currentColor"
+            fill="#ffffff"
           />
         </svg>
       </button>
@@ -976,14 +950,12 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
             "border": 0,
           },
           "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
+          "borderColor": "rgba(33,36,44,0.16)",
           "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "color": "#21242c",
+          "color": "rgba(33,36,44,0.64)",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
@@ -1005,7 +977,6 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "color": "rgba(33,36,44,0.50)",
             "display": "block",
             "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
@@ -1044,14 +1015,9 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
         height={16}
         style={
           Object {
-            "color": "rgba(33,36,44,0.50)",
             "display": "inline-block",
             "minWidth": 16,
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
-            "userSelect": "none",
             "verticalAlign": "text-bottom",
-            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -1059,7 +1025,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
       >
         <path
           d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
+          fill="rgba(33,36,44,0.64)"
         />
       </svg>
     </button>
@@ -1131,9 +1097,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
             "border": 0,
           },
           "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": "none",
-          "borderColor": "rgba(33,36,44,0.50)",
+          "borderColor": "rgba(33,36,44,0.16)",
           "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 1,
@@ -1200,11 +1164,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           Object {
             "display": "inline-block",
             "minWidth": 16,
-            "overflow": "hidden",
-            "textOverflow": "ellipsis",
-            "userSelect": "none",
             "verticalAlign": "text-bottom",
-            "whiteSpace": "nowrap",
           }
         }
         viewBox="0 0 16 16"
@@ -1212,7 +1172,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       >
         <path
           d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
+          fill="rgba(33,36,44,0.64)"
         />
       </svg>
     </button>
