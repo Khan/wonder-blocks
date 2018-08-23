@@ -223,6 +223,7 @@ const _generateStyles = (light, placeholder) => {
     } else {
         newStyles = {
             default: {
+                backgroundColor: white,
                 borderColor: offBlack16,
                 borderWidth: 1,
                 color: placeholder ? offBlack64 : offBlack,
