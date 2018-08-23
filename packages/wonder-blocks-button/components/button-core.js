@@ -36,7 +36,7 @@ export default class ButtonCore extends React.Component<Props> {
             children,
             skipClientNav,
             color,
-            disabled,
+            disabled: disabledProp,
             focused,
             hovered,
             href,
@@ -58,6 +58,8 @@ export default class ButtonCore extends React.Component<Props> {
                 : SemanticColor.controlDefault;
 
         const buttonStyles = _generateStyles(buttonColor, kind, light);
+
+        const disabled = spinner || disabledProp;
 
         const defaultStyle = [
             sharedStyles.shared,

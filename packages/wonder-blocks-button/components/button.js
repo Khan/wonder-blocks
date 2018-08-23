@@ -20,6 +20,9 @@ export type SharedProps = {|
 
     /**
      * If true, replaces the contents with a spinner.
+     *
+     * Note: setting this prop to `true` will disable the button.
+     *
      * TODO(kevinb): support spinner + light once we have designs
      */
     spinner: boolean,
@@ -184,7 +187,7 @@ export default class Button extends React.Component<SharedProps> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
-                            disabled={spinner || disabled}
+                            disabled={disabled}
                             spinner={spinner}
                             skipClientNav={skipClientNav}
                             href={href}
