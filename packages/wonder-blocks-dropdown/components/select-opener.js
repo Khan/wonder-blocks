@@ -5,25 +5,21 @@ import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {
-    View,
-    addStyle,
-    getClickableBehavior,
-} from "@khanacademy/wonder-blocks-core";
 
 const StyledButton = addStyle("button");
 
 const {
     blue,
-    darkBlue,
     white,
+    white50,
     offBlack,
     offBlack16,
     offBlack32,
-    offBlack50,
+    offBlack64,
 } = Color;
 
 type SelectOpenerProps = {|
@@ -37,6 +33,9 @@ type SelectOpenerProps = {|
      * Default false.
      */
     disabled: boolean,
+
+    //TODO: error state
+    // error: boolean,
 
     /**
      * Whether the displayed text is a placeholder, determined by the creator
@@ -83,24 +82,26 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
-        const textStyles = [
-            styles.text,
-            isPlaceholder
-                ? disabled
-                    ? styles.placeholderDisabled
-                    : styles.placeholder
-                : disabled && styles.textDisabled,
-        ];
-
         return (
             <ClickableBehavior
                 disabled={disabled}
                 onClick={this.handleClick}
-                triggerOnEnter={false}
+                role="listbox"
             >
                 {(state, handlers) => {
-                    const stateStyles = _generateStyles(light, {...state});
+                    const stateStyles = _generateStyles(light, isPlaceholder);
                     const {hovered, focused, pressed} = state;
+
+                    // The icon colors are kind of fickle. This is just logic
+                    // based on the zeplin design.
+                    const iconColor = light
+                        ? disabled || pressed
+                            ? "currentColor"
+                            : white
+                        : disabled
+                            ? offBlack32
+                            : offBlack64;
+
                     return (
                         <StyledButton
                             disabled={disabled}
@@ -118,14 +119,14 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             ]}
                             {...handlers}
                         >
-                            <LabelMedium style={textStyles}>
+                            <LabelMedium style={styles.text}>
                                 {children}
                             </LabelMedium>
-                            <View style={styles.spacing} />
                             <Icon
                                 icon={icons.caretDown}
+                                color={iconColor}
                                 size="small"
-                                style={[styles.caret, textStyles]}
+                                style={styles.caret}
                             />
                         </StyledButton>
                     );
@@ -145,34 +146,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         color: offBlack,
-        backgroundColor: white,
         height: 40,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.
         paddingLeft: 16,
         paddingRight: 12,
-        border: "none",
+        borderWidth: 0,
         borderRadius: buttonRadius,
+        borderStyle: "solid",
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
         whiteSpace: "nowrap",
     },
 
-    textDisabled: {
-        color: offBlack32,
-    },
-
-    placeholder: {
-        color: offBlack50,
-    },
-
-    placeholderDisabled: {
-        color: offBlack16,
-    },
-
     text: {
+        marginRight: Spacing.xSmall,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",
@@ -182,62 +172,84 @@ const styles = StyleSheet.create({
     caret: {
         minWidth: 16,
     },
-
-    spacing: {
-        minWidth: Spacing.xSmall,
-    },
 });
 
-const _generateStyles = (light, hovered, focused, pressed) => {
+// These values are default padding (16 and 12) minus 1, because
+// changing the borderWidth to 2 messes up the button width
+// and causes it to move a couple pixels. This fixes that.
+const adjustedPaddingLeft = 16 - 1;
+const adjustedPaddingRight = 12 - 1;
+
+const stateStyles = {};
+
+const _generateStyles = (light, placeholder) => {
+    // "hash" the parameters
+    const styleKey = `${String(light)}-${String(placeholder)}`;
+    if (stateStyles[styleKey]) {
+        return stateStyles[styleKey];
+    }
+
     let newStyles = {};
     if (light) {
         newStyles = {
-            default: {},
+            default: {
+                backgroundColor: "transparent",
+                color: placeholder ? white50 : white,
+                borderColor: white50,
+                borderWidth: 1,
+            },
             focus: {
-                boxShadow: `0 0 0 1px ${darkBlue}, 0 0 0 3px ${white}`,
+                borderColor: white,
+                borderWidth: 2,
+                paddingLeft: adjustedPaddingLeft,
+                paddingRight: adjustedPaddingRight,
             },
             active: {
-                boxShadow: `0 0 0 1px ${darkBlue}, 0 0 0 3px ${mix(
-                    fade(blue, 0.32),
-                    white,
-                )}`,
-                background: mix(fade(blue, 0.32), white),
+                paddingLeft: adjustedPaddingLeft,
+                paddingRight: adjustedPaddingRight,
+                borderColor: mix(fade(blue, 0.32), white),
+                borderWidth: 2,
+                color: placeholder
+                    ? mix(fade(white, 0.32), blue)
+                    : mix(fade(blue, 0.32), white),
+                backgroundColor: mix(offBlack32, blue),
             },
             disabled: {
+                borderColor: mix(fade(white, 0.32), blue),
+                color: mix(fade(white, 0.32), blue),
                 cursor: "auto",
             },
         };
     } else {
         newStyles = {
             default: {
-                borderColor: offBlack50,
-                borderStyle: "solid",
+                backgroundColor: white,
+                borderColor: offBlack16,
                 borderWidth: 1,
+                color: placeholder ? offBlack64 : offBlack,
             },
             focus: {
                 borderColor: blue,
                 borderWidth: 2,
-                // These values are default padding (16 and 12) minus 1, because
-                // changing the borderWidth to 2 messes up the button width
-                // and causes it to move a couple pixels. This fixes that.
-                paddingLeft: 16 - 1,
-                paddingRight: 12 - 1,
+                paddingLeft: adjustedPaddingLeft,
+                paddingRight: adjustedPaddingRight,
             },
             active: {
                 background: mix(fade(blue, 0.32), white),
                 borderColor: mix(offBlack32, blue),
                 borderWidth: 2,
-                // These values are default padding (16 and 12) minus 1, because
-                // changing the borderWidth to 2 messes up the button width
-                // and causes it to move a couple pixels. This fixes that.
-                paddingLeft: 16 - 1,
-                paddingRight: 12 - 1,
+                paddingLeft: adjustedPaddingLeft,
+                paddingRight: adjustedPaddingRight,
             },
             disabled: {
+                backgroundColor: "transparent",
                 borderColor: offBlack16,
+                color: offBlack64,
                 cursor: "auto",
             },
         };
     }
-    return StyleSheet.create(newStyles);
+
+    stateStyles[styleKey] = StyleSheet.create(newStyles);
+    return stateStyles[styleKey];
 };

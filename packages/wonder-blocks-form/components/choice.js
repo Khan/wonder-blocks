@@ -72,7 +72,8 @@ type Props = {|
  *
  * If you wish to use just a single field, use Checkbox or Radio with the
  * optional label and description props.
- */ export default class Choice extends React.Component<Props> {
+ */
+export default class Choice extends React.Component<Props> {
     static defaultProps = {
         disabled: false,
     };
@@ -84,6 +85,7 @@ type Props = {|
             return Radio;
         }
     }
+
     render() {
         // we don't need this going into the ChoiceComponent
         // eslint-disable-next-line no-unused-vars

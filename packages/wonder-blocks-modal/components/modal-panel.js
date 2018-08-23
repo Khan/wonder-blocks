@@ -88,7 +88,7 @@ export default class ModalPanel extends React.Component<Props> {
                 <IconButton
                     icon={icons.dismiss}
                     // TODO(mdr): Translate this string for i18n.
-                    ariaLabel="Close modal"
+                    aria-label="Close modal"
                     onClick={onClickCloseButton}
                     kind={
                         topBackgroundColor === "dark" ? "primary" : "tertiary"

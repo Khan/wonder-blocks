@@ -180,6 +180,7 @@ export default class Button extends React.Component<SharedProps> {
                 disabled={spinner || disabled}
                 href={href}
                 onClick={onClick}
+                role="button"
             >
                 {(state, handlers) => {
                     return (

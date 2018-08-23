@@ -4,8 +4,10 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 import Dropdown from "./dropdown.js";
 import SelectOpener from "./select-opener.js";
+import {selectDropdownStyle} from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
@@ -186,7 +188,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={{marginTop: 8, marginBottom: 8}}
+                dropdownStyle={selectDropdownStyle}
                 initialFocusedIndex={this.selectedIndex}
                 items={items}
                 keyboard={this.state.keyboard}
