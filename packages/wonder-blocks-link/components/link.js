@@ -129,7 +129,7 @@ export default class Link extends React.Component<SharedProps> {
                 disabled={false}
                 onClick={onClick}
                 href={href}
-                triggerOnSpace={false}
+                role="link"
             >
                 {(state, handlers) => {
                     return (

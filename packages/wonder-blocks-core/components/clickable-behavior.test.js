@@ -170,7 +170,7 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
     });
 
-    it("changes pressed state on only enter key down/up if triggerOnSpace=false", () => {
+    it("changes pressed state on only enter key down/up for a link", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
         const link = mount(
@@ -178,7 +178,7 @@ describe("ClickableBehavior", () => {
                 disabled={false}
                 onClick={(e) => onClick(e)}
                 href="https://www.khanacademy.org"
-                triggerOnSpace={false}
+                role="link"
             >
                 {(state, handlers) => {
                     return (
@@ -364,12 +364,10 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
         const link = mount(
-            // triggerOnSpace is false because links should not navigate or
-            // be activated on a space press
             <ClickableBehavior
-                triggerOnSpace={false}
                 href="https://khanacademy.org/"
                 onClick={(e) => onClick(e)}
+                role="link"
             >
                 {(state, handlers) => {
                     // The base element here doesn't matter in this testing
@@ -406,15 +404,12 @@ describe("ClickableBehavior", () => {
         expect(window.location.assign).toHaveBeenCalledTimes(1);
     });
 
-    it("calls onClick correctly for a component with triggerOnEnter false", () => {
+    it("calls onClick correctly for a component that doesn't respond to enter", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
         const checkbox = mount(
             // triggerOnEnter may be false for some elements e.g. checkboxes
-            <ClickableBehavior
-                triggerOnEnter={false}
-                onClick={(e) => onClick(e)}
-            >
+            <ClickableBehavior onClick={(e) => onClick(e)} role="checkbox">
                 {(state, handlers) => {
                     // The base element here doesn't matter in this testing
                     // environment, but the simulated events in the test are in
@@ -520,10 +515,7 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
         const checkbox = mount(
-            <ClickableBehavior
-                triggerOnEnter={false}
-                onClick={(e) => onClick(e)}
-            >
+            <ClickableBehavior onClick={(e) => onClick(e)} role="checkbox">
                 {(state, handlers) => {
                     // The base element here doesn't matter in this testing
                     // environment, but the simulated events in the test are in
