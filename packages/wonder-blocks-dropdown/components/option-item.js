@@ -78,29 +78,22 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     }
 
+    handleClick = () => {
+        const {onClick, onToggle, value} = this.props;
+        onToggle(value);
+        if (onClick) {
+            onClick();
+        }
+    };
+
     render() {
-        const {
-            disabled,
-            label,
-            onClick,
-            onToggle,
-            selected,
-            value,
-        } = this.props;
+        const {disabled, label, selected} = this.props;
 
         const ClickableBehavior = getClickableBehavior();
         const CheckComponent = this.getCheckComponent();
 
         return (
-            <ClickableBehavior
-                disabled={disabled}
-                onClick={() => {
-                    onToggle(value);
-                    if (onClick) {
-                        onClick();
-                    }
-                }}
-            >
+            <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
 
@@ -139,12 +132,13 @@ const {blue, white, offBlack, offBlack32} = Color;
 
 const styles = StyleSheet.create({
     itemContainer: {
+        flexDirection: "row",
         backgroundColor: white,
         color: offBlack,
-        flexDirection: "row",
         alignItems: "center",
         height: 40,
         minHeight: 40,
+        border: 0,
         outline: 0,
         paddingLeft: Spacing.xSmall,
         paddingRight: Spacing.medium,

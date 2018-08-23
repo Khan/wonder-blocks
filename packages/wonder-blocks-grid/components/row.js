@@ -1,13 +1,16 @@
 // @flow
 import * as React from "react";
 import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import type {
+    MediaSize,
+    MediaSpec,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import styles from "../util/styles.js";
 import {matchesSize} from "../util/utils.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 import Gutter from "./gutter.js";
-
-import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
 
 /**
  * A Row holds all of the Cells that make up the contents of the grid. A row
@@ -50,7 +53,7 @@ class Row extends React.Component<{
               totalColumns: number,
           }) => React.Node),
     /** The styling to apply to the row. */
-    style?: any,
+    style?: StyleType,
     /**
      * The size of the media layout being used. Populated by MediaLayoutWrapper.
      * @ignore

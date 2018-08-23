@@ -2,16 +2,19 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
+import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import type {MediaSize} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalFooter from "./modal-footer.js";
 import ModalPanel from "./modal-panel.js";
-
-import type {MediaSize} from "@khanacademy/wonder-blocks-core";
+import ModalContent from "./modal-content.js";
 
 type BaseProps = {|
+    /** Whether to allow the sidebar contents to be fullbleed. */
+    fullBleedSidebar: boolean,
+
     /** The sidebar contents (which becomes the header on mobile screens). */
     sidebar: React.Node,
 
@@ -56,6 +59,7 @@ class ContentWrapper extends React.Component<WrappedProps> {
         const {
             onClickCloseButton,
             sidebar,
+            fullBleedSidebar,
             content,
             footer,
             mediaSize,
@@ -69,7 +73,15 @@ class ContentWrapper extends React.Component<WrappedProps> {
                         color="dark"
                         onClickCloseButton={onClickCloseButton}
                         style={styles.column}
-                        content={sidebar}
+                        content={
+                            fullBleedSidebar ? (
+                                <ModalContent style={styles.fullBleed}>
+                                    {sidebar}
+                                </ModalContent>
+                            ) : (
+                                sidebar
+                            )
+                        }
                     />
                     <ModalPanel
                         style={styles.column}
@@ -90,7 +102,15 @@ class ContentWrapper extends React.Component<WrappedProps> {
                         color="dark"
                         onClickCloseButton={onClickCloseButton}
                         style={styles.smallColumn}
-                        content={sidebar}
+                        content={
+                            fullBleedSidebar ? (
+                                <ModalContent style={styles.fullBleed}>
+                                    {sidebar}
+                                </ModalContent>
+                            ) : (
+                                sidebar
+                            )
+                        }
                         scrollOverflow={false}
                     />
                     <ModalPanel
@@ -122,15 +142,18 @@ const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
  */
 export default class TwoColumnModal extends React.Component<BaseProps> {
     static defaultProps = {
+        fullBleedSidebar: true,
         onClickCloseButton: () => {},
     };
 
     render() {
         return (
             <ModalDialog
-                style={(mediaSize) =>
-                    mediaSize === "small" ? styles.smallDialog : styles.dialog
-                }
+                // TODO(jeresig): Replace with <Layout/>
+                //style={(mediaSize) =>
+                //    mediaSize === "small" ? styles.smallDialog : styles.dialog
+                //}
+                style={styles.dialog}
             >
                 <WrappedContentWrapper {...this.props} />
             </ModalDialog>
@@ -168,6 +191,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         height: "100%",
         width: "100%",
+    },
+
+    fullBleed: {
+        padding: 0,
     },
 
     smallContentWrapper: {

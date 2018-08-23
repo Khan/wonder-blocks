@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import IconButtonCore from "./icon-button-core.js";
 
 export type SharedProps = {|
@@ -53,7 +54,7 @@ export type SharedProps = {|
     /**
      * Optional custom styles.
      */
-    style?: any,
+    style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
     /*
     style?: Style<Exact<{

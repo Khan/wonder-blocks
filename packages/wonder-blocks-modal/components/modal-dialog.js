@@ -1,16 +1,17 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-
 import {
     View,
     MediaLayout,
     MEDIA_MODAL_SPEC,
 } from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 type Props = {|
     children: React.Node,
-    style?: any,
+    style?: StyleType,
 |};
 
 export default class ModalDialog extends React.Component<Props> {
@@ -21,7 +22,8 @@ export default class ModalDialog extends React.Component<Props> {
                 <View
                     style={[
                         styles.wrapper,
-                        (mediaSize) => mediaSize === "small" && styles.small,
+                        // TODO(jeresig): Replace with <Layout/>
+                        //(mediaSize) => mediaSize === "small" && styles.small,
                         style,
                     ]}
                     role="dialog"

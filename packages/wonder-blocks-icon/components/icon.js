@@ -3,8 +3,10 @@ import React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import type {IconAsset, IconSize} from "../util/icon-assets.js";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {getPathForIcon, viewportPixelsForSize} from "../util/icon-util.js";
+
+import type {IconAsset, IconSize} from "../util/icon-assets.js";
 
 type Props = {|
     /**
@@ -30,7 +32,7 @@ type Props = {|
      * Styles that can be processed by `addStyle` — bare style objects,
      * Aphrodite style objects, or arrays thereof.
      */
-    style?: any,
+    style?: StyleType,
 |};
 
 const StyledSVG = addStyle("svg");
@@ -77,7 +79,14 @@ export default class Icon extends React.PureComponent<Props> {
     };
 
     render() {
+        // There is a weird thing where Flow will only recognize a string-quoted
+        // prop name if it's in single quotes, but our tooling normalizes it to
+        // double-quotes on commit. So the aria-label prop isn't included in
+        // props validation.
+        // eslint-disable-next-line react/prop-types
+        const {"aria-label": ariaLabel} = this.props;
         const {color, icon, size, style} = this.props;
+
         const {assetSize, path} = getPathForIcon(icon, size);
         const pixelSize = viewportPixelsForSize(size);
         const viewboxPixelSize = viewportPixelsForSize(assetSize);
@@ -86,12 +95,7 @@ export default class Icon extends React.PureComponent<Props> {
                 style={[styles.svg, style]}
                 width={pixelSize}
                 height={pixelSize}
-                // There is a weird thing where Flow will only recognize a
-                // string-quoted prop name if it's in single quotes, but our
-                // tooling normalizes it to double-quotes on commit. So the
-                // aria-label prop isn't included in props validation.
-                // eslint-disable-next-line react/prop-types
-                aria-label={this.props["aria-label"]}
+                aria-label={ariaLabel}
                 viewBox={`0 0 ${viewboxPixelSize} ${viewboxPixelSize}`}
             >
                 <path fill={color} d={path} />

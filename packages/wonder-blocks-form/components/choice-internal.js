@@ -4,11 +4,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core.js";
 import RadioCore from "./radio-core.js";
 
@@ -26,13 +26,20 @@ type Props = {|
     onChange: (newCheckedState: boolean) => void,
 
     /**
+     * Optional label if it is not obvious from the context what the checkbox
+     * does. If the label and id props are defined, this props does not need to
+     * be provided as the label would be matched to this input.
+     */
+    "aria-label"?: string,
+
+    /**
      * Used for accessibility purposes, where the label id should match the
      * input id.
      */
     id?: string,
 
     /** Optional additional styling. */
-    style?: any,
+    style?: StyleType,
 
     /** Optional id for testing purposes. */
     testId?: string,
@@ -57,8 +64,7 @@ type Props = {|
  * and RadioGroup. This design allows for more explicit prop typing. For
  * example, we can make onChange a required prop on Checkbox but not on Choice
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
- */
-export default class ChoiceInternal extends React.Component<Props> {
+ */ export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps = {
         checked: false,
         disabled: false,
@@ -87,7 +93,6 @@ export default class ChoiceInternal extends React.Component<Props> {
             return CheckboxCore;
         }
     }
-
     getLabel() {
         const {disabled, id, label} = this.props;
         return (
@@ -100,14 +105,12 @@ export default class ChoiceInternal extends React.Component<Props> {
             </LabelMedium>
         );
     }
-
     getDescription() {
         const {description} = this.props;
         return (
             <LabelSmall style={styles.description}>{description}</LabelSmall>
         );
     }
-
     render() {
         const {
             label,
@@ -152,14 +155,12 @@ export default class ChoiceInternal extends React.Component<Props> {
         );
     }
 }
-
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
         alignItems: "flex-start",
         outline: "none",
     },
-
     label: {
         userSelect: "none",
         // NOTE: The checkbox/radio button (height 16px) should be center
@@ -168,11 +169,9 @@ const styles = StyleSheet.create({
         // desired alignment.
         marginTop: -2,
     },
-
     disabledLabel: {
         color: Color.offBlack32,
     },
-
     description: {
         // 16 for icon + 8 for spacing strut
         marginLeft: Spacing.medium + Spacing.xSmall,
