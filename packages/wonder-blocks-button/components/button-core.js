@@ -47,6 +47,7 @@ export default class ButtonCore extends React.Component<Props> {
             style,
             testId,
             spinner,
+            "aria-label": ariaLabel,
             ...handlers
         } = this.props;
         const {router} = this.context;
@@ -72,6 +73,7 @@ export default class ButtonCore extends React.Component<Props> {
 
         const commonProps = {
             "aria-disabled": disabled ? "true" : undefined,
+            "aria-label": ariaLabel,
             "data-test-id": testId,
             role: "button",
             style: [defaultStyle, style],

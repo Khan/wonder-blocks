@@ -25,6 +25,13 @@ export type SharedProps = {|
     spinner: boolean,
 
     /**
+     * This should be use when `spinner={true}` to let people using screen
+     * readers that the action taken by clicking the button will take some
+     * time to complete.
+     */
+    "aria-label": string,
+
+    /**
      * The color of the button, either blue or red.
      */
     color: "default" | "destructive",
@@ -143,6 +150,7 @@ export default class Button extends React.Component<SharedProps> {
         size: "medium",
         disabled: false,
         spinner: false,
+        "aria-label": "",
     };
 
     static contextTypes = {router: PropTypes.any};

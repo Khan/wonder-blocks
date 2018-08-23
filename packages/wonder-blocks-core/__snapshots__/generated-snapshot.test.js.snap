@@ -180,6 +180,7 @@ exports[`wonder-blocks-core example 4 1`] = `
     }
   >
     <button
+      aria-label=""
       className=""
       disabled={false}
       onBlur={[Function]}

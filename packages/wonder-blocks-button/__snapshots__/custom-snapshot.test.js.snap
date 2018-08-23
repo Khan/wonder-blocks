@@ -3,6 +3,7 @@
 exports[`ButtonCore kind:primary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -72,6 +73,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
 
 exports[`ButtonCore kind:primary color:default size:medium light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -142,6 +144,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
 
 exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -212,6 +215,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
 
 exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -283,6 +287,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
 exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -352,6 +357,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
 
 exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -422,6 +428,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
 
 exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -492,6 +499,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
 
 exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -563,6 +571,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
 exports[`ButtonCore kind:primary color:default size:small light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -632,6 +641,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
 
 exports[`ButtonCore kind:primary color:default size:small light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -702,6 +712,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
 
 exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -772,6 +783,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
 
 exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -843,6 +855,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
 exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -912,6 +925,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
 
 exports[`ButtonCore kind:primary color:default size:small light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -982,6 +996,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
 
 exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1052,6 +1067,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
 
 exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1123,6 +1139,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
 exports[`ButtonCore kind:primary color:destructive size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -1192,6 +1209,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1262,6 +1280,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1332,6 +1351,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1403,6 +1423,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
 exports[`ButtonCore kind:primary color:destructive size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -1472,6 +1493,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1542,6 +1564,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1612,6 +1635,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1683,6 +1707,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
 exports[`ButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -1752,6 +1777,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
 
 exports[`ButtonCore kind:primary color:destructive size:small light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1822,6 +1848,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
 
 exports[`ButtonCore kind:primary color:destructive size:small light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1892,6 +1919,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
 
 exports[`ButtonCore kind:primary color:destructive size:small light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -1963,6 +1991,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
 exports[`ButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -2032,6 +2061,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
 
 exports[`ButtonCore kind:primary color:destructive size:small light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -2102,6 +2132,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
 
 exports[`ButtonCore kind:primary color:destructive size:small light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -2172,6 +2203,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
 
 exports[`ButtonCore kind:primary color:destructive size:small light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -2243,6 +2275,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
 exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
 <button
   aria-disabled="true"
+  aria-label="loading"
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -2371,6 +2404,7 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
 exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
 <button
   aria-disabled="true"
+  aria-label="loading"
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -2499,6 +2533,7 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
 exports[`ButtonCore kind:secondary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -2571,6 +2606,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
 
 exports[`ButtonCore kind:secondary color:default size:medium light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -2643,6 +2679,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
 
 exports[`ButtonCore kind:secondary color:default size:medium light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -2715,6 +2752,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
 
 exports[`ButtonCore kind:secondary color:default size:medium light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -2788,6 +2826,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
 exports[`ButtonCore kind:secondary color:default size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -2860,6 +2899,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
 
 exports[`ButtonCore kind:secondary color:default size:medium light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -2932,6 +2972,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
 
 exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3004,6 +3045,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
 
 exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3077,6 +3119,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
 exports[`ButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -3149,6 +3192,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
 
 exports[`ButtonCore kind:secondary color:default size:small light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3221,6 +3265,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
 
 exports[`ButtonCore kind:secondary color:default size:small light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3293,6 +3338,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
 
 exports[`ButtonCore kind:secondary color:default size:small light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3366,6 +3412,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
 exports[`ButtonCore kind:secondary color:default size:small light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -3438,6 +3485,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
 
 exports[`ButtonCore kind:secondary color:default size:small light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3510,6 +3558,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
 
 exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3582,6 +3631,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
 
 exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3655,6 +3705,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -3727,6 +3778,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3799,6 +3851,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3871,6 +3924,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -3944,6 +3998,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -4016,6 +4071,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4088,6 +4144,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4160,6 +4217,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4233,6 +4291,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
 exports[`ButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -4305,6 +4364,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4377,6 +4437,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4449,6 +4510,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4522,6 +4584,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
 exports[`ButtonCore kind:secondary color:destructive size:small light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -4594,6 +4657,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4666,6 +4730,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4738,6 +4803,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -4811,6 +4877,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
 exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
 <button
   aria-disabled="true"
+  aria-label="loading"
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -4942,6 +5009,7 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
 exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
 <button
   aria-disabled="true"
+  aria-label="loading"
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -5073,6 +5141,7 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
 exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -5142,6 +5211,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5220,6 +5290,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5298,6 +5369,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5377,6 +5449,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -5446,6 +5519,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5524,6 +5598,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5602,6 +5677,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5681,6 +5757,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
 exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -5750,6 +5827,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
 
 exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5828,6 +5906,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
 
 exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5906,6 +5985,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
 
 exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -5985,6 +6065,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
 exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -6054,6 +6135,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
 
 exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6132,6 +6214,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
 
 exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6210,6 +6293,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
 
 exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6289,6 +6373,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -6358,6 +6443,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6436,6 +6522,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6514,6 +6601,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6593,6 +6681,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -6662,6 +6751,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6740,6 +6830,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6818,6 +6909,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -6897,6 +6989,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -6966,6 +7059,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -7044,6 +7138,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -7122,6 +7217,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -7201,6 +7297,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabled 1`] = `
 <button
   aria-disabled="true"
+  aria-label=""
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -7270,6 +7367,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true focused 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -7348,6 +7446,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovered 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -7426,6 +7525,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true pressed 1`] = `
 <button
+  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -7505,6 +7605,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
 exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
 <button
   aria-disabled="true"
+  aria-label="loading"
   className=""
   disabled={true}
   onBlur={[Function]}
@@ -7633,6 +7734,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
 exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
 <button
   aria-disabled="true"
+  aria-label="loading"
   className=""
   disabled={true}
   onBlur={[Function]}

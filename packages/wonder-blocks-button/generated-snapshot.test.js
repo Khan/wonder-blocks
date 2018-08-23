@@ -342,10 +342,19 @@ describe("wonder-blocks-button", () => {
 
         const example = (
             <View style={styles.row}>
-                <Button spinner={true} style={styles.button}>
+                <Button
+                    spinner={true}
+                    aria-label="loading"
+                    style={styles.button}
+                >
                     Click me!
                 </Button>
-                <Button spinner={true} size="small" style={styles.button}>
+                <Button
+                    spinner={true}
+                    aria-label="loading"
+                    size="small"
+                    style={styles.button}
+                >
                     Click me!
                 </Button>
             </View>
@@ -490,6 +499,7 @@ describe("wonder-blocks-button", () => {
                     <View style={styles.row}>
                         <Button
                             spinner={this.state.waiting}
+                            aria-label={this.state.waiting ? "waiting" : ""}
                             onClick={() => this.handleClick()}
                         >
                             Click me!

@@ -49,6 +49,7 @@ describe("ButtonCore", () => {
                                         light={light}
                                         tabIndex={disabled ? -1 : 0}
                                         spinner={false}
+                                        aria-label={""}
                                         {...stateProps}
                                         {...defaultHandlers}
                                     >
@@ -83,6 +84,7 @@ describe("ButtonCore", () => {
                             light={false}
                             tabIndex={disabled ? -1 : 0}
                             spinner={spinner}
+                            aria-label={"loading"}
                             {...stateProps}
                             {...defaultHandlers}
                         >

@@ -21,6 +21,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
   }
 >
   <button
+    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -88,6 +89,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
   </button>
   <br />
   <button
+    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -155,6 +157,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
   </button>
   <br />
   <button
+    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -704,6 +707,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
             }
           >
             <button
+              aria-label=""
               className=""
               disabled={false}
               onBlur={[Function]}
@@ -1304,6 +1308,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
             }
           >
             <button
+              aria-label=""
               className=""
               disabled={false}
               onBlur={[Function]}
@@ -1904,6 +1909,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
             }
           >
             <button
+              aria-label=""
               className=""
               disabled={false}
               onBlur={[Function]}
@@ -2707,6 +2713,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
             }
           >
             <button
+              aria-label=""
               className=""
               disabled={false}
               onBlur={[Function]}
@@ -3712,6 +3719,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
               }
             >
               <button
+                aria-label=""
                 className=""
                 disabled={false}
                 onBlur={[Function]}
@@ -4560,6 +4568,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
             }
           >
             <button
+              aria-label=""
               className=""
               disabled={false}
               onBlur={[Function]}
@@ -5063,6 +5072,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
             }
           >
             <button
+              aria-label=""
               className=""
               disabled={false}
               onBlur={[Function]}
@@ -5793,6 +5803,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
             }
           >
             <button
+              aria-label=""
               className=""
               disabled={false}
               onBlur={[Function]}
