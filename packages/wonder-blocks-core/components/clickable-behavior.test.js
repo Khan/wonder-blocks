@@ -364,8 +364,6 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
         const link = mount(
-            // triggerOnSpace is false because links should not navigate or
-            // be activated on a space press
             <ClickableBehavior
                 href="https://khanacademy.org/"
                 onClick={(e) => onClick(e)}

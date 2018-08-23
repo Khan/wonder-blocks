@@ -234,10 +234,6 @@ const startState = {
 export default class ClickableBehavior extends React.Component<Props, State> {
     waitingForClick: boolean;
     enterClick: boolean;
-    triggers: {
-        triggerOnEnter: boolean,
-        triggerOnSpace: boolean,
-    };
 
     static defaultProps = {
         disabled: false,
@@ -259,7 +255,6 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         this.state = startState;
         this.waitingForClick = false;
         this.enterClick = false;
-        this.triggers = getAppropriateTriggersForRole(this.props.role);
     }
 
     handleClick = (e: SyntheticMouseEvent<>) => {
@@ -307,7 +302,9 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
-        const {triggerOnEnter, triggerOnSpace} = this.triggers;
+        const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
+            this.props.role,
+        );
         if (
             (triggerOnEnter && keyCode === keyCodes.enter) ||
             (triggerOnSpace && keyCode === keyCodes.space)
@@ -327,7 +324,9 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleKeyUp = (e: SyntheticKeyboardEvent<*>) => {
         const keyCode = e.which || e.keyCode;
-        const {triggerOnEnter, triggerOnSpace} = this.triggers;
+        const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
+            this.props.role,
+        );
         if (
             (triggerOnEnter && keyCode === keyCodes.enter) ||
             (triggerOnSpace && keyCode === keyCodes.space)
