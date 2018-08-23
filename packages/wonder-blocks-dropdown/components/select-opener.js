@@ -242,6 +242,7 @@ const _generateStyles = (light, placeholder) => {
                 paddingRight: adjustedPaddingRight,
             },
             disabled: {
+                backgroundColor: "transparent",
                 borderColor: offBlack16,
                 color: offBlack64,
                 cursor: "auto",

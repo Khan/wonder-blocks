@@ -594,7 +594,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
             "border": 0,
           },
           "alignItems": "center",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "transparent",
           "borderColor": "rgba(33,36,44,0.16)",
           "borderRadius": 4,
           "borderStyle": "solid",
