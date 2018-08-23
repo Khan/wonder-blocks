@@ -4,10 +4,12 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 import ActionItem from "./action-item.js";
 import Dropdown from "./dropdown.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
+import {selectDropdownStyle} from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
@@ -268,7 +270,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={{marginTop: 6, marginBottom: 6}}
+                dropdownStyle={selectDropdownStyle}
                 items={items}
                 keyboard={this.state.keyboard}
                 light={light}

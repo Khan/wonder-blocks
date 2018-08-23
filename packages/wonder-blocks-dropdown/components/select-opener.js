@@ -5,14 +5,10 @@ import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {
-    View,
-    addStyle,
-    getClickableBehavior,
-} from "@khanacademy/wonder-blocks-core";
 
 const StyledButton = addStyle("button");
 
@@ -126,7 +122,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             <LabelMedium style={styles.text}>
                                 {children}
                             </LabelMedium>
-                            <View style={styles.spacing} />
                             <Icon
                                 icon={icons.caretDown}
                                 color={iconColor}
@@ -167,6 +162,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        marginRight: Spacing.xSmall,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",
@@ -175,10 +171,6 @@ const styles = StyleSheet.create({
 
     caret: {
         minWidth: 16,
-    },
-
-    spacing: {
-        minWidth: Spacing.xSmall,
     },
 });
 
