@@ -149,7 +149,7 @@ class ManyOptions extends React.Component {
     render() {
         const items = Array(24).fill(0);
         const children = items.map((item, index) => (
-            <OptionItem label="Balloon 🎈" value={index} key={index} />
+            <OptionItem label={`🎈Balloon ${index}`} value={index} key={index} />
         ));
         return <MultiSelect
             onChange={(selectedValues) => this.handleChange(selectedValues)}

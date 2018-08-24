@@ -442,11 +442,13 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         };
     }
 
-    renderItems(outOfBoundaries: ?boolean, placement: string) {
+    renderItems(outOfBoundaries: ?boolean, placement: ?string) {
         const {items, dropdownStyle, light, openerElement} = this.props;
 
         const {top, bottom} = this.getVerticalSpace();
         const maxDropdownHeight =
+        // The placement variable returned by react-popper is the current
+        // position of the dropdown.
             placement && placement.includes("bottom")
                 ? bottom - dropdownPopperPadding
                 : top - dropdownPopperPadding;
@@ -510,9 +512,6 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             maybeGetPortalMountedModalHostElement(openerElement) ||
             document.querySelector("body");
 
-        const {top, bottom} = this.getVerticalSpace();
-        const moreTopSpace = top > bottom;
-
         if (modalHost) {
             return ReactDOM.createPortal(
                 <Popper
@@ -525,18 +524,16 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                         preventOverflow: {
                             boundariesElement: "viewport",
                             // For some unidentified reason of react-popper,
-                            // escapeWithReference works better here when the
-                            // dropdown is positioned beneath the opener.
-                            escapeWithReference: !moreTopSpace,
+                            // this causes the popped element to be positioned
+                            // more accurately when this is false. Sometimes
+                            // when the dropdown appears above the opener and
+                            // scrolling is happening, the opener is positioned
+                            // poorly.
+                            escapeWithReference: false,
                         },
                         flip: {
                             padding: dropdownPopperPadding,
-                            // We are disabling flipping when there's more
-                            // bottom space because if there are many items,
-                            // react-popper detects that the popper takes up
-                            // more space than available and starts off the
-                            // popper above the opener.
-                            enabled: moreTopSpace,
+                            enabled: true,
                         },
                     }}
                 >
