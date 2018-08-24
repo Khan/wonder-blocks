@@ -20,9 +20,19 @@ export type SharedProps = {|
 
     /**
      * If true, replaces the contents with a spinner.
+     *
+     * Note: setting this prop to `true` will disable the button.
+     *
+     * TODO(kevinb): support spinner + light once we have designs
      */
-    // TODO(yejia): Implement once spinner is implemented.
-    // spinner: boolean,
+    spinner: boolean,
+
+    /**
+     * This should be use when `spinner={true}` to let people using screen
+     * readers that the action taken by clicking the button will take some
+     * time to complete.
+     */
+    "aria-label": string,
 
     /**
      * The color of the button, either blue or red.
@@ -142,6 +152,8 @@ export default class Button extends React.Component<SharedProps> {
         light: false,
         size: "medium",
         disabled: false,
+        spinner: false,
+        "aria-label": "",
     };
 
     static contextTypes = {router: PropTypes.any};
@@ -152,6 +164,8 @@ export default class Button extends React.Component<SharedProps> {
             href,
             children,
             skipClientNav,
+            spinner,
+            disabled,
             ...sharedProps
         } = this.props;
 
@@ -163,7 +177,7 @@ export default class Button extends React.Component<SharedProps> {
 
         return (
             <ClickableBehavior
-                disabled={sharedProps.disabled}
+                disabled={spinner || disabled}
                 href={href}
                 onClick={onClick}
                 role="button"
@@ -174,6 +188,8 @@ export default class Button extends React.Component<SharedProps> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
+                            disabled={disabled}
+                            spinner={spinner}
                             skipClientNav={skipClientNav}
                             href={href}
                         >
