@@ -22,7 +22,7 @@
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
     "styleguidist": "styleguidist server",
-    "start": "concurrently --kill-others-on-fail \"yarn run styleguidist\" \"webpack -w\"",
+    "start": "concurrently --kill-others-on-fail \"yarn run styleguidist\" \"webpack -w\" \"rollup -c rollup.config.js -w\"",
     "start:prod": "yarn run build:styleguidist && yarn run styleguidist --config styleguide.prod.config.js",
     "build:styleguidist": "yarn run gen-styleguide-prod-config && styleguidist build --config styleguide.prod.config.js",
     "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
