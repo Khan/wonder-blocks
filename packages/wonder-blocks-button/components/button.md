@@ -308,8 +308,36 @@ const styles = StyleSheet.create({
 </MemoryRouter>
 ```
 
+Buttons can show a `spinner`.  This is useful when indicating to a user that
+their input has been recognized but that the operation will take some time.
+While the `spinner` property is set to `true` the button is disabled.
+
+```jsx
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    button: {
+        marginRight: 10,
+    }
+});
+
+<View style={styles.row}>
+    <Button spinner={true} aria-label="loading" style={styles.button}>
+        Click me!
+    </Button>
+    <Button spinner={true} aria-label="loading" size="small" style={styles.button}>
+        Click me!
+    </Button>
+</View>
+```
+
 Buttons can have a `style` props which supports width, position, margin,
-and flex styles:
+and flex styles.
 
 ### Best Practices
 
@@ -432,4 +460,54 @@ const styles = StyleSheet.create({
         </Button>
     </View>
 </View>
+```
+
+When an action is going to take a while, show a spinner during that time.
+
+```jsx
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    button: {
+        marginRight: 10,
+    },
+});
+
+class Example extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            waiting: false,
+        }
+    }
+
+    componentWillUnmount() {
+        this.timeout.clear();
+    }
+
+    handleClick() {
+        this.setState({waiting: true});
+        this.timeout = setTimeout(() => {
+            this.setState({waiting: false});
+        }, 2000);
+    }
+
+    render() {
+        return <View style={styles.row}>
+            <Button
+                spinner={this.state.waiting}
+                aria-label={this.state.waiting ? "waiting" : ""}
+                onClick={() => this.handleClick()}
+            >
+                Click me!
+            </Button>
+        </View>
+    }
+}
+
+<Example />
 ```

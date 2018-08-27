@@ -48,6 +48,8 @@ describe("ButtonCore", () => {
                                         color={color}
                                         light={light}
                                         tabIndex={disabled ? -1 : 0}
+                                        spinner={false}
+                                        aria-label={""}
                                         {...stateProps}
                                         {...defaultHandlers}
                                     >
@@ -60,6 +62,38 @@ describe("ButtonCore", () => {
                     }
                 }
             }
+        }
+    }
+    for (const kind of ["primary", "secondary", "tertiary"]) {
+        for (const size of ["medium", "small"]) {
+            test(`kind:${kind} size:${size} spinner:true`, () => {
+                const spinner = true;
+                const disabled = spinner;
+                const stateProps = {
+                    disabled,
+                    focused: false,
+                    hovered: false,
+                    pressed: false,
+                };
+                const tree = renderer
+                    .create(
+                        <ButtonCore
+                            kind={kind}
+                            size={size}
+                            color="default"
+                            light={false}
+                            tabIndex={disabled ? -1 : 0}
+                            spinner={spinner}
+                            aria-label={"loading"}
+                            {...stateProps}
+                            {...defaultHandlers}
+                        >
+                            Click me
+                        </ButtonCore>,
+                    )
+                    .toJSON();
+                expect(tree).toMatchSnapshot();
+            });
         }
     }
 });

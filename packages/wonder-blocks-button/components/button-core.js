@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
@@ -11,6 +11,8 @@ import Color, {
     fade,
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
+
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./button.js";
 
@@ -34,7 +36,7 @@ export default class ButtonCore extends React.Component<Props> {
             children,
             skipClientNav,
             color,
-            disabled,
+            disabled: disabledProp,
             focused,
             hovered,
             href,
@@ -44,6 +46,8 @@ export default class ButtonCore extends React.Component<Props> {
             size,
             style,
             testId,
+            spinner,
+            "aria-label": ariaLabel,
             ...handlers
         } = this.props;
         const {router} = this.context;
@@ -54,6 +58,8 @@ export default class ButtonCore extends React.Component<Props> {
                 : SemanticColor.controlDefault;
 
         const buttonStyles = _generateStyles(buttonColor, kind, light);
+
+        const disabled = spinner || disabledProp;
 
         const defaultStyle = [
             sharedStyles.shared,
@@ -69,6 +75,7 @@ export default class ButtonCore extends React.Component<Props> {
 
         const commonProps = {
             "aria-disabled": disabled ? "true" : undefined,
+            "aria-label": ariaLabel,
             "data-test-id": testId,
             role: "button",
             style: [defaultStyle, style],
@@ -77,7 +84,13 @@ export default class ButtonCore extends React.Component<Props> {
 
         const Label = size === "small" ? LabelSmall : LabelLarge;
 
-        const label = <Label style={sharedStyles.text}>{children}</Label>;
+        const label = (
+            <Label
+                style={[sharedStyles.text, spinner && sharedStyles.hiddenText]}
+            >
+                {children}
+            </Label>
+        );
 
         if (href) {
             return router && !skipClientNav ? (
@@ -97,6 +110,13 @@ export default class ButtonCore extends React.Component<Props> {
                     disabled={disabled}
                 >
                     {label}
+                    {spinner && (
+                        <CircularSpinner
+                            style={sharedStyles.spinner}
+                            size={{medium: "small", small: "xsmall"}[size]}
+                            light={kind === "primary"}
+                        />
+                    )}
                 </StyledButton>
             );
         }
@@ -134,6 +154,12 @@ const sharedStyles = StyleSheet.create({
         overflow: "hidden",
         textOverflow: "ellipsis",
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
+    },
+    hiddenText: {
+        visibility: "hidden",
+    },
+    spinner: {
+        position: "absolute",
     },
 });
 

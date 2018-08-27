@@ -93,7 +93,11 @@ export default class OptionItem extends React.Component<OptionProps> {
         const CheckComponent = this.getCheckComponent();
 
         return (
-            <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
+            <ClickableBehavior
+                disabled={disabled}
+                onClick={this.handleClick}
+                role="option"
+            >
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
 

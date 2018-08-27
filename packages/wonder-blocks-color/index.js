@@ -23,10 +23,11 @@ const Color = {
     offWhite: "#f7f8fa",
     white,
     white64: fade(white, 0.64),
+    white50: fade(white, 0.5),
 
     // Brand
     darkBlue: "#0a2a66",
-    teal: "#00e5ae",
+    teal: "#14bf96",
     lightBlue: "#37c5fd",
     pink: "#fa50ae",
 };

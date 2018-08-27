@@ -328,6 +328,42 @@ describe("wonder-blocks-button", () => {
     });
     it("example 8", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                alignItems: "center",
+            },
+            button: {
+                marginRight: 10,
+            },
+        });
+
+        const example = (
+            <View style={styles.row}>
+                <Button
+                    spinner={true}
+                    aria-label="loading"
+                    style={styles.button}
+                >
+                    Click me!
+                </Button>
+                <Button
+                    spinner={true}
+                    aria-label="loading"
+                    size="small"
+                    style={styles.button}
+                >
+                    Click me!
+                </Button>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 9", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
             <View>
@@ -337,7 +373,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -370,7 +406,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -400,7 +436,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -423,6 +459,57 @@ describe("wonder-blocks-button", () => {
                 </View>
             </View>
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 13", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            button: {
+                marginRight: 10,
+            },
+        });
+
+        class Example extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    waiting: false,
+                };
+            }
+
+            componentWillUnmount() {
+                this.timeout.clear();
+            }
+
+            handleClick() {
+                this.setState({waiting: true});
+                this.timeout = setTimeout(() => {
+                    this.setState({waiting: false});
+                }, 2000);
+            }
+
+            render() {
+                return (
+                    <View style={styles.row}>
+                        <Button
+                            spinner={this.state.waiting}
+                            aria-label={this.state.waiting ? "waiting" : ""}
+                            onClick={() => this.handleClick()}
+                        >
+                            Click me!
+                        </Button>
+                    </View>
+                );
+            }
+        }
+
+        const example = <Example />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
