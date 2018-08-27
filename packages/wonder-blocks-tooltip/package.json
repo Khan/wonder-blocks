@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-tooltip",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,12 +15,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.0.7",
-    "@khanacademy/wonder-blocks-core": "^1.2.0",
-    "@khanacademy/wonder-blocks-layout": "^1.0.4",
-    "@khanacademy/wonder-blocks-modal": "^1.1.4",
-    "@khanacademy/wonder-blocks-spacing": "^2.0.5",
-    "@khanacademy/wonder-blocks-typography": "^1.0.7"
+    "@khanacademy/wonder-blocks-color": "^1.0.8",
+    "@khanacademy/wonder-blocks-core": "^1.2.1",
+    "@khanacademy/wonder-blocks-layout": "^1.0.5",
+    "@khanacademy/wonder-blocks-modal": "^1.1.5",
+    "@khanacademy/wonder-blocks-spacing": "^2.0.6",
+    "@khanacademy/wonder-blocks-typography": "^1.0.8"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
