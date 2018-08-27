@@ -59,6 +59,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 top: popperProps.style.top,
                 left: popperProps.style.left,
                 position: popperProps.style.position,
+                transform: popperProps.style.transform,
             },
             updateBubbleRef: this._bubbleRefTracker.updateRef,
             tailOffset: {
