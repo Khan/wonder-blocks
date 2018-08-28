@@ -1,7 +1,9 @@
 const {createConfig, babel, postcss} = require("webpack-blocks");
 
+const babelConfig = require("./babel.config.js");
+
 module.exports = {
-    webpackConfig: createConfig([babel(), postcss()]),
+    webpackConfig: createConfig([babel(babelConfig), postcss()]),
     styleguideDir: "docs",
     assetsDir: "static",
     sections: [
