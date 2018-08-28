@@ -12,6 +12,8 @@ import Color, {
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
+import Icon from "@khanacademy/wonder-blocks-icon";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./button.js";
@@ -47,6 +49,7 @@ export default class ButtonCore extends React.Component<Props> {
             style,
             testId,
             spinner,
+            icon,
             "aria-label": ariaLabel,
             ...handlers
         } = this.props;
@@ -109,6 +112,14 @@ export default class ButtonCore extends React.Component<Props> {
                     {...commonProps}
                     disabled={disabled}
                 >
+                    {icon && (
+                        <Icon
+                            size={size}
+                            color="currentColor"
+                            icon={icon}
+                            style={sharedStyles.icon}
+                        />
+                    )}
                     {label}
                     {spinner && (
                         <CircularSpinner
@@ -160,6 +171,11 @@ const sharedStyles = StyleSheet.create({
     },
     spinner: {
         position: "absolute",
+    },
+    icon: {
+        // The left margin for the button with icon should have 4px less padding
+        marginLeft: -Spacing.xxxSmall,
+        marginRight: Spacing.xSmall,
     },
 });
 

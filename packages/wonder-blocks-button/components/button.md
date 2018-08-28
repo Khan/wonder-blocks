@@ -511,3 +511,52 @@ class Example extends React.Component {
 
 <Example />
 ```
+
+Buttons can have an icon on it's left side.
+```
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+const {icons} = require("@khanacademy/wonder-blocks-icon");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    button: {
+        marginRight: 10,
+    },
+});
+
+<View>
+    <View style={styles.row}>
+        <Button
+            icon={icons.contentExercise}
+            style={styles.button}
+            kind="tertiary"
+        >
+            Tertiary
+        </Button>
+        <Button
+            icon={icons.contentExercise}
+            style={styles.button}
+        >
+            Primary
+        </Button>
+        <Button
+            icon={icons.contentExercise}
+            style={styles.button}
+            kind="tertiary"
+            size="small"
+        >
+            Tertiary small
+        </Button>
+        <Button
+            icon={icons.contentExercise}
+            style={styles.button}
+            size="small"
+        >
+            Primary small
+        </Button>
+    </View>
+</View>
+```
