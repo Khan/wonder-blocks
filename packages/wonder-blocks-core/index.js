@@ -17,6 +17,7 @@ export {default as View} from "./components/view.js";
 export {default as NoSSR} from "./components/no-ssr.js";
 export {default as UniqueIDProvider} from "./components/unique-id-provider.js";
 export {default as addStyle} from "./util/add-style.js";
+export {default as i18n} from "./util/i18n.js";
 export {
     default as getClickableBehavior,
 } from "./util/get-clickable-behavior.js";

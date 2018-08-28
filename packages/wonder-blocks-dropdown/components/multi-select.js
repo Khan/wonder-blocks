@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
+import {i18n} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -32,17 +33,24 @@ type Props = {|
     selectedValues: Array<string>,
 
     /**
-     * Type of the option.
-     * For example, if selectItemType is "student" and there are two students
-     * selected, the SelectOpener would display "2 students"
-     */
-    selectItemType: string,
-
-    /**
-     * Optional placeholder for the opening component when there are no items
-     * selected.
+     * Optional placeholder for the opening component to show when no items
+     * have been selected.
      */
     placeholder?: string,
+
+    /**
+     * Optional placeholder for the opening component to show how many items
+     * have been selected. The function receives a number indicating how many
+     * items have been selected and a boolean indicating if all of the items
+     * have been selected.
+     */
+    selectedPlaceholder?: (num: number) => string,
+
+    /**
+     * Optional placeholder for the opening component to show when all of the
+     * items have been selected.
+     */
+    allSelectedPlaceholder?: string,
 
     /**
      * Whether to display shortcuts for Select All and Select None.
@@ -147,35 +155,50 @@ export default class MultiSelect extends React.Component<Props, State> {
         onChange([]);
     };
 
-    // TODO(sophie): need to configure for i18n for the word "All" and
-    // potentially the concept of plurals
-    getMenuText() {
+    getPlaceholderText(num: number, allSelected: boolean): string {
         const {
-            children,
             placeholder,
-            selectItemType,
-            selectedValues,
+            selectedPlaceholder,
+            allSelectedPlaceholder,
         } = this.props;
-        // If there is nothing selected, use the placeholder if it exists
-        const noSelectionText = placeholder || `0 ${selectItemType}`;
-        switch (selectedValues.length) {
-            case 0:
-                return noSelectionText;
-            case 1:
-                // If there is one item selected, we display its label. If for
-                // some reason we can't find the selected item, we use the
-                // display text for the case where nothing is selected.
-                const selectedItem = React.Children.toArray(children).find(
-                    (option) => option.props.value === selectedValues[0],
-                );
-                return selectedItem
-                    ? selectedItem.props.label
-                    : noSelectionText;
-            case React.Children.count(children):
-                return `All ${selectItemType}`;
-            default:
-                return `${selectedValues.length} ${selectItemType}`;
+
+        if (num === 0) {
+            return placeholder || i18n._("Select an option");
         }
+
+        if (allSelected) {
+            return allSelectedPlaceholder || i18n._("All selected");
+        }
+
+        return selectedPlaceholder
+            ? selectedPlaceholder(num)
+            : i18n.ngettext("%(num)s selected", "%(num)s selected", num);
+    }
+
+    getMenuText() {
+        const {children, selectedValues} = this.props;
+
+        // Default to the placeholder text
+        const numSelected = selectedValues.length;
+        const allSelected = numSelected === React.Children.count(children);
+        const placeholderText = this.getPlaceholderText(
+            selectedValues.length,
+            allSelected,
+        );
+
+        if (numSelected === 1) {
+            // If there is one item selected, we display its label. If for
+            // some reason we can't find the selected item, we use the
+            // display text for the case where nothing is selected.
+            const selectedItem = React.Children.toArray(children).find(
+                (option) => option.props.value === selectedValues[0],
+            );
+            if (selectedItem) {
+                return selectedItem.props.label;
+            }
+        }
+
+        return placeholderText;
     }
 
     getShortcuts(): Array<DropdownItem> {
@@ -189,8 +212,9 @@ export default class MultiSelect extends React.Component<Props, State> {
                 component: (
                     <ActionItem
                         disabled={selectAllDisabled}
-                        // TODO(sophie): translate for i18n
-                        label={`Select all (${numOptions})`}
+                        label={i18n._("Select all (%(numOptions)s)", {
+                            numOptions,
+                        })}
                         indent={true}
                         onClick={this.handleSelectAll}
                     />
@@ -204,8 +228,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 component: (
                     <ActionItem
                         disabled={selectNoneDisabled}
-                        // TODO(sophie): translate for i18n
-                        label="Select none"
+                        label={i18n._("Select none")}
                         indent={true}
                         onClick={this.handleSelectNone}
                     />

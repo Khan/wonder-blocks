@@ -18,6 +18,7 @@ describe("@khanacademy/wonder-blocks-core", () => {
                 "addStyle",
                 "getClickableBehavior",
                 "getElementIntersection",
+                "i18n",
                 "VALID_MEDIA_SIZES",
                 "MEDIA_DEFAULT_SPEC",
                 "MEDIA_INTERNAL_SPEC",

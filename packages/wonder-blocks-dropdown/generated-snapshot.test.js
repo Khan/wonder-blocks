@@ -380,7 +380,7 @@ describe("wonder-blocks-dropdown", () => {
     });
     it("example 7", () => {
         const React = require("react");
-        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {View, i18n} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -414,8 +414,15 @@ describe("wonder-blocks-dropdown", () => {
                     <MultiSelect
                         onChange={this.handleChange}
                         placeholder="Color palette"
+                        selectedPlaceholder={(num) =>
+                            i18n.ngettext(
+                                "%(num)s color",
+                                "%(num)s colors",
+                                num,
+                            )
+                        }
+                        allSelectedPlaceholder="All colors"
                         selectedValues={this.state.selectedValues}
-                        selectItemType="colors"
                         style={styles.setWidth}
                     >
                         <OptionItem
@@ -441,7 +448,7 @@ describe("wonder-blocks-dropdown", () => {
     });
     it("example 8", () => {
         const React = require("react");
-        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {View, i18n} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -473,7 +480,14 @@ describe("wonder-blocks-dropdown", () => {
                         shortcuts={true}
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
-                        selectItemType="interns"
+                        selectedPlaceholder={(num) =>
+                            i18n.ngettext(
+                                "%(num)s itern",
+                                "%(num)s interns",
+                                num,
+                            )
+                        }
+                        allSelectedPlaceholder="All interns"
                     >
                         <OptionItem label="Anesu" value="very mobile" />
                         <OptionItem label="Ioana" value="lives in roma" />
@@ -509,7 +523,7 @@ describe("wonder-blocks-dropdown", () => {
     it("example 9", () => {
         const {StyleSheet} = require("aphrodite");
         const React = require("react");
-        const {View, Text} = require("@khanacademy/wonder-blocks-core");
+        const {View, Text, i18n} = require("@khanacademy/wonder-blocks-core");
         const {
             StandardModal,
             ModalLauncher,
@@ -555,7 +569,14 @@ describe("wonder-blocks-dropdown", () => {
                     <MultiSelect
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
-                        selectItemType="Great Houses"
+                        selectedPlaceholder={(num) =>
+                            i18n.ngettext(
+                                "%(num)s Great House",
+                                "%(num)s Great Houses",
+                                num,
+                            )
+                        }
+                        allSelectedPlaceholder="All Great Houses"
                         style={styles.setWidth}
                     >
                         <OptionItem label="Stark" value="1" />

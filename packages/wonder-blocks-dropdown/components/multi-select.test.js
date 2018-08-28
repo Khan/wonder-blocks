@@ -1,5 +1,6 @@
 //@flow
 import React from "react";
+import {i18n} from "@khanacademy/wonder-blocks-core";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import SelectOpener from "./select-opener.js";
@@ -25,7 +26,10 @@ describe("MultiSelect", () => {
                     onChange();
                 }}
                 placeholder="Choose"
-                selectItemType="students"
+                selectedPlaceholder={(num) =>
+                    i18n.ngettext("%(num)s student", "%(num)s students", num)
+                }
+                allSelectedPlaceholder="All students"
                 selectedValues={["2"]}
                 shortcuts={true}
             >
