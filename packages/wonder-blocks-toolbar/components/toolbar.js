@@ -61,8 +61,8 @@ export default class Toolbar extends React.Component<Props> {
 
     renderContent(content: React.Node) {
         const contentArray = Array.isArray(content) ? content : [content];
-
-        return contentArray.map((content, i) => (
+        // Remove empty/null/undefined elements, then map to Views
+        return contentArray.filter(c => c).map((content, i) => (
             <View
                 style={[sharedStyles.content, sharedStyles.verticalAlign]}
                 key={i.toString()}
