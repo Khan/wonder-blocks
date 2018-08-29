@@ -387,21 +387,6 @@ const kinds = ["primary", "secondary", "tertiary"];
             ))
         }
     </View>
-    <View style={styles.row}>
-        {
-            kinds.map((kind, idx) => (
-                <Button
-                    kind={kind}
-                    icon={icons.contentExercise}
-                    style={styles.button}
-                    key={idx}
-                    href="/"
-                >
-                    {kind} with href
-                </Button>
-            ))
-        }
-    </View>
 </View>
 ```
 
