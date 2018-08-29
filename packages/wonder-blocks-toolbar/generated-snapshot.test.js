@@ -38,6 +38,45 @@ describe("wonder-blocks-toolbar", () => {
     });
     it("example 2", () => {
         const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
+            .default;
+
+        const zoomOutButton = (
+            <IconButton icon={icons.zoomOut} kind="primary" />
+        );
+        const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary" />;
+
+        const linkButton = <Button kind="tertiary">Import...</Button>;
+
+        const example = (
+            <Toolbar
+                size="small"
+                leftContent={[zoomOutButton, zoomInButton]}
+                rightContent={[linkButton]}
+            />
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
+            .default;
+
+        const hintButton = <IconButton icon={icons.hint} kind="primary" />;
+
+        const mainButton = <Button kind="primary">Submit</Button>;
+
+        const example = (
+            <Toolbar leftContent={[hintButton]} rightContent={[mainButton]} />
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
 
@@ -58,7 +97,7 @@ describe("wonder-blocks-toolbar", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 5", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {icons} = require("@khanacademy/wonder-blocks-icon");
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
@@ -83,7 +122,7 @@ describe("wonder-blocks-toolbar", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 6", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
@@ -103,7 +142,7 @@ describe("wonder-blocks-toolbar", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 7", () => {
         const {
             default: Icon,
             icons,
@@ -138,7 +177,7 @@ describe("wonder-blocks-toolbar", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 8", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const style = {
