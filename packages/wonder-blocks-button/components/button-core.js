@@ -110,14 +110,27 @@ export default class ButtonCore extends React.Component<Props> {
             </Label>
         );
 
+        const contents = (
+            <React.Fragment>
+                {label}
+                {spinner && (
+                    <CircularSpinner
+                        style={sharedStyles.spinner}
+                        size={{medium: "small", small: "xsmall"}[size]}
+                        light={kind === "primary"}
+                    />
+                )}
+            </React.Fragment>
+        );
+
         if (href) {
             return router && !skipClientNav ? (
                 <StyledLink {...commonProps} to={href}>
-                    {label}
+                    {contents}
                 </StyledLink>
             ) : (
                 <StyledAnchor {...commonProps} href={href}>
-                    {label}
+                    {contents}
                 </StyledAnchor>
             );
         } else {
@@ -127,14 +140,7 @@ export default class ButtonCore extends React.Component<Props> {
                     {...commonProps}
                     disabled={disabled}
                 >
-                    {label}
-                    {spinner && (
-                        <CircularSpinner
-                            style={sharedStyles.spinner}
-                            size={{medium: "small", small: "xsmall"}[size]}
-                            light={kind === "primary"}
-                        />
-                    )}
+                    {contents}
                 </StyledButton>
             );
         }
