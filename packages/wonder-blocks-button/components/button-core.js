@@ -60,13 +60,20 @@ export default class ButtonCore extends React.Component<Props> {
                 ? SemanticColor.controlDestructive
                 : SemanticColor.controlDefault;
 
-        const buttonStyles = _generateStyles(buttonColor, kind, light);
+        const iconWidth = icon ? (size === "small" ? 16 : 24) + 8 : 0;
+        const buttonStyles = _generateStyles(
+            buttonColor,
+            kind,
+            light,
+            iconWidth,
+        );
 
         const disabled = spinner || disabledProp;
 
         const defaultStyle = [
             sharedStyles.shared,
             disabled && sharedStyles.disabled,
+            icon && sharedStyles.withIcon,
             buttonStyles.default,
             disabled && buttonStyles.disabled,
             !disabled &&
@@ -91,6 +98,14 @@ export default class ButtonCore extends React.Component<Props> {
             <Label
                 style={[sharedStyles.text, spinner && sharedStyles.hiddenText]}
             >
+                {icon && (
+                    <Icon
+                        size={size}
+                        color="currentColor"
+                        icon={icon}
+                        style={sharedStyles.icon}
+                    />
+                )}
                 {children}
             </Label>
         );
@@ -112,14 +127,6 @@ export default class ButtonCore extends React.Component<Props> {
                     {...commonProps}
                     disabled={disabled}
                 >
-                    {icon && (
-                        <Icon
-                            size={size}
-                            color="currentColor"
-                            icon={icon}
-                            style={sharedStyles.icon}
-                        />
-                    )}
                     {label}
                     {spinner && (
                         <CircularSpinner
@@ -152,6 +159,10 @@ const sharedStyles = StyleSheet.create({
         textDecoration: "none",
         boxSizing: "border-box",
     },
+    withIcon: {
+        // The left padding for the button with icon should have 4px less padding
+        paddingLeft: 12,
+    },
     disabled: {
         cursor: "auto",
     },
@@ -159,6 +170,8 @@ const sharedStyles = StyleSheet.create({
         height: 32,
     },
     text: {
+        display: "flex",
+        alignItems: "center",
         fontWeight: "bold",
         userSelect: "none",
         whiteSpace: "nowrap",
@@ -173,16 +186,14 @@ const sharedStyles = StyleSheet.create({
         position: "absolute",
     },
     icon: {
-        // The left margin for the button with icon should have 4px less padding
-        marginLeft: -Spacing.xxxSmall,
-        marginRight: Spacing.xSmall,
+        paddingRight: Spacing.xSmall,
     },
 });
 
 const styles = {};
 
-const _generateStyles = (color, kind, light) => {
-    const buttonType = color + kind + light.toString();
+const _generateStyles = (color, kind, light, iconWidth) => {
+    const buttonType = color + kind + light.toString() + iconWidth.toString();
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -233,7 +244,9 @@ const _generateStyles = (color, kind, light) => {
                 background: light ? "transparent" : white,
                 borderColor: light ? white : color,
                 borderWidth: 2,
-                paddingLeft: 15,
+                // The left padding for the button with icon should have 4px
+                // less padding
+                paddingLeft: iconWidth ? 11 : 15,
                 paddingRight: 15,
             },
             active: {
@@ -241,7 +254,9 @@ const _generateStyles = (color, kind, light) => {
                 color: light ? fadedColor : activeColor,
                 borderColor: light ? fadedColor : activeColor,
                 borderWidth: 2,
-                paddingLeft: 15,
+                // The left padding for the button with icon should have 4px
+                // less padding
+                paddingLeft: iconWidth ? 11 : 15,
                 paddingRight: 15,
             },
             disabled: {
@@ -263,7 +278,8 @@ const _generateStyles = (color, kind, light) => {
                     content: "''",
                     position: "absolute",
                     height: 2,
-                    width: "calc(100% - 8px)",
+                    width: `calc(100% - 8px - ${iconWidth}px)`,
+                    right: 4,
                     bottom: "calc(50% - 11px)",
                     background: light ? white : color,
                     borderRadius: 2,
@@ -275,7 +291,8 @@ const _generateStyles = (color, kind, light) => {
                     content: "''",
                     position: "absolute",
                     height: 2,
-                    width: "calc(100% - 8px)",
+                    width: `calc(100% - 8px - ${iconWidth}px)`,
+                    right: 4,
                     bottom: "calc(50% - 11px)",
                     background: light ? fadedColor : activeColor,
                     borderRadius: 2,
