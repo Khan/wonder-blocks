@@ -1,6 +1,4 @@
 // @flow
-import * as React from "react";
-
 import type {CSSProperties} from "aphrodite";
 
 type NestedArray<T> = $ReadOnlyArray<T | NestedArray<T>>;
@@ -93,8 +91,7 @@ type IdRefList = IdRef | Array<IdRef>;
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
 // TODO(kevinb): convert to disjoint union of exact object types keyed on role
-// eslint-disable-next-line flowtype/require-exact-type
-export type AriaProps = {
+export type AriaProps = {|
     role?: roles,
     "aria-activedescendant"?: IdRef,
     "aria-atomic"?: "false" | "true",
@@ -132,32 +129,7 @@ export type AriaProps = {
     "aria-valuemin"?: number,
     "aria-valuenow"?: number,
     "aria-valuetext"?: string,
-};
-
-export type Props = AriaProps & {
-    style?: StyleType,
-    children?: React.Node,
-    [otherProp: string]: any,
-};
-
-export type MediaSize = "small" | "medium" | "large";
-
-// TODO(kevinb): dedupe with wonder-blocks-grid
-// eslint-disable-next-line flowtype/require-exact-type
-export type MediaSpec = {
-    [sizeName: MediaSize]: {
-        /** The query to use to match the viewport against. */
-        query: string,
-        /** The total number of columns to use for the layout. */
-        totalColumns: number,
-        /** The width of the gutter between columns, in pixels. */
-        gutterWidth: number,
-        /** The width of the margin, wrapping the row, in pixels. */
-        marginWidth: number,
-        /** The maximum width for this spec, including margins, in pixels. */
-        maxWidth?: number,
-    },
-};
+|};
 
 /**
  * Interface implemented by types that can provide identifiers.

@@ -2,7 +2,6 @@
 
 export type MediaSize = "small" | "medium" | "large";
 
-// TODO(kevinb): dedupe with wonder-blocks-core
 // eslint-disable-next-line flowtype/require-exact-type
 export type MediaSpec = {
     [sizeName: MediaSize]: {
@@ -14,5 +13,7 @@ export type MediaSpec = {
         gutterWidth: number,
         /** The width of the margin, wrapping the row, in pixels. */
         marginWidth: number,
+        /** A possible maximum width to have on the layout. */
+        maxWidth?: number,
     },
 };

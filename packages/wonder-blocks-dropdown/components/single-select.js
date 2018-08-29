@@ -4,6 +4,7 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 import Dropdown from "./dropdown.js";
 import SelectOpener from "./select-opener.js";
 import {selectDropdownStyle} from "../util/constants.js";

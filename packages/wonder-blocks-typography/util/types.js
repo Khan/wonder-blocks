@@ -6,10 +6,10 @@ import type {
     StyleType,
 } from "@khanacademy/wonder-blocks-core";
 
-// TODO(kevinb): fix style type after upgrading flow
-export type Props = AriaProps & {
+// eslint-disable-next-line flowtype/require-exact-type
+export type Props = {
+    ...AriaProps,
     style?: StyleType,
     children?: Node,
-    id?: string,
     tag: TextTag,
 };

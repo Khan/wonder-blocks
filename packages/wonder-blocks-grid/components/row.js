@@ -1,14 +1,11 @@
 // @flow
 import * as React from "react";
-import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {
-    MediaSize,
-    MediaSpec,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Layout, matchesSize} from "@khanacademy/wonder-blocks-layout";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {MediaSize} from "@khanacademy/wonder-blocks-layout";
 
 import styles from "../util/styles.js";
-import {matchesSize} from "../util/utils.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 import Gutter from "./gutter.js";
 
@@ -31,13 +28,17 @@ import Gutter from "./gutter.js";
  * grid sizes. If you specify the `small`, `medium`, or `large`
  * props then the component will only be shown at those grid sizes.
  */
-class Row extends React.Component<{
+export default class Row extends React.Component<{
     /** Should this row be shown on a Small Grid? */
-    small?: boolean,
+    small: boolean,
     /** Should this row be shown on a Medium Grid? */
-    medium?: boolean,
+    medium: boolean,
     /** Should this row be shown on a Large Grid? */
-    large?: boolean,
+    large: boolean,
+    /** Should this row be shown at Medium or larger grids? */
+    mdOrLarger: boolean,
+    /** Should this row be shown at Medium or smaller grids? */
+    mdOrSmaller: boolean,
     /**
      * The child components to populate inside the row. Typically this will be
      * a mixture of [Cell](#cell), [FlexCell](#flexcell), and
@@ -54,85 +55,88 @@ class Row extends React.Component<{
           }) => React.Node),
     /** The styling to apply to the row. */
     style?: StyleType,
-    /**
-     * The size of the media layout being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSize: MediaSize,
-    /**
-     * The current media layout spec being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSpec: MediaSpec,
 }> {
     static defaultProps = {
-        small: false,
-        medium: false,
-        large: false,
+        small: true,
+        medium: true,
+        large: true,
+        mdOrLarger: true,
+        mdOrSmaller: true,
     };
 
     render() {
-        const {style, mediaSize, mediaSpec, children} = this.props;
-        const {marginWidth, maxWidth, totalColumns} = mediaSpec[mediaSize];
-        const shouldDisplay = matchesSize(this.props, mediaSize);
-
-        // Don't render the row if it's been disabled at this size
-        if (!shouldDisplay) {
-            return null;
-        }
-
-        let contents = children;
-
-        // If the contents are a function then we call it with the mediaSize and
-        // totalColumns properties and render the return value.
-        if (typeof contents === "function") {
-            contents = contents({mediaSize, totalColumns});
-        }
-
-        contents = React.Children.toArray(contents);
-
-        // Go through all of the contents and pre-emptively remove anything
-        // that shouldn't be rendered and insert Gutters inbetween everything
-        // that is still visible.
-        const filteredContents = [];
-        let hasVisibleCell = false;
-
-        for (const item of contents) {
-            if (
-                !item.type ||
-                !item.props ||
-                !item.type.shouldDisplay ||
-                (typeof item.type.shouldDisplay === "function" &&
-                    item.type.shouldDisplay(item.props, mediaSize))
-            ) {
-                if (hasVisibleCell) {
-                    filteredContents.push(
-                        <Gutter key={`gutter-${filteredContents.length}`} />,
-                    );
-                }
-
-                filteredContents.push(item);
-
-                hasVisibleCell = true;
-            }
-        }
+        const {style, children} = this.props;
 
         return (
-            <View style={[styles.rowWrap, style]}>
-                <View
-                    style={[
-                        styles.row,
-                        !!maxWidth && styles.rowMaxWidth,
-                        !!maxWidth && {maxWidth},
-                    ]}
-                >
-                    <FixedWidthCell width={marginWidth} />
-                    {filteredContents}
-                    <FixedWidthCell width={marginWidth} />
-                </View>
-            </View>
+            <Layout>
+                {({mediaSize, mediaSpec}) => {
+                    const {marginWidth, maxWidth, totalColumns} = mediaSpec[
+                        mediaSize
+                    ];
+                    const shouldDisplay = matchesSize(this.props, mediaSize);
+
+                    // Don't render the row if it's been disabled at this size
+                    if (!shouldDisplay) {
+                        return null;
+                    }
+
+                    let contents = children;
+
+                    // If the contents are a function then we call it with the mediaSize and
+                    // totalColumns properties and render the return value.
+                    if (typeof contents === "function") {
+                        contents = contents({mediaSize, totalColumns});
+                    }
+
+                    contents = React.Children.toArray(contents);
+
+                    // Go through all of the contents and pre-emptively remove anything
+                    // that shouldn't be rendered and insert Gutters inbetween everything
+                    // that is still visible.
+                    const filteredContents = [];
+                    let hasVisibleCell = false;
+
+                    for (const item of contents) {
+                        if (
+                            !item.type ||
+                            !item.props ||
+                            !item.type.shouldDisplay ||
+                            (typeof item.type.shouldDisplay === "function" &&
+                                item.type.shouldDisplay(item.props, mediaSize))
+                        ) {
+                            if (hasVisibleCell) {
+                                filteredContents.push(
+                                    <Gutter
+                                        key={`gutter-${
+                                            filteredContents.length
+                                        }`}
+                                    />,
+                                );
+                            }
+
+                            filteredContents.push(item);
+
+                            hasVisibleCell = true;
+                        }
+                    }
+
+                    return (
+                        <View style={[styles.rowWrap, style]}>
+                            <View
+                                style={[
+                                    styles.row,
+                                    !!maxWidth && styles.rowMaxWidth,
+                                    !!maxWidth && {maxWidth},
+                                ]}
+                            >
+                                <FixedWidthCell width={marginWidth} />
+                                {filteredContents}
+                                <FixedWidthCell width={marginWidth} />
+                            </View>
+                        </View>
+                    );
+                }}
+            </Layout>
         );
     }
 }
-
-export default MediaLayoutWrapper(Row);

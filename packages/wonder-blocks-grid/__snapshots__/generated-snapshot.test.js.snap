@@ -169,6 +169,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
         </div>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -188,6 +189,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -265,6 +267,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
         </div>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -284,6 +287,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -361,6 +365,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
         </div>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -380,6 +385,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -876,6 +882,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
         Possible mastery points
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -895,6 +902,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1048,6 +1056,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
         Polygons
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1067,6 +1076,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1287,6 +1297,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1306,6 +1317,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1339,6 +1351,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1358,6 +1371,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1391,6 +1405,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1410,6 +1425,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1443,6 +1459,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1462,6 +1479,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1495,6 +1513,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1514,6 +1533,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1547,6 +1567,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1566,6 +1587,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1599,6 +1621,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1618,6 +1641,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1651,6 +1675,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1670,6 +1695,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1703,6 +1729,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1722,6 +1749,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1755,6 +1783,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1774,6 +1803,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -1807,6 +1837,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
         1
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -1826,6 +1857,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -2014,6 +2046,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
         </span>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -2033,6 +2066,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -2350,6 +2384,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
         </span>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -2369,6 +2404,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -2535,6 +2571,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
         </span>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -2554,6 +2591,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -2593,6 +2631,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
         </span>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -2612,6 +2651,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -2802,6 +2842,7 @@ exports[`wonder-blocks-grid example 6 1`] = `
         </span>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -2821,6 +2862,7 @@ exports[`wonder-blocks-grid example 6 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -2860,6 +2902,7 @@ exports[`wonder-blocks-grid example 6 1`] = `
         </span>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -2879,6 +2922,7 @@ exports[`wonder-blocks-grid example 6 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }
@@ -3071,6 +3115,7 @@ exports[`wonder-blocks-grid example 7 1`] = `
         </span>
       </div>
       <div
+        aria-hidden="true"
         className=""
         style={
           Object {
@@ -3090,6 +3135,7 @@ exports[`wonder-blocks-grid example 7 1`] = `
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
+            "width": 32,
             "zIndex": 0,
           }
         }

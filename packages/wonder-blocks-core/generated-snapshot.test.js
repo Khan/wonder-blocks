@@ -9,7 +9,6 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import ClickableBehavior from "./components/clickable-behavior.js";
-import MediaLayout from "./components/media-layout.js";
 import NoSSR from "./components/no-ssr.js";
 import Text from "./components/text.js";
 import UniqueIDProvider from "./components/unique-id-provider.js";

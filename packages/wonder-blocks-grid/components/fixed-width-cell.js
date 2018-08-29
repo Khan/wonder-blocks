@@ -1,11 +1,9 @@
 // @flow
 import * as React from "react";
-import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {
-    MediaSize,
-    MediaSpec,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Layout} from "@khanacademy/wonder-blocks-layout";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {MediaSize} from "@khanacademy/wonder-blocks-layout";
 
 import styles from "../util/styles.js";
 import {flexBasis} from "../util/utils.js";
@@ -33,16 +31,6 @@ type Props = {|
           }) => React.Node),
     /** The styling to apply to the cell. */
     style?: StyleType,
-    /**
-     * The size of the media layout being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSize: MediaSize,
-    /**
-     * The current media layout spec being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSpec: MediaSpec,
 |};
 
 /**
@@ -64,7 +52,7 @@ type Props = {|
  * or `width` props then the component will only be shown at those grid sizes
  * and using the specified width.
  */
-class FixedWidthCell extends React.Component<Props> {
+export default class FixedWidthCell extends React.Component<Props> {
     static defaultProps = {
         smallWidth: 0,
         mediumWidth: 0,
@@ -104,32 +92,44 @@ class FixedWidthCell extends React.Component<Props> {
     }
 
     render() {
-        const {children, style, mediaSize, mediaSpec} = this.props;
-        const width = FixedWidthCell.getWidth(this.props, mediaSize);
-
-        // If no width is ever specified then we error out.
-        if (width === undefined) {
-            throw new Error("No width specified to FixedWidthCell.");
-        } else if (width === null || width === 0) {
-            // If no width is specified then we just don't render this cell
-            return null;
-        }
-
-        let contents = children;
-
-        // If the contents are a function then we call it with the mediaSize,
-        // totalColumns, and width properties and render the return value.
-        if (typeof contents === "function") {
-            const {totalColumns} = mediaSpec[mediaSize];
-            contents = contents({mediaSize, totalColumns, width});
-        }
+        const {children, style} = this.props;
 
         return (
-            <View style={[styles.cellFixed, flexBasis(width), style]}>
-                {contents}
-            </View>
+            <Layout>
+                {({mediaSize, mediaSpec}) => {
+                    const width = FixedWidthCell.getWidth(
+                        this.props,
+                        mediaSize,
+                    );
+
+                    // If no width is ever specified then we error out.
+                    if (width === undefined) {
+                        throw new Error(
+                            "No width specified to FixedWidthCell.",
+                        );
+                    } else if (width === null || width === 0) {
+                        // If no width is specified then we just don't render this cell
+                        return null;
+                    }
+
+                    let contents = children;
+
+                    // If the contents are a function then we call it with the mediaSize,
+                    // totalColumns, and width properties and render the return value.
+                    if (typeof contents === "function") {
+                        const {totalColumns} = mediaSpec[mediaSize];
+                        contents = contents({mediaSize, totalColumns, width});
+                    }
+
+                    return (
+                        <View
+                            style={[styles.cellFixed, flexBasis(width), style]}
+                        >
+                            {contents}
+                        </View>
+                    );
+                }}
+            </Layout>
         );
     }
 }
-
-export default MediaLayoutWrapper(FixedWidthCell);

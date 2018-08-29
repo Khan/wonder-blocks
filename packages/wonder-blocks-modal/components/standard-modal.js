@@ -2,6 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
+import {Layout} from "@khanacademy/wonder-blocks-layout";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
@@ -79,64 +80,65 @@ export default class StandardModal extends React.Component<Props> {
         } = this.props;
 
         return (
-            <ModalDialog
-                // TODO(jeresig): Replace with <Layout/>
-                //style={(mediaSize) => mediaSize !== "small" && styles.wrapper}
-                style={styles.wrapper}
-            >
-                <ModalPanel
-                    showCloseButton
-                    onClickCloseButton={onClickCloseButton}
-                    titleBar={
-                        <Toolbar
-                            title={title}
-                            subtitle={subtitle}
-                            color={header ? "dark" : "light"}
+            <Layout styleSheets={styles}>
+                {({styles}) => (
+                    <ModalDialog style={styles.wrapper}>
+                        <ModalPanel
+                            showCloseButton
+                            onClickCloseButton={onClickCloseButton}
+                            titleBar={
+                                <Toolbar
+                                    title={title}
+                                    subtitle={subtitle}
+                                    color={header ? "dark" : "light"}
+                                />
+                            }
+                            header={header}
+                            content={content}
+                            footer={footer}
                         />
-                    }
-                    header={header}
-                    content={content}
-                    footer={footer}
-                />
-                {preview && (
-                    <ModalPanel
-                        color="dark"
-                        style={[
-                            styles.preview,
-                            // TODO(jeresig): Replace with <Layout/>
-                            //(mediaSize) =>
-                            //    mediaSize === "small" && styles.smallPreview
-                        ]}
-                        content={
-                            <ModalContent style={styles.previewContent}>
-                                {preview}
-                            </ModalContent>
-                        }
-                    />
+                        {preview && (
+                            <ModalPanel
+                                color="dark"
+                                style={styles.preview}
+                                content={
+                                    <ModalContent style={styles.previewContent}>
+                                        {preview}
+                                    </ModalContent>
+                                }
+                            />
+                        )}
+                    </ModalDialog>
                 )}
-            </ModalDialog>
+            </Layout>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    wrapper: {
-        width: "93.75%",
-        maxWidth: 960,
-        height: "81.25%",
-        maxHeight: 624,
-    },
+const styles = {
+    all: StyleSheet.create({
+        preview: {
+            maxWidth: 392,
+            flex: "1 0 auto",
+        },
 
-    preview: {
-        maxWidth: 392,
-        flex: "1 0 auto",
-    },
+        previewContent: {
+            padding: "0 64px 0 0",
+        },
+    }),
 
-    previewContent: {
-        padding: "0 64px 0 0",
-    },
+    small: StyleSheet.create({
+        preview: {
+            display: "none",
+        },
+    }),
 
-    smallPreview: {
-        display: "none",
-    },
-});
+    mdOrLarger: StyleSheet.create({
+        wrapper: {
+            width: "93.75%",
+            maxWidth: 960,
+            height: "81.25%",
+            maxHeight: 624,
+        },
+    }),
+};

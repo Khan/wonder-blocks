@@ -1,12 +1,9 @@
 // @flow
 import * as React from "react";
 
-import {MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {
-    MediaSize,
-    MediaSpec,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import {Layout} from "@khanacademy/wonder-blocks-layout";
+import type {MediaSize} from "@khanacademy/wonder-blocks-layout";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FlexCell from "./flex-cell.js";
 import FixedWidthCell from "./fixed-width-cell.js";
@@ -19,7 +16,7 @@ type Props = {|
     /** The number of columns this cell should span on a Large Grid. */
     largeCols?: number,
     /** The number of columns this should should span by default. */
-    cols?: number | ((size: MediaSize) => number),
+    cols?: number | ((mediaSize: MediaSize) => number),
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `mediaSize`, `totalColumns`, and cell
@@ -34,16 +31,6 @@ type Props = {|
           }) => React.Node),
     /** The styling to apply to the cell. */
     style?: StyleType,
-    /**
-     * The size of the media layout being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSize: MediaSize,
-    /**
-     * The current media layout spec being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSpec: MediaSpec,
 |};
 
 /**
@@ -63,7 +50,7 @@ type Props = {|
  * `cols` props then the component will only be shown at those grid sizes and
  * using the specified column width.
  */
-class Cell extends React.Component<Props> {
+export default class Cell extends React.Component<Props> {
     static defaultProps = {
         smallCols: 0,
         mediumCols: 0,
@@ -104,61 +91,68 @@ class Cell extends React.Component<Props> {
     }
 
     render() {
-        const {children, style, mediaSize, mediaSpec} = this.props;
-        // Get the settings for this particular size of grid
-        const {totalColumns, gutterWidth, marginWidth} = mediaSpec[mediaSize];
+        const {children, style} = this.props;
 
-        const cols = Cell.getCols(this.props, mediaSize);
-
-        // If no columns are specified then we assume we're rendering
-        // a flexible-width cell (flex: grow)
-        if (cols === undefined) {
-            return <FlexCell style={style}>{children}</FlexCell>;
-        } else if (cols === null || cols === 0) {
-            // If no columns are specified then we just don't render this cell
-            return null;
-        }
-
-        if (cols > totalColumns) {
-            throw new Error(
-                `Specified columns ${cols} is greater than the maximum ` +
-                    `${totalColumns} at the ${mediaSize} grid size.`,
-            );
-        }
-
-        // We need to start by calculating the total width of all the "content"
-        // We do this by starting with the full width (100%) and then
-        // subtracting all of the gutter spaces inbetween the cells
-        // (gutterWidth * (totalColumns - 1)) and the width of the two margins
-        // (marginWidth * 2).
-        const contentWidth = `(100% - ${gutterWidth *
-            (totalColumns - 1)}px - ${marginWidth * 2}px)`;
-
-        // Now that we have the full width we can calculate the width of this
-        // particular cell by multiplying the full width (allCellWidth) by
-        // the ratio of this cell (cols / totalColumns). But we then need to
-        // add back in the missing gutter widths:
-        // (gutterWidth * (cols - 1)). This gives us to full width of
-        // this particular cell.
-        const calcWidth = `calc(${contentWidth} * ${cols /
-            totalColumns} + ${gutterWidth * (cols - 1)}px)`;
-
-        let contents = children;
-
-        // If the contents are a function then we call it with the mediaSize,
-        // totalColumns, and cols properties and render the return value.
-        if (typeof contents === "function") {
-            contents = contents({mediaSize, totalColumns, cols});
-        }
-
-        // Render a fixed-width cell (flex-basis: size, flex-shrink: 0)
-        // that matches the intended width of the cell
         return (
-            <FixedWidthCell width={calcWidth} style={style}>
-                {contents}
-            </FixedWidthCell>
+            <Layout>
+                {({mediaSize, mediaSpec}) => {
+                    // Get the settings for this particular size of grid
+                    const {totalColumns, gutterWidth, marginWidth} = mediaSpec[
+                        mediaSize
+                    ];
+
+                    const cols = Cell.getCols(this.props, mediaSize);
+
+                    // If no columns are specified then we assume we're rendering
+                    // a flexible-width cell (flex: grow)
+                    if (cols === undefined) {
+                        return <FlexCell style={style}>{children}</FlexCell>;
+                    } else if (cols === null || cols === 0) {
+                        // If no columns are specified then we just don't render this cell
+                        return null;
+                    }
+
+                    if (cols > totalColumns) {
+                        throw new Error(
+                            `Specified columns ${cols} is greater than the maximum ` +
+                                `${totalColumns} at the ${mediaSize} grid size.`,
+                        );
+                    }
+
+                    // We need to start by calculating the total width of all the "content"
+                    // We do this by starting with the full width (100%) and then
+                    // subtracting all of the gutter spaces inbetween the cells
+                    // (gutterWidth * (totalColumns - 1)) and the width of the two margins
+                    // (marginWidth * 2).
+                    const contentWidth = `(100% - ${gutterWidth *
+                        (totalColumns - 1)}px - ${marginWidth * 2}px)`;
+
+                    // Now that we have the full width we can calculate the width of this
+                    // particular cell by multiplying the full width (allCellWidth) by
+                    // the ratio of this cell (cols / totalColumns). But we then need to
+                    // add back in the missing gutter widths:
+                    // (gutterWidth * (cols - 1)). This gives us to full width of
+                    // this particular cell.
+                    const calcWidth = `calc(${contentWidth} * ${cols /
+                        totalColumns} + ${gutterWidth * (cols - 1)}px)`;
+
+                    let contents = children;
+
+                    // If the contents are a function then we call it with the mediaSize,
+                    // totalColumns, and cols properties and render the return value.
+                    if (typeof contents === "function") {
+                        contents = contents({mediaSize, totalColumns, cols});
+                    }
+
+                    // Render a fixed-width cell (flex-basis: size, flex-shrink: 0)
+                    // that matches the intended width of the cell
+                    return (
+                        <FixedWidthCell width={calcWidth} style={style}>
+                            {contents}
+                        </FixedWidthCell>
+                    );
+                }}
+            </Layout>
         );
     }
 }
-
-export default MediaLayoutWrapper(Cell);

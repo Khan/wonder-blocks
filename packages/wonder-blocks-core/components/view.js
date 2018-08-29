@@ -1,10 +1,10 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import addStyle from "../util/add-style.js";
 
-import type {Props} from "../util/types.js";
+import type {AriaProps, StyleType} from "../util/types.js";
 
 const styles = StyleSheet.create({
     // https://github.com/facebook/css-layout#default-values
@@ -26,6 +26,13 @@ const styles = StyleSheet.create({
 });
 
 const StyledDiv = addStyle("div", styles.default);
+
+// eslint-disable-next-line flowtype/require-exact-type
+export type Props = {
+    ...AriaProps,
+    style?: StyleType,
+    children?: React.Node,
+};
 
 /**
  * View is a building block for constructing other components. `View` roughly

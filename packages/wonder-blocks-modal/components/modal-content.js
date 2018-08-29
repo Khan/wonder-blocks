@@ -2,6 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {Layout} from "@khanacademy/wonder-blocks-layout";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalHeader from "./modal-header.js";
@@ -26,54 +27,54 @@ export default class ModalContent extends React.Component<Props> {
         const {header, scrollOverflow, style, children} = this.props;
 
         return (
-            <View
-                style={[
-                    styles.wrapper,
-                    scrollOverflow && styles.scrollOverflow,
-                ]}
-            >
-                {!header ||
-                (typeof header === "object" && header.type === ModalHeader) ? (
-                    header
-                ) : (
-                    <ModalHeader>{header}</ModalHeader>
+            <Layout styleSheets={styles}>
+                {({styles}) => (
+                    <View
+                        style={[
+                            styles.wrapper,
+                            scrollOverflow && styles.scrollOverflow,
+                        ]}
+                    >
+                        {!header ||
+                        (typeof header === "object" &&
+                            header.type === ModalHeader) ? (
+                            header
+                        ) : (
+                            <ModalHeader>{header}</ModalHeader>
+                        )}
+                        <View style={[styles.content, style]}>{children}</View>
+                    </View>
                 )}
-                <View
-                    style={[
-                        styles.content,
-                        // TODO(jeresig): Replace with <Layout/>
-                        //(mediaSize) => mediaSize === "small" && styles.small,
-                        style,
-                    ]}
-                >
-                    {children}
-                </View>
-            </View>
+            </Layout>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
+const styles = {
+    all: StyleSheet.create({
+        wrapper: {
+            flex: 1,
 
-        // This helps to ensure that the paddingBottom is preserved when
-        // the contents start to overflow, this goes away on display: flex
-        display: "block",
-    },
+            // This helps to ensure that the paddingBottom is preserved when
+            // the contents start to overflow, this goes away on display: flex
+            display: "block",
+        },
 
-    scrollOverflow: {
-        overflow: "auto",
-    },
+        scrollOverflow: {
+            overflow: "auto",
+        },
 
-    content: {
-        flex: 1,
-        minHeight: "100%",
-        padding: 64,
-        boxSizing: "border-box",
-    },
+        content: {
+            flex: 1,
+            minHeight: "100%",
+            padding: 64,
+            boxSizing: "border-box",
+        },
+    }),
 
-    small: {
-        padding: "32px 16px",
-    },
-});
+    small: StyleSheet.create({
+        content: {
+            padding: "32px 16px",
+        },
+    }),
+};

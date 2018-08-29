@@ -8,9 +8,18 @@ describe("@khanacademy/wonder-blocks-layout", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual([
-            "Strut",
-            "Spring"
-        ].sort());
+        expect(Object.keys(result).sort()).toEqual(
+            [
+                "Strut",
+                "Spring",
+                "MediaLayout",
+                "Layout",
+                "VALID_MEDIA_SIZES",
+                "MEDIA_DEFAULT_SPEC",
+                "MEDIA_INTERNAL_SPEC",
+                "MEDIA_MODAL_SPEC",
+                "matchesSize",
+            ].sort(),
+        );
     });
 });

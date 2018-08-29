@@ -7,11 +7,12 @@ import {processStyleList} from "../util/util.js";
 
 import type {AriaProps, TextTag} from "../util/types.js";
 
-type Props = AriaProps & {
+// eslint-disable-next-line flowtype/require-exact-type
+type Props = {
+    ...AriaProps,
     style?: StyleType,
     tag: TextTag,
     children?: any,
-    [otherProp: string]: any,
 };
 
 const isHeaderRegex = /^h[1-6]$/;
