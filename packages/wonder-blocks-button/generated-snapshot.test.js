@@ -346,6 +346,7 @@ describe("wonder-blocks-button", () => {
                     spinner={true}
                     aria-label="loading"
                     style={styles.button}
+                    href="/foo"
                 >
                     Click me!
                 </Button>
@@ -403,19 +404,6 @@ describe("wonder-blocks-button", () => {
                             size="small"
                         >
                             {kind} small
-                        </Button>
-                    ))}
-                </View>
-                <View style={styles.row}>
-                    {kinds.map((kind, idx) => (
-                        <Button
-                            kind={kind}
-                            icon={icons.contentExercise}
-                            style={styles.button}
-                            key={idx}
-                            href="/"
-                        >
-                            {kind} with href
                         </Button>
                     ))}
                 </View>
