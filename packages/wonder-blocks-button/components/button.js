@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import ButtonCore from "./button-core.js";
 
 export type SharedProps = {|
@@ -12,11 +13,10 @@ export type SharedProps = {|
      */
     children: string,
 
-    // TODO: incorporate
     /**
      * An icon, displayed to the left of the title.
      */
-    // icon?: string,
+    icon?: IconAsset,
 
     /**
      * If true, replaces the contents with a spinner.

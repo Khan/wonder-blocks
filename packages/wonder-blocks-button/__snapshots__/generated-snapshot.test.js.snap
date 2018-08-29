@@ -72,7 +72,8 @@ exports[`wonder-blocks-button example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -143,7 +144,8 @@ exports[`wonder-blocks-button example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -211,7 +213,8 @@ exports[`wonder-blocks-button example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -302,7 +305,8 @@ exports[`wonder-blocks-button example 2 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -373,7 +377,8 @@ exports[`wonder-blocks-button example 2 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -441,7 +446,8 @@ exports[`wonder-blocks-button example 2 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -533,7 +539,8 @@ exports[`wonder-blocks-button example 3 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -605,7 +612,8 @@ exports[`wonder-blocks-button example 3 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -674,7 +682,8 @@ exports[`wonder-blocks-button example 3 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -766,7 +775,8 @@ exports[`wonder-blocks-button example 4 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -837,7 +847,8 @@ exports[`wonder-blocks-button example 4 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -905,7 +916,8 @@ exports[`wonder-blocks-button example 4 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -974,7 +986,8 @@ exports[`wonder-blocks-button example 4 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1046,7 +1059,8 @@ exports[`wonder-blocks-button example 4 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1115,7 +1129,8 @@ exports[`wonder-blocks-button example 4 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1206,7 +1221,8 @@ exports[`wonder-blocks-button example 5 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
@@ -1277,7 +1293,8 @@ exports[`wonder-blocks-button example 5 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
@@ -1345,7 +1362,8 @@ exports[`wonder-blocks-button example 5 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
@@ -1431,7 +1449,8 @@ exports[`wonder-blocks-button example 6 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1502,7 +1521,8 @@ exports[`wonder-blocks-button example 6 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1565,7 +1585,8 @@ exports[`wonder-blocks-button example 6 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1651,7 +1672,8 @@ exports[`wonder-blocks-button example 7 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1714,7 +1736,8 @@ exports[`wonder-blocks-button example 7 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1806,7 +1829,8 @@ exports[`wonder-blocks-button example 8 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1933,7 +1957,8 @@ exports[`wonder-blocks-button example 8 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
@@ -2030,6 +2055,602 @@ exports[`wonder-blocks-button example 9 1`] = `
     }
   }
 >
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
+        "marginBottom": 10,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-label=""
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 12,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "paddingRight": 8,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-.5-11.086l1.586 1.586-2.5 2.5H9v-1.586l2.5-2.5zM12.914 9.5L14 8.414 15.586 10 14.5 11.086 12.914 9.5zM12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zM7 13v3a1 1 0 0 0 1 1h3a1 1 0 0 0 .707-.293l6-6a1 1 0 0 0 0-1.414l-3-3a1 1 0 0 0-1.414 0l-6 6A1 1 0 0 0 7 13z"
+            fill="currentColor"
+          />
+        </svg>
+        primary
+      </span>
+    </button>
+    <button
+      aria-label=""
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 12,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "paddingRight": 8,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-.5-11.086l1.586 1.586-2.5 2.5H9v-1.586l2.5-2.5zM12.914 9.5L14 8.414 15.586 10 14.5 11.086 12.914 9.5zM12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zM7 13v3a1 1 0 0 0 1 1h3a1 1 0 0 0 .707-.293l6-6a1 1 0 0 0 0-1.414l-3-3a1 1 0 0 0-1.414 0l-6 6A1 1 0 0 0 7 13z"
+            fill="currentColor"
+          />
+        </svg>
+        secondary
+      </span>
+    </button>
+    <button
+      aria-label=""
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 4,
+          "paddingRight": 4,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "paddingRight": 8,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm-.5-11.086l1.586 1.586-2.5 2.5H9v-1.586l2.5-2.5zM12.914 9.5L14 8.414 15.586 10 14.5 11.086 12.914 9.5zM12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zM7 13v3a1 1 0 0 0 1 1h3a1 1 0 0 0 .707-.293l6-6a1 1 0 0 0 0-1.414l-3-3a1 1 0 0 0-1.414 0l-6 6A1 1 0 0 0 7 13z"
+            fill="currentColor"
+          />
+        </svg>
+        tertiary
+      </span>
+    </button>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
+        "marginBottom": 10,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-label=""
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 12,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "lineHeight": "18px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "paddingRight": 8,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M7.5 6.914L5 9.414V11h1.586l2.5-2.5L7.5 6.914zM8.914 5.5L10.5 7.086 11.586 6 10 4.414 8.914 5.5zM3 9a1 1 0 0 1 .293-.707l6-6a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 7 13H4a1 1 0 0 1-1-1V9z"
+            fill="currentColor"
+          />
+        </svg>
+        primary
+         small
+      </span>
+    </button>
+    <button
+      aria-label=""
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 12,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "lineHeight": "18px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "paddingRight": 8,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M7.5 6.914L5 9.414V11h1.586l2.5-2.5L7.5 6.914zM8.914 5.5L10.5 7.086 11.586 6 10 4.414 8.914 5.5zM3 9a1 1 0 0 1 .293-.707l6-6a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 7 13H4a1 1 0 0 1-1-1V9z"
+            fill="currentColor"
+          />
+        </svg>
+        secondary
+         small
+      </span>
+    </button>
+    <button
+      aria-label=""
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 4,
+          "paddingRight": 4,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "lineHeight": "18px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <svg
+          className=""
+          height={16}
+          style={
+            Object {
+              "display": "inline-block",
+              "paddingRight": 8,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <path
+            d="M7.5 6.914L5 9.414V11h1.586l2.5-2.5L7.5 6.914zM8.914 5.5L10.5 7.086 11.586 6 10 4.414 8.914 5.5zM3 9a1 1 0 0 1 .293-.707l6-6a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-6 6A1 1 0 0 1 7 13H4a1 1 0 0 1-1-1V9z"
+            fill="currentColor"
+          />
+        </svg>
+        tertiary
+         small
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-button example 10 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <button
     aria-label=""
     className=""
@@ -2081,7 +2702,8 @@ exports[`wonder-blocks-button example 9 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -2100,7 +2722,7 @@ exports[`wonder-blocks-button example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 10 1`] = `
+exports[`wonder-blocks-button example 11 1`] = `
 <div
   className=""
   style={
@@ -2190,7 +2812,8 @@ exports[`wonder-blocks-button example 10 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "display": "block",
+            "alignItems": "center",
+            "display": "flex",
             "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
@@ -2297,7 +2920,8 @@ exports[`wonder-blocks-button example 10 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "display": "block",
+            "alignItems": "center",
+            "display": "flex",
             "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
@@ -2317,7 +2941,7 @@ exports[`wonder-blocks-button example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 11 1`] = `
+exports[`wonder-blocks-button example 12 1`] = `
 <div
   className=""
   style={
@@ -2393,7 +3017,8 @@ exports[`wonder-blocks-button example 11 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -2462,7 +3087,8 @@ exports[`wonder-blocks-button example 11 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -2481,7 +3107,7 @@ exports[`wonder-blocks-button example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 12 1`] = `
+exports[`wonder-blocks-button example 13 1`] = `
 <div
   className=""
   style={
@@ -2572,7 +3198,8 @@ exports[`wonder-blocks-button example 12 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "display": "block",
+            "alignItems": "center",
+            "display": "flex",
             "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
@@ -2639,7 +3266,8 @@ exports[`wonder-blocks-button example 12 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "display": "block",
+            "alignItems": "center",
+            "display": "flex",
             "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
@@ -2659,7 +3287,7 @@ exports[`wonder-blocks-button example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 13 1`] = `
+exports[`wonder-blocks-button example 14 1`] = `
 <div
   className=""
   style={
@@ -2730,7 +3358,8 @@ exports[`wonder-blocks-button example 13 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",

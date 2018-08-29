@@ -364,6 +364,68 @@ describe("wonder-blocks-button", () => {
     });
     it("example 9", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                marginBottom: 10,
+            },
+            button: {
+                marginRight: 10,
+            },
+        });
+
+        const kinds = ["primary", "secondary", "tertiary"];
+
+        const example = (
+            <View>
+                <View style={styles.row}>
+                    {kinds.map((kind, idx) => (
+                        <Button
+                            kind={kind}
+                            icon={icons.contentExercise}
+                            style={styles.button}
+                            key={idx}
+                        >
+                            {kind}
+                        </Button>
+                    ))}
+                </View>
+                <View style={styles.row}>
+                    {kinds.map((kind, idx) => (
+                        <Button
+                            kind={kind}
+                            icon={icons.contentExercise}
+                            style={styles.button}
+                            key={idx}
+                            size="small"
+                        >
+                            {kind} small
+                        </Button>
+                    ))}
+                </View>
+                <View style={styles.row}>
+                    {kinds.map((kind, idx) => (
+                        <Button
+                            kind={kind}
+                            icon={icons.contentExercise}
+                            style={styles.button}
+                            key={idx}
+                            href="/"
+                        >
+                            {kind} with href
+                        </Button>
+                    ))}
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 10", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
             <View>
@@ -373,7 +435,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -406,7 +468,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -436,7 +498,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
+    it("example 13", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -462,7 +524,7 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
+    it("example 14", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 

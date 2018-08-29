@@ -339,6 +339,57 @@ const styles = StyleSheet.create({
 Buttons can have a `style` props which supports width, position, margin,
 and flex styles.
 
+Buttons can have an icon on it's left side.
+```
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+const {icons} = require("@khanacademy/wonder-blocks-icon");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        marginBottom: 10,
+    },
+    button: {
+        marginRight: 10,
+    },
+});
+
+const kinds = ["primary", "secondary", "tertiary"];
+
+<View>
+    <View style={styles.row}>
+        {
+            kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    icon={icons.contentExercise}
+                    style={styles.button}
+                    key={idx}
+                >
+                    {kind}
+                </Button>
+            ))
+        }
+    </View>
+    <View style={styles.row}>
+        {
+            kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    icon={icons.contentExercise}
+                    style={styles.button}
+                    key={idx}
+                    size="small"
+                >
+                    {kind} small
+                </Button>
+            ))
+        }
+    </View>
+</View>
+```
+
 ### Best Practices
 
 In vertical layouts, buttons will stretch horizontally to fill the available
