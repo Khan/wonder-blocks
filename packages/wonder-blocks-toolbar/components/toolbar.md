@@ -3,7 +3,7 @@
 ```js
 const Button = require("@khanacademy/wonder-blocks-button").default;
 
-const buttonStyle = { width: 160 };
+const buttonStyle = { width: 160, margin: "0 8px" };
 
 const smallButton = (
     <Button size="small" style={buttonStyle}>
@@ -30,7 +30,7 @@ const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary"/>;
 const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary"/>;
 
 const linkButton = (
-    <Button kind="tertiary">
+    <Button kind="tertiary" style={{margin: "0 8px"}}>
         Import...
     </Button>
 );
@@ -48,7 +48,7 @@ const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const hintButton = <IconButton icon={icons.hint} kind="primary"/>;
 
 const mainButton = (
-    <Button kind="primary">
+    <Button kind="primary" style={{margin: "0 8px"}}>
         Submit
     </Button>
 );
@@ -62,7 +62,7 @@ const mainButton = (
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{ marginLeft: -12 }} />;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
 <Toolbar
     leftContent={closeButton}
@@ -77,8 +77,8 @@ const Button = require("@khanacademy/wonder-blocks-button").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{ marginLeft: -12 }} />;
-const startExercise = <Button>Next Video</Button>;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
+const startExercise = <Button style={{margin: "0 8px"}}>Next Video</Button>;
 
 <Toolbar
     leftContent={closeButton}
@@ -93,7 +93,7 @@ const startExercise = <Button>Next Video</Button>;
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
-const buttonStyle = { width: 140 };
+const buttonStyle = { width: 140, margin: "0 8px"};
 
 const nextExercise = <Button style={buttonStyle}>Next exercise</Button>;
 const questionCount = <LabelLarge>7 questions</LabelLarge>;
@@ -112,10 +112,10 @@ const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const Link = require("@khanacademy/wonder-blocks-link").default;
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{ marginLeft: -12 }} />;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
 const goToExercise = (
-    <Link href="#">
+    <Link href="#" style={{margin: "0 8px"}}>
         <LabelLarge>Go to exercise</LabelLarge>
     </Link>
 );
