@@ -36,6 +36,10 @@ export default class CaaFAggregator extends React.Component<Props> {
                 }
             }
             if (i < providers.length) {
+                // For each provider, we tell it that its children is our little
+                // function. This allows us to gather its CaaF arguments into
+                // our array and then tell that provider that its child is the
+                // next provider.
                 const providerEl = React.createElement(providers[i].type, {
                     ...providers[i].props,
                     children: buildProviders,
@@ -43,6 +47,11 @@ export default class CaaFAggregator extends React.Component<Props> {
                 i++;
                 return providerEl;
             } else {
+                // If we have made it through all the providers, we return the
+                // result of the real children, given the now gathered provided
+                // values (which are in the same order as the providers array
+                // passed to the props, ensuring an intuitive ordering for
+                // consumers).
                 return children(provided);
             }
         };
