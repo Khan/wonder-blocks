@@ -3,9 +3,9 @@ import * as React from "react";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import UniqueIDProvider from "./unique-id-provider.js";
-import ProviderGroup from "./provider-group.js";
+import CaaFAggregator from "./caaf-aggregator.js";
 
-describe("ProviderGroup", () => {
+describe("CaaFAggregator", () => {
     afterEach(() => {
         unmountAll();
     });
@@ -22,9 +22,9 @@ describe("ProviderGroup", () => {
             {type: UniqueIDProvider, props: {scope: "test"}},
         ];
         const underTest = (
-            <ProviderGroup providers={providers}>
+            <CaaFAggregator providers={providers}>
                 {(...args) => gatherer(args)}
-            </ProviderGroup>
+            </CaaFAggregator>
         );
 
         // Act

@@ -11,7 +11,7 @@ type Props = {|
     children: (Array<any>) => React.Node,
 |};
 
-export default class ProviderGroup extends React.Component<Props> {
+export default class CaaFAggregator extends React.Component<Props> {
     render() {
         const {providers, children} = this.props;
         const provided = [];
