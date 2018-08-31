@@ -8,7 +8,7 @@ import {Popper} from "react-popper";
 import type {PopperChildrenProps} from "react-popper";
 
 import TooltipBubble from "./tooltip-bubble.js";
-import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
+import visibilityModifierDefaultConfig from "../../wonder-blocks-core/util/visibility-modifier.js";
 import RefTracker from "../util/ref-tracker.js";
 import type {Placement} from "../util/types.js";
 import type {TooltipBubbleProps} from "./tooltip-bubble.js";

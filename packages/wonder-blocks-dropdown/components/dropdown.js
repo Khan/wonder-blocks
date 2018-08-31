@@ -12,7 +12,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
+import visibilityModifierDefaultConfig from "../../wonder-blocks-core/util/visibility-modifier.js";
 import SeparatorItem from "./separator-item.js";
 import {keyCodes} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
