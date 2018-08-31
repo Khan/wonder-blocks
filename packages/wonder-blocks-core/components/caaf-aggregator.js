@@ -1,19 +1,36 @@
 // @flow
 import * as React from "react";
 
-type Provider<P> = {|
+type CaaFComponent<P> = {|
     type: React.ComponentType<P>,
     props?: P,
 |};
 
 type Props = {|
-    providers: Array<Provider<any>>,
+    /**
+     * The children-as-a-function (CaaF) components that are to be aggregated.
+     */
+    caafs: Array<CaaFComponent<any>>,
+    /**
+     * The function called to render the children of this component. It is
+     * passed an array that contains the results of each aggregated CaaF in the
+     * order the CaaFs were provided in the `caaf` prop.
+     */
     children: (Array<any>) => React.Node,
 |};
 
+/**
+ * This children-as-a-function (CaaF) component provides a mechanism for
+ * gathering the output of several CaaF components into a single CaaF, removing
+ * the need for nesting the components.
+ *
+ * @export
+ * @class CaaFAggregator
+ * @extends {React.Component<Props>}
+ */
 export default class CaaFAggregator extends React.Component<Props> {
     render() {
-        const {providers, children} = this.props;
+        const {caafs, children} = this.props;
         const provided = [];
         let i = 0;
         const buildProviders = (...args) => {
@@ -35,13 +52,13 @@ export default class CaaFAggregator extends React.Component<Props> {
                     provided.push(args);
                 }
             }
-            if (i < providers.length) {
+            if (i < caafs.length) {
                 // For each provider, we tell it that its children is our little
                 // function. This allows us to gather its CaaF arguments into
                 // our array and then tell that provider that its child is the
                 // next provider.
-                const providerEl = React.createElement(providers[i].type, {
-                    ...providers[i].props,
+                const providerEl = React.createElement(caafs[i].type, {
+                    ...caafs[i].props,
                     children: buildProviders,
                 });
                 i++;

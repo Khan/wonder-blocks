@@ -22,7 +22,7 @@ describe("CaaFAggregator", () => {
             {type: UniqueIDProvider, props: {scope: "test"}},
         ];
         const underTest = (
-            <CaaFAggregator providers={providers}>
+            <CaaFAggregator caafs={providers}>
                 {(...args) => gatherer(args)}
             </CaaFAggregator>
         );
