@@ -14,7 +14,7 @@ import {withRouter} from "react-router-dom";
 import ClickableBehavior from "../components/clickable-behavior.js";
 
 function isExternalUrl(url: string) {
-    return /^https?:\/\//i.test(url);
+    return url.indexOf("//") >= 0;
 }
 
 const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
