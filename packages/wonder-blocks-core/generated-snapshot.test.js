@@ -22,14 +22,14 @@ describe("wonder-blocks-core", () => {
                 placeholder={() => (
                     <View>
                         This gets rendered on client and server for the first
-                        render call
+                        render call in the component tree
                     </View>
                 )}
             >
                 {() => (
                     <View>
-                        This is rendered only by the client for all but the
-                        first render.
+                        This is rendered only by the client for all but the very
+                        first render of the component tree.
                     </View>
                 )}
             </NoSSR>

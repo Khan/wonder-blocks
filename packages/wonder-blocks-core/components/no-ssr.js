@@ -26,6 +26,8 @@ type State = {|
     mounted: boolean,
 |};
 
+const HasHadFirstRenderContext = React.createContext(false);
+
 /**
  * Defer or change rendering until the component did mount.
  *
@@ -34,6 +36,11 @@ type State = {|
  * not be sufficient, since the initial render of the component must match
  * what is rendered on the server. Therefore, this component also disables
  * rendering the first time around on the client.
+ *
+ * If `NoSSR` components are nested within one another, the root `NoSSR`
+ * component will handle the initial render, but nested `NoSSR` components
+ * will delegate to the root one, meaning that we don't cascade delayed
+ * rendering down the component tree.
  *
  * Example:
  *
@@ -55,18 +62,43 @@ export default class NoSSR extends React.Component<Props, State> {
         });
     }
 
-    render() {
+    _maybeRenderPlaceholderOrChildren(alreadyPerformedFirstRender: boolean) {
         const {mounted} = this.state;
         const {children, placeholder} = this.props;
 
-        if (mounted) {
+        // We just get on with rendering if we're passed truthiness as we
+        // are reliably told a NoSSR component further up the chain already
+        // handled our SSR case.
+        if (alreadyPerformedFirstRender) {
             return children();
         }
 
+        // We are mounted and we no higher SSR component handled the first
+        // render so let's tell our children that we did.
+        if (mounted) {
+            return (
+                <HasHadFirstRenderContext.Provider value={true}>
+                    {children()}
+                </HasHadFirstRenderContext.Provider>
+            );
+        }
+
+        // We don't have a parent that handled SSR, and this must be our
+        // first render, and we have a placeholder, so render the placeholder.
         if (placeholder) {
             return placeholder();
         }
 
+        // We don't have a parent that handled SSR, and this must be our
+        // first render and we don't have a placeholder, so return nothing.
         return null;
+    }
+
+    render() {
+        return (
+            <HasHadFirstRenderContext.Consumer>
+                {(value) => this._maybeRenderPlaceholderOrChildren(value)}
+            </HasHadFirstRenderContext.Consumer>
+        );
     }
 }

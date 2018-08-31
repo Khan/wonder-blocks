@@ -11,15 +11,14 @@ describe("NoSSR", () => {
         unmountAll();
     });
 
-    test("renders a placeholder first, then the actual content", (done) => {
+    test("renders a placeholder first, then the actual content", async () => {
         // Arrange
         const mockPlaceholder = jest.fn(() => null);
-
-        const arrangeAct = (assert) => {
+        await new Promise((resolve) => {
             const nodes = (
                 <NoSSR placeholder={mockPlaceholder}>
                     {() => {
-                        assert();
+                        resolve();
                         return null;
                     }}
                 </NoSSR>
@@ -27,18 +26,45 @@ describe("NoSSR", () => {
 
             // Act
             mount(nodes);
-        };
+        });
 
-        const assert = () => {
-            // Assert
-            // This was called from within the NoSSR children render prop.
-            // Therefore, if the placeholder has been called, it must have
-            // been called first.
-            expect(mockPlaceholder).toHaveBeenCalledTimes(1);
-            done();
-        };
+        // Assert
+        // Our promise doesn't resolve until the children render, therefore
+        // we don't get here until that and so if the placeholder has been
+        // called, it must have been called first.
+        expect(mockPlaceholder).toHaveBeenCalledTimes(1);
+    });
 
-        arrangeAct(assert);
+    test("renders children right away if a parent NoSSR component handled first render", async () => {
+        // Arrange
+        const mockPlaceholder = jest.fn(() => null);
+        const mockPlaceholderNotCalled = jest.fn(() => null);
+        await new Promise((resolve) => {
+            const nodes = (
+                <NoSSR placeholder={mockPlaceholder}>
+                    {() => (
+                        <NoSSR placeholder={mockPlaceholderNotCalled}>
+                            {() => {
+                                resolve();
+                                return null;
+                            }}
+                        </NoSSR>
+                    )}
+                </NoSSR>
+            );
+
+            // Act
+            mount(nodes);
+        });
+
+        // Assert
+        // Our promise doesn't resolve until the children of our nested NoSSR
+        // are rendered, therefore we don't get here until that and so if the
+        // parent placeholder has been called, it must have been called first.
+        // In addition, if our code is working right, the placeholder of the
+        // nested component should have been skipped.
+        expect(mockPlaceholder).toHaveBeenCalledTimes(1);
+        expect(mockPlaceholderNotCalled).not.toHaveBeenCalled();
     });
 
     describe("server-side rendering", () => {
