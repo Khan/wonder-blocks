@@ -39,9 +39,18 @@ function FullIntersection() {
     };
 }
 
+type Rect = {|
+    top: number,
+    bottom: number,
+    left: number,
+    right: number,
+    width: number,
+    height: number,
+|};
+
 function getAxisIntersection(
     intersectingRect: ClientRect | DOMRect,
-    boundsRect: ClientRect | DOMRect,
+    boundsRect: Rect,
     axis: "vertical" | "horizontal",
 ): AxisIntersection {
     const start = (rect) => (axis === "horizontal" ? rect.left : rect.top);
@@ -74,7 +83,17 @@ function getElementIntersectionAgainstParent(
         ((boundsElement: any).currentStyle: ?CSSStyleDeclaration) ||
         window.getComputedStyle(boundsElement);
 
-    const boundsRect = boundsElement.getBoundingClientRect();
+    const boundsRect = {...boundsElement.getBoundingClientRect()};
+
+    // In webapp we set height: 100% on html, body and overflow-y: scroll on body.
+    // This results in the height reported by getBoundingClientRect being the height
+    // of the viewport instead of the height of the page.  We use the scrollHeight
+    // of the body to corect the bounds.
+    // TODO(kevinb): screenshot test this
+    if (boundsElement === document.body) {
+        boundsRect.height = (boundsElement: any).scrollHeight;
+        boundsRect.bottom = boundsRect.top + boundsRect.height;
+    }
 
     // We assume we're within this specific bounds element if it's overflow is
     // visible.

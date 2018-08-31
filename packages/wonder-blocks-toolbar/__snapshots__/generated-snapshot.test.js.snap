@@ -54,8 +54,8 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -179,7 +179,8 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
-                "display": "block",
+                "alignItems": "center",
+                "display": "flex",
                 "fontFamily": "Lato, sans-serif",
                 "fontSize": 14,
                 "fontWeight": "bold",
@@ -271,7 +272,8 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
-                "display": "block",
+                "alignItems": "center",
+                "display": "flex",
                 "fontFamily": "Lato, sans-serif",
                 "fontSize": 14,
                 "fontWeight": "bold",
@@ -294,6 +296,366 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
 `;
 
 exports[`wonder-blocks-toolbar example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 50,
+      "minWidth": 0,
+      "padding": 0,
+      "paddingLeft": 4,
+      "paddingRight": 4,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm-3-5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2H8z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM12 10h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H8a1 1 0 0 1 0-2h2V8a1 1 0 0 1 2 0v2zm-1 7a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <button
+          aria-label=""
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          style={
+            Object {
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 0,
+              "outline": "none",
+              "paddingBottom": 0,
+              "paddingLeft": 4,
+              "paddingRight": 4,
+              "paddingTop": 0,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "center",
+                "display": "flex",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Import...
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 3 1`] = `
 <div
   className=""
   style={
@@ -347,8 +709,289 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M10.835 15.993a1 1 0 0 1 1.008-.247 5.5 5.5 0 1 0-3.59-3.59 1 1 0 0 1-.246 1.009L6.172 15 9 17.828l1.835-1.835zm-.78 3.61a1.496 1.496 0 0 1-2.11 0l-3.548-3.549a1.496 1.496 0 0 1 0-2.108l1.787-1.787a7.5 7.5 0 1 1 5.657 5.657l-1.787 1.787zm-6.762.104a1 1 0 0 1 1.414-1.414l1 1a1 1 0 0 1-1.414 1.414l-1-1z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 8,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <button
+          aria-label=""
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          style={
+            Object {
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "#1865f2",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 0,
+              "outline": "none",
+              "paddingBottom": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 0,
+              "position": "relative",
+              "textDecoration": "none",
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "center",
+                "display": "flex",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "userSelect": "none",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Submit
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-toolbar example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "border": "1px solid rgba(33, 36, 44, 0.16)",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 66,
+      "minWidth": 0,
+      "padding": 0,
+      "paddingLeft": 4,
+      "paddingRight": 4,
+      "position": "relative",
+      "width": "100%",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -549,7 +1192,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-toolbar example 3 1`] = `
+exports[`wonder-blocks-toolbar example 5 1`] = `
 <div
   className=""
   style={
@@ -603,8 +1246,8 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -872,7 +1515,8 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
-                "display": "block",
+                "alignItems": "center",
+                "display": "flex",
                 "fontFamily": "Lato, sans-serif",
                 "fontSize": 16,
                 "fontWeight": "bold",
@@ -894,7 +1538,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-toolbar example 4 1`] = `
+exports[`wonder-blocks-toolbar example 6 1`] = `
 <div
   className=""
   style={
@@ -948,8 +1592,8 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1113,7 +1757,8 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
-                "display": "block",
+                "alignItems": "center",
+                "display": "flex",
                 "fontFamily": "Lato, sans-serif",
                 "fontSize": 16,
                 "fontWeight": "bold",
@@ -1202,7 +1847,8 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
-                "display": "block",
+                "alignItems": "center",
+                "display": "flex",
                 "fontFamily": "Lato, sans-serif",
                 "fontSize": 16,
                 "fontWeight": "bold",
@@ -1224,7 +1870,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-toolbar example 5 1`] = `
+exports[`wonder-blocks-toolbar example 7 1`] = `
 <div
   className=""
   style={
@@ -1278,8 +1924,8 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "column",
-          "justifyContent": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
@@ -1562,7 +2208,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-toolbar example 6 1`] = `
+exports[`wonder-blocks-toolbar example 8 1`] = `
 <div
   className=""
   style={
@@ -1642,8 +2288,8 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexDirection": "column",
-            "justifyContent": "center",
+            "flexDirection": "row",
+            "justifyContent": "flex-start",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,

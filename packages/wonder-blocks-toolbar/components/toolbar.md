@@ -19,6 +19,43 @@ const secondaryButton = (
 <Toolbar size="small" rightContent={[smallButton, secondaryButton]} />
 ```
 
+### Small toolbar with multiple left side buttons:
+
+```js
+const {icons} = require("@khanacademy/wonder-blocks-icon");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+
+const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary"/>;
+const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary"/>;
+
+const linkButton = (
+    <Button kind="tertiary">
+        Import...
+    </Button>
+);
+
+<Toolbar size="small" leftContent={[zoomOutButton, zoomInButton]} rightContent={[linkButton]} />
+```
+
+### Toolbar with left icon button and right primary button:
+
+```js
+const {icons} = require("@khanacademy/wonder-blocks-icon");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+
+const hintButton = <IconButton icon={icons.hint} kind="primary"/>;
+
+const mainButton = (
+    <Button kind="primary">
+        Submit
+    </Button>
+);
+
+<Toolbar leftContent={[hintButton]} rightContent={[mainButton]} />
+```
+
 ### Toolbar with title
 
 ```js
