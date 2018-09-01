@@ -12,10 +12,7 @@
 import {withRouter} from "react-router-dom";
 
 import ClickableBehavior from "../components/clickable-behavior.js";
-
-function isExternalUrl(url: string) {
-    return url.indexOf("//") >= 0;
-}
+import isExternalUrl from "./is-external-url.js";
 
 const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
 
