@@ -106,7 +106,7 @@
     },
     "collectCoverageFrom": [
       "packages/**/*.js",
-      "!packages/**/dist/index.js",
+      "!packages/**/dist/**/*.js",
       "!<rootDir>/node_modules/",
       "!packages/**/node_modules/"
     ]
