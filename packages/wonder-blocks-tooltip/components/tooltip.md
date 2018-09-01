@@ -73,6 +73,7 @@ const {StyleSheet} = require("aphrodite");
 const React = require("react");
 const {View, Text} = require("@khanacademy/wonder-blocks-core");
 const {StandardModal, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
+const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
     scrollbox: {
@@ -113,7 +114,7 @@ const modal = (
 );
 
 <ModalLauncher modal={modal}>
-    {({openModal}) => <button onClick={openModal}>Click here!</button>}
+    {({openModal}) => <Button onClick={openModal}>Click here!</Button>}
 </ModalLauncher>
 ```
 
