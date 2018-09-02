@@ -49,6 +49,7 @@ jobs:
           key: npm-deps-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+      - run: yarn build:all
       - run: sh /home/vite/docker/commands.sh
       - store_artifacts:
           path: screenshots
