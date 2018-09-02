@@ -39,9 +39,8 @@ jobs:
     docker:
       - image: kevinbarabash/vite
     steps:
-      - run: echo `pwd`
+      - setup_remote_docker
       - checkout
-      - run: echo `pwd`
       - restore_cache:
           keys:
             - npm-deps-{{ checksum "yarn.lock" }}
@@ -51,7 +50,7 @@ jobs:
           key: npm-deps-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-      - run: yarn screenshots
+      - run: vite sh /home/vite/docker/commands.sh
       - store_artifacts:
           path: screenshots
           destination: screenshots

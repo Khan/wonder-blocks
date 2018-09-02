@@ -28,8 +28,7 @@
     "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
     "pretty-quick": "pretty-quick --staged",
     "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:cjs && yarn build:es6 && lerna publish",
-    "dry-run-publish": "yarn run publish --skip-npm --skip-git",
-    "screenshots": "docker run -v `pwd`:/home/under_test kevinbarabash/vite"
+    "dry-run-publish": "yarn run publish --skip-npm --skip-git"
   },
   "author": "",
   "license": "MIT",
@@ -115,7 +114,6 @@
   "pre-commit": [
     "lint",
     "test",
-    "screenshots",
     "git-add-snapshot-tests",
     "pretty-quick"
   ]
