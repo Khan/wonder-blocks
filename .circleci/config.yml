@@ -49,7 +49,7 @@ jobs:
           key: npm-deps-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-      - run: Xvfb :99 -ac -screen 0 1024x768x24 &
+      - run: sh /home/vite/docker/commands.sh
       - store_artifacts:
           path: screenshots
           destination: screenshots
