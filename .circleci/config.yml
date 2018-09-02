@@ -38,7 +38,7 @@ jobs:
   screenshots:
     machine: true
     steps:
-      - run: sudo curl -sL https://deb.nodesource.com/setup_8.x | bash
+      - run: sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash
       - run: sudo apt-get install -y nodejs
       - run: sudo npm i -g yarn
       - checkout
