@@ -52,8 +52,8 @@ jobs:
             - node_modules
       - run: yarn screenshot
       - store_artifacts:
-        path: screenshots
-        destination: screenshots
+          path: screenshots
+          destination: screenshots
 workflows:
   version: 2
   lint_and_test:
