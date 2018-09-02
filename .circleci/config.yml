@@ -36,12 +36,12 @@ jobs:
       - run: yarn run jest --coverage
       - run: yarn run codecov
   screenshots:
-    machine: true
+    docker:
+      - image: kevinbarabash/vite
     steps:
-      - run: sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash
-      - run: sudo apt-get install -y nodejs
-      - run: sudo npm i -g yarn
+      - run: echo `pwd`
       - checkout
+      - run: echo `pwd`
       - restore_cache:
           keys:
             - npm-deps-{{ checksum "yarn.lock" }}
