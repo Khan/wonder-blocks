@@ -36,8 +36,7 @@ jobs:
       - run: yarn run jest --coverage
       - run: yarn run codecov
   screenshots:
-    docker:
-      - image: circleci/node:8-browsers
+    machine: true
     steps:
       - setup_remote_docker
       - run: pwd
