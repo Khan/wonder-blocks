@@ -38,7 +38,6 @@ jobs:
   screenshots:
     docker:
       - image: circleci/node:8-browsers
-      - image: kevinbarabash/vite
     steps:
       - checkout
       - restore_cache:
@@ -50,7 +49,7 @@ jobs:
           key: npm-deps-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-      - run: yarn screenshot
+      - run: yarn screenshots
       - store_artifacts:
           path: screenshots
           destination: screenshots
