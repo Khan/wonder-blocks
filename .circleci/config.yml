@@ -38,7 +38,9 @@ jobs:
   screenshots:
     machine: true
     steps:
-      - run: pwd
+      - run: curl -sL https://deb.nodesource.com/setup_8.x | bash
+      - run: apt-get install -y nodejs
+      - run: npm i -g yarn
       - checkout
       - restore_cache:
           keys:
