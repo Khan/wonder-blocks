@@ -35,9 +35,29 @@ jobs:
       - run: yarn run build:es6
       - run: yarn run jest --coverage
       - run: yarn run codecov
+  screenshots:
+    docker:
+      - image: circleci/node:8-browsers
+      - image: kevinbarabash/vite
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "yarn.lock" }}
+            - npm-deps-
+      - run: yarn install
+      - save_cache:
+          key: npm-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run: yarn screenshot
+      - store_artifacts:
+        path: screenshots
+        destination: screenshots
 workflows:
   version: 2
   lint_and_test:
     jobs:
       - lint
       - test
+      - screenshots
