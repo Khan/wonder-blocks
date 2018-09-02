@@ -40,6 +40,7 @@ jobs:
       - image: circleci/node:8-browsers
     steps:
       - setup_remote_docker
+      - run: pwd
       - checkout
       - restore_cache:
           keys:
