@@ -49,6 +49,8 @@ describe("Modal", () => {
         await simulate({type: "mousemove", clientX: 50, clientY: 25});
         await simulate({type: "click"});
         await waitForSelectorToAppear(`[data-test-id="close-modal"]`);
+        // TODO: remove hover state from buttons under the modal backdrop
+        await simulate({type: "mousemove", clientX: 512, clientY: 384});
         await expect(document.body).toMatchScreenshot();
 
         // tab repeatedly to verify that the focus trap works
