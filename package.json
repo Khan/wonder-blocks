@@ -29,7 +29,8 @@
     "pretty-quick": "pretty-quick --staged",
     "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:cjs && yarn build:es6 && lerna publish",
     "dry-run-publish": "yarn run publish --skip-npm --skip-git",
-    "screenshots:local": "docker run -v `pwd`:/home/under_test vite sh /home/vite/docker/commands.sh"
+    "screenshots:local": "rm screenshots/*.png && docker run -v `pwd`:/home/under_test vite sh /home/vite/docker/commands.sh",
+    "no-changed-files": "git diff --exit-code"
   },
   "author": "",
   "license": "MIT",
@@ -116,6 +117,8 @@
     "lint",
     "test",
     "git-add-snapshot-tests",
-    "pretty-quick"
+    "pretty-quick",
+    "screenshots:local",
+    "no-changed-files"
   ]
 }
