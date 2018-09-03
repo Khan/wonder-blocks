@@ -2,21 +2,25 @@
 
 ```js
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
-const buttonStyle = { width: 160, margin: "0 8px" };
+const buttonStyle = { width: 160 };
 
 const smallButton = (
     <Button size="small" style={buttonStyle}>
         Small button
     </Button>
 );
+
+const strut = <Strut size={16}/>;
+
 const secondaryButton = (
     <Button size="small" kind="secondary" style={buttonStyle}>
         Secondary button
     </Button>
 );
 
-<Toolbar size="small" rightContent={[smallButton, secondaryButton]} />
+<Toolbar size="small" rightContent={[smallButton, strut, secondaryButton]} />
 ```
 
 ### Small toolbar with multiple left side buttons:
@@ -30,7 +34,7 @@ const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary"/>;
 const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary"/>;
 
 const linkButton = (
-    <Button kind="tertiary" style={{margin: "0 8px"}}>
+    <Button kind="tertiary">
         Import...
     </Button>
 );
@@ -48,7 +52,7 @@ const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const hintButton = <IconButton icon={icons.hint} kind="primary"/>;
 
 const mainButton = (
-    <Button kind="primary" style={{margin: "0 8px"}}>
+    <Button kind="primary">
         Submit
     </Button>
 );
@@ -78,7 +82,7 @@ const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
 const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
-const startExercise = <Button style={{margin: "0 8px"}}>Next Video</Button>;
+const startExercise = <Button>Next Video</Button>;
 
 <Toolbar
     leftContent={closeButton}
@@ -92,15 +96,17 @@ const startExercise = <Button style={{margin: "0 8px"}}>Next Video</Button>;
 ```js
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
-const buttonStyle = { width: 140, margin: "0 8px"};
+const buttonStyle = { width: 140 };
 
 const nextExercise = <Button style={buttonStyle}>Next exercise</Button>;
 const questionCount = <LabelLarge>7 questions</LabelLarge>;
 const tryAgain = <Button style={buttonStyle} kind="secondary">Try again</Button>;
+const strut = <Strut size={16}/>;
 
 <Toolbar
-    rightContent={[questionCount, tryAgain, nextExercise]}
+    rightContent={[questionCount, strut, tryAgain, strut, nextExercise]}
 />
 ```
 
@@ -115,7 +121,7 @@ const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
 const goToExercise = (
-    <Link href="#" style={{margin: "0 8px"}}>
+    <Link href="#">
         <LabelLarge>Go to exercise</LabelLarge>
     </Link>
 );

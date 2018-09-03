@@ -16,8 +16,8 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       "minHeight": 50,
       "minWidth": 0,
       "padding": 0,
-      "paddingLeft": 4,
-      "paddingRight": 4,
+      "paddingLeft": 16,
+      "paddingRight": 16,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -121,7 +121,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -211,7 +211,54 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 16,
+              "MsFlexPreferredSize": 16,
+              "WebkitFlexBasis": 16,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 16,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 16,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -311,8 +358,8 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
       "minHeight": 50,
       "minWidth": 0,
       "padding": 0,
-      "paddingLeft": 4,
-      "paddingRight": 4,
+      "paddingLeft": 16,
+      "paddingRight": 16,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -374,7 +421,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -453,7 +500,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -575,7 +622,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -671,8 +718,8 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
       "minHeight": 66,
       "minWidth": 0,
       "padding": 0,
-      "paddingLeft": 4,
-      "paddingRight": 4,
+      "paddingLeft": 16,
+      "paddingRight": 16,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -734,7 +781,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -856,7 +903,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -952,8 +999,8 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
       "minHeight": 66,
       "minWidth": 0,
       "padding": 0,
-      "paddingLeft": 4,
-      "paddingRight": 4,
+      "paddingLeft": 16,
+      "paddingRight": 16,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -1015,7 +1062,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -1051,7 +1098,6 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
-              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
@@ -1208,8 +1254,8 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
       "minHeight": 66,
       "minWidth": 0,
       "padding": 0,
-      "paddingLeft": 4,
-      "paddingRight": 4,
+      "paddingLeft": 16,
+      "paddingRight": 16,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -1271,7 +1317,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -1307,7 +1353,6 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
-              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
@@ -1458,7 +1503,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -1554,8 +1599,8 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
       "minHeight": 66,
       "minWidth": 0,
       "padding": 0,
-      "paddingLeft": 4,
-      "paddingRight": 4,
+      "paddingLeft": 16,
+      "paddingRight": 16,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -1659,7 +1704,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -1696,7 +1741,54 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 16,
+              "MsFlexPreferredSize": 16,
+              "WebkitFlexBasis": 16,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 16,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 16,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -1789,7 +1881,54 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 16,
+              "MsFlexPreferredSize": 16,
+              "WebkitFlexBasis": 16,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 16,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 16,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -1886,8 +2025,8 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
       "minHeight": 66,
       "minWidth": 0,
       "padding": 0,
-      "paddingLeft": 4,
-      "paddingRight": 4,
+      "paddingLeft": 16,
+      "paddingRight": 16,
       "position": "relative",
       "width": "100%",
       "zIndex": 0,
@@ -1949,7 +2088,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -1985,7 +2124,6 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
               "height": 40,
               "justifyContent": "center",
               "margin": 0,
-              "marginLeft": -12,
               "outline": "none",
               "padding": 0,
               "position": "relative",
@@ -2151,7 +2289,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 8,
+            "padding": 0,
             "position": "relative",
             "zIndex": 0,
           }
@@ -2250,8 +2388,8 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
         "minHeight": 66,
         "minWidth": 0,
         "padding": 0,
-        "paddingLeft": 4,
-        "paddingRight": 4,
+        "paddingLeft": 16,
+        "paddingRight": 16,
         "position": "relative",
         "width": "100%",
         "zIndex": 0,
