@@ -29,9 +29,12 @@ const secondaryButton = (
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
 const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary"/>;
 const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary"/>;
+
+const strut = <Strut size={16}/>;
 
 const linkButton = (
     <Button kind="tertiary">
@@ -39,7 +42,7 @@ const linkButton = (
     </Button>
 );
 
-<Toolbar size="small" leftContent={[zoomOutButton, zoomInButton]} rightContent={[linkButton]} />
+<Toolbar size="small" leftContent={[zoomOutButton, strut, zoomInButton]} rightContent={[linkButton]} />
 ```
 
 ### Toolbar with left icon button and right primary button:

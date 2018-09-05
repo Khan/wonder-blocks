@@ -45,18 +45,21 @@ describe("wonder-blocks-toolbar", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
         const zoomOutButton = (
             <IconButton icon={icons.zoomOut} kind="primary" />
         );
         const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary" />;
 
+        const strut = <Strut size={16} />;
+
         const linkButton = <Button kind="tertiary">Import...</Button>;
 
         const example = (
             <Toolbar
                 size="small"
-                leftContent={[zoomOutButton, zoomInButton]}
+                leftContent={[zoomOutButton, strut, zoomInButton]}
                 rightContent={[linkButton]}
             />
         );
