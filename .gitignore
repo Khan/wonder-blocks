@@ -4,3 +4,4 @@ flow-coverage
 dist
 !.vscode
 styleguide.prod.config.js
+selenium/bundle.js
