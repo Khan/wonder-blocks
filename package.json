@@ -30,6 +30,7 @@
     "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:cjs && yarn build:es6 && lerna publish",
     "dry-run-publish": "yarn run publish --skip-npm --skip-git",
     "screenshots:local": "rm screenshots/*.png && docker run -v `pwd`:/home/under_test vite sh /home/vite/docker/commands.sh",
+    "screenshots": "rm screenshots/*.png && docker run -v `pwd`:/home/under_test kevinbarabash/vite sh /home/vite/docker/commands.sh",
     "no-changed-files": "git diff --exit-code"
   },
   "author": "",
@@ -119,7 +120,7 @@
     "test",
     "git-add-snapshot-tests",
     "pretty-quick",
-    "screenshots:local",
+    "screenshots",
     "no-changed-files"
   ]
 }

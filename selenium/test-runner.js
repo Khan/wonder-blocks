@@ -36,34 +36,16 @@ const fs = require("fs");
             "base64",
         );
 
-        const body = await driver.findElement(By.css("body"));
-
-        await driver
-            .actions()
-            .mouseMove(body, {x: 1, y: 11})
-            .mouseUp()
-            .perform();
-        await driver
-            .actions()
-            .sendKeys(Key.TAB)
-            .perform();
-
+        await driver.get("http://localhost:8080?test=2");
         fs.writeFileSync(
             "button_4.png",
             await driver.takeScreenshot(),
             "base64",
         );
 
-        await driver.get("http://localhost:8080?test=2");
-        fs.writeFileSync(
-            "button_5.png",
-            await driver.takeScreenshot(),
-            "base64",
-        );
-
         await driver.get("http://localhost:8080?test=3");
         fs.writeFileSync(
-            "button_6.png",
+            "button_5.png",
             await driver.takeScreenshot(),
             "base64",
         );
