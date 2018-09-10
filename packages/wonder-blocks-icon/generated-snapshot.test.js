@@ -116,22 +116,24 @@ describe("wonder-blocks-icon", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const {
             default: Icon,
             icons,
         } = require("@khanacademy/wonder-blocks-icon");
 
         const example = (
-            <div>
+            <View>
                 {["small", "medium", "large", "xlarge"].map((size) => (
                     <Icon key={size} size={size} icon={icons.search} />
                 ))}
-            </div>
+            </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const {
             default: Icon,
             icons,
@@ -139,7 +141,7 @@ describe("wonder-blocks-icon", () => {
         const Color = require("@khanacademy/wonder-blocks-color").default;
 
         const example = (
-            <div>
+            <View>
                 Here is an icon inline:
                 <Icon
                     size="small"
@@ -148,7 +150,7 @@ describe("wonder-blocks-icon", () => {
                     style={{margin: 2}}
                 />
                 It has color, too.
-            </div>
+            </View>
         );
 
         const tree = renderer.create(example).toJSON();

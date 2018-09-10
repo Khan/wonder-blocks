@@ -834,7 +834,25 @@ exports[`wonder-blocks-icon example 2 1`] = `
 `;
 
 exports[`wonder-blocks-icon example 3 1`] = `
-<div>
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <svg
     className=""
     height={16}
@@ -907,7 +925,25 @@ exports[`wonder-blocks-icon example 3 1`] = `
 `;
 
 exports[`wonder-blocks-icon example 4 1`] = `
-<div>
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   Here is an icon inline:
   <svg
     className=""
