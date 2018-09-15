@@ -230,8 +230,7 @@ exports[`wonder-blocks-core example 4 1`] = `
           Object {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
-            "alignItems": "center",
-            "display": "flex",
+            "display": "block",
             "fontFamily": "Lato, sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",

@@ -71,8 +71,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "flex",
+          "display": "block",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -140,8 +139,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "flex",
+          "display": "block",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -209,8 +207,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "flex",
+          "display": "block",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -760,8 +757,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "alignItems": "center",
-                    "display": "flex",
+                    "display": "block",
                     "fontFamily": "Lato, sans-serif",
                     "fontSize": 16,
                     "fontWeight": "bold",
@@ -1362,8 +1358,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "alignItems": "center",
-                    "display": "flex",
+                    "display": "block",
                     "fontFamily": "Lato, sans-serif",
                     "fontSize": 16,
                     "fontWeight": "bold",
@@ -1964,8 +1959,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "alignItems": "center",
-                    "display": "flex",
+                    "display": "block",
                     "fontFamily": "Lato, sans-serif",
                     "fontSize": 16,
                     "fontWeight": "bold",
@@ -2769,8 +2763,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "alignItems": "center",
-                    "display": "flex",
+                    "display": "block",
                     "fontFamily": "Lato, sans-serif",
                     "fontSize": 16,
                     "fontWeight": "bold",
@@ -3776,8 +3769,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                     Object {
                       "MozOsxFontSmoothing": "grayscale",
                       "WebkitFontSmoothing": "antialiased",
-                      "alignItems": "center",
-                      "display": "flex",
+                      "display": "block",
                       "fontFamily": "Lato, sans-serif",
                       "fontSize": 16,
                       "fontWeight": "bold",
@@ -4626,8 +4618,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "alignItems": "center",
-                    "display": "flex",
+                    "display": "block",
                     "fontFamily": "Lato, sans-serif",
                     "fontSize": 16,
                     "fontWeight": "bold",
@@ -5131,8 +5122,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "alignItems": "center",
-                    "display": "flex",
+                    "display": "block",
                     "fontFamily": "Lato, sans-serif",
                     "fontSize": 16,
                     "fontWeight": "bold",
@@ -5863,8 +5853,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
                   Object {
                     "MozOsxFontSmoothing": "grayscale",
                     "WebkitFontSmoothing": "antialiased",
-                    "alignItems": "center",
-                    "display": "flex",
+                    "display": "block",
                     "fontFamily": "Lato, sans-serif",
                     "fontSize": 16,
                     "fontWeight": "bold",
