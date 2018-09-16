@@ -35,6 +35,7 @@ export default class LinkCore extends React.Component<Props> {
             href,
             kind,
             light,
+            visitable,
             pressed,
             style,
             testId,
@@ -42,7 +43,7 @@ export default class LinkCore extends React.Component<Props> {
         } = this.props;
         const {router} = this.context;
 
-        const linkStyles = _generateStyles(kind, light);
+        const linkStyles = _generateStyles(kind, light, visitable);
 
         const defaultStyles = [
             sharedStyles.shared,
@@ -80,8 +81,8 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-const _generateStyles = (kind, light) => {
-    const buttonType = kind + light.toString();
+const _generateStyles = (kind, light, visitable) => {
+    const buttonType = kind + light.toString() + visitable.toString();
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -90,33 +91,45 @@ const _generateStyles = (kind, light) => {
         throw new Error("Secondary Light links are not supported");
     }
 
+    if (visitable && (kind !== "primary" || (kind === "primary" && light))) {
+        throw new Error("Only primary (not light) link is visitable");
+    }
+
     const {blue, purple, white, offBlack, offBlack32} = Color;
     const linkPurple = mix(fade(offBlack, 0.08), purple);
 
     const defaultTextColor =
         kind === "primary" ? (light ? white : blue) : offBlack;
+
+    const defaultVisited = visitable
+        ? {
+              ":visited": {
+                  color: linkPurple,
+              },
+          }
+        : {};
+    const activeVisited = visitable
+        ? {
+              ":visited": {
+                  color: mix(offBlack32, linkPurple),
+              },
+          }
+        : {};
+
     const newStyles = {
         default: {
             color: defaultTextColor,
-            ":visited": {
-                color: light ? defaultTextColor : linkPurple,
-            },
+            ...defaultVisited,
         },
         focus: {
             textDecoration: "underline currentcolor solid",
             color: light ? white : blue,
-            ":visited": {
-                color: light ? white : linkPurple,
-            },
+            ...defaultVisited,
         },
         active: {
             color: light ? mix(fade(blue, 0.32), white) : mix(offBlack32, blue),
             textDecoration: "underline currentcolor solid",
-            ":visited": {
-                color: light
-                    ? mix(fade(blue, 0.32), white)
-                    : mix(offBlack32, linkPurple),
-            },
+            ...activeVisited,
         },
     };
 
