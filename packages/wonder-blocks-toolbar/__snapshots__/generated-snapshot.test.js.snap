@@ -2174,9 +2174,6 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
           onTouchStart={[Function]}
           style={
             Object {
-              ":visited": Object {
-                "color": "#8755ee",
-              },
               "color": "#1865f2",
               "cursor": "pointer",
               "outline": "none",
