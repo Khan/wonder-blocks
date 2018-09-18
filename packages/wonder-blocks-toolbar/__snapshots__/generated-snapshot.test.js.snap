@@ -49,7 +49,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -91,7 +91,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -117,7 +117,6 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -207,7 +206,6 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -254,7 +252,6 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -391,7 +388,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -417,7 +414,6 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -496,7 +492,6 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -543,7 +538,6 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -639,7 +633,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -665,7 +659,6 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -798,7 +791,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -824,7 +817,6 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -920,7 +912,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -946,7 +938,6 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1079,7 +1070,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -1105,7 +1096,6 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1265,7 +1255,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -1334,7 +1324,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -1360,7 +1350,6 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1520,7 +1509,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -1546,7 +1535,6 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1679,7 +1667,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -1721,7 +1709,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -1747,7 +1735,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1784,7 +1771,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1831,7 +1817,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1924,7 +1909,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1971,7 +1955,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -2105,7 +2088,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -2131,7 +2114,6 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -2306,7 +2288,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
       className=""
       style={
         Object {
-          "alignItems": "stretch",
+          "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -2332,7 +2314,6 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
             "boxSizing": "border-box",
             "display": "flex",
             "flexDirection": "column",
-            "justifyContent": "center",
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -2468,7 +2449,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
         className=""
         style={
           Object {
-            "alignItems": "stretch",
+            "alignItems": "center",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
@@ -2574,7 +2555,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
         className=""
         style={
           Object {
-            "alignItems": "stretch",
+            "alignItems": "center",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",

@@ -61,11 +61,8 @@ export default class Toolbar extends React.Component<Props> {
 
     renderContent(content: React.Node) {
         const contentArray = Array.isArray(content) ? content : [content];
-        // Remove empty/null/undefined elements, then map to Views
-        return contentArray.filter((c) => c).map((content, i) => (
-            <View style={[sharedStyles.verticalAlign]} key={i.toString()}>
-                {content}
-            </View>
+        return contentArray.map((content, i) => (
+            <View key={i.toString()}>{content}</View>
         ));
     }
 
@@ -161,10 +158,12 @@ const sharedStyles = StyleSheet.create({
         flexBasis: "50%",
     },
     leftColumn: {
+        alignItems: "center",
         flexDirection: "row",
         justifyContent: "flex-start",
     },
     rightColumn: {
+        alignItems: "center",
         flexDirection: "row",
         justifyContent: "flex-end",
     },
