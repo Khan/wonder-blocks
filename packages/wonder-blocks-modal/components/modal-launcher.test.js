@@ -4,6 +4,9 @@ import {shallow} from "enzyme";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import ModalLauncher from "./modal-launcher.js";
+import OneColumnModal from "./one-column-modal.js";
+
+const exampleModal = <OneColumnModal content={<div data-modal-child />} />;
 
 describe("ModalLauncher", () => {
     window.scrollTo = jest.fn();
@@ -14,7 +17,7 @@ describe("ModalLauncher", () => {
 
     test("Children can launch the modal", () => {
         const wrapper = mount(
-            <ModalLauncher modal={<div />}>
+            <ModalLauncher modal={exampleModal}>
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
@@ -42,7 +45,7 @@ describe("ModalLauncher", () => {
         const modalFn = ({closeModal}: {closeModal: () => void}) => {
             expect(opened).toBe(true);
             setImmediate(closeModal);
-            return <div />;
+            return exampleModal;
         };
 
         // Once the modal closes, we'll check that it _really_ closed, and
@@ -78,7 +81,7 @@ describe("ModalLauncher", () => {
         // We mount into a real DOM, in order to simulate and capture real key
         // presses anywhere in the document.
         const wrapper = mount(
-            <ModalLauncher modal={<div data-modal-child />}>
+            <ModalLauncher modal={exampleModal}>
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
@@ -112,7 +115,7 @@ describe("ModalLauncher", () => {
             <ModalLauncher
                 modal={({closeModal}) => {
                     savedCloseModal = closeModal;
-                    return <div data-modal-child />;
+                    return exampleModal;
                 }}
             >
                 {({openModal}) => <button onClick={openModal} />}
