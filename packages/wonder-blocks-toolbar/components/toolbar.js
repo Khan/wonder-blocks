@@ -60,10 +60,7 @@ export default class Toolbar extends React.Component<Props> {
     };
 
     renderContent(content: React.Node) {
-        const contentArray = Array.isArray(content) ? content : [content];
-        return contentArray.map((content, i) => (
-            <View key={i.toString()}>{content}</View>
-        ));
+        return Array.isArray(content) ? content : [content];
     }
 
     render() {
