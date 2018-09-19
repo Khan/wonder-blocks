@@ -39,9 +39,6 @@ exports[`wonder-blocks-link example 1 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
-          ":visited": Object {
-            "color": "#8755ee",
-          },
           "color": "#1865f2",
           "cursor": "pointer",
           "outline": "none",
@@ -79,9 +76,6 @@ exports[`wonder-blocks-link example 1 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
-            ":visited": Object {
-              "color": "#8755ee",
-            },
             "color": "#21242c",
             "cursor": "pointer",
             "outline": "none",
@@ -125,9 +119,10 @@ exports[`wonder-blocks-link example 1 1`] = `
       }
       tabIndex={0}
     >
-      Visited Link
+      Visitable Primary Link
     </a>
-     friend.
+     
+    friend.
   </p>
   <p
     style={
@@ -157,9 +152,6 @@ exports[`wonder-blocks-link example 1 1`] = `
       onTouchStart={[Function]}
       style={
         Object {
-          ":visited": Object {
-            "color": "#ffffff",
-          },
           "color": "#ffffff",
           "cursor": "pointer",
           "outline": "none",
