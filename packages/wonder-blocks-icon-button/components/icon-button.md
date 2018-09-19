@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     sideMargins: {
-        marginRight: 10,
+        marginRight: 16,
     }
 });
 

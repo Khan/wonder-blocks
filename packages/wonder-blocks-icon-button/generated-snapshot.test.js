@@ -21,7 +21,7 @@ describe("wonder-blocks-icon-button", () => {
                 flexDirection: "row",
             },
             sideMargins: {
-                marginRight: 10,
+                marginRight: 16,
             },
         });
 

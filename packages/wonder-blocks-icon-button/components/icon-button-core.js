@@ -145,6 +145,7 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         background: "none",
+        margin: -8,
     },
     disabled: {
         cursor: "default",

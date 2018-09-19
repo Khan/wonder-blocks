@@ -116,6 +116,10 @@ export type SharedProps = {|
  * light (whether the IconButton will be rendered on a dark background),
  * disabled , test ID, and custom styling.
  *
+ * Note: the size of an IconButton match the size of icon it wraps which is
+ * 24x24 pixels.  The focus ring which is display on hover and focus is much
+ * large but does not affect its size.  This matches the behavior of Button.
+ *
  * ```js
  * import {icons} from "@khanacademy/wonder-blocks-icon";
  *
