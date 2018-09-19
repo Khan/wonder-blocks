@@ -11,6 +11,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
+import Context from "./modal-context.js";
 
 type Props = {|
     /**
@@ -48,7 +49,7 @@ type Props = {|
      * `cloneElement`, so that the `ModalLauncher` can listen for close button
      * clicks too.)
      */
-    onClickCloseButton: () => void,
+    onClose: () => void,
 |};
 
 export default class ModalPanel extends React.Component<Props> {
@@ -56,16 +57,11 @@ export default class ModalPanel extends React.Component<Props> {
         showCloseButton: false,
         scrollOverflow: true,
         color: "light",
-        onClickCloseButton: () => {},
+        onClose: () => {},
     };
 
     maybeRenderCloseButton() {
-        const {
-            showCloseButton,
-            onClickCloseButton,
-            color,
-            titleBar,
-        } = this.props;
+        const {showCloseButton, onClose, color, titleBar} = this.props;
 
         if (!showCloseButton) {
             return null;
@@ -85,16 +81,22 @@ export default class ModalPanel extends React.Component<Props> {
                     //    mediaSize === "small" && styles.smallCloseButton,
                 ]}
             >
-                <IconButton
-                    icon={icons.dismiss}
-                    // TODO(mdr): Translate this string for i18n.
-                    aria-label="Close modal"
-                    onClick={onClickCloseButton}
-                    kind={
-                        topBackgroundColor === "dark" ? "primary" : "tertiary"
-                    }
-                    light={topBackgroundColor === "dark"}
-                />
+                <Context.Consumer>
+                    {({closeModal}) => (
+                        <IconButton
+                            icon={icons.dismiss}
+                            // TODO(mdr): Translate this string for i18n.
+                            aria-label="Close modal"
+                            onClick={closeModal || onClose}
+                            kind={
+                                topBackgroundColor === "dark"
+                                    ? "primary"
+                                    : "tertiary"
+                            }
+                            light={topBackgroundColor === "dark"}
+                        />
+                    )}
+                </Context.Consumer>
             </View>
         );
     }

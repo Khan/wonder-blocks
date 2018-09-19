@@ -20,6 +20,49 @@ import ModalFooter from "./components/modal-footer.js";
 
 describe("wonder-blocks-modal", () => {
     it("example 1", () => {
+        const React = require("react");
+
+        const {Title} = require("@khanacademy/wonder-blocks-typography");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+
+        class CustomModal extends React.Component {
+            render() {
+                return (
+                    <OneColumnModal
+                        content={
+                            <View>
+                                <Title>Hello, world</Title>
+                            </View>
+                        }
+                        footer={
+                            <Button onClick={this.props.onClose}>
+                                Close Modal
+                            </Button>
+                        }
+                    />
+                );
+            }
+        }
+
+        const example = (
+            <View style={{flexDirection: "row"}}>
+                <ModalLauncher
+                    onClose={() => window.alert("you closed the modal")}
+                    modal={({closeModal}) => (
+                        <CustomModal onClose={closeModal} />
+                    )}
+                >
+                    {({openModal}) => (
+                        <Button onClick={openModal}>Open Modal</Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {
@@ -185,7 +228,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
+    it("example 3", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -239,9 +282,7 @@ describe("wonder-blocks-modal", () => {
                                 <Button type="button">Button (no-op)</Button>
                             </View>
                         }
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -249,7 +290,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -309,9 +350,7 @@ describe("wonder-blocks-modal", () => {
                                 <Button type="button">Button (no-op)</Button>
                             </View>
                         }
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -319,7 +358,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 5", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -399,9 +438,7 @@ describe("wonder-blocks-modal", () => {
                                 <Button type="button">Button (no-op)</Button>
                             </View>
                         }
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -409,7 +446,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 6", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -479,9 +516,7 @@ describe("wonder-blocks-modal", () => {
                                 <Button type="button">Button (no-op)</Button>
                             </View>
                         }
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -489,7 +524,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 7", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -557,9 +592,7 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -567,7 +600,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -655,9 +688,7 @@ describe("wonder-blocks-modal", () => {
                                 <Button>Button (no-op)</Button>
                             </View>
                         }
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -665,7 +696,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -702,9 +733,7 @@ describe("wonder-blocks-modal", () => {
                         fullBleedSidebar={false}
                         sidebar={<span>foo</span>}
                         content={<span>bar</span>}
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -712,7 +741,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const {StyleSheet, css} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -778,9 +807,7 @@ describe("wonder-blocks-modal", () => {
                             </View>
                         }
                         footer={<Button>Onward! (no-op)</Button>}
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -788,7 +815,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const {StyleSheet, css} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -855,9 +882,7 @@ describe("wonder-blocks-modal", () => {
                             </View>
                         }
                         footer={<Button>Onward! (no-op)</Button>}
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -865,7 +890,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -921,9 +946,7 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>
@@ -931,7 +954,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
+    it("example 13", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -1002,9 +1025,7 @@ describe("wonder-blocks-modal", () => {
                             </View>
                         }
                         footer={<Button>Ok</Button>}
-                        onClickCloseButton={() =>
-                            alert("This would close the modal.")
-                        }
+                        onClose={() => alert("This would close the modal.")}
                     />
                 </View>
             </View>

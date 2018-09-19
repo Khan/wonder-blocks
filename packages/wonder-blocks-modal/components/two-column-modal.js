@@ -37,7 +37,7 @@ type BaseProps = {|
      * clicks too.)
      * @ignore
      */
-    onClickCloseButton?: () => void,
+    onClose?: () => void,
 |};
 
 type WrappedProps = {|
@@ -52,12 +52,12 @@ type WrappedProps = {|
 
 class ContentWrapper extends React.Component<WrappedProps> {
     static defaultProps = {
-        onClickCloseButton: () => {},
+        onClose: () => {},
     };
 
     render() {
         const {
-            onClickCloseButton,
+            onClose,
             sidebar,
             fullBleedSidebar,
             content,
@@ -71,7 +71,7 @@ class ContentWrapper extends React.Component<WrappedProps> {
                     <ModalPanel
                         showCloseButton
                         color="dark"
-                        onClickCloseButton={onClickCloseButton}
+                        onClose={onClose}
                         style={styles.column}
                         content={
                             fullBleedSidebar ? (
@@ -100,7 +100,7 @@ class ContentWrapper extends React.Component<WrappedProps> {
                     <ModalPanel
                         showCloseButton
                         color="dark"
-                        onClickCloseButton={onClickCloseButton}
+                        onClose={onClose}
                         style={styles.smallColumn}
                         content={
                             fullBleedSidebar ? (
@@ -143,7 +143,7 @@ const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
 export default class TwoColumnModal extends React.Component<BaseProps> {
     static defaultProps = {
         fullBleedSidebar: true,
-        onClickCloseButton: () => {},
+        onClose: () => {},
     };
 
     render() {

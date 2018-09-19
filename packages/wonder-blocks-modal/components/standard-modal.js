@@ -57,7 +57,7 @@ type Props = {|
      * clicks too.)
      * @ignore
      */
-    onClickCloseButton: () => void,
+    onClose: () => void,
 |};
 
 /**
@@ -65,11 +65,11 @@ type Props = {|
  */
 export default class StandardModal extends React.Component<Props> {
     static defaultProps = {
-        onClickCloseButton: () => {},
+        onClose: () => {},
     };
     render() {
         const {
-            onClickCloseButton,
+            onClose,
             title,
             subtitle,
             header,
@@ -86,7 +86,7 @@ export default class StandardModal extends React.Component<Props> {
             >
                 <ModalPanel
                     showCloseButton
-                    onClickCloseButton={onClickCloseButton}
+                    onClose={onClose}
                     titleBar={
                         <Toolbar
                             title={title}

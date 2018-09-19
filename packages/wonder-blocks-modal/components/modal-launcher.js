@@ -6,6 +6,7 @@ import FocusTrap from "./focus-trap.js";
 import ModalBackdrop from "./modal-backdrop.js";
 import ScrollDisabler from "./scroll-disabler.js";
 import type {ModalElement} from "../util/types.js";
+import Context from "./modal-context.js";
 
 type Props = {|
     /**
@@ -35,7 +36,7 @@ type Props = {|
 
     /**
      * If the parent needs to be notified when the modal is closed, use
-     * this prop. You probably want to use this instead of `onClickCloseButton`
+     * this prop. You probably want to use this instead of `onClose`
      * on the modals themselves, since this will capture a more complete set of
      * close events.
      */
@@ -96,7 +97,10 @@ export default class ModalLauncher extends React.Component<Props, State> {
         }
 
         return (
-            <React.Fragment>
+            // This flow check is valid, it's the babel plugin which is broken,
+            // see modal-context.js for details.
+            // $FlowFixMe
+            <Context.Provider value={{closeModal: this.handleCloseModal}}>
                 {renderedChildren}
                 {this.state.opened &&
                     ReactDOM.createPortal(
@@ -113,7 +117,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                     />
                 )}
                 {this.state.opened && <ScrollDisabler />}
-            </React.Fragment>
+            </Context.Provider>
         );
     }
 }

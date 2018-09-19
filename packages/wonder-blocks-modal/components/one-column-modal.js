@@ -30,7 +30,7 @@ type BaseProps = {|
      * clicks too.)
      * @ignore
      */
-    onClickCloseButton?: () => void,
+    onClose?: () => void,
 |};
 
 type WrappedProps = {|
@@ -45,18 +45,18 @@ type WrappedProps = {|
 
 class ContentWrapper extends React.Component<WrappedProps> {
     static defaultProps = {
-        onClickCloseButton: () => {},
+        onClose: () => {},
     };
 
     render() {
-        const {onClickCloseButton, content, footer, mediaSize} = this.props;
+        const {onClose, content, footer, mediaSize} = this.props;
 
         if (mediaSize !== "small") {
             return (
                 <View style={styles.contentWrapper}>
                     <ModalPanel
                         showCloseButton
-                        onClickCloseButton={onClickCloseButton}
+                        onClose={onClose}
                         content={content}
                         footer={footer}
                     />
@@ -69,7 +69,7 @@ class ContentWrapper extends React.Component<WrappedProps> {
                 <View style={styles.smallContentWrapper}>
                     <ModalPanel
                         showCloseButton
-                        onClickCloseButton={onClickCloseButton}
+                        onClose={onClose}
                         content={content}
                         scrollOverflow={false}
                     />
@@ -97,7 +97,7 @@ const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
  */
 export default class OneColumnModal extends React.Component<BaseProps> {
     static defaultProps = {
-        onClickCloseButton: () => {},
+        onClose: () => {},
     };
 
     render() {

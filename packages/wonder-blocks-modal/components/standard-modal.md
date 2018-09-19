@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
             footer={<View>
                 <Button type="button">Button (no-op)</Button>
             </View>}
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
             footer={<View>
                 <Button type="button">Button (no-op)</Button>
             </View>}
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
             footer={<View>
                 <Button type="button">Button (no-op)</Button>
             </View>}
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
             footer={<View>
                 <Button type="button">Button (no-op)</Button>
             </View>}
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
