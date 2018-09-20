@@ -21,15 +21,14 @@ type Props = {|
     color?: "dark" | "light",
 
     /**
-     * A list of nodes to render on the left side of the toolbar. This will
+     * An optional node to render on the left side of the toolbar. This will
      * often be empty, but may include a close button for modals.
      */
     leftContent?: React.Node,
 
     /**
-     * A list of nodes to render on the right side of the toolbar. This will
-     * typically include buttons, links, span elements with text, or nothing
-     * at all.
+     * An optional node to render on the right side of the toolbar. This will
+     * typically include buttons, links, or span elements with text.
      */
     rightContent?: React.Node,
 
@@ -54,17 +53,10 @@ type Props = {|
 export default class Toolbar extends React.Component<Props> {
     static defaultProps = {
         color: "light",
-        leftContent: [],
-        rightContent: [],
+        leftContent: null,
+        rightContent: null,
         size: "medium",
     };
-
-    renderContent(content: React.Node) {
-        const contentArray = Array.isArray(content) ? content : [content];
-        return contentArray.map((content, i) => (
-            <View key={i.toString()}>{content}</View>
-        ));
-    }
 
     render() {
         const {
@@ -87,9 +79,7 @@ export default class Toolbar extends React.Component<Props> {
                 ]}
             >
                 <View style={sharedStyles.column}>
-                    <View style={sharedStyles.leftColumn}>
-                        {this.renderContent(leftContent)}
-                    </View>
+                    <View style={sharedStyles.leftColumn}>{leftContent}</View>
                 </View>
                 {title && (
                     <View
@@ -119,9 +109,7 @@ export default class Toolbar extends React.Component<Props> {
                     </View>
                 )}
                 <View style={sharedStyles.column}>
-                    <View style={sharedStyles.rightColumn}>
-                        {this.renderContent(rightContent)}
-                    </View>
+                    <View style={sharedStyles.rightColumn}>{rightContent}</View>
                 </View>
             </View>
         );

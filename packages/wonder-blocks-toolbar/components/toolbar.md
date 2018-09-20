@@ -20,7 +20,13 @@ const secondaryButton = (
     </Button>
 );
 
-<Toolbar size="small" rightContent={[smallButton, strut, secondaryButton]} />
+const rightContent = <React.Fragment>
+    {smallButton}
+    {strut}
+    {secondaryButton}
+</React.Fragment>;
+
+<Toolbar size="small" rightContent={rightContent}/>
 ```
 
 ### Small toolbar with multiple left side buttons:
@@ -42,7 +48,13 @@ const linkButton = (
     </Button>
 );
 
-<Toolbar size="small" leftContent={[zoomOutButton, strut, zoomInButton]} rightContent={[linkButton]} />
+const leftContent = <React.Fragment>
+    {zoomOutButton}
+    {strut}
+    {zoomInButton}
+</React.Fragment>;
+
+<Toolbar size="small" leftContent={leftContent} rightContent={linkButton} />
 ```
 
 ### Toolbar with left icon button and right primary button:
@@ -60,7 +72,7 @@ const mainButton = (
     </Button>
 );
 
-<Toolbar leftContent={[hintButton]} rightContent={[mainButton]} />
+<Toolbar leftContent={hintButton} rightContent={mainButton} />
 ```
 
 ### Toolbar with title
@@ -108,9 +120,15 @@ const questionCount = <LabelLarge>7 questions</LabelLarge>;
 const tryAgain = <Button style={buttonStyle} kind="secondary">Try again</Button>;
 const strut = <Strut size={16}/>;
 
-<Toolbar
-    rightContent={[questionCount, strut, tryAgain, strut, nextExercise]}
-/>
+const rightContent = <React.Fragment>
+    {questionCount}
+    {strut}
+    {tryAgain}
+    {strut}
+    {nextExercise}
+</React.Fragment>;
+
+<Toolbar rightContent={rightContent}/>
 ```
 
 ### Header overflow text

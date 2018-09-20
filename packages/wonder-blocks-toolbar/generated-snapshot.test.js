@@ -31,12 +31,15 @@ describe("wonder-blocks-toolbar", () => {
             </Button>
         );
 
-        const example = (
-            <Toolbar
-                size="small"
-                rightContent={[smallButton, strut, secondaryButton]}
-            />
+        const rightContent = (
+            <React.Fragment>
+                {smallButton}
+                {strut}
+                {secondaryButton}
+            </React.Fragment>
         );
+
+        const example = <Toolbar size="small" rightContent={rightContent} />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -56,11 +59,19 @@ describe("wonder-blocks-toolbar", () => {
 
         const linkButton = <Button kind="tertiary">Import...</Button>;
 
+        const leftContent = (
+            <React.Fragment>
+                {zoomOutButton}
+                {strut}
+                {zoomInButton}
+            </React.Fragment>
+        );
+
         const example = (
             <Toolbar
                 size="small"
-                leftContent={[zoomOutButton, strut, zoomInButton]}
-                rightContent={[linkButton]}
+                leftContent={leftContent}
+                rightContent={linkButton}
             />
         );
         const tree = renderer.create(example).toJSON();
@@ -77,7 +88,7 @@ describe("wonder-blocks-toolbar", () => {
         const mainButton = <Button kind="primary">Submit</Button>;
 
         const example = (
-            <Toolbar leftContent={[hintButton]} rightContent={[mainButton]} />
+            <Toolbar leftContent={hintButton} rightContent={mainButton} />
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
@@ -133,17 +144,17 @@ describe("wonder-blocks-toolbar", () => {
         );
         const strut = <Strut size={16} />;
 
-        const example = (
-            <Toolbar
-                rightContent={[
-                    questionCount,
-                    strut,
-                    tryAgain,
-                    strut,
-                    nextExercise,
-                ]}
-            />
+        const rightContent = (
+            <React.Fragment>
+                {questionCount}
+                {strut}
+                {tryAgain}
+                {strut}
+                {nextExercise}
+            </React.Fragment>
         );
+
+        const example = <Toolbar rightContent={rightContent} />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
