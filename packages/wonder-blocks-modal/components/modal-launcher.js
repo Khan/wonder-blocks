@@ -41,6 +41,8 @@ type Props = {|
      * close events.
      */
     onClose?: () => void,
+
+    opened?: boolean,
 |};
 
 type State = {|
@@ -65,6 +67,16 @@ type State = {|
  * the `modal` prop.
  */
 export default class ModalLauncher extends React.Component<Props, State> {
+    static getDerivedStateFromProps(props: Props, state: State) {
+        return {
+            opened: props.opened != null ? props.opened : state.opened,
+        };
+    }
+
+    static defaultProps = {
+        children: () => null,
+    };
+
     state = {opened: false};
 
     _openModal = () => {

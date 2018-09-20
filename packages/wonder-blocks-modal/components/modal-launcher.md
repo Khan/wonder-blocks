@@ -152,3 +152,79 @@ const oneColumnModal = ({closeModal}) => <OneColumnModal
     </ModalLauncher>
 </View>;
 ```
+
+## Triggering programmatically
+
+Sometimes you'll want to trigger a modal programmitically.  This can be done
+by rendering `ModalLauncher` without any children and instead setting its
+`opened` prop to `true`.  In this situation `ModalLauncher` is a controlled
+component which means you'll also have to update `opened` to `false` in
+response to the `onClose` callback being triggered.
+
+```js
+const React = require("react");
+
+const {Title} = require("@khanacademy/wonder-blocks-typography");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const {ActionMenu, ActionItem} = require("@khanacademy/wonder-blocks-dropdown");
+
+class Example extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            opened: false,
+        };
+    }
+
+    handleOpen() {
+        console.log('opening modal');
+        this.setState({opened: true});
+    }
+
+    handleClose() {
+        console.log('closing modal');
+        this.setState({opened: false});
+    }
+
+    render() {
+        return <View>
+            <ActionMenu menuText="actions">
+                <ActionItem
+                    label="Open modal"
+                    onClick={() => this.handleOpen()}
+                />
+            </ActionMenu>
+            <ModalLauncher
+                key="clearFlags"
+                onClose={() => this.handleClose()}
+                opened={this.state.opened}
+                modal={({closeModal}) => (
+                    <OneColumnModal
+                        content={
+                            <View>
+                                <Title>Hello, world</Title>
+                            </View>
+                        }
+                        footer={
+                            <Button onClick={closeModal}>
+                                Close Modal
+                            </Button>
+                        }
+                    />
+                )}
+            />
+        </View>;
+    }
+}
+
+<Example />
+```
+
+**Warning:** Do not wrap items within an dropdown in a `ModalLauncher`.  It causes the
+modal to disappear as soon as the focus changes.  The reason is that the change in
+focus results in the item that in the dropdown that was clicked to be blur which
+closes the dropdown.  This results in all of its children to unmount including the
+ModalLauncher which was wrapping the menu item.
+
+**TODO:** use flow to prevent this.

@@ -1,4 +1,4 @@
-# Custom modals
+## Custom modals
 
 ```js
 const React = require("react");
