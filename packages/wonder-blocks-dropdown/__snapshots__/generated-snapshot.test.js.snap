@@ -44,8 +44,8 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
     }
   >
     <button
-      aria-label=""
       className=""
+      data-test-id="foo-bar"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -59,7 +59,8 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      open={false}
+      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -77,16 +78,12 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "outline": "none",
-          "overflow": "hidden",
           "paddingBottom": 0,
-          "paddingLeft": 8,
-          "paddingRight": 8,
+          "paddingLeft": 0,
+          "paddingRight": 0,
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
-          "textOverflow": "ellipsis",
-          "userSelect": "none",
-          "whiteSpace": "nowrap",
         }
       }
       tabIndex={0}
@@ -119,7 +116,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
-              "marginLeft": 4,
+              "paddingLeft": 4,
               "verticalAlign": "text-bottom",
             }
           }
@@ -180,8 +177,8 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     }
   >
     <button
-      aria-label=""
       className=""
+      data-test-id="foo-bar"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -195,7 +192,8 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="menu"
+      open={false}
+      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -213,16 +211,12 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "outline": "none",
-          "overflow": "hidden",
           "paddingBottom": 0,
-          "paddingLeft": 8,
-          "paddingRight": 8,
+          "paddingLeft": 0,
+          "paddingRight": 0,
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
-          "textOverflow": "ellipsis",
-          "userSelect": "none",
-          "whiteSpace": "nowrap",
         }
       }
       tabIndex={0}
@@ -255,7 +249,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           style={
             Object {
               "display": "inline-block",
-              "marginLeft": 4,
+              "paddingLeft": 4,
               "verticalAlign": "text-bottom",
             }
           }
