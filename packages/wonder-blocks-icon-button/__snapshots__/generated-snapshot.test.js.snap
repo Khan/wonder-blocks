@@ -20,247 +20,327 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     }
   }
 >
-  <button
-    aria-label="search"
+  <div
     className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
         "boxSizing": "border-box",
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": -8,
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
         "marginRight": 16,
-        "outline": "none",
+        "minHeight": 0,
+        "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "textDecoration": "none",
-        "width": 40,
+        "zIndex": 0,
       }
     }
-    tabIndex={0}
-    type="button"
   >
-    <svg
+    <button
+      aria-label="search"
       className=""
-      height={24}
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
-          "display": "inline-block",
-          "verticalAlign": "text-bottom",
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "width": 40,
         }
       }
-      viewBox="0 0 24 24"
-      width={24}
+      tabIndex={0}
+      type="button"
     >
-      <path
-        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
-  <button
-    aria-label="search"
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
     className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
         "boxSizing": "border-box",
-        "color": "#21242c",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": -8,
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
         "marginRight": 16,
-        "outline": "none",
+        "minHeight": 0,
+        "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "textDecoration": "none",
-        "width": 40,
+        "zIndex": 0,
       }
     }
-    tabIndex={0}
-    type="button"
   >
-    <svg
+    <button
+      aria-label="search"
       className=""
-      height={24}
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
-          "display": "inline-block",
-          "verticalAlign": "text-bottom",
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "boxSizing": "border-box",
+          "color": "#21242c",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "width": 40,
         }
       }
-      viewBox="0 0 24 24"
-      width={24}
+      tabIndex={0}
+      type="button"
     >
-      <path
-        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
-  <button
-    aria-label="search"
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
     className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
         "boxSizing": "border-box",
-        "color": "rgba(33,36,44,0.64)",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": -8,
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
         "marginRight": 16,
-        "outline": "none",
+        "minHeight": 0,
+        "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "textDecoration": "none",
-        "width": 40,
+        "zIndex": 0,
       }
     }
-    tabIndex={0}
-    type="button"
   >
-    <svg
+    <button
+      aria-label="search"
       className=""
-      height={24}
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
-          "display": "inline-block",
-          "verticalAlign": "text-bottom",
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "boxSizing": "border-box",
+          "color": "rgba(33,36,44,0.64)",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "width": 40,
         }
       }
-      viewBox="0 0 24 24"
-      width={24}
+      tabIndex={0}
+      type="button"
     >
-      <path
-        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
-  <button
-    aria-disabled="true"
-    aria-label="search"
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
     className=""
-    disabled={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
         "boxSizing": "border-box",
-        "color": "rgba(33,36,44,0.32)",
-        "cursor": "default",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": -8,
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
         "marginRight": 16,
-        "outline": "none",
+        "minHeight": 0,
+        "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "textDecoration": "none",
-        "width": 40,
+        "zIndex": 0,
       }
     }
-    tabIndex={-1}
-    type="button"
   >
-    <svg
+    <button
+      aria-disabled="true"
+      aria-label="search"
       className=""
-      height={24}
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
-          "display": "inline-block",
-          "verticalAlign": "text-bottom",
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "boxSizing": "border-box",
+          "color": "rgba(33,36,44,0.32)",
+          "cursor": "default",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "width": 40,
         }
       }
-      viewBox="0 0 24 24"
-      width={24}
+      tabIndex={-1}
+      type="button"
     >
-      <path
-        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
 </div>
 `;
 
@@ -285,64 +365,84 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
     }
   }
 >
-  <button
-    aria-label="search"
+  <div
     className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
         "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": -8,
-        "outline": "none",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "textDecoration": "none",
-        "width": 40,
+        "zIndex": 0,
       }
     }
-    tabIndex={0}
-    type="button"
   >
-    <svg
+    <button
+      aria-label="search"
       className=""
-      height={24}
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
-          "display": "inline-block",
-          "verticalAlign": "text-bottom",
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "width": 40,
         }
       }
-      viewBox="0 0 24 24"
-      width={24}
+      tabIndex={0}
+      type="button"
     >
-      <path
-        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
 </div>
 `;

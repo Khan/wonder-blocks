@@ -9,7 +9,7 @@ import Color, {
     mix,
     fade,
 } from "@khanacademy/wonder-blocks-color";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import type {SharedProps} from "./icon-button.js";
@@ -102,29 +102,35 @@ export default class IconButtonCore extends React.Component<Props> {
             "aria-disabled": disabled ? "true" : undefined,
             "aria-label": ariaLabel,
             "data-test-id": testId,
-            style: [defaultStyle, style],
+            style: defaultStyle,
             ...handlers,
         };
 
         if (href) {
             return router && !skipClientNav ? (
-                <StyledLink {...commonProps} to={href}>
-                    {child}
-                </StyledLink>
+                <View style={style}>
+                    <StyledLink {...commonProps} to={href}>
+                        {child}
+                    </StyledLink>
+                </View>
             ) : (
-                <StyledAnchor {...commonProps} href={href}>
-                    {child}
-                </StyledAnchor>
+                <View>
+                    <StyledAnchor {...commonProps} href={href}>
+                        {child}
+                    </StyledAnchor>
+                </View>
             );
         } else {
             return (
-                <StyledButton
-                    type="button"
-                    {...commonProps}
-                    disabled={disabled}
-                >
-                    {child}
-                </StyledButton>
+                <View style={style}>
+                    <StyledButton
+                        type="button"
+                        {...commonProps}
+                        disabled={disabled}
+                    >
+                        {child}
+                    </StyledButton>
+                </View>
             );
         }
     }
