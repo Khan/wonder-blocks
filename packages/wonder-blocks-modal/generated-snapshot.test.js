@@ -26,7 +26,7 @@ describe("wonder-blocks-modal", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Button = require("@khanacademy/wonder-blocks-button").default;
 
-        class CustomModal extends React.Component {
+        class ModalWrapper extends React.Component {
             render() {
                 return (
                     <OneColumnModal
