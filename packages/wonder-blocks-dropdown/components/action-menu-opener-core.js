@@ -22,7 +22,7 @@ type Props = {|
 
 const StyledButton = addStyle("button");
 
-export default class ButtonCore extends React.Component<Props> {
+export default class ActionMenuOpenerCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
