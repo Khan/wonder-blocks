@@ -11,7 +11,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
-import Context from "./modal-context.js";
+import ModalContext from "./modal-context.js";
 
 type Props = {|
     /**
@@ -42,14 +42,9 @@ type Props = {|
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
      * Instead, to listen for when the modal closes, add an `onClose` handler
-     * to the `ModalLauncher`.
-     *
-     * This defaults to a no-op via `defaultProps`. (When used in a
-     * `ModalLauncher`, we'll automatically add an extra listener here via
-     * `cloneElement`, so that the `ModalLauncher` can listen for close button
-     * clicks too.)
+     * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
-    onClose: () => void,
+    onClose?: () => void,
 |};
 
 export default class ModalPanel extends React.Component<Props> {
@@ -57,7 +52,6 @@ export default class ModalPanel extends React.Component<Props> {
         showCloseButton: false,
         scrollOverflow: true,
         color: "light",
-        onClose: () => {},
     };
 
     maybeRenderCloseButton() {
@@ -81,22 +75,30 @@ export default class ModalPanel extends React.Component<Props> {
                     //    mediaSize === "small" && styles.smallCloseButton,
                 ]}
             >
-                <Context.Consumer>
-                    {({closeModal}) => (
-                        <IconButton
-                            icon={icons.dismiss}
-                            // TODO(mdr): Translate this string for i18n.
-                            aria-label="Close modal"
-                            onClick={closeModal || onClose}
-                            kind={
-                                topBackgroundColor === "dark"
-                                    ? "primary"
-                                    : "tertiary"
-                            }
-                            light={topBackgroundColor === "dark"}
-                        />
-                    )}
-                </Context.Consumer>
+                <ModalContext.Consumer>
+                    {({closeModal}) => {
+                        if (closeModal && onClose) {
+                            // eslint-disable-next-line no-console
+                            console.warn(
+                                "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
+                            );
+                        }
+                        return (
+                            <IconButton
+                                icon={icons.dismiss}
+                                // TODO(mdr): Translate this string for i18n.
+                                aria-label="Close modal"
+                                onClick={closeModal || onClose}
+                                kind={
+                                    topBackgroundColor === "dark"
+                                        ? "primary"
+                                        : "tertiary"
+                                }
+                                light={topBackgroundColor === "dark"}
+                            />
+                        );
+                    }}
+                </ModalContext.Consumer>
             </View>
         );
     }

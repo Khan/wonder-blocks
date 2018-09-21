@@ -29,13 +29,7 @@ type BaseProps = {|
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
      * Instead, to listen for when the modal closes, add an `onClose` handler
-     * to the `ModalLauncher`.
-     *
-     * This defaults to a no-op via `defaultProps`. (When used in a
-     * `ModalLauncher`, we'll automatically add an extra listener here via
-     * `cloneElement`, so that the `ModalLauncher` can listen for close button
-     * clicks too.)
-     * @ignore
+     * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
     onClose?: () => void,
 |};
@@ -51,10 +45,6 @@ type WrappedProps = {|
 |};
 
 class ContentWrapper extends React.Component<WrappedProps> {
-    static defaultProps = {
-        onClose: () => {},
-    };
-
     render() {
         const {
             onClose,
@@ -143,7 +133,6 @@ const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
 export default class TwoColumnModal extends React.Component<BaseProps> {
     static defaultProps = {
         fullBleedSidebar: true,
-        onClose: () => {},
     };
 
     render() {
