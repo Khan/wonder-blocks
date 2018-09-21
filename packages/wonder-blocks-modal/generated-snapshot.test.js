@@ -203,7 +203,6 @@ describe("wonder-blocks-modal", () => {
             />
         );
 
-        // TODO(mdr): Use Wonder Blocks Button.
         const example = (
             <View style={styles.example}>
                 <ModalLauncher modal={standardModal}>

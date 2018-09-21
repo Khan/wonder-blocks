@@ -137,7 +137,6 @@ const oneColumnModal = ({closeModal}) => <OneColumnModal
     }
 />;
 
-// TODO(mdr): Use Wonder Blocks Button.
 <View style={styles.example}>
     <ModalLauncher modal={standardModal}>
         {({openModal}) => <Button onClick={openModal}>Standard modal</Button>}
@@ -226,5 +225,3 @@ modal to disappear as soon as the focus changes.  The reason is that the change 
 focus results in the item that in the dropdown that was clicked to be blur which
 closes the dropdown.  This results in all of its children to unmount including the
 ModalLauncher which was wrapping the menu item.
-
-**TODO:** use flow to prevent this.

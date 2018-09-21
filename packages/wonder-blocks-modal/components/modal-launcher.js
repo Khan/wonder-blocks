@@ -42,6 +42,9 @@ type Props = {|
      */
     onClose?: () => void,
 
+    /**
+     * Renders the modal when true, renders nothing when false.
+     */
     opened?: boolean,
 |};
 
@@ -69,7 +72,8 @@ type State = {|
 export default class ModalLauncher extends React.Component<Props, State> {
     static getDerivedStateFromProps(props: Props, state: State) {
         return {
-            opened: props.opened != null ? props.opened : state.opened,
+            opened:
+                typeof props.opened === "boolean" ? props.opened : state.opened,
         };
     }
 
