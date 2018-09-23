@@ -116,6 +116,7 @@ export type ClickableHandlers = {|
     onMouseLeave: () => void,
     onMouseDown: () => void,
     onMouseUp: (e: SyntheticMouseEvent<>) => void,
+    onDragEnd: (e: SyntheticMouseEvent<>) => void,
     onTouchStart: () => void,
     onTouchEnd: () => void,
     onTouchCancel: () => void,
@@ -132,6 +133,7 @@ const disabledHandlers = {
     onMouseLeave: () => void 0,
     onMouseDown: () => void 0,
     onMouseUp: () => void 0,
+    onDragEnd: () => void 0,
     onTouchStart: () => void 0,
     onTouchEnd: () => void 0,
     onTouchCancel: () => void 0,
@@ -175,7 +177,7 @@ const startState = {
  * 3. Keyup (spacebar/enter) -> focus state
  *
  * Warning: The event handlers returned (onClick, onMouseEnter, onMouseLeave,
- * onMouseDown, onMouseUp, onTouchStart, onTouchEnd, onTouchCancel, onKeyDown,
+ * onMouseDown, onMouseUp, onDragEnd, onTouchStart, onTouchEnd, onTouchCancel, onKeyDown,
  * onKeyUp, onFocus, onBlur, tabIndex) should be passed on to the component
  * that has the ClickableBehavior. You cannot override these handlers without
  * potentially breaking the functionality of ClickableBehavior.
@@ -376,6 +378,8 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                   onMouseLeave: this.handleMouseLeave,
                   onMouseDown: this.handleMouseDown,
                   onMouseUp: this.handleMouseUp,
+                  // Handle the mouse down => drag => mouse up behavior
+                  onDragEnd: this.handleMouseUp,
                   onTouchStart: this.handleTouchStart,
                   onTouchEnd: this.handleTouchEnd,
                   onTouchCancel: this.handleTouchCancel,
