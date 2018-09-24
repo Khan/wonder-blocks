@@ -229,6 +229,14 @@ export default class MultiSelect extends React.Component<Props, State> {
     getMenuItems(): Array<DropdownItem> {
         const {children, selectedValues} = this.props;
         return React.Children.map(children, (option) => {
+            if (!option) {
+                return {
+                    component: option,
+                    focusable: false,
+                    populatedProps: {},
+                };
+            }
+
             const {disabled, value} = option.props;
             return {
                 component: option,
