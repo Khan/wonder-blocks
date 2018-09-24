@@ -21,8 +21,6 @@ export default class Strut extends React.Component<Props> {
 const strutStyle = (size) => {
     return {
         width: size,
-        height: size,
-        visibility: "collapse",
         MsFlexBasis: size,
         MsFlexPreferredSize: size,
         WebkitFlexBasis: size,
