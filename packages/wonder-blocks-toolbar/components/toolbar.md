@@ -2,6 +2,7 @@
 
 ```js
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
 const buttonStyle = { width: 160 };
 
@@ -10,13 +11,68 @@ const smallButton = (
         Small button
     </Button>
 );
+
+const strut = <Strut size={16}/>;
+
 const secondaryButton = (
     <Button size="small" kind="secondary" style={buttonStyle}>
         Secondary button
     </Button>
 );
 
-<Toolbar size="small" rightContent={[smallButton, secondaryButton]} />
+const rightContent = <React.Fragment>
+    {smallButton}
+    {strut}
+    {secondaryButton}
+</React.Fragment>;
+
+<Toolbar size="small" rightContent={rightContent}/>
+```
+
+### Small toolbar with multiple left side buttons:
+
+```js
+const {icons} = require("@khanacademy/wonder-blocks-icon");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
+
+const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary"/>;
+const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary"/>;
+
+const strut = <Strut size={16}/>;
+
+const linkButton = (
+    <Button kind="tertiary">
+        Import...
+    </Button>
+);
+
+const leftContent = <React.Fragment>
+    {zoomOutButton}
+    {strut}
+    {zoomInButton}
+</React.Fragment>;
+
+<Toolbar size="small" leftContent={leftContent} rightContent={linkButton} />
+```
+
+### Toolbar with left icon button and right primary button:
+
+```js
+const {icons} = require("@khanacademy/wonder-blocks-icon");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+
+const hintButton = <IconButton icon={icons.hint} kind="primary"/>;
+
+const mainButton = (
+    <Button kind="primary">
+        Submit
+    </Button>
+);
+
+<Toolbar leftContent={hintButton} rightContent={mainButton} />
 ```
 
 ### Toolbar with title
@@ -25,7 +81,7 @@ const secondaryButton = (
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{ marginLeft: -12 }} />;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
 <Toolbar
     leftContent={closeButton}
@@ -40,7 +96,7 @@ const Button = require("@khanacademy/wonder-blocks-button").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{ marginLeft: -12 }} />;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 const startExercise = <Button>Next Video</Button>;
 
 <Toolbar
@@ -55,16 +111,24 @@ const startExercise = <Button>Next Video</Button>;
 ```js
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
 const buttonStyle = { width: 140 };
 
 const nextExercise = <Button style={buttonStyle}>Next exercise</Button>;
 const questionCount = <LabelLarge>7 questions</LabelLarge>;
 const tryAgain = <Button style={buttonStyle} kind="secondary">Try again</Button>;
+const strut = <Strut size={16}/>;
 
-<Toolbar
-    rightContent={[questionCount, tryAgain, nextExercise]}
-/>
+const rightContent = <React.Fragment>
+    {questionCount}
+    {strut}
+    {tryAgain}
+    {strut}
+    {nextExercise}
+</React.Fragment>;
+
+<Toolbar rightContent={rightContent}/>
 ```
 
 ### Header overflow text
@@ -75,7 +139,7 @@ const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const Link = require("@khanacademy/wonder-blocks-link").default;
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{ marginLeft: -12 }} />;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
 const goToExercise = (
     <Link href="#">

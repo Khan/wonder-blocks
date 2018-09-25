@@ -32,9 +32,6 @@
   },
   "author": "",
   "license": "MIT",
-  "//": [
-    "enzyme-adapter-react-16: TODO(sophie): We should revert back to the latest release of this when the issue at https://github.com/airbnb/enzyme/issues/1509 is fixed"
-  ],
   "devDependencies": {
     "@babel/core": "7.0.0",
     "@babel/plugin-proposal-class-properties": "7.0.0",
@@ -53,7 +50,7 @@
     "codecov": "^3.0.4",
     "concurrently": "^3.6.0",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "npm:enzyme-react-adapter-future",
+    "enzyme-adapter-react-16": "^1.5.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "2.6.0",
     "eslint-plugin-flowtype": "^2.25.0",
@@ -90,8 +87,8 @@
     "inquirer": "^6.0.0",
     "popper.js": "^1.14.1",
     "prop-types": "^15.6.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "^16.4.3",
+    "react-dom": "^16.4.3",
     "react-popper": "^1.0.0",
     "react-router-dom": "^4.2.2"
   },
@@ -109,7 +106,7 @@
     },
     "collectCoverageFrom": [
       "packages/**/*.js",
-      "!packages/**/dist/index.js",
+      "!packages/**/dist/**/*.js",
       "!<rootDir>/node_modules/",
       "!packages/**/node_modules/"
     ]

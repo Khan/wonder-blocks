@@ -468,6 +468,9 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                                     //$FlowFixMe
                                     item.component.props.onClick();
                                 }
+                                if (item.populatedProps.onClick) {
+                                    item.populatedProps.onClick();
+                                }
                             },
                         });
                     }

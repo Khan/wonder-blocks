@@ -73,7 +73,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -167,7 +168,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -261,7 +263,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -350,7 +353,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -444,7 +448,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
         Object {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
-          "display": "block",
+          "alignItems": "center",
+          "display": "flex",
           "fontFamily": "Lato, sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",

@@ -13,6 +13,20 @@ const exampleModal = (
     />
 );
 
+const exampleModalWithButtons = (
+    <StandardModal
+        content={
+            <div>
+                <button data-button-id="1" />
+                <button data-button-id="2" />
+                <button data-button-id="3" data-last-button />
+            </div>
+        }
+        title="Title"
+        footer={<div data-modal-footer />}
+    />
+);
+
 // This is a basic wrapper component, to confirm that wrapper components work
 // too! It passes along extra props, as required to get the default behavior for
 // `onClickCloseButton`.
@@ -172,11 +186,7 @@ describe("ModalBackdrop", () => {
     test("On mount, we focus the last button in the modal", () => {
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
-                <div>
-                    <button />
-                    <button />
-                    <button data-last-button />
-                </div>
+                {exampleModalWithButtons}
             </ModalBackdrop>,
         );
 
@@ -193,11 +203,7 @@ describe("ModalBackdrop", () => {
             <div>
                 <button data-button-id="A" />
                 <ModalBackdrop onCloseModal={() => {}}>
-                    <div>
-                        <button data-button-id="1" />
-                        <button data-button-id="2" />
-                        <button data-button-id="3" />
-                    </div>
+                    {exampleModalWithButtons}
                 </ModalBackdrop>
                 <button data-button-id="Z" />
             </div>,

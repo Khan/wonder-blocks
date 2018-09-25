@@ -95,6 +95,7 @@ describe("wonder-blocks-tooltip", () => {
             StandardModal,
             ModalLauncher,
         } = require("@khanacademy/wonder-blocks-modal");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
             scrollbox: {
@@ -136,7 +137,7 @@ describe("wonder-blocks-tooltip", () => {
         const example = (
             <ModalLauncher modal={modal}>
                 {({openModal}) => (
-                    <button onClick={openModal}>Click here!</button>
+                    <Button onClick={openModal}>Click here!</Button>
                 )}
             </ModalLauncher>
         );
