@@ -30,7 +30,10 @@ describe("wonder-blocks-link", () => {
                         is used here with a lighter text.
                     </span>{" "}
                     We also have a
-                    <Link href="#">Visited Link</Link> friend.
+                    <Link href="#" visitable={true}>
+                        Visitable Primary Link
+                    </Link>{" "}
+                    friend.
                 </p>
                 <p
                     style={{

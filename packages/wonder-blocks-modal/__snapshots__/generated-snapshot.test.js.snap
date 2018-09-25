@@ -423,8 +423,8 @@ exports[`wonder-blocks-modal example 2 1`] = `
               "minHeight": 66,
               "minWidth": 0,
               "padding": 0,
-              "paddingLeft": 4,
-              "paddingRight": 4,
+              "paddingLeft": 16,
+              "paddingRight": 16,
               "position": "relative",
               "width": "100%",
               "zIndex": 0,
@@ -456,7 +456,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
               className=""
               style={
                 Object {
-                  "alignItems": "stretch",
+                  "alignItems": "center",
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
@@ -562,7 +562,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
               className=""
               style={
                 Object {
-                  "alignItems": "stretch",
+                  "alignItems": "center",
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
@@ -979,8 +979,8 @@ exports[`wonder-blocks-modal example 3 1`] = `
               "minHeight": 66,
               "minWidth": 0,
               "padding": 0,
-              "paddingLeft": 4,
-              "paddingRight": 4,
+              "paddingLeft": 16,
+              "paddingRight": 16,
               "position": "relative",
               "width": "100%",
               "zIndex": 0,
@@ -1012,7 +1012,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
               className=""
               style={
                 Object {
-                  "alignItems": "stretch",
+                  "alignItems": "center",
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
@@ -1133,7 +1133,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
               className=""
               style={
                 Object {
-                  "alignItems": "stretch",
+                  "alignItems": "center",
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
@@ -1581,8 +1581,8 @@ exports[`wonder-blocks-modal example 4 1`] = `
               "minHeight": 66,
               "minWidth": 0,
               "padding": 0,
-              "paddingLeft": 4,
-              "paddingRight": 4,
+              "paddingLeft": 16,
+              "paddingRight": 16,
               "position": "relative",
               "width": "100%",
               "zIndex": 0,
@@ -1614,7 +1614,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
               className=""
               style={
                 Object {
-                  "alignItems": "stretch",
+                  "alignItems": "center",
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
@@ -1735,7 +1735,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
               className=""
               style={
                 Object {
-                  "alignItems": "stretch",
+                  "alignItems": "center",
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
@@ -2323,8 +2323,8 @@ exports[`wonder-blocks-modal example 5 1`] = `
               "minHeight": 66,
               "minWidth": 0,
               "padding": 0,
-              "paddingLeft": 4,
-              "paddingRight": 4,
+              "paddingLeft": 16,
+              "paddingRight": 16,
               "position": "relative",
               "width": "100%",
               "zIndex": 0,
@@ -2356,7 +2356,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
               className=""
               style={
                 Object {
-                  "alignItems": "stretch",
+                  "alignItems": "center",
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
@@ -2476,7 +2476,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
               className=""
               style={
                 Object {
-                  "alignItems": "stretch",
+                  "alignItems": "center",
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",

@@ -24,31 +24,36 @@ describe("LinkCore", () => {
     for (const kind of ["primary", "secondary"]) {
         for (const href of ["#", "#non-existent-link"]) {
             for (const light of kind === "primary" ? [true, false] : [false]) {
-                for (const state of ["focused", "hovered", "pressed"]) {
-                    const stateProps = {
-                        focused: state === "focused",
-                        hovered: state === "hovered",
-                        pressed: state === "pressed",
-                    };
-                    test(`kind:${kind} href:${href} light:${String(
-                        light,
-                    )} ${state}`, () => {
-                        const tree = renderer
-                            .create(
-                                <LinkCore
-                                    href="#"
-                                    kind={kind}
-                                    caret={false}
-                                    light={light}
-                                    {...stateProps}
-                                    {...defaultHandlers}
-                                >
-                                    Click me
-                                </LinkCore>,
-                            )
-                            .toJSON();
-                        expect(tree).toMatchSnapshot();
-                    });
+                for (const visitable of kind === "primary" && !light
+                    ? [true, false]
+                    : [false]) {
+                    for (const state of ["focused", "hovered", "pressed"]) {
+                        const stateProps = {
+                            focused: state === "focused",
+                            hovered: state === "hovered",
+                            pressed: state === "pressed",
+                        };
+                        test(`kind:${kind} href:${href} light:${String(
+                            light,
+                        )} visitable:${String(visitable)} ${state}`, () => {
+                            const tree = renderer
+                                .create(
+                                    <LinkCore
+                                        href="#"
+                                        kind={kind}
+                                        caret={false}
+                                        light={light}
+                                        visitable={visitable}
+                                        {...stateProps}
+                                        {...defaultHandlers}
+                                    >
+                                        Click me
+                                    </LinkCore>,
+                                )
+                                .toJSON();
+                            expect(tree).toMatchSnapshot();
+                        });
+                    }
                 }
             }
         }

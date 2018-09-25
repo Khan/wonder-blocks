@@ -13,7 +13,7 @@ describe("Dropdown", () => {
     let dropdown;
 
     beforeEach(() => {
-        const dummyOpener = mount(<button />);
+        const dummyOpener = <button />;
         const openChanged = jest.fn();
         dropdown = mount(
             <Dropdown
