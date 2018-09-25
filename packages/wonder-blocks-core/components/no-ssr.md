@@ -12,28 +12,134 @@ Here, we nest two `NoSSR` components and use an array to track rendering, so tha
 const {Body, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
 
 const trackingArray = [];
-const renderAndTrackText = text => {
-    trackingArray.push(text);
+const resultsId = "nossr-example-2-results";
+const newLi = text => {
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode(text));
+    return li;
+}
+
+const addTrackedRender = text => {
+    const el = document.getElementById(resultsId);
+    if (el) {
+        for (let i = 0; i < trackingArray.length; i++) {
+            el.append(newLi(trackingArray[i]));
+        }
+        trackingArray.length = 0;
+        el.append(newLi(text));
+    } else {
+        // We may not have rendered the results element yet, so if we haven't
+        // use an array to keep track of the things until we have.
+        trackingArray.push(text);
+    }
+};
+
+const trackAndRender = text => {
+    addTrackedRender(text);
     return text;
 };
 
-<NoSSR placeholder={() => <View>{renderAndTrackText("Root: placeholder render")}</View>}>
-    {() => {
-        trackingArray.push("Root: children render");
-        return (
-            <NoSSR placeholder={() => <View>{renderAndTrackText("Child: placeholder render")}</View>}>
-                {() => (
-                    // We're not adding to the array here as that would trigger yet another render.
+<View>
+    <Body>
+        The list below should have three render entries; root placeholder,
+        root children render, and child children render. If there are two child
+        renders that means that the second forced render is still occurring for
+        nested NoSSR components, which would be a bug.
+    </Body>
+    <ul id={resultsId}>
+    </ul>
+    <Body>
+        And below this is the actual NoSSR nesting, which should just show the
+        child render.
+    </Body>
+    <NoSSR placeholder={() => <View>{trackAndRender("Root: placeholder")}</View>}>
+        {() => {
+            addTrackedRender("Root: render");
+            return (
+                <NoSSR placeholder={() => (
                     <View>
-                        <Body key="body">This should output that Root rendered its placeholder, then its children which in turn rendered the child's children. Giving us 3 specific renders.</Body>
-                        {trackingArray.map((t,i) => (
-                            <BodyMonospace key={i}>{t}</BodyMonospace>
-                        ))}
-                        <BodyMonospace key="child">Child: children render</BodyMonospace>
+                        {trackAndRender("Child: placeholder (should never see me)")}
                     </View>
-                )}
-            </NoSSR>
-        );
-    }}
-</NoSSR>
+                )}>
+                    {() => <View>{trackAndRender("Child: render")}</View>}
+                </NoSSR>
+            );
+        }}
+    </NoSSR>
+</View>
+```
+
+In this example, we have side-by-side `NoSSR` components. This demonstrates how component non-nested `NoSSR` components independently track the first render.
+
+```jsx
+const {Body, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
+
+const trackingArray = [];
+const resultsId = "nossr-example-3-results";
+const newLi = text => {
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode(text));
+    return li;
+}
+
+const addTrackedRender = text => {
+    const el = document.getElementById(resultsId);
+    if (el) {
+        for (let i = 0; i < trackingArray.length; i++) {
+            el.append(newLi(trackingArray[i]));
+        }
+        trackingArray.length = 0;
+        el.append(newLi(text));
+    } else {
+        // We may not have rendered the results element yet, so if we haven't
+        // use an array to keep track of the things until we have.
+        trackingArray.push(text);
+    }
+};
+
+const trackAndRender = text => {
+    addTrackedRender(text);
+    return text;
+};
+
+<View>
+    <Body>
+        The list below should have six render entries; 2 x root placeholder,
+        2 x root children render, and 2 x child children render.
+    </Body>
+    <ul id={resultsId}>
+    </ul>
+    <Body>
+        And below this are the NoSSR component trees, which should just show
+        their child renders.
+    </Body>
+    <NoSSR placeholder={() => <View>{trackAndRender("Root 1: placeholder")}</View>}>
+        {() => {
+            addTrackedRender("Root 1: render");
+            return (
+                <NoSSR placeholder={() => (
+                    <View>
+                        {trackAndRender("Child 1: placeholder (should never see me)")}
+                    </View>
+                )}>
+                    {() => <View>{trackAndRender("Child 1: render")}</View>}
+                </NoSSR>
+            );
+        }}
+    </NoSSR>
+    <NoSSR placeholder={() => <View>{trackAndRender("Root 2: placeholder")}</View>}>
+        {() => {
+            addTrackedRender("Root 2: render");
+            return (
+                <NoSSR placeholder={() => (
+                    <View>
+                        {trackAndRender("Child 2: placeholder (should never see me)")}
+                    </View>
+                )}>
+                    {() => <View>{trackAndRender("Child 2: render")}</View>}
+                </NoSSR>
+            );
+        }}
+    </NoSSR>
+</View>
 ```

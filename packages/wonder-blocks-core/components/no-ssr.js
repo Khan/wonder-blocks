@@ -57,11 +57,18 @@ export default class NoSSR extends React.Component<Props, State> {
     };
 
     componentDidMount() {
-        // eslint-disable-next-line react/no-did-mount-set-state
-        this.setState({
-            mounted: true,
-        });
+        if (!this._alreadyPerformedFirstRender) {
+            // We only want to force a new render if we were responsible for
+            // the first render, so we guard that state change here.
+
+            // eslint-disable-next-line react/no-did-mount-set-state
+            this.setState({
+                mounted: true,
+            });
+        }
     }
+
+    _alreadyPerformedFirstRender = false;
 
     _maybeRenderPlaceholderOrChildren(alreadyPerformedFirstRender: boolean) {
         const {mounted} = this.state;
@@ -71,6 +78,10 @@ export default class NoSSR extends React.Component<Props, State> {
         // are reliably told a NoSSR component further up the chain already
         // handled our SSR case.
         if (alreadyPerformedFirstRender) {
+            // We need to stop the forced second render and to do that, we have
+            // to influence our componentDidMount. Fortunately, that occurs
+            // after this, so let's save a member value to then use there.
+            this._alreadyPerformedFirstRender = alreadyPerformedFirstRender;
             return children();
         }
 
