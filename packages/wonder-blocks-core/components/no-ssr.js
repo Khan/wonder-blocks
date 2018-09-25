@@ -40,7 +40,8 @@ const HasHadFirstRenderContext = React.createContext(false);
  * If `NoSSR` components are nested within one another, the root `NoSSR`
  * component will handle the initial render, but nested `NoSSR` components
  * will delegate to the root one, meaning that we don't cascade delayed
- * rendering down the component tree.
+ * rendering down the component tree. This will also be the case across
+ * portal boundaries.
  *
  * Example:
  *

@@ -11,7 +11,7 @@ describe("NoSSR", () => {
         unmountAll();
     });
 
-    test("renders a placeholder first, then the actual content", async () => {
+    test("calls placeholder render first, then the actual content render", async () => {
         // Arrange
         const mockPlaceholder = jest.fn(() => null);
         await new Promise((resolve) => {
@@ -35,7 +35,7 @@ describe("NoSSR", () => {
         expect(mockPlaceholder).toHaveBeenCalledTimes(1);
     });
 
-    test("renders children right away if a parent NoSSR component handled first render", async () => {
+    test("calls children render right away if a parent NoSSR component handled first render", async () => {
         // Arrange
         const mockPlaceholder = jest.fn(() => null);
         const mockPlaceholderNotCalled = jest.fn(() => null);
@@ -68,7 +68,7 @@ describe("NoSSR", () => {
     });
 
     describe("server-side rendering", () => {
-        test("server-side rendering, renders placeholder only", () => {
+        test("server-side rendering, calls placeholder render only", () => {
             // Arrange
             const mockChildren = jest.fn(() => null);
             const mockPlaceholder = jest.fn(() => null);

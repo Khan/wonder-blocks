@@ -38,6 +38,65 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
+        const {
+            Body,
+            BodyMonospace,
+        } = require("@khanacademy/wonder-blocks-typography");
+
+        const trackingArray = [];
+        const renderAndTrackText = (text) => {
+            trackingArray.push(text);
+            return text;
+        };
+
+        const example = (
+            <NoSSR
+                placeholder={() => (
+                    <View>
+                        {renderAndTrackText("Root: placeholder render")}
+                    </View>
+                )}
+            >
+                {() => {
+                    trackingArray.push("Root: children render");
+                    return (
+                        <NoSSR
+                            placeholder={() => (
+                                <View>
+                                    {renderAndTrackText(
+                                        "Child: placeholder render",
+                                    )}
+                                </View>
+                            )}
+                        >
+                            {() => (
+                                // We're not adding to the array here as that would trigger yet another render.
+                                <View>
+                                    <Body key="body">
+                                        This should output that Root rendered
+                                        its placeholder, then its children which
+                                        in turn rendered the child's children.
+                                        Giving us 3 specific renders.
+                                    </Body>
+                                    {trackingArray.map((t, i) => (
+                                        <BodyMonospace key={i}>
+                                            {t}
+                                        </BodyMonospace>
+                                    ))}
+                                    <BodyMonospace key="child">
+                                        Child: children render
+                                    </BodyMonospace>
+                                </View>
+                            )}
+                        </NoSSR>
+                    );
+                }}
+            </NoSSR>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -67,7 +126,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -80,7 +139,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 5", () => {
         const {
             Body,
             HeadingSmall,
@@ -128,7 +187,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 6", () => {
         const {
             Body,
             BodyMonospace,
@@ -171,7 +230,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 7", () => {
         const {
             Body,
             HeadingSmall,
@@ -198,7 +257,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const {
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
@@ -222,7 +281,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -252,7 +311,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>

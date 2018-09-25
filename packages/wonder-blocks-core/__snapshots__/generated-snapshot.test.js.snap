@@ -30,6 +30,93 @@ exports[`wonder-blocks-core example 2 1`] = `
   style={
     Object {
       "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    This should output that Root rendered its placeholder, then its children which in turn rendered the child's children. Giving us 3 specific renders.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata, monospace",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Root: placeholder render
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata, monospace",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Root: children render
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata, monospace",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Child: children render
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-core example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
       "backgroundColor": "plum",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -83,7 +170,7 @@ exports[`wonder-blocks-core example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 3 1`] = `
+exports[`wonder-blocks-core example 4 1`] = `
 <div
   className=""
   style={
@@ -140,7 +227,7 @@ exports[`wonder-blocks-core example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 4 1`] = `
+exports[`wonder-blocks-core example 5 1`] = `
 <div
   className=""
   style={
@@ -355,7 +442,7 @@ exports[`wonder-blocks-core example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 5 1`] = `
+exports[`wonder-blocks-core example 6 1`] = `
 <div
   className=""
   style={
@@ -548,7 +635,7 @@ exports[`wonder-blocks-core example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 6 1`] = `
+exports[`wonder-blocks-core example 7 1`] = `
 <div
   className=""
   style={
@@ -681,7 +768,7 @@ exports[`wonder-blocks-core example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 7 1`] = `
+exports[`wonder-blocks-core example 8 1`] = `
 <div
   className=""
   style={
@@ -798,7 +885,7 @@ exports[`wonder-blocks-core example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 8 1`] = `
+exports[`wonder-blocks-core example 9 1`] = `
 <div
   className=""
   style={
@@ -857,7 +944,7 @@ exports[`wonder-blocks-core example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 9 1`] = `
+exports[`wonder-blocks-core example 10 1`] = `
 <div
   className=""
   style={
