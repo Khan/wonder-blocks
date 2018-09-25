@@ -47,7 +47,9 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
         expect(button.state("hovered")).toEqual(false);
-        button.simulate("mouseenter");
+        button.simulate("mouseenter", {
+            buttons: 0,
+        });
         expect(button.state("hovered")).toEqual(true);
         button.simulate("mouseleave");
         expect(button.state("hovered")).toEqual(false);
@@ -242,7 +244,9 @@ describe("ClickableBehavior", () => {
         expect(onClick).not.toHaveBeenCalled();
 
         expect(button.state("hovered")).toEqual(false);
-        button.simulate("mouseenter");
+        button.simulate("mouseenter", {
+            buttons: 0,
+        });
         expect(button.state("hovered")).toEqual(false);
         button.simulate("mouseleave");
         expect(button.state("hovered")).toEqual(false);
