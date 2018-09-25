@@ -7,7 +7,10 @@
         "promise"
     ],
     "rules": {
-        "flowtype/require-exact-type": ["error", "always"],
+        "flowtype/require-exact-type": [
+            "error",
+            "always"
+        ],
         "flowtype/no-types-missing-file-annotation": "error",
         "import/no-unresolved": "error",
         "import/named": "error",
@@ -22,17 +25,110 @@
         "import/no-commonjs": "error",
         "import/first": "error",
         "import/no-duplicates": "error",
-        "import/order": ["error", {"groups": ["builtin", "external"]}],
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "builtin",
+                    "external"
+                ]
+            }
+        ],
         "import/newline-after-import": "error",
         "import/no-unassigned-import": "error",
         "import/no-named-default": "error",
-        "import/extensions": ["error", "always", {"ignorePackages": true}],
+        "import/extensions": [
+            "error",
+            "always",
+            {
+                "ignorePackages": true
+            }
+        ],
         "promise/always-return": "error",
         "promise/no-return-wrap": "error",
         "promise/param-names": "error",
         "promise/catch-or-return": "error",
         "promise/no-new-statics": "error",
         "promise/no-return-in-finally": "error",
-        "react/jsx-handler-names": "error"
+        "react/jsx-handler-names": "error",
+        "import/no-restricted-paths": [
+            "error",
+            {
+                "zones": [
+                    {
+                        "target": "./packages/(?!.*test.js).*",
+                        "from": "utils"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks.*",
+                        "from": "./shared-unpackaged"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-button",
+                        "from": "./packages/wonder-blocks-(?!button).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-color",
+                        "from": "./packages/wonder-blocks-(?!color).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-core",
+                        "from": "./packages/wonder-blocks-(?!core).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-dropdown",
+                        "from": "./packages/wonder-blocks-(?!dropdown).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-form",
+                        "from": "./packages/wonder-blocks-(?!form).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-grid",
+                        "from": "./packages/wonder-blocks-(?!grid).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-icon",
+                        "from": "./packages/wonder-blocks-(?!icon).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-icon-button",
+                        "from": "./packages/wonder-blocks-(?!icon-button).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-layout",
+                        "from": "./packages/wonder-blocks-(?!layout).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-link",
+                        "from": "./packages/wonder-blocks-(?!link).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-modal",
+                        "from": "./packages/wonder-blocks-(?!modal).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-progress-spinner",
+                        "from": "./packages/wonder-blocks-(?!progress-spinner).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-spacing",
+                        "from": "./packages/wonder-blocks-(?!spacing).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-toolbar",
+                        "from": "./packages/wonder-blocks-(?!toolbar).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-tooltip",
+                        "from": "./packages/wonder-blocks-(?!tooltip).*"
+                    },
+                    {
+                        "target": "./packages/wonder-blocks-typography",
+                        "from": "./packages/wonder-blocks-(?!typography).*"
+                    }
+                ]
+            }
+        ]
     }
 }

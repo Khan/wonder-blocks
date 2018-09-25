@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
+import {mount, unmountAll} from "../utils/testing/mount.js";
 
 import isObscured from "./is-obscured.js";
 
