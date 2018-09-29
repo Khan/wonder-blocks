@@ -5,7 +5,9 @@ import visibilityModifierDefaultConfig from "./visibility-modifier.js";
 import isObscured from "./is-obscured.js";
 
 jest.mock("./is-obscured.js");
-jest.mock("@khanacademy/wonder-blocks-core");
+jest.mock("@khanacademy/wonder-blocks-core", () => ({
+    getElementIntersection: jest.fn(),
+}));
 
 describe("Visibility PopperJS Modifier", () => {
     beforeEach(() => {
