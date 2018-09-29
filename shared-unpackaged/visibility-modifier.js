@@ -2,9 +2,6 @@
 /**
  * A modifier for use with popper.js or react-popper.
  *
- * TODO: This is currently duplicated across the tooltip and dropdown packages.
- * Find a shared place to put this and reuse.
- *
  * This looks at the scroll parents of the reference element to determine
  * overall visibility.
  *
