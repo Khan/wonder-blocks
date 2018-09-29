@@ -8,6 +8,7 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import CaaFAggregator from "./components/caaf-aggregator.js";
 import ClickableBehavior from "./components/clickable-behavior.js";
 import MediaLayout from "./components/media-layout.js";
 import NoSSR from "./components/no-ssr.js";
