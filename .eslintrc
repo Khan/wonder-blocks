@@ -65,7 +65,7 @@
                     {
                         "target": "./packages/wonder-blocks.*",
                         "from": "./shared-unpackaged"
-                    },
+                    }
                 ]
             }
         ]
