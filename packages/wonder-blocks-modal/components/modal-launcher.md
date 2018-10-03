@@ -154,7 +154,7 @@ const oneColumnModal = ({closeModal}) => <OneColumnModal
 
 ## Triggering programmatically
 
-Sometimes you'll want to trigger a modal programmitically.  This can be done
+Sometimes you'll want to trigger a modal programmatically.  This can be done
 by rendering `ModalLauncher` without any children and instead setting its
 `opened` prop to `true`.  In this situation `ModalLauncher` is a controlled
 component which means you'll also have to update `opened` to `false` in
