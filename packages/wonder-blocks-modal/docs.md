@@ -1,4 +1,4 @@
-## Wrapping Modals
+# Wrapping Modals
 
 Often you'll want to define a new modal component by wrapping an existing
 modal component.  These wrapped components will also work with ModalLauncher

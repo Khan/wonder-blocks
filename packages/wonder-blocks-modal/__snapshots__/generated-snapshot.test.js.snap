@@ -331,142 +331,6 @@ exports[`wonder-blocks-modal example 3 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    className=""
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "width": "fit-content",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      aria-label=""
-      className=""
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="menu"
-      style={
-        Object {
-          "::MozFocusInner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "none",
-          "border": "none",
-          "borderRadius": 4,
-          "boxSizing": "border-box",
-          "color": "#1865f2",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "outline": "none",
-          "overflow": "hidden",
-          "paddingBottom": 0,
-          "paddingLeft": 8,
-          "paddingRight": 8,
-          "paddingTop": 0,
-          "position": "relative",
-          "textDecoration": "none",
-          "textOverflow": "ellipsis",
-          "userSelect": "none",
-          "whiteSpace": "nowrap",
-        }
-      }
-      tabIndex={0}
-      type="button"
-    >
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "alignItems": "center",
-            "display": "flex",
-            "fontFamily": "Lato, sans-serif",
-            "fontSize": 16,
-            "fontWeight": "bold",
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "pointerEvents": "none",
-            "textOverflow": "ellipsis",
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        actions
-        <svg
-          className=""
-          height={16}
-          style={
-            Object {
-              "display": "inline-block",
-              "marginLeft": 4,
-              "verticalAlign": "text-bottom",
-            }
-          }
-          viewBox="0 0 16 16"
-          width={16}
-        >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-modal example 4 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
       "height": 512,
       "margin": 0,
       "minHeight": 0,
@@ -1012,7 +876,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 5 1`] = `
+exports[`wonder-blocks-modal example 4 1`] = `
 <div
   className=""
   style={
@@ -1614,7 +1478,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 6 1`] = `
+exports[`wonder-blocks-modal example 5 1`] = `
 <div
   className=""
   style={
@@ -2353,7 +2217,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 7 1`] = `
+exports[`wonder-blocks-modal example 6 1`] = `
 <div
   className=""
   style={
@@ -3021,7 +2885,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 8 1`] = `
+exports[`wonder-blocks-modal example 7 1`] = `
 <div
   className=""
   style={
@@ -3458,7 +3322,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 9 1`] = `
+exports[`wonder-blocks-modal example 8 1`] = `
 <div
   className=""
   style={
@@ -4029,7 +3893,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 10 1`] = `
+exports[`wonder-blocks-modal example 9 1`] = `
 <div
   className=""
   style={
@@ -4352,7 +4216,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 11 1`] = `
+exports[`wonder-blocks-modal example 10 1`] = `
 <div
   className=""
   style={
@@ -4878,7 +4742,7 @@ exports[`wonder-blocks-modal example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 12 1`] = `
+exports[`wonder-blocks-modal example 11 1`] = `
 <div
   className=""
   style={
@@ -5383,7 +5247,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 13 1`] = `
+exports[`wonder-blocks-modal example 12 1`] = `
 <div
   className=""
   style={
@@ -5692,7 +5556,7 @@ exports[`wonder-blocks-modal example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 14 1`] = `
+exports[`wonder-blocks-modal example 13 1`] = `
 <div
   className=""
   style={
