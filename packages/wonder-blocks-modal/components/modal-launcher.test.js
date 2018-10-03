@@ -28,6 +28,17 @@ describe("ModalLauncher", () => {
         expect(portal instanceof HTMLDivElement).toBe(true);
     });
 
+    test("Modal can be manually opened and closed", () => {
+        const wrapper = mount(
+            <ModalLauncher modal={exampleModal} opened={false} />,
+        );
+        expect(wrapper.find("[data-modal-launcher-portal]")).not.toExist();
+        wrapper.setProps({opened: true});
+        expect(wrapper.find("[data-modal-launcher-portal]")).toExist();
+        wrapper.setProps({opened: false});
+        expect(wrapper.find("[data-modal-launcher-portal]")).not.toExist();
+    });
+
     test("Modal can close itself after launching", (done) => {
         let opened = false;
 
