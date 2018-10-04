@@ -8,7 +8,11 @@ import {Popper} from "react-popper";
 import type {PopperChildrenProps} from "react-popper";
 
 import TooltipBubble from "./tooltip-bubble.js";
-import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
+// NOTE(jeff): Here we share some code for use with PopperJS. Long term,
+// we should either contribute this code to the PopperJS component, or its
+// own non-wonder-blocks package.
+// eslint-disable-next-line import/no-restricted-paths
+import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibility-modifier.js";
 import RefTracker from "../util/ref-tracker.js";
 import type {Placement} from "../util/types.js";
 import type {TooltipBubbleProps} from "./tooltip-bubble.js";

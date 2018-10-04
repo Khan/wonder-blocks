@@ -1,9 +1,0 @@
-{
-    "presets": ["react", "es2015"],
-    "plugins": [
-        "transform-flow-strip-types",
-        "transform-class-properties",
-        "transform-object-rest-spread",
-        "transform-dynamic-import"
-    ]
-}
