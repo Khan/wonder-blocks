@@ -428,7 +428,12 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
     }
 
     handleDropdownMouseUp = (event: SyntheticMouseEvent<>) => {
-        event.nativeEvent.stopImmediatePropagation();
+        if (event.nativeEvent.stopImmediatePropagation) {
+            event.nativeEvent.stopImmediatePropagation();
+        } else {
+            // Workaround for jsdom
+            event.stopPropagation();
+        }
     };
 
     renderItems(outOfBoundaries: ?boolean) {
