@@ -293,6 +293,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleMouseUp = (e: SyntheticMouseEvent<>) => {
         if (this.dragging) {
+            this.dragging = false;
             this.handleClick(e);
         }
         this.setState({pressed: false, focused: false});
