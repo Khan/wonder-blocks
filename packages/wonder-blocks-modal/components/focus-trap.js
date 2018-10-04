@@ -1,9 +1,10 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
+
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 /**
  * This component ensures that focus stays within itself. If the user uses Tab
@@ -24,6 +25,9 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     children: React.Node,
+
+    /* Style applied to the View containing children */
+    style?: StyleType,
 |};
 
 export default class FocusTrap extends React.Component<Props> {
@@ -166,6 +170,8 @@ export default class FocusTrap extends React.Component<Props> {
     };
 
     render() {
+        const {style} = this.props;
+
         return (
             <React.Fragment>
                 {/* When you press Tab on the last focusable node of the
@@ -178,7 +184,7 @@ export default class FocusTrap extends React.Component<Props> {
                   * wrapping, though; we're resilient to any kind of focus
                   * shift, whether it's to the sentinels or somewhere else! */}
                 <div tabIndex="0" />
-                <View style={styles.container} ref={this.getModalRoot}>
+                <View style={style} ref={this.getModalRoot}>
                     {this.props.children}
                 </View>
                 <div tabIndex="0" />
@@ -186,14 +192,3 @@ export default class FocusTrap extends React.Component<Props> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        // This z-index is copied from the Khan Academy webapp.
-        //
-        // TODO(mdr): Should we keep this in a constants file somewhere? Or
-        //     not hardcode it at all, and provide it to Wonder Blocks via
-        //     configuration?
-        zIndex: 1080,
-    },
-});
