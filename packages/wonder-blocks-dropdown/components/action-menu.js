@@ -193,6 +193,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                     focusable: !disabled,
                     populatedProps: {
                         indent: containsOptionItems,
+                        onClick: this.handleItemSelected,
                     },
                 };
             } else if (type === OptionItem) {
