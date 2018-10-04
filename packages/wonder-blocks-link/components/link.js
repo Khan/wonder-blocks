@@ -34,6 +34,12 @@ export type SharedProps = {|
     light: boolean,
 
     /**
+     * Whether the link should change color once it's visited.
+     * secondary or primary (light) links are not allowed to be visitable.
+     */
+    visitable: boolean,
+
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string,
@@ -105,6 +111,7 @@ export default class Link extends React.Component<SharedProps> {
         caret: false,
         kind: "primary",
         light: false,
+        visitable: false,
     };
 
     static contextTypes = {router: PropTypes.any};

@@ -13,7 +13,7 @@ describe("Dropdown", () => {
     let dropdown;
 
     beforeEach(() => {
-        const dummyOpener = mount(<button />);
+        const dummyOpener = <button />;
         const openChanged = jest.fn();
         dropdown = mount(
             <Dropdown
@@ -85,6 +85,27 @@ describe("Dropdown", () => {
         dropdown.simulate("keydown", {keyCode: keyCodes.up});
         dropdown.simulate("keyup", {keyCode: keyCodes.up});
         expect(dropdown.instance().focusedIndex).toBe(2);
+    });
+
+    it("doesn't close on touch interaction with option", () => {
+        const handleOpen = jest.fn();
+        dropdown.setProps({
+            onOpenChanged: (open) => handleOpen(open),
+            open: true,
+        });
+
+        const option0 = dropdown.find("OptionItem").at(0);
+        // This is the full order of events fired when tapping an element
+        // on mobile
+        // https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Supporting_both_TouchEvent_and_MouseEvent#Event_order
+        option0.simulate("touchstart");
+        option0.simulate("touchend");
+        option0.simulate("mousemove");
+        option0.simulate("mousedown");
+        option0.simulate("mouseup");
+        option0.simulate("click");
+
+        expect(handleOpen).toHaveBeenCalledTimes(0);
     });
 
     it("closes on tab and escape as expected", () => {
