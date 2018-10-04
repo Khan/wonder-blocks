@@ -116,6 +116,22 @@ export type SharedProps = {|
  * light (whether the IconButton will be rendered on a dark background),
  * disabled , test ID, and custom styling.
  *
+ * The size of an IconButton matches the size of icon it wraps which is 24x24
+ * pixels.  The focus ring which is displayed on hover and focus is much
+ * larger but does not affect its size.  This matches the behavior of Button.
+ *
+ * IconButtons require a certain amount of space between them to ensure the
+ * focus rings don't overlap.  The minimum amount of spacing is 16px, but
+ * you should refer to the mocks provided by design.  Using a Strut in between
+ * IconButtons is the preferred way to for adding this spacing.
+ *
+ * Many layouts require alignment of visual left (or right) side of an
+ * IconButton.  This requires a little bit of pixel nudging since each icon
+ * as a different amount of internal padding.
+ *
+ * See the Toolbar documentation for examples of IconButton use that follow
+ * the best practices described above.
+ *
  * ```js
  * import {icons} from "@khanacademy/wonder-blocks-icon";
  *

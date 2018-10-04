@@ -9,10 +9,10 @@ describe("@khanacademy/wonder-blocks-color", () => {
 
         // Assert
         expect(Object.keys(result)).toEqual([
-            "default",
-            "SemanticColor",
             "mix",
             "fade",
+            "default",
+            "SemanticColor",
         ]);
     });
 });
