@@ -20,11 +20,190 @@ exports[`wonder-blocks-core example 1 1`] = `
     }
   }
 >
-  This is rendered only by the client for all but the first render.
+  This is rendered only by the client for all but the very first render of the component tree.
 </div>
 `;
 
 exports[`wonder-blocks-core example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    The list below should have three render entries; root placeholder, root children render, and child children render. If there are two child renders that means that the second forced render is still occurring for nested NoSSR components, which would be a bug.
+  </span>
+  <ul
+    id="nossr-example-2-results"
+  />
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    And below this is the actual NoSSR nesting, which should just show the child render.
+  </span>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    Child: render
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-core example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    The list below should have six render entries; 2 x root placeholder, 2 x root children render, and 2 x child children render.
+  </span>
+  <ul
+    id="nossr-example-3-results"
+  />
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    And below this are the NoSSR component trees, which should just show their child renders.
+  </span>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    Child 1: render
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    Child 2: render
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-core example 4 1`] = `
 <div
   className=""
   style={
@@ -83,7 +262,7 @@ exports[`wonder-blocks-core example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 3 1`] = `
+exports[`wonder-blocks-core example 5 1`] = `
 <div
   className=""
   style={
@@ -140,7 +319,7 @@ exports[`wonder-blocks-core example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 4 1`] = `
+exports[`wonder-blocks-core example 6 1`] = `
 <div
   className=""
   style={
@@ -356,7 +535,7 @@ exports[`wonder-blocks-core example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 5 1`] = `
+exports[`wonder-blocks-core example 7 1`] = `
 <div
   className=""
   style={
@@ -549,7 +728,7 @@ exports[`wonder-blocks-core example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 6 1`] = `
+exports[`wonder-blocks-core example 8 1`] = `
 <div
   className=""
   style={
@@ -682,7 +861,7 @@ exports[`wonder-blocks-core example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 7 1`] = `
+exports[`wonder-blocks-core example 9 1`] = `
 <div
   className=""
   style={
@@ -799,7 +978,7 @@ exports[`wonder-blocks-core example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 8 1`] = `
+exports[`wonder-blocks-core example 10 1`] = `
 <div
   className=""
   style={
@@ -858,7 +1037,7 @@ exports[`wonder-blocks-core example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 9 1`] = `
+exports[`wonder-blocks-core example 11 1`] = `
 <div
   className=""
   style={

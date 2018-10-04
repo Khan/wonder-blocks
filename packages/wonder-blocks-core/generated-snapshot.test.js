@@ -22,14 +22,14 @@ describe("wonder-blocks-core", () => {
                 placeholder={() => (
                     <View>
                         This gets rendered on client and server for the first
-                        render call
+                        render call in the component tree
                     </View>
                 )}
             >
                 {() => (
                     <View>
-                        This is rendered only by the client for all but the
-                        first render.
+                        This is rendered only by the client for all but the very
+                        first render of the component tree.
                     </View>
                 )}
             </NoSSR>
@@ -38,6 +38,188 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
+        const {
+            Body,
+            BodyMonospace,
+        } = require("@khanacademy/wonder-blocks-typography");
+
+        const trackingArray = [];
+        const resultsId = "nossr-example-2-results";
+        const newLi = (text) => {
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(text));
+            return li;
+        };
+
+        const addTrackedRender = (text) => {
+            const el = document.getElementById(resultsId);
+            if (el) {
+                for (let i = 0; i < trackingArray.length; i++) {
+                    el.append(newLi(trackingArray[i]));
+                }
+                trackingArray.length = 0;
+                el.append(newLi(text));
+            } else {
+                // We may not have rendered the results element yet, so if we haven't
+                // use an array to keep track of the things until we have.
+                trackingArray.push(text);
+            }
+        };
+
+        const trackAndRender = (text) => {
+            addTrackedRender(text);
+            return text;
+        };
+
+        const example = (
+            <View>
+                <Body>
+                    The list below should have three render entries; root
+                    placeholder, root children render, and child children
+                    render. If there are two child renders that means that the
+                    second forced render is still occurring for nested NoSSR
+                    components, which would be a bug.
+                </Body>
+                <ul id={resultsId} />
+                <Body>
+                    And below this is the actual NoSSR nesting, which should
+                    just show the child render.
+                </Body>
+                <NoSSR
+                    placeholder={() => (
+                        <View>{trackAndRender("Root: placeholder")}</View>
+                    )}
+                >
+                    {() => {
+                        addTrackedRender("Root: render");
+                        return (
+                            <NoSSR
+                                placeholder={() => (
+                                    <View>
+                                        {trackAndRender(
+                                            "Child: placeholder (should never see me)",
+                                        )}
+                                    </View>
+                                )}
+                            >
+                                {() => (
+                                    <View>
+                                        {trackAndRender("Child: render")}
+                                    </View>
+                                )}
+                            </NoSSR>
+                        );
+                    }}
+                </NoSSR>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const {
+            Body,
+            BodyMonospace,
+        } = require("@khanacademy/wonder-blocks-typography");
+
+        const trackingArray = [];
+        const resultsId = "nossr-example-3-results";
+        const newLi = (text) => {
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(text));
+            return li;
+        };
+
+        const addTrackedRender = (text) => {
+            const el = document.getElementById(resultsId);
+            if (el) {
+                for (let i = 0; i < trackingArray.length; i++) {
+                    el.append(newLi(trackingArray[i]));
+                }
+                trackingArray.length = 0;
+                el.append(newLi(text));
+            } else {
+                // We may not have rendered the results element yet, so if we haven't
+                // use an array to keep track of the things until we have.
+                trackingArray.push(text);
+            }
+        };
+
+        const trackAndRender = (text) => {
+            addTrackedRender(text);
+            return text;
+        };
+
+        const example = (
+            <View>
+                <Body>
+                    The list below should have six render entries; 2 x root
+                    placeholder, 2 x root children render, and 2 x child
+                    children render.
+                </Body>
+                <ul id={resultsId} />
+                <Body>
+                    And below this are the NoSSR component trees, which should
+                    just show their child renders.
+                </Body>
+                <NoSSR
+                    placeholder={() => (
+                        <View>{trackAndRender("Root 1: placeholder")}</View>
+                    )}
+                >
+                    {() => {
+                        addTrackedRender("Root 1: render");
+                        return (
+                            <NoSSR
+                                placeholder={() => (
+                                    <View>
+                                        {trackAndRender(
+                                            "Child 1: placeholder (should never see me)",
+                                        )}
+                                    </View>
+                                )}
+                            >
+                                {() => (
+                                    <View>
+                                        {trackAndRender("Child 1: render")}
+                                    </View>
+                                )}
+                            </NoSSR>
+                        );
+                    }}
+                </NoSSR>
+                <NoSSR
+                    placeholder={() => (
+                        <View>{trackAndRender("Root 2: placeholder")}</View>
+                    )}
+                >
+                    {() => {
+                        addTrackedRender("Root 2: render");
+                        return (
+                            <NoSSR
+                                placeholder={() => (
+                                    <View>
+                                        {trackAndRender(
+                                            "Child 2: placeholder (should never see me)",
+                                        )}
+                                    </View>
+                                )}
+                            >
+                                {() => (
+                                    <View>
+                                        {trackAndRender("Child 2: render")}
+                                    </View>
+                                )}
+                            </NoSSR>
+                        );
+                    }}
+                </NoSSR>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -67,7 +249,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 5", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -80,7 +262,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 6", () => {
         const {
             Body,
             HeadingSmall,
@@ -128,7 +310,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 7", () => {
         const {
             Body,
             BodyMonospace,
@@ -171,7 +353,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 8", () => {
         const {
             Body,
             HeadingSmall,
@@ -198,7 +380,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 9", () => {
         const {
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
@@ -222,7 +404,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 10", () => {
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -252,7 +434,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 11", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>

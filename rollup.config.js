@@ -2,6 +2,8 @@ import fs from "fs";
 import autoExternal from "rollup-plugin-auto-external";
 import babel from "rollup-plugin-babel";
 
+const {presets, plugins} = require("./babel.config.js");
+
 const createConfig = (pkgName) => ({
     output: {
         file: `packages/${pkgName}/dist/es/index.js`,
@@ -10,14 +12,10 @@ const createConfig = (pkgName) => ({
     input: `packages/${pkgName}/index.js`,
     plugins: [
         babel({
-            babelrc: false,
+            presets,
+            plugins,
             exclude: "node_modules/**",
-            presets: ["react", "flow"],
-            plugins: [
-                "transform-class-properties", 
-                "transform-object-rest-spread",
-            ],
-        }),      
+        }),
         autoExternal({
             packagePath: `packages/${pkgName}/package.json`,
         }),
