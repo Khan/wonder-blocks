@@ -9,7 +9,7 @@ import typeof SeparatorItem from "../components/separator-item.js";
 export type Item = false | React.Element<ActionItem | OptionItem | SeparatorItem>;
 
 export type DropdownItem = {|
-    component: Item,
+    component: React.Element<ActionItem | OptionItem | SeparatorItem>,
     focusable: boolean,
     populatedProps: any,
 |};

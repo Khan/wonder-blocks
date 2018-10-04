@@ -449,9 +449,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                 ]}
             >
                 {items.map((item, index) => {
-                    if (!item.component) {
-                        return null;
-                    } else if (item.component.type === SeparatorItem) {
+                    if (item.component.type === SeparatorItem) {
                         return item.component;
                     } else {
                         if (item.focusable) {
@@ -466,10 +464,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                                 this.state.itemRefs[focusIndex].ref,
                             onClick: () => {
                                 this.handleClickFocus(focusIndex);
-                                if (
-                                    item.component &&
-                                    item.component.props.onClick
-                                ) {
+                                if (item.component.props.onClick) {
                                     //$FlowFixMe
                                     item.component.props.onClick();
                                 }
