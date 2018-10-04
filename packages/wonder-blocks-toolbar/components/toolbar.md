@@ -31,13 +31,15 @@ const rightContent = <React.Fragment>
 
 ### Small toolbar with multiple left side buttons:
 
+**Note:** The `IconButton`s are nudged to the left by 1px to match designs.
+
 ```js
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
-const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary"/>;
+const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary" style={{marginLeft:-1}}/>;
 const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary"/>;
 
 const strut = <Strut size={16}/>;
@@ -59,12 +61,14 @@ const leftContent = <React.Fragment>
 
 ### Toolbar with left icon button and right primary button:
 
+**Note:** The `IconButton` is nudged to the left by 4px to match designs.
+
 ```js
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const hintButton = <IconButton icon={icons.hint} kind="primary"/>;
+const hintButton = <IconButton icon={icons.hint} kind="primary" style={{marginLeft: -4}}/>;
 
 const mainButton = (
     <Button kind="primary">
@@ -77,11 +81,13 @@ const mainButton = (
 
 ### Toolbar with title
 
+**Note:** The `IconButton` is nudged to the left by 6px to match designs.
+
 ```js
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{marginLeft: -6}}/>;
 
 <Toolbar
     leftContent={closeButton}
@@ -91,12 +97,14 @@ const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
 ### Toolbar with left and right content
 
+**Note:** The `IconButton` is nudged to the left by 6px to match designs.
+
 ```js
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{marginLeft: -6}}/>;
 const startExercise = <Button>Next Video</Button>;
 
 <Toolbar
@@ -133,13 +141,15 @@ const rightContent = <React.Fragment>
 
 ### Header overflow text
 
+**Note:** The `IconButton` is nudged to the left by 6px to match designs.
+
 ```js
 const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const Link = require("@khanacademy/wonder-blocks-link").default;
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{marginLeft: -6}}/>;
 
 const goToExercise = (
     <Link href="#">
