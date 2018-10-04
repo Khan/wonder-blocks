@@ -182,16 +182,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
     getMenuItems(): Array<DropdownItem> {
         const {children, selectedValues} = this.props;
         const containsOptionItems = Array.isArray(selectedValues);
-
-        return React.Children.map(children, (item) => {
-            if (!item) {
-                return {
-                    component: item,
-                    focusable: false,
-                    populatedProps: {},
-                };
-            }
-
+        return React.Children.toArray(children).filter(Boolean).map((item) => {
             const {
                 type,
                 props: {disabled, value},

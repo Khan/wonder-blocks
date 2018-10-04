@@ -126,15 +126,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         let indexCounter = 0;
         this.selectedIndex = 0;
 
-        return React.Children.map(children, (option) => {
-            if (!option) {
-                return {
-                    component: option,
-                    focusable: false,
-                    populatedProps: {},
-                };
-            }
-
+        return React.Children.toArray(children).filter(Boolean).map((option) => {
             const {disabled, value} = option.props;
             const selected = selectedValue === value;
             if (selected) {
