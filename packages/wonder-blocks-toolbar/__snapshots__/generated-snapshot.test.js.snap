@@ -344,64 +344,85 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         }
       }
     >
-      <button
+      <div
         className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            "::MozFocusInner": Object {
-              "border": 0,
-            },
-            "alignItems": "center",
-            "background": "none",
-            "border": "none",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
+            "display": "flex",
+            "flexDirection": "column",
             "margin": 0,
-            "outline": "none",
+            "marginLeft": -1,
+            "minHeight": 0,
+            "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "textDecoration": "none",
-            "width": 40,
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
-        type="button"
       >
-        <svg
+        <button
           className=""
-          height={24}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "display": "inline-block",
-              "verticalAlign": "text-bottom",
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": -8,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
             }
           }
-          viewBox="0 0 24 24"
-          width={24}
+          tabIndex={0}
+          type="button"
         >
-          <path
-            d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm-3-5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2H8z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm-3-5a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2H8z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
       <div
         aria-hidden="true"
         className=""
@@ -428,64 +449,84 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           }
         }
       />
-      <button
+      <div
         className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            "::MozFocusInner": Object {
-              "border": 0,
-            },
-            "alignItems": "center",
-            "background": "none",
-            "border": "none",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
+            "display": "flex",
+            "flexDirection": "column",
             "margin": 0,
-            "outline": "none",
+            "minHeight": 0,
+            "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "textDecoration": "none",
-            "width": 40,
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
-        type="button"
       >
-        <svg
+        <button
           className=""
-          height={24}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "display": "inline-block",
-              "verticalAlign": "text-bottom",
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": -8,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
             }
           }
-          viewBox="0 0 24 24"
-          width={24}
+          tabIndex={0}
+          type="button"
         >
-          <path
-            d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM12 10h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H8a1 1 0 0 1 0-2h2V8a1 1 0 0 1 2 0v2zm-1 7a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M17.32 15.906l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414zM12 10h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H8a1 1 0 0 1 0-2h2V8a1 1 0 0 1 2 0v2zm-1 7a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
   <div
@@ -667,64 +708,85 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         }
       }
     >
-      <button
+      <div
         className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            "::MozFocusInner": Object {
-              "border": 0,
-            },
-            "alignItems": "center",
-            "background": "none",
-            "border": "none",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
+            "display": "flex",
+            "flexDirection": "column",
             "margin": 0,
-            "outline": "none",
+            "marginLeft": -4,
+            "minHeight": 0,
+            "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "textDecoration": "none",
-            "width": 40,
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
-        type="button"
       >
-        <svg
+        <button
           className=""
-          height={24}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "display": "inline-block",
-              "verticalAlign": "text-bottom",
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": -8,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
             }
           }
-          viewBox="0 0 24 24"
-          width={24}
+          tabIndex={0}
+          type="button"
         >
-          <path
-            d="M10.835 15.993a1 1 0 0 1 1.008-.247 5.5 5.5 0 1 0-3.59-3.59 1 1 0 0 1-.246 1.009L6.172 15 9 17.828l1.835-1.835zm-.78 3.61a1.496 1.496 0 0 1-2.11 0l-3.548-3.549a1.496 1.496 0 0 1 0-2.108l1.787-1.787a7.5 7.5 0 1 1 5.657 5.657l-1.787 1.787zm-6.762.104a1 1 0 0 1 1.414-1.414l1 1a1 1 0 0 1-1.414 1.414l-1-1z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M10.835 15.993a1 1 0 0 1 1.008-.247 5.5 5.5 0 1 0-3.59-3.59 1 1 0 0 1-.246 1.009L6.172 15 9 17.828l1.835-1.835zm-.78 3.61a1.496 1.496 0 0 1-2.11 0l-3.548-3.549a1.496 1.496 0 0 1 0-2.108l1.787-1.787a7.5 7.5 0 1 1 5.657 5.657l-1.787 1.787zm-6.762.104a1 1 0 0 1 1.414-1.414l1 1a1 1 0 0 1-1.414 1.414l-1-1z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
   <div
@@ -906,64 +968,85 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         }
       }
     >
-      <button
+      <div
         className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            "::MozFocusInner": Object {
-              "border": 0,
-            },
-            "alignItems": "center",
-            "background": "none",
-            "border": "none",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "rgba(33,36,44,0.64)",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
+            "display": "flex",
+            "flexDirection": "column",
             "margin": 0,
-            "outline": "none",
+            "marginLeft": -6,
+            "minHeight": 0,
+            "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "textDecoration": "none",
-            "width": 40,
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
-        type="button"
       >
-        <svg
+        <button
           className=""
-          height={24}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "display": "inline-block",
-              "verticalAlign": "text-bottom",
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.64)",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": -8,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
             }
           }
-          viewBox="0 0 24 24"
-          width={24}
+          tabIndex={0}
+          type="button"
         >
-          <path
-            d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
   <div
@@ -1140,64 +1223,85 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         }
       }
     >
-      <button
+      <div
         className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            "::MozFocusInner": Object {
-              "border": 0,
-            },
-            "alignItems": "center",
-            "background": "none",
-            "border": "none",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "rgba(33,36,44,0.64)",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
+            "display": "flex",
+            "flexDirection": "column",
             "margin": 0,
-            "outline": "none",
+            "marginLeft": -6,
+            "minHeight": 0,
+            "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "textDecoration": "none",
-            "width": 40,
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
-        type="button"
       >
-        <svg
+        <button
           className=""
-          height={24}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "display": "inline-block",
-              "verticalAlign": "text-bottom",
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.64)",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": -8,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
             }
           }
-          viewBox="0 0 24 24"
-          width={24}
+          tabIndex={0}
+          type="button"
         >
-          <path
-            d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
   <div
@@ -1764,64 +1868,85 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         }
       }
     >
-      <button
+      <div
         className=""
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchCancel={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
         style={
           Object {
-            "::MozFocusInner": Object {
-              "border": 0,
-            },
-            "alignItems": "center",
-            "background": "none",
-            "border": "none",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
-            "color": "rgba(33,36,44,0.64)",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
+            "display": "flex",
+            "flexDirection": "column",
             "margin": 0,
-            "outline": "none",
+            "marginLeft": -6,
+            "minHeight": 0,
+            "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "textDecoration": "none",
-            "width": 40,
+            "zIndex": 0,
           }
         }
-        tabIndex={0}
-        type="button"
       >
-        <svg
+        <button
           className=""
-          height={24}
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "display": "inline-block",
-              "verticalAlign": "text-bottom",
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "boxSizing": "border-box",
+              "color": "rgba(33,36,44,0.64)",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": -8,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "width": 40,
             }
           }
-          viewBox="0 0 24 24"
-          width={24}
+          tabIndex={0}
+          type="button"
         >
-          <path
-            d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
+          <svg
+            className=""
+            height={24}
+            style={
+              Object {
+                "display": "inline-block",
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={24}
+          >
+            <path
+              d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
   <div
