@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -177,9 +178,22 @@ export default class FocusTrap extends React.Component<Props> {
                   * wrapping, though; we're resilient to any kind of focus
                   * shift, whether it's to the sentinels or somewhere else! */}
                 <div tabIndex="0" />
-                <View ref={this.getModalRoot}>{this.props.children}</View>
+                <View style={styles.container} ref={this.getModalRoot}>
+                    {this.props.children}
+                </View>
                 <div tabIndex="0" />
             </React.Fragment>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        // This z-index is copied from the Khan Academy webapp.
+        //
+        // TODO(mdr): Should we keep this in a constants file somewhere? Or
+        //     not hardcode it at all, and provide it to Wonder Blocks via
+        //     configuration?
+        zIndex: 1080,
+    },
+});
