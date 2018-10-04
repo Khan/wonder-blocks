@@ -12,7 +12,11 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import visibilityModifierDefaultConfig from "../util/visibility-modifier.js";
+// NOTE(jeff): Here we share some code for use with PopperJS. Long term,
+// we should either contribute this code to the PopperJS component, or its
+// own non-wonder-blocks package.
+// eslint-disable-next-line import/no-restricted-paths
+import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibility-modifier.js";
 import SeparatorItem from "./separator-item.js";
 import {keyCodes} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
