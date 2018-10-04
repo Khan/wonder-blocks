@@ -72,7 +72,7 @@ type MenuProps = {|
     /**
      * The items in this dropdown.
      */
-    children: Array<React.Element<Item>>,
+    children: Array<Item>,
 
     /**
      * Text for the opener of this menu.
@@ -182,8 +182,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
     getMenuItems(): Array<DropdownItem> {
         const {children, selectedValues} = this.props;
         const containsOptionItems = Array.isArray(selectedValues);
-
-        return React.Children.map(children, (item) => {
+        return React.Children.toArray(children).filter(Boolean).map((item) => {
             const {
                 type,
                 props: {disabled, value},

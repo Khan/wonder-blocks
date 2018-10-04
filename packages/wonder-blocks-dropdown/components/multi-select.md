@@ -48,6 +48,7 @@ class ExampleNoneSelected extends React.Component {
             <OptionItem label="Yellow" value="2" disabled />
             <OptionItem label="Green" value="3" />
             <OptionItem label="Blue" value="4" />
+            {false && <OptionItem label="Pink" value="5" />}
         </MultiSelect>;
     }
 }
