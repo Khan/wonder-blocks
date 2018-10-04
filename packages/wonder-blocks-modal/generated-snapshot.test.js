@@ -50,7 +50,7 @@ describe("wonder-blocks-modal", () => {
                 <ModalLauncher
                     onClose={() => window.alert("you closed the modal")}
                     modal={({closeModal}) => (
-                        <CustomModal onClose={closeModal} />
+                        <ModalWrapper onClose={closeModal} />
                     )}
                 >
                     {({openModal}) => (

@@ -31,7 +31,7 @@ class ModalWrapper extends React.Component {
 <View style={{flexDirection: "row"}}>
     <ModalLauncher
         onClose={() => window.alert("you closed the modal")}
-        modal={({closeModal}) => <CustomModal onClose={closeModal}/>}
+        modal={({closeModal}) => <ModalWrapper onClose={closeModal}/>}
     >
         {({openModal}) => <Button onClick={openModal}>Open Modal</Button>}
     </ModalLauncher>

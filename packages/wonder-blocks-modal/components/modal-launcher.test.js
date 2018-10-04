@@ -30,7 +30,11 @@ describe("ModalLauncher", () => {
 
     test("Modal can be manually opened and closed", () => {
         const wrapper = mount(
-            <ModalLauncher modal={exampleModal} opened={false} />,
+            <ModalLauncher
+                modal={exampleModal}
+                opened={false}
+                onClose={() => {}}
+            />,
         );
         expect(wrapper.find("[data-modal-launcher-portal]")).not.toExist();
         wrapper.setProps({opened: true});
@@ -148,5 +152,31 @@ describe("ModalLauncher", () => {
 
         // Now that the modal is closed, there should be no ScrollDisabler.
         expect(wrapper.find("ScrollDisabler")).toHaveLength(0);
+    });
+
+    test("using `opened` and `children` should throw", () => {
+        expect(() =>
+            shallow(
+                <ModalLauncher
+                    modal={exampleModal}
+                    opened={false}
+                    onClose={() => {}}
+                >
+                    {({openModal}) => <button onClick={openModal} />}
+                </ModalLauncher>,
+            ),
+        ).toThrow("'children' and 'opened' can't be used together");
+    });
+
+    test("using `opened` without `onClose` should throw", () => {
+        expect(() =>
+            shallow(<ModalLauncher modal={exampleModal} opened={false} />),
+        ).toThrow("'onClose' should be used with 'opened'");
+    });
+
+    test("using neither `opened` nor `children` should throw", () => {
+        expect(() => shallow(<ModalLauncher modal={exampleModal} />)).toThrow(
+            "either 'children' or 'opened' must be set",
+        );
     });
 });
