@@ -290,7 +290,14 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target;
         const thisElement = ReactDOM.findDOMNode(this);
-        if (open && thisElement && !thisElement.contains(target)) {
+        const modalHost = this.getModalHost();
+        if (
+            open &&
+            thisElement &&
+            !thisElement.contains(target) &&
+            modalHost &&
+            !modalHost.contains(target)
+        ) {
             onOpenChanged(false);
         }
     };
@@ -425,7 +432,12 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
     }
 
     handleDropdownMouseUp = (event: SyntheticMouseEvent<>) => {
-        event.nativeEvent.stopImmediatePropagation();
+        if (event.nativeEvent.stopImmediatePropagation) {
+            event.nativeEvent.stopImmediatePropagation();
+        } else {
+            // Workaround for jsdom
+            event.stopPropagation();
+        }
     };
 
     renderItems(outOfBoundaries: ?boolean) {
@@ -483,15 +495,20 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         );
     }
 
+    getModalHost() {
+        return (
+            maybeGetPortalMountedModalHostElement(this.props.openerElement) ||
+            document.querySelector("body")
+        );
+    }
+
     renderDropdown() {
-        const {alignment, openerElement} = this.props;
+        const {alignment} = this.props;
         // If we are in a modal, we find where we should be portalling the menu
         // by using the helper function from the modal package on the opener
         // element.
         // If we are not in a modal, we use body as the location to portal to.
-        const modalHost =
-            maybeGetPortalMountedModalHostElement(openerElement) ||
-            document.querySelector("body");
+        const modalHost = this.getModalHost();
 
         if (modalHost) {
             return ReactDOM.createPortal(
