@@ -14,45 +14,35 @@ describe("wonder-blocks-icon-button", () => {
     it("example 1", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {icons} = require("@khanacademy/wonder-blocks-icon");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            row: {
-                flexDirection: "row",
-            },
-            sideMargins: {
-                marginRight: 10,
-            },
-        });
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
         const example = (
-            <View style={[styles.row]}>
+            <View style={{flexDirection: "row"}}>
                 <IconButton
                     icon={icons.search}
                     aria-label="search"
                     onClick={(e) => console.log("hello")}
-                    style={styles.sideMargins}
                 />
+                <Strut size={16} />
                 <IconButton
                     icon={icons.search}
                     aria-label="search"
                     kind="secondary"
                     onClick={(e) => console.log("hello")}
-                    style={styles.sideMargins}
                 />
+                <Strut size={16} />
                 <IconButton
                     icon={icons.search}
                     aria-label="search"
                     kind="tertiary"
                     onClick={(e) => console.log("hello")}
-                    style={styles.sideMargins}
                 />
+                <Strut size={16} />
                 <IconButton
                     disabled={true}
                     icon={icons.search}
                     aria-label="search"
                     onClick={(e) => console.log("hello")}
-                    style={styles.sideMargins}
                 />
             </View>
         );
