@@ -22,6 +22,12 @@ type Props = {|
 
 const StyledButton = addStyle("button");
 
+/**
+ * Although this component shares a lot with ButtonCore there are a couple
+ * of differences:
+ * - the down caret icon appears on the right instead of the left
+ * - the down caret icon is smaller that the one that would be used by ButtonCore
+ */
 export default class ActionMenuOpenerCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
@@ -32,6 +38,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             focused,
             hovered,
             pressed,
+            testId,
             "aria-label": ariaLabel,
             ...handlers
         } = this.props;
@@ -54,7 +61,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
         const commonProps = {
             "aria-disabled": disabled ? "true" : undefined,
             "aria-label": ariaLabel,
-            "data-test-id": "foo-bar",
+            "data-test-id": testId,
             role: "button",
             style: [defaultStyle],
             ...handlers,
@@ -72,11 +79,9 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             </LabelLarge>
         );
 
-        const contents = <React.Fragment>{label}</React.Fragment>;
-
         return (
             <StyledButton type="button" {...commonProps} disabled={disabled}>
-                {contents}
+                {label}
             </StyledButton>
         );
     }
@@ -91,10 +96,10 @@ const sharedStyles = StyleSheet.create({
         height: 40,
         paddingTop: 0,
         paddingBottom: 0,
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: Spacing.medium,
+        paddingRight: Spacing.medium,
         border: "none",
-        borderRadius: 4,
+        borderRadius: Spacing.xxxSmall,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -104,7 +109,7 @@ const sharedStyles = StyleSheet.create({
         cursor: "auto",
     },
     small: {
-        height: 32,
+        height: Spacing.xLarge,
     },
     text: {
         display: "flex",

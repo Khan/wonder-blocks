@@ -45,7 +45,6 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
   >
     <button
       className=""
-      data-test-id="foo-bar"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -178,7 +177,6 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
   >
     <button
       className=""
-      data-test-id="foo-bar"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}

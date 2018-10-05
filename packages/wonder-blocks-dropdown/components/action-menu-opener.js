@@ -9,14 +9,22 @@ export type SharedProps = {|
      * Display text for the opener.
      */
     children: string,
+
     /**
      * Whether the opener is disabled. If disabled, disallows interaction.
      */
     disabled?: boolean,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
     /**
      * Whether the dropdown is open.
      */
     open: boolean,
+
     /**
      * Optional aria-label for screen readers.
      */
