@@ -149,6 +149,15 @@ describe("Dropdown", () => {
         }
         document.body.appendChild(container);
 
+        /**
+         * According to https://stackoverflow.com/questions/36803733/jsdom-dispatchevent-addeventlistener-doesnt-seem-to-work
+         * Enzyme uses renderIntoDocument from React.TestUtils which doesn't actually
+         * render the component into document.body so testing behavior that relies
+         * on bubbling won't work.  This test works around this limitation by using
+         * ReactDOM.render() to render our test component into a container that lives
+         * in document.body.
+         */
+
         ReactDOM.render(
             <div>
                 <h1 id="foo">Dropdown test</h1>
@@ -190,14 +199,6 @@ describe("Dropdown", () => {
             container,
         );
 
-        /**
-         * According to https://stackoverflow.com/questions/36803733/jsdom-dispatchevent-addeventlistener-doesnt-seem-to-work
-         * Enzyme uses renderIntoDocument from React.TestUtils which doesn't actually
-         * render the component into document.body so testing behavior that relies
-         * on bubbling won't work.  This test works around this limitation by using
-         * ReactDOM.render() to render our test component into a container that lives
-         * in document.body.
-         */
         const title = document.querySelector("#foo");
         if (!title) {
             throw new Error("Couldn't find title");
