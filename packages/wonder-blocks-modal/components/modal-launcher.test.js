@@ -3,6 +3,7 @@ import React from "react";
 import {shallow} from "enzyme";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
+import expectRenderError from "../../../utils/testing/expect-render-error.js";
 import ModalLauncher from "./modal-launcher.js";
 import OneColumnModal from "./one-column-modal.js";
 
@@ -155,27 +156,28 @@ describe("ModalLauncher", () => {
     });
 
     test("using `opened` and `children` should throw", () => {
-        expect(() =>
-            shallow(
-                <ModalLauncher
-                    modal={exampleModal}
-                    opened={false}
-                    onClose={() => {}}
-                >
-                    {({openModal}) => <button onClick={openModal} />}
-                </ModalLauncher>,
-            ),
-        ).toThrow("'children' and 'opened' can't be used together");
+        expectRenderError(
+            <ModalLauncher
+                modal={exampleModal}
+                opened={false}
+                onClose={() => {}}
+            >
+                {({openModal}) => <button onClick={openModal} />}
+            </ModalLauncher>,
+            "'children' and 'opened' can't be used together",
+        );
     });
 
     test("using `opened` without `onClose` should throw", () => {
-        expect(() =>
-            shallow(<ModalLauncher modal={exampleModal} opened={false} />),
-        ).toThrow("'onClose' should be used with 'opened'");
+        expectRenderError(
+            <ModalLauncher modal={exampleModal} opened={false} />,
+            "'onClose' should be used with 'opened'",
+        );
     });
 
     test("using neither `opened` nor `children` should throw", () => {
-        expect(() => shallow(<ModalLauncher modal={exampleModal} />)).toThrow(
+        expectRenderError(
+            <ModalLauncher modal={exampleModal} />,
             "either 'children' or 'opened' must be set",
         );
     });
