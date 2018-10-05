@@ -26,7 +26,11 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 type Props = {|
     children: React.Node,
 
-    /* Style applied to the View containing children */
+    /**
+     * Style applied to the View containing children.
+     * TODO(kevinb): only allow z-index to be specified.  We'll be able to remove
+     * this prop once we remove all uses of z-indexes from webapp.
+     */
     style?: StyleType,
 |};
 
