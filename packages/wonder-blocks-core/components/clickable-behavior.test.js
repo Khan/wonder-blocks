@@ -55,6 +55,24 @@ describe("ClickableBehavior", () => {
         expect(button.state("hovered")).toEqual(false);
     });
 
+    it("changes only pressed state on mouse enter/leave while dragging", () => {
+        const onClick = jest.fn();
+        const button = shallow(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, handlers) => {
+                    return <button {...handlers}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
+        expect(button.state("pressed")).toEqual(false);
+        button.simulate("mouseenter", {
+            buttons: 1,
+        });
+        expect(button.state("pressed")).toEqual(true);
+        button.simulate("mouseleave");
+        expect(button.state("pressed")).toEqual(false);
+    });
+
     it("changes pressed state on mouse down/up", () => {
         const onClick = jest.fn();
         const button = shallow(
@@ -513,6 +531,23 @@ describe("ClickableBehavior", () => {
         clickableDiv.simulate("click");
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
+    });
+
+    it("calls onClick on mouseup when the mouse was dragging", () => {
+        const onClick = jest.fn();
+        const button = shallow(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, handlers) => {
+                    return <button {...handlers}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
+
+        button.simulate("mouseenter", {
+            buttons: 1,
+        });
+        button.simulate("mouseup");
+        expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     it("doesn't trigger enter key when browser doesn't stop the click", () => {
