@@ -78,8 +78,7 @@ export default class ModalPanel extends React.Component<Props> {
                 <ModalContext.Consumer>
                     {({closeModal}) => {
                         if (closeModal && onClose) {
-                            // eslint-disable-next-line no-console
-                            console.warn(
+                            throw new Error(
                                 "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
                             );
                         }
