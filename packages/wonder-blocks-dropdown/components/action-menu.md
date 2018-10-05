@@ -61,6 +61,7 @@ class HybridMenu extends React.Component {
         super();
         this.state = {
             selectedValues: ["homework"],
+            showHiddenOption: false,
         };
         // Styleguidist doesn't support arrow functions in class field properties
         this.handleChange = this.handleChange.bind(this);
@@ -69,10 +70,12 @@ class HybridMenu extends React.Component {
     handleChange(update) {
         this.setState({
             selectedValues: update,
+            showHiddenOption: update.includes("in-class"),
         });
     }
 
     render() {
+        const {showHiddenOption} = this.state;
         return <ActionMenu
             menuText="Assignments"
             onChange={this.handleChange}
@@ -81,6 +84,7 @@ class HybridMenu extends React.Component {
             <ActionItem label="Create..." onClick={() => console.log("create action")} />
             <ActionItem label="Edit..." disabled={true} onClick={() => console.log("edit action")} />
             <ActionItem label="Delete" disabled={true} onClick={() => console.log("delete action")} />
+            {showHiddenOption && <ActionItem label="Hidden menu for class" disabled={!showHiddenOption} onClick={() => console.log("hidden menu is clicked!")} />}
             <SeparatorItem />
             <OptionItem label="Show homework assignments" value="homework"
                 onClick={() => console.log(`Show homework assignments toggled`)} />
