@@ -1,4 +1,4 @@
-# Wrapping Modals
+## Wrapping Modals
 
 Often you'll want to define a new modal component by wrapping an existing
 modal component.  These wrapped components will also work with ModalLauncher
@@ -31,7 +31,7 @@ class ModalWrapper extends React.Component {
 <View style={{flexDirection: "row"}}>
     <ModalLauncher
         onClose={() => window.alert("you closed the modal")}
-        modal={({closeModal}) => <CustomModal onClose={closeModal}/>}
+        modal={({closeModal}) => <ModalWrapper onClose={closeModal}/>}
     >
         {({openModal}) => <Button onClick={openModal}>Open Modal</Button>}
     </ModalLauncher>

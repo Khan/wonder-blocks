@@ -126,40 +126,42 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
     getMenuItems(): Array<DropdownItem> {
         const {children, selectedValues} = this.props;
         const containsOptionItems = Array.isArray(selectedValues);
-        return React.Children.toArray(children).filter(Boolean).map((item) => {
-            const {
-                type,
-                props: {disabled, value},
-            } = item;
-            if (type === ActionItem) {
-                return {
-                    component: item,
-                    focusable: !disabled,
-                    populatedProps: {
-                        indent: containsOptionItems,
-                        onClick: this.handleItemSelected,
-                    },
-                };
-            } else if (type === OptionItem) {
-                return {
-                    component: item,
-                    focusable: !disabled,
-                    populatedProps: {
-                        onToggle: this.handleOptionSelected,
-                        selected: selectedValues
-                            ? selectedValues.includes(value)
-                            : false,
-                        variant: "check",
-                    },
-                };
-            } else {
-                return {
-                    component: item,
-                    focusable: false,
-                    populatedProps: {},
-                };
-            }
-        });
+        return React.Children.toArray(children)
+            .filter(Boolean)
+            .map((item) => {
+                const {
+                    type,
+                    props: {disabled, value},
+                } = item;
+                if (type === ActionItem) {
+                    return {
+                        component: item,
+                        focusable: !disabled,
+                        populatedProps: {
+                            indent: containsOptionItems,
+                            onClick: this.handleItemSelected,
+                        },
+                    };
+                } else if (type === OptionItem) {
+                    return {
+                        component: item,
+                        focusable: !disabled,
+                        populatedProps: {
+                            onToggle: this.handleOptionSelected,
+                            selected: selectedValues
+                                ? selectedValues.includes(value)
+                                : false,
+                            variant: "check",
+                        },
+                    };
+                } else {
+                    return {
+                        component: item,
+                        focusable: false,
+                        populatedProps: {},
+                    };
+                }
+            });
     }
 
     handleOpenerRef = (node: any) => {

@@ -124,6 +124,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
     keyboardNavOn: boolean;
     // Whether any items have been selected since the menu was opened
     itemsClicked: boolean;
+    popperElement: ?HTMLElement;
 
     static defaultProps = {
         alignment: "left",
@@ -290,13 +291,12 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target;
         const thisElement = ReactDOM.findDOMNode(this);
-        const modalHost = this.getModalHost();
         if (
             open &&
             thisElement &&
             !thisElement.contains(target) &&
-            modalHost &&
-            !modalHost.contains(target)
+            this.popperElement &&
+            !this.popperElement.contains(target)
         ) {
             onOpenChanged(false);
         }
@@ -495,24 +495,24 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         );
     }
 
-    getModalHost() {
-        return (
-            maybeGetPortalMountedModalHostElement(this.props.openerElement) ||
-            document.querySelector("body")
-        );
-    }
-
     renderDropdown() {
-        const {alignment} = this.props;
+        const {alignment, openerElement} = this.props;
         // If we are in a modal, we find where we should be portalling the menu
         // by using the helper function from the modal package on the opener
         // element.
         // If we are not in a modal, we use body as the location to portal to.
-        const modalHost = this.getModalHost();
+        const modalHost =
+            maybeGetPortalMountedModalHostElement(openerElement) ||
+            document.querySelector("body");
 
         if (modalHost) {
             return ReactDOM.createPortal(
                 <Popper
+                    innerRef={(node) => {
+                        if (node) {
+                            this.popperElement = node;
+                        }
+                    }}
                     referenceElement={this.props.openerElement}
                     placement={
                         alignment === "left" ? "bottom-start" : "bottom-end"
