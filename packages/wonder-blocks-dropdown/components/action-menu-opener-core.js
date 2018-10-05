@@ -104,6 +104,9 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
+        // This removes the 300ms click delay on mobile browsers by indicating that
+        // "double-tap to zoom" shouldn't be used on this element.
+        touchAction: "manipulation",
     },
     disabled: {
         cursor: "auto",

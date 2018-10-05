@@ -119,8 +119,8 @@ export type ClickableHandlers = {|
     onMouseDown: () => void,
     onMouseUp: (e: SyntheticMouseEvent<>) => void,
     onTouchStart: () => void,
-    onTouchEnd: (e: SyntheticMouseEvent<*>) => void,
-    onTouchCancel: (e: SyntheticMouseEvent<*>) => void,
+    onTouchEnd: () => void,
+    onTouchCancel: () => void,
     onKeyDown: (e: SyntheticKeyboardEvent<*>) => void,
     onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
     onFocus: (e: SyntheticFocusEvent<*>) => void,
@@ -234,7 +234,7 @@ const startState = {
  * See https://reacttraining.com/react-router/web/guides/basic-components.
  */
 export default class ClickableBehavior extends React.Component<Props, State> {
-    handlingTouch: boolean;
+    waitingForClick: boolean;
     enterClick: boolean;
 
     static defaultProps = {
@@ -255,7 +255,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         super(props);
 
         this.state = startState;
-        this.handlingTouch = false;
+        this.waitingForClick = false;
         this.enterClick = false;
     }
 
@@ -263,16 +263,21 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         if (this.enterClick) {
             return;
         } else if (this.props.onClick) {
+            this.waitingForClick = false;
             this.props.onClick(e);
         }
     };
 
     handleMouseEnter = () => {
-        this.setState({hovered: true});
+        if (!this.waitingForClick) {
+            this.setState({hovered: true});
+        }
     };
 
     handleMouseLeave = () => {
-        this.setState({hovered: false, pressed: false});
+        if (!this.waitingForClick) {
+            this.setState({hovered: false, pressed: false});
+        }
     };
 
     handleMouseDown = () => {
@@ -285,23 +290,16 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
     handleTouchStart = () => {
         this.setState({pressed: true});
-        this.handlingTouch = true;
     };
 
-    handleTouchEnd = (evt: SyntheticMouseEvent<*>) => {
-        evt.stopPropagation();
-        evt.preventDefault();
+    handleTouchEnd = () => {
         this.setState({pressed: false});
-        this.handleClick(evt);
-        this.handlingTouch = false;
+        this.waitingForClick = true;
     };
 
-    handleTouchCancel = (evt: SyntheticMouseEvent<*>) => {
-        evt.stopPropagation();
-        evt.preventDefault();
+    handleTouchCancel = () => {
         this.setState({pressed: false});
-        this.handleClick(evt);
-        this.handlingTouch = false;
+        this.waitingForClick = true;
     };
 
     handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {

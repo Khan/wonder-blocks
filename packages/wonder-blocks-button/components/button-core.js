@@ -164,6 +164,9 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
+        // This removes the 300ms click delay on mobile browsers by indicating that
+        // "double-tap to zoom" shouldn't be used on this element.
+        touchAction: "manipulation",
     },
     withIcon: {
         // The left padding for the button with icon should have 4px less padding

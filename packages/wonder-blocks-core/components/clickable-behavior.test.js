@@ -81,19 +81,13 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
         button.simulate("touchstart");
         expect(button.state("pressed")).toEqual(true);
-        button.simulate("touchend", {
-            preventDefault: jest.fn(),
-            stopPropagation: jest.fn(),
-        });
+        button.simulate("touchend");
         expect(button.state("pressed")).toEqual(false);
 
         expect(button.state("pressed")).toEqual(false);
         button.simulate("touchstart");
         expect(button.state("pressed")).toEqual(true);
-        button.simulate("touchcancel", {
-            preventDefault: jest.fn(),
-            stopPropagation: jest.fn(),
-        });
+        button.simulate("touchcancel");
         expect(button.state("pressed")).toEqual(false);
     });
 
@@ -343,11 +337,9 @@ describe("ClickableBehavior", () => {
         button.simulate("keyup", {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(3);
 
-        button.simulate("touchstart");
-        button.simulate("touchend", {
-            preventDefault: jest.fn(),
-            stopPropagation: jest.fn(),
-        });
+        button.simulate("touchstart", {keyCode: keyCodes.space});
+        button.simulate("touchend", {keyCode: keyCodes.space});
+        button.simulate("click");
         expect(onClick).toHaveBeenCalledTimes(4);
     });
 
