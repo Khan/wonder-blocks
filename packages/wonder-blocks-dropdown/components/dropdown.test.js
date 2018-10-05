@@ -126,7 +126,11 @@ describe("Dropdown", () => {
         expect(handleOpen.mock.calls[1][0]).toBe(false);
     });
 
-    it("closes on external mouse click", () => {
+    /**
+     * This test produces false positives.
+     * TODO: rewrite as a selenium test once we have a test harness.
+     */
+    it.skip("closes on external mouse click", () => {
         const handleOpen = jest.fn();
         dropdown.setProps({
             onOpenChanged: (open) => handleOpen(open),
