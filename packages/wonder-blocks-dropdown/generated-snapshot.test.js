@@ -74,6 +74,7 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValues: ["homework"],
+                    showHiddenOption: false,
                 };
                 // Styleguidist doesn't support arrow functions in class field properties
                 this.handleChange = this.handleChange.bind(this);
@@ -82,10 +83,12 @@ describe("wonder-blocks-dropdown", () => {
             handleChange(update) {
                 this.setState({
                     selectedValues: update,
+                    showHiddenOption: update.includes("in-class"),
                 });
             }
 
             render() {
+                const {showHiddenOption} = this.state;
                 return (
                     <ActionMenu
                         menuText="Assignments"
@@ -106,6 +109,15 @@ describe("wonder-blocks-dropdown", () => {
                             disabled={true}
                             onClick={() => console.log("delete action")}
                         />
+                        {showHiddenOption && (
+                            <ActionItem
+                                label="Hidden menu for class"
+                                disabled={!showHiddenOption}
+                                onClick={() =>
+                                    console.log("hidden menu is clicked!")
+                                }
+                            />
+                        )}
                         <SeparatorItem />
                         <OptionItem
                             label="Show homework assignments"
@@ -179,6 +191,7 @@ describe("wonder-blocks-dropdown", () => {
                         />
                         <OptionItem label="Watermelon" value="watermelon" />
                         <OptionItem label="Strawberry" value="strawberry" />
+                        {false && <OptionItem label="Other" value="other" />}
                     </SingleSelect>
                 );
             }
@@ -426,6 +439,7 @@ describe("wonder-blocks-dropdown", () => {
                         <OptionItem label="Yellow" value="2" disabled />
                         <OptionItem label="Green" value="3" />
                         <OptionItem label="Blue" value="4" />
+                        {false && <OptionItem label="Pink" value="5" />}
                     </MultiSelect>
                 );
             }

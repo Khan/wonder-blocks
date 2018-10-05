@@ -29,18 +29,6 @@
         // TODO(csilvers): enable these if/when community agrees on it.
         "prefer-arrow-callback": 0
     },
-    "ecmaFeatures": {
-        "arrowFunctions": true,
-        "blockBindings": true,
-        "classes": true,
-        "destructuring": true,
-        "experimentalObjectRestSpread": true,
-        "forOf": true,
-        "jsx": true,
-        "restParams": true,
-        "spread": true,
-        "templateStrings": true
-    },
     "parser": "babel-eslint",
     "parserOptions": {
         "sourceType": "module"
