@@ -9,7 +9,8 @@ type ClickableRole =
     | "radio"
     | "listbox"
     | "option"
-    | "menuitem";
+    | "menuitem"
+    | "menu";
 
 const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
     switch (role) {
@@ -31,6 +32,7 @@ const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
         // Triggers on both ENTER and SPACE
         case "button":
         case "menuitem":
+        case "menu":
         default:
             return {
                 triggerOnEnter: true,
