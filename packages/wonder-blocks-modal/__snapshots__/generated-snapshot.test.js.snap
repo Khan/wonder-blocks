@@ -26,6 +26,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
+    onDragStart={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
