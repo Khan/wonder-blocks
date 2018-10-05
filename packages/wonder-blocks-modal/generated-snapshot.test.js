@@ -266,7 +266,6 @@ describe("wonder-blocks-modal", () => {
                             />
                         </ActionMenu>
                         <ModalLauncher
-                            key="clearFlags"
                             onClose={() => this.handleClose()}
                             opened={this.state.opened}
                             modal={({closeModal}) => (

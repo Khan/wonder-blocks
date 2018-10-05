@@ -195,7 +195,6 @@ class Example extends React.Component {
                 />
             </ActionMenu>
             <ModalLauncher
-                key="clearFlags"
                 onClose={() => this.handleClose()}
                 opened={this.state.opened}
                 modal={({closeModal}) => (
