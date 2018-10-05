@@ -82,13 +82,6 @@ const styles = StyleSheet.create({
         left: 0,
         top: 0,
 
-        // This z-index is copied from the Khan Academy webapp.
-        //
-        // TODO(mdr): Should we keep this in a constants file somewhere? Or
-        //     not hardcode it at all, and provide it to Wonder Blocks via
-        //     configuration?
-        zIndex: 1080,
-
         width: "100%",
         height: "100%",
 

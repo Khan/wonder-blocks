@@ -4,6 +4,8 @@ import * as ReactDOM from "react-dom";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 /**
  * This component ensures that focus stays within itself. If the user uses Tab
  * at the end of the modal, or Shift-Tab at the start of the modal, then this
@@ -23,6 +25,13 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     children: React.Node,
+
+    /**
+     * Style applied to the View containing children.
+     * TODO(kevinb): only allow z-index to be specified.  We'll be able to remove
+     * this prop once we remove all uses of z-indexes from webapp.
+     */
+    style?: StyleType,
 |};
 
 export default class FocusTrap extends React.Component<Props> {
@@ -165,6 +174,8 @@ export default class FocusTrap extends React.Component<Props> {
     };
 
     render() {
+        const {style} = this.props;
+
         return (
             <React.Fragment>
                 {/* When you press Tab on the last focusable node of the
@@ -177,7 +188,9 @@ export default class FocusTrap extends React.Component<Props> {
                   * wrapping, though; we're resilient to any kind of focus
                   * shift, whether it's to the sentinels or somewhere else! */}
                 <div tabIndex="0" />
-                <View ref={this.getModalRoot}>{this.props.children}</View>
+                <View style={style} ref={this.getModalRoot}>
+                    {this.props.children}
+                </View>
                 <div tabIndex="0" />
             </React.Fragment>
         );
