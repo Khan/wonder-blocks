@@ -2,9 +2,6 @@
 /**
  * Determine if an element is obscured by other elements.
  *
- * TODO: This is currently duplicated across the tooltip and dropdown packages.
- * Find a shared place to put this and reuse.
- *
  * This uses document.elementFromPoint to see if the given element is being
  * overdrawn by another element. Note that this won't work if the given element
  * has `pointer-events: none`.

@@ -46,6 +46,7 @@ class ExampleWithPlaceholder extends React.Component {
             <OptionItem label="Vine-ripened tomatoes" value="tomato" />
             <OptionItem label="Watermelon" value="watermelon" />
             <OptionItem label="Strawberry" value="strawberry" />
+            {false && <OptionItem label="Other" value="other" />}
         </SingleSelect>;
     }
 }
