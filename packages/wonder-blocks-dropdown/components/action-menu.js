@@ -4,69 +4,13 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
-import Button from "@khanacademy/wonder-blocks-button";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Dropdown from "./dropdown.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
+import ActionMenuOpener from "./action-menu-opener.js";
 
 import type {Item, DropdownItem} from "../util/types.js";
-
-type OpenerProps = {|
-    /**
-     * Display text for the opener.
-     */
-    children: string,
-    /**
-     * Whether the opener is disabled. If disabled, disallows interaction.
-     */
-    disabled?: boolean,
-    /**
-     * Callback for when the opener is pressed.
-     */
-    onOpenChanged: (open: boolean, keyboard: boolean) => void,
-    /**
-     * Whether the dropdown is open.
-     */
-    open: boolean,
-|};
-
-class ActionMenuOpener extends React.Component<OpenerProps> {
-    static defaultProps = {
-        disabled: false,
-    };
-
-    handleClick = (e: SyntheticEvent<>) => {
-        const {open} = this.props;
-        this.props.onOpenChanged(!open, e.type === "keyup");
-    };
-
-    render() {
-        const {children, disabled} = this.props;
-
-        return (
-            // $FlowFixMe: button doesn't allow 'role' prop or Icon as children
-            <Button
-                role="menu"
-                color="default"
-                disabled={disabled}
-                kind="tertiary"
-                light={false}
-                onClick={this.handleClick}
-                style={styles.opener}
-            >
-                {children}
-                <Icon
-                    icon={icons.caretDown}
-                    size="small"
-                    style={styles.caret}
-                />
-            </Button>
-        );
-    }
-}
 
 type MenuProps = {|
     /**
@@ -182,40 +126,42 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
     getMenuItems(): Array<DropdownItem> {
         const {children, selectedValues} = this.props;
         const containsOptionItems = Array.isArray(selectedValues);
-        return React.Children.toArray(children).filter(Boolean).map((item) => {
-            const {
-                type,
-                props: {disabled, value},
-            } = item;
-            if (type === ActionItem) {
-                return {
-                    component: item,
-                    focusable: !disabled,
-                    populatedProps: {
-                        indent: containsOptionItems,
-                        onClick: this.handleItemSelected,
-                    },
-                };
-            } else if (type === OptionItem) {
-                return {
-                    component: item,
-                    focusable: !disabled,
-                    populatedProps: {
-                        onToggle: this.handleOptionSelected,
-                        selected: selectedValues
-                            ? selectedValues.includes(value)
-                            : false,
-                        variant: "check",
-                    },
-                };
-            } else {
-                return {
-                    component: item,
-                    focusable: false,
-                    populatedProps: {},
-                };
-            }
-        });
+        return React.Children.toArray(children)
+            .filter(Boolean)
+            .map((item) => {
+                const {
+                    type,
+                    props: {disabled, value},
+                } = item;
+                if (type === ActionItem) {
+                    return {
+                        component: item,
+                        focusable: !disabled,
+                        populatedProps: {
+                            indent: containsOptionItems,
+                            onClick: this.handleItemSelected,
+                        },
+                    };
+                } else if (type === OptionItem) {
+                    return {
+                        component: item,
+                        focusable: !disabled,
+                        populatedProps: {
+                            onToggle: this.handleOptionSelected,
+                            selected: selectedValues
+                                ? selectedValues.includes(value)
+                                : false,
+                            variant: "check",
+                        },
+                    };
+                } else {
+                    return {
+                        component: item,
+                        focusable: false,
+                        populatedProps: {},
+                    };
+                }
+            });
     }
 
     handleOpenerRef = (node: any) => {
@@ -261,8 +207,6 @@ const styles = StyleSheet.create({
 
     // The design calls for additional offset around the opener.
     opener: {
-        paddingLeft: 8,
-        paddingRight: 8,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",

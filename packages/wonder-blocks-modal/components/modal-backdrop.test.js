@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {shallow, mount} from "enzyme";
+import {mount} from "enzyme";
 
 import ModalBackdrop from "./modal-backdrop.js";
 import StandardModal from "./standard-modal.js";
@@ -26,19 +26,6 @@ const exampleModalWithButtons = (
         footer={<div data-modal-footer />}
     />
 );
-
-// This is a basic wrapper component, to confirm that wrapper components work
-// too! It passes along extra props, as required to get the default behavior for
-// `onClickCloseButton`.
-//
-// NOTE(mdr): ModalWrapper clobbers its child's `onClickCloseButton`, which is
-//     fine. ModalBackdrop is a bit more generous and merges them, to provide a
-//     less surprising developer experience. But that extra complexity isn't
-//     necessary for this one-off wrapper.
-function ModalWrapper(props: {children: React.Element<*>}) {
-    const {children, ...otherProps} = props;
-    return React.cloneElement(children, otherProps);
-}
 
 describe("ModalBackdrop", () => {
     test("Clicking the backdrop triggers `onCloseModal`", () => {
@@ -87,101 +74,6 @@ describe("ModalBackdrop", () => {
         wrapper.find("[data-modal-footer]").simulate("click");
         expect(onCloseModal).not.toHaveBeenCalled();
     });
-
-    test("Adds an `onClickCloseButton` prop to the provided modal", () => {
-        const onCloseModal = jest.fn();
-
-        const wrapper = shallow(
-            <ModalBackdrop onCloseModal={onCloseModal}>
-                {exampleModal}
-            </ModalBackdrop>,
-            {disableLifecycleMethods: true},
-        );
-
-        // Assert that the modal inside the backdrop was created from the
-        // provided modal: their titles match.
-        const modalInBackdrop = wrapper.find("StandardModal");
-        expect(modalInBackdrop.prop("title")).toBe(exampleModal.props.title);
-
-        // Confirm that we also added a new `onClickCloseButton` prop, which is
-        // wired to our `onCloseModal` callback.
-        const onClickCloseButton = modalInBackdrop.prop("onClickCloseButton");
-        expect(onClickCloseButton).toBeDefined();
-        expect(onCloseModal).not.toHaveBeenCalled();
-        onClickCloseButton();
-        expect(onCloseModal).toHaveBeenCalled();
-    });
-
-    test(
-        "Adds an `onClickCloseButton` prop to the provided modal, " +
-            "even if it's in a wrapper component",
-        () => {
-            const onCloseModal = jest.fn();
-
-            // We do a full mount here, so that ModalWrapper fully renders and
-            // thereby clones its children.
-            const wrapper = mount(
-                <ModalBackdrop onCloseModal={onCloseModal}>
-                    <ModalWrapper>{exampleModal}</ModalWrapper>
-                </ModalBackdrop>,
-            );
-
-            // Assert that the modal inside the backdrop was created from the
-            // provided modal: their titles match.
-            const modalInBackdrop = wrapper.find("StandardModal");
-            expect(modalInBackdrop.prop("title")).toBe(
-                exampleModal.props.title,
-            );
-
-            // Confirm that we also added a new `onClickCloseButton` prop, which is
-            // wired to our `onCloseModal` callback.
-            const onClickCloseButton = modalInBackdrop.prop(
-                "onClickCloseButton",
-            );
-            expect(onClickCloseButton).toBeDefined();
-            expect(onCloseModal).not.toHaveBeenCalled();
-            onClickCloseButton();
-            expect(onCloseModal).toHaveBeenCalled();
-        },
-    );
-
-    test(
-        "We merge with the modal's existing `onClickCloseButton`, " +
-            "rather than overwriting it",
-        () => {
-            const onCloseModal = jest.fn();
-            const customOnClickCloseButton = jest.fn();
-
-            const wrapper = shallow(
-                <ModalBackdrop onCloseModal={onCloseModal}>
-                    {React.cloneElement(exampleModal, {
-                        onClickCloseButton: customOnClickCloseButton,
-                    })}
-                </ModalBackdrop>,
-                {disableLifecycleMethods: true},
-            );
-
-            // Assert that the modal inside the backdrop was created from the
-            // provided modal: their titles match.
-            const modalInBackdrop = wrapper.find("StandardModal");
-            expect(modalInBackdrop.prop("title")).toBe(
-                exampleModal.props.title,
-            );
-
-            // Confirm that we also added a new `onClickCloseButton` prop, which
-            // is wired to our `onCloseModal` callback _and_ the custom
-            // `onClickCloseButton` provided to the modal element itself.
-            const onClickCloseButton = modalInBackdrop.prop(
-                "onClickCloseButton",
-            );
-            expect(onClickCloseButton).toBeDefined();
-            expect(onCloseModal).not.toHaveBeenCalled();
-            expect(customOnClickCloseButton).not.toHaveBeenCalled();
-            onClickCloseButton();
-            expect(onCloseModal).toHaveBeenCalled();
-            expect(customOnClickCloseButton).toHaveBeenCalled();
-        },
-    );
 
     test("On mount, we focus the last button in the modal", () => {
         const wrapper = mount(

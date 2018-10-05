@@ -1,11 +1,13 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {StyleSheet} from "aphrodite";
 
 import FocusTrap from "./focus-trap.js";
 import ModalBackdrop from "./modal-backdrop.js";
 import ScrollDisabler from "./scroll-disabler.js";
 import type {ModalElement} from "../util/types.js";
+import ModalContext from "./modal-context.js";
 
 type Props = {|
     /**
@@ -31,15 +33,25 @@ type Props = {|
      * Note: Don't call `openModal` while rendering! It should be used to
      * respond to user intearction, like `onClick`.
      */
-    children: ({openModal: () => void}) => React.Node,
+    children?: ({openModal: () => void}) => React.Node,
 
     /**
-     * If the parent needs to be notified when the modal is closed, use
-     * this prop. You probably want to use this instead of `onClickCloseButton`
-     * on the modals themselves, since this will capture a more complete set of
-     * close events.
+     * If the parent needs to be notified when the modal is closed, use this
+     * prop. You probably want to use this instead of `onClose` on the modals
+     * themselves, since this will capture a more complete set of close events.
      */
     onClose?: () => void,
+
+    /**
+     * Renders the modal when true, renders nothing when false.
+     *
+     * Using this prop makes the component behave as an uncontrolled component.
+     * The parent is responsible for managing the opening/closing of the modal
+     * when using this prop.  `onClose` should always be used and `children`
+     * should never be used with this prop.  Not doing so will result in an
+     * error being thrown.
+     */
+    opened?: boolean,
 |};
 
 type State = {|
@@ -64,6 +76,22 @@ type State = {|
  * the `modal` prop.
  */
 export default class ModalLauncher extends React.Component<Props, State> {
+    static getDerivedStateFromProps(props: Props, state: State) {
+        if (typeof props.opened === "boolean" && props.children) {
+            throw new Error("'children' and 'opened' can't be used together");
+        }
+        if (typeof props.opened === "boolean" && !props.onClose) {
+            throw new Error("'onClose' should be used with 'opened'");
+        }
+        if (typeof props.opened !== "boolean" && !props.children) {
+            throw new Error("either 'children' or 'opened' must be set");
+        }
+        return {
+            opened:
+                typeof props.opened === "boolean" ? props.opened : state.opened,
+        };
+    }
+
     state = {opened: false};
 
     _openModal = () => {
@@ -87,20 +115,28 @@ export default class ModalLauncher extends React.Component<Props, State> {
     }
 
     render() {
-        const renderedChildren = this.props.children({
-            openModal: this._openModal,
-        });
+        const renderedChildren = this.props.children
+            ? this.props.children({
+                  openModal: this._openModal,
+              })
+            : null;
+
         const {body} = document;
         if (!body) {
             return;
         }
 
         return (
-            <React.Fragment>
+            // This flow check is valid, it's the babel plugin which is broken,
+            // see modal-context.js for details.
+            // $FlowFixMe
+            <ModalContext.Provider value={{closeModal: this.handleCloseModal}}>
                 {renderedChildren}
                 {this.state.opened &&
                     ReactDOM.createPortal(
-                        <FocusTrap>
+                        /* We need the container View that FocusTrap creates to be at the
+                           correct z-index so that it'll be above the global nav in webapp. */
+                        <FocusTrap style={styles.container}>
                             <ModalBackdrop onCloseModal={this.handleCloseModal}>
                                 {this._renderModal()}
                             </ModalBackdrop>
@@ -113,7 +149,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                     />
                 )}
                 {this.state.opened && <ScrollDisabler />}
-            </React.Fragment>
+            </ModalContext.Provider>
         );
     }
 }
@@ -151,3 +187,14 @@ class ModalLauncherKeypressListener extends React.Component<{
         return null;
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        // This z-index is copied from the Khan Academy webapp.
+        //
+        // TODO(mdr): Should we keep this in a constants file somewhere? Or
+        //     not hardcode it at all, and provide it to Wonder Blocks via
+        //     configuration?
+        zIndex: 1080,
+    },
+});

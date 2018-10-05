@@ -228,18 +228,20 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     getMenuItems(): Array<DropdownItem> {
         const {children, selectedValues} = this.props;
-        return React.Children.toArray(children).filter(Boolean).map((option) => {
-            const {disabled, value} = option.props;
-            return {
-                component: option,
-                focusable: !disabled,
-                populatedProps: {
-                    onToggle: this.handleToggle,
-                    selected: selectedValues.includes(value),
-                    variant: "checkbox",
-                },
-            };
-        });
+        return React.Children.toArray(children)
+            .filter(Boolean)
+            .map((option) => {
+                const {disabled, value} = option.props;
+                return {
+                    component: option,
+                    focusable: !disabled,
+                    populatedProps: {
+                        onToggle: this.handleToggle,
+                        selected: selectedValues.includes(value),
+                        variant: "checkbox",
+                    },
+                };
+            });
     }
 
     handleOpenerRef = (node: any) => {
