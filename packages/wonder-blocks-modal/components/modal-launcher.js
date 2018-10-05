@@ -35,10 +35,9 @@ type Props = {|
     children?: ({openModal: () => void}) => React.Node,
 
     /**
-     * If the parent needs to be notified when the modal is closed, use
-     * this prop. You probably want to use this instead of `onClose` on the
-     * modals themselves, since this will capture a more complete set of
-     * close events.
+     * If the parent needs to be notified when the modal is closed, use this
+     * prop. You probably want to use this instead of `onClose` on the modals
+     * themselves, since this will capture a more complete set of close events.
      */
     onClose?: () => void,
 

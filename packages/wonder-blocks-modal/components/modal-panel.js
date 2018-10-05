@@ -40,9 +40,9 @@ type Props = {|
     /**
      * Called when the close button is clicked.
      *
-     * If you're using `ModalLauncher`, you probably shouldn't use this prop!
+     * If you're using `ModalLauncher`, you should not use this prop!
      * Instead, to listen for when the modal closes, add an `onClose` handler
-     * to the `ModalLauncher`.  Doing so will result in a console.warn().
+     * to the `ModalLauncher`.  Doing so will throw an error.
      */
     onClose?: () => void,
 |};
