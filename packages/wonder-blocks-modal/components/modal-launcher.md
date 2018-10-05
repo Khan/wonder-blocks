@@ -156,7 +156,7 @@ const oneColumnModal = ({closeModal}) => <OneColumnModal
 
 Sometimes you'll want to trigger a modal programmatically.  This can be done
 by rendering `ModalLauncher` without any children and instead setting its
-`opened` prop to `true`.  In this situation `ModalLauncher` is a controlled
+`opened` prop to `true`.  In this situation `ModalLauncher` is a uncontrolled
 component which means you'll also have to update `opened` to `false` in
 response to the `onClose` callback being triggered.
 
@@ -220,8 +220,12 @@ class Example extends React.Component {
 <Example />
 ```
 
-**Warning:** Do not wrap items within an dropdown in a `ModalLauncher`.  It causes the
-modal to disappear as soon as the focus changes.  The reason is that the change in
+**Warning:** Do not wrap items in a dropdown in a `ModalLauncher`.  Instead, trigger
+the modal programmatically by using the `ModalLauncher` as an uncontrolled component
+as shown in the above example.
+
+This is necessary because wrapping an item in `ModalLauncher` will result in the
+modal disappearing as soon as the focus changes.  The reason is that the change in
 focus results in the item that in the dropdown that was clicked to be blur which
 closes the dropdown.  This results in all of its children to unmount including the
 ModalLauncher which was wrapping the menu item.
