@@ -15,7 +15,7 @@ const createConfig = (pkgName) => ({
             presets,
             plugins,
             exclude: "node_modules/**",
-        }),      
+        }),
         autoExternal({
             packagePath: `packages/${pkgName}/package.json`,
         }),
