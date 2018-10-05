@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
                     </Body>
                 </View>
             }
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
                     <Button>Button (no-op)</Button>
                 </View>
             }
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
             fullBleedSidebar={false}
             sidebar={<span>foo</span>}
             content={<span>bar</span>}
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
                 </View>
             }
             footer={<Button>Onward! (no-op)</Button>}
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
                 </View>
             }
             footer={<Button>Onward! (no-op)</Button>}
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;

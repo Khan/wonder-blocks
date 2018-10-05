@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
                     </Body>
                 </View>
             }
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
                 </View>
             }
             footer={<Button>Ok</Button>}
-            onClickCloseButton={() => alert("This would close the modal.")}
+            onClose={() => alert("This would close the modal.")}
         />
     </View>
 </View>;
