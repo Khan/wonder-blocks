@@ -22,15 +22,9 @@ type BaseProps = {|
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
      * Instead, to listen for when the modal closes, add an `onClose` handler
-     * to the `ModalLauncher`.
-     *
-     * This defaults to a no-op via `defaultProps`. (When used in a
-     * `ModalLauncher`, we'll automatically add an extra listener here via
-     * `cloneElement`, so that the `ModalLauncher` can listen for close button
-     * clicks too.)
-     * @ignore
+     * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
-    onClickCloseButton?: () => void,
+    onClose?: () => void,
 |};
 
 type WrappedProps = {|
@@ -44,19 +38,15 @@ type WrappedProps = {|
 |};
 
 class ContentWrapper extends React.Component<WrappedProps> {
-    static defaultProps = {
-        onClickCloseButton: () => {},
-    };
-
     render() {
-        const {onClickCloseButton, content, footer, mediaSize} = this.props;
+        const {onClose, content, footer, mediaSize} = this.props;
 
         if (mediaSize !== "small") {
             return (
                 <View style={styles.contentWrapper}>
                     <ModalPanel
                         showCloseButton
-                        onClickCloseButton={onClickCloseButton}
+                        onClose={onClose}
                         content={content}
                         footer={footer}
                     />
@@ -69,7 +59,7 @@ class ContentWrapper extends React.Component<WrappedProps> {
                 <View style={styles.smallContentWrapper}>
                     <ModalPanel
                         showCloseButton
-                        onClickCloseButton={onClickCloseButton}
+                        onClose={onClose}
                         content={content}
                         scrollOverflow={false}
                     />
@@ -96,10 +86,6 @@ const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
  * A one-column modal layout.
  */
 export default class OneColumnModal extends React.Component<BaseProps> {
-    static defaultProps = {
-        onClickCloseButton: () => {},
-    };
-
     render() {
         return (
             <ModalDialog
