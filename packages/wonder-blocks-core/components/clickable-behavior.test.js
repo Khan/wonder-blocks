@@ -65,12 +65,18 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
         expect(button.state("pressed")).toEqual(false);
+
+        button.simulate("mousedown");
+        button.simulate("dragstart", {preventDefault: jest.fn()});
+        expect(button.state("pressed")).toEqual(true);
+
+        button.simulate("mouseleave");
+        expect(button.state("pressed")).toEqual(false);
+
         button.simulate("mouseenter", {
             buttons: 1,
         });
         expect(button.state("pressed")).toEqual(true);
-        button.simulate("mouseleave");
-        expect(button.state("pressed")).toEqual(false);
     });
 
     it("changes pressed state on mouse down/up", () => {
@@ -543,11 +549,22 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
 
+        button.simulate("mousedown");
+        button.simulate("dragstart", {preventDefault: jest.fn()});
+        button.simulate("mouseleave");
+        button.simulate("mouseup");
+        expect(onClick).toHaveBeenCalledTimes(0);
+
+        button.simulate("mousedown");
+        button.simulate("dragstart", {preventDefault: jest.fn()});
+        button.simulate("mouseup");
+        expect(onClick).toHaveBeenCalledTimes(1);
+
         button.simulate("mouseenter", {
             buttons: 1,
         });
         button.simulate("mouseup");
-        expect(onClick).toHaveBeenCalledTimes(1);
+        expect(onClick).toHaveBeenCalledTimes(2);
     });
 
     it("doesn't trigger enter key when browser doesn't stop the click", () => {
