@@ -66,16 +66,20 @@ export default class UniqueIDProvider extends React.Component<Props> {
         const {children, mockOnFirstRender, scope} = this.props;
 
         // If this is our first render, we're going to stop right here.
+        // Note: `firstRender` will be `false` on the first render if this
+        // component is a descendant of a `NoSSR`.
         if (firstRender) {
-            // We'll be needing this on the next render, so let's set it up.
-            this._idFactory = new UniqueIDFactory(scope);
-
             if (mockOnFirstRender) {
                 // We're allowing an initial render, so let's pass our mock
                 // identifier factory to support SSR.
                 return children(SsrIDFactory);
             }
             return null;
+        }
+
+        // Create an identifier factory if we don't already have one
+        if (!this._idFactory) {
+            this._idFactory = new UniqueIDFactory(scope);
         }
 
         // It's a regular render, so let's use our identifier factory.

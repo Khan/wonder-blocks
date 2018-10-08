@@ -9,6 +9,7 @@ import View from "./view.js";
 import SsrIDFactory from "../util/ssr-id-factory.js";
 import UniqueIDFactory from "../util/unique-id-factory.js";
 import UniqueIDProvider from "./unique-id-provider.js";
+import NoSSR from "./no-ssr.js";
 
 describe("UniqueIDProvider", () => {
     beforeEach(() => {
@@ -122,6 +123,29 @@ describe("UniqueIDProvider", () => {
             expect(children.mock.calls[1][0]).toBeInstanceOf(UniqueIDFactory);
             // Check the third render gets the same UniqueIDFactory instance.
             expect(children.mock.calls[2][0]).toBe(children.mock.calls[1][0]);
+        });
+    });
+
+    describe("inside a NoSSR", () => {
+        test("it should pass an id to its children", () => {
+            // Arrange
+            const foo = jest.fn(() => null);
+            const nodes = (
+                <NoSSR>
+                    {() => (
+                        <UniqueIDProvider>
+                            {(ids) => foo(ids.get(""))}
+                        </UniqueIDProvider>
+                    )}
+                </NoSSR>
+            );
+
+            // Act
+            mount(nodes);
+
+            // Assert
+            expect(foo).toHaveBeenCalled();
+            expect(foo.mock.calls[0][0]).toBeTruthy();
         });
     });
 });
