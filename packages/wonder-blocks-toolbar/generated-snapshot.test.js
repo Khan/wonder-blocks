@@ -51,11 +51,7 @@ describe("wonder-blocks-toolbar", () => {
         const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
         const zoomOutButton = (
-            <IconButton
-                icon={icons.zoomOut}
-                kind="primary"
-                style={{marginLeft: -1}}
-            />
+            <IconButton icon={icons.zoomOut} kind="primary" />
         );
         const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary" />;
 
@@ -87,13 +83,7 @@ describe("wonder-blocks-toolbar", () => {
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
 
-        const hintButton = (
-            <IconButton
-                icon={icons.hint}
-                kind="primary"
-                style={{marginLeft: -4}}
-            />
-        );
+        const hintButton = <IconButton icon={icons.hint} kind="primary" />;
 
         const mainButton = <Button kind="primary">Submit</Button>;
 
@@ -108,13 +98,7 @@ describe("wonder-blocks-toolbar", () => {
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
 
-        const closeButton = (
-            <IconButton
-                icon={icons.dismiss}
-                kind="tertiary"
-                style={{marginLeft: -6}}
-            />
-        );
+        const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" />;
 
         const example = (
             <Toolbar
@@ -131,13 +115,7 @@ describe("wonder-blocks-toolbar", () => {
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
 
-        const closeButton = (
-            <IconButton
-                icon={icons.dismiss}
-                kind="tertiary"
-                style={{marginLeft: -6}}
-            />
-        );
+        const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" />;
         const startExercise = <Button>Next Video</Button>;
 
         const example = (
@@ -190,13 +168,7 @@ describe("wonder-blocks-toolbar", () => {
         const Link = require("@khanacademy/wonder-blocks-link").default;
         const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
-        const closeButton = (
-            <IconButton
-                icon={icons.dismiss}
-                kind="tertiary"
-                style={{marginLeft: -6}}
-            />
-        );
+        const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" />;
 
         const goToExercise = (
             <Link href="#">
