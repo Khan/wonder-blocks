@@ -56,6 +56,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -142,6 +143,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -228,6 +230,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -314,6 +317,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -397,6 +401,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -483,6 +488,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -569,6 +575,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -655,6 +662,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -738,6 +746,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -824,6 +833,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -910,6 +920,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -996,6 +1007,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1079,6 +1091,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1165,6 +1178,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1251,6 +1265,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1337,6 +1352,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1420,6 +1436,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1506,6 +1523,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1592,6 +1610,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1678,6 +1697,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1761,6 +1781,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1847,6 +1868,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -1933,6 +1955,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2019,6 +2042,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2102,6 +2126,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2188,6 +2213,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2274,6 +2300,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2360,6 +2387,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2443,6 +2471,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2529,6 +2558,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2615,6 +2645,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2701,6 +2732,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2784,6 +2816,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2870,6 +2903,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -2956,6 +2990,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3042,6 +3077,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3125,6 +3161,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3211,6 +3248,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3297,6 +3335,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3383,6 +3422,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3466,6 +3506,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3552,6 +3593,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3638,6 +3680,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3724,6 +3767,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3807,6 +3851,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3893,6 +3938,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -3979,6 +4025,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4065,6 +4112,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4148,6 +4196,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4234,6 +4283,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4320,6 +4370,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4406,6 +4457,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4489,6 +4541,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4575,6 +4628,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4661,6 +4715,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4747,6 +4802,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4830,6 +4886,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -4916,6 +4973,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -5002,6 +5060,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -5088,6 +5147,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -5171,6 +5231,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -5257,6 +5318,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -5343,6 +5405,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }
@@ -5429,6 +5492,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
         "padding": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 40,
       }
     }

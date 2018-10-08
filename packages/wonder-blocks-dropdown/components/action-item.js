@@ -177,6 +177,9 @@ const styles = StyleSheet.create({
         minHeight: 40,
         paddingLeft: Spacing.medium,
         paddingRight: Spacing.medium,
+        // This removes the 300ms click delay on mobile browsers by indicating that
+        // "double-tap to zoom" shouldn't be used on this element.
+        touchAction: "manipulation",
     },
 
     label: {

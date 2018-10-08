@@ -83,6 +83,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
         }
       }
       tabIndex={0}
@@ -215,6 +216,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
         }
       }
       tabIndex={0}
@@ -346,6 +348,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "whiteSpace": "nowrap",
         }
       }
@@ -476,6 +479,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "whiteSpace": "nowrap",
         }
       }
@@ -607,6 +611,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "whiteSpace": "nowrap",
         }
       }
@@ -762,6 +767,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
             "paddingRight": 12,
             "position": "relative",
             "textDecoration": "none",
+            "touchAction": "manipulation",
             "whiteSpace": "nowrap",
           }
         }
@@ -893,6 +899,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "whiteSpace": "nowrap",
         }
       }
@@ -1023,6 +1030,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           "paddingRight": 12,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "whiteSpace": "nowrap",
         }
       }
@@ -1133,6 +1141,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
       }
     }
     tabIndex={0}

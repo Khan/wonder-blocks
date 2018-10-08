@@ -398,6 +398,7 @@ exports[`wonder-blocks-core example 6 1`] = `
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
         }
       }
       tabIndex={0}

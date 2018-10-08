@@ -74,6 +74,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
           "padding": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "width": 40,
         }
       }
@@ -179,6 +180,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
           "padding": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "width": 40,
         }
       }
@@ -284,6 +286,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
           "padding": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "width": 40,
         }
       }
@@ -390,6 +393,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
           "padding": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "width": 40,
         }
       }
@@ -493,6 +497,7 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
           "padding": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
           "width": 40,
         }
       }
