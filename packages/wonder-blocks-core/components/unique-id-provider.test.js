@@ -139,10 +139,9 @@ describe("UniqueIDProvider", () => {
                     )}
                 </NoSSR>
             );
-            const wrapper = mount(nodes);
 
             // Act
-            wrapper.instance().forceUpdate();
+            mount(nodes);
 
             // Assert
             expect(foo).toHaveBeenCalled();
