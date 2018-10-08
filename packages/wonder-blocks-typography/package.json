@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-typography",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "design": "v2",
   "publishConfig": {
     "access": "public"
@@ -15,13 +15,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-core": "^1.2.3"
+    "@khanacademy/wonder-blocks-core": "^1.2.4"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "^16.4.1"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.0.10"
+    "@khanacademy/wonder-blocks-color": "^1.0.11"
   }
 }
