@@ -62,6 +62,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 100,
       }
     }
@@ -158,6 +159,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 100,
       }
     }
@@ -254,6 +256,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 100,
       }
     }
@@ -345,6 +348,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 100,
       }
     }
@@ -441,6 +445,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
         "width": 100,
       }
     }

@@ -61,6 +61,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
       }
     }
     tabIndex={0}
@@ -153,6 +154,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
       }
     }
     tabIndex={0}
@@ -223,6 +225,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
       }
     }
     tabIndex={0}
@@ -293,6 +296,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
       }
     }
     tabIndex={0}
@@ -407,6 +411,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
           "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
+          "touchAction": "manipulation",
         }
       }
       tabIndex={0}
@@ -631,6 +636,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                   "padding": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                   "width": 40,
                 }
               }
@@ -999,6 +1005,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -1209,6 +1216,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
                   "padding": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                   "width": 40,
                 }
               }
@@ -1623,6 +1631,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -1833,6 +1842,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   "padding": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                   "width": 40,
                 }
               }
@@ -2247,6 +2257,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -2594,6 +2605,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "padding": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                   "width": 40,
                 }
               }
@@ -3074,6 +3086,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -3305,6 +3318,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                     "padding": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                     "width": 40,
                   }
                 }
@@ -3763,6 +3777,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                     "padding": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                     "width": 40,
                   }
                 }
@@ -4124,6 +4139,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                     "paddingTop": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                   }
                 }
                 tabIndex={0}
@@ -4356,6 +4372,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                     "padding": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                     "width": 40,
                   }
                 }
@@ -4700,6 +4717,7 @@ exports[`wonder-blocks-modal example 11 1`] = `
                     "padding": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                     "width": 40,
                   }
                 }
@@ -5017,6 +5035,7 @@ exports[`wonder-blocks-modal example 11 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -5248,6 +5267,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
                     "padding": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                     "width": 40,
                   }
                 }
@@ -5544,6 +5564,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -5774,6 +5795,7 @@ exports[`wonder-blocks-modal example 13 1`] = `
                     "padding": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                     "width": 40,
                   }
                 }
@@ -6104,6 +6126,7 @@ exports[`wonder-blocks-modal example 14 1`] = `
                     "padding": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                     "width": 40,
                   }
                 }
@@ -6319,6 +6342,7 @@ exports[`wonder-blocks-modal example 14 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}

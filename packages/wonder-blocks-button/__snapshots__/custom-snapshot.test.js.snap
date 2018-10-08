@@ -43,6 +43,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -116,6 +117,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -189,6 +191,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -262,6 +265,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -335,6 +339,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -408,6 +413,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -481,6 +487,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -554,6 +561,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -627,6 +635,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -700,6 +709,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -773,6 +783,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -846,6 +857,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -919,6 +931,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -992,6 +1005,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1065,6 +1079,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1138,6 +1153,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1211,6 +1227,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -1284,6 +1301,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1357,6 +1375,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1430,6 +1449,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1503,6 +1523,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -1576,6 +1597,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1649,6 +1671,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1722,6 +1745,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1795,6 +1819,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -1868,6 +1893,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -1941,6 +1967,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -2014,6 +2041,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -2087,6 +2115,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -2160,6 +2189,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -2233,6 +2263,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -2306,6 +2337,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -2379,6 +2411,7 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -2510,6 +2543,7 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -2644,6 +2678,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -2719,6 +2754,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -2794,6 +2830,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -2869,6 +2906,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -2945,6 +2983,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -3020,6 +3059,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3095,6 +3135,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3170,6 +3211,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3246,6 +3288,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -3321,6 +3364,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3396,6 +3440,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3471,6 +3516,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3547,6 +3593,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -3622,6 +3669,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3697,6 +3745,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3772,6 +3821,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3848,6 +3898,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -3923,6 +3974,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -3998,6 +4050,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4073,6 +4126,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4149,6 +4203,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -4224,6 +4279,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4299,6 +4355,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4374,6 +4431,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4450,6 +4508,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -4525,6 +4584,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4600,6 +4660,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4675,6 +4736,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4751,6 +4813,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -4826,6 +4889,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4901,6 +4965,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -4976,6 +5041,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -5052,6 +5118,7 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -5186,6 +5253,7 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -5317,6 +5385,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -5399,6 +5468,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -5481,6 +5551,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -5563,6 +5634,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -5636,6 +5708,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -5718,6 +5791,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -5800,6 +5874,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -5882,6 +5957,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -5955,6 +6031,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -6037,6 +6114,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6119,6 +6197,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6201,6 +6280,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6274,6 +6354,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -6356,6 +6437,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6438,6 +6520,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6520,6 +6603,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6593,6 +6677,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -6675,6 +6760,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6757,6 +6843,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6839,6 +6926,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -6912,6 +7000,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -6994,6 +7083,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7076,6 +7166,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7158,6 +7249,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7231,6 +7323,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -7313,6 +7406,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7395,6 +7489,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7477,6 +7572,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7550,6 +7646,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -7632,6 +7729,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7714,6 +7812,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7796,6 +7895,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -7869,6 +7969,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}
@@ -8000,6 +8101,7 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={-1}

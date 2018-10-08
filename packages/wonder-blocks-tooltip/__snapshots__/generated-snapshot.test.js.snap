@@ -182,6 +182,7 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
