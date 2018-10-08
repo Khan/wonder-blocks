@@ -147,6 +147,7 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}

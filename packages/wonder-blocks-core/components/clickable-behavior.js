@@ -114,10 +114,11 @@ type State = {|
 
 export type ClickableHandlers = {|
     onClick: (e: SyntheticMouseEvent<>) => void,
-    onMouseEnter: () => void,
+    onMouseEnter: (e: SyntheticMouseEvent<>) => void,
     onMouseLeave: () => void,
     onMouseDown: () => void,
     onMouseUp: (e: SyntheticMouseEvent<>) => void,
+    onDragStart: (e: SyntheticMouseEvent<>) => void,
     onTouchStart: () => void,
     onTouchEnd: () => void,
     onTouchCancel: () => void,
@@ -134,6 +135,7 @@ const disabledHandlers = {
     onMouseLeave: () => void 0,
     onMouseDown: () => void 0,
     onMouseUp: () => void 0,
+    onDragStart: () => void 0,
     onTouchStart: () => void 0,
     onTouchEnd: () => void 0,
     onTouchCancel: () => void 0,
@@ -177,7 +179,7 @@ const startState = {
  * 3. Keyup (spacebar/enter) -> focus state
  *
  * Warning: The event handlers returned (onClick, onMouseEnter, onMouseLeave,
- * onMouseDown, onMouseUp, onTouchStart, onTouchEnd, onTouchCancel, onKeyDown,
+ * onMouseDown, onMouseUp, onDragStart, onTouchStart, onTouchEnd, onTouchCancel, onKeyDown,
  * onKeyUp, onFocus, onBlur, tabIndex) should be passed on to the component
  * that has the ClickableBehavior. You cannot override these handlers without
  * potentially breaking the functionality of ClickableBehavior.
@@ -236,6 +238,7 @@ const startState = {
 export default class ClickableBehavior extends React.Component<Props, State> {
     waitingForClick: boolean;
     enterClick: boolean;
+    dragging: boolean;
 
     static defaultProps = {
         disabled: false,
@@ -257,6 +260,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         this.state = startState;
         this.waitingForClick = false;
         this.enterClick = false;
+        this.dragging = false;
     }
 
     handleClick = (e: SyntheticMouseEvent<>) => {
@@ -268,15 +272,20 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         }
     };
 
-    handleMouseEnter = () => {
-        if (!this.waitingForClick) {
+    handleMouseEnter = (e: SyntheticMouseEvent<>) => {
+        // When the left button is pressed already, we want it to be pressed
+        if (e.buttons === 1) {
+            this.dragging = true;
+            this.setState({pressed: true});
+        } else if (!this.waitingForClick) {
             this.setState({hovered: true});
         }
     };
 
     handleMouseLeave = () => {
         if (!this.waitingForClick) {
-            this.setState({hovered: false, pressed: false});
+            this.dragging = false;
+            this.setState({hovered: false, pressed: false, focused: false});
         }
     };
 
@@ -285,7 +294,16 @@ export default class ClickableBehavior extends React.Component<Props, State> {
     };
 
     handleMouseUp = (e: SyntheticMouseEvent<>) => {
+        if (this.dragging) {
+            this.dragging = false;
+            this.handleClick(e);
+        }
         this.setState({pressed: false, focused: false});
+    };
+
+    handleDragStart = (e: SyntheticMouseEvent<>) => {
+        this.dragging = true;
+        e.preventDefault();
     };
 
     handleTouchStart = () => {
@@ -378,6 +396,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
                   onMouseLeave: this.handleMouseLeave,
                   onMouseDown: this.handleMouseDown,
                   onMouseUp: this.handleMouseUp,
+                  onDragStart: this.handleDragStart,
                   onTouchStart: this.handleTouchStart,
                   onTouchEnd: this.handleTouchEnd,
                   onTouchCancel: this.handleTouchCancel,
