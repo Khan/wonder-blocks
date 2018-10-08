@@ -3161,7 +3161,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "absolute",
-                "top": 20,
+                "top": 16,
                 "zIndex": 1,
               }
             }
@@ -3619,7 +3619,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "absolute",
-                "top": 20,
+                "top": 16,
                 "zIndex": 1,
               }
             }
@@ -4212,7 +4212,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "absolute",
-                "top": 20,
+                "top": 16,
                 "zIndex": 1,
               }
             }
@@ -4556,7 +4556,7 @@ exports[`wonder-blocks-modal example 11 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "absolute",
-                "top": 20,
+                "top": 16,
                 "zIndex": 1,
               }
             }
@@ -5104,7 +5104,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "absolute",
-                "top": 20,
+                "top": 16,
                 "zIndex": 1,
               }
             }
@@ -5630,7 +5630,7 @@ exports[`wonder-blocks-modal example 13 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "absolute",
-                "top": 20,
+                "top": 16,
                 "zIndex": 1,
               }
             }
@@ -5960,7 +5960,7 @@ exports[`wonder-blocks-modal example 14 1`] = `
                 "minWidth": 0,
                 "padding": 0,
                 "position": "absolute",
-                "top": 20,
+                "top": 16,
                 "zIndex": 1,
               }
             }
