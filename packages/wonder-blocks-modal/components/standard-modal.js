@@ -2,10 +2,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
+import ModalContext from "./modal-context.js";
 
 type Props = {|
     /**
@@ -58,6 +61,32 @@ type Props = {|
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
+    renderCloseButton() {
+        const {header, onClose} = this.props;
+
+        return (
+            <ModalContext.Consumer>
+                {({closeModal}) => {
+                    if (closeModal && onClose) {
+                        throw new Error(
+                            "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
+                        );
+                    }
+                    return (
+                        <IconButton
+                            icon={icons.dismiss}
+                            // TODO(mdr): Translate this string for i18n.
+                            aria-label="Close modal"
+                            onClick={closeModal || onClose}
+                            kind={header ? "primary" : "tertiary"}
+                            light={!!header}
+                        />
+                    );
+                }}
+            </ModalContext.Consumer>
+        );
+    }
+
     render() {
         const {
             onClose,
@@ -76,10 +105,10 @@ export default class StandardModal extends React.Component<Props> {
                 style={styles.wrapper}
             >
                 <ModalPanel
-                    showCloseButton
                     onClose={onClose}
                     titleBar={
                         <Toolbar
+                            leftContent={this.renderCloseButton()}
                             title={title}
                             subtitle={subtitle}
                             color={header ? "dark" : "light"}
