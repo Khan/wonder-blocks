@@ -39,7 +39,7 @@ const Button = require("@khanacademy/wonder-blocks-button").default;
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
-const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary" style={{marginLeft:-1}}/>;
+const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary"/>;
 const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary"/>;
 
 const strut = <Strut size={16}/>;
@@ -68,7 +68,7 @@ const {icons} = require("@khanacademy/wonder-blocks-icon");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const hintButton = <IconButton icon={icons.hint} kind="primary" style={{marginLeft: -4}}/>;
+const hintButton = <IconButton icon={icons.hint} kind="primary"/>;
 
 const mainButton = (
     <Button kind="primary">
@@ -87,7 +87,7 @@ const mainButton = (
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{marginLeft: -6}}/>;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
 <Toolbar
     leftContent={closeButton}
@@ -104,7 +104,7 @@ const Button = require("@khanacademy/wonder-blocks-button").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{marginLeft: -6}}/>;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 const startExercise = <Button>Next Video</Button>;
 
 <Toolbar
@@ -149,7 +149,7 @@ const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const Link = require("@khanacademy/wonder-blocks-link").default;
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
-const closeButton = <IconButton icon={icons.dismiss} kind="tertiary" style={{marginLeft: -6}}/>;
+const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
 const goToExercise = (
     <Link href="#">

@@ -6,6 +6,7 @@ import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
+import CloseButton from "./close-button.js";
 
 type Props = {|
     /**
@@ -76,10 +77,15 @@ export default class StandardModal extends React.Component<Props> {
                 style={styles.wrapper}
             >
                 <ModalPanel
-                    showCloseButton
                     onClose={onClose}
                     titleBar={
                         <Toolbar
+                            leftContent={
+                                <CloseButton
+                                    light={!!header}
+                                    onClick={onClose}
+                                />
+                            }
                             title={title}
                             subtitle={subtitle}
                             color={header ? "dark" : "light"}
