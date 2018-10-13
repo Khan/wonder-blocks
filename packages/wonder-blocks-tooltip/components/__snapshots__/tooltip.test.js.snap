@@ -1,35 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tooltip content is TooltipContent with title, overrides title of TooltipContent: Similar to <Body>Some custom content</Body> 1`] = `
-<body_Body
+<Body
   tag="span"
 >
   Some custom content
-</body_Body>
+</Body>
 `;
 
 exports[`Tooltip content is TooltipContent with title, sets title of TooltipContent: Similar to <HeadingSmall>Some custom content</HeadingSmall> 1`] = `
-<heading_small_HeadingSmall
+<HeadingSmall
   tag="h4"
 >
   Some custom content
-</heading_small_HeadingSmall>
+</HeadingSmall>
 `;
 
 exports[`Tooltip content is TooltipContent with title, sets title of TooltipContent: Similar to <HeadingSmall>Title</HeadingSmall> 1`] = `
-<heading_small_HeadingSmall
+<HeadingSmall
   tag="h4"
 >
   Title
-</heading_small_HeadingSmall>
+</HeadingSmall>
 `;
 
 exports[`Tooltip content is TooltipContent without title, renders content as-is: <Body>Some custom content</Body> 1`] = `
-<body_Body
+<Body
   tag="span"
 >
   Some custom content
-</body_Body>
+</Body>
 `;
 
 exports[`Tooltip content is a string, wraps in TooltipContent with title: Similar to <TooltipContent title="Title">Content</TooltipContent> 1`] = `
