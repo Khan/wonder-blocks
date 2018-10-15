@@ -28,6 +28,7 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^2.2.3"
+    "@khanacademy/wonder-blocks-button": "^2.2.3",
+    "build-settings": "^0.0.1"
   }
 }

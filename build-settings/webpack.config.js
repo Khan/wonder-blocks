@@ -1,3 +1,4 @@
+/* eslint-disable import/no-commonjs */
 /**
  * This webpack config file return an array of webpack configs, one for each
  * package in the packages/ folder.  This allows a single instance of webpack
@@ -7,8 +8,8 @@ const fs = require("fs");
 const path = require("path");
 
 const packages = fs
-    .readdirSync(path.join(__dirname, "packages"))
-    .map((dir) => path.join(__dirname, "packages", dir));
+    .readdirSync(path.join(process.cwd(), "packages"))
+    .map((dir) => path.join(process.cwd(), "packages", dir));
 
 const genWebpackConfig = function(subPkgRoot) {
     const pkgJson = require(path.join(subPkgRoot, "./package.json"));
@@ -24,10 +25,10 @@ const genWebpackConfig = function(subPkgRoot) {
         output: {
             libraryTarget: "commonjs2",
             filename: path.relative(
-                __dirname,
+                process.cwd(),
                 path.join(subPkgRoot, "dist/index.js"),
             ),
-            path: path.join(__dirname),
+            path: path.join(process.cwd()),
         },
         externals: [...pkgPeerDeps, pkgDeps],
         module: {

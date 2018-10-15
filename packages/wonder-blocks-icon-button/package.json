@@ -24,5 +24,8 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "build-settings": "^0.0.1"
   }
 }

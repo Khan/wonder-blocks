@@ -23,5 +23,8 @@
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "build-settings": "^0.0.1"
   }
 }

@@ -8,10 +8,10 @@
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
     "lint": "eslint --config ./eslint/eslintrc packages",
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
-    "build:cjs": "webpack --display-modules && node utils/package-flow-types.js",
-    "build:es6": "rollup -c rollup.config.js",
+    "build:cjs": "webpack --config build-settings/webpack.config.js --display-modules && node utils/package-flow-types.js",
+    "build:es6": "rollup -c build-settings/rollup.config.js",
     "build:all": "yarn build:cjs && yarn build:es6",
-    "watch:cjs": "webpack -w",
+    "watch:cjs": "webpack --config build-settings/webpack.config.js -w",
     "flow": "flow",
     "flow-coverage": "flow-coverage-report -t text -t html -f ./node_modules/.bin/flow -i 'packages/wonder-blocks-*/**/*.js' -x 'packages/wonder-blocks-*/dist/*.js' -x '**/*.test.js' -x '**/node_modules/**/*.js'",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
@@ -94,7 +94,8 @@
     "react-router-dom": "^4.2.2"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "build-settings"
   ],
   "jest": {
     "globals": {
