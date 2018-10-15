@@ -7,6 +7,8 @@
 const fs = require("fs");
 const path = require("path");
 
+const babelOptions = require("./babel.config.js");
+
 const packages = fs
     .readdirSync(path.join(process.cwd(), "packages"))
     .map((dir) => path.join(process.cwd(), "packages", dir));
@@ -38,6 +40,7 @@ const genWebpackConfig = function(subPkgRoot) {
                     exclude: /node_modules/,
                     use: {
                         loader: "babel-loader",
+                        options: babelOptions,
                     },
                 },
             ],
