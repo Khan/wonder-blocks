@@ -27,6 +27,6 @@
     "react": "^16.4.1"
   },
   "devDependencies": {
-    "build-settings": "^0.0.1"
+    "wonder-blocks-build-settings": "^0.0.1"
   }
 }

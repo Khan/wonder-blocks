@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@khanacademy/wonder-blocks-color": "^1.0.12",
-    "build-settings": "^0.0.1"
+    "wonder-blocks-build-settings": "^0.0.1"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
