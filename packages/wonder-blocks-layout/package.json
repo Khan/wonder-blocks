@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-layout",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -13,12 +13,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-core": "^1.2.5",
-    "@khanacademy/wonder-blocks-spacing": "^2.0.10"
+    "@khanacademy/wonder-blocks-core": "^1.2.6",
+    "@khanacademy/wonder-blocks-spacing": "^2.0.11"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^2.2.3",
-    "wb-dev-build-settings": "^0.0.1"
+    "@khanacademy/wonder-blocks-button": "^2.2.4",
+    "wb-dev-build-settings": "^0.0.2"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
