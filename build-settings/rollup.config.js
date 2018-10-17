@@ -1,3 +1,4 @@
+/* eslint-disable import/no-commonjs */
 import fs from "fs";
 import autoExternal from "rollup-plugin-auto-external";
 import babel from "rollup-plugin-babel";

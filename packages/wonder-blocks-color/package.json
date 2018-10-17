@@ -14,7 +14,8 @@
   },
   "devDependencies": {
     "@khanacademy/wonder-blocks-core": "^1.2.5",
-    "@khanacademy/wonder-blocks-typography": "^1.0.12"
+    "@khanacademy/wonder-blocks-typography": "^1.0.12",
+    "wb-dev-build-settings": "^0.0.1"
   },
   "author": "",
   "license": "MIT"

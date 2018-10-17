@@ -22,6 +22,9 @@
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.2.2"
   },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.0.1"
+  },
   "author": "",
   "license": "MIT"
 }

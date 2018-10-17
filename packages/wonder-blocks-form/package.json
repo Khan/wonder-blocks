@@ -25,5 +25,8 @@
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.0.1"
   }
 }

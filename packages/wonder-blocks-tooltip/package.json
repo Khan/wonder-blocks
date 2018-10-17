@@ -28,5 +28,8 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-popper": "^1.0.0"
+  },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.0.1"
   }
 }
