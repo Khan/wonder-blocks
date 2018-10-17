@@ -26,6 +26,6 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
-    "wonder-blocks-build-settings": "^0.0.1"
+    "wb-dev-build-settings": "^0.0.1"
   }
 }

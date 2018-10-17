@@ -30,6 +30,6 @@
     "react-popper": "^1.0.0"
   },
   "devDependencies": {
-    "wonder-blocks-build-settings": "^0.0.1"
+    "wb-dev-build-settings": "^0.0.1"
   }
 }

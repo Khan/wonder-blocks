@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@khanacademy/wonder-blocks-button": "^2.2.3",
-    "wonder-blocks-build-settings": "^0.0.1"
+    "wb-dev-build-settings": "^0.0.1"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
