@@ -1,14 +1,18 @@
 module.exports = {
+    rootDir: "../../",
     transform: {
-        "^.+\\.jsx?$": "<rootDir>/utils/jest.transform.js",
+        "^.+\\.jsx?$": "<rootDir>/config/jest/test.transform.js",
     },
     testEnvironment: "jest-environment-jsdom",
     globals: {
         SNAPSHOT_INLINE_APHRODITE: true,
     },
     testMatch: ["<rootDir>/packages/**/*.test.js"],
-    setupTestFrameworkScriptFile: "<rootDir>/test-setup.js",
-
+    setupTestFrameworkScriptFile: "<rootDir>/config/jest/test-setup.js",
+    moduleNameMapper: {
+        "^@khanacademy/(.*)$":
+            "<rootDir>/node_modules/@khanacademy/$1/index.js",
+    },
     collectCoverageFrom: [
         "packages/**/*.js",
         "!packages/**/dist/**/*.js",

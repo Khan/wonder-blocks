@@ -1,8 +1,9 @@
 module.exports = {
+    rootDir: "../../",
     transform: {
-        "^.+\\.jsx?$": "<rootDir>/utils/jest-vite.transform.js",
+        "^.+\\.jsx?$": "<rootDir>/config/jest/vite.transform.js",
     },
-    testMatch: ["<rootDir>/vite/*.test.js"],
+    testMatch: ["<rootDir>/vite-tests/*.test.js"],
     testEnvironment: "@khanacademy/jest-environment-vite",
     testEnvironmentOptions: {
         capabilities: {
