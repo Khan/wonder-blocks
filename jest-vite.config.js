@@ -14,12 +14,9 @@ module.exports = {
         collectCoverage: true,
     },
     verbose: false,
-    // We remap @khanacademy/wonder-blocks-* imports to point to the source
-    // index.js file so that we can compute coverage across source files in
-    // all modules.
     moduleNameMapper: {
         "^@khanacademy/(.*)$":
-            "<rootDir>/node_modules/@khanacademy/$1/index.js",
+            "<rootDir>/node_modules/@khanacademy/$1/dist/index.js",
     },
     globalSetup: "@khanacademy/jest-environment-vite/dist/global-setup.js",
     globalTeardown:
