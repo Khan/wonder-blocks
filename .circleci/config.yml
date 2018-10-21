@@ -49,6 +49,7 @@ jobs:
           key: npm-deps-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+      - run: yarn run build:es6
       - run: yarn run test:vite
 workflows:
   version: 2
