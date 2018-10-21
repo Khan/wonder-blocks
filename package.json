@@ -16,7 +16,8 @@
     "flow-coverage": "flow-coverage-report -t text -t html -f ./node_modules/.bin/flow -i 'packages/wonder-blocks-*/**/*.js' -x 'packages/wonder-blocks-*/dist/*.js' -x '**/*.test.js' -x '**/node_modules/**/*.js'",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "gen-styleguide-prod-config": "node utils/gen-styleguide-prod-config.js && prettier --write styleguide.prod.config.js",
-    "jest": "jest",
+    "jest": "jest --config jest.config.js",
+    "test:vite": "jest --config jest-vite.config.js",
     "test:common": "yarn run lint && yarn run gen-snapshot-tests && yarn run build:all && yarn run flow",
     "test": "yarn run test:common && yarn run jest",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
@@ -37,10 +38,14 @@
     "@babel/plugin-proposal-class-properties": "7.0.0",
     "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-flow-strip-types": "7.0.0",
     "@babel/preset-env": "7.0.0",
     "@babel/preset-flow": "7.0.0",
     "@babel/preset-react": "7.0.0",
+    "@khanacademy/babel-plugin-vite": "^0.0.4",
+    "@khanacademy/jest-environment-vite": "^0.0.4",
+    "@khanacademy/vite-server": "^0.0.4",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0-beta.3",
     "babel-jest": "^23.6.0",
@@ -97,22 +102,6 @@
     "packages/*",
     "build-settings"
   ],
-  "jest": {
-    "globals": {
-      "SNAPSHOT_INLINE_APHRODITE": true
-    },
-    "testRegex": ".test\\.jsx?$",
-    "setupTestFrameworkScriptFile": "./test-setup.js",
-    "transform": {
-      "^.+\\.jsx?$": "<rootDir>/utils/jest.transform.js"
-    },
-    "collectCoverageFrom": [
-      "packages/**/*.js",
-      "!packages/**/dist/**/*.js",
-      "!<rootDir>/node_modules/",
-      "!packages/**/node_modules/"
-    ]
-  },
   "pre-commit": [
     "lint",
     "test",
