@@ -215,6 +215,8 @@ exports[`wonder-blocks-form example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "pointerEvents": "none",
             "position": "absolute",
             "verticalAlign": "text-bottom",
@@ -451,6 +453,8 @@ exports[`wonder-blocks-form example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "pointerEvents": "none",
             "position": "absolute",
             "verticalAlign": "text-bottom",
@@ -690,6 +694,8 @@ exports[`wonder-blocks-form example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "pointerEvents": "none",
             "position": "absolute",
             "verticalAlign": "text-bottom",
@@ -2809,6 +2815,8 @@ exports[`wonder-blocks-form example 5 1`] = `
             style={
               Object {
                 "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
                 "pointerEvents": "none",
                 "position": "absolute",
                 "verticalAlign": "text-bottom",

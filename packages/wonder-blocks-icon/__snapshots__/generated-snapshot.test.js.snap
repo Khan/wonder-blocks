@@ -45,6 +45,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -73,6 +75,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -94,6 +98,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -122,6 +128,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -143,6 +151,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -171,6 +181,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -192,6 +204,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -220,6 +234,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -241,6 +257,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -269,6 +287,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -300,6 +320,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -321,6 +343,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -349,6 +373,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -370,6 +396,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -398,6 +426,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -419,6 +449,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -450,6 +482,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -481,6 +515,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -509,6 +545,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -530,6 +568,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -561,6 +601,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -592,6 +634,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -620,6 +664,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -651,6 +697,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -672,6 +720,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -700,6 +750,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -731,6 +783,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -765,6 +819,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -796,6 +852,8 @@ exports[`wonder-blocks-icon example 1 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "verticalAlign": "text-bottom",
             }
           }
@@ -820,6 +878,8 @@ exports[`wonder-blocks-icon example 2 1`] = `
   style={
     Object {
       "display": "inline-block",
+      "flexGrow": 0,
+      "flexShrink": 0,
       "verticalAlign": "text-bottom",
     }
   }
@@ -859,6 +919,8 @@ exports[`wonder-blocks-icon example 3 1`] = `
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "verticalAlign": "text-bottom",
       }
     }
@@ -876,6 +938,8 @@ exports[`wonder-blocks-icon example 3 1`] = `
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "verticalAlign": "text-bottom",
       }
     }
@@ -893,6 +957,8 @@ exports[`wonder-blocks-icon example 3 1`] = `
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "verticalAlign": "text-bottom",
       }
     }
@@ -910,6 +976,8 @@ exports[`wonder-blocks-icon example 3 1`] = `
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "verticalAlign": "text-bottom",
       }
     }
@@ -951,6 +1019,8 @@ exports[`wonder-blocks-icon example 4 1`] = `
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "margin": 2,
         "verticalAlign": "text-bottom",
       }

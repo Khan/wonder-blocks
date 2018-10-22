@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import Color, {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
@@ -52,10 +52,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             disabled && sharedStyles.disabled,
             buttonStyles.default,
             disabled && buttonStyles.disabled,
-            !disabled &&
-                (pressed
-                    ? buttonStyles.active
-                    : (hovered || focused) && buttonStyles.focus),
+            !disabled && pressed && buttonStyles.active,
         ];
 
         const commonProps = {
@@ -68,20 +65,24 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
         };
 
         const label = (
-            <LabelLarge style={sharedStyles.text}>
-                {children}
+            <LabelLarge style={sharedStyles.text}>{children}</LabelLarge>
+        );
+
+        return (
+            <StyledButton type="button" {...commonProps} disabled={disabled}>
+                <View
+                    style={
+                        !disabled && (hovered || focused) && buttonStyles.focus
+                    }
+                >
+                    {label}
+                </View>
                 <Icon
                     size="small"
                     color="currentColor"
                     icon={icons.caretDown}
                     style={sharedStyles.icon}
                 />
-            </LabelLarge>
-        );
-
-        return (
-            <StyledButton type="button" {...commonProps} disabled={disabled}>
-                {label}
             </StyledButton>
         );
     }
@@ -115,7 +116,8 @@ const sharedStyles = StyleSheet.create({
         height: Spacing.xLarge,
     },
     text: {
-        display: "flex",
+        textAlign: "left",
+        display: "inline-block",
         alignItems: "center",
         fontWeight: "bold",
         userSelect: "none",
@@ -160,25 +162,15 @@ const _generateStyles = (color) => {
                 content: "''",
                 position: "absolute",
                 height: 2,
-                width: `calc(100% - 20px)`,
+                width: "100%",
                 left: 0,
-                bottom: "calc(50% - 11px)",
-                background: color,
+                bottom: -1,
+                background: "currentColor",
                 borderRadius: 2,
             },
         },
         active: {
             color: activeColor,
-            ":after": {
-                content: "''",
-                position: "absolute",
-                height: 2,
-                width: `calc(100% - 20px)`,
-                left: 0,
-                bottom: "calc(50% - 11px)",
-                background: activeColor,
-                borderRadius: 2,
-            },
         },
         disabled: {
             color: offBlack32,
