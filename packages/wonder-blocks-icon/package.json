@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-icon",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "design": "v1",
   "publishConfig": {
     "access": "public"
