@@ -61,6 +61,7 @@ describe("wonder-blocks-dropdown", () => {
     it("example 2", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
+        const {Spring} = require("@khanacademy/wonder-blocks-layout");
 
         const styles = StyleSheet.create({
             row: {
@@ -70,6 +71,7 @@ describe("wonder-blocks-dropdown", () => {
 
         const example = (
             <View style={styles.row}>
+                <Spring />
                 <ActionMenu menuText="Betsy Appleseed" style={{width: 100}}>
                     <ActionItem
                         label="Profile"

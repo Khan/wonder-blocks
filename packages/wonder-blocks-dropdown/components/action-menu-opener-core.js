@@ -8,6 +8,7 @@ import Color, {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./action-menu-opener.js";
@@ -77,11 +78,11 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                 >
                     {label}
                 </View>
+                <Strut size={Spacing.xxxSmall} />
                 <Icon
                     size="small"
                     color="currentColor"
                     icon={icons.caretDown}
-                    style={sharedStyles.icon}
                 />
             </StyledButton>
         );
@@ -95,10 +96,6 @@ const sharedStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         height: 40,
-        paddingTop: 0,
-        paddingBottom: 0,
-        paddingLeft: Spacing.medium,
-        paddingRight: Spacing.medium,
         border: "none",
         borderRadius: Spacing.xxxSmall,
         cursor: "pointer",
@@ -132,9 +129,6 @@ const sharedStyles = StyleSheet.create({
     spinner: {
         position: "absolute",
     },
-    icon: {
-        paddingLeft: Spacing.xxxSmall,
-    },
 });
 
 const styles = {};
@@ -154,16 +148,14 @@ const _generateStyles = (color) => {
         default: {
             background: "none",
             color: color,
-            paddingLeft: 0,
-            paddingRight: 0,
         },
         focus: {
             ":after": {
                 content: "''",
                 position: "absolute",
                 height: 2,
-                width: "100%",
                 left: 0,
+                right: 0,
                 bottom: -1,
                 background: "currentColor",
                 borderRadius: 2,

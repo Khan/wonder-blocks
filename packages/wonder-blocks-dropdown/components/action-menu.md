@@ -47,6 +47,7 @@ and the down caret should be the same size as it is for the other examples.
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
+const {Spring} = require("@khanacademy/wonder-blocks-layout");
 
 const styles = StyleSheet.create({
     row: {
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
+    <Spring />
     <ActionMenu
         menuText="Betsy Appleseed"
         style={{width: 100}}
