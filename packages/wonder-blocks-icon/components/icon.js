@@ -108,5 +108,7 @@ const styles = StyleSheet.create({
     svg: {
         display: "inline-block",
         verticalAlign: "text-bottom",
+        flexShrink: 0,
+        flexGrow: 0,
     },
 });

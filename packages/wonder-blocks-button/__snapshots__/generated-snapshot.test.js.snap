@@ -2194,6 +2194,8 @@ exports[`wonder-blocks-button example 9 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "paddingRight": 8,
               "verticalAlign": "text-bottom",
             }
@@ -2286,6 +2288,8 @@ exports[`wonder-blocks-button example 9 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "paddingRight": 8,
               "verticalAlign": "text-bottom",
             }
@@ -2375,6 +2379,8 @@ exports[`wonder-blocks-button example 9 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "paddingRight": 8,
               "verticalAlign": "text-bottom",
             }
@@ -2485,6 +2491,8 @@ exports[`wonder-blocks-button example 9 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "paddingRight": 8,
               "verticalAlign": "text-bottom",
             }
@@ -2578,6 +2586,8 @@ exports[`wonder-blocks-button example 9 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "paddingRight": 8,
               "verticalAlign": "text-bottom",
             }
@@ -2668,6 +2678,8 @@ exports[`wonder-blocks-button example 9 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "paddingRight": 8,
               "verticalAlign": "text-bottom",
             }

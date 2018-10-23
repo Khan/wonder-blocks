@@ -70,6 +70,8 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -158,6 +160,8 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -246,6 +250,8 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -334,6 +340,8 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -419,6 +427,8 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -507,6 +517,8 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -595,6 +607,8 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -683,6 +697,8 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -768,6 +784,8 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -856,6 +874,8 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -944,6 +964,8 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1032,6 +1054,8 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1117,6 +1141,8 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1205,6 +1231,8 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1293,6 +1321,8 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1381,6 +1411,8 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1466,6 +1498,8 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1554,6 +1588,8 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1642,6 +1678,8 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1730,6 +1768,8 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1815,6 +1855,8 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1903,6 +1945,8 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -1991,6 +2035,8 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2079,6 +2125,8 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2164,6 +2212,8 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2252,6 +2302,8 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2340,6 +2392,8 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2428,6 +2482,8 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2513,6 +2569,8 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2601,6 +2659,8 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2689,6 +2749,8 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2777,6 +2839,8 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2862,6 +2926,8 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -2950,6 +3016,8 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3038,6 +3106,8 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3126,6 +3196,8 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3211,6 +3283,8 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3299,6 +3373,8 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3387,6 +3463,8 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3475,6 +3553,8 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3560,6 +3640,8 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3648,6 +3730,8 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3736,6 +3820,8 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3824,6 +3910,8 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3909,6 +3997,8 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -3997,6 +4087,8 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4085,6 +4177,8 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4173,6 +4267,8 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4258,6 +4354,8 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4346,6 +4444,8 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4434,6 +4534,8 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4522,6 +4624,8 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4607,6 +4711,8 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4695,6 +4801,8 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4783,6 +4891,8 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4871,6 +4981,8 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -4956,6 +5068,8 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -5044,6 +5158,8 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -5132,6 +5248,8 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -5220,6 +5338,8 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -5305,6 +5425,8 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -5393,6 +5515,8 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -5481,6 +5605,8 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
@@ -5569,6 +5695,8 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       style={
         Object {
           "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
           "verticalAlign": "text-bottom",
         }
       }
