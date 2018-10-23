@@ -7,7 +7,10 @@ module.exports = {
     globals: {
         SNAPSHOT_INLINE_APHRODITE: true,
     },
-    testMatch: ["<rootDir>/packages/**/*.test.js"],
+    testMatch: [
+        "<rootDir>/packages/**/*.test.js",
+        "<rootDir>/shared-unpackaged/*.test.js",
+    ],
     setupTestFrameworkScriptFile: "<rootDir>/config/jest/test-setup.js",
     moduleNameMapper: {
         "^@khanacademy/(.*)$":
