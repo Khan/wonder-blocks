@@ -86,4 +86,19 @@ describe("wonder-blocks-typography", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+    it("example 4", () => {
+        const Code = ({children}) => (
+            <BodyMonospace style={{whiteSpace: "pre"}}>
+                {children}
+            </BodyMonospace>
+        );
+
+        const code = `const things = {
+            areTested\: "This is my new Code element with my code.",
+        };`;
+
+        const example = <Code>{code}</Code>;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
