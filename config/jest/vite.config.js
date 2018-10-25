@@ -3,7 +3,7 @@ module.exports = {
     transform: {
         "^.+\\.jsx?$": "<rootDir>/config/jest/vite.transform.js",
     },
-    testMatch: ["<rootDir>/vite-tests/*.test.js"],
+    testMatch: ["<rootDir>/**/*.vite_test.js"],
     testEnvironment: "@khanacademy/jest-environment-vite",
     testEnvironmentOptions: {
         capabilities: {

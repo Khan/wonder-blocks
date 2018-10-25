@@ -2,7 +2,7 @@
 // @flow
 import * as React from "react";
 
-import Button from "../packages/wonder-blocks-button/components/button.js";
+import Button from "./button.js";
 
 describe("foo", () => {
     test("it should render a button", async () => {
