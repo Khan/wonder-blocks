@@ -88,6 +88,8 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "verticalAlign": "text-bottom",
           }
         }
@@ -195,6 +197,8 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "verticalAlign": "text-bottom",
           }
         }
@@ -302,6 +306,8 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "verticalAlign": "text-bottom",
           }
         }
@@ -410,6 +416,8 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "verticalAlign": "text-bottom",
           }
         }
@@ -515,6 +523,8 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "verticalAlign": "text-bottom",
           }
         }

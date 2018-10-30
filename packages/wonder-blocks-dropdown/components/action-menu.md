@@ -39,6 +39,38 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+### Truncated opener
+
+The text in the menu opener should be truncated with ellipsis at the end
+and the down caret should be the same size as it is for the other examples.
+
+```js
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+const {Spring} = require("@khanacademy/wonder-blocks-layout");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <Spring />
+    <ActionMenu
+        menuText="Betsy Appleseed"
+        style={{width: 100}}
+    >
+        <ActionItem label="Profile" href="http://khanacademy.org/profile" />
+        <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" />
+        <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} />
+        <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} />
+        <SeparatorItem />
+        <ActionItem label="Log out" href="http://khanacademy.org/logout" />
+    </ActionMenu>
+</View>
+```
+
 ### Hybrid menu of action items and option items
 
 The following menu demonstrates a hybrid menu with both action items and items

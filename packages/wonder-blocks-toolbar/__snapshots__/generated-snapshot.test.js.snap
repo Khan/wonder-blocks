@@ -415,6 +415,8 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             style={
               Object {
                 "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
                 "verticalAlign": "text-bottom",
               }
             }
@@ -521,6 +523,8 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             style={
               Object {
                 "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
                 "verticalAlign": "text-bottom",
               }
             }
@@ -784,6 +788,8 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             style={
               Object {
                 "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
                 "verticalAlign": "text-bottom",
               }
             }
@@ -1047,6 +1053,8 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
             style={
               Object {
                 "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
                 "verticalAlign": "text-bottom",
               }
             }
@@ -1303,6 +1311,8 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             style={
               Object {
                 "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
                 "verticalAlign": "text-bottom",
               }
             }
@@ -1955,6 +1965,8 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
             style={
               Object {
                 "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
                 "verticalAlign": "text-bottom",
               }
             }

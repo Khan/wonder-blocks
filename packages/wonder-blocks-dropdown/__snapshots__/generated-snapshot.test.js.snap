@@ -78,10 +78,6 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "outline": "none",
-          "paddingBottom": 0,
-          "paddingLeft": 0,
-          "paddingRight": 0,
-          "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
           "touchAction": "manipulation",
@@ -90,52 +86,299 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "alignItems": "center",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
             "display": "flex",
-            "fontFamily": "Lato, sans-serif",
-            "fontSize": 16,
-            "fontWeight": "bold",
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "pointerEvents": "none",
-            "textOverflow": "ellipsis",
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
           }
         }
       >
-        Betsy Appleseed
-        <svg
+        <span
           className=""
-          height={16}
           style={
             Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "alignItems": "center",
               "display": "inline-block",
-              "paddingLeft": 4,
-              "verticalAlign": "text-bottom",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "pointerEvents": "none",
+              "textAlign": "left",
+              "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
             }
           }
-          viewBox="0 0 16 16"
-          width={16}
         >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
+          Betsy Appleseed
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 4,
+            "zIndex": 0,
+          }
+        }
+      />
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
   </div>
 </div>
 `;
 
 exports[`wonder-blocks-dropdown example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 100,
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={false}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "alignItems": "center",
+              "display": "inline-block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "pointerEvents": "none",
+              "textAlign": "left",
+              "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
+            }
+          }
+        >
+          Betsy Appleseed
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 4,
+            "zIndex": 0,
+          }
+        }
+      />
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 3 1`] = `
 <div
   className=""
   style={
@@ -212,10 +455,6 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "justifyContent": "center",
           "margin": 0,
           "outline": "none",
-          "paddingBottom": 0,
-          "paddingLeft": 0,
-          "paddingRight": 0,
-          "paddingTop": 0,
           "position": "relative",
           "textDecoration": "none",
           "touchAction": "manipulation",
@@ -224,52 +463,100 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "alignItems": "center",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
             "display": "flex",
-            "fontFamily": "Lato, sans-serif",
-            "fontSize": 16,
-            "fontWeight": "bold",
-            "lineHeight": "20px",
-            "overflow": "hidden",
-            "pointerEvents": "none",
-            "textOverflow": "ellipsis",
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
           }
         }
       >
-        Assignments
-        <svg
+        <span
           className=""
-          height={16}
           style={
             Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "alignItems": "center",
               "display": "inline-block",
-              "paddingLeft": 4,
-              "verticalAlign": "text-bottom",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "pointerEvents": "none",
+              "textAlign": "left",
+              "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
             }
           }
-          viewBox="0 0 16 16"
-          width={16}
         >
-          <path
-            d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
+          Assignments
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 4,
+            "zIndex": 0,
+          }
+        }
+      />
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
   </div>
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 3 1`] = `
+exports[`wonder-blocks-dropdown example 4 1`] = `
 <div
   className=""
   style={
@@ -385,6 +672,8 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "minWidth": 16,
             "verticalAlign": "text-bottom",
           }
@@ -402,7 +691,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 4 1`] = `
+exports[`wonder-blocks-dropdown example 5 1`] = `
 <div
   className=""
   style={
@@ -517,6 +806,8 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "minWidth": 16,
             "verticalAlign": "text-bottom",
           }
@@ -534,7 +825,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 5 1`] = `
+exports[`wonder-blocks-dropdown example 6 1`] = `
 <div
   className=""
   style={
@@ -650,6 +941,8 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "minWidth": 16,
             "verticalAlign": "text-bottom",
           }
@@ -667,7 +960,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 6 1`] = `
+exports[`wonder-blocks-dropdown example 7 1`] = `
 <div
   className=""
   style={
@@ -807,6 +1100,8 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
           style={
             Object {
               "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
               "minWidth": 16,
               "verticalAlign": "text-bottom",
             }
@@ -825,7 +1120,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 7 1`] = `
+exports[`wonder-blocks-dropdown example 8 1`] = `
 <div
   className=""
   style={
@@ -940,6 +1235,8 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "minWidth": 16,
             "verticalAlign": "text-bottom",
           }
@@ -957,7 +1254,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 8 1`] = `
+exports[`wonder-blocks-dropdown example 9 1`] = `
 <div
   className=""
   style={
@@ -1072,6 +1369,8 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "minWidth": 16,
             "verticalAlign": "text-bottom",
           }
@@ -1089,7 +1388,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 9 1`] = `
+exports[`wonder-blocks-dropdown example 10 1`] = `
 <div
   className=""
   style={
