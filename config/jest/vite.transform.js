@@ -1,3 +1,8 @@
+/**
+ * vite tests require a different babel config b/c vite-server only
+ * serves modules using ES6 imports.  This means that we can't
+ * transform import statements like we normally do.
+ */
 const babelJest = require("babel-jest");
 
 const babelConfig = {

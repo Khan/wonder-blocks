@@ -1,3 +1,13 @@
+/**
+ * jest config for running vite tests
+ *
+ * vite uses jest as a test runner but it uses a custom jest
+ * environment which runs vite tests inside of a real browser
+ * using selenium.
+ *
+ * We need a separate config so that we can specify which tests
+ * we want to run using jest-environment-vite.
+ */
 module.exports = {
     rootDir: "../../",
     transform: {

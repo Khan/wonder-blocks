@@ -33,6 +33,10 @@ jobs:
       - run: yarn run gen-snapshot-tests
       - run: yarn run build:cjs
       - run: yarn run build:es6
+      # --runInBand forces tests to be run in the main process.
+      # This is useful for debugging or in this case only using
+      # a single process.  This prevents ENOMEM when running on
+      # circleci.
       - run: yarn run jest --coverage --runInBand
       - run: yarn run codecov
   vite:

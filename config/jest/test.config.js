@@ -1,3 +1,7 @@
+/**
+ * This is the main jest config.  It runs tests using the default
+ * test environment: jest-environment-jsdom.
+ */
 module.exports = {
     rootDir: "../../",
     transform: {

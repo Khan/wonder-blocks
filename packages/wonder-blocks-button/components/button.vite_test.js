@@ -7,7 +7,7 @@ import Button from "./button.js";
 describe("foo", () => {
     test("it should render a button", async () => {
         // Arrange
-        // $FlowFixMe
+        // $FlowFixMe: flow can't resolve render
         const element = await render(<Button>Hello, world!</Button>);
 
         // Act
