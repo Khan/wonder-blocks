@@ -33,7 +33,7 @@ type Props = {|
 
     /**
      * Type of the option.
-     * For example, if selectItemType is "student" and there are two students
+     * For example, if selectItemType is "students" and there are two students
      * selected, the SelectOpener would display "2 students"
      */
     selectItemType: string,
@@ -71,6 +71,11 @@ type Props = {|
      * Optional styling to add to the opener component wrapper.
      */
     style?: StyleType,
+
+    /**
+     * Optional styling to add to the dropdown wrapper.
+     */
+    dropdownStyle?: StyleType,
 |};
 
 type State = {|
@@ -249,7 +254,14 @@ export default class MultiSelect extends React.Component<Props, State> {
     };
 
     render() {
-        const {alignment, disabled, light, placeholder, style} = this.props;
+        const {
+            alignment,
+            disabled,
+            light,
+            placeholder,
+            style,
+            dropdownStyle,
+        } = this.props;
         const {open} = this.state;
 
         const menuText = this.getMenuText();
@@ -272,7 +284,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={selectDropdownStyle}
+                dropdownStyle={[selectDropdownStyle, dropdownStyle]}
                 items={items}
                 keyboard={this.state.keyboard}
                 light={light}
