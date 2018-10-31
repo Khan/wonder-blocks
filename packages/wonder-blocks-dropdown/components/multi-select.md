@@ -58,6 +58,71 @@ class ExampleNoneSelected extends React.Component {
 </View>
 ```
 
+### Multi-select with custom dropdown styling
+
+Sometimes, we may want to customize the dropdown style (for example, to limit
+the height of the list), For this purpose, we have the `dropdownStyle` prop.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    setWidth: {
+        minWidth: 170,
+    },
+    dropdownHeight: {
+        maxHeight: 200,
+    },
+});
+
+class ExampleScrolling extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValues: [],
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(update) {
+        console.log("changes happened!");
+        this.setState({
+           selectedValues: update,
+        });
+    }
+
+    render() {
+        return <MultiSelect
+            onChange={this.handleChange}
+            placeholder="Solar system"
+            selectedValues={this.state.selectedValues}
+            selectItemType="planets"
+            style={styles.setWidth}
+            dropdownStyle={styles.dropdownHeight}
+        >
+            <OptionItem label="Mercury" value="1" />
+            <OptionItem label="Venus" value="2" />
+            <OptionItem label="Earth" value="3" disabled />
+            <OptionItem label="Mars" value="4" />
+            <OptionItem label="Jupiter" value="5" />
+            <OptionItem label="Saturn" value="6" />
+            <OptionItem label="Neptune" value="7" />
+            <OptionItem label="Uranus" value="8" />
+        </MultiSelect>;
+    }
+}
+
+<View style={styles.row}>
+    <ExampleScrolling />
+</View>
+```
+
 ### Multi select with select all / select none shortcuts
 
 This example starts with one item selected and has selection shortcuts for

@@ -257,6 +257,69 @@ describe("wonder-blocks-dropdown", () => {
             row: {
                 flexDirection: "row",
             },
+            setWidth: {
+                minWidth: 170,
+                maxWidth: 190,
+            },
+            dropdown: {
+                maxHeight: 240,
+            },
+        });
+
+        class ExampleWithDropdownStyles extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValue: null,
+                };
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelect
+                        onChange={this.handleChange}
+                        placeholder="Choose a pet"
+                        selectedValue={this.state.selectedValue}
+                        style={styles.setWidth}
+                    >
+                        <OptionItem label="Cat" value="1" />
+                        <OptionItem label="Dog" value="2" />
+                        <OptionItem label="Goldfish" value="3" />
+                        <OptionItem label="Hamster" value="4" />
+                        <OptionItem label="Rabbit" value="5" />
+                        <OptionItem label="Rock" value="6" />
+                        <OptionItem label="Snake" value="7" />
+                        <OptionItem label="Tarantula" value="8" />
+                    </SingleSelect>
+                );
+            }
+        }
+
+        const example = (
+            <View style={styles.row}>
+                <ExampleWithDropdownStyles />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
         });
 
         class ExampleWithStartingSelection extends React.Component {
@@ -303,7 +366,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 7", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -359,7 +422,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const React = require("react");
         const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -434,7 +497,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -496,7 +559,72 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            setWidth: {
+                minWidth: 170,
+            },
+            dropdownHeight: {
+                maxHeight: 200,
+            },
+        });
+
+        class ExampleScrolling extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(update) {
+                console.log("changes happened!");
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelect
+                        onChange={this.handleChange}
+                        placeholder="Solar system"
+                        selectedValues={this.state.selectedValues}
+                        selectItemType="planets"
+                        style={styles.setWidth}
+                        dropdownStyle={styles.dropdownHeight}
+                    >
+                        <OptionItem label="Mercury" value="1" />
+                        <OptionItem label="Venus" value="2" />
+                        <OptionItem label="Earth" value="3" disabled />
+                        <OptionItem label="Mars" value="4" />
+                        <OptionItem label="Jupiter" value="5" />
+                        <OptionItem label="Saturn" value="6" />
+                        <OptionItem label="Neptune" value="7" />
+                        <OptionItem label="Uranus" value="8" />
+                    </MultiSelect>
+                );
+            }
+        }
+
+        const example = (
+            <View style={styles.row}>
+                <ExampleScrolling />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 11", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -563,7 +691,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 12", () => {
         const {StyleSheet} = require("aphrodite");
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
