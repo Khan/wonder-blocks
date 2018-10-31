@@ -505,6 +505,71 @@ describe("wonder-blocks-dropdown", () => {
             row: {
                 flexDirection: "row",
             },
+            setWidth: {
+                minWidth: 170,
+            },
+            dropdownHeight: {
+                maxHeight: 200,
+            },
+        });
+
+        class ExampleScrolling extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(update) {
+                console.log("changes happened!");
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelect
+                        onChange={this.handleChange}
+                        placeholder="Color palette"
+                        selectedValues={this.state.selectedValues}
+                        selectItemType="colors"
+                        style={styles.setWidth}
+                        dropdownStyle={styles.dropdownHeight}
+                    >
+                        <OptionItem label="Mercury" value="1" />
+                        <OptionItem label="Venus" value="2" />
+                        <OptionItem label="Earth" value="3" disabled />
+                        <OptionItem label="Mars" value="4" />
+                        <OptionItem label="Jupiter" value="5" />
+                        <OptionItem label="Saturn" value="6" />
+                        <OptionItem label="Neptune" value="7" />
+                        <OptionItem label="Uranus" value="8" />
+                    </MultiSelect>
+                );
+            }
+        }
+
+        const example = (
+            <View style={styles.row}>
+                <ExampleScrolling />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 10", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
         });
 
         class ExampleWithShortcuts extends React.Component {
@@ -563,7 +628,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const {StyleSheet} = require("aphrodite");
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
