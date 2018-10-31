@@ -56,6 +56,11 @@ type Props = {|
      * Optional styling to add to the opener component wrapper.
      */
     style?: StyleType,
+
+    /**
+     * Optional styling to add to the dropdown wrapper.
+     */
+    dropdownStyle?: StyleType,
 |};
 
 type State = {|
@@ -158,6 +163,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             alignment,
             children,
             disabled,
+            dropdownStyle,
             light,
             placeholder,
             selectedValue,
@@ -190,7 +196,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={selectDropdownStyle}
+                dropdownStyle={[selectDropdownStyle, dropdownStyle]}
                 initialFocusedIndex={this.selectedIndex}
                 items={items}
                 keyboard={this.state.keyboard}

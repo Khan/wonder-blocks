@@ -100,9 +100,9 @@ class ExampleScrolling extends React.Component {
     render() {
         return <MultiSelect
             onChange={this.handleChange}
-            placeholder="Color palette"
+            placeholder="Solar system"
             selectedValues={this.state.selectedValues}
-            selectItemType="colors"
+            selectItemType="planets"
             style={styles.setWidth}
             dropdownStyle={styles.dropdownHeight}
         >
