@@ -7,7 +7,9 @@
     "publish": {
       "ignore": [
         "*.test.js",
-        "*.md"
+        "*.vite_test.js",
+        "*.md",
+        "*.js.snap"
       ]
     }
   },
