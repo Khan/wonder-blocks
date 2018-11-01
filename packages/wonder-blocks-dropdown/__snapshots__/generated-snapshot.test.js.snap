@@ -724,6 +724,141 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         "display": "flex",
         "flexDirection": "column",
         "margin": 0,
+        "maxWidth": 190,
+        "minHeight": 0,
+        "minWidth": 170,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="listbox"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "borderColor": "rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "rgba(33,36,44,0.64)",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "margin": 0,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "marginRight": 8,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Choose a pet
+      </span>
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "minWidth": 16,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="rgba(33,36,44,0.64)"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
@@ -825,7 +960,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 6 1`] = `
+exports[`wonder-blocks-dropdown example 7 1`] = `
 <div
   className=""
   style={
@@ -960,7 +1095,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 7 1`] = `
+exports[`wonder-blocks-dropdown example 8 1`] = `
 <div
   className=""
   style={
@@ -1120,7 +1255,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 8 1`] = `
+exports[`wonder-blocks-dropdown example 9 1`] = `
 <div
   className=""
   style={
@@ -1254,7 +1389,141 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 9 1`] = `
+exports[`wonder-blocks-dropdown example 10 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 170,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="listbox"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "borderColor": "rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "rgba(33,36,44,0.64)",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "margin": 0,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "marginRight": 8,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Solar system
+      </span>
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "minWidth": 16,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="rgba(33,36,44,0.64)"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 11 1`] = `
 <div
   className=""
   style={
@@ -1388,7 +1657,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 10 1`] = `
+exports[`wonder-blocks-dropdown example 12 1`] = `
 <div
   className=""
   style={
