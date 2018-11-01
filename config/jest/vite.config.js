@@ -36,6 +36,7 @@ module.exports = {
         "@khanacademy/jest-environment-vite/dist/setup.js",
     collectCoverageFrom: [
         "packages/**/*.js",
+        "!packages/**/*.test.js",
         "!packages/**/dist/**/*.js",
         "!<rootDir>/node_modules/",
         "!packages/**/node_modules/",
