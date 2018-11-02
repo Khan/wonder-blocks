@@ -270,3 +270,23 @@ const modal = (
     </ModalLauncher>
 </View>
 ```
+
+### Empty and disabled
+
+`MultiSelect` can be disabled.  In this situation it may make sense to not
+provide any children to the component.
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <MultiSelect menuText="Empty" disabled={true} placeholder="empty" />
+</View>
+```

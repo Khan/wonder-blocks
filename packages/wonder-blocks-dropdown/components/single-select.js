@@ -16,7 +16,7 @@ type Props = {|
     /**
      * The items in this select.
      */
-    children: Array<React.Element<OptionItem>>,
+    children?: Array<React.Element<OptionItem>>,
 
     /**
      * Callback for when the selection. Parameter is the value of the newly

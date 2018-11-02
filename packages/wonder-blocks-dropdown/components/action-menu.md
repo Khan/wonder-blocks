@@ -130,3 +130,23 @@ class HybridMenu extends React.Component {
     <HybridMenu />
 </View>
 ```
+
+### Empty and disabled
+
+`ActionMenu` can be disabled.  In this situation it may make sense to not
+provide any children to the component.
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <ActionMenu menuText="Empty" disabled={true} />
+</View>
+```

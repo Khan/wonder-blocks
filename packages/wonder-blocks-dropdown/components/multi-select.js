@@ -18,7 +18,7 @@ type Props = {|
     /**
      * The items in this select.
      */
-    children: Array<React.Element<OptionItem>>,
+    children?: Array<React.Element<OptionItem>>,
 
     /**
      * Callback for when the selection changes. Parameter is an updated array of
@@ -105,6 +105,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         disabled: false,
         light: false,
         shortcuts: false,
+        selectedValues: [],
     };
 
     constructor(props: Props) {

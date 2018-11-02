@@ -283,3 +283,23 @@ class LightRightAlignedExample extends React.Component {
 </View>
 
 ```
+
+### Empty and disabled
+
+`SingleSelect` can be disabled.  In this situation it may make sense to not
+provide any children to the component.
+
+```js
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <SingleSelect menuText="Empty" disabled={true} placeholder="empty" />
+</View>
+```
