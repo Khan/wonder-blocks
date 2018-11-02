@@ -428,6 +428,75 @@ describe("wonder-blocks-form", () => {
     it("example 7", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            wrapper: {
+                width: 650,
+            },
+            choice: {
+                margin: 0,
+                height: 48,
+                borderTop: "solid 1px #CCC",
+                justifyContent: "center",
+                ":last-child": {
+                    borderBottom: "solid 1px #CCC",
+                },
+            },
+            prompt: {
+                marginBottom: 16,
+            },
+        });
+
+        class ClassSelectorExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                };
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(change) {
+                console.log(`${change} was selected!`);
+                this.setState({
+                    selectedValues: change,
+                });
+            }
+
+            render() {
+                return (
+                    <CheckboxGroup
+                        groupName="science-classes"
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                    >
+                        <Choice label="1" value="1" style={styles.choice} />
+                        <Choice label="2" value="2" style={styles.choice} />
+                        <Choice label="3" value="3" style={styles.choice} />
+                        <Choice label="4" value="4" style={styles.choice} />
+                        <Choice label="5" value="5" style={styles.choice} />
+                    </CheckboxGroup>
+                );
+            }
+        }
+
+        const example = (
+            <View>
+                <LabelLarge style={styles.prompt}>
+                    Select all prime numbers
+                </LabelLarge>
+                <ClassSelectorExample />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 8", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -487,6 +556,74 @@ describe("wonder-blocks-form", () => {
         const example = (
             <View style={styles.wrapper}>
                 <RadioGroupPokemonExample />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 9", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            wrapper: {
+                width: 650,
+            },
+            choice: {
+                margin: 0,
+                height: 48,
+                borderTop: "solid 1px #CCC",
+                justifyContent: "center",
+                ":last-child": {
+                    borderBottom: "solid 1px #CCC",
+                },
+            },
+            prompt: {
+                marginBottom: 16,
+            },
+        });
+
+        class ClassSelectorExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                };
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(change) {
+                console.log(`${change} was selected!`);
+                this.setState({
+                    selectedValues: change,
+                });
+            }
+
+            render() {
+                return (
+                    <RadioGroup
+                        groupName="science-classes"
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                    >
+                        <Choice label="A" value="1" style={styles.choice} />
+                        <Choice label="B" value="2" style={styles.choice} />
+                        <Choice label="AB" value="3" style={styles.choice} />
+                        <Choice label="O" value="4" style={styles.choice} />
+                    </RadioGroup>
+                );
+            }
+        }
+
+        const example = (
+            <View>
+                <LabelLarge style={styles.prompt}>
+                    Select your blood type
+                </LabelLarge>
+                <ClassSelectorExample />
             </View>
         );
         const tree = renderer.create(example).toJSON();
