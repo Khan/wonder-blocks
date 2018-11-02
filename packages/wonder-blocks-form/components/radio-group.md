@@ -95,7 +95,7 @@ class ClassSelectorExample extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedValues: [],
+            selectedValue: null,
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -103,7 +103,7 @@ class ClassSelectorExample extends React.Component {
     handleChange(change) {
         console.log(`${change} was selected!`);
         this.setState({
-            selectedValues: change,
+            selectedValue: change,
         });
     }
 
@@ -111,7 +111,7 @@ class ClassSelectorExample extends React.Component {
         return <RadioGroup
             groupName="science-classes"
             onChange={this.handleChange}
-            selectedValues={this.state.selectedValues}
+            selectedValue={this.state.selectedValue}
         >
             <Choice label="A" value="1" style={styles.choice} />
             <Choice label="B" value="2" style={styles.choice} />

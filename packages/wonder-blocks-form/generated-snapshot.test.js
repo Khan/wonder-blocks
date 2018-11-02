@@ -590,7 +590,7 @@ describe("wonder-blocks-form", () => {
             constructor() {
                 super();
                 this.state = {
-                    selectedValues: [],
+                    selectedValue: null,
                 };
                 this.handleChange = this.handleChange.bind(this);
             }
@@ -598,7 +598,7 @@ describe("wonder-blocks-form", () => {
             handleChange(change) {
                 console.log(`${change} was selected!`);
                 this.setState({
-                    selectedValues: change,
+                    selectedValue: change,
                 });
             }
 
@@ -607,7 +607,7 @@ describe("wonder-blocks-form", () => {
                     <RadioGroup
                         groupName="science-classes"
                         onChange={this.handleChange}
-                        selectedValues={this.state.selectedValues}
+                        selectedValue={this.state.selectedValue}
                     >
                         <Choice label="A" value="1" style={styles.choice} />
                         <Choice label="B" value="2" style={styles.choice} />
