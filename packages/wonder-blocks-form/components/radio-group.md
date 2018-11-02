@@ -63,7 +63,7 @@ class RadioGroupPokemonExample extends React.Component {
 ```
 
 This example shows how to use custom styling to change the appearance of the
-checkbox group to look more like a multiple choice question.
+radio group to look more like a multiple choice question.
 
 ```js
 const React = require("react");
