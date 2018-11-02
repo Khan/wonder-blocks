@@ -42,11 +42,12 @@ class ExampleWithPlaceholder extends React.Component {
             placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
             style={styles.setWidth}
+            testId="fruit-select"
         >
-            <OptionItem label="Vine-ripened tomatoes" value="tomato" />
-            <OptionItem label="Watermelon" value="watermelon" />
-            <OptionItem label="Strawberry" value="strawberry" />
-            {false && <OptionItem label="Other" value="other" />}
+            <OptionItem label="Vine-ripened tomatoes" value="tomato" testId="tomato" />
+            <OptionItem label="Watermelon" value="watermelon" testId="watermelon" />
+            <OptionItem label="Strawberry" value="strawberry" testId="strawberry" />
+            {false && <OptionItem label="Other" value="other" testId="other" />}
         </SingleSelect>;
     }
 }
