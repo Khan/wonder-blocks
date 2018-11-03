@@ -7,6 +7,7 @@ import {processStyleList} from "./util.js";
 
 import type {StyleType} from "./types.js";
 
+// TODO(kevinb): have an a version which uses exact object types
 export default function addStyle<T: Object>(
     Component: React.ComponentType<T> | string,
     defaultStyle?: StyleType,

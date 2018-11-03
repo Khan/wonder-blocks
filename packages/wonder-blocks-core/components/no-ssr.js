@@ -26,7 +26,7 @@ type State = {|
     mounted: boolean,
 |};
 
-const HasHadFirstRenderContext = React.createContext(false);
+const HasHadFirstRenderContext = React.createContext<boolean>(false);
 
 /**
  * Defer or change rendering until the component did mount.

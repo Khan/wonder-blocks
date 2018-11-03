@@ -59,8 +59,8 @@ type CheckboxGroupProps = {|
     selectedValues: Array<string>,
 |};
 
-const StyledFieldset = addStyle("fieldset");
-const StyledLegend = addStyle("legend");
+const StyledFieldset = addStyle<React.ElementProps<"fieldset">>("fieldset");
+const StyledLegend = addStyle<React.ElementProps<"legend">>("legend");
 
 /**
  * A checkbox group allows multiple selection. This component auto-populates

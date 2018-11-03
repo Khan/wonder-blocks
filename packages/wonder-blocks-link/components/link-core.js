@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
@@ -19,8 +19,8 @@ type Props = {|
     href: string,
 |};
 
-const StyledAnchor = addStyle("a");
-const StyledLink = addStyle(Link);
+const StyledAnchor = addStyle<React.ElementProps<"a">>("a");
+const StyledLink = addStyle<React.ElementProps<typeof Link>>(Link);
 
 export default class LinkCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
