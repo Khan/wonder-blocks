@@ -7,6 +7,10 @@
  *
  * We need a separate config so that we can specify which tests
  * we want to run using jest-environment-vite.
+ *
+ * NOTE: vscode-jest doesn't support the "packages" setting in
+ * package.json so these tests have to be run manually using
+ * yarn test:vite.
  */
 module.exports = {
     rootDir: "../../",

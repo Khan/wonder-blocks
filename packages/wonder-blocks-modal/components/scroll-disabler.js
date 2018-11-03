@@ -12,10 +12,7 @@
 
 import {Component} from "react";
 
-const needsHackyMobileSafariScrollDisabler = (() => {
-    const userAgent = window.navigator.userAgent;
-    return userAgent.indexOf("iPad") > -1 || userAgent.indexOf("iPhone") > -1;
-})();
+import needsHackyMobileSafariScrollDisabler from "../util/needs-hacky-mobile-safari-scroll-disabler.js";
 
 class ScrollDisabler extends Component<{}> {
     static numModalsOpened = 0;
