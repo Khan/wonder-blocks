@@ -178,9 +178,11 @@ export default class SingleSelect extends React.Component<Props, State> {
         // item in the menu, use the placeholder.
         const menuText = selectedItem ? selectedItem.props.label : placeholder;
 
+        const items = this.getMenuItems();
+
         const opener = (
             <SelectOpener
-                disabled={disabled}
+                disabled={items.length === 0 || disabled}
                 isPlaceholder={!selectedItem}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
@@ -190,8 +192,6 @@ export default class SingleSelect extends React.Component<Props, State> {
                 {menuText}
             </SelectOpener>
         );
-
-        const items = this.getMenuItems();
 
         return (
             <Dropdown

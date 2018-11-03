@@ -131,10 +131,7 @@ class HybridMenu extends React.Component {
 </View>
 ```
 
-### Empty and disabled
-
-`ActionMenu` can be disabled.  In this situation it may make sense to not
-provide any children to the component.
+### Empty menus are disabled automatically
 
 ```js
 const {StyleSheet} = require("aphrodite");
@@ -147,6 +144,6 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
-    <ActionMenu menuText="Empty" disabled={true} />
+    <ActionMenu menuText="Empty" />
 </View>
 ```

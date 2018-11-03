@@ -267,9 +267,11 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         const menuText = this.getMenuText();
 
+        const items = [...this.getShortcuts(), ...this.getMenuItems()];
+
         const opener = (
             <SelectOpener
-                disabled={disabled}
+                disabled={items.length === 0 || disabled}
                 isPlaceholder={menuText === placeholder}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
@@ -279,8 +281,6 @@ export default class MultiSelect extends React.Component<Props, State> {
                 {menuText}
             </SelectOpener>
         );
-
-        const items = [...this.getShortcuts(), ...this.getMenuItems()];
 
         return (
             <Dropdown

@@ -172,9 +172,11 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const {alignment, disabled, menuText, style} = this.props;
         const {open} = this.state;
 
+        const items = this.getMenuItems();
+
         const opener = (
             <ActionMenuOpener
-                disabled={disabled}
+                disabled={items.length === 0 || disabled}
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
                 ref={this.handleOpenerRef}
@@ -187,7 +189,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             <Dropdown
                 alignment={alignment}
                 dropdownStyle={styles.menuTopSpace}
-                items={this.getMenuItems()}
+                items={items}
                 keyboard={this.state.keyboard}
                 light={false}
                 onOpenChanged={this.handleOpenChanged}

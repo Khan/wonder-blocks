@@ -271,10 +271,7 @@ const modal = (
 </View>
 ```
 
-### Empty and disabled
-
-`MultiSelect` can be disabled.  In this situation it may make sense to not
-provide any children to the component.
+### Empty menus are disabled automatically
 
 ```js
 const {StyleSheet} = require("aphrodite");
@@ -287,6 +284,6 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
-    <MultiSelect menuText="Empty" disabled={true} placeholder="empty" />
+    <MultiSelect menuText="Empty" placeholder="empty" />
 </View>
 ```
