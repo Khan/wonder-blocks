@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
 
     defaultLineGap: {
-        marginTop: 8,
+        marginTop: Spacing.xSmall,
     },
 });
 
