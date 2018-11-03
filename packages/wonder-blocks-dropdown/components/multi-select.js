@@ -73,6 +73,11 @@ type Props = {|
     style?: StyleType,
 
     /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
      * Optional styling to add to the dropdown wrapper.
      */
     dropdownStyle?: StyleType,
@@ -260,6 +265,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             light,
             placeholder,
             style,
+            testId,
             dropdownStyle,
         } = this.props;
         const {open} = this.state;
@@ -274,6 +280,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
                 ref={this.handleOpenerRef}
+                testId={testId}
             >
                 {menuText}
             </SelectOpener>

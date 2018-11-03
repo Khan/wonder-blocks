@@ -49,6 +49,11 @@ type OptionProps = {|
     selected: boolean,
 
     /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
      * Whether the item should show a check or checkbox to indicate selection
      * state. Auto-populated by menu or select.
      * @ignore
@@ -87,7 +92,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     };
 
     render() {
-        const {disabled, label, selected} = this.props;
+        const {disabled, label, selected, testId} = this.props;
 
         const ClickableBehavior = getClickableBehavior();
         const CheckComponent = this.getCheckComponent();
@@ -111,6 +116,7 @@ export default class OptionItem extends React.Component<OptionProps> {
 
                     return (
                         <View
+                            data-test-id={testId}
                             style={defaultStyle}
                             aria-checked={selected ? "true" : "false"}
                             role="option"

@@ -51,6 +51,11 @@ type MenuProps = {|
      * Optional styling to add to the opener component wrapper.
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 type State = {|
@@ -169,7 +174,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
     };
 
     render() {
-        const {alignment, disabled, menuText, style} = this.props;
+        const {alignment, disabled, menuText, style, testId} = this.props;
         const {open} = this.state;
 
         const opener = (
@@ -178,6 +183,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
                 ref={this.handleOpenerRef}
+                testId={testId}
             >
                 {menuText}
             </ActionMenuOpener>
