@@ -35,7 +35,7 @@ type Props = {|
     style?: StyleType,
 |};
 
-const StyledSVG = addStyle<React.ElementProps<"svg">>("svg");
+const StyledSVG = addStyle<"svg">("svg");
 
 /**
  * An Icon displays a small informational or decorative image as an SVG.

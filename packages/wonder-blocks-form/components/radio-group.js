@@ -58,8 +58,8 @@ type RadioGroupProps = {|
     selectedValue: string,
 |};
 
-const StyledFieldset = addStyle<React.ElementProps<"fieldset">>("fieldset");
-const StyledLegend = addStyle<React.ElementProps<"legend">>("legend");
+const StyledFieldset = addStyle<"fieldset">("fieldset");
+const StyledLegend = addStyle<"legend">("legend");
 
 /**
  * A radio group allows only single selection. Like CheckboxGroup, this

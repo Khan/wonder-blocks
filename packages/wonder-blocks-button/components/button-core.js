@@ -26,9 +26,9 @@ type Props = {|
     pressed: boolean,
 |};
 
-const StyledAnchor = addStyle<React.ElementProps<"a">>("a");
-const StyledButton = addStyle<React.ElementProps<"button">>("button");
-const StyledLink = addStyle<React.ElementProps<typeof Link>>(Link);
+const StyledAnchor = addStyle<"a">("a");
+const StyledButton = addStyle<"button">("button");
+const StyledLink = addStyle<typeof Link>(Link);
 
 export default class ButtonCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};

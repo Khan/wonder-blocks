@@ -19,8 +19,8 @@ type Props = {|
     href: string,
 |};
 
-const StyledAnchor = addStyle<React.ElementProps<"a">>("a");
-const StyledLink = addStyle<React.ElementProps<typeof Link>>(Link);
+const StyledAnchor = addStyle<"a">("a");
+const StyledLink = addStyle<typeof Link>(Link);
 
 export default class LinkCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};

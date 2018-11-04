@@ -8,11 +8,11 @@ import {processStyleList} from "./util.js";
 import type {StyleType} from "./types.js";
 
 // TODO(kevinb): have an a version which uses exact object types
-export default function addStyle<T: Object>(
-    Component: React.ComponentType<T> | string,
+export default function addStyle<T: React.ComponentType<*> | string>(
+    Component: T,
     defaultStyle?: StyleType,
-): React.ComponentType<T & {style: StyleType}> {
-    function StyleComponent(props: T & {style: StyleType}) {
+): React.ComponentType<React.ElementProps<T> & {style: StyleType}> {
+    function StyleComponent(props: React.ElementProps<T> & {style: StyleType}) {
         const {style, ...otherProps} = props;
         const reset =
             typeof Component === "string" ? overrides[Component] : null;

@@ -21,7 +21,7 @@ type Props = {|
     pressed: boolean,
 |};
 
-const StyledButton = addStyle<React.ElementProps<"button">>("button");
+const StyledButton = addStyle<"button">("button");
 
 /**
  * Although this component shares a lot with ButtonCore there are a couple
