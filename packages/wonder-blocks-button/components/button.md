@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     </Button>
     <Button
         style={styles.button}
-        onClick={(e) => window.alert("Hello, world!")}
+        href={"/foo"}
         kind="secondary"
         disabled={true}
     >

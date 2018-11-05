@@ -106,7 +106,7 @@ export default class IconButtonCore extends React.Component<Props> {
             ...handlers,
         };
 
-        if (href) {
+        if (href && !disabled) {
             return router && !skipClientNav ? (
                 <View style={style}>
                     <StyledLink {...commonProps} to={href}>

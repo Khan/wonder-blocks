@@ -123,7 +123,7 @@ export default class ButtonCore extends React.Component<Props> {
             </React.Fragment>
         );
 
-        if (href) {
+        if (href && !disabled) {
             return router && !skipClientNav ? (
                 <StyledLink {...commonProps} to={href}>
                     {contents}

@@ -22,7 +22,7 @@ const {Strut} = require("@khanacademy/wonder-blocks-layout");
         icon={icons.search}
         aria-label="search"
         kind="tertiary"
-        onClick={(e) => console.log("hello")}
+        href="/search"
     />
     <Strut size={16} />
     <IconButton
@@ -30,6 +30,13 @@ const {Strut} = require("@khanacademy/wonder-blocks-layout");
         icon={icons.search}
         aria-label="search"
         onClick={(e) => console.log("hello")}
+    />
+    <Strut size={16} />
+    <IconButton
+        disabled={true}
+        icon={icons.search}
+        aria-label="search"
+        href="/search"
     />
 </View>
 ```
