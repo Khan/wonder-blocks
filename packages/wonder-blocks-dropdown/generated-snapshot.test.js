@@ -29,28 +29,37 @@ describe("wonder-blocks-dropdown", () => {
         });
         const example = (
             <View style={styles.row}>
-                <ActionMenu alignment="right" menuText="Betsy Appleseed">
+                <ActionMenu
+                    alignment="right"
+                    menuText="Betsy Appleseed"
+                    testId="teacher-menu"
+                >
                     <ActionItem
                         label="Profile"
                         href="http://khanacademy.org/profile"
+                        testId="profile"
                     />
                     <ActionItem
                         label="Teacher dashboard"
                         href="http://khanacademy.org/coach/dashboard"
+                        testId="dashboard"
                     />
                     <ActionItem
                         label="Settings (onClick)"
                         onClick={() => console.log("user clicked on settings")}
+                        testId="settings"
                     />
                     <ActionItem
                         label="Help"
                         disabled={true}
                         onClick={() => console.log("this item is disabled...")}
+                        testId="help"
                     />
                     <SeparatorItem />
                     <ActionItem
                         label="Log out"
                         href="http://khanacademy.org/logout"
+                        testId="logout"
                     />
                 </ActionMenu>
             </View>
@@ -245,14 +254,30 @@ describe("wonder-blocks-dropdown", () => {
                         placeholder="Choose a fruit"
                         selectedValue={this.state.selectedValue}
                         style={styles.setWidth}
+                        testId="fruit-select"
                     >
                         <OptionItem
                             label="Vine-ripened tomatoes"
                             value="tomato"
+                            testId="tomato"
                         />
-                        <OptionItem label="Watermelon" value="watermelon" />
-                        <OptionItem label="Strawberry" value="strawberry" />
-                        {false && <OptionItem label="Other" value="other" />}
+                        <OptionItem
+                            label="Watermelon"
+                            value="watermelon"
+                            testId="watermelon"
+                        />
+                        <OptionItem
+                            label="Strawberry"
+                            value="strawberry"
+                            testId="strawberry"
+                        />
+                        {false && (
+                            <OptionItem
+                                label="Other"
+                                value="other"
+                                testId="other"
+                            />
+                        )}
                     </SingleSelect>
                 );
             }
@@ -572,16 +597,25 @@ describe("wonder-blocks-dropdown", () => {
                         selectedValues={this.state.selectedValues}
                         selectItemType="colors"
                         style={styles.setWidth}
+                        testId="palette"
                     >
                         <OptionItem
                             label="Red"
                             value="1"
+                            testId="red"
                             onClick={() => console.log("Roses are red")}
                         />
-                        <OptionItem label="Yellow" value="2" disabled />
-                        <OptionItem label="Green" value="3" />
-                        <OptionItem label="Blue" value="4" />
-                        {false && <OptionItem label="Pink" value="5" />}
+                        <OptionItem
+                            label="Yellow"
+                            value="2"
+                            disabled
+                            testId="yellow"
+                        />
+                        <OptionItem label="Green" value="3" testId="green" />
+                        <OptionItem label="Blue" value="4" testId="blue" />
+                        {false && (
+                            <OptionItem label="Pink" value="5" testId="pink" />
+                        )}
                     </MultiSelect>
                 );
             }

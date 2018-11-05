@@ -45,6 +45,11 @@ type ActionProps = {|
     skipClientNav?: boolean,
 
     /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
      * Function to call when button is clicked.
      *
      * This callback should be used for things like marking BigBingo
@@ -92,6 +97,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             indent,
             label,
             onClick,
+            testId,
         } = this.props;
         const {router} = this.context;
 
@@ -121,6 +127,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                     ];
 
                     const props = {
+                        "data-test-id": testId,
                         disabled,
                         style: [defaultStyle],
                         ...handlers,

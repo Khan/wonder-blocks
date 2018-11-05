@@ -41,14 +41,15 @@ class ExampleNoneSelected extends React.Component {
             selectedValues={this.state.selectedValues}
             selectItemType="colors"
             style={styles.setWidth}
+            testId="palette"
         >
-            <OptionItem label="Red" value="1"
+            <OptionItem label="Red" value="1" testId="red"
                 onClick={() => console.log("Roses are red")}
             />
-            <OptionItem label="Yellow" value="2" disabled />
-            <OptionItem label="Green" value="3" />
-            <OptionItem label="Blue" value="4" />
-            {false && <OptionItem label="Pink" value="5" />}
+            <OptionItem label="Yellow" value="2" disabled testId="yellow"/>
+            <OptionItem label="Green" value="3" testId="green" />
+            <OptionItem label="Blue" value="4" testId="blue" />
+            {false && <OptionItem label="Pink" value="5" testId="pink" />}
         </MultiSelect>;
     }
 }

@@ -50,6 +50,11 @@ type SelectOpenerProps = {|
     light: boolean,
 
     /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
      * Callback for when the SelectOpener is pressed.
      */
     onOpenChanged: (open: boolean, keyboard: boolean) => void,
@@ -78,7 +83,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
     };
 
     render() {
-        const {children, disabled, isPlaceholder, light} = this.props;
+        const {children, disabled, isPlaceholder, light, testId} = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
@@ -104,6 +109,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
                     return (
                         <StyledButton
+                            data-test-id={testId}
                             disabled={disabled}
                             role="listbox"
                             type="button"

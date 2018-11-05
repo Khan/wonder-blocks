@@ -28,13 +28,14 @@ const styles = StyleSheet.create({
     <ActionMenu
         alignment="right"
         menuText="Betsy Appleseed"
+        testId="teacher-menu"
     >
-        <ActionItem label="Profile" href="http://khanacademy.org/profile" />
-        <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" />
-        <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} />
-        <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} />
+        <ActionItem label="Profile" href="http://khanacademy.org/profile" testId="profile" />
+        <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" testId="dashboard" />
+        <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} testId="settings" />
+        <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} testId="help" />
         <SeparatorItem />
-        <ActionItem label="Log out" href="http://khanacademy.org/logout" />
+        <ActionItem label="Log out" href="http://khanacademy.org/logout" testId="logout" />
     </ActionMenu>
 </View>
 ```
