@@ -12,7 +12,9 @@ export default function addStyle<T: React.ComponentType<*> | string>(
     Component: T,
     defaultStyle?: StyleType,
 ): React.ComponentType<React.ElementProps<T> & {style: StyleType}> {
-    function StyleComponent(props: React.ElementProps<T> & {style: StyleType}) {
+    function StyleComponent(
+        props: React.ElementConfig<T> & {style: StyleType},
+    ) {
         const {style, ...otherProps} = props;
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
