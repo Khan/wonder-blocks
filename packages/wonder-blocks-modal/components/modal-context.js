@@ -9,4 +9,4 @@ const defaultContext: ContextType = {
     closeModal: undefined,
 };
 
-export default React.createContext(defaultContext);
+export default React.createContext<ContextType>(defaultContext);

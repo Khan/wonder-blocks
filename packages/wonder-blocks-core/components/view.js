@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import addStyle from "../util/add-style.js";
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const StyledDiv = addStyle("div", styles.default);
+const StyledDiv = addStyle<"div">("div", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly

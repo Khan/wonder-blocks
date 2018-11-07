@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
@@ -35,7 +35,7 @@ type Props = {|
     style?: StyleType,
 |};
 
-const StyledSVG = addStyle("svg");
+const StyledSVG = addStyle<"svg">("svg");
 
 /**
  * An Icon displays a small informational or decorative image as an SVG.

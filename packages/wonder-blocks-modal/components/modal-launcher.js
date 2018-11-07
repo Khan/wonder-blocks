@@ -123,7 +123,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
 
         const {body} = document;
         if (!body) {
-            return;
+            return null;
         }
 
         return (
