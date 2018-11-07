@@ -88,11 +88,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
         return (
-            <ClickableBehavior
-                disabled={disabled}
-                onClick={this.handleClick}
-                role="listbox"
-            >
+            <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
                 {(state, handlers) => {
                     const stateStyles = _generateStyles(light, isPlaceholder);
                     const {hovered, focused, pressed} = state;
@@ -111,7 +107,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                         <StyledButton
                             data-test-id={testId}
                             disabled={disabled}
-                            role="listbox"
                             type="button"
                             style={[
                                 styles.shared,

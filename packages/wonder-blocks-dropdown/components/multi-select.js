@@ -291,6 +291,7 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         return (
             <Dropdown
+                role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}
                 items={items}

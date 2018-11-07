@@ -83,6 +83,11 @@ type DropdownProps = {|
      * Optional styling for the entire dropdown component.
      */
     style?: StyleType,
+
+    /**
+     * The aria "role" applied to the dropdown container.
+     */
+    role: "listbox" | "menu",
 |};
 
 type State = {|
@@ -450,12 +455,23 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             : 0;
 
         let focusCounter = 0;
+        let itemRole;
+
+        switch (this.props.role) {
+            case "listbox":
+                itemRole = "option";
+                break;
+            case "menu":
+                itemRole = "menuitem";
+                break;
+        }
 
         return (
             <View
                 // Stop propagation to prevent the mouseup listener on the
                 // document from closing the menu.
                 onMouseUp={this.handleDropdownMouseUp}
+                role={this.props.role}
                 style={[
                     styles.dropdown,
                     light && styles.light,
@@ -478,6 +494,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                             ref:
                                 item.focusable &&
                                 this.state.itemRefs[focusIndex].ref,
+                            role: itemRole,
                             onClick: () => {
                                 this.handleClickFocus(focusIndex);
                                 if (item.component.props.onClick) {
