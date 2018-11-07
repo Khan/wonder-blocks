@@ -271,3 +271,20 @@ const modal = (
     </ModalLauncher>
 </View>
 ```
+
+### Empty menus are disabled automatically
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <MultiSelect menuText="Empty" placeholder="empty" />
+</View>
+```

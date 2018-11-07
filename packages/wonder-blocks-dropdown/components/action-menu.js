@@ -16,7 +16,7 @@ type MenuProps = {|
     /**
      * The items in this dropdown.
      */
-    children: Array<Item>,
+    children?: Array<Item>,
 
     /**
      * Text for the opener of this menu.
@@ -177,9 +177,11 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const {alignment, disabled, menuText, style, testId} = this.props;
         const {open} = this.state;
 
+        const items = this.getMenuItems();
+
         const opener = (
             <ActionMenuOpener
-                disabled={disabled}
+                disabled={items.length === 0 || disabled}
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
                 ref={this.handleOpenerRef}
@@ -193,7 +195,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             <Dropdown
                 alignment={alignment}
                 dropdownStyle={styles.menuTopSpace}
-                items={this.getMenuItems()}
+                items={items}
                 keyboard={this.state.keyboard}
                 light={false}
                 onOpenChanged={this.handleOpenChanged}
