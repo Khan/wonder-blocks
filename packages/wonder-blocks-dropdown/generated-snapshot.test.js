@@ -55,6 +55,12 @@ describe("wonder-blocks-dropdown", () => {
                         onClick={() => console.log("this item is disabled...")}
                         testId="help"
                     />
+                    <ActionItem
+                        label="Feedback"
+                        disabled={true}
+                        href="/feedback"
+                        testId="feedback"
+                    />
                     <SeparatorItem />
                     <ActionItem
                         label="Log out"

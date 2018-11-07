@@ -143,7 +143,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                         </React.Fragment>
                     );
 
-                    if (href) {
+                    if (href && !disabled) {
                         return router && !skipClientNav ? (
                             <StyledLink {...props} to={href}>
                                 {children}

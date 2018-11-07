@@ -1822,11 +1822,11 @@ exports[`wonder-blocks-button example 8 1`] = `
     }
   }
 >
-  <a
+  <button
     aria-disabled="true"
     aria-label="loading"
     className=""
-    href="/foo"
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -1843,6 +1843,9 @@ exports[`wonder-blocks-button example 8 1`] = `
     role="button"
     style={
       Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
         "alignItems": "center",
         "background": "rgba(33,36,44,0.32)",
         "border": "none",
@@ -1853,6 +1856,7 @@ exports[`wonder-blocks-button example 8 1`] = `
         "display": "inline-flex",
         "height": 40,
         "justifyContent": "center",
+        "margin": 0,
         "marginRight": 10,
         "outline": "none",
         "paddingBottom": 0,
@@ -1865,6 +1869,7 @@ exports[`wonder-blocks-button example 8 1`] = `
       }
     }
     tabIndex={-1}
+    type="button"
   >
     <span
       className=""
@@ -1942,7 +1947,7 @@ exports[`wonder-blocks-button example 8 1`] = `
         />
       </svg>
     </div>
-  </a>
+  </button>
   <button
     aria-disabled="true"
     aria-label="loading"
