@@ -132,3 +132,20 @@ class HybridMenu extends React.Component {
     <HybridMenu />
 </View>
 ```
+
+### Empty menus are disabled automatically
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <ActionMenu menuText="Empty" />
+</View>
+```

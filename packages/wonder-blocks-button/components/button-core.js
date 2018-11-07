@@ -26,9 +26,9 @@ type Props = {|
     pressed: boolean,
 |};
 
-const StyledAnchor = addStyle("a");
-const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
+const StyledAnchor = addStyle<"a">("a");
+const StyledButton = addStyle<"button">("button");
+const StyledLink = addStyle<typeof Link>(Link);
 
 export default class ButtonCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};

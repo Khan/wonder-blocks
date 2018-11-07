@@ -284,3 +284,20 @@ class LightRightAlignedExample extends React.Component {
 </View>
 
 ```
+
+### Empty menus are disabled automatically
+
+```js
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <SingleSelect menuText="Empty" placeholder="empty" />
+</View>
+```
