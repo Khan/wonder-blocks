@@ -75,15 +75,18 @@ describe("ModalBackdrop", () => {
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
-    test("On mount, we focus the last button in the modal", () => {
+    test("On mount, we focus the last button in the modal", (done) => {
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
                 {exampleModalWithButtons}
             </ModalBackdrop>,
         );
 
-        const lastButton = wrapper.find("[data-last-button]").getDOMNode();
-        expect(document.activeElement).toBe(lastButton);
+        setTimeout(() => {
+            const lastButton = wrapper.find("[data-last-button]").getDOMNode();
+            expect(document.activeElement).toBe(lastButton);
+            done();
+        }, 0);
     });
 
     // TODO(mdr): I haven't figured out how to actually simulate tab keystrokes

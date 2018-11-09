@@ -42,7 +42,10 @@ export default class ModalBackdrop extends React.Component<Props> {
         if (!lastButton) {
             return;
         }
-        lastButton.focus();
+        // wait for styles to applied
+        setTimeout(() => {
+            lastButton.focus();
+        }, 0);
     }
 
     /**
