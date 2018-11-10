@@ -44,6 +44,8 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
     }
   >
     <button
+      aria-expanded="true"
+      aria-haspopup="menu"
       className=""
       data-test-id="teacher-menu"
       disabled={false}
@@ -61,7 +63,6 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       open={false}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -244,6 +245,8 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     }
   >
     <button
+      aria-expanded="true"
+      aria-haspopup="menu"
       className=""
       disabled={false}
       onBlur={[Function]}
@@ -260,7 +263,6 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       open={false}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -422,6 +424,8 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
     }
   >
     <button
+      aria-expanded="true"
+      aria-haspopup="menu"
       className=""
       disabled={false}
       onBlur={[Function]}
@@ -438,7 +442,6 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       open={false}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -601,6 +604,8 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
   >
     <button
       aria-disabled="true"
+      aria-expanded="true"
+      aria-haspopup="menu"
       className=""
       disabled={true}
       onBlur={[Function]}
@@ -617,7 +622,6 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       open={false}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -780,6 +784,8 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       data-test-id="fruit-select"
       disabled={false}
@@ -915,6 +921,8 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       disabled={false}
       onBlur={[Function]}
@@ -1048,6 +1056,8 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       disabled={false}
       onBlur={[Function]}
@@ -1181,6 +1191,8 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       disabled={true}
       onBlur={[Function]}
@@ -1340,6 +1352,8 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       }
     >
       <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
         className=""
         disabled={false}
         onBlur={[Function]}
@@ -1474,6 +1488,8 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       disabled={true}
       onBlur={[Function]}
@@ -1608,6 +1624,8 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       data-test-id="palette"
       disabled={false}
@@ -1742,6 +1760,8 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       disabled={false}
       onBlur={[Function]}
@@ -1875,6 +1895,8 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       disabled={false}
       onBlur={[Function]}
@@ -2101,6 +2123,8 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
     }
   >
     <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
       className=""
       disabled={true}
       onBlur={[Function]}

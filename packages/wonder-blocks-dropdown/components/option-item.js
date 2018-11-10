@@ -124,7 +124,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                         <View
                             data-test-id={testId}
                             style={defaultStyle}
-                            aria-checked={selected ? "true" : "false"}
+                            aria-selected={selected ? "true" : "false"}
                             role={role}
                             {...handlers}
                         >
