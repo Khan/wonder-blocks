@@ -445,6 +445,15 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         }
     };
 
+    getItemRole() {
+        switch (this.props.role) {
+            case "listbox":
+                return "option";
+            case "menu":
+                return "menuitem";
+        }
+    }
+
     renderItems(outOfBoundaries: ?boolean) {
         const {items, dropdownStyle, light, openerElement} = this.props;
 
@@ -454,17 +463,9 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
-        let focusCounter = 0;
-        let itemRole;
+        const itemRole = this.getItemRole();
 
-        switch (this.props.role) {
-            case "listbox":
-                itemRole = "option";
-                break;
-            case "menu":
-                itemRole = "menuitem";
-                break;
-        }
+        let focusCounter = 0;
 
         return (
             <View
