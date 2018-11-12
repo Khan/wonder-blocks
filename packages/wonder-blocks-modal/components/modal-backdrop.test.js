@@ -5,6 +5,9 @@ import {mount} from "enzyme";
 import ModalBackdrop from "./modal-backdrop.js";
 import StandardModal from "./standard-modal.js";
 
+const sleep = (duration: number = 0) =>
+    new Promise((resolve, reject) => setTimeout(resolve, duration));
+
 const exampleModal = (
     <StandardModal
         content={<div data-modal-content />}
@@ -75,14 +78,19 @@ describe("ModalBackdrop", () => {
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
-    test("On mount, we focus the last button in the modal", () => {
+    test("On mount, we focus the last button in the modal", async () => {
+        // Arrange
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
                 {exampleModalWithButtons}
             </ModalBackdrop>,
         );
 
+        // Act
+        await sleep(); // wait for styles to be applied
         const lastButton = wrapper.find("[data-last-button]").getDOMNode();
+
+        // Assert
         expect(document.activeElement).toBe(lastButton);
     });
 

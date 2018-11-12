@@ -186,12 +186,15 @@ export default class FocusTrap extends React.Component<Props> {
                   * take you to a sentinel node, rather than taking you out of
                   * the document. These sentinels aren't critical to focus
                   * wrapping, though; we're resilient to any kind of focus
-                  * shift, whether it's to the sentinels or somewhere else! */}
-                <div tabIndex="0" />
+                  * shift, whether it's to the sentinels or somewhere else!
+                  * We set the sentinels to be position: fixed to make sure
+                  * they're always in view, this prevents page scrolling when
+                  * tabbing. */}
+                <div tabIndex="0" style={{position: "fixed"}} />
                 <View style={style} ref={this.getModalRoot}>
                     {this.props.children}
                 </View>
-                <div tabIndex="0" />
+                <div tabIndex="0" style={{position: "fixed"}} />
             </React.Fragment>
         );
     }
