@@ -56,10 +56,10 @@ describe("MultiSelect", () => {
         opener.simulate("keyup", {keyCode: keyCodes.space});
         expect(select.state("open")).toEqual(false);
 
-        // Shouldn't open with enter
+        // Should open with enter
         opener.simulate("keydown", {keyCode: keyCodes.enter});
         opener.simulate("keyup", {keyCode: keyCodes.enter});
-        expect(select.state("open")).toEqual(false);
+        expect(select.state("open")).toEqual(true);
     });
 
     it("selects items as expected", () => {

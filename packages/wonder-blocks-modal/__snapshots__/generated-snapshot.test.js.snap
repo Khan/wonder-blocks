@@ -371,6 +371,8 @@ exports[`wonder-blocks-modal example 3 1`] = `
     }
   >
     <button
+      aria-expanded="true"
+      aria-haspopup="menu"
       className=""
       disabled={false}
       onBlur={[Function]}
@@ -387,7 +389,6 @@ exports[`wonder-blocks-modal example 3 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       open={false}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {

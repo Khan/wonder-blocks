@@ -83,6 +83,11 @@ type DropdownProps = {|
      * Optional styling for the entire dropdown component.
      */
     style?: StyleType,
+
+    /**
+     * The aria "role" applied to the dropdown container.
+     */
+    role: "listbox" | "menu",
 |};
 
 type State = {|
@@ -440,6 +445,21 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         }
     };
 
+    getItemRole() {
+        const {role} = this.props;
+
+        switch (role) {
+            case "listbox":
+                return "option";
+            case "menu":
+                return "menuitem";
+            default:
+                throw new Error(
+                    `Expected "listbox" or "menu" for role, but receieved "${role}" instead.`,
+                );
+        }
+    }
+
     renderItems(outOfBoundaries: ?boolean) {
         const {items, dropdownStyle, light, openerElement} = this.props;
 
@@ -449,6 +469,8 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
+        const itemRole = this.getItemRole();
+
         let focusCounter = 0;
 
         return (
@@ -456,6 +478,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                 // Stop propagation to prevent the mouseup listener on the
                 // document from closing the menu.
                 onMouseUp={this.handleDropdownMouseUp}
+                role={this.props.role}
                 style={[
                     styles.dropdown,
                     light && styles.light,
@@ -478,6 +501,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                             ref:
                                 item.focusable &&
                                 this.state.itemRefs[focusIndex].ref,
+                            role: itemRole,
                             onClick: () => {
                                 this.handleClickFocus(focusIndex);
                                 if (item.component.props.onClick) {

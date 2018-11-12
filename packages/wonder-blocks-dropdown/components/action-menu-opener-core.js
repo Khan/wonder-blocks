@@ -56,21 +56,22 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             !disabled && pressed && buttonStyles.active,
         ];
 
-        const commonProps = {
-            "aria-disabled": disabled ? "true" : undefined,
-            "aria-label": ariaLabel,
-            "data-test-id": testId,
-            role: "button",
-            style: [defaultStyle],
-            ...handlers,
-        };
-
         const label = (
             <LabelLarge style={sharedStyles.text}>{children}</LabelLarge>
         );
 
         return (
-            <StyledButton type="button" {...commonProps} disabled={disabled}>
+            <StyledButton
+                aria-disabled={disabled ? "true" : undefined}
+                aria-expanded={open ? "true" : "false"}
+                aria-haspopup="menu"
+                aria-label={ariaLabel}
+                data-test-id={testId}
+                disabled={disabled}
+                style={defaultStyle}
+                type="button"
+                {...handlers}
+            >
                 <View
                     style={
                         !disabled && (hovered || focused) && buttonStyles.focus

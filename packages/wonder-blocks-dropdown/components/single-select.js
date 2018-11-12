@@ -202,6 +202,7 @@ export default class SingleSelect extends React.Component<Props, State> {
 
         return (
             <Dropdown
+                role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}
                 initialFocusedIndex={this.selectedIndex}

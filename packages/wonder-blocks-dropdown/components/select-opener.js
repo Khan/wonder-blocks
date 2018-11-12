@@ -83,16 +83,19 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
     };
 
     render() {
-        const {children, disabled, isPlaceholder, light, testId} = this.props;
+        const {
+            children,
+            disabled,
+            isPlaceholder,
+            light,
+            open,
+            testId,
+        } = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
 
         return (
-            <ClickableBehavior
-                disabled={disabled}
-                onClick={this.handleClick}
-                role="listbox"
-            >
+            <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
                 {(state, handlers) => {
                     const stateStyles = _generateStyles(light, isPlaceholder);
                     const {hovered, focused, pressed} = state;
@@ -107,22 +110,24 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             ? offBlack32
                             : offBlack64;
 
+                    const style = [
+                        styles.shared,
+                        stateStyles.default,
+                        disabled && stateStyles.disabled,
+                        !disabled &&
+                            (pressed
+                                ? stateStyles.active
+                                : (hovered || focused) && stateStyles.focus),
+                    ];
+
                     return (
                         <StyledButton
+                            aria-expanded={open ? "true" : "false"}
+                            aria-haspopup="listbox"
                             data-test-id={testId}
                             disabled={disabled}
-                            role="listbox"
+                            style={style}
                             type="button"
-                            style={[
-                                styles.shared,
-                                stateStyles.default,
-                                disabled && stateStyles.disabled,
-                                !disabled &&
-                                    (pressed
-                                        ? stateStyles.active
-                                        : (hovered || focused) &&
-                                          stateStyles.focus),
-                            ]}
                             {...handlers}
                         >
                             <LabelMedium style={styles.text}>
