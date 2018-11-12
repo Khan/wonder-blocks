@@ -43,6 +43,7 @@ describe("Dropdown", () => {
                         populatedProps: {},
                     },
                 ]}
+                role="listbox"
                 keyboard={true}
                 light={false}
                 open={false}
@@ -187,6 +188,7 @@ describe("Dropdown", () => {
                             populatedProps: {},
                         },
                     ]}
+                    role="listbox"
                     keyboard={true}
                     light={false}
                     open={true}

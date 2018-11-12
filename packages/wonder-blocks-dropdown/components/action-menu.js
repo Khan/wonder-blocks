@@ -203,6 +203,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 opener={opener}
                 openerElement={this.openerElement}
                 style={style}
+                role="menu"
             />
         );
     }

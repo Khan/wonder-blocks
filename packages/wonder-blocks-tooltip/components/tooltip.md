@@ -156,3 +156,36 @@ const styles = StyleSheet.create({
     </View>
 </View>
 ```
+
+### Tooltips on buttons
+
+```js
+const {StyleSheet} = require("aphrodite");
+
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+const {icons} = require("@khanacademy/wonder-blocks-icon");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
+
+const styles = {
+    container: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+};
+
+<View style={styles.container}>
+    <Tooltip content="I'm a little tooltip">
+        <Button>Click me!</Button>
+    </Tooltip>
+    <Strut size={16} />
+    <Tooltip content="Short and stout">
+        <IconButton
+            icon={icons.search}
+            aria-label="search"
+            onClick={(e) => console.log("hello")}
+        />
+    </Tooltip>
+</View>
+```
