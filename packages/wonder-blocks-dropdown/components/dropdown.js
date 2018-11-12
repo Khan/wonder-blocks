@@ -446,11 +446,17 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
     };
 
     getItemRole() {
-        switch (this.props.role) {
+        const {role} = this.props;
+
+        switch (role) {
             case "listbox":
                 return "option";
             case "menu":
                 return "menuitem";
+            default:
+                throw new Error(
+                    `Expected "listbox" or "menu" for role, but receieved "${role}" instead.`,
+                );
         }
     }
 
