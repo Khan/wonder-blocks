@@ -7,19 +7,22 @@ import * as React from "react";
  */
 type Props = {|
     /**
-     * The content that is client-only.
+     * The content that is client-only.  This is what is rendered when
+     * not server-side rendering, or (when server-side rendering) after
+     * the initial rehydration has finished.
      */
     children: () => ?React.Node,
 
     /**
-     * Optionally, instead of rendering nothing the first time around, this
-     * component can render a placeholder. To enable this behavior,
-     * pass a "placeholder" prop.
+     * What to render during server-side rendering, or null not to
+     * render anything.
      *
-     * NOTE: Make sure the placeholder will render the same for both client and
-     * server, or it defeats the purpose of using the NoSSR component.
+     * NOTE: Make sure the placeholder will render the same for both
+     * client and server -- that is, it does the same thing for both
+     * the server-side renderer and the rehydration -- or it defeats
+     * the purpose of using the WithSSRPlaceholder component.
      */
-    placeholder?: () => ?React.Node,
+    placeholder: null | (() => React.Node),
 |};
 
 type State = {|
@@ -37,21 +40,22 @@ const HasHadFirstRenderContext = React.createContext<boolean>(false);
  * what is rendered on the server. Therefore, this component also disables
  * rendering the first time around on the client.
  *
- * If `NoSSR` components are nested within one another, the root `NoSSR`
- * component will handle the initial render, but nested `NoSSR` components
- * will delegate to the root one, meaning that we don't cascade delayed
- * rendering down the component tree. This will also be the case across
- * portal boundaries.
+ * If `WithSSRPlaceholder` components are nested within one another,
+ * the root `WithSSRPlaceholder` component will handle the initial
+ * render, but nested `WithSSRPlaceholder` components will delegate to
+ * the root one, meaning that we don't cascade delayed rendering down
+ * the component tree. This will also be the case across portal
+ * boundaries.
  *
  * Example:
  *
  * ```js
- * <NoSSR placeholder={() => <div>This renders on the server.</div>}>
- *   {() => <div>This will not be rendered on the server.</div>}
- * </NoSSR>
+ * <WithSSRPlaceholder placeholder={() => <div>Renders on the server!</div>}>
+ *   {() => <div>Only renders on the client (after rehydration).</div>}
+ * </WithSSRPlaceholder>
  * ```
  */
-export default class NoSSR extends React.Component<Props, State> {
+export default class WithSSRPlaceholder extends React.Component<Props, State> {
     state = {
         mounted: false,
     };
@@ -74,9 +78,9 @@ export default class NoSSR extends React.Component<Props, State> {
         const {mounted} = this.state;
         const {children, placeholder} = this.props;
 
-        // We just get on with rendering if we're passed truthiness as we
-        // are reliably told a NoSSR component further up the chain already
-        // handled our SSR case.
+        // We just get on with rendering if we're passed truthiness as
+        // we are reliably told a WithSSRPlaceholder component further
+        // up the chain already handled our SSR case.
         if (alreadyPerformedFirstRender) {
             // We need to stop the forced second render and to do that, we have
             // to influence our componentDidMount. Fortunately, that occurs

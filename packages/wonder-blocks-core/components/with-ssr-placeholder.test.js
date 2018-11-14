@@ -4,9 +4,9 @@ import * as ReactDOMServer from "react-dom/server.js";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
-import NoSSR from "./no-ssr.js";
+import WithSSRPlaceholder from "./with-ssr-placeholder.js";
 
-describe("NoSSR", () => {
+describe("WithSSRPlaceholder", () => {
     beforeEach(() => {
         unmountAll();
     });
@@ -16,12 +16,12 @@ describe("NoSSR", () => {
         const mockPlaceholder = jest.fn(() => null);
         await new Promise((resolve) => {
             const nodes = (
-                <NoSSR placeholder={mockPlaceholder}>
+                <WithSSRPlaceholder placeholder={mockPlaceholder}>
                     {() => {
                         resolve();
                         return null;
                     }}
-                </NoSSR>
+                </WithSSRPlaceholder>
             );
 
             // Act
@@ -35,22 +35,24 @@ describe("NoSSR", () => {
         expect(mockPlaceholder).toHaveBeenCalledTimes(1);
     });
 
-    test("calls children render right away if a parent NoSSR component handled first render", async () => {
+    test("calls children render right away if a parent WithSSRPlaceholder component handled first render", async () => {
         // Arrange
         const mockPlaceholder = jest.fn(() => null);
         const mockPlaceholderNotCalled = jest.fn(() => null);
         await new Promise((resolve) => {
             const nodes = (
-                <NoSSR placeholder={mockPlaceholder}>
+                <WithSSRPlaceholder placeholder={mockPlaceholder}>
                     {() => (
-                        <NoSSR placeholder={mockPlaceholderNotCalled}>
+                        <WithSSRPlaceholder
+                            placeholder={mockPlaceholderNotCalled}
+                        >
                             {() => {
                                 resolve();
                                 return null;
                             }}
-                        </NoSSR>
+                        </WithSSRPlaceholder>
                     )}
-                </NoSSR>
+                </WithSSRPlaceholder>
             );
 
             // Act
@@ -58,7 +60,7 @@ describe("NoSSR", () => {
         });
 
         // Assert
-        // Our promise doesn't resolve until the children of our nested NoSSR
+        // Our promise doesn't resolve until the children of our nested WithSSRPlaceholder
         // are rendered, therefore we don't get here until that and so if the
         // parent placeholder has been called, it must have been called first.
         // In addition, if our code is working right, the placeholder of the
@@ -74,7 +76,9 @@ describe("NoSSR", () => {
             const mockPlaceholder = jest.fn(() => null);
 
             const nodes = (
-                <NoSSR placeholder={mockPlaceholder}>{mockChildren}</NoSSR>
+                <WithSSRPlaceholder placeholder={mockPlaceholder}>
+                    {mockChildren}
+                </WithSSRPlaceholder>
             );
 
             // Act
@@ -85,11 +89,15 @@ describe("NoSSR", () => {
             expect(mockChildren).toHaveBeenCalledTimes(0);
         });
 
-        test("no placeholder returns null", () => {
+        test("null placeholder returns null", () => {
             // Arrange
             const mockChildren = jest.fn(() => null);
 
-            const nodes = <NoSSR>{mockChildren}</NoSSR>;
+            const nodes = (
+                <WithSSRPlaceholder placeholder={null}>
+                    {mockChildren}
+                </WithSSRPlaceholder>
+            );
 
             // Act
             const result = ReactDOMServer.renderToStaticMarkup(nodes);
