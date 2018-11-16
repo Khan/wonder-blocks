@@ -1,6 +1,6 @@
-### mockOnFirstRender absent or false
+### mockOnFirstRender false
 
-When no `mockOnFirstRender` is `false` (the default), the `children` prop is only called after the initial render. Each call provides the same identifier factory, meaning the same identifier gets returned. Try it below.
+When `mockOnFirstRender` is `false`, the `children` prop is only called after the initial render. Each call provides the same identifier factory, meaning the same identifier gets returned. Try it below.
 
 ```jsx
 const {Body, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
@@ -11,7 +11,7 @@ let providerRef = null;
 
 const renders = [];
 const provider = (
-    <UniqueIDProvider ref={ref => providerRef = ref}>
+    <UniqueIDProvider mockOnFirstRender={false} ref={ref => providerRef = ref}>
         {ids => {
             renders.push(ids.get("my-unique-id"));
             return (
@@ -95,11 +95,11 @@ const children = ({get}) => (
 
 <View>
     <HeadingSmall>First Provider with scope: first</HeadingSmall>
-    <UniqueIDProvider scope="first">
+    <UniqueIDProvider mockOnFirstRender={false} scope="first">
         {children}
     </UniqueIDProvider>
     <HeadingSmall>Second Provider with scope: second</HeadingSmall>
-    <UniqueIDProvider scope="second">
+    <UniqueIDProvider mockOnFirstRender={false} scope="second">
         {children}
     </UniqueIDProvider>
 </View>

@@ -274,7 +274,10 @@ describe("wonder-blocks-core", () => {
 
         const renders = [];
         const provider = (
-            <UniqueIDProvider ref={(ref) => (providerRef = ref)}>
+            <UniqueIDProvider
+                mockOnFirstRender={false}
+                ref={(ref) => (providerRef = ref)}
+            >
                 {(ids) => {
                     renders.push(ids.get("my-unique-id"));
                     return (
@@ -372,9 +375,13 @@ describe("wonder-blocks-core", () => {
         const example = (
             <View>
                 <HeadingSmall>First Provider with scope: first</HeadingSmall>
-                <UniqueIDProvider scope="first">{children}</UniqueIDProvider>
+                <UniqueIDProvider mockOnFirstRender={false} scope="first">
+                    {children}
+                </UniqueIDProvider>
                 <HeadingSmall>Second Provider with scope: second</HeadingSmall>
-                <UniqueIDProvider scope="second">{children}</UniqueIDProvider>
+                <UniqueIDProvider mockOnFirstRender={false} scope="second">
+                    {children}
+                </UniqueIDProvider>
             </View>
         );
         const tree = renderer.create(example).toJSON();
