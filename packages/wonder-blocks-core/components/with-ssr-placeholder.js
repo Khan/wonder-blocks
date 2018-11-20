@@ -22,14 +22,27 @@ type Props = {|
      * the server-side renderer and the rehydration -- or it defeats
      * the purpose of using the WithSSRPlaceholder component.
      */
-    placeholder: ?(() => ?React.Node),
+    placeholder: ?() => ?React.Node,
 |};
 
 type State = {|
     mounted: boolean,
 |};
 
-const HasHadFirstRenderContext = React.createContext<boolean>(false);
+type RenderState = "root" | "initial" | "standard";
+/**
+ * This is the context that tracks who is doing what in our SSR component tree.
+ *
+ * root:
+ *   no one has instigated an initial SSR render so the component that sees
+ *   this is responsible for updating the value to 1
+ * initial:
+ *   this means the SSR render has started, and all SSR components should act
+ *   as though they are on the server
+ * standard:
+ *   means that we're all now doing non-SSR rendering
+ */
+const RenderStateContext = React.createContext<RenderState>("root");
 
 /**
  * Defer or change rendering until the component did mount.
@@ -61,7 +74,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
     };
 
     componentDidMount() {
-        if (!this._alreadyPerformedFirstRender) {
+        if (this._isTheRootComponent) {
             // We only want to force a new render if we were responsible for
             // the first render, so we guard that state change here.
 
@@ -72,49 +85,74 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         }
     }
 
-    _alreadyPerformedFirstRender = false;
+    _isTheRootComponent = false;
 
-    _maybeRenderPlaceholderOrChildren(alreadyPerformedFirstRender: boolean) {
+    _renderAsRootComponent() {
         const {mounted} = this.state;
         const {children, placeholder} = this.props;
 
-        // We just get on with rendering if we're passed truthiness as
-        // we are reliably told a WithSSRPlaceholder component further
-        // up the chain already handled our SSR case.
-        if (alreadyPerformedFirstRender) {
-            // We need to stop the forced second render and to do that, we have
-            // to influence our componentDidMount. Fortunately, that occurs
-            // after this, so let's save a member value to then use there.
-            this._alreadyPerformedFirstRender = alreadyPerformedFirstRender;
-            return children();
-        }
+        // We are the first component in the tree.
+        // We are in control of instigating a second render for our
+        // component tree.
+        this._isTheRootComponent = true;
 
-        // We are mounted and we no higher SSR component handled the first
-        // render so let's tell our children that we did.
         if (mounted) {
+            // This is our second non-SSR render, so let's tell everyone to
+            // do their thing.
             return (
-                <HasHadFirstRenderContext.Provider value={true}>
+                <RenderStateContext.Provider value="standard">
                     {children()}
-                </HasHadFirstRenderContext.Provider>
+                </RenderStateContext.Provider>
             );
         }
 
-        // We don't have a parent that handled SSR, and this must be our
-        // first render, and we have a placeholder, so render the placeholder.
+        // OK, this is the very first render.
+        // If we have a placeholder, we render it, and ensure that any
+        // nested SSR components know we're still on that first render
+        // but they're not in charge of instigating the second render.
         if (placeholder) {
-            return placeholder();
+            return (
+                <RenderStateContext.Provider value="initial">
+                    {placeholder()}
+                </RenderStateContext.Provider>
+            );
         }
 
-        // We don't have a parent that handled SSR, and this must be our
-        // first render and we don't have a placeholder, so return nothing.
+        // Otherwise, we return nothing.
         return null;
+    }
+
+    _maybeRender(renderState: RenderState) {
+        const {children, placeholder} = this.props;
+
+        switch (renderState) {
+            case "root":
+                return this._renderAsRootComponent();
+
+            case "initial":
+                // We're not the root component, so we just have to either
+                // render our placeholder or nothing.
+                // The second render is going to be triggered for us.
+                if (placeholder) {
+                    return placeholder();
+                }
+                // Otherwise, we render nothing.
+                return null;
+
+            case "standard":
+                // We have covered the SSR render, we're now rendering normally.
+                return children();
+
+            default:
+                throw new Error("We got a render state we don't understand");
+        }
     }
 
     render() {
         return (
-            <HasHadFirstRenderContext.Consumer>
-                {(value) => this._maybeRenderPlaceholderOrChildren(value)}
-            </HasHadFirstRenderContext.Consumer>
+            <RenderStateContext.Consumer>
+                {(value) => this._maybeRender(value)}
+            </RenderStateContext.Consumer>
         );
     }
 }

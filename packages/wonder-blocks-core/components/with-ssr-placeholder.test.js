@@ -35,6 +35,41 @@ describe("WithSSRPlaceholder", () => {
         expect(mockPlaceholder).toHaveBeenCalledTimes(1);
     });
 
+    test("calls placeholder if being rendered during a root WithSSRPlaceholder component placeholder", async () => {
+        // Arrange
+        const mockChildrenNotCalled = jest.fn(() => null);
+
+        await new Promise((resolve) => {
+            const nestedPlaceholder = () => {
+                resolve();
+                return null;
+            };
+
+            const placeholder = () => (
+                <WithSSRPlaceholder placeholder={nestedPlaceholder}>
+                    {mockChildrenNotCalled}
+                </WithSSRPlaceholder>
+            );
+
+            const nodes = (
+                <WithSSRPlaceholder placeholder={placeholder}>
+                    {() => null}
+                </WithSSRPlaceholder>
+            );
+
+            // Act
+            mount(nodes);
+        });
+
+        // Assert
+        // Our promise doesn't resolve until the placeholder of our nested
+        // WithSSRPlaceholder is rendered, therefore if we get here it means
+        // that the test is doing what we'd expect.
+        // In addition, if our code is working right, the children of the
+        // nested placeholder should have been skipped.
+        expect(mockChildrenNotCalled).not.toHaveBeenCalled();
+    });
+
     test("calls children render right away if a parent WithSSRPlaceholder component handled first render", async () => {
         // Arrange
         const mockPlaceholder = jest.fn(() => null);
