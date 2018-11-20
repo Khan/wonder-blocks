@@ -14,7 +14,8 @@ type Props = {|
      * the content to be rendered.
      *
      * If mockOnFirstRender is false, this is only called after
-     * the initial render has occurred and will always be called with the same
+     * the initial render has occurred -- it will be blank for the
+     * the first render -- and will always be called with the same
      * IIdentifierFactory instance.
      *
      * If mockOnFirstRender is true, this is called once with
@@ -34,7 +35,7 @@ type Props = {|
      * a mock IIdentifierFactory for the initial render, and then a unique ID
      * factory thereafter.
      */
-    mockOnFirstRender?: boolean,
+    mockOnFirstRender: boolean,
 
     /**
      * If this prop is specified, any identifiers provided will contain the

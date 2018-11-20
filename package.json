@@ -18,7 +18,7 @@
     "gen-styleguide-prod-config": "node utils/gen-styleguide-prod-config.js && prettier --write styleguide.prod.config.js",
     "jest": "jest --config config/jest/test.config.js",
     "test:vite": "jest --config config/jest/vite.config.js",
-    "test:common": "yarn run lint && yarn run gen-snapshot-tests && yarn run build:all && yarn run flow",
+    "test:common": "yarn run build:all && yarn run lint && yarn run gen-snapshot-tests && yarn run flow",
     "test": "yarn run test:common && yarn run jest",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
