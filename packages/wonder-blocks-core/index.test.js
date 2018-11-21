@@ -14,7 +14,7 @@ describe("@khanacademy/wonder-blocks-core", () => {
                 "MediaLayout",
                 "Text",
                 "View",
-                "NoSSR",
+                "WithSSRPlaceholder",
                 "addStyle",
                 "getClickableBehavior",
                 "getElementIntersection",

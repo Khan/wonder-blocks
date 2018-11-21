@@ -9,7 +9,7 @@ import View from "./view.js";
 import SsrIDFactory from "../util/ssr-id-factory.js";
 import UniqueIDFactory from "../util/unique-id-factory.js";
 import UniqueIDProvider from "./unique-id-provider.js";
-import NoSSR from "./no-ssr.js";
+import WithSSRPlaceholder from "./with-ssr-placeholder.js";
 
 describe("UniqueIDProvider", () => {
     beforeEach(() => {
@@ -126,18 +126,18 @@ describe("UniqueIDProvider", () => {
         });
     });
 
-    describe("inside a NoSSR", () => {
+    describe("inside a WithSSRPlaceholder", () => {
         test("it should pass an id to its children", () => {
             // Arrange
             const foo = jest.fn(() => null);
             const nodes = (
-                <NoSSR>
+                <WithSSRPlaceholder placeholder={null}>
                     {() => (
                         <UniqueIDProvider mockOnFirstRender={false}>
                             {(ids) => foo(ids.get(""))}
                         </UniqueIDProvider>
                     )}
-                </NoSSR>
+                </WithSSRPlaceholder>
             );
 
             // Act
