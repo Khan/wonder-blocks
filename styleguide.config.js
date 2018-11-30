@@ -177,7 +177,8 @@ module.exports = {
                 {
                     // Load Lato from Google Fonts.
                     rel: "stylesheet",
-                    href: "https://fonts.googleapis.com/css?family=Lato",
+                    href:
+                        "https://fonts.googleapis.com/css?family=Lato:400,700,900",
                 },
                 {
                     // Load Inconsolata from Google Fonts.
