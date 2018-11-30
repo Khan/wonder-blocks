@@ -192,6 +192,7 @@ const _generateStyles = (color, kind, light) => {
         disabled: {
             color: light ? mix(fade(white, 0.32), color) : offBlack32,
             cursor: "default",
+            pointerEvents: "none",
         },
     };
     if (kind === "primary") {
