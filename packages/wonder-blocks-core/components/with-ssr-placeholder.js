@@ -35,10 +35,13 @@ type RenderState = "root" | "initial" | "standard";
  *
  * root:
  *   no one has instigated an initial SSR render so the component that sees
- *   this is responsible for updating the value to 1
+ *   this "root" state is responsible for controlling initial versus standard
+ *   rendering semantics
+ *
  * initial:
  *   this means the SSR render has started, and all SSR components should act
  *   as though they are on the server
+ *
  * standard:
  *   means that we're all now doing non-SSR rendering
  */
@@ -140,9 +143,14 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
                 return null;
 
             case "standard":
-                // We have covered the SSR render, we're now rendering normally.
+                // We have covered the SSR render, we're now rendering with
+                // standard rendering semantics.
                 return children();
 
+            // We ignore this from coverage. It's a maintenance case to help
+            // us catch code changes that affect the control flow unexpectedly,
+            // but it's not something we need to write a test case for.
+            /* istanbul ignore next */
             default:
                 throw new Error("We got a render state we don't understand");
         }
