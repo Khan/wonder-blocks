@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-spacing",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.0.14",
+    "@khanacademy/wonder-blocks-color": "^1.0.15",
     "wb-dev-build-settings": "^0.0.2"
   },
   "author": "",
