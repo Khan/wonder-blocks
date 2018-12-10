@@ -145,7 +145,9 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
                 // Then fall through to the root case.
                 /* eslint-disable-next-line no-console */
                 console.log(
-                    `We got a render state we don't understand: "${renderState}"`,
+                    `We got a render state we don't understand: "${JSON.stringify(
+                        renderState,
+                    )}"`,
                 );
                 // We "fallthrough" to the root case. This is more obvious
                 // and maintainable code than just ignoring the no-fallthrough
