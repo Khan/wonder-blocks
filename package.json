@@ -13,7 +13,7 @@
     "build:all": "yarn build:cjs && yarn build:es6",
     "watch:cjs": "webpack --config build-settings/webpack.config.js -w",
     "flow": "flow",
-    "flow-coverage": "flow-coverage-report -t text -t html -f ./node_modules/.bin/flow -i 'packages/wonder-blocks-*/**/*.js' -x 'packages/wonder-blocks-*/dist/*.js' -x '**/*.test.js' -x '**/node_modules/**/*.js'",
+    "flow-coverage": "flow-coverage-report -t text -t html -f ./node_modules/.bin/flow -i 'packages/wonder-blocks-*/**/*.js' -x 'packages/wonder-blocks-*/dist/*.js' -x '**/types.js' -x '**/*.test.js' -x '**/node_modules/**/*.js'",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "gen-styleguide-prod-config": "node utils/gen-styleguide-prod-config.js && prettier --write styleguide.prod.config.js",
     "jest": "jest --config config/jest/test.config.js",
