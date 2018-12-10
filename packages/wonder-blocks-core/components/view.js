@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import addStyle from "../util/add-style.js";
 
-import type {Props} from "../util/types.js";
+import type {CommonProps} from "../util/types.js";
 
 const styles = StyleSheet.create({
     // https://github.com/facebook/css-layout#default-values
@@ -40,8 +40,9 @@ const StyledDiv = addStyle<"div">("div", styles.default);
  * - An `aphrodite` StyleSheet style
  * - An array combining the above
  */
-export default class View extends React.Component<Props> {
+export default class View extends React.Component<CommonProps> {
     render() {
-        return <StyledDiv {...this.props} />;
+        const {testId, ...restProps} = this.props;
+        return <StyledDiv data-test-id={testId} {...restProps} />;
     }
 }

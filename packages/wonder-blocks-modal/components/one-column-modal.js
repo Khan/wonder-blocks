@@ -4,13 +4,15 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, MediaSize} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalFooter from "./modal-footer.js";
 
 type BaseProps = {|
+    ...AriaProps,
+
     /** The modal's content. */
     content: React.Node,
 
@@ -25,6 +27,11 @@ type BaseProps = {|
      * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
     onClose?: () => void,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 type WrappedProps = {|

@@ -5,14 +5,13 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {processStyleList} from "../util/util.js";
 
-import type {AriaProps, TextTag} from "../util/types.js";
+import type {TextTag, CommonProps} from "../util/types.js";
 
-type Props = AriaProps & {
+type Props = {|
+    ...CommonProps,
     style?: StyleType,
     tag: TextTag,
-    children?: any,
-    [otherProp: string]: any,
-};
+|};
 
 const isHeaderRegex = /^h[1-6]$/;
 

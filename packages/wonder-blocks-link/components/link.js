@@ -3,10 +3,12 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import LinkCore from "./link-core.js";
 
 export type SharedProps = {|
+    ...AriaProps,
+
     /**
      * Text to appear on the link.
      */

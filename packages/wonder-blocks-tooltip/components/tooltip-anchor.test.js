@@ -138,7 +138,7 @@ describe("TooltipAnchor", () => {
                         anchorRef={resolve}
                         onActiveChanged={() => {}}
                     >
-                        <View tabIndex="-1">This is the anchor</View>
+                        <View tabIndex={-1}>This is the anchor</View>
                     </TooltipAnchor>
                 );
                 mount(nodes);
@@ -211,7 +211,7 @@ describe("TooltipAnchor", () => {
                         anchorRef={resolve}
                         onActiveChanged={() => {}}
                     >
-                        <View tabIndex="-1">This is the anchor</View>
+                        <View tabIndex={-1}>This is the anchor</View>
                     </TooltipAnchor>
                 );
                 const wrapper = mount(<TestFixture force={true} />);

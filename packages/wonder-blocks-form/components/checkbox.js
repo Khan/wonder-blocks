@@ -2,11 +2,13 @@
 
 import * as React from "react";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import ChoiceInternal from "./choice-internal.js";
 
 // Keep synced with ChoiceComponentProps in ../util/types.js
 type ChoiceComponentProps = {|
+    ...AriaProps,
+
     /**
      * Whether this component is checked
      */
@@ -27,13 +29,6 @@ type ChoiceComponentProps = {|
      * new checked state of the component.
      */
     onChange: (newCheckedState: boolean) => void,
-
-    /**
-     * Optional label if it is not obvious from the context what the checkbox
-     * does. If the label and id props are defined, this props does not need to
-     * be provided as the label would be matched to this input.
-     */
-    "aria-label"?: string,
 
     /**
      * Optional label for the field.
