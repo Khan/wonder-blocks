@@ -49,7 +49,7 @@ export default class Text extends React.Component<Props> {
     };
 
     render() {
-        const {children, style, tag: Tag, ...otherProps} = this.props;
+        const {children, style, tag: Tag, testId, ...otherProps} = this.props;
 
         const isHeader = isHeaderRegex.test(Tag);
         const styleAttributes = processStyleList([
@@ -63,6 +63,7 @@ export default class Text extends React.Component<Props> {
                 {...otherProps}
                 style={styleAttributes.style}
                 className={styleAttributes.className}
+                data-test-id={testId}
             >
                 {children}
             </Tag>
