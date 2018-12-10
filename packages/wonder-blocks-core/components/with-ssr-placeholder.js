@@ -129,6 +129,29 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         const {children, placeholder} = this.props;
 
         switch (renderState) {
+            // There are edge cases where for some reason, we get an unknown
+            // context value here. So far it seems to be when we're nested in a
+            // v1 WithSSRPlaceholder equivalent component, or in some older
+            // React v16 situations where we're nested in the provider of a
+            // different context.
+            //
+            // We ignore this from coverage. It's a maintenance case to help
+            // us catch code changes that affect the control flow unexpectedly,
+            // but it's not something we need to write a test case for.
+            //
+            /* istanbul ignore next */
+            default:
+                // Let's log this case so we can debug it easily.
+                // Then fall through to the root case.
+                /* eslint-disable-next-line no-console */
+                console.log(
+                    `We got a render state we don't understand: "${renderState}"`,
+                );
+                // We "fallthrough" to the root case. This is more obvious
+                // and maintainable code than just ignoring the no-fallthrough
+                // lint rule.
+                return this._maybeRender("root");
+
             case "root":
                 return this._renderAsRootComponent();
 
@@ -146,18 +169,6 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
                 // We have covered the SSR render, we're now rendering with
                 // standard rendering semantics.
                 return children();
-
-            // We ignore this from coverage. It's a maintenance case to help
-            // us catch code changes that affect the control flow unexpectedly,
-            // but it's not something we need to write a test case for.
-            // NOTE: This can occur if a v2 WithSSRPlaceholder-based component
-            // is rendered inside a v1 WithSSRPlaceholder-based component since
-            // the same context object is used.
-            /* istanbul ignore next */
-            default:
-                throw new Error(
-                    `We got a render state we don't understand: "${renderState}"`,
-                );
         }
     }
 
