@@ -150,9 +150,14 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
             // We ignore this from coverage. It's a maintenance case to help
             // us catch code changes that affect the control flow unexpectedly,
             // but it's not something we need to write a test case for.
+            // NOTE: This can occur if a v2 WithSSRPlaceholder-based component
+            // is rendered inside a v1 WithSSRPlaceholder-based component since
+            // the same context object is used.
             /* istanbul ignore next */
             default:
-                throw new Error("We got a render state we don't understand");
+                throw new Error(
+                    `We got a render state we don't understand: "${renderState}"`,
+                );
         }
     }
 
