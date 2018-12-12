@@ -188,7 +188,8 @@ type EventHandlers = {|
     // TODO: add remaining supported events https://reactjs.org/docs/events.html#supported-events
 |};
 
-export type CommonProps = {|
+// Props shared between Text and View components.
+export type TextViewSharedProps = {|
     /**
      * Text to appear on the button.
      */

@@ -5,10 +5,10 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {processStyleList} from "../util/util.js";
 
-import type {TextTag, CommonProps} from "../util/types.js";
+import type {TextTag, TextViewSharedProps} from "../util/types.js";
 
 type Props = {|
-    ...CommonProps,
+    ...TextViewSharedProps,
     style?: StyleType,
     tag: TextTag,
 |};

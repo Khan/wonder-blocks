@@ -2,7 +2,6 @@
 import type {ClickableHandlers} from "./components/clickable-behavior.js";
 import type {
     AriaProps,
-    CommonProps,
     IIdentifierFactory,
     TextTag,
     MediaSize,
@@ -31,7 +30,6 @@ export {MediaLayoutWrapper} from "./util/util.js";
 
 export type {
     AriaProps,
-    CommonProps,
     ClickableHandlers,
     Intersection,
     IIdentifierFactory,
