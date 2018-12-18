@@ -44,6 +44,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -152,6 +153,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -213,6 +215,8 @@ exports[`wonder-blocks-form example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "pointerEvents": "none",
             "position": "absolute",
             "verticalAlign": "text-bottom",
@@ -278,6 +282,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -386,6 +391,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -447,6 +453,8 @@ exports[`wonder-blocks-form example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "pointerEvents": "none",
             "position": "absolute",
             "verticalAlign": "text-bottom",
@@ -512,6 +520,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -621,6 +630,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -684,6 +694,8 @@ exports[`wonder-blocks-form example 1 1`] = `
         style={
           Object {
             "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
             "pointerEvents": "none",
             "position": "absolute",
             "verticalAlign": "text-bottom",
@@ -771,6 +783,7 @@ exports[`wonder-blocks-form example 2 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -1006,6 +1019,7 @@ exports[`wonder-blocks-form example 3 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -1138,6 +1152,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -1246,6 +1261,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -1354,6 +1370,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -1462,6 +1479,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -1570,6 +1588,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -1679,6 +1698,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       className=""
       onBlur={[Function]}
       onClick={[Function]}
+      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -1831,7 +1851,12 @@ exports[`wonder-blocks-form example 5 1`] = `
       }
     >
       <legend
-        className="legend_1gyjybc"
+        className=""
+        style={
+          Object {
+            "padding": 0,
+          }
+        }
       >
         <span
           className=""
@@ -1917,6 +1942,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -2027,32 +2053,6 @@ exports[`wonder-blocks-form example 5 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -2063,6 +2063,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -2075,6 +2076,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -2204,32 +2206,6 @@ exports[`wonder-blocks-form example 5 1`] = `
         </span>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -2240,6 +2216,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -2252,6 +2229,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -2362,32 +2340,6 @@ exports[`wonder-blocks-form example 5 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -2398,6 +2350,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -2410,6 +2363,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -2520,32 +2474,6 @@ exports[`wonder-blocks-form example 5 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -2556,6 +2484,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -2568,6 +2497,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -2678,32 +2608,6 @@ exports[`wonder-blocks-form example 5 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -2714,6 +2618,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -2726,6 +2631,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -2789,6 +2695,8 @@ exports[`wonder-blocks-form example 5 1`] = `
             style={
               Object {
                 "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
                 "pointerEvents": "none",
                 "position": "absolute",
                 "verticalAlign": "text-bottom",
@@ -2971,6 +2879,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -3081,32 +2990,6 @@ exports[`wonder-blocks-form example 6 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -3131,6 +3014,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -3241,32 +3125,6 @@ exports[`wonder-blocks-form example 6 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -3291,6 +3149,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -3401,32 +3260,6 @@ exports[`wonder-blocks-form example 6 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -3451,6 +3284,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -3561,32 +3395,6 @@ exports[`wonder-blocks-form example 6 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -3611,6 +3419,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -3721,32 +3530,6 @@ exports[`wonder-blocks-form example 6 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -3771,6 +3554,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -3901,6 +3685,776 @@ exports[`wonder-blocks-form example 7 1`] = `
       "minWidth": 0,
       "padding": 0,
       "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+        "marginBottom": 16,
+      }
+    }
+  >
+    Select all prime numbers
+  </span>
+  <fieldset
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "margin": 0,
+        "padding": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-1"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="checkbox"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-1"
+              onClick={[Function]}
+            >
+              1
+            </label>
+          </span>
+        </div>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "marginTop": 8,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-2"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="checkbox"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-2"
+              onClick={[Function]}
+            >
+              2
+            </label>
+          </span>
+        </div>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "marginTop": 8,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-3"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="checkbox"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-3"
+              onClick={[Function]}
+            >
+              3
+            </label>
+          </span>
+        </div>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "marginTop": 8,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-4"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="checkbox"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-4"
+              onClick={[Function]}
+            >
+              4
+            </label>
+          </span>
+        </div>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "marginTop": 8,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-5"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="checkbox"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-5"
+              onClick={[Function]}
+            >
+              5
+            </label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+`;
+
+exports[`wonder-blocks-form example 8 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
       "width": 300,
       "zIndex": 0,
     }
@@ -3936,7 +4490,12 @@ exports[`wonder-blocks-form example 7 1`] = `
       }
     >
       <legend
-        className="legend_1gyjybc"
+        className=""
+        style={
+          Object {
+            "padding": 0,
+          }
+        }
       >
         <span
           className=""
@@ -4022,6 +4581,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -4132,32 +4692,6 @@ exports[`wonder-blocks-form example 7 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -4168,6 +4702,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -4180,6 +4715,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -4311,32 +4847,6 @@ exports[`wonder-blocks-form example 7 1`] = `
         </span>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -4347,6 +4857,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -4359,6 +4870,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -4469,32 +4981,6 @@ exports[`wonder-blocks-form example 7 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -4505,6 +4991,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -4517,6 +5004,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -4627,32 +5115,6 @@ exports[`wonder-blocks-form example 7 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 8,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 8,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
         className=""
         style={
           Object {
@@ -4663,6 +5125,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             "display": "flex",
             "flexDirection": "column",
             "margin": 0,
+            "marginTop": 8,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
@@ -4675,6 +5138,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           className=""
           onBlur={[Function]}
           onClick={[Function]}
+          onDragStart={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -4780,6 +5244,636 @@ exports[`wonder-blocks-form example 7 1`] = `
               onClick={[Function]}
             >
               Superman
+            </label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+`;
+
+exports[`wonder-blocks-form example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+        "marginBottom": 16,
+      }
+    }
+  >
+    Select your blood type
+  </span>
+  <fieldset
+    className=""
+    style={
+      Object {
+        "border": "none",
+        "margin": 0,
+        "padding": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-1"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": "50%",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="radio"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-1"
+              onClick={[Function]}
+            >
+              A
+            </label>
+          </span>
+        </div>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "marginTop": 8,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-2"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": "50%",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="radio"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-2"
+              onClick={[Function]}
+            >
+              B
+            </label>
+          </span>
+        </div>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "marginTop": 8,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-3"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": "50%",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="radio"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-3"
+              onClick={[Function]}
+            >
+              AB
+            </label>
+          </span>
+        </div>
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            ":lastChild": Object {
+              "borderBottom": "solid 1px #CCC",
+            },
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderTop": "solid 1px #CCC",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 48,
+            "justifyContent": "center",
+            "margin": 0,
+            "marginTop": 8,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "row",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "outline": "none",
+              "padding": 0,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+          tabIndex={-1}
+        >
+          <input
+            aria-checked={false}
+            checked={false}
+            className=""
+            disabled={false}
+            id="science-classes-4"
+            name="science-classes"
+            onChange={[Function]}
+            style={
+              Object {
+                "MozAppearance": "none",
+                "WebkitAppearance": "none",
+                "appearance": "none",
+                "backgroundColor": "#ffffff",
+                "borderColor": "rgba(33,36,44,0.50)",
+                "borderRadius": "50%",
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "boxSizing": "border-box",
+                "height": 16,
+                "margin": 0,
+                "minHeight": 16,
+                "minWidth": 16,
+                "outline": "none",
+                "width": 16,
+              }
+            }
+            type="radio"
+          />
+          <div
+            aria-hidden="true"
+            className=""
+            style={
+              Object {
+                "MsFlexBasis": 8,
+                "MsFlexPreferredSize": 8,
+                "WebkitFlexBasis": 8,
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexBasis": 8,
+                "flexDirection": "column",
+                "flexShrink": 0,
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": 8,
+                "zIndex": 0,
+              }
+            }
+          />
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+                "marginTop": -2,
+                "userSelect": "none",
+              }
+            }
+          >
+            <label
+              htmlFor="science-classes-4"
+              onClick={[Function]}
+            >
+              O
             </label>
           </span>
         </div>

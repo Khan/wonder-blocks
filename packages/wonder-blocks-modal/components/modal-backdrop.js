@@ -21,8 +21,8 @@ type Props = {|
  * behind it.
  *
  * This component is also responsible for cloning the provided modal `children`,
- * and adding an `onClickCloseButton` prop that will call `onCloseModal`. If an
- * `onClickCloseButton` prop is already provided, the two are merged.
+ * and adding an `onClose` prop that will call `onCloseModal`. If an
+ * `onClose` prop is already provided, the two are merged.
  */
 export default class ModalBackdrop extends React.Component<Props> {
     componentDidMount() {
@@ -42,7 +42,10 @@ export default class ModalBackdrop extends React.Component<Props> {
         if (!lastButton) {
             return;
         }
-        lastButton.focus();
+        // wait for styles to applied
+        setTimeout(() => {
+            lastButton.focus();
+        }, 0);
     }
 
     /**
@@ -60,14 +63,6 @@ export default class ModalBackdrop extends React.Component<Props> {
 
     render() {
         const children = this.props.children;
-        const clonedChildren = React.cloneElement(children, {
-            onClickCloseButton: () => {
-                if (typeof children.props.onClickCloseButton === "function") {
-                    children.props.onClickCloseButton();
-                }
-                this.props.onCloseModal();
-            },
-        });
         const backdropProps = {
             [ModalLauncherPortalAttributeName]: true,
         };
@@ -78,7 +73,7 @@ export default class ModalBackdrop extends React.Component<Props> {
                 onClick={this.handleClick}
                 {...backdropProps}
             >
-                {clonedChildren}
+                {children}
             </View>
         );
     }
@@ -89,13 +84,6 @@ const styles = StyleSheet.create({
         position: "fixed",
         left: 0,
         top: 0,
-
-        // This z-index is copied from the Khan Academy webapp.
-        //
-        // TODO(mdr): Should we keep this in a constants file somewhere? Or
-        //     not hardcode it at all, and provide it to Wonder Blocks via
-        //     configuration?
-        zIndex: 1080,
 
         width: "100%",
         height: "100%",

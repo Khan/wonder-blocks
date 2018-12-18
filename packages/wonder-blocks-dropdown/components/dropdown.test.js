@@ -1,5 +1,6 @@
 //@flow
-import React from "react";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import OptionItem from "./option-item.js";
@@ -42,6 +43,7 @@ describe("Dropdown", () => {
                         populatedProps: {},
                     },
                 ]}
+                role="listbox"
                 keyboard={true}
                 light={false}
                 open={false}
@@ -138,6 +140,83 @@ describe("Dropdown", () => {
 
         expect(handleOpen).toHaveBeenCalledTimes(1);
         expect(handleOpen.mock.calls[0][0]).toBe(false);
+    });
+
+    it("closes on external mouse click on an element inside document.body", () => {
+        const handleOpen = jest.fn();
+        const container = document.createElement("container");
+        if (!document.body) {
+            throw new Error("No document.body");
+        }
+        document.body.appendChild(container);
+
+        /**
+         * According to https://stackoverflow.com/questions/36803733/jsdom-dispatchevent-addeventlistener-doesnt-seem-to-work
+         * Enzyme uses renderIntoDocument from React.TestUtils which doesn't actually
+         * render the component into document.body so testing behavior that relies
+         * on bubbling won't work.  This test works around this limitation by using
+         * ReactDOM.render() to render our test component into a container that lives
+         * in document.body.
+         */
+
+        ReactDOM.render(
+            <div>
+                <h1 id="foo">Dropdown test</h1>
+                <Dropdown
+                    initialFocusedIndex={0}
+                    // mock the items
+                    items={[
+                        {
+                            component: (
+                                <OptionItem label="item 0" value="0" key="0" />
+                            ),
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                        {
+                            component: (
+                                <OptionItem label="item 1" value="1" key="1" />
+                            ),
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                        {
+                            component: (
+                                <OptionItem label="item 2" value="2" key="2" />
+                            ),
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                    ]}
+                    role="listbox"
+                    keyboard={true}
+                    light={false}
+                    open={true}
+                    // mock the opener elements
+                    opener={<button />}
+                    openerElement={null}
+                    onOpenChanged={(open) => handleOpen(open)}
+                />
+            </div>,
+            container,
+        );
+
+        const title = document.querySelector("#foo");
+        if (!title) {
+            throw new Error("Couldn't find title");
+        }
+        const event = new MouseEvent("mouseup", {bubbles: true});
+        title.dispatchEvent(event);
+
+        expect(handleOpen).toHaveBeenCalledTimes(1);
+        expect(handleOpen.mock.calls[0][0]).toBe(false);
+
+        // cleanup
+        ReactDOM.unmountComponentAtNode(container);
+        if (!document.body) {
+            throw new Error("No document.body");
+        }
+        document.body.removeChild(container);
     });
 
     it("doesn't close on external mouse click if already closed", () => {

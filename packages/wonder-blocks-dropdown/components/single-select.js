@@ -16,7 +16,7 @@ type Props = {|
     /**
      * The items in this select.
      */
-    children: Array<React.Element<OptionItem>>,
+    children?: Array<React.Element<OptionItem>>,
 
     /**
      * Callback for when the selection. Parameter is the value of the newly
@@ -56,6 +56,16 @@ type Props = {|
      * Optional styling to add to the opener component wrapper.
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
+     * Optional styling to add to the dropdown wrapper.
+     */
+    dropdownStyle?: StyleType,
 |};
 
 type State = {|
@@ -126,25 +136,27 @@ export default class SingleSelect extends React.Component<Props, State> {
         let indexCounter = 0;
         this.selectedIndex = 0;
 
-        return React.Children.map(children, (option) => {
-            const {disabled, value} = option.props;
-            const selected = selectedValue === value;
-            if (selected) {
-                this.selectedIndex = indexCounter;
-            }
-            if (!disabled) {
-                indexCounter += 1;
-            }
-            return {
-                component: option,
-                focusable: !disabled,
-                populatedProps: {
-                    onToggle: this.handleToggle,
-                    selected: selected,
-                    variant: "check",
-                },
-            };
-        });
+        return React.Children.toArray(children)
+            .filter(Boolean)
+            .map((option) => {
+                const {disabled, value} = option.props;
+                const selected = selectedValue === value;
+                if (selected) {
+                    this.selectedIndex = indexCounter;
+                }
+                if (!disabled) {
+                    indexCounter += 1;
+                }
+                return {
+                    component: option,
+                    focusable: !disabled,
+                    populatedProps: {
+                        onToggle: this.handleToggle,
+                        selected: selected,
+                        variant: "check",
+                    },
+                };
+            });
     }
 
     handleOpenerRef = (node: any) => {
@@ -156,10 +168,12 @@ export default class SingleSelect extends React.Component<Props, State> {
             alignment,
             children,
             disabled,
+            dropdownStyle,
             light,
             placeholder,
             selectedValue,
             style,
+            testId,
         } = this.props;
         const {open} = this.state;
 
@@ -170,25 +184,27 @@ export default class SingleSelect extends React.Component<Props, State> {
         // item in the menu, use the placeholder.
         const menuText = selectedItem ? selectedItem.props.label : placeholder;
 
+        const items = this.getMenuItems();
+
         const opener = (
             <SelectOpener
-                disabled={disabled}
+                disabled={items.length === 0 || disabled}
                 isPlaceholder={!selectedItem}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
                 ref={this.handleOpenerRef}
+                testId={testId}
             >
                 {menuText}
             </SelectOpener>
         );
 
-        const items = this.getMenuItems();
-
         return (
             <Dropdown
+                role="listbox"
                 alignment={alignment}
-                dropdownStyle={selectDropdownStyle}
+                dropdownStyle={[selectDropdownStyle, dropdownStyle]}
                 initialFocusedIndex={this.selectedIndex}
                 items={items}
                 keyboard={this.state.keyboard}

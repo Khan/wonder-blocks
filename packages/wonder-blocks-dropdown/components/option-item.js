@@ -49,6 +49,16 @@ type OptionProps = {|
     selected: boolean,
 
     /**
+     * Aria role to use, defaults to "option".
+     */
+    role: "menuitem" | "option",
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
      * Whether the item should show a check or checkbox to indicate selection
      * state. Auto-populated by menu or select.
      * @ignore
@@ -65,6 +75,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     static defaultProps = {
         disabled: false,
         onToggle: () => void 0,
+        role: "option",
         selected: false,
     };
 
@@ -87,7 +98,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     };
 
     render() {
-        const {disabled, label, selected} = this.props;
+        const {disabled, label, role, selected, testId} = this.props;
 
         const ClickableBehavior = getClickableBehavior();
         const CheckComponent = this.getCheckComponent();
@@ -96,7 +107,7 @@ export default class OptionItem extends React.Component<OptionProps> {
             <ClickableBehavior
                 disabled={disabled}
                 onClick={this.handleClick}
-                role="option"
+                role={role}
             >
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
@@ -111,9 +122,10 @@ export default class OptionItem extends React.Component<OptionProps> {
 
                     return (
                         <View
+                            data-test-id={testId}
                             style={defaultStyle}
-                            aria-checked={selected ? "true" : "false"}
-                            role="option"
+                            aria-selected={selected ? "true" : "false"}
+                            role={role}
                             {...handlers}
                         >
                             <CheckComponent

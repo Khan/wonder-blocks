@@ -45,6 +45,11 @@ type ActionProps = {|
     skipClientNav?: boolean,
 
     /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
      * Function to call when button is clicked.
      *
      * This callback should be used for things like marking BigBingo
@@ -65,6 +70,11 @@ type ActionProps = {|
      * @ignore
      */
     indent: boolean,
+
+    /**
+     * Aria role to use, defaults to "menuitem".
+     */
+    role: "menuitem" | "option",
 |};
 
 const StyledAnchor = addStyle("a");
@@ -80,6 +90,7 @@ export default class ActionItem extends React.Component<ActionProps> {
     static defaultProps = {
         disabled: false,
         indent: false,
+        role: "menuitem",
     };
 
     static contextTypes = {router: PropTypes.any};
@@ -92,6 +103,8 @@ export default class ActionItem extends React.Component<ActionProps> {
             indent,
             label,
             onClick,
+            role,
+            testId,
         } = this.props;
         const {router} = this.context;
 
@@ -106,7 +119,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                 disabled={disabled}
                 onClick={onClick}
                 href={href}
-                role="menuitem"
+                role={role}
             >
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;
@@ -121,7 +134,9 @@ export default class ActionItem extends React.Component<ActionProps> {
                     ];
 
                     const props = {
+                        "data-test-id": testId,
                         disabled,
+                        role,
                         style: [defaultStyle],
                         ...handlers,
                     };
@@ -136,7 +151,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                         </React.Fragment>
                     );
 
-                    if (href) {
+                    if (href && !disabled) {
                         return router && !skipClientNav ? (
                             <StyledLink {...props} to={href}>
                                 {children}
@@ -177,6 +192,9 @@ const styles = StyleSheet.create({
         minHeight: 40,
         paddingLeft: Spacing.medium,
         paddingRight: Spacing.medium,
+        // This removes the 300ms click delay on mobile browsers by indicating that
+        // "double-tap to zoom" shouldn't be used on this element.
+        touchAction: "manipulation",
     },
 
     label: {

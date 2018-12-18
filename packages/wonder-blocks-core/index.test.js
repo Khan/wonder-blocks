@@ -13,7 +13,7 @@ describe("@khanacademy/wonder-blocks-core", () => {
                 "ClickableBehavior",
                 "Text",
                 "View",
-                "NoSSR",
+                "WithSSRPlaceholder",
                 "addStyle",
                 "getClickableBehavior",
                 "getElementIntersection",

@@ -29,40 +29,7 @@ const colors = {
     dark: Color.offBlack16,
 };
 
-const StyledSVG = addStyle("svg");
 const StyledPath = addStyle("path");
-
-const svgs = {
-    light: {},
-    dark: {},
-};
-
-const _generateSVG = (size, light) => {
-    const svgCache = svgs[light];
-
-    if (svgCache[size]) {
-        return svgCache[size];
-    }
-
-    const height = heights[size];
-    const path = paths[size];
-    const color = colors[light];
-
-    const svg = (
-        <StyledSVG
-            xmlns="http://www.w3.org/2000/svg"
-            width={height}
-            height={height}
-            viewBox={`0 0 ${height} ${height}`}
-            style={styles.loadingSpinner}
-        >
-            <StyledPath style={{fill: color}} fillRule="nonzero" d={path} />
-        </StyledSVG>
-    );
-
-    svgCache[size] = svg;
-    return svg;
-};
 
 type Props = {|
     /**
@@ -92,7 +59,25 @@ export default class CircularSpinner extends React.Component<Props> {
 
     render() {
         const {size, light, style} = this.props;
-        const svg = _generateSVG(size, light ? "light" : "dark");
+
+        const height = heights[size];
+        const path = paths[size];
+        const color = light ? colors.light : colors.dark;
+
+        const svg = (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={height}
+                height={height}
+                viewBox={`0 0 ${height} ${height}`}
+            >
+                <StyledPath
+                    style={[styles.loadingSpinner, {fill: color}]}
+                    fillRule="nonzero"
+                    d={path}
+                />
+            </svg>
+        );
 
         return <View style={[styles.spinnerContainer, style]}>{svg}</View>;
     }
@@ -115,6 +100,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     loadingSpinner: {
+        transformOrigin: "50% 50%",
         animationName: rotateKeyFrames,
         animationDuration: "1.1s",
         animationIterationCount: "infinite",

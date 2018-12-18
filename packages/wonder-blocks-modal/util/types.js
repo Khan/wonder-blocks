@@ -7,6 +7,6 @@ import * as React from "react";
  *
  * If it's a wrapper component, then its props must be passed along to the child
  * modal, because we clone this element and add new props in order to capture
- * `onClickCloseButton` events.
+ * `onClose` events.
  */
 export type ModalElement = React.Element<any>;

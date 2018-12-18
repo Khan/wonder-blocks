@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-core",
-  "version": "1.2.2",
+  "version": "2.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-spacing": "^2.0.7"
+    "@khanacademy/wonder-blocks-spacing": "^2.0.14"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
@@ -21,6 +21,9 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.0.2"
   },
   "author": "",
   "license": "MIT"

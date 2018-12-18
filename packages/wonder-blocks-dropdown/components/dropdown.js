@@ -83,6 +83,11 @@ type DropdownProps = {|
      * Optional styling for the entire dropdown component.
      */
     style?: StyleType,
+
+    /**
+     * The aria "role" applied to the dropdown container.
+     */
+    role: "listbox" | "menu",
 |};
 
 type State = {|
@@ -124,6 +129,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
     keyboardNavOn: boolean;
     // Whether any items have been selected since the menu was opened
     itemsClicked: boolean;
+    popperElement: ?HTMLElement;
 
     static defaultProps = {
         alignment: "left",
@@ -290,13 +296,12 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target;
         const thisElement = ReactDOM.findDOMNode(this);
-        const modalHost = this.getModalHost();
         if (
             open &&
             thisElement &&
             !thisElement.contains(target) &&
-            modalHost &&
-            !modalHost.contains(target)
+            this.popperElement &&
+            !this.popperElement.contains(target)
         ) {
             onOpenChanged(false);
         }
@@ -440,6 +445,21 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         }
     };
 
+    getItemRole() {
+        const {role} = this.props;
+
+        switch (role) {
+            case "listbox":
+                return "option";
+            case "menu":
+                return "menuitem";
+            default:
+                throw new Error(
+                    `Expected "listbox" or "menu" for role, but receieved "${role}" instead.`,
+                );
+        }
+    }
+
     renderItems(outOfBoundaries: ?boolean) {
         const {items, dropdownStyle, light, openerElement} = this.props;
 
@@ -449,6 +469,8 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
+        const itemRole = this.getItemRole();
+
         let focusCounter = 0;
 
         return (
@@ -456,6 +478,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                 // Stop propagation to prevent the mouseup listener on the
                 // document from closing the menu.
                 onMouseUp={this.handleDropdownMouseUp}
+                role={this.props.role}
                 style={[
                     styles.dropdown,
                     light && styles.light,
@@ -478,6 +501,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                             ref:
                                 item.focusable &&
                                 this.state.itemRefs[focusIndex].ref,
+                            role: itemRole,
                             onClick: () => {
                                 this.handleClickFocus(focusIndex);
                                 if (item.component.props.onClick) {
@@ -495,24 +519,24 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
         );
     }
 
-    getModalHost() {
-        return (
-            maybeGetPortalMountedModalHostElement(this.props.openerElement) ||
-            document.querySelector("body")
-        );
-    }
-
     renderDropdown() {
-        const {alignment} = this.props;
+        const {alignment, openerElement} = this.props;
         // If we are in a modal, we find where we should be portalling the menu
         // by using the helper function from the modal package on the opener
         // element.
         // If we are not in a modal, we use body as the location to portal to.
-        const modalHost = this.getModalHost();
+        const modalHost =
+            maybeGetPortalMountedModalHostElement(openerElement) ||
+            document.querySelector("body");
 
         if (modalHost) {
             return ReactDOM.createPortal(
                 <Popper
+                    innerRef={(node) => {
+                        if (node) {
+                            this.popperElement = node;
+                        }
+                    }}
                     referenceElement={this.props.openerElement}
                     placement={
                         alignment === "left" ? "bottom-start" : "bottom-end"

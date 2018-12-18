@@ -1,15 +1,14 @@
 // @flow
 
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
+import styles from "./group-styles.js";
 import typeof Choice from "./choice.js";
 
 // Keep synced with CheckboxGroupProps in ../util/types.js
@@ -60,7 +59,8 @@ type CheckboxGroupProps = {|
     selectedValues: Array<string>,
 |};
 
-const StyledFieldset = addStyle("fieldset");
+const StyledFieldset = addStyle<"fieldset">("fieldset");
+const StyledLegend = addStyle<"legend">("legend");
 
 /**
  * A checkbox group allows multiple selection. This component auto-populates
@@ -95,16 +95,14 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
             style,
         } = this.props;
 
-        const lastIndex = React.Children.count(children) - 1;
-
         return (
             <StyledFieldset style={styles.fieldset}>
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
                     {label && (
-                        <legend className={css(styles.legend)}>
+                        <StyledLegend style={styles.legend}>
                             <LabelMedium>{label}</LabelMedium>
-                        </legend>
+                        </StyledLegend>
                     )}
                     {description && (
                         <LabelSmall style={styles.description}>
@@ -121,7 +119,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                     )}
 
                     {React.Children.map(children, (child, index) => {
-                        const {value} = child.props;
+                        const {style, value} = child.props;
                         const checked = selectedValues.includes(value);
                         return (
                             <React.Fragment>
@@ -133,11 +131,12 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                                     key: value,
                                     onChange: () =>
                                         this.handleChange(value, checked),
+                                    style: [
+                                        index > 0 && styles.defaultLineGap,
+                                        style,
+                                    ],
                                     variant: "checkbox",
                                 })}
-                                {index !== lastIndex && (
-                                    <Strut size={Spacing.xSmall} />
-                                )}
                             </React.Fragment>
                         );
                     })}
@@ -146,25 +145,3 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    fieldset: {
-        border: "none",
-        padding: 0,
-        margin: 0,
-    },
-
-    legend: {
-        padding: 0,
-    },
-
-    description: {
-        marginTop: Spacing.xxxSmall,
-        color: Color.offBlack64,
-    },
-
-    error: {
-        marginTop: Spacing.xxxSmall,
-        color: Color.red,
-    },
-});

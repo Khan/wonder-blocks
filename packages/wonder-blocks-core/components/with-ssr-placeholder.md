@@ -1,12 +1,20 @@
-`NoSSR` is a behavioral component, providing a mechanism to hide the rendering of a component from server-side rendering (SSR).
+`WithSSRPlaceholder` is a behavioral component, providing a mechanism to hide the rendering of a component from server-side rendering (SSR).
 
 ```jsx
-<NoSSR placeholder={() => <View>This gets rendered on client and server for the first render call in the component tree</View>}>
-    {() => <View>This is rendered only by the client for all but the very first render of the component tree.</View>}
-</NoSSR>
+<WithSSRPlaceholder placeholder={() => <View>This gets rendered on server, and also on the client for the very first render (the "rehydration" render)</View>}>
+    {() => <View>This is rendered only by the client, for all renders after the rehydration render.</View>}
+</WithSSRPlaceholder>
 ```
 
-Here, we nest two `NoSSR` components and use an array to track rendering, so that we can see how only the top level `NoSSR` component skips the initial render.
+This example shows how you can use a `null` placeholder to just display nothing during server-side render.
+
+```jsx
+<WithSSRPlaceholder placeholder={null}>
+    {() => <View>This is rendered only by the client, while nothing was rendered on the server.</View>}
+</WithSSRPlaceholder>
+```
+
+Here, we nest two `WithSSRPlaceholder` components and use an array to track rendering, so that we can see how only the top level `WithSSRPlaceholder` component skips the initial render.
 
 ```jsx
 const {Body, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
@@ -44,32 +52,32 @@ const trackAndRender = text => {
         The list below should have three render entries; root placeholder,
         root children render, and child children render. If there are two child
         renders that means that the second forced render is still occurring for
-        nested NoSSR components, which would be a bug.
+        nested WithSSRPlaceholder components, which would be a bug.
     </Body>
     <ul id={resultsId}>
     </ul>
     <Body>
-        And below this is the actual NoSSR nesting, which should just show the
+        And below this is the actual WithSSRPlaceholder nesting, which should just show the
         child render.
     </Body>
-    <NoSSR placeholder={() => <View>{trackAndRender("Root: placeholder")}</View>}>
+    <WithSSRPlaceholder placeholder={() => <View>{trackAndRender("Root: placeholder")}</View>}>
         {() => {
             addTrackedRender("Root: render");
             return (
-                <NoSSR placeholder={() => (
+                <WithSSRPlaceholder placeholder={() => (
                     <View>
                         {trackAndRender("Child: placeholder (should never see me)")}
                     </View>
                 )}>
                     {() => <View>{trackAndRender("Child: render")}</View>}
-                </NoSSR>
+                </WithSSRPlaceholder>
             );
         }}
-    </NoSSR>
+    </WithSSRPlaceholder>
 </View>
 ```
 
-In this example, we have side-by-side `NoSSR` components. This demonstrates how component non-nested `NoSSR` components independently track the first render.
+In this example, we have side-by-side `WithSSRPlaceholder` components. This demonstrates how component non-nested `WithSSRPlaceholder` components independently track the first render.
 
 ```jsx
 const {Body, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
@@ -110,36 +118,36 @@ const trackAndRender = text => {
     <ul id={resultsId}>
     </ul>
     <Body>
-        And below this are the NoSSR component trees, which should just show
+        And below this are the WithSSRPlaceholder component trees, which should just show
         their child renders.
     </Body>
-    <NoSSR placeholder={() => <View>{trackAndRender("Root 1: placeholder")}</View>}>
+    <WithSSRPlaceholder placeholder={() => <View>{trackAndRender("Root 1: placeholder")}</View>}>
         {() => {
             addTrackedRender("Root 1: render");
             return (
-                <NoSSR placeholder={() => (
+                <WithSSRPlaceholder placeholder={() => (
                     <View>
                         {trackAndRender("Child 1: placeholder (should never see me)")}
                     </View>
                 )}>
                     {() => <View>{trackAndRender("Child 1: render")}</View>}
-                </NoSSR>
+                </WithSSRPlaceholder>
             );
         }}
-    </NoSSR>
-    <NoSSR placeholder={() => <View>{trackAndRender("Root 2: placeholder")}</View>}>
+    </WithSSRPlaceholder>
+    <WithSSRPlaceholder placeholder={() => <View>{trackAndRender("Root 2: placeholder")}</View>}>
         {() => {
             addTrackedRender("Root 2: render");
             return (
-                <NoSSR placeholder={() => (
+                <WithSSRPlaceholder placeholder={() => (
                     <View>
                         {trackAndRender("Child 2: placeholder (should never see me)")}
                     </View>
                 )}>
                     {() => <View>{trackAndRender("Child 2: render")}</View>}
-                </NoSSR>
+                </WithSSRPlaceholder>
             );
         }}
-    </NoSSR>
+    </WithSSRPlaceholder>
 </View>
 ```

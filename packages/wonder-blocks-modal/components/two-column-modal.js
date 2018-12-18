@@ -29,25 +29,15 @@ type Props = {|
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
      * Instead, to listen for when the modal closes, add an `onClose` handler
-     * to the `ModalLauncher`.
-     *
-     * This defaults to a no-op via `defaultProps`. (When used in a
-     * `ModalLauncher`, we'll automatically add an extra listener here via
-     * `cloneElement`, so that the `ModalLauncher` can listen for close button
-     * clicks too.)
-     * @ignore
+     * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
-    onClickCloseButton?: () => void,
+    onClose?: () => void,
 |};
 
 class SmallTwoColumnModal extends React.Component<Props> {
-    static defaultProps = {
-        onClickCloseButton: () => {},
-    };
-
     render() {
         const {
-            onClickCloseButton,
+            onClose,
             sidebar,
             content,
             footer,
@@ -66,7 +56,7 @@ class SmallTwoColumnModal extends React.Component<Props> {
                         <ModalPanel
                             showCloseButton
                             color="dark"
-                            onClickCloseButton={onClickCloseButton}
+                            onClose={onClose}
                             style={styles.smallColumn}
                             content={
                                 fullBleedSidebar ? (
@@ -103,13 +93,9 @@ class SmallTwoColumnModal extends React.Component<Props> {
 }
 
 class LargeTwoColumnModal extends React.Component<Props> {
-    static defaultProps = {
-        onClickCloseButton: () => {},
-    };
-
     render() {
         const {
-            onClickCloseButton,
+            onClose,
             sidebar,
             content,
             footer,
@@ -122,7 +108,7 @@ class LargeTwoColumnModal extends React.Component<Props> {
                     <ModalPanel
                         showCloseButton
                         color="dark"
-                        onClickCloseButton={onClickCloseButton}
+                        onClose={onClose}
                         style={styles.column}
                         content={
                             fullBleedSidebar ? (
@@ -151,7 +137,6 @@ class LargeTwoColumnModal extends React.Component<Props> {
 export default class TwoColumnModal extends React.Component<Props> {
     static defaultProps = {
         fullBleedSidebar: true,
-        onClickCloseButton: () => {},
     };
 
     render() {

@@ -66,13 +66,13 @@ describe("RadioGroup", () => {
     it("doesn't change when an already selected item is reselected", () => {
         // a is already selected, onChange shouldn't be called
         const a = group.find(Choice).at(0);
-        const aTarget = a.find("clickable_behavior_ClickableBehavior");
+        const aTarget = a.find("ClickableBehavior");
         aTarget.simulate("click");
         expect(onChange).toHaveBeenCalledTimes(0);
 
         // now b is clicked, onChange should be called
         const b = group.find(Choice).at(1);
-        const bTarget = b.find("clickable_behavior_ClickableBehavior");
+        const bTarget = b.find("ClickableBehavior");
         bTarget.simulate("click");
         expect(onChange).toHaveBeenCalledTimes(1);
     });

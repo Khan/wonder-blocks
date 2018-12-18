@@ -84,4 +84,28 @@ describe("Button", () => {
         // Assert
         expect(wrapper.find("#foo").exists()).toBe(false);
     });
+
+    test("disallow navigation when href and disabled are both set", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <div>
+                    <Button testId="button" href="/foo" disabled={true}>
+                        Click me!
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <div id="foo">Hello, world!</div>
+                        </Route>
+                    </Switch>
+                </div>
+            </MemoryRouter>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        buttonWrapper.simulate("click", {button: 0});
+
+        // Assert
+        expect(wrapper.find("#foo").exists()).toBe(false);
+    });
 });

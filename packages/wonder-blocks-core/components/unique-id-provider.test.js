@@ -9,6 +9,7 @@ import View from "./view.js";
 import SsrIDFactory from "../util/ssr-id-factory.js";
 import UniqueIDFactory from "../util/unique-id-factory.js";
 import UniqueIDProvider from "./unique-id-provider.js";
+import WithSSRPlaceholder from "./with-ssr-placeholder.js";
 
 describe("UniqueIDProvider", () => {
     beforeEach(() => {
@@ -19,7 +20,11 @@ describe("UniqueIDProvider", () => {
         test("initial render is nothing on server", () => {
             // Arrange
             const children = jest.fn(() => null);
-            const nodes = <UniqueIDProvider>{children}</UniqueIDProvider>;
+            const nodes = (
+                <UniqueIDProvider mockOnFirstRender={false}>
+                    {children}
+                </UniqueIDProvider>
+            );
 
             // Act
             ReactDOMServer.renderToStaticMarkup(nodes);
@@ -31,7 +36,11 @@ describe("UniqueIDProvider", () => {
         test("initial render is skipped on client", () => {
             // Arrange
             const children = jest.fn(() => null);
-            const nodes = <UniqueIDProvider>{children}</UniqueIDProvider>;
+            const nodes = (
+                <UniqueIDProvider mockOnFirstRender={false}>
+                    {children}
+                </UniqueIDProvider>
+            );
 
             // Act
             mount(nodes);
@@ -48,7 +57,11 @@ describe("UniqueIDProvider", () => {
         test("all renders get same unique id factory", () => {
             // Arrange
             const children = jest.fn(() => <View />);
-            const nodes = <UniqueIDProvider>{children}</UniqueIDProvider>;
+            const nodes = (
+                <UniqueIDProvider mockOnFirstRender={false}>
+                    {children}
+                </UniqueIDProvider>
+            );
             const wrapper = mount(nodes);
 
             // Act
@@ -122,6 +135,29 @@ describe("UniqueIDProvider", () => {
             expect(children.mock.calls[1][0]).toBeInstanceOf(UniqueIDFactory);
             // Check the third render gets the same UniqueIDFactory instance.
             expect(children.mock.calls[2][0]).toBe(children.mock.calls[1][0]);
+        });
+    });
+
+    describe("inside a WithSSRPlaceholder", () => {
+        test("it should pass an id to its children", () => {
+            // Arrange
+            const foo = jest.fn(() => null);
+            const nodes = (
+                <WithSSRPlaceholder placeholder={null}>
+                    {() => (
+                        <UniqueIDProvider mockOnFirstRender={false}>
+                            {(ids) => foo(ids.get(""))}
+                        </UniqueIDProvider>
+                    )}
+                </WithSSRPlaceholder>
+            );
+
+            // Act
+            mount(nodes);
+
+            // Assert
+            expect(foo).toHaveBeenCalled();
+            expect(foo.mock.calls[0][0]).toBeTruthy();
         });
     });
 });

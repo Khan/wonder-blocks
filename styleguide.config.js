@@ -1,6 +1,6 @@
 const {createConfig, babel, postcss} = require("webpack-blocks");
 
-const babelConfig = require("./babel.config.js");
+const babelConfig = require("./build-settings/babel.config.js");
 
 module.exports = {
     webpackConfig: createConfig([babel(babelConfig), postcss()]),
@@ -177,7 +177,8 @@ module.exports = {
                 {
                     // Load Lato from Google Fonts.
                     rel: "stylesheet",
-                    href: "https://fonts.googleapis.com/css?family=Lato",
+                    href:
+                        "https://fonts.googleapis.com/css?family=Lato:400,400i,700,900",
                 },
                 {
                     // Load Inconsolata from Google Fonts.

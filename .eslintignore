@@ -8,3 +8,5 @@ packages/wonder-blocks-core/util/add-style.js
 
 # it probably passes, but we really don't care
 styleguide.prod.config.js
+
+config

@@ -18,7 +18,7 @@ type Props = {|
     /**
      * The items in this select.
      */
-    children: Array<React.Element<OptionItem>>,
+    children?: Array<React.Element<OptionItem>>,
 
     /**
      * Callback for when the selection changes. Parameter is an updated array of
@@ -33,7 +33,7 @@ type Props = {|
 
     /**
      * Type of the option.
-     * For example, if selectItemType is "student" and there are two students
+     * For example, if selectItemType is "students" and there are two students
      * selected, the SelectOpener would display "2 students"
      */
     selectItemType: string,
@@ -71,6 +71,16 @@ type Props = {|
      * Optional styling to add to the opener component wrapper.
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
+     * Optional styling to add to the dropdown wrapper.
+     */
+    dropdownStyle?: StyleType,
 |};
 
 type State = {|
@@ -100,6 +110,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         disabled: false,
         light: false,
         shortcuts: false,
+        selectedValues: [],
     };
 
     constructor(props: Props) {
@@ -228,18 +239,20 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     getMenuItems(): Array<DropdownItem> {
         const {children, selectedValues} = this.props;
-        return React.Children.map(children, (option) => {
-            const {disabled, value} = option.props;
-            return {
-                component: option,
-                focusable: !disabled,
-                populatedProps: {
-                    onToggle: this.handleToggle,
-                    selected: selectedValues.includes(value),
-                    variant: "checkbox",
-                },
-            };
-        });
+        return React.Children.toArray(children)
+            .filter(Boolean)
+            .map((option) => {
+                const {disabled, value} = option.props;
+                return {
+                    component: option,
+                    focusable: !disabled,
+                    populatedProps: {
+                        onToggle: this.handleToggle,
+                        selected: selectedValues.includes(value),
+                        variant: "checkbox",
+                    },
+                };
+            });
     }
 
     handleOpenerRef = (node: any) => {
@@ -247,30 +260,40 @@ export default class MultiSelect extends React.Component<Props, State> {
     };
 
     render() {
-        const {alignment, disabled, light, placeholder, style} = this.props;
+        const {
+            alignment,
+            disabled,
+            light,
+            placeholder,
+            style,
+            testId,
+            dropdownStyle,
+        } = this.props;
         const {open} = this.state;
 
         const menuText = this.getMenuText();
 
+        const items = [...this.getShortcuts(), ...this.getMenuItems()];
+
         const opener = (
             <SelectOpener
-                disabled={disabled}
+                disabled={items.length === 0 || disabled}
                 isPlaceholder={menuText === placeholder}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
                 ref={this.handleOpenerRef}
+                testId={testId}
             >
                 {menuText}
             </SelectOpener>
         );
 
-        const items = [...this.getShortcuts(), ...this.getMenuItems()];
-
         return (
             <Dropdown
+                role="listbox"
                 alignment={alignment}
-                dropdownStyle={selectDropdownStyle}
+                dropdownStyle={[selectDropdownStyle, dropdownStyle]}
                 items={items}
                 keyboard={this.state.keyboard}
                 light={light}

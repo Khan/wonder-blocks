@@ -64,6 +64,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
@@ -145,6 +147,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
@@ -227,6 +231,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
@@ -310,6 +316,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
@@ -393,6 +401,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
@@ -476,6 +486,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
@@ -556,6 +568,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
@@ -637,6 +651,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
@@ -719,6 +735,8 @@ Array [
     style={
       Object {
         "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const StyledDiv = addStyle("div", styles.default);
+const StyledDiv = addStyle<"div">("div", styles.default);
 
 // eslint-disable-next-line flowtype/require-exact-type
 export type Props = {

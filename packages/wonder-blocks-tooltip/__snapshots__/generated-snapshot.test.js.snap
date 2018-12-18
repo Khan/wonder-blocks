@@ -147,6 +147,7 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
+  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -181,6 +182,7 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
       "paddingTop": 0,
       "position": "relative",
       "textDecoration": "none",
+      "touchAction": "manipulation",
     }
   }
   tabIndex={0}
@@ -379,6 +381,190 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-describedby="uid-tooltip-6-aria-content"
+    aria-label=""
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "flex",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Click me!
+    </span>
+  </button>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 16,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 16,
+        "zIndex": 0,
+      }
+    }
+  />
+  <button
+    aria-describedby="uid-tooltip-7-aria-content"
+    aria-label="search"
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": -8,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "width": 40,
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <svg
+      className=""
+      height={24}
+      style={
+        Object {
+          "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
+          "verticalAlign": "text-bottom",
+        }
+      }
+      viewBox="0 0 24 24"
+      width={24}
+    >
+      <path
+        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-tooltip example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -413,7 +599,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 7 1`] = `
+exports[`wonder-blocks-tooltip example 8 1`] = `
 <div
   className=""
   style={
@@ -496,7 +682,7 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 8 1`] = `
+exports[`wonder-blocks-tooltip example 9 1`] = `
 <div
   className=""
   style={
@@ -593,7 +779,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 9 1`] = `
+exports[`wonder-blocks-tooltip example 10 1`] = `
 <div
   className=""
   style={
@@ -801,7 +987,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 10 1`] = `
+exports[`wonder-blocks-tooltip example 11 1`] = `
 <div
   className=""
   style={
@@ -1009,7 +1195,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 11 1`] = `
+exports[`wonder-blocks-tooltip example 12 1`] = `
 <div
   className=""
   style={
@@ -1189,7 +1375,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 12 1`] = `
+exports[`wonder-blocks-tooltip example 13 1`] = `
 <div
   className=""
   style={
@@ -1397,7 +1583,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 13 1`] = `
+exports[`wonder-blocks-tooltip example 14 1`] = `
 <div
   className=""
   style={
@@ -1585,7 +1771,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 14 1`] = `
+exports[`wonder-blocks-tooltip example 15 1`] = `
 <div
   className=""
   style={
@@ -1773,7 +1959,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 15 1`] = `
+exports[`wonder-blocks-tooltip example 16 1`] = `
 <div
   className=""
   style={
@@ -1933,7 +2119,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 16 1`] = `
+exports[`wonder-blocks-tooltip example 17 1`] = `
 <div
   className=""
   style={
@@ -2121,7 +2307,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 17 1`] = `
+exports[`wonder-blocks-tooltip example 18 1`] = `
 <div
   className=""
   style={
@@ -2282,7 +2468,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-tooltip example 18 1`] = `
+exports[`wonder-blocks-tooltip example 19 1`] = `
 <div
   className=""
   style={

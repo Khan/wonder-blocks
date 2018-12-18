@@ -127,4 +127,34 @@ describe("IconButton", () => {
         // Assert
         expect(wrapper.find("#foo").exists()).toBe(false);
     });
+
+    test("disallow navigation when href and disabled are both set", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <div>
+                    <IconButton
+                        icon={icons.search}
+                        aria-label="search"
+                        testId="icon-button"
+                        href="/foo"
+                        disabled={true}
+                    />
+                    <Switch>
+                        <Route path="/foo">
+                            <div id="foo">Hello, world!</div>
+                        </Route>
+                    </Switch>
+                </div>
+            </MemoryRouter>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper
+            .find(`[data-test-id="icon-button"]`)
+            .first();
+        buttonWrapper.simulate("click", {button: 0});
+
+        // Assert
+        expect(wrapper.find("#foo").exists()).toBe(false);
+    });
 });

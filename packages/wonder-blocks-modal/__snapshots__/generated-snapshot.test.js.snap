@@ -5,16 +5,16 @@ exports[`wonder-blocks-modal example 1 1`] = `
   className=""
   style={
     Object {
-      "alignItems": "center",
+      "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "column",
+      "flexDirection": "row",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
-      "padding": 32,
+      "padding": 0,
       "position": "relative",
       "zIndex": 0,
     }
@@ -26,6 +26,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
+    onDragStart={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
@@ -60,6 +61,100 @@ exports[`wonder-blocks-modal example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "flex",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Open Modal
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 32,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-label=""
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
       }
     }
     tabIndex={0}
@@ -95,6 +190,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
+    onDragStart={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
@@ -129,6 +225,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
       }
     }
     tabIndex={0}
@@ -164,6 +261,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
+    onDragStart={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
@@ -198,6 +296,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
         "paddingTop": 0,
         "position": "relative",
         "textDecoration": "none",
+        "touchAction": "manipulation",
       }
     }
     tabIndex={0}
@@ -229,7 +328,186 @@ exports[`wonder-blocks-modal example 1 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 2 1`] = `
+exports[`wonder-blocks-modal example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-expanded="true"
+      aria-haspopup="menu"
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      open={false}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "alignItems": "center",
+              "display": "inline-block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "pointerEvents": "none",
+              "textAlign": "left",
+              "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
+            }
+          }
+        >
+          actions
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 4,
+            "zIndex": 0,
+          }
+        }
+      />
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 4 1`] = `
 <div
   className=""
   style={
@@ -348,85 +626,69 @@ exports[`wonder-blocks-modal example 2 1`] = `
             }
           }
         >
-          <div
+          <button
+            aria-label="Close modal"
             className=""
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
+                "::MozFocusInner": Object {
+                  "border": 0,
+                },
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
                 "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
+                "color": "rgba(33,36,44,0.64)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "height": 40,
+                "justifyContent": "center",
+                "margin": -8,
+                "outline": "none",
                 "padding": 0,
                 "position": "relative",
-                "zIndex": 0,
+                "textDecoration": "none",
+                "touchAction": "manipulation",
+                "width": 40,
               }
             }
+            tabIndex={0}
+            type="button"
           >
-            <button
-              aria-label="Close modal"
+            <svg
               className=""
-              disabled={false}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
-              onMouseDown={[Function]}
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-              onMouseUp={[Function]}
-              onTouchCancel={[Function]}
-              onTouchEnd={[Function]}
-              onTouchStart={[Function]}
+              height={24}
               style={
                 Object {
-                  "::MozFocusInner": Object {
-                    "border": 0,
-                  },
-                  "alignItems": "center",
-                  "background": "none",
-                  "border": "none",
-                  "boxSizing": "border-box",
-                  "color": "rgba(33,36,44,0.64)",
-                  "cursor": "pointer",
-                  "display": "inline-flex",
-                  "height": 40,
-                  "justifyContent": "center",
-                  "margin": -8,
-                  "outline": "none",
-                  "padding": 0,
-                  "position": "relative",
-                  "textDecoration": "none",
-                  "width": 40,
+                  "display": "inline-block",
+                  "flexGrow": 0,
+                  "flexShrink": 0,
+                  "verticalAlign": "text-bottom",
                 }
               }
-              tabIndex={0}
-              type="button"
+              viewBox="0 0 24 24"
+              width={24}
             >
-              <svg
-                className=""
-                height={24}
-                style={
-                  Object {
-                    "display": "inline-block",
-                    "verticalAlign": "text-bottom",
-                  }
-                }
-                viewBox="0 0 24 24"
-                width={24}
-              >
-                <path
-                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
         </div>
         <div
           className=""
@@ -735,6 +997,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onDragStart={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -769,6 +1032,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -805,7 +1069,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 3 1`] = `
+exports[`wonder-blocks-modal example 5 1`] = `
 <div
   className=""
   style={
@@ -924,85 +1188,69 @@ exports[`wonder-blocks-modal example 3 1`] = `
             }
           }
         >
-          <div
+          <button
+            aria-label="Close modal"
             className=""
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
+                "::MozFocusInner": Object {
+                  "border": 0,
+                },
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
                 "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
+                "color": "rgba(33,36,44,0.64)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "height": 40,
+                "justifyContent": "center",
+                "margin": -8,
+                "outline": "none",
                 "padding": 0,
                 "position": "relative",
-                "zIndex": 0,
+                "textDecoration": "none",
+                "touchAction": "manipulation",
+                "width": 40,
               }
             }
+            tabIndex={0}
+            type="button"
           >
-            <button
-              aria-label="Close modal"
+            <svg
               className=""
-              disabled={false}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
-              onMouseDown={[Function]}
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-              onMouseUp={[Function]}
-              onTouchCancel={[Function]}
-              onTouchEnd={[Function]}
-              onTouchStart={[Function]}
+              height={24}
               style={
                 Object {
-                  "::MozFocusInner": Object {
-                    "border": 0,
-                  },
-                  "alignItems": "center",
-                  "background": "none",
-                  "border": "none",
-                  "boxSizing": "border-box",
-                  "color": "rgba(33,36,44,0.64)",
-                  "cursor": "pointer",
-                  "display": "inline-flex",
-                  "height": 40,
-                  "justifyContent": "center",
-                  "margin": -8,
-                  "outline": "none",
-                  "padding": 0,
-                  "position": "relative",
-                  "textDecoration": "none",
-                  "width": 40,
+                  "display": "inline-block",
+                  "flexGrow": 0,
+                  "flexShrink": 0,
+                  "verticalAlign": "text-bottom",
                 }
               }
-              tabIndex={0}
-              type="button"
+              viewBox="0 0 24 24"
+              width={24}
             >
-              <svg
-                className=""
-                height={24}
-                style={
-                  Object {
-                    "display": "inline-block",
-                    "verticalAlign": "text-bottom",
-                  }
-                }
-                viewBox="0 0 24 24"
-                width={24}
-              >
-                <path
-                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
         </div>
         <div
           className=""
@@ -1357,6 +1605,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onDragStart={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -1391,6 +1640,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -1427,7 +1677,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 4 1`] = `
+exports[`wonder-blocks-modal example 6 1`] = `
 <div
   className=""
   style={
@@ -1546,85 +1796,69 @@ exports[`wonder-blocks-modal example 4 1`] = `
             }
           }
         >
-          <div
+          <button
+            aria-label="Close modal"
             className=""
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
+                "::MozFocusInner": Object {
+                  "border": 0,
+                },
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
                 "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
+                "color": "rgba(33,36,44,0.64)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "height": 40,
+                "justifyContent": "center",
+                "margin": -8,
+                "outline": "none",
                 "padding": 0,
                 "position": "relative",
-                "zIndex": 0,
+                "textDecoration": "none",
+                "touchAction": "manipulation",
+                "width": 40,
               }
             }
+            tabIndex={0}
+            type="button"
           >
-            <button
-              aria-label="Close modal"
+            <svg
               className=""
-              disabled={false}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
-              onMouseDown={[Function]}
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-              onMouseUp={[Function]}
-              onTouchCancel={[Function]}
-              onTouchEnd={[Function]}
-              onTouchStart={[Function]}
+              height={24}
               style={
                 Object {
-                  "::MozFocusInner": Object {
-                    "border": 0,
-                  },
-                  "alignItems": "center",
-                  "background": "none",
-                  "border": "none",
-                  "boxSizing": "border-box",
-                  "color": "rgba(33,36,44,0.64)",
-                  "cursor": "pointer",
-                  "display": "inline-flex",
-                  "height": 40,
-                  "justifyContent": "center",
-                  "margin": -8,
-                  "outline": "none",
-                  "padding": 0,
-                  "position": "relative",
-                  "textDecoration": "none",
-                  "width": 40,
+                  "display": "inline-block",
+                  "flexGrow": 0,
+                  "flexShrink": 0,
+                  "verticalAlign": "text-bottom",
                 }
               }
-              tabIndex={0}
-              type="button"
+              viewBox="0 0 24 24"
+              width={24}
             >
-              <svg
-                className=""
-                height={24}
-                style={
-                  Object {
-                    "display": "inline-block",
-                    "verticalAlign": "text-bottom",
-                  }
-                }
-                viewBox="0 0 24 24"
-                width={24}
-              >
-                <path
-                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
         </div>
         <div
           className=""
@@ -1979,6 +2213,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onDragStart={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -2013,6 +2248,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -2186,7 +2422,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 5 1`] = `
+exports[`wonder-blocks-modal example 7 1`] = `
 <div
   className=""
   style={
@@ -2305,85 +2541,69 @@ exports[`wonder-blocks-modal example 5 1`] = `
             }
           }
         >
-          <div
+          <button
+            aria-label="Close modal"
             className=""
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
             style={
               Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
+                "::MozFocusInner": Object {
+                  "border": 0,
+                },
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
                 "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
+                "color": "#ffffff",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "height": 40,
+                "justifyContent": "center",
+                "margin": -8,
+                "outline": "none",
                 "padding": 0,
                 "position": "relative",
-                "zIndex": 0,
+                "textDecoration": "none",
+                "touchAction": "manipulation",
+                "width": 40,
               }
             }
+            tabIndex={0}
+            type="button"
           >
-            <button
-              aria-label="Close modal"
+            <svg
               className=""
-              disabled={false}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
-              onMouseDown={[Function]}
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-              onMouseUp={[Function]}
-              onTouchCancel={[Function]}
-              onTouchEnd={[Function]}
-              onTouchStart={[Function]}
+              height={24}
               style={
                 Object {
-                  "::MozFocusInner": Object {
-                    "border": 0,
-                  },
-                  "alignItems": "center",
-                  "background": "none",
-                  "border": "none",
-                  "boxSizing": "border-box",
-                  "color": "#ffffff",
-                  "cursor": "pointer",
-                  "display": "inline-flex",
-                  "height": 40,
-                  "justifyContent": "center",
-                  "margin": -8,
-                  "outline": "none",
-                  "padding": 0,
-                  "position": "relative",
-                  "textDecoration": "none",
-                  "width": 40,
+                  "display": "inline-block",
+                  "flexGrow": 0,
+                  "flexShrink": 0,
+                  "verticalAlign": "text-bottom",
                 }
               }
-              tabIndex={0}
-              type="button"
+              viewBox="0 0 24 24"
+              width={24}
             >
-              <svg
-                className=""
-                height={24}
-                style={
-                  Object {
-                    "display": "inline-block",
-                    "verticalAlign": "text-bottom",
-                  }
-                }
-                viewBox="0 0 24 24"
-                width={24}
-              >
-                <path
-                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
         </div>
         <div
           className=""
@@ -2804,6 +3024,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onDragStart={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -2838,6 +3059,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -2874,7 +3096,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 6 1`] = `
+exports[`wonder-blocks-modal example 8 1`] = `
 <div
   className=""
   style={
@@ -3014,85 +3236,69 @@ exports[`wonder-blocks-modal example 6 1`] = `
               }
             }
           >
-            <div
+            <button
+              aria-label="Close modal"
               className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
                   "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "outline": "none",
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
                 }
               }
+              tabIndex={0}
+              type="button"
             >
-              <button
-                aria-label="Close modal"
+              <svg
                 className=""
-                disabled={false}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseUp={[Function]}
-                onTouchCancel={[Function]}
-                onTouchEnd={[Function]}
-                onTouchStart={[Function]}
+                height={24}
                 style={
                   Object {
-                    "::MozFocusInner": Object {
-                      "border": 0,
-                    },
-                    "alignItems": "center",
-                    "background": "none",
-                    "border": "none",
-                    "boxSizing": "border-box",
-                    "color": "#ffffff",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
-                    "margin": -8,
-                    "outline": "none",
-                    "padding": 0,
-                    "position": "relative",
-                    "textDecoration": "none",
-                    "width": 40,
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
                   }
                 }
-                tabIndex={0}
-                type="button"
+                viewBox="0 0 24 24"
+                width={24}
               >
-                <svg
-                  className=""
-                  height={24}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "verticalAlign": "text-bottom",
-                    }
-                  }
-                  viewBox="0 0 24 24"
-                  width={24}
-                >
-                  <path
-                    d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
           </div>
           <div
             className=""
@@ -3331,7 +3537,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 7 1`] = `
+exports[`wonder-blocks-modal example 9 1`] = `
 <div
   className=""
   style={
@@ -3471,85 +3677,69 @@ exports[`wonder-blocks-modal example 7 1`] = `
               }
             }
           >
-            <div
+            <button
+              aria-label="Close modal"
               className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
                   "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "outline": "none",
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
                 }
               }
+              tabIndex={0}
+              type="button"
             >
-              <button
-                aria-label="Close modal"
+              <svg
                 className=""
-                disabled={false}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseUp={[Function]}
-                onTouchCancel={[Function]}
-                onTouchEnd={[Function]}
-                onTouchStart={[Function]}
+                height={24}
                 style={
                   Object {
-                    "::MozFocusInner": Object {
-                      "border": 0,
-                    },
-                    "alignItems": "center",
-                    "background": "none",
-                    "border": "none",
-                    "boxSizing": "border-box",
-                    "color": "#ffffff",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
-                    "margin": -8,
-                    "outline": "none",
-                    "padding": 0,
-                    "position": "relative",
-                    "textDecoration": "none",
-                    "width": 40,
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
                   }
                 }
-                tabIndex={0}
-                type="button"
+                viewBox="0 0 24 24"
+                width={24}
               >
-                <svg
-                  className=""
-                  height={24}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "verticalAlign": "text-bottom",
-                    }
-                  }
-                  viewBox="0 0 24 24"
-                  width={24}
-                >
-                  <path
-                    d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
           </div>
           <div
             className=""
@@ -3851,6 +4041,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
+                onDragStart={[Function]}
                 onFocus={[Function]}
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
@@ -3885,6 +4076,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                     "paddingTop": 0,
                     "position": "relative",
                     "textDecoration": "none",
+                    "touchAction": "manipulation",
                   }
                 }
                 tabIndex={0}
@@ -3922,7 +4114,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 8 1`] = `
+exports[`wonder-blocks-modal example 10 1`] = `
 <div
   className=""
   style={
@@ -4062,85 +4254,69 @@ exports[`wonder-blocks-modal example 8 1`] = `
               }
             }
           >
-            <div
+            <button
+              aria-label="Close modal"
               className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
                   "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "outline": "none",
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
                 }
               }
+              tabIndex={0}
+              type="button"
             >
-              <button
-                aria-label="Close modal"
+              <svg
                 className=""
-                disabled={false}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseUp={[Function]}
-                onTouchCancel={[Function]}
-                onTouchEnd={[Function]}
-                onTouchStart={[Function]}
+                height={24}
                 style={
                   Object {
-                    "::MozFocusInner": Object {
-                      "border": 0,
-                    },
-                    "alignItems": "center",
-                    "background": "none",
-                    "border": "none",
-                    "boxSizing": "border-box",
-                    "color": "#ffffff",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
-                    "margin": -8,
-                    "outline": "none",
-                    "padding": 0,
-                    "position": "relative",
-                    "textDecoration": "none",
-                    "width": 40,
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
                   }
                 }
-                tabIndex={0}
-                type="button"
+                viewBox="0 0 24 24"
+                width={24}
               >
-                <svg
-                  className=""
-                  height={24}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "verticalAlign": "text-bottom",
-                    }
-                  }
-                  viewBox="0 0 24 24"
-                  width={24}
-                >
-                  <path
-                    d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
           </div>
           <div
             className=""
@@ -4265,7 +4441,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 9 1`] = `
+exports[`wonder-blocks-modal example 11 1`] = `
 <div
   className=""
   style={
@@ -4405,85 +4581,69 @@ exports[`wonder-blocks-modal example 9 1`] = `
               }
             }
           >
-            <div
+            <button
+              aria-label="Close modal"
               className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
                   "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "outline": "none",
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
                 }
               }
+              tabIndex={0}
+              type="button"
             >
-              <button
-                aria-label="Close modal"
+              <svg
                 className=""
-                disabled={false}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseUp={[Function]}
-                onTouchCancel={[Function]}
-                onTouchEnd={[Function]}
-                onTouchStart={[Function]}
+                height={24}
                 style={
                   Object {
-                    "::MozFocusInner": Object {
-                      "border": 0,
-                    },
-                    "alignItems": "center",
-                    "background": "none",
-                    "border": "none",
-                    "boxSizing": "border-box",
-                    "color": "#ffffff",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
-                    "margin": -8,
-                    "outline": "none",
-                    "padding": 0,
-                    "position": "relative",
-                    "textDecoration": "none",
-                    "width": 40,
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
                   }
                 }
-                tabIndex={0}
-                type="button"
+                viewBox="0 0 24 24"
+                width={24}
               >
-                <svg
-                  className=""
-                  height={24}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "verticalAlign": "text-bottom",
-                    }
-                  }
-                  viewBox="0 0 24 24"
-                  width={24}
-                >
-                  <path
-                    d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
           </div>
           <div
             className=""
@@ -4741,6 +4901,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onDragStart={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -4775,6 +4936,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -4811,7 +4973,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 10 1`] = `
+exports[`wonder-blocks-modal example 12 1`] = `
 <div
   className=""
   style={
@@ -4951,85 +5113,69 @@ exports[`wonder-blocks-modal example 10 1`] = `
               }
             }
           >
-            <div
+            <button
+              aria-label="Close modal"
               className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
                   "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
+                  "color": "#ffffff",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "outline": "none",
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
                 }
               }
+              tabIndex={0}
+              type="button"
             >
-              <button
-                aria-label="Close modal"
+              <svg
                 className=""
-                disabled={false}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseUp={[Function]}
-                onTouchCancel={[Function]}
-                onTouchEnd={[Function]}
-                onTouchStart={[Function]}
+                height={24}
                 style={
                   Object {
-                    "::MozFocusInner": Object {
-                      "border": 0,
-                    },
-                    "alignItems": "center",
-                    "background": "none",
-                    "border": "none",
-                    "boxSizing": "border-box",
-                    "color": "#ffffff",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
-                    "margin": -8,
-                    "outline": "none",
-                    "padding": 0,
-                    "position": "relative",
-                    "textDecoration": "none",
-                    "width": 40,
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
                   }
                 }
-                tabIndex={0}
-                type="button"
+                viewBox="0 0 24 24"
+                width={24}
               >
-                <svg
-                  className=""
-                  height={24}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "verticalAlign": "text-bottom",
-                    }
-                  }
-                  viewBox="0 0 24 24"
-                  width={24}
-                >
-                  <path
-                    d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
           </div>
           <div
             className=""
@@ -5266,6 +5412,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onDragStart={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -5300,6 +5447,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}
@@ -5336,7 +5484,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 11 1`] = `
+exports[`wonder-blocks-modal example 13 1`] = `
 <div
   className=""
   style={
@@ -5475,85 +5623,69 @@ exports[`wonder-blocks-modal example 11 1`] = `
               }
             }
           >
-            <div
+            <button
+              aria-label="Close modal"
               className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
                   "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
+                  "color": "rgba(33,36,44,0.64)",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "outline": "none",
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
                 }
               }
+              tabIndex={0}
+              type="button"
             >
-              <button
-                aria-label="Close modal"
+              <svg
                 className=""
-                disabled={false}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseUp={[Function]}
-                onTouchCancel={[Function]}
-                onTouchEnd={[Function]}
-                onTouchStart={[Function]}
+                height={24}
                 style={
                   Object {
-                    "::MozFocusInner": Object {
-                      "border": 0,
-                    },
-                    "alignItems": "center",
-                    "background": "none",
-                    "border": "none",
-                    "boxSizing": "border-box",
-                    "color": "rgba(33,36,44,0.64)",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
-                    "margin": -8,
-                    "outline": "none",
-                    "padding": 0,
-                    "position": "relative",
-                    "textDecoration": "none",
-                    "width": 40,
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
                   }
                 }
-                tabIndex={0}
-                type="button"
+                viewBox="0 0 24 24"
+                width={24}
               >
-                <svg
-                  className=""
-                  height={24}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "verticalAlign": "text-bottom",
-                    }
-                  }
-                  viewBox="0 0 24 24"
-                  width={24}
-                >
-                  <path
-                    d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
           </div>
           <div
             className=""
@@ -5665,7 +5797,7 @@ exports[`wonder-blocks-modal example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 12 1`] = `
+exports[`wonder-blocks-modal example 14 1`] = `
 <div
   className=""
   style={
@@ -5804,85 +5936,69 @@ exports[`wonder-blocks-modal example 12 1`] = `
               }
             }
           >
-            <div
+            <button
+              aria-label="Close modal"
               className=""
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
+                  "::MozFocusInner": Object {
+                    "border": 0,
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
                   "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
+                  "color": "rgba(33,36,44,0.64)",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "outline": "none",
                   "padding": 0,
                   "position": "relative",
-                  "zIndex": 0,
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
                 }
               }
+              tabIndex={0}
+              type="button"
             >
-              <button
-                aria-label="Close modal"
+              <svg
                 className=""
-                disabled={false}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                onKeyUp={[Function]}
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseUp={[Function]}
-                onTouchCancel={[Function]}
-                onTouchEnd={[Function]}
-                onTouchStart={[Function]}
+                height={24}
                 style={
                   Object {
-                    "::MozFocusInner": Object {
-                      "border": 0,
-                    },
-                    "alignItems": "center",
-                    "background": "none",
-                    "border": "none",
-                    "boxSizing": "border-box",
-                    "color": "rgba(33,36,44,0.64)",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
-                    "margin": -8,
-                    "outline": "none",
-                    "padding": 0,
-                    "position": "relative",
-                    "textDecoration": "none",
-                    "width": 40,
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
                   }
                 }
-                tabIndex={0}
-                type="button"
+                viewBox="0 0 24 24"
+                width={24}
               >
-                <svg
-                  className=""
-                  height={24}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "verticalAlign": "text-bottom",
-                    }
-                  }
-                  viewBox="0 0 24 24"
-                  width={24}
-                >
-                  <path
-                    d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
           </div>
           <div
             className=""
@@ -6038,6 +6154,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
+              onDragStart={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -6072,6 +6189,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
                   "paddingTop": 0,
                   "position": "relative",
                   "textDecoration": "none",
+                  "touchAction": "manipulation",
                 }
               }
               tabIndex={0}

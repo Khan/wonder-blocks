@@ -41,19 +41,86 @@ class ExampleNoneSelected extends React.Component {
             selectedValues={this.state.selectedValues}
             selectItemType="colors"
             style={styles.setWidth}
+            testId="palette"
         >
-            <OptionItem label="Red" value="1"
+            <OptionItem label="Red" value="1" testId="red"
                 onClick={() => console.log("Roses are red")}
             />
-            <OptionItem label="Yellow" value="2" disabled />
-            <OptionItem label="Green" value="3" />
-            <OptionItem label="Blue" value="4" />
+            <OptionItem label="Yellow" value="2" disabled testId="yellow"/>
+            <OptionItem label="Green" value="3" testId="green" />
+            <OptionItem label="Blue" value="4" testId="blue" />
+            {false && <OptionItem label="Pink" value="5" testId="pink" />}
         </MultiSelect>;
     }
 }
 
 <View style={styles.row}>
     <ExampleNoneSelected />
+</View>
+```
+
+### Multi-select with custom dropdown styling
+
+Sometimes, we may want to customize the dropdown style (for example, to limit
+the height of the list), For this purpose, we have the `dropdownStyle` prop.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    setWidth: {
+        minWidth: 170,
+    },
+    dropdownHeight: {
+        maxHeight: 200,
+    },
+});
+
+class ExampleScrolling extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValues: [],
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(update) {
+        console.log("changes happened!");
+        this.setState({
+           selectedValues: update,
+        });
+    }
+
+    render() {
+        return <MultiSelect
+            onChange={this.handleChange}
+            placeholder="Solar system"
+            selectedValues={this.state.selectedValues}
+            selectItemType="planets"
+            style={styles.setWidth}
+            dropdownStyle={styles.dropdownHeight}
+        >
+            <OptionItem label="Mercury" value="1" />
+            <OptionItem label="Venus" value="2" />
+            <OptionItem label="Earth" value="3" disabled />
+            <OptionItem label="Mars" value="4" />
+            <OptionItem label="Jupiter" value="5" />
+            <OptionItem label="Saturn" value="6" />
+            <OptionItem label="Neptune" value="7" />
+            <OptionItem label="Uranus" value="8" />
+        </MultiSelect>;
+    }
+}
+
+<View style={styles.row}>
+    <ExampleScrolling />
 </View>
 ```
 
@@ -202,5 +269,22 @@ const modal = (
     <ModalLauncher modal={modal}>
         {({openModal}) => <Button onClick={openModal}>Open modal!</Button>}
     </ModalLauncher>
+</View>
+```
+
+### Empty menus are disabled automatically
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <MultiSelect menuText="Empty" placeholder="empty" />
 </View>
 ```

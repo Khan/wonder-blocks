@@ -50,27 +50,18 @@ type Props = {|
      *
      * If you're using `ModalLauncher`, you probably shouldn't use this prop!
      * Instead, to listen for when the modal closes, add an `onClose` handler
-     * to the `ModalLauncher`.
-     *
-     * This defaults to a no-op via `defaultProps`. (When used in a
-     * `ModalLauncher`, we'll automatically add an extra listener here via
-     * `cloneElement`, so that the `ModalLauncher` can listen for close button
-     * clicks too.)
-     * @ignore
+     * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
-    onClickCloseButton: () => void,
+    onClose?: () => void,
 |};
 
 /**
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
-    static defaultProps = {
-        onClickCloseButton: () => {},
-    };
     render() {
         const {
-            onClickCloseButton,
+            onClose,
             title,
             subtitle,
             header,
@@ -85,7 +76,7 @@ export default class StandardModal extends React.Component<Props> {
                     <ModalDialog style={styles.wrapper}>
                         <ModalPanel
                             showCloseButton
-                            onClickCloseButton={onClickCloseButton}
+                            onClose={onClose}
                             titleBar={
                                 <Toolbar
                                     title={title}

@@ -6,16 +6,18 @@ import {MEDIA_DEFAULT_SPEC} from "./specs.js";
 
 import type {MediaSize, MediaSpec} from "./types.js";
 
-const defaultContext: {
+type Context = {|
     overrideSize?: MediaSize,
     ssrSize: MediaSize,
     mediaSpec: MediaSpec,
-} = {
+|};
+
+const defaultContext: Context = {
     ssrSize: "large",
     mediaSpec: MEDIA_DEFAULT_SPEC,
 };
 
-export const MediaLayoutContext = React.createContext(defaultContext);
+export const MediaLayoutContext = React.createContext<Context>(defaultContext);
 
 export const matchesSize = (
     {

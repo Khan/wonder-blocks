@@ -26,9 +26,9 @@ type Props = {|
     pressed: boolean,
 |};
 
-const StyledAnchor = addStyle("a");
-const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
+const StyledAnchor = addStyle<"a">("a");
+const StyledButton = addStyle<"button">("button");
+const StyledLink = addStyle<typeof Link>(Link);
 
 export default class ButtonCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
@@ -123,7 +123,7 @@ export default class ButtonCore extends React.Component<Props> {
             </React.Fragment>
         );
 
-        if (href) {
+        if (href && !disabled) {
             return router && !skipClientNav ? (
                 <StyledLink {...commonProps} to={href}>
                     {contents}
@@ -164,6 +164,9 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
+        // This removes the 300ms click delay on mobile browsers by indicating that
+        // "double-tap to zoom" shouldn't be used on this element.
+        touchAction: "manipulation",
     },
     withIcon: {
         // The left padding for the button with icon should have 4px less padding

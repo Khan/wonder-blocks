@@ -42,16 +42,80 @@ class ExampleWithPlaceholder extends React.Component {
             placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
             style={styles.setWidth}
+            testId="fruit-select"
         >
-            <OptionItem label="Vine-ripened tomatoes" value="tomato" />
-            <OptionItem label="Watermelon" value="watermelon" />
-            <OptionItem label="Strawberry" value="strawberry" />
+            <OptionItem label="Vine-ripened tomatoes" value="tomato" testId="tomato" />
+            <OptionItem label="Watermelon" value="watermelon" testId="watermelon" />
+            <OptionItem label="Strawberry" value="strawberry" testId="strawberry" />
+            {false && <OptionItem label="Other" value="other" testId="other" />}
         </SingleSelect>;
     }
 }
 
 <View style={styles.row}>
     <ExampleWithPlaceholder />
+</View>
+```
+
+### Single select with custom dropdown style
+
+This example shows how we can add custom styles to the dropdown.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    setWidth: {
+        minWidth: 170,
+        maxWidth: 190,
+    },
+    dropdown: {
+        maxHeight: 240,
+    },
+});
+
+class ExampleWithDropdownStyles extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValue: null,
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(selected) {
+        console.log(`${selected} was selected!`);
+        this.setState({
+            selectedValue: selected,
+        });
+    }
+
+    render() {
+        return <SingleSelect
+            onChange={this.handleChange}
+            placeholder="Choose a pet"
+            selectedValue={this.state.selectedValue}
+            style={styles.setWidth}
+        >
+            <OptionItem label="Cat" value="1" />
+            <OptionItem label="Dog" value="2" />
+            <OptionItem label="Goldfish" value="3" />
+            <OptionItem label="Hamster" value="4" />
+            <OptionItem label="Rabbit" value="5" />
+            <OptionItem label="Rock" value="6" />
+            <OptionItem label="Snake" value="7" />
+            <OptionItem label="Tarantula" value="8" />
+        </SingleSelect>;
+    }
+}
+
+<View style={styles.row}>
+    <ExampleWithDropdownStyles />
 </View>
 ```
 
@@ -219,4 +283,21 @@ class LightRightAlignedExample extends React.Component {
     </View>
 </View>
 
+```
+
+### Empty menus are disabled automatically
+
+```js
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <SingleSelect menuText="Empty" placeholder="empty" />
+</View>
 ```

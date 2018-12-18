@@ -12,6 +12,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
+import ModalContext from "./modal-context.js";
 
 type Props = {|
     /**
@@ -40,16 +41,11 @@ type Props = {|
     /**
      * Called when the close button is clicked.
      *
-     * If you're using `ModalLauncher`, you probably shouldn't use this prop!
+     * If you're using `ModalLauncher`, you should not use this prop!
      * Instead, to listen for when the modal closes, add an `onClose` handler
-     * to the `ModalLauncher`.
-     *
-     * This defaults to a no-op via `defaultProps`. (When used in a
-     * `ModalLauncher`, we'll automatically add an extra listener here via
-     * `cloneElement`, so that the `ModalLauncher` can listen for close button
-     * clicks too.)
+     * to the `ModalLauncher`.  Doing so will throw an error.
      */
-    onClickCloseButton: () => void,
+    onClose?: () => void,
 |};
 
 export default class ModalPanel extends React.Component<Props> {
@@ -57,16 +53,10 @@ export default class ModalPanel extends React.Component<Props> {
         showCloseButton: false,
         scrollOverflow: true,
         color: "light",
-        onClickCloseButton: () => {},
     };
 
     maybeRenderCloseButton() {
-        const {
-            showCloseButton,
-            onClickCloseButton,
-            color,
-            titleBar,
-        } = this.props;
+        const {showCloseButton, onClose, color, titleBar} = this.props;
 
         if (!showCloseButton) {
             return null;
@@ -81,18 +71,30 @@ export default class ModalPanel extends React.Component<Props> {
             <Layout styleSheets={styles}>
                 {({styles}) => (
                     <View style={styles.closeButton}>
-                        <IconButton
-                            icon={icons.dismiss}
-                            // TODO(mdr): Translate this string for i18n.
-                            aria-label="Close modal"
-                            onClick={onClickCloseButton}
-                            kind={
-                                topBackgroundColor === "dark"
-                                    ? "primary"
-                                    : "tertiary"
-                            }
-                            light={topBackgroundColor === "dark"}
-                        />
+                        <ModalContext.Consumer>
+                            {({closeModal}) => {
+                                if (closeModal && onClose) {
+                                    throw new Error(
+                                        "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
+                                    );
+                                }
+
+                                return (
+                                    <IconButton
+                                        icon={icons.dismiss}
+                                        // TODO(mdr): Translate this string for i18n.
+                                        aria-label="Close modal"
+                                        onClick={onClose}
+                                        kind={
+                                            topBackgroundColor === "dark"
+                                                ? "primary"
+                                                : "tertiary"
+                                        }
+                                        light={topBackgroundColor === "dark"}
+                                    />
+                                );
+                            }}
+                        </ModalContext.Consumer>
                     </View>
                 )}
             </Layout>
