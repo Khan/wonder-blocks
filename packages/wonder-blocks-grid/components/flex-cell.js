@@ -3,7 +3,7 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Layout, matchesSize} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize} from "@khanacademy/wonder-blocks-layout";
+import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-layout";
 
 import styles from "../util/styles.js";
 
@@ -57,6 +57,16 @@ export default class FlexCell extends React.Component<Props> {
     static shouldDisplay(props: Props, mediaSize: MediaSize) {
         return matchesSize(props, mediaSize);
     }
+
+    getContents = (mediaSize: MediaSize, mediaSpec: MediaSpec) => {
+        const {children} = this.props;
+        if (typeof children === "function") {
+            const {totalColumns} = mediaSpec[mediaSize];
+            return children({mediaSize, totalColumns});
+        }
+
+        return children;
+    };
 
     render() {
         const {children, style} = this.props;
