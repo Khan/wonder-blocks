@@ -27,7 +27,7 @@ export default class ModalContent extends React.Component<Props> {
         const {header, scrollOverflow, style, children} = this.props;
 
         return (
-            <Layout styleSheets={styles}>
+            <Layout styleSheets={styleSheets}>
                 {({styles}) => (
                     <View
                         style={[
@@ -50,7 +50,7 @@ export default class ModalContent extends React.Component<Props> {
     }
 }
 
-const styles = {
+const styleSheets = {
     all: StyleSheet.create({
         wrapper: {
             flex: 1,

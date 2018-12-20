@@ -93,12 +93,6 @@ export default class Layout extends React.Component<
     };
 
     componentWillUnmount() {
-        // If we're on the server then we don't have anything to unmount
-        // as we never mounted anything in the first place!
-        if (this.isServerSide()) {
-            return;
-        }
-
         // We go through the component and remove all of the listeners
         // that getCurrentSize attached.
         for (const query of Object.keys(Layout.WATCHERS)) {
@@ -143,6 +137,7 @@ export default class Layout extends React.Component<
             }
 
             // Create a new matchMedia watcher if one doesn't exist yet
+            // TODO(kevinb): move this to componentWillMount
             if (!Layout.WATCHERS[query]) {
                 Layout.WATCHERS[query] = window.matchMedia(query);
             }

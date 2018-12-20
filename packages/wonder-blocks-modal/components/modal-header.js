@@ -21,7 +21,7 @@ export default class ModalHeader extends React.Component<Props> {
     render() {
         const {style, color, children} = this.props;
         return (
-            <Layout styleSheets={styles}>
+            <Layout styleSheets={styleSheets}>
                 {({styles}) => (
                     <View
                         style={[
@@ -38,7 +38,7 @@ export default class ModalHeader extends React.Component<Props> {
     }
 }
 
-const styles = {
+const styleSheets = {
     all: StyleSheet.create({
         header: {
             flex: "0 0 auto",

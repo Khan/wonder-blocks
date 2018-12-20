@@ -9,7 +9,7 @@ import type {MediaSize, MediaSpec} from "../util/types.js";
 type Props = {|
     /**
      * Force the MediaLayout to be a particular size (ignoring the actual
-     * dimensions of the viewport).
+     * dimensions of the viewport).  This intended for testing purposes.
      */
     overrideSize?: MediaSize,
 

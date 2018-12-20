@@ -19,7 +19,7 @@ export default class ModalDialog extends React.Component<Props> {
         const {style, children} = this.props;
         return (
             <MediaLayout spec={MEDIA_MODAL_SPEC}>
-                <Layout styleSheets={styles}>
+                <Layout styleSheets={styleSheets}>
                     {({styles}) => (
                         <View
                             style={[styles.wrapper, style]}
@@ -35,7 +35,7 @@ export default class ModalDialog extends React.Component<Props> {
     }
 }
 
-const styles = {
+const styleSheets = {
     all: StyleSheet.create({
         wrapper: {
             display: "flex",

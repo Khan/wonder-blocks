@@ -7,6 +7,7 @@ import {Layout} from "@khanacademy/wonder-blocks-layout";
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
+import CloseButton from "./close-button.js";
 
 type Props = {|
     /**
@@ -59,6 +60,22 @@ type Props = {|
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
+    renderCloseButton() {
+        const {onClose, header} = this.props;
+
+        return (
+            <Layout styleSheets={styleSheets}>
+                {({styles}) => (
+                    <CloseButton
+                        light={!!header}
+                        onClose={onClose}
+                        style={styles.closeButton}
+                    />
+                )}
+            </Layout>
+        );
+    }
+
     render() {
         const {
             onClose,
@@ -71,17 +88,17 @@ export default class StandardModal extends React.Component<Props> {
         } = this.props;
 
         return (
-            <Layout styleSheets={styles}>
+            <Layout styleSheets={styleSheets}>
                 {({styles}) => (
                     <ModalDialog style={styles.wrapper}>
                         <ModalPanel
-                            showCloseButton
                             onClose={onClose}
                             titleBar={
                                 <Toolbar
                                     title={title}
                                     subtitle={subtitle}
                                     color={header ? "dark" : "light"}
+                                    leftContent={this.renderCloseButton()}
                                 />
                             }
                             header={header}
@@ -106,7 +123,7 @@ export default class StandardModal extends React.Component<Props> {
     }
 }
 
-const styles = {
+const styleSheets = {
     all: StyleSheet.create({
         preview: {
             maxWidth: 392,

@@ -21,7 +21,7 @@ describe("wonder-blocks-grid", () => {
         const {Layout} = require("@khanacademy/wonder-blocks-layout");
         const {StyleSheet} = require("aphrodite");
 
-        const styles = {
+        const styleSheets = {
             all: StyleSheet.create({
                 background: {
                     background: Color.offBlack,
@@ -50,7 +50,7 @@ describe("wonder-blocks-grid", () => {
         };
 
         const example = (
-            <Layout styleSheets={styles}>
+            <Layout styleSheets={styleSheets}>
                 {({styles}) => (
                     <View style={styles.background}>
                         <Row>
@@ -263,7 +263,7 @@ describe("wonder-blocks-grid", () => {
         const {Layout} = require("@khanacademy/wonder-blocks-layout");
         const {StyleSheet} = require("aphrodite");
 
-        const styles = {
+        const styleSheets = {
             all: StyleSheet.create({
                 background: {
                     background: Color.offBlack,
@@ -292,7 +292,7 @@ describe("wonder-blocks-grid", () => {
         };
 
         const example = (
-            <Layout styleSheets={styles}>
+            <Layout styleSheets={styleSheets}>
                 {({styles}) => (
                     <View style={styles.background}>
                         <Row>

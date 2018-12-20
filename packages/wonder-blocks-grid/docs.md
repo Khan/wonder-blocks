@@ -8,7 +8,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
 const {Layout} = require("@khanacademy/wonder-blocks-layout");
 const {StyleSheet} = require("aphrodite");
 
-const styles = {
+const styleSheets = {
     all: StyleSheet.create({
         background: {
             background: Color.offBlack,
@@ -36,7 +36,7 @@ const styles = {
     }),
 };
 
-<Layout styleSheets={styles}>
+<Layout styleSheets={styleSheets}>
     {({styles}) => <View style={styles.background}>
         <Row>
 			<FlexCell style={styles.cell}>
