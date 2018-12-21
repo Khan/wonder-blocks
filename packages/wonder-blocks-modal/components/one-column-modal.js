@@ -85,11 +85,12 @@ export default class OneColumnModal extends React.Component<Props> {
     render() {
         return (
             <React.Fragment>
-                <Layout mdOrLarger={false}>
-                    <SmallOneColumnModal {...this.props} />
-                </Layout>
-                <Layout small={false}>
-                    <LargeOneColumnModal {...this.props} />
+                <Layout>
+                    {({mediaSize}) =>
+                        mediaSize === "small"
+                         ? <SmallOneColumnModal {...this.props} />
+                         : <LargeOneColumnModal {...this.props} />
+                    }
                 </Layout>
             </React.Fragment>
         );

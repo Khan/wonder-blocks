@@ -1,23 +1,18 @@
 // @flow
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Layout, matchesSize} from "@khanacademy/wonder-blocks-layout";
+import {Layout, queryMatchesSize} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-layout";
+import type {MediaQuery, MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-layout";
 
 import styles from "../util/styles.js";
 
 type Props = {|
-    /** Should this cell be shown on a Small Grid? */
-    small: boolean,
-    /** Should this cell be shown on a Medium Grid? */
-    medium: boolean,
-    /** Should this cell be shown on a Large Grid? */
-    large: boolean,
-    /** Should this cell be shown at Medium or larger grids? */
-    mdOrLarger: boolean,
-    /** Should this cell be shown at Medium or smaller grids? */
-    mdOrSmaller: boolean,
+    /**
+     * Which media should this cell be renderer on.  Defaults to all.
+     */
+    mediaQuery: MediaQuery,
+
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `mediaSize` and `totalColumns` and should
@@ -29,6 +24,7 @@ type Props = {|
               mediaSize: MediaSize,
               totalColumns: number,
           }) => React.Node),
+
     /** The styling to apply to the cell. */
     style?: StyleType,
 |};
@@ -47,15 +43,11 @@ type Props = {|
  */
 export default class FlexCell extends React.Component<Props> {
     static defaultProps = {
-        small: true,
-        medium: true,
-        large: true,
-        mdOrLarger: true,
-        mdOrSmaller: true,
+        mediaQuery: "all",
     };
 
     static shouldDisplay(props: Props, mediaSize: MediaSize) {
-        return matchesSize(props, mediaSize);
+        return queryMatchesSize(props.mediaQuery, mediaSize);
     }
 
     getContents = (mediaSize: MediaSize, mediaSpec: MediaSpec) => {

@@ -142,11 +142,12 @@ export default class TwoColumnModal extends React.Component<Props> {
     render() {
         return (
             <React.Fragment>
-                <Layout mdOrLarger={false}>
-                    <SmallTwoColumnModal {...this.props} />
-                </Layout>
-                <Layout small={false}>
-                    <LargeTwoColumnModal {...this.props} />
+                <Layout>
+                    {({mediaSize}) =>
+                        mediaSize === "small"
+                            ? <SmallTwoColumnModal {...this.props} />
+                            : <LargeTwoColumnModal {...this.props} />
+                    }
                 </Layout>
             </React.Fragment>
         );

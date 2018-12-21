@@ -9,14 +9,9 @@ import styles from "../util/styles.js";
 import {flexBasis} from "../util/utils.js";
 
 type Props = {|
-    /** The width of this cell on a Small Grid (in pixels, %, or other). */
-    smallWidth?: number | string,
-    /** The width of this cell on a Medium Grid (in pixels, %, or other). */
-    mediumWidth?: number | string,
-    /** The width of this cell on a Large Grid (in pixels, %, or other). */
-    largeWidth?: number | string,
     /** The default width of the cell (in pixels, %, or other). */
-    width?: number | string | ((size: MediaSize) => number | string),
+    width: number | string,
+
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `mediaSize`, `totalColumns`, and cell
@@ -29,6 +24,7 @@ type Props = {|
               totalColumns: number,
               width: number | string,
           }) => React.Node),
+
     /** The styling to apply to the cell. */
     style?: StyleType,
 |};
@@ -53,64 +49,13 @@ type Props = {|
  * and using the specified width.
  */
 export default class FixedWidthCell extends React.Component<Props> {
-    static defaultProps = {
-        smallWidth: 0,
-        mediumWidth: 0,
-        largeWidth: 0,
-        width: 0,
-    };
-
-    static getWidth(
-        {smallWidth, mediumWidth, largeWidth, width}: Props,
-        mediaSize: MediaSize,
-    ) {
-        // If no option was specified then we just return undefined,
-        // components may handle this case differently.
-        // We go through all the ways in which a fixed width can be
-        // specified and find the one that matches our current grid size.
-        if (!smallWidth && !mediumWidth && !largeWidth && !width) {
-            return undefined;
-        } else if (smallWidth && mediaSize === "small") {
-            return smallWidth;
-        } else if (mediumWidth && mediaSize === "medium") {
-            return mediumWidth;
-        } else if (largeWidth && mediaSize === "large") {
-            return largeWidth;
-        } else if (typeof width === "function") {
-            return width(mediaSize);
-        } else if (width) {
-            return width;
-        }
-
-        // If nothing applies then we return null (usually resulting
-        // in the component not being rendered)
-        return null;
-    }
-
-    static shouldDisplay(props: Props, mediaSize: MediaSize) {
-        return !!FixedWidthCell.getWidth(props, mediaSize);
-    }
-
     render() {
         const {children, style} = this.props;
 
         return (
             <Layout>
                 {({mediaSize, mediaSpec}) => {
-                    const width = FixedWidthCell.getWidth(
-                        this.props,
-                        mediaSize,
-                    );
-
-                    // If no width is ever specified then we error out.
-                    if (width === undefined) {
-                        throw new Error(
-                            "No width specified to FixedWidthCell.",
-                        );
-                    } else if (width === null || width === 0) {
-                        // If no width is specified then we just don't render this cell
-                        return null;
-                    }
+                    const {width} = this.props;
 
                     let contents = children;
 

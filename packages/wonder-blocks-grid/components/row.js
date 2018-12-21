@@ -1,29 +1,18 @@
 // @flow
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Layout, matchesSize} from "@khanacademy/wonder-blocks-layout";
+import {Layout, Strut, queryMatchesSize} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize} from "@khanacademy/wonder-blocks-layout";
+import type {MediaQuery, MediaSize} from "@khanacademy/wonder-blocks-layout";
 
 import styles from "../util/styles.js";
-import FixedWidthCell from "./fixed-width-cell.js";
 import Gutter from "./gutter.js";
 
 type Props = {|
-    /** Should this row be shown on a Small Grid? */
-    small: boolean,
-
-    /** Should this row be shown on a Medium Grid? */
-    medium: boolean,
-
-    /** Should this row be shown on a Large Grid? */
-    large: boolean,
-
-    /** Should this row be shown at Medium or larger grids? */
-    mdOrLarger: boolean,
-
-    /** Should this row be shown at Medium or smaller grids? */
-    mdOrSmaller: boolean,
+    /**
+     * Which media should this cell be renderer on.  Defaults to all.
+     */
+    mediaQuery: MediaQuery,
 
     /**
      * The child components to populate inside the row. Typically this will be
@@ -64,11 +53,7 @@ type Props = {|
  */
 export default class Row extends React.Component<Props> {
     static defaultProps = {
-        small: true,
-        medium: true,
-        large: true,
-        mdOrLarger: true,
-        mdOrSmaller: true,
+        mediaQuery: "all",
     };
 
     render() {
@@ -80,7 +65,7 @@ export default class Row extends React.Component<Props> {
                     const {marginWidth, maxWidth, totalColumns} = mediaSpec[
                         mediaSize
                     ];
-                    const shouldDisplay = matchesSize(this.props, mediaSize);
+                    const shouldDisplay = queryMatchesSize(this.props.mediaQuery, mediaSize);
 
                     // Don't render the row if it's been disabled at this size
                     if (!shouldDisplay) {
@@ -103,6 +88,8 @@ export default class Row extends React.Component<Props> {
                     const filteredContents = [];
                     let hasVisibleCell = false;
 
+                    // TODO(kevin): make shouldDisplay and instance method and call
+                    // it directly on the instance.
                     for (const item of contents) {
                         if (
                             !item.type ||
@@ -136,9 +123,9 @@ export default class Row extends React.Component<Props> {
                                     !!maxWidth && {maxWidth},
                                 ]}
                             >
-                                <FixedWidthCell width={marginWidth} />
+                                <Strut size={marginWidth} />
                                 {filteredContents}
-                                <FixedWidthCell width={marginWidth} />
+                                <Strut size={marginWidth} />
                             </View>
                         </View>
                     );

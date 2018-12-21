@@ -1,6 +1,14 @@
 // @flow
 import * as React from "react";
-import {Layout, Strut, matchesSize} from "@khanacademy/wonder-blocks-layout";
+import {Layout, Strut, queryMatchesSize} from "@khanacademy/wonder-blocks-layout";
+import type {MediaQuery} from "@khanacademy/wonder-blocks-layout";
+
+type Props = {|
+    /**
+     * Which media should this cell be renderer on.  Defaults to all.
+     */
+    mediaQuery: MediaQuery,
+|}
 
 /**
  * Gutter is a form of [FixedWidthCell](#fixedwidthcell) whose width is set based on the size
@@ -15,24 +23,9 @@ import {Layout, Strut, matchesSize} from "@khanacademy/wonder-blocks-layout";
  * grid sizes. If you specify the `small`, `medium`, or `large`
  * props then the component will only be shown at those grid sizes.
  */
-export default class Gutter extends React.Component<{
-    /** Should this gutter be shown on a Small Grid? */
-    small: boolean,
-    /** Should this gutter be shown on a Medium Grid? */
-    medium: boolean,
-    /** Should this gutter be shown on a Large Grid? */
-    large: boolean,
-    /** Should this gutter be shown at Medium or larger grids? */
-    mdOrLarger: boolean,
-    /** Should this gutter be shown at Medium or smaller grids? */
-    mdOrSmaller: boolean,
-}> {
+export default class Gutter extends React.Component<Props> {
     static defaultProps = {
-        small: true,
-        medium: true,
-        large: true,
-        mdOrLarger: true,
-        mdOrSmaller: true,
+        mediaQuery: "all",
     };
 
     render() {
@@ -40,9 +33,8 @@ export default class Gutter extends React.Component<{
             <Layout>
                 {({mediaSize, mediaSpec}) => {
                     const {gutterWidth} = mediaSpec[mediaSize];
-                    const shouldDisplay = matchesSize(this.props, mediaSize);
 
-                    if (!shouldDisplay) {
+                    if (!queryMatchesSize(this.props.mediaQuery, mediaSize)) {
                         return null;
                     }
 

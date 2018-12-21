@@ -2,6 +2,8 @@
 
 export type MediaSize = "small" | "medium" | "large";
 
+export type MediaQuery = "all" | "mdOrSmaller" | "mdOrLarger" | MediaSize;
+
 // eslint-disable-next-line flowtype/require-exact-type
 export type MediaSpec = {
     [sizeName: MediaSize]: {

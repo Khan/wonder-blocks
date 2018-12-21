@@ -5,18 +5,9 @@ import {Layout} from "@khanacademy/wonder-blocks-layout";
 import type {MediaSize} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import FlexCell from "./flex-cell.js";
 import FixedWidthCell from "./fixed-width-cell.js";
 
-type Props = {|
-    /** The number of columns this cell should span on a Small Grid. */
-    smallCols?: number,
-    /** The number of columns this cell should span on a Medium Grid. */
-    mediumCols?: number,
-    /** The number of columns this cell should span on a Large Grid. */
-    largeCols?: number,
-    /** The number of columns this should should span by default. */
-    cols?: number | ((mediaSize: MediaSize) => number),
+type ComnmonProps = {|
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `mediaSize`, `totalColumns`, and cell
@@ -29,8 +20,27 @@ type Props = {|
               totalColumns: number,
               cols: number,
           }) => React.Node),
+
     /** The styling to apply to the cell. */
     style?: StyleType,
+|};
+
+type Props = {|
+    /** The number of columns this cell should span on a Small Grid. */
+    smallCols: number,
+    ...ComnmonProps,
+|} | {|
+    /** The number of columns this cell should span on a Medium Grid. */
+    mediumCols: number,
+    ...ComnmonProps,
+|} | {|
+    /** The number of columns this cell should span on a Large Grid. */
+    largeCols: number,
+    ...ComnmonProps,
+|} | {|
+    /** The number of columns this should should span by default. */
+    cols: number | ((mediaSize: MediaSize) => number),
+    ...ComnmonProps,
 |};
 
 /**
@@ -59,25 +69,25 @@ export default class Cell extends React.Component<Props> {
     };
 
     static getCols(
-        {smallCols, mediumCols, largeCols, cols}: Props,
+        props: Props,
         mediaSize: MediaSize,
     ) {
         // If no option was specified then we just return undefined,
         // components may handle this case differently.
         // We go through all the ways in which a fixed width can be
         // specified and find the one that matches our current grid size.
-        if (!smallCols && !mediumCols && !largeCols && !cols) {
+        if (!props.smallCols && !props.mediumCols && !props.largeCols && !props.cols) {
             return undefined;
-        } else if (smallCols && mediaSize === "small") {
-            return smallCols;
-        } else if (mediumCols && mediaSize === "medium") {
-            return mediumCols;
-        } else if (largeCols && mediaSize === "large") {
-            return largeCols;
-        } else if (typeof cols === "function") {
-            return cols(mediaSize);
-        } else if (cols) {
-            return cols;
+        } else if (props.smallCols && mediaSize === "small") {
+            return props.smallCols;
+        } else if (props.mediumCols && mediaSize === "medium") {
+            return props.mediumCols;
+        } else if (props.largeCols && mediaSize === "large") {
+            return props.largeCols;
+        } else if (typeof props.cols === "function") {
+            return props.cols(mediaSize);
+        } else if (props.cols) {
+            return props.cols;
         }
 
         // If nothing applies then we return null (usually resulting
@@ -103,12 +113,8 @@ export default class Cell extends React.Component<Props> {
 
                     const cols = Cell.getCols(this.props, mediaSize);
 
-                    // If no columns are specified then we assume we're rendering
-                    // a flexible-width cell (flex: grow)
-                    if (cols === undefined) {
-                        return <FlexCell style={style}>{children}</FlexCell>;
-                    } else if (cols === null || cols === 0) {
-                        // If no columns are specified then we just don't render this cell
+                    // If no columns are specified then we just don't render this cell
+                    if (cols === undefined || cols === null || cols === 0) {
                         return null;
                     }
 

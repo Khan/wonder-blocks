@@ -5,7 +5,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {MediaSize, MediaSpec} from "../util/types.js";
 
-import {MediaLayoutContext, matchesSize} from "../util/util.js";
+import {MediaLayoutContext} from "../util/util.js";
 import {VALID_MEDIA_SIZES} from "../util/specs.js";
 
 // eslint-disable-next-line flowtype/require-exact-type
@@ -25,13 +25,11 @@ type Props = {|
      *                  stylesheet for this mediaSize (as specified in the
      *                  styleSheets prop).
      */
-    children:
-        | (({
-              mediaSize: MediaSize,
-              mediaSpec: MediaSpec,
-              styles: MockStyleSheet,
-          }) => React.Node)
-        | React.Node,
+    children: (({
+        mediaSize: MediaSize,
+        mediaSpec: MediaSpec,
+        styles: MockStyleSheet,
+    }) => React.Node),
 
     /**
      * Aphrodite stylesheets to pass through to the styles prop. The
@@ -44,17 +42,6 @@ type Props = {|
         mdOrSmaller?: StyleDeclaration,
         [mediaSize: MediaSize]: StyleDeclaration,
     },
-
-    /** Should the contents be displayed at a media size of "small"? */
-    small: boolean,
-    /** Should the contents be displayed at a media size of "medium"? */
-    medium: boolean,
-    /** Should the contents be displayed at a media size of "large"? */
-    large: boolean,
-    /** Should the contents be displayed at a media size of "medium" or "large"? */
-    mdOrLarger: boolean,
-    /** Should the contents be displayed at a media size of "small" or "medium"? */
-    mdOrSmaller: boolean,
 |};
 
 // If for some reason we're not able to resolve the current media size we
@@ -79,14 +66,6 @@ export default class Layout extends React.Component<
     static WATCHERS: {
         [query: string]: any,
     } = {};
-
-    static defaultProps = {
-        small: true,
-        medium: true,
-        mdOrLarger: true,
-        mdOrSmaller: true,
-        large: true,
-    };
 
     state = {
         size: undefined,
@@ -248,23 +227,10 @@ export default class Layout extends React.Component<
                         (this.isServerSide() && ssrSize) ||
                         this.getCurrentSize(mediaSpec);
 
-                    // We then potentially not render if the media size matches
-                    // one of the props that we've set `false` on.
-                    if (!matchesSize(this.props, mediaSize)) {
-                        return null;
-                    }
-
                     // Generate a mock stylesheet
                     const styles = this.getMockStyleSheet(mediaSize);
 
-                    // We pass in an object holding the mediaSize and mediaStyle
-                    // to the child function (if it exists).
-                    const contents =
-                        typeof children === "function"
-                            ? children({mediaSize, mediaSpec, styles})
-                            : children;
-
-                    return contents;
+                    return children({mediaSize, mediaSpec, styles});
                 }}
             </MediaLayoutContext.Consumer>
         );

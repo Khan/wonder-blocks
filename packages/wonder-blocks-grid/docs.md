@@ -136,8 +136,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
         <Cell style={{color: Color.white}}>Geometry foundations</Cell>
     </Row>
     <Row
-        small={false}
-        large={false}
+        mediaQuery="medium"
         style={{
             background: Color.white,
             height: 71,
@@ -158,7 +157,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
         </FixedWidthCell>
     </Row>
     <Row
-        mdOrSmaller={false}
+        mediaQuery="large"
         style={{
             background: Color.white,
             height: 71,
@@ -168,11 +167,11 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
         <Cell cols={3}>Possible mastery points</Cell>
         <View>Beginner / Points to Apprentice</View>
     </Row>
-    <Row large={false} style={{height: 50}}>
-        <Cell>Skill Summary</Cell>
+    <Row mediaQuery="mdOrSmaller" style={{height: 50}}>
+        <FlexCell>Skill Summary</FlexCell>
     </Row>
     <Row
-        large={false}
+        mediaQuery="mdOrSmaller"
         style={{
             background: Color.white,
             height: 90,
@@ -180,9 +179,9 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             borderBottom: `1px solid ${Color.offBlack8}`,
         }}
     >
-        <Cell>Intro to Geometry Angles Quiz 1: 10 questions Polygons</Cell>
+        <FlexCell>Intro to Geometry Angles Quiz 1: 10 questions Polygons</FlexCell>
     </Row>
-    <Row mdOrSmaller={false} style={{padding: "17px 0"}}>
+    <Row mediaQuery="large" style={{padding: "17px 0"}}>
         <Cell cols={3}>
             Skill Summary
             <hr />
@@ -194,7 +193,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             <hr />
             Polygons
         </Cell>
-        <Cell>
+        <FlexCell>
             <View
                 style={{
                     background: Color.white,
@@ -216,10 +215,10 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             >
                 Angles
             </View>
-        </Cell>
+        </FlexCell>
     </Row>
     <Row
-        large={false}
+        mediaQuery="mdOrSmaller"
         style={{
             marginTop: 16,
             background: Color.white,
@@ -229,10 +228,10 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             borderBottom: `1px solid ${Color.offBlack8}`,
         }}
     >
-        <Cell>Intro to geometry</Cell>
+        <FlexCell>Intro to geometry</FlexCell>
     </Row>
     <Row
-        large={false}
+        mediaQuery="mdOrSmaller"
         style={{
             marginTop: 16,
             background: Color.white,
@@ -242,7 +241,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             borderBottom: `1px solid ${Color.offBlack8}`,
         }}
     >
-        <Cell>Angles</Cell>
+        <FlexCell>Angles</FlexCell>
     </Row>
 </View>;
 ```

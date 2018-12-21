@@ -18,7 +18,7 @@ describe("@khanacademy/wonder-blocks-layout", () => {
                 "MEDIA_DEFAULT_SPEC",
                 "MEDIA_INTERNAL_SPEC",
                 "MEDIA_MODAL_SPEC",
-                "matchesSize",
+                "queryMatchesSize",
             ].sort(),
         );
     });

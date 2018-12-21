@@ -4,7 +4,7 @@ import * as React from "react";
 
 import {MEDIA_DEFAULT_SPEC} from "./specs.js";
 
-import type {MediaSize, MediaSpec} from "./types.js";
+import type {MediaQuery, MediaSize, MediaSpec} from "./types.js";
 
 type Context = {|
     overrideSize?: MediaSize,
@@ -19,22 +19,21 @@ const defaultContext: Context = {
 
 export const MediaLayoutContext = React.createContext<Context>(defaultContext);
 
-export const matchesSize = (
-    {
-        small,
-        medium,
-        large,
-        mdOrLarger,
-        mdOrSmaller,
-    }: {
-        small: boolean,
-        medium: boolean,
-        large: boolean,
-        mdOrLarger: boolean,
-        mdOrSmaller: boolean,
-    },
-    mediaSize: MediaSize,
-) =>
-    (small && mdOrSmaller && mediaSize === "small") ||
-    (medium && mdOrSmaller && mdOrLarger && mediaSize === "medium") ||
-    (large && mdOrLarger && mediaSize === "large");
+export const queryMatchesSize = (mediaQuery: MediaQuery, mediaSize: MediaSize): boolean => {
+    switch (mediaQuery) {
+        case "all":
+            return true;
+        case "small":
+            return mediaSize === "small";
+        case "mdOrSmaller":
+            return mediaSize === "medium" || mediaSize === "small";
+        case "medium":
+            return mediaSize === "medium";
+        case "mdOrLarger":
+            return mediaSize === "medium" || mediaSize === "large";
+        case "large":
+            return mediaSize === "large";
+        default:
+            throw new Error(`Unsupported mediaSize: ${mediaSize}`);
+    }
+}
