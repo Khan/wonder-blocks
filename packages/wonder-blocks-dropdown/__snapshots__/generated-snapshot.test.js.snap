@@ -2049,6 +2049,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
         "position": "relative",
         "textDecoration": "none",
         "touchAction": "manipulation",
+        "userSelect": "none",
       }
     }
     tabIndex={0}
@@ -2069,7 +2070,6 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
           "overflow": "hidden",
           "pointerEvents": "none",
           "textOverflow": "ellipsis",
-          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }

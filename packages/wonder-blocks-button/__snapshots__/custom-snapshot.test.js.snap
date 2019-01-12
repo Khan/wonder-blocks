@@ -44,6 +44,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -64,7 +65,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -118,6 +118,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -138,7 +139,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -192,6 +192,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -212,7 +213,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -266,6 +266,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -286,7 +287,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -340,6 +340,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -360,7 +361,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -414,6 +414,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -434,7 +435,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -488,6 +488,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -508,7 +509,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -562,6 +562,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -582,7 +583,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -636,6 +636,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -656,7 +657,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -710,6 +710,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -730,7 +731,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -784,6 +784,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -804,7 +805,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -858,6 +858,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -878,7 +879,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -932,6 +932,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -952,7 +953,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1006,6 +1006,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1026,7 +1027,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1080,6 +1080,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1100,7 +1101,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1154,6 +1154,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1174,7 +1175,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1228,6 +1228,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -1248,7 +1249,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1302,6 +1302,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1322,7 +1323,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1376,6 +1376,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1396,7 +1397,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1450,6 +1450,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1470,7 +1471,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1524,6 +1524,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -1544,7 +1545,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1598,6 +1598,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1618,7 +1619,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1672,6 +1672,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1692,7 +1693,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1746,6 +1746,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1766,7 +1767,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1820,6 +1820,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -1840,7 +1841,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1894,6 +1894,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1914,7 +1915,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -1968,6 +1968,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -1988,7 +1989,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2042,6 +2042,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -2062,7 +2063,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2116,6 +2116,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -2136,7 +2137,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2190,6 +2190,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -2210,7 +2211,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2264,6 +2264,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -2284,7 +2285,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2338,6 +2338,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -2358,7 +2359,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2412,6 +2412,7 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -2432,7 +2433,6 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
       }
@@ -2540,6 +2540,7 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -2560,7 +2561,6 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
       }
@@ -2671,6 +2671,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -2691,7 +2692,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2747,6 +2747,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -2767,7 +2768,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2823,6 +2823,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -2843,7 +2844,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2899,6 +2899,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -2919,7 +2920,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -2976,6 +2976,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -2996,7 +2997,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3052,6 +3052,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3072,7 +3073,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3128,6 +3128,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3148,7 +3149,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3204,6 +3204,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3224,7 +3225,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3281,6 +3281,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -3301,7 +3302,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3357,6 +3357,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3377,7 +3378,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3433,6 +3433,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3453,7 +3454,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3509,6 +3509,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3529,7 +3530,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3586,6 +3586,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -3606,7 +3607,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3662,6 +3662,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3682,7 +3683,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3738,6 +3738,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3758,7 +3759,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3814,6 +3814,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3834,7 +3835,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3891,6 +3891,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -3911,7 +3912,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -3967,6 +3967,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -3987,7 +3988,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4043,6 +4043,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4063,7 +4064,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4119,6 +4119,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4139,7 +4140,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4196,6 +4196,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -4216,7 +4217,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4272,6 +4272,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4292,7 +4293,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4348,6 +4348,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4368,7 +4369,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4424,6 +4424,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4444,7 +4445,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4501,6 +4501,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -4521,7 +4522,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4577,6 +4577,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4597,7 +4598,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4653,6 +4653,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4673,7 +4674,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4729,6 +4729,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4749,7 +4750,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4806,6 +4806,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -4826,7 +4827,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4882,6 +4882,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4902,7 +4903,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -4958,6 +4958,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -4978,7 +4979,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5034,6 +5034,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -5054,7 +5055,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5111,6 +5111,7 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -5131,7 +5132,6 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
       }
@@ -5242,6 +5242,7 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -5262,7 +5263,6 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
       }
@@ -5370,6 +5370,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -5390,7 +5391,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5453,6 +5453,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -5473,7 +5474,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5536,6 +5536,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -5556,7 +5557,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5619,6 +5619,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -5639,7 +5640,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5693,6 +5693,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -5713,7 +5714,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5776,6 +5776,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -5796,7 +5797,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5859,6 +5859,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -5879,7 +5880,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -5942,6 +5942,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -5962,7 +5963,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6016,6 +6016,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -6036,7 +6037,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6099,6 +6099,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6119,7 +6120,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6182,6 +6182,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6202,7 +6203,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6265,6 +6265,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6285,7 +6286,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6339,6 +6339,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -6359,7 +6360,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6422,6 +6422,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6442,7 +6443,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6505,6 +6505,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6525,7 +6526,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6588,6 +6588,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6608,7 +6609,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6662,6 +6662,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -6682,7 +6683,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6745,6 +6745,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6765,7 +6766,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6828,6 +6828,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6848,7 +6849,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6911,6 +6911,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -6931,7 +6932,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -6985,6 +6985,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -7005,7 +7006,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7068,6 +7068,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7088,7 +7089,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7151,6 +7151,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7171,7 +7172,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7234,6 +7234,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7254,7 +7255,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7308,6 +7308,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -7328,7 +7329,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7391,6 +7391,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7411,7 +7412,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7474,6 +7474,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7494,7 +7495,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7557,6 +7557,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7577,7 +7578,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7631,6 +7631,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -7651,7 +7652,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7714,6 +7714,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7734,7 +7735,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7797,6 +7797,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7817,7 +7818,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7880,6 +7880,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={0}
@@ -7900,7 +7901,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "whiteSpace": "nowrap",
       }
     }
@@ -7954,6 +7954,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -7974,7 +7975,6 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
       }
@@ -8082,6 +8082,7 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
+      "userSelect": "none",
     }
   }
   tabIndex={-1}
@@ -8102,7 +8103,6 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
-        "userSelect": "none",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
       }
