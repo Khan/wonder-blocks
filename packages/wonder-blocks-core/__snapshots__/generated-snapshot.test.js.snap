@@ -197,6 +197,7 @@ exports[`wonder-blocks-core example 3 1`] = `
           "position": "relative",
           "textDecoration": "none",
           "touchAction": "manipulation",
+          "userSelect": "none",
         }
       }
       tabIndex={0}
@@ -217,7 +218,6 @@ exports[`wonder-blocks-core example 3 1`] = `
             "overflow": "hidden",
             "pointerEvents": "none",
             "textOverflow": "ellipsis",
-            "userSelect": "none",
             "whiteSpace": "nowrap",
           }
         }

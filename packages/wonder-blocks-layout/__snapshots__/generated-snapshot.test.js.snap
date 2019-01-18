@@ -63,6 +63,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "position": "relative",
         "textDecoration": "none",
         "touchAction": "manipulation",
+        "userSelect": "none",
         "width": 100,
       }
     }
@@ -84,7 +85,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "overflow": "hidden",
           "pointerEvents": "none",
           "textOverflow": "ellipsis",
-          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }
@@ -160,6 +160,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "position": "relative",
         "textDecoration": "none",
         "touchAction": "manipulation",
+        "userSelect": "none",
         "width": 100,
       }
     }
@@ -181,7 +182,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "overflow": "hidden",
           "pointerEvents": "none",
           "textOverflow": "ellipsis",
-          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }
@@ -257,6 +257,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "position": "relative",
         "textDecoration": "none",
         "touchAction": "manipulation",
+        "userSelect": "none",
         "width": 100,
       }
     }
@@ -278,7 +279,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "overflow": "hidden",
           "pointerEvents": "none",
           "textOverflow": "ellipsis",
-          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }
@@ -349,6 +349,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "position": "relative",
         "textDecoration": "none",
         "touchAction": "manipulation",
+        "userSelect": "none",
         "width": 100,
       }
     }
@@ -370,7 +371,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "overflow": "hidden",
           "pointerEvents": "none",
           "textOverflow": "ellipsis",
-          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }
@@ -446,6 +446,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "position": "relative",
         "textDecoration": "none",
         "touchAction": "manipulation",
+        "userSelect": "none",
         "width": 100,
       }
     }
@@ -467,7 +468,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "overflow": "hidden",
           "pointerEvents": "none",
           "textOverflow": "ellipsis",
-          "userSelect": "none",
           "whiteSpace": "nowrap",
         }
       }
