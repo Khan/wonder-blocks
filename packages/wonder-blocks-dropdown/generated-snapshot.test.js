@@ -231,6 +231,66 @@ describe("wonder-blocks-dropdown", () => {
             row: {
                 flexDirection: "row",
             },
+            dropdown: {
+                maxHeight: 200,
+            },
+        });
+
+        const example = (
+            <View style={styles.row}>
+                <ActionMenu
+                    menuText="Betsy Appleseed"
+                    testId="teacher-menu"
+                    dropdownStyle={styles.dropdown}
+                >
+                    <ActionItem
+                        label="Profile"
+                        href="http://khanacademy.org/profile"
+                        testId="profile"
+                    />
+                    <ActionItem
+                        label="Teacher dashboard"
+                        href="http://khanacademy.org/coach/dashboard"
+                        testId="dashboard"
+                    />
+                    <ActionItem
+                        label="Settings (onClick)"
+                        onClick={() => console.log("user clicked on settings")}
+                        testId="settings"
+                    />
+                    <ActionItem
+                        label="Help"
+                        disabled={true}
+                        onClick={() => console.log("this item is disabled...")}
+                        testId="help"
+                    />
+                    <ActionItem
+                        label="Feedback"
+                        disabled={true}
+                        href="/feedback"
+                        testId="feedback"
+                    />
+                    <SeparatorItem />
+                    <ActionItem
+                        label="Log out"
+                        href="http://khanacademy.org/logout"
+                        testId="logout"
+                    />
+                </ActionMenu>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
             setWidth: {
                 minWidth: 170,
                 maxWidth: 190,
@@ -297,7 +357,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 7", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -360,7 +420,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -415,7 +475,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -471,7 +531,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const React = require("react");
         const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -546,7 +606,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -564,7 +624,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -635,7 +695,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
+    it("example 13", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -700,7 +760,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
+    it("example 14", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -767,7 +827,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
+    it("example 15", () => {
         const {StyleSheet} = require("aphrodite");
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
@@ -863,7 +923,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 15", () => {
+    it("example 16", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
