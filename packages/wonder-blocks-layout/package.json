@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-layout",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,7 @@
     "@khanacademy/wonder-blocks-spacing": "^2.0.14"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^2.2.8",
+    "@khanacademy/wonder-blocks-button": "^2.2.9",
     "wb-dev-build-settings": "^0.0.2"
   },
   "peerDependencies": {
