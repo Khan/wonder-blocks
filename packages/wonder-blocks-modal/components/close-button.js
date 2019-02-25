@@ -2,50 +2,39 @@
 import * as React from "react";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ModalContext from "./modal-context.js";
 
 type Props = {|
-    /**
-     * Whether the button is on a dark/colored background.
-     *
-     * Sets primary button background color to white, and secondary and
-     * tertiary button title to color.
-     */
-    light: boolean,
-
-    /**
-     * Called when the close button is clicked.
-     */
-    onClick?: () => void,
+    light?: boolean,
+    onClose?: () => void,
+    style?: StyleType,
 |};
 
-/**
- * Context aware close button.
- *
- * If this button is rendered within a modal that was launched using ModalLauncher
- * then it will call the `closeModal` function provided by ModalContext.Consumer.
- * Otherwise, it calls the `onClick` method provided.
- */
 export default class CloseButton extends React.Component<Props> {
     render() {
-        const {light, onClick} = this.props;
+        const {light, onClose, style} = this.props;
+
         return (
             <ModalContext.Consumer>
                 {({closeModal}) => {
-                    if (closeModal && onClick) {
+                    if (closeModal && onClose) {
                         throw new Error(
                             "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
                         );
                     }
+
                     return (
                         <IconButton
                             icon={icons.dismiss}
                             // TODO(mdr): Translate this string for i18n.
+                            // TODO(kevinb): provide a way to set this label
                             aria-label="Close modal"
-                            onClick={closeModal || onClick}
+                            onClick={onClose || closeModal}
                             kind={light ? "primary" : "tertiary"}
                             light={light}
+                            style={style}
                         />
                     );
                 }}
