@@ -13,6 +13,7 @@ describe("@khanacademy/wonder-blocks-layout", () => {
                 "Strut",
                 "Spring",
                 "MediaLayout",
+                "MediaLayoutContext",
                 "VALID_MEDIA_SIZES",
                 "MEDIA_DEFAULT_SPEC",
                 "MEDIA_INTERNAL_SPEC",
