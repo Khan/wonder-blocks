@@ -8,6 +8,7 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import MediaLayout from "./components/media-layout.js";
 import Spring from "./components/spring.js";
 import Strut from "./components/strut.js";
 
