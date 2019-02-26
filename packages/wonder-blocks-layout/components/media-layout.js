@@ -43,6 +43,10 @@ type Props = {|
     },
 |};
 
+type State = {|
+    size?: MediaSize,
+|};
+
 // If for some reason we're not able to resolve the current media size we
 // fall back to this state.
 const DEFAULT_SIZE = "large";
@@ -50,15 +54,10 @@ const DEFAULT_SIZE = "large";
 /**
  * MediaLayout is responsible for changing the rendering of contents at
  * differently sized viewports.  MediaLayoutContext.Provider can be used
- * to specific different breakpoint configurations.  By default it uses
- * MEDIA_DEFAULT_SPEC.
+ * to specify different breakpoint configurations.  By default it uses
+ * MEDIA_DEFAULT_SPEC.  See media-layout-context.js for additiional options.
  */
-export default class MediaLayout extends React.Component<
-    Props,
-    {
-        size?: MediaSize,
-    },
-> {
+export default class MediaLayout extends React.Component<Props, State> {
     watchHandlers: {
         [query: string]: any,
     };
