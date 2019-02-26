@@ -4,40 +4,42 @@ It's sometimes easiest to just see an example of how it works, like in the follo
 
 ```jsx
 const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View, Text, MediaLayout} = require("@khanacademy/wonder-blocks-core");
+const {View, Text} = require("@khanacademy/wonder-blocks-core");
+const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 const {StyleSheet} = require("aphrodite");
 
-const styles = StyleSheet.create({
-	background: {
-		background: Color.offBlack,
-	},
+const styleSheets = {
+    all: StyleSheet.create({
+        background: {
+            background: Color.offBlack,
+        },
 
-	cell: {
-		height: 150,
-		padding: 5,
-	},
+        cell: {
+            height: 150,
+            padding: 5,
+        },
+    }),
+    small: StyleSheet.create({
+        cell: {
+            background: Color.blue,
+        },
+    }),
+    medium: StyleSheet.create({
+        cell: {
+            background: Color.green,
+        },
+    }),
+    large: StyleSheet.create({
+        cell: {
+            background: Color.gold,
+        },
+    }),
+};
 
-	small: {
-		background: Color.blue,
-	},
-
-	medium: {
-		background: Color.green,
-	},
-
-	large: {
-		background: Color.gold,
-	},
-});
-
-// TODO(jeresig): Replace with <Layout/>
-//const cellStyles = [styles.cell, (mediaSize) => styles[mediaSize]];
-const cellStyles = [styles.cell, styles.large];
-
-<View style={styles.background}>
-	<MediaLayout>
-		<Row>
-			<FlexCell style={cellStyles}>
+<MediaLayout styleSheets={styleSheets}>
+    {({styles}) => <View style={styles.background}>
+        <Row>
+			<FlexCell style={styles.cell}>
 				<Text>FlexCell</Text>
 				<br />
 				<br />
@@ -47,7 +49,7 @@ const cellStyles = [styles.cell, styles.large];
 					<Text>Gutter ⇢</Text>
 				</View>
 			</FlexCell>
-			<FixedWidthCell style={cellStyles} width={100}>
+			<FixedWidthCell style={styles.cell} width={100}>
 				<Text>FixedWidthCell (100px)</Text>
 				<br />
 				<br />
@@ -55,7 +57,7 @@ const cellStyles = [styles.cell, styles.large];
 					<Text>⇠ Gutters ⇢</Text>
 				</View>
 			</FixedWidthCell>
-			<Cell largeCols={2} style={cellStyles}>
+			<Cell largeCols={2} style={styles.cell}>
 				<Text>Cell (2 columns wide)</Text>
 				<br />
 				<br />
@@ -63,7 +65,7 @@ const cellStyles = [styles.cell, styles.large];
 					<Text>⇠ Gutters ⇢</Text>
 				</View>
 			</Cell>
-			<Cell smallCols={1} mediumCols={3} largeCols={5} style={cellStyles}>
+			<Cell smallCols={1} mediumCols={3} largeCols={5} style={styles.cell}>
 				{({cols}) => {
 					return (
 						<View>
@@ -84,9 +86,9 @@ const cellStyles = [styles.cell, styles.large];
 					);
 				}}
 			</Cell>
-		</Row>
-	</MediaLayout>
-</View>;
+        </Row>
+    </View>}
+</MediaLayout>;
 ```
 
 Grids are built using the following components:
@@ -111,140 +113,135 @@ See the [MediaLayout](#medialayout) component for more details. The layout break
 
 ```jsx
 const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View, Text, MediaLayout} = require("@khanacademy/wonder-blocks-core");
+const {View, Text} = require("@khanacademy/wonder-blocks-core");
 
 <View style={{background: Color.offWhite}}>
-	<MediaLayout>
-		<Row
-			style={{
-				background: Color.darkBlue,
-				height: 64,
-				borderBottom: `1px solid ${Color.white64}`,
-			}}
-		>
-			<Cell style={{color: Color.white, textAlign: "center"}}>
-				Khan Academy
-			</Cell>
-		</Row>
-		<Row
-			style={{
-				background: Color.darkBlue,
-				height: 136,
-			}}
-		>
-			<Cell style={{color: Color.white}}>Geometry foundations</Cell>
-		</Row>
-		<Row
-			medium
-			style={{
-				background: Color.white,
-				height: 71,
-				borderBottom: `1px solid ${Color.offBlack8}`,
-				overflow: "scroll",
-			}}
-		>
-			<Cell cols={2} style={{background: Color.offBlack8}}>
-				Possible mastery points
-			</Cell>
-			<FixedWidthCell
-				width={2000}
-				style={{
-					background: Color.offBlack8,
-				}}
-			>
-				Beginner / Points to Apprentice
-			</FixedWidthCell>
-		</Row>
-		<Row
-			large
-			style={{
-				background: Color.white,
-				height: 71,
-				borderBottom: `1px solid ${Color.offBlack8}`,
-			}}
-		>
-			<Cell cols={3}>Possible mastery points</Cell>
-			<View>Beginner / Points to Apprentice</View>
-		</Row>
-		<Row small medium style={{height: 50}}>
-			<Cell>Skill Summary</Cell>
-		</Row>
-		<Row
-			small
-			medium
-			style={{
-				background: Color.white,
-				height: 90,
-				borderTop: `1px solid ${Color.offBlack8}`,
-				borderBottom: `1px solid ${Color.offBlack8}`,
-			}}
-		>
-			<Cell>Intro to Geometry Angles Quiz 1: 10 questions Polygons</Cell>
-		</Row>
-		<Row large style={{padding: "17px 0"}}>
-			<Cell cols={3}>
-				Skill Summary
-				<hr />
-				Intro to Geometry
-				<hr />
-				Angles
-				<hr />
-				Quiz 1: 10 questions
-				<hr />
-				Polygons
-			</Cell>
-			<Cell>
-				<View
-					style={{
-						background: Color.white,
-						height: 360,
-						padding: 24,
-						border: `1px solid ${Color.offBlack8}`,
-					}}
-				>
-					Intro to geometry
-				</View>
-				<View
-					style={{
-						marginTop: 16,
-						background: Color.white,
-						height: 360,
-						padding: 24,
-						border: `1px solid ${Color.offBlack8}`,
-					}}
-				>
-					Angles
-				</View>
-			</Cell>
-		</Row>
-		<Row
-			small
-			medium
-			style={{
-				marginTop: 16,
-				background: Color.white,
-				height: 360,
-				padding: 24,
-				borderTop: `1px solid ${Color.offBlack8}`,
-				borderBottom: `1px solid ${Color.offBlack8}`,
-			}}
-		>
-			<Cell>Intro to geometry</Cell>
-		</Row>
-		<Row
-			small
-			medium
-			style={{
-				marginTop: 16,
-				background: Color.white,
-				height: 360,
-				padding: 24,
-				borderTop: `1px solid ${Color.offBlack8}`,
-				borderBottom: `1px solid ${Color.offBlack8}`,
-			}}
-		>
-			<Cell>Angles</Cell>
-		</Row>
-	</MediaLayout>
+    <Row
+        style={{
+            background: Color.darkBlue,
+            height: 64,
+            borderBottom: `1px solid ${Color.white64}`,
+        }}
+    >
+        <Cell style={{color: Color.white, textAlign: "center"}}>
+            Khan Academy
+        </Cell>
+    </Row>
+    <Row
+        style={{
+            background: Color.darkBlue,
+            height: 136,
+        }}
+    >
+        <Cell style={{color: Color.white}}>Geometry foundations</Cell>
+    </Row>
+    <Row
+        mediaQuery="medium"
+        style={{
+            background: Color.white,
+            height: 71,
+            borderBottom: `1px solid ${Color.offBlack8}`,
+            overflow: "scroll",
+        }}
+    >
+        <Cell cols={2} style={{background: Color.offBlack8}}>
+            Possible mastery points
+        </Cell>
+        <FixedWidthCell
+            width={2000}
+            style={{
+                background: Color.offBlack8,
+            }}
+        >
+            Beginner / Points to Apprentice
+        </FixedWidthCell>
+    </Row>
+    <Row
+        mediaQuery="large"
+        style={{
+            background: Color.white,
+            height: 71,
+            borderBottom: `1px solid ${Color.offBlack8}`,
+        }}
+    >
+        <Cell cols={3}>Possible mastery points</Cell>
+        <View>Beginner / Points to Apprentice</View>
+    </Row>
+    <Row mediaQuery="mdOrSmaller" style={{height: 50}}>
+        <FlexCell>Skill Summary</FlexCell>
+    </Row>
+    <Row
+        mediaQuery="mdOrSmaller"
+        style={{
+            background: Color.white,
+            height: 90,
+            borderTop: `1px solid ${Color.offBlack8}`,
+            borderBottom: `1px solid ${Color.offBlack8}`,
+        }}
+    >
+        <FlexCell>Intro to Geometry Angles Quiz 1: 10 questions Polygons</FlexCell>
+    </Row>
+    <Row mediaQuery="large" style={{padding: "17px 0"}}>
+        <Cell cols={3}>
+            Skill Summary
+            <hr />
+            Intro to Geometry
+            <hr />
+            Angles
+            <hr />
+            Quiz 1: 10 questions
+            <hr />
+            Polygons
+        </Cell>
+        <FlexCell>
+            <View
+                style={{
+                    background: Color.white,
+                    height: 360,
+                    padding: 24,
+                    border: `1px solid ${Color.offBlack8}`,
+                }}
+            >
+                Intro to geometry
+            </View>
+            <View
+                style={{
+                    marginTop: 16,
+                    background: Color.white,
+                    height: 360,
+                    padding: 24,
+                    border: `1px solid ${Color.offBlack8}`,
+                }}
+            >
+                Angles
+            </View>
+        </FlexCell>
+    </Row>
+    <Row
+        mediaQuery="mdOrSmaller"
+        style={{
+            marginTop: 16,
+            background: Color.white,
+            height: 360,
+            padding: 24,
+            borderTop: `1px solid ${Color.offBlack8}`,
+            borderBottom: `1px solid ${Color.offBlack8}`,
+        }}
+    >
+        <FlexCell>Intro to geometry</FlexCell>
+    </Row>
+    <Row
+        mediaQuery="mdOrSmaller"
+        style={{
+            marginTop: 16,
+            background: Color.white,
+            height: 360,
+            padding: 24,
+            borderTop: `1px solid ${Color.offBlack8}`,
+            borderBottom: `1px solid ${Color.offBlack8}`,
+        }}
+    >
+        <FlexCell>Angles</FlexCell>
+    </Row>
 </View>;
 ```

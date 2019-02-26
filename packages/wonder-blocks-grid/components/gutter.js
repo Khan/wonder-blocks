@@ -1,11 +1,18 @@
 // @flow
 import * as React from "react";
+import {
+    MediaLayout,
+    Strut,
+    queryMatchesSize,
+} from "@khanacademy/wonder-blocks-layout";
+import type {MediaQuery} from "@khanacademy/wonder-blocks-layout";
 
-import {MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize, MediaSpec} from "@khanacademy/wonder-blocks-core";
-
-import {matchesSize} from "../util/utils.js";
-import FixedWidthCell from "./fixed-width-cell.js";
+type Props = {|
+    /**
+     * Which media should this cell be renderer on.  Defaults to all.
+     */
+    mediaQuery: MediaQuery,
+|};
 
 /**
  * Gutter is a form of [FixedWidthCell](#fixedwidthcell) whose width is set based on the size
@@ -20,41 +27,24 @@ import FixedWidthCell from "./fixed-width-cell.js";
  * grid sizes. If you specify the `small`, `medium`, or `large`
  * props then the component will only be shown at those grid sizes.
  */
-class Gutter extends React.Component<{
-    /** Should this gutter be shown on a Small Grid? */
-    small?: boolean,
-    /** Should this gutter be shown on a Medium Grid? */
-    medium?: boolean,
-    /** Should this gutter be shown on a Large Grid? */
-    large?: boolean,
-    /**
-     * The size of the media layout being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSize: MediaSize,
-    /**
-     * The current media layout spec being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSpec: MediaSpec,
-}> {
+export default class Gutter extends React.Component<Props> {
     static defaultProps = {
-        small: false,
-        medium: false,
-        large: false,
+        mediaQuery: "all",
     };
 
     render() {
-        const {mediaSize, mediaSpec} = this.props;
-        const {gutterWidth} = mediaSpec[mediaSize];
-        const shouldDisplay = matchesSize(this.props, mediaSize);
+        return (
+            <MediaLayout>
+                {({mediaSize, mediaSpec}) => {
+                    const {gutterWidth} = mediaSpec[mediaSize];
 
-        if (!shouldDisplay) {
-            return null;
-        }
+                    if (!queryMatchesSize(this.props.mediaQuery, mediaSize)) {
+                        return null;
+                    }
 
-        return <FixedWidthCell width={gutterWidth} />;
+                    return <Strut size={gutterWidth} />;
+                }}
+            </MediaLayout>
+        );
     }
 }
-
-export default MediaLayoutWrapper(Gutter);

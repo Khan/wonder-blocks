@@ -1,22 +1,22 @@
 // @flow
 import * as React from "react";
-import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {MediaLayout, queryMatchesSize} from "@khanacademy/wonder-blocks-layout";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {
+    MediaQuery,
     MediaSize,
     MediaSpec,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+} from "@khanacademy/wonder-blocks-layout";
 
 import styles from "../util/styles.js";
-import {matchesSize} from "../util/utils.js";
 
 type Props = {|
-    /** Should this cell be shown on a Small Grid? */
-    small?: boolean,
-    /** Should this cell be shown on a Medium Grid? */
-    medium?: boolean,
-    /** Should this cell be shown on a Large Grid? */
-    large?: boolean,
+    /**
+     * Which media should this cell be renderer on.  Defaults to all.
+     */
+    mediaQuery: MediaQuery,
+
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `mediaSize` and `totalColumns` and should
@@ -28,18 +28,9 @@ type Props = {|
               mediaSize: MediaSize,
               totalColumns: number,
           }) => React.Node),
+
     /** The styling to apply to the cell. */
     style?: StyleType,
-    /**
-     * The size of the media layout being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSize: MediaSize,
-    /**
-     * The current media layout spec being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSpec: MediaSpec,
 |};
 
 /**
@@ -54,35 +45,49 @@ type Props = {|
  * grid sizes. If you specify the `small`, `medium`, or `large`
  * props then the component will only be shown at those grid sizes.
  */
-class FlexCell extends React.Component<Props> {
+export default class FlexCell extends React.Component<Props> {
     static defaultProps = {
-        small: false,
-        medium: false,
-        large: false,
+        mediaQuery: "all",
     };
 
     static shouldDisplay(props: Props, mediaSize: MediaSize) {
-        return matchesSize(props, mediaSize);
+        return queryMatchesSize(props.mediaQuery, mediaSize);
     }
+
+    getContents = (mediaSize: MediaSize, mediaSpec: MediaSpec) => {
+        const {children} = this.props;
+        if (typeof children === "function") {
+            const {totalColumns} = mediaSpec[mediaSize];
+            return children({mediaSize, totalColumns});
+        }
+
+        return children;
+    };
 
     render() {
-        const {children, style, mediaSize, mediaSpec} = this.props;
+        const {children, style} = this.props;
 
-        if (!FlexCell.shouldDisplay(this.props, mediaSize)) {
-            return null;
-        }
+        return (
+            <MediaLayout>
+                {({mediaSize, mediaSpec}) => {
+                    if (!FlexCell.shouldDisplay(this.props, mediaSize)) {
+                        return null;
+                    }
 
-        let contents = children;
+                    let contents = children;
 
-        // If the contents are a function then we call it with the mediaSize and
-        // totalColumns properties and render the return value.
-        if (typeof contents === "function") {
-            const {totalColumns} = mediaSpec[mediaSize];
-            contents = contents({mediaSize, totalColumns});
-        }
+                    // If the contents are a function then we call it with the mediaSize and
+                    // totalColumns properties and render the return value.
+                    if (typeof contents === "function") {
+                        const {totalColumns} = mediaSpec[mediaSize];
+                        contents = contents({mediaSize, totalColumns});
+                    }
 
-        return <View style={[styles.cellGrow, style]}>{contents}</View>;
+                    return (
+                        <View style={[styles.cellGrow, style]}>{contents}</View>
+                    );
+                }}
+            </MediaLayout>
+        );
     }
 }
-
-export default MediaLayoutWrapper(FlexCell);
