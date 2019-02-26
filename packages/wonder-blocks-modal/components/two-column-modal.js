@@ -2,16 +2,16 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
-import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalFooter from "./modal-footer.js";
 import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
 
-type BaseProps = {|
+type Props = {|
     /** Whether to allow the sidebar contents to be fullbleed. */
     fullBleedSidebar: boolean,
 
@@ -34,29 +34,76 @@ type BaseProps = {|
     onClose?: () => void,
 |};
 
-type WrappedProps = {|
-    ...BaseProps,
-
-    /**
-     * The size of the media layout being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSize: MediaSize,
-|};
-
-class ContentWrapper extends React.Component<WrappedProps> {
+class SmallTwoColumnModal extends React.Component<Props> {
     render() {
         const {
             onClose,
             sidebar,
-            fullBleedSidebar,
             content,
             footer,
-            mediaSize,
+            fullBleedSidebar,
         } = this.props;
 
-        if (mediaSize !== "small") {
-            return (
+        return (
+            <ModalDialog style={styles.smallDialog}>
+                <View style={styles.contentFooterWrapper}>
+                    <View
+                        style={[
+                            styles.contentWrapper,
+                            styles.smallContentWrapper,
+                        ]}
+                    >
+                        <ModalPanel
+                            showCloseButton
+                            color="dark"
+                            onClose={onClose}
+                            style={styles.smallColumn}
+                            content={
+                                fullBleedSidebar ? (
+                                    <ModalContent style={styles.fullBleed}>
+                                        {sidebar}
+                                    </ModalContent>
+                                ) : (
+                                    sidebar
+                                )
+                            }
+                            scrollOverflow={false}
+                        />
+                        <ModalPanel
+                            style={styles.smallColumn}
+                            content={content}
+                            scrollOverflow={false}
+                        />
+                    </View>
+                    {footer && (
+                        <View style={styles.smallFooter}>
+                            {!footer ||
+                            (typeof footer === "object" &&
+                                footer.type === ModalFooter) ? (
+                                footer
+                            ) : (
+                                <ModalFooter>{footer}</ModalFooter>
+                            )}
+                        </View>
+                    )}
+                </View>
+            </ModalDialog>
+        );
+    }
+}
+
+class LargeTwoColumnModal extends React.Component<Props> {
+    render() {
+        const {
+            onClose,
+            sidebar,
+            content,
+            footer,
+            fullBleedSidebar,
+        } = this.props;
+
+        return (
+            <ModalDialog style={styles.dialog}>
                 <View style={styles.contentWrapper}>
                     <ModalPanel
                         showCloseButton
@@ -79,73 +126,32 @@ class ContentWrapper extends React.Component<WrappedProps> {
                         footer={footer}
                     />
                 </View>
-            );
-        }
-
-        return (
-            <View style={styles.contentFooterWrapper}>
-                <View
-                    style={[styles.contentWrapper, styles.smallContentWrapper]}
-                >
-                    <ModalPanel
-                        showCloseButton
-                        color="dark"
-                        onClose={onClose}
-                        style={styles.smallColumn}
-                        content={
-                            fullBleedSidebar ? (
-                                <ModalContent style={styles.fullBleed}>
-                                    {sidebar}
-                                </ModalContent>
-                            ) : (
-                                sidebar
-                            )
-                        }
-                        scrollOverflow={false}
-                    />
-                    <ModalPanel
-                        style={styles.smallColumn}
-                        content={content}
-                        scrollOverflow={false}
-                    />
-                </View>
-                {footer && (
-                    <View style={styles.smallFooter}>
-                        {!footer ||
-                        (typeof footer === "object" &&
-                            footer.type === ModalFooter) ? (
-                            footer
-                        ) : (
-                            <ModalFooter>{footer}</ModalFooter>
-                        )}
-                    </View>
-                )}
-            </View>
+            </ModalDialog>
         );
     }
 }
 
-const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
-
 /**
  * A two-column modal layout.
  */
-export default class TwoColumnModal extends React.Component<BaseProps> {
+export default class TwoColumnModal extends React.Component<Props> {
     static defaultProps = {
         fullBleedSidebar: true,
     };
 
     render() {
         return (
-            <ModalDialog
-                // TODO(jeresig): Replace with <Layout/>
-                //style={(mediaSize) =>
-                //    mediaSize === "small" ? styles.smallDialog : styles.dialog
-                //}
-                style={styles.dialog}
-            >
-                <WrappedContentWrapper {...this.props} />
-            </ModalDialog>
+            <React.Fragment>
+                <MediaLayout>
+                    {({mediaSize}) =>
+                        mediaSize === "small" ? (
+                            <SmallTwoColumnModal {...this.props} />
+                        ) : (
+                            <LargeTwoColumnModal {...this.props} />
+                        )
+                    }
+                </MediaLayout>
+            </React.Fragment>
         );
     }
 }

@@ -3,14 +3,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize} from "@khanacademy/wonder-blocks-core";
+import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
 import ModalFooter from "./modal-footer.js";
 
-type BaseProps = {|
+type Props = {|
     /** The modal's content. */
     content: React.Node,
 
@@ -27,22 +27,44 @@ type BaseProps = {|
     onClose?: () => void,
 |};
 
-type WrappedProps = {|
-    ...BaseProps,
-
-    /**
-     * The size of the media layout being used. Populated by MediaLayoutWrapper.
-     * @ignore
-     */
-    mediaSize: MediaSize,
-|};
-
-class ContentWrapper extends React.Component<WrappedProps> {
+class SmallOneColumnModal extends React.Component<Props> {
     render() {
-        const {onClose, content, footer, mediaSize} = this.props;
+        const {onClose, content, footer} = this.props;
 
-        if (mediaSize !== "small") {
-            return (
+        return (
+            <ModalDialog style={styles.dialog}>
+                <View style={styles.contentFooterWrapper}>
+                    <View style={styles.smallContentWrapper}>
+                        <ModalPanel
+                            showCloseButton
+                            onClose={onClose}
+                            content={content}
+                            scrollOverflow={false}
+                        />
+                    </View>
+                    {footer && (
+                        <View style={styles.smallFooter}>
+                            {!footer ||
+                            (typeof footer === "object" &&
+                                footer.type === ModalFooter) ? (
+                                footer
+                            ) : (
+                                <ModalFooter>{footer}</ModalFooter>
+                            )}
+                        </View>
+                    )}
+                </View>
+            </ModalDialog>
+        );
+    }
+}
+
+class LargeOneColumnModal extends React.Component<Props> {
+    render() {
+        const {onClose, content, footer} = this.props;
+
+        return (
+            <ModalDialog style={[styles.dialog, styles.largeDialog]}>
                 <View style={styles.contentWrapper}>
                     <ModalPanel
                         showCloseButton
@@ -51,53 +73,28 @@ class ContentWrapper extends React.Component<WrappedProps> {
                         footer={footer}
                     />
                 </View>
-            );
-        }
-
-        return (
-            <View style={styles.contentFooterWrapper}>
-                <View style={styles.smallContentWrapper}>
-                    <ModalPanel
-                        showCloseButton
-                        onClose={onClose}
-                        content={content}
-                        scrollOverflow={false}
-                    />
-                </View>
-                {footer && (
-                    <View style={styles.smallFooter}>
-                        {!footer ||
-                        (typeof footer === "object" &&
-                            footer.type === ModalFooter) ? (
-                            footer
-                        ) : (
-                            <ModalFooter>{footer}</ModalFooter>
-                        )}
-                    </View>
-                )}
-            </View>
+            </ModalDialog>
         );
     }
 }
 
-const WrappedContentWrapper = MediaLayoutWrapper(ContentWrapper);
-
 /**
  * A one-column modal layout.
  */
-export default class OneColumnModal extends React.Component<BaseProps> {
+export default class OneColumnModal extends React.Component<Props> {
     render() {
         return (
-            <ModalDialog
-                style={[
-                    styles.dialog,
-                    // TODO(jeresig): Replace with <Layout/>
-                    //(mediaSize) => mediaSize !== "small" && styles.largeDialog,
-                    styles.largeDialog,
-                ]}
-            >
-                <WrappedContentWrapper {...this.props} />
-            </ModalDialog>
+            <React.Fragment>
+                <MediaLayout>
+                    {({mediaSize}) =>
+                        mediaSize === "small" ? (
+                            <SmallOneColumnModal {...this.props} />
+                        ) : (
+                            <LargeOneColumnModal {...this.props} />
+                        )
+                    }
+                </MediaLayout>
+            </React.Fragment>
         );
     }
 }

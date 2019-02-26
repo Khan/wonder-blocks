@@ -17,9 +17,13 @@ type Props = {|
 export default class ModalDialog extends React.Component<Props> {
     render() {
         const {style, children} = this.props;
+        const contextValue = {
+            ssrSize: "large",
+            mediaSpec: MEDIA_MODAL_SPEC,
+        };
         return (
-            <MediaLayout spec={MEDIA_MODAL_SPEC}>
-                <Layout styleSheets={styleSheets}>
+            <MediaLayoutContext.Provider value={contextValue}>
+                <MediaLayout styleSheets={styleSheets}>
                     {({styles}) => (
                         <View
                             style={[styles.wrapper, style]}
@@ -29,8 +33,8 @@ export default class ModalDialog extends React.Component<Props> {
                             {children}
                         </View>
                     )}
-                </Layout>
-            </MediaLayout>
+                </MediaLayout>
+            </MediaLayoutContext.Provider>
         );
     }
 }
