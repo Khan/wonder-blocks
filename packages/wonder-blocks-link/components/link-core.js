@@ -36,6 +36,7 @@ export default class LinkCore extends React.Component<Props> {
             kind,
             light,
             visitable,
+            openInNewTab,
             pressed,
             style,
             testId,
@@ -53,9 +54,14 @@ export default class LinkCore extends React.Component<Props> {
                 : (hovered || focused) && linkStyles.focus,
         ];
 
+        const maybeOpenInNewTab = openInNewTab ? {
+            target: "_blank",
+        } : {};
+
         const commonProps = {
             "data-test-id": testId,
             style: [defaultStyles, style],
+            ...maybeOpenInNewTab,
             ...handlers,
         };
 

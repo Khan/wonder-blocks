@@ -6,7 +6,7 @@ import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import LinkCore from "./link-core.js";
 
-export type SharedProps = {|
+type BaseProps = {|
     /**
      * Text to appear on the link.
      */
@@ -45,20 +45,6 @@ export type SharedProps = {|
     testId?: string,
 
     /**
-     * Whether to avoid using client-side navigation.
-     *
-     * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then it tries to use react-router-dom's Link
-     * component which handles the client-side navigation. You can set
-     * `skipClientNav` to true avoid using client-side nav entirely.
-     *
-     * NOTE: All URLs containing a protocol are considered external, e.g.
-     * https://khanacademy.org/math/algebra/eval-exprs will trigger a full
-     * page reload.
-     */
-    skipClientNav?: boolean,
-
-    /**
      * Custom styles.
      */
     style?: StyleType,
@@ -87,6 +73,32 @@ export type SharedProps = {|
      * stubbed out.
      */
     onClick?: (e: SyntheticEvent<>) => void,
+|};
+
+export type SharedProps = {|
+    ...BaseProps,
+    /**
+     * Whether to avoid using client-side navigation.
+     *
+     * If the URL passed to href is local to the client-side, e.g.
+     * /math/algebra/eval-exprs, then it tries to use react-router-dom's Link
+     * component which handles the client-side navigation. You can set
+     * `skipClientNav` to true avoid using client-side nav entirely.
+     *
+     * NOTE: All URLs containing a protocol are considered external, e.g.
+     * https://khanacademy.org/math/algebra/eval-exprs will trigger a full
+     * page reload.
+     */
+    skipClientNav?: boolean,
+|} | {|
+    ...BaseProps,
+    /**
+     * Whether to open the link in a new tab.
+     *
+     * This implicitly sets `skipClientNav` to `true`.  It is illegal to pass
+     * both `openInNewTab` and `skipClientNav` as props to `Link`.
+     */
+    openInNewTab?: boolean,
 |};
 
 /**
@@ -120,6 +132,7 @@ export default class Link extends React.Component<SharedProps> {
         const {
             onClick,
             href,
+            openInNewTab,
             skipClientNav,
             children,
             ...sharedProps
@@ -144,7 +157,8 @@ export default class Link extends React.Component<SharedProps> {
                             {...sharedProps}
                             {...state}
                             {...handlers}
-                            skipClientNav={skipClientNav}
+                            skipClientNav={skipClientNav || openInNewTab}
+                            openInNewTab={openInNewTab}
                             href={href}
                         >
                             {children}
