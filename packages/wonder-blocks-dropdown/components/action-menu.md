@@ -149,3 +149,38 @@ const styles = StyleSheet.create({
     <ActionMenu menuText="Empty" />
 </View>
 ```
+
+### ActionMenu with custom dropdown style
+
+This example shows how we can add custom dropdownStyle to the action menu.
+
+```js
+const React = require("react");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {StyleSheet} = require("aphrodite");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    dropdown: {
+        maxHeight: 200,
+    },
+});
+
+<View style={styles.row}>
+    <ActionMenu
+        menuText="Betsy Appleseed"
+        testId="teacher-menu"
+        dropdownStyle={styles.dropdown}
+    >
+        <ActionItem label="Profile" href="http://khanacademy.org/profile" testId="profile" />
+        <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" testId="dashboard" />
+        <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} testId="settings" />
+        <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} testId="help" />
+        <ActionItem label="Feedback" disabled={true} href="/feedback" testId="feedback" />
+        <SeparatorItem />
+        <ActionItem label="Log out" href="http://khanacademy.org/logout" testId="logout" />
+    </ActionMenu>
+</View>
+```

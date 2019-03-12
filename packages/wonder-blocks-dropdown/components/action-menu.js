@@ -56,6 +56,11 @@ type MenuProps = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Optional styling to add to the dropdown wrapper.
+     */
+    dropdownStyle?: StyleType,
 |};
 
 type State = {|
@@ -174,7 +179,14 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
     };
 
     render() {
-        const {alignment, disabled, menuText, style, testId} = this.props;
+        const {
+            alignment,
+            disabled,
+            menuText,
+            style,
+            testId,
+            dropdownStyle,
+        } = this.props;
         const {open} = this.state;
 
         const items = this.getMenuItems();
@@ -194,7 +206,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         return (
             <Dropdown
                 alignment={alignment}
-                dropdownStyle={styles.menuTopSpace}
+                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                 items={items}
                 keyboard={this.state.keyboard}
                 light={false}
