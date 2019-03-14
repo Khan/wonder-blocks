@@ -17,7 +17,7 @@ describe("OneColumnModal", () => {
         unmountAll();
     });
 
-    test("renders SmallOneColumnModal on mobile", () => {
+    it("should render SmallOneColumnModal on mobile", () => {
         // Arrange
         const wrapper = mount(
             <MediaLayoutContext.Provider
@@ -38,7 +38,7 @@ describe("OneColumnModal", () => {
         expect(modal);
     });
 
-    test("renders LargeOneColumnModal on desktop", () => {
+    it("should render LargeOneColumnModal on desktop", () => {
         // Arrange
         const wrapper = mount(
             <MediaLayoutContext.Provider

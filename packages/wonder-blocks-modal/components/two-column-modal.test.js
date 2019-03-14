@@ -25,7 +25,7 @@ describe("TwoColumnModal", () => {
         expect(wrapper.find("ModalCloseButton").exists()).toBeFalsy();
     });
 
-    test("renders SmallTwoColumnModal on mobile", () => {
+    it("should render SmallTwoColumnModal on mobile", () => {
         // Arrange
         const wrapper = mount(
             <MediaLayoutContext.Provider
@@ -50,7 +50,7 @@ describe("TwoColumnModal", () => {
         expect(modal);
     });
 
-    test("renders LargeTwoColumnModal on mobile", () => {
+    it("should render LargeTwoColumnModal on mobile", () => {
         // Arrange
         const wrapper = mount(
             <MediaLayoutContext.Provider
