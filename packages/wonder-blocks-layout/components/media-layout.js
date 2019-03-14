@@ -58,7 +58,7 @@ const DEFAULT_SIZE = "large";
  * MEDIA_DEFAULT_SPEC.  See media-layout-context.js for additiional options.
  */
 export default class MediaLayout extends React.Component<Props, State> {
-    watchHandlers: {
+    watchHandlers: ?{
         [query: string]: any,
     };
 
@@ -75,10 +75,12 @@ export default class MediaLayout extends React.Component<Props, State> {
         // that getCurrentSize attached.
         for (const query of Object.keys(MediaLayout.WATCHERS)) {
             const watcher = MediaLayout.WATCHERS[query];
-            if (watcher) {
+
+            if (watcher && this.watchHandlers) {
+                const {watchHandlers} = this;
                 const handler = this.watchHandlers[query];
                 watcher.removeListener(handler);
-                delete this.watchHandlers[query];
+                delete watchHandlers[query];
             }
         }
     }
