@@ -1,6 +1,8 @@
 **Example:**
 
-A row inside of a grid containing two [FlexCells](#flexcell). The row has some styling applied giving it a white background, a gold border, and some vertical padding. Note that the margins and gutter have been inserted automatically.
+A row inside of a grid containing two [Cells](#cell). The row has some styling
+applied giving it a white background, a gold border, and some vertical padding.
+Note that the margins and gutter have been inserted automatically.
 
 ```jsx
 const Color = require("@khanacademy/wonder-blocks-color").default;
@@ -27,12 +29,12 @@ const styles = StyleSheet.create({
 
 <View style={styles.background}>
     <Row style={styles.row}>
-        <FlexCell style={styles.cell}>
-            <Text>FlexCell</Text>
-        </FlexCell>
-        <FlexCell style={styles.cell}>
-            <Text>FlexCell</Text>
-        </FlexCell>
+        <Cell smallCols={2} mediumCols={4} largeCols={6} style={styles.cell}>
+            <Text>Cell</Text>
+        </Cell>
+        <Cell smallCols={2} mediumCols={4} largeCols={6} style={styles.cell}>
+            <Text>Cell</Text>
+        </Cell>
     </Row>
 </View>;
 ```

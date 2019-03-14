@@ -15,9 +15,11 @@ type Props = {|
 |};
 
 /**
- * Gutter is a form of [FixedWidthCell](#fixedwidthcell) whose width is set based on the size
- * of grid currently being displayed. Used for spacing out cells from each
- * other. The gutter itself doesn't hold any content, it just spaces it out.
+ * Gutter is a private component.
+ *
+ * Gutter is a component whose width is set based on the size of grid currently
+ * being displayed. Used for spacing out cells from each other. The gutter
+ * itself doesn't hold any content, it just spaces it out.
  *
  * Gutters are inserted automatically inside of a [Row](#row) in-between Cells.
  * You may only need to use Gutters if you're manually building your own

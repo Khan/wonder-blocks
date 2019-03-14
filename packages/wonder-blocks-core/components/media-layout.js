@@ -34,8 +34,7 @@ type Props = {|
  * A MediaLayout wraps all parts of a page and tracks the browser viewport, toggling
  * the layout of the page based on viewport width changes. MediaLayout doesn't
  * impart any styling or layout, all of that is deferred to individual components
- * such as Row, Cell, FlexCell, and FixedWidthCell - or custom ones defined with
- * View or Text.
+ * such as Row, Cell, or custom ones defined with View or Text.
  *
  * By default the MediaLayout should be used with no properties. Optionally you can
  * specify the `size` of the layout. In doing so you will disable all readjustments

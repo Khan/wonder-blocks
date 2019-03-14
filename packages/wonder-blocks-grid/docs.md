@@ -39,33 +39,45 @@ const styleSheets = {
 <MediaLayout styleSheets={styleSheets}>
     {({styles}) => <View style={styles.background}>
         <Row>
-			<FlexCell style={styles.cell}>
-				<Text>FlexCell</Text>
-				<br />
-				<br />
-				<Text>⇠ Margin</Text>
-				<br />
-				<View style={{textAlign: "right"}}>
-					<Text>Gutter ⇢</Text>
-				</View>
-			</FlexCell>
-			<FixedWidthCell style={styles.cell} width={100}>
-				<Text>FixedWidthCell (100px)</Text>
-				<br />
-				<br />
-				<View style={{textAlign: "center"}}>
-					<Text>⇠ Gutters ⇢</Text>
-				</View>
-			</FixedWidthCell>
-			<Cell largeCols={2} style={styles.cell}>
-				<Text>Cell (2 columns wide)</Text>
-				<br />
-				<br />
-				<View style={{textAlign: "center"}}>
-					<Text>⇠ Gutters ⇢</Text>
-				</View>
+            <Cell smallCols={2} mediumCols={3} largeCols={4} style={styles.cell}>
+                {({cols}) => {
+                    return <View>
+                        <Text>
+                            Cell ({cols === 1
+                                ? "1 column"
+                                : `${cols} columns`}{" "}
+                            wide)
+                        </Text>
+                        <br />
+                        <br />
+                        <View style={{textAlign: "right"}}>
+                            <Text>Gutter ⇢</Text>
+                        </View>
+                        <br />
+                        <View style={{textAlign: "left"}}>
+                            <Text>Margin ⇢</Text>
+                        </View>
+                    </View>;
+                }}
+            </Cell>
+            <Cell mediumCols={2} largeCols={3} style={styles.cell}>
+                {({cols}) => {
+                    return <View>
+                        <Text>
+                            Cell ({cols === 1
+                                ? "1 column"
+                                : `${cols} columns`}{" "}
+                            wide)
+                        </Text>
+                        <br />
+                        <br />
+                        <View style={{textAlign: "center"}}>
+                            <Text>⇠ Gutters ⇢</Text>
+                        </View>
+                    </View>;
+                }}
 			</Cell>
-			<Cell smallCols={1} mediumCols={3} largeCols={5} style={styles.cell}>
+			<Cell smallCols={2} mediumCols={3} largeCols={5} style={styles.cell}>
 				{({cols}) => {
 					return (
 						<View>
@@ -94,14 +106,8 @@ const styleSheets = {
 Grids are built using the following components:
 
 * [MediaLayout](#medialayout): A MediaLayout wraps all parts of a grid and tracks the browser viewport, toggling the layout of the grid based on viewport width changes. A MediaLayout will likely hold almost the entire contents of the page. Rows can be direct children or distant descendants.
-* [Row](#row): A Row holds all of the Cells that make up the contents of the grid. A row also provides the margins on the sides and inserts the gutter spacing in-between the cells. Typically this component will hold a mixture of [Cell](#cell), [FlexCell](#flexcell), and [FixedWidthCells](#fixedwidthcell), but it can also include any elements that could fit in a [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
-* [Cell](#cell): A Cell is a form of [FixedWidthCell](#fixedwidthcell) whose width is set based on the width of the specified columns at the current grid size. You will specify the number of columns that you want this component to span at each grid size. This component should only be used as a child of a [Row](#row).
-* [FlexCell](#flexcell): A flexibly-sized Cell that fills the available space after fixed-width cells have been positioned. A Row with one FlexCell will take up the entire width, two FlexCells will always take up 50/50, and so on.
-
-Additionally, there are the following available components which will likely be used less-frequently:
-
-* [FixedWidthCell](#fixedwidthcell): A Cell whose width is specified using CSS dimensions (such as pixels, %, or other). WARNING: This should only be used only when the grid columns are explicitly not being used. This will almost certainly not align to the grid and may cause other cells to also not align.
-* [Gutter](#gutter): A Gutter is a form of [FixedWidthCell](#fixedwidthcell) whose width is set based on the size of grid currently being displayed. Used for spacing out cells from each other. The gutter itself doesn't hold any content, it just spaces it out. Gutters are inserted automatically inside of a [Row](#row) in-between Cells. You may only need to use Gutters if you're manually building your own sub-grid, or some-such (this should be relatively rare).
+* [Row](#row): A Row holds all of the Cells that make up the contents of the grid. A row also provides the margins on the sides and inserts the gutter spacing in-between the cells. Typically this component will hold a [Cell](#cell), but it can also include any elements that could fit in a [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).  When the entire row is taken up by a single cell, the `Cell` can be omitted.
+* [Cell](#cell): A Cell is a container whose width is set based on the width of the specified columns at the current grid size. You will specify the number of columns that you want this component to span at each grid size. This component should only be used as a child of a [Row](#row).
 
 Currently Grid sizes are defined entirely by the [MediaLayout](#medialayout) component are available at the following sizes (with their columns, gutter size, and margin sizes changing based on the size):
 
@@ -147,14 +153,16 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
         <Cell cols={2} style={{background: Color.offBlack8}}>
             Possible mastery points
         </Cell>
-        <FixedWidthCell
-            width={2000}
+        <Cell
+            smallCols={4}
+            mediumCols={6}
+            largeCols={10}
             style={{
                 background: Color.offBlack8,
             }}
         >
             Beginner / Points to Apprentice
-        </FixedWidthCell>
+        </Cell>
     </Row>
     <Row
         mediaQuery="large"
@@ -168,7 +176,9 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
         <View>Beginner / Points to Apprentice</View>
     </Row>
     <Row mediaQuery="mdOrSmaller" style={{height: 50}}>
-        <FlexCell>Skill Summary</FlexCell>
+        <Cell smallCols={4} mediumCols={8} largeCols={12}>
+            Skill Summary
+        </Cell>
     </Row>
     <Row
         mediaQuery="mdOrSmaller"
@@ -179,7 +189,9 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             borderBottom: `1px solid ${Color.offBlack8}`,
         }}
     >
-        <FlexCell>Intro to Geometry Angles Quiz 1: 10 questions Polygons</FlexCell>
+        <Cell smallCols={4} mediumCols={8} largeCols={12}>
+            Intro to Geometry Angles Quiz 1: 10 questions Polygons
+        </Cell>
     </Row>
     <Row mediaQuery="large" style={{padding: "17px 0"}}>
         <Cell cols={3}>
@@ -193,7 +205,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             <hr />
             Polygons
         </Cell>
-        <FlexCell>
+        <Cell smallCols={1} mediumCols={5} largeCols={9}>
             <View
                 style={{
                     background: Color.white,
@@ -215,7 +227,7 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             >
                 Angles
             </View>
-        </FlexCell>
+        </Cell>
     </Row>
     <Row
         mediaQuery="mdOrSmaller"
@@ -223,12 +235,11 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             marginTop: 16,
             background: Color.white,
             height: 360,
-            padding: 24,
             borderTop: `1px solid ${Color.offBlack8}`,
             borderBottom: `1px solid ${Color.offBlack8}`,
         }}
     >
-        <FlexCell>Intro to geometry</FlexCell>
+        Intro to geometry
     </Row>
     <Row
         mediaQuery="mdOrSmaller"
@@ -236,12 +247,11 @@ const {View, Text} = require("@khanacademy/wonder-blocks-core");
             marginTop: 16,
             background: Color.white,
             height: 360,
-            padding: 24,
             borderTop: `1px solid ${Color.offBlack8}`,
             borderBottom: `1px solid ${Color.offBlack8}`,
         }}
     >
-        <FlexCell>Angles</FlexCell>
+        Angles
     </Row>
 </View>;
 ```

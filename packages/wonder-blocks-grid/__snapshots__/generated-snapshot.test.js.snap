@@ -94,14 +94,18 @@ exports[`wonder-blocks-grid example 1 1`] = `
         className=""
         style={
           Object {
+            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
+            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
+            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
             "alignItems": "stretch",
             "background": "#ffb100",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
+            "flexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
             "flexDirection": "column",
-            "flexGrow": 1,
+            "flexShrink": 0,
             "height": 150,
             "margin": 0,
             "minHeight": 0,
@@ -112,31 +116,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
           }
         }
       >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-        <br />
-        <br />
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          ⇠ Margin
-        </span>
-        <br />
         <div
           className=""
           style={
@@ -152,7 +131,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "minWidth": 0,
               "padding": 0,
               "position": "relative",
-              "textAlign": "right",
               "zIndex": 0,
             }
           }
@@ -166,8 +144,78 @@ exports[`wonder-blocks-grid example 1 1`] = `
               }
             }
           >
-            Gutter ⇢
+            Cell (
+            4 columns
+             
+            wide)
           </span>
+          <br />
+          <br />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "right",
+                "zIndex": 0,
+              }
+            }
+          >
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                }
+              }
+            >
+              Gutter ⇢
+            </span>
+          </div>
+          <br />
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "left",
+                "zIndex": 0,
+              }
+            }
+          >
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                }
+              }
+            >
+              Margin ⇢
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -200,16 +248,16 @@ exports[`wonder-blocks-grid example 1 1`] = `
         className=""
         style={
           Object {
-            "MsFlexBasis": 100,
-            "MsFlexPreferredSize": 100,
-            "WebkitFlexBasis": 100,
+            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
             "alignItems": "stretch",
             "background": "#ffb100",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 100,
+            "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
             "flexDirection": "column",
             "flexShrink": 0,
             "height": 150,
@@ -222,19 +270,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
           }
         }
       >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FixedWidthCell (100px)
-        </span>
-        <br />
-        <br />
         <div
           className=""
           style={
@@ -250,7 +285,6 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "minWidth": 0,
               "padding": 0,
               "position": "relative",
-              "textAlign": "center",
               "zIndex": 0,
             }
           }
@@ -264,106 +298,45 @@ exports[`wonder-blocks-grid example 1 1`] = `
               }
             }
           >
-            ⇠ Gutters ⇢
+            Cell (
+            3 columns
+             
+            wide)
           </span>
-        </div>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.16666666666666666 + 32px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 150,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          Cell (2 columns wide)
-        </span>
-        <br />
-        <br />
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
-              "textAlign": "center",
-              "zIndex": 0,
-            }
-          }
-        >
-          <span
+          <br />
+          <br />
+          <div
             className=""
             style={
               Object {
-                "MozOsxFontSmoothing": "grayscale",
-                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "center",
+                "zIndex": 0,
               }
             }
           >
-            ⇠ Gutters ⇢
-          </span>
+            <span
+              className=""
+              style={
+                Object {
+                  "MozOsxFontSmoothing": "grayscale",
+                  "WebkitFontSmoothing": "antialiased",
+                }
+              }
+            >
+              ⇠ Gutters ⇢
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -1056,13 +1029,17 @@ exports[`wonder-blocks-grid example 2 1`] = `
         className=""
         style={
           Object {
+            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
+            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.75 + 256px)",
+            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
+            "flexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
             "flexDirection": "column",
-            "flexGrow": 1,
+            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
@@ -1922,1097 +1899,6 @@ exports[`wonder-blocks-grid example 4 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "maxWidth": 1168,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 200,
-            "MsFlexPreferredSize": 200,
-            "WebkitFlexBasis": 200,
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 200,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FixedWidthCell (200px)
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-grid example 5 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "background": "#21242c",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "maxWidth": 1168,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
-  </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "maxWidth": 1168,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
-  </div>
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "maxWidth": 1168,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-grid example 6 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "background": "#21242c",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "maxWidth": 1168,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          FlexCell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-grid example 7 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "background": "#21242c",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    className=""
-    style={
-      Object {
-        "alignItems": "center",
         "background": "#ffffff",
         "border": "1px solid #ffb100",
         "borderStyle": "solid",
@@ -3083,14 +1969,18 @@ exports[`wonder-blocks-grid example 7 1`] = `
         className=""
         style={
           Object {
+            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
             "alignItems": "stretch",
             "background": "#ffb100",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
+            "flexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
             "flexDirection": "column",
-            "flexGrow": 1,
+            "flexShrink": 0,
             "height": 100,
             "margin": 0,
             "minHeight": 0,
@@ -3110,7 +2000,7 @@ exports[`wonder-blocks-grid example 7 1`] = `
             }
           }
         >
-          FlexCell
+          Cell
         </span>
       </div>
       <div
@@ -3143,14 +2033,18 @@ exports[`wonder-blocks-grid example 7 1`] = `
         className=""
         style={
           Object {
+            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
             "alignItems": "stretch",
             "background": "#ffb100",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
+            "flexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
             "flexDirection": "column",
-            "flexGrow": 1,
+            "flexShrink": 0,
             "height": 100,
             "margin": 0,
             "minHeight": 0,
@@ -3170,7 +2064,7 @@ exports[`wonder-blocks-grid example 7 1`] = `
             }
           }
         >
-          FlexCell
+          Cell
         </span>
       </div>
       <div

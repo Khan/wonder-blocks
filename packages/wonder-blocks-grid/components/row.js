@@ -20,8 +20,7 @@ type Props = {|
 
     /**
      * The child components to populate inside the row. Typically this will be
-     * a mixture of [Cell](#cell), [FlexCell](#flexcell), and
-     * [FixedWidthCells](#fixedwidthcell), but it can also include any elements
+     * a [Cell](#cell), but it can also include any elements
      * that could fit in a [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
      * Can also accept a function which receives the `mediaSize` and
      * `totalColumns` and should return some React Nodes to render.
@@ -39,8 +38,7 @@ type Props = {|
 /**
  * A Row holds all of the Cells that make up the contents of the grid. A row
  * also provides the margins on the sides and inserts the gutter spacing
- * in-between the cells. Typically this component will hold a mixture of
- * [Cell](#cell), [FlexCell](#flexcell), and [FixedWidthCells](#fixedwidthcell),
+ * in-between the cells. Typically this component will hold a [Cell](#cell),
  * but it can also include any elements that could fit in a
  * [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
  *
