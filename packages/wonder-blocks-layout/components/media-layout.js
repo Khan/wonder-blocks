@@ -52,13 +52,13 @@ type State = {|
 const DEFAULT_SIZE = "large";
 
 /**
- * MediaLayout is responsible for changing the rendering of contents at
- * differently sized viewports.  MediaLayoutContext.Provider can be used
+ * `MediaLayout` is responsible for changing the rendering of contents at
+ * differently sized viewports.  `MediaLayoutContext.Provider` can be used
  * to specify different breakpoint configurations.  By default it uses
- * MEDIA_DEFAULT_SPEC.  See media-layout-context.js for additiional options.
+ * `MEDIA_DEFAULT_SPEC`.  See media-layout-context.js for additiional options.
  */
 export default class MediaLayout extends React.Component<Props, State> {
-    watchHandlers: {
+    watchHandlers: ?{
         [query: string]: any,
     };
 
@@ -75,10 +75,12 @@ export default class MediaLayout extends React.Component<Props, State> {
         // that getCurrentSize attached.
         for (const query of Object.keys(MediaLayout.WATCHERS)) {
             const watcher = MediaLayout.WATCHERS[query];
-            if (watcher) {
+
+            if (watcher && this.watchHandlers) {
+                const {watchHandlers} = this;
                 const handler = this.watchHandlers[query];
                 watcher.removeListener(handler);
-                delete this.watchHandlers[query];
+                delete watchHandlers[query];
             }
         }
     }
@@ -101,6 +103,8 @@ export default class MediaLayout extends React.Component<Props, State> {
         // (if they haven't been created already) and we add listeners to
         // watch for when the viewport changes size.
         this.watchHandlers = {};
+
+        let matchedSize;
 
         for (const size of VALID_MEDIA_SIZES) {
             if (!spec[size]) {
@@ -132,15 +136,16 @@ export default class MediaLayout extends React.Component<Props, State> {
 
             watcher.addListener(handler);
 
-            // If the watcher already matches then we set the size immediately
+            // If one of the watchers matches the current size, then save
+            // the size that was matched.
             if (watcher.matches) {
-                return size;
+                matchedSize = size;
             }
         }
 
         // If a size was never defined, or matched, then we return the default
         // media layout size
-        return DEFAULT_SIZE;
+        return matchedSize || DEFAULT_SIZE;
     }
 
     // We assume that we're running on the server (or, at least, an unsupported
