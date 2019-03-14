@@ -68,7 +68,7 @@ export default class StandardModal extends React.Component<Props> {
                 {({styles}) => (
                     <CloseButton
                         light={!!header}
-                        onClose={onClose}
+                        onClick={onClose}
                         style={styles.closeButton}
                     />
                 )}
