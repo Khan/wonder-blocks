@@ -6,7 +6,11 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import MediaLayout from "./media-layout.js";
 import MediaLayoutContext from "./media-layout-context.js";
-import {MEDIA_DEFAULT_SPEC} from "../util/specs.js";
+import {
+    MEDIA_DEFAULT_SPEC,
+    MEDIA_INTERNAL_SPEC,
+    MEDIA_MODAL_SPEC,
+} from "../util/specs.js";
 import type {MediaSize} from "../util/types.js";
 
 const resizeWindow = (size: MediaSize) => {
@@ -172,6 +176,66 @@ describe("MediaLayout", () => {
 
             // Assert
             expect(args.mediaSize).toEqual("small");
+        });
+    });
+
+    describe("mediaSpec", () => {
+        it("MEDIA_INTERNAL_SPEC is always large", async () => {
+            // Arrange
+            resizeWindow("small");
+            const promise = new Promise((resolve, reject) => {
+                mount(
+                    <MediaLayoutContext.Provider
+                        value={{
+                            overrideSize: undefined,
+                            ssrSize: "small",
+                            mediaSpec: MEDIA_INTERNAL_SPEC,
+                        }}
+                    >
+                        <MediaLayout styleSheets={{}}>
+                            {({mediaSize, mediaSpec, styles}) => {
+                                resolve({mediaSize, mediaSpec, styles});
+                                return <View>Hello, world!</View>;
+                            }}
+                        </MediaLayout>
+                    </MediaLayoutContext.Provider>,
+                );
+            });
+
+            // Act
+            const args = await promise;
+
+            // Assert
+            expect(args.mediaSize).toEqual("large");
+        });
+
+        it("MEDIA_MODAL_SPEC is not medium", async () => {
+            // Arrange
+            resizeWindow("medium");
+            const promise = new Promise((resolve, reject) => {
+                mount(
+                    <MediaLayoutContext.Provider
+                        value={{
+                            overrideSize: undefined,
+                            ssrSize: "small",
+                            mediaSpec: MEDIA_MODAL_SPEC,
+                        }}
+                    >
+                        <MediaLayout styleSheets={{}}>
+                            {({mediaSize, mediaSpec, styles}) => {
+                                resolve({mediaSize, mediaSpec, styles});
+                                return <View>Hello, world!</View>;
+                            }}
+                        </MediaLayout>
+                    </MediaLayoutContext.Provider>,
+                );
+            });
+
+            // Act
+            const args = await promise;
+
+            // Assert
+            expect(args.mediaSize).toEqual("large");
         });
     });
 
