@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TwoColumnModal mobile with footer 1`] = `
+<ModalDialog
+  style={
+    Object {
+      "_definition": Object {
+        "background": "#ffffff",
+      },
+      "_len": 24,
+      "_name": "smallDialog_144oaus",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "_definition": Object {
+          "flexDirection": "column",
+          "height": "100%",
+        },
+        "_len": 42,
+        "_name": "contentFooterWrapper_1iwfx9c",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "_definition": Object {
+              "flexDirection": "row",
+              "height": "100%",
+              "width": "100%",
+            },
+            "_len": 54,
+            "_name": "contentWrapper_2024c8",
+          },
+          Object {
+            "_definition": Object {
+              "flexDirection": "column",
+              "overflow": "auto",
+            },
+            "_len": 44,
+            "_name": "smallContentWrapper_jm9t20",
+          },
+        ]
+      }
+    >
+      <ModalPanel
+        color="dark"
+        content={
+          <ModalContent
+            scrollOverflow={true}
+            style={
+              Object {
+                "_definition": Object {
+                  "padding": 0,
+                },
+                "_len": 13,
+                "_name": "fullBleed_1gyjybc",
+              }
+            }
+          >
+            Sidebar
+          </ModalContent>
+        }
+        scrollOverflow={false}
+        showCloseButton={true}
+        style={
+          Object {
+            "_definition": Object {
+              "flex": "0 0 auto",
+              "height": "auto",
+            },
+            "_len": 35,
+            "_name": "smallColumn_1h2vufb",
+          }
+        }
+      />
+      <ModalPanel
+        color="light"
+        content="Content"
+        scrollOverflow={false}
+        showCloseButton={false}
+        style={
+          Object {
+            "_definition": Object {
+              "flex": "0 0 auto",
+              "height": "auto",
+            },
+            "_len": 35,
+            "_name": "smallColumn_1h2vufb",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "_definition": Object {
+            "minHeight": 64,
+          },
+          "_len": 16,
+          "_name": "smallFooter_clw8y6",
+        }
+      }
+    >
+      <ModalFooter>
+        Footer
+      </ModalFooter>
+    </View>
+  </View>
+</ModalDialog>
+`;
+
+exports[`TwoColumnModal mobile without footer 1`] = `
+<ModalDialog
+  style={
+    Object {
+      "_definition": Object {
+        "background": "#ffffff",
+      },
+      "_len": 24,
+      "_name": "smallDialog_144oaus",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "_definition": Object {
+          "flexDirection": "column",
+          "height": "100%",
+        },
+        "_len": 42,
+        "_name": "contentFooterWrapper_1iwfx9c",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "_definition": Object {
+              "flexDirection": "row",
+              "height": "100%",
+              "width": "100%",
+            },
+            "_len": 54,
+            "_name": "contentWrapper_2024c8",
+          },
+          Object {
+            "_definition": Object {
+              "flexDirection": "column",
+              "overflow": "auto",
+            },
+            "_len": 44,
+            "_name": "smallContentWrapper_jm9t20",
+          },
+        ]
+      }
+    >
+      <ModalPanel
+        color="dark"
+        content={
+          <ModalContent
+            scrollOverflow={true}
+            style={
+              Object {
+                "_definition": Object {
+                  "padding": 0,
+                },
+                "_len": 13,
+                "_name": "fullBleed_1gyjybc",
+              }
+            }
+          >
+            Sidebar
+          </ModalContent>
+        }
+        scrollOverflow={false}
+        showCloseButton={true}
+        style={
+          Object {
+            "_definition": Object {
+              "flex": "0 0 auto",
+              "height": "auto",
+            },
+            "_len": 35,
+            "_name": "smallColumn_1h2vufb",
+          }
+        }
+      />
+      <ModalPanel
+        color="light"
+        content="Content"
+        scrollOverflow={false}
+        showCloseButton={false}
+        style={
+          Object {
+            "_definition": Object {
+              "flex": "0 0 auto",
+              "height": "auto",
+            },
+            "_len": 35,
+            "_name": "smallColumn_1h2vufb",
+          }
+        }
+      />
+    </View>
+  </View>
+</ModalDialog>
+`;

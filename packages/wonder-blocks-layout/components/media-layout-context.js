@@ -4,7 +4,7 @@ import * as React from "react";
 import {MEDIA_DEFAULT_SPEC} from "../util/specs.js";
 import type {MediaSize, MediaSpec} from "../util/types.js";
 
-type Context = {|
+export type Context = {|
     /**
      * Force the MediaLayout to be a particular size (ignoring the actual
      * dimensions of the viewport).

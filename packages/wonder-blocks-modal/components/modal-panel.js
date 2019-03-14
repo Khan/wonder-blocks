@@ -70,7 +70,7 @@ export default class ModalPanel extends React.Component<Props> {
                 {({styles}) => (
                     <CloseButton
                         light={topBackgroundColor === "dark"}
-                        onClose={onClose}
+                        onClick={onClose}
                         style={styles.closeButton}
                     />
                 )}
