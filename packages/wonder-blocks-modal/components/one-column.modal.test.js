@@ -6,26 +6,18 @@ import {
     MediaLayoutContext,
     MEDIA_DEFAULT_SPEC,
 } from "@khanacademy/wonder-blocks-layout";
-import TwoColumnModal, {
-    SmallTwoColumnModal,
-    LargeTwoColumnModal,
-} from "./two-column-modal.js";
+import OneColumnModal, {
+    SmallOneColumnModal,
+    LargeOneColumnModal,
+} from "./one-column-modal.js";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
-describe("TwoColumnModal", () => {
-    beforeAll(() => {
+describe("OneColumnModal", () => {
+    beforeEach(() => {
         unmountAll();
     });
 
-    test("Ensure the ModalCloseButton isn't inside.", () => {
-        const wrapper = shallow(
-            <TwoColumnModal sidebar="Sidebar" content="Contents" />,
-        );
-
-        expect(wrapper.find("ModalCloseButton").exists()).toBeFalsy();
-    });
-
-    test("renders SmallTwoColumnModal on mobile", () => {
+    test("renders SmallOneColumnModal on mobile", () => {
         // Arrange
         const wrapper = mount(
             <MediaLayoutContext.Provider
@@ -35,22 +27,18 @@ describe("TwoColumnModal", () => {
                     mediaSpec: MEDIA_DEFAULT_SPEC,
                 }}
             >
-                <TwoColumnModal
-                    content="Content"
-                    sidebar="Sidebar"
-                    footer="Footer"
-                />
+                <OneColumnModal content="Content" footer="Footer" />
             </MediaLayoutContext.Provider>,
         );
 
         // Act
-        const modal = wrapper.find(SmallTwoColumnModal);
+        const modal = wrapper.find(SmallOneColumnModal);
 
         // Assert
         expect(modal);
     });
 
-    test("renders LargeTwoColumnModal on mobile", () => {
+    test("renders LargeOneColumnModal on desktop", () => {
         // Arrange
         const wrapper = mount(
             <MediaLayoutContext.Provider
@@ -60,16 +48,12 @@ describe("TwoColumnModal", () => {
                     mediaSpec: MEDIA_DEFAULT_SPEC,
                 }}
             >
-                <TwoColumnModal
-                    content="Content"
-                    sidebar="Sidebar"
-                    footer="Footer"
-                />
+                <OneColumnModal content="Content" footer="Footer" />
             </MediaLayoutContext.Provider>,
         );
 
         // Act
-        const modal = wrapper.find(LargeTwoColumnModal);
+        const modal = wrapper.find(LargeOneColumnModal);
 
         // Assert
         expect(modal);
@@ -79,25 +63,14 @@ describe("TwoColumnModal", () => {
     describe("mobile", () => {
         test("with footer", () => {
             const wrapper = shallow(
-                <SmallTwoColumnModal
-                    content="Content"
-                    fullBleedSidebar={true}
-                    sidebar="Sidebar"
-                    footer="Footer"
-                />,
+                <SmallOneColumnModal content="Content" footer="Footer" />,
             );
 
             expect(wrapper).toMatchSnapshot();
         });
 
         test("without footer", () => {
-            const wrapper = shallow(
-                <SmallTwoColumnModal
-                    fullBleedSidebar={true}
-                    sidebar="Sidebar"
-                    content="Content"
-                />,
-            );
+            const wrapper = shallow(<SmallOneColumnModal content="Content" />);
 
             expect(wrapper).toMatchSnapshot();
         });

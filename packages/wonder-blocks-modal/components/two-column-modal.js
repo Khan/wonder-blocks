@@ -34,7 +34,7 @@ type Props = {|
     onClose?: () => void,
 |};
 
-class SmallTwoColumnModal extends React.Component<Props> {
+export class SmallTwoColumnModal extends React.Component<Props> {
     render() {
         const {
             onClose,
@@ -92,7 +92,7 @@ class SmallTwoColumnModal extends React.Component<Props> {
     }
 }
 
-class LargeTwoColumnModal extends React.Component<Props> {
+export class LargeTwoColumnModal extends React.Component<Props> {
     render() {
         const {
             onClose,
