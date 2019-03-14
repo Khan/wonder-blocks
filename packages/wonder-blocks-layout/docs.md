@@ -32,3 +32,57 @@ const styles = StyleSheet.create({
     <Button style={styles.button}>Accept</Button>
 </View>
 ```
+
+`MediaLayout` is a container component takes in a `styleSheets` object whose keys are
+media sizes.  I listens for changes to the current media size and passes the current
+`mediaSize`, `mediaSpec`, and `styles` to `children` which is a render function taking
+those three values as object.
+
+Valid keys for the `styleSheets` object are (in order of precedence):
+- small, medium, large
+- mdOrSmaller, mdOrLarger
+- all
+
+`MediaLayout` will merge style rules from multiple styles that match the current media
+size.
+
+The `mediaSpec` is an object with one or more of the following keys: small, medium, or
+large.  Each value contains the following data:
+- `query: string` e.g. "(min-width: 1024px)"
+- `totalColumns: number`
+- `gutterWidth: number` (in pixels)
+- `marginWidth: number` (in pixels)
+- `maxWidth: number` (in pixels)
+
+By default, `MediaLayout` uses `MEDIA_DEFAULT_SPEC` but others can be specified using
+`MediaLayoutContext.Provider`.  See media-layout-context.test.js for examples of how
+to do this.
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styleSheets = {
+    large: StyleSheet.create({
+        test: {
+            backgroundColor: "blue",
+        },
+    }),
+    medium: StyleSheet.create({
+        test: {
+            backgroundColor: "green",
+        },
+    }),
+    small: StyleSheet.create({
+        test: {
+            backgroundColor: "orange",
+        },
+    }),
+};
+
+<MediaLayout styleSheets={styleSheets}>
+    {({mediaSize, mediaSpec, styles}) => {
+        return <View style={styles.test}>Hello, world!</View>;
+    }}
+</MediaLayout>
+```

@@ -270,7 +270,7 @@ describe("MediaLayout", () => {
     });
 
     describe("window resizing", () => {
-        it("should update the style when the match media query changes", async () => {
+        it("should update the style when the window gets smaller", async () => {
             // Arrange
             const styleSheets = {
                 large: StyleSheet.create({
@@ -296,7 +296,44 @@ describe("MediaLayout", () => {
             );
 
             resizeWindow("small");
+            wrapper.update();
 
+            // Act
+            const style = wrapper.find("div").prop("style");
+
+            // Assert
+            expect(style.color).toBe("orange");
+        });
+
+        it("should update the style when the window gets larger", async () => {
+            // Arrange
+            const styleSheets = {
+                large: StyleSheet.create({
+                    test: {
+                        color: "blue",
+                    },
+                }),
+                small: StyleSheet.create({
+                    test: {
+                        color: "orange",
+                    },
+                }),
+            };
+
+            resizeWindow("small");
+
+            const wrapper = mount(
+                <MediaLayout styleSheets={styleSheets}>
+                    {({mediaSize, mediaSpec, styles}) => {
+                        return <View style={styles.test}>Hello, world!</View>;
+                    }}
+                </MediaLayout>,
+            );
+
+            resizeWindow("large");
+            wrapper.update();
+
+            // Act
             const style = wrapper.find("div").prop("style");
 
             // Assert

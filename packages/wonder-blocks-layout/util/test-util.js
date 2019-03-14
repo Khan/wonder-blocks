@@ -26,8 +26,8 @@ const queries = {
 const checkQuery = (query, width) => {
     return (
         (width < 768 && query === queries.small) ||
-        (width < 1024 && query === queries.medium) ||
-        query === queries.large
+        (width >= 768 && width < 1024 && query === queries.medium) ||
+        (width >= 1024 && query === queries.large)
     );
 };
 
