@@ -1,5 +1,5 @@
 // @flow
-import type {MediaQuery, MediaSize} from "./types.js";
+import type {MediaSize} from "./types.js";
 
 /**
  * Helper function for setting the window size, for use in tests.
@@ -23,13 +23,16 @@ const queries = {
     large: "(min-width: 1024px)",
 };
 
-const checkQuery = (query, width) => {
+export function checkQuery(
+    queryString: $Values<typeof queries>,
+    width: number,
+) {
     return (
-        (width < 768 && query === queries.small) ||
-        (width >= 768 && width < 1024 && query === queries.medium) ||
-        (width >= 1024 && query === queries.large)
+        (width < 768 && queryString === queries.small) ||
+        (width >= 768 && width < 1024 && queryString === queries.medium) ||
+        (width >= 1024 && queryString === queries.large)
     );
-};
+}
 
 type Listener = ({matches: boolean}) => void;
 
@@ -37,7 +40,7 @@ type Listener = ({matches: boolean}) => void;
  *
  * @param {MediaQuery} query
  */
-export function matchMedia(query: MediaQuery) {
+export function matchMedia(query: $Values<typeof queries>) {
     const listeners = new Set<Listener>();
 
     window.addEventListener("resize", () => {
