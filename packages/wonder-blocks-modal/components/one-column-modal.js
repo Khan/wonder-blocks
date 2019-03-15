@@ -42,7 +42,7 @@ export class SmallOneColumnModal extends React.Component<Props> {
                             scrollOverflow={false}
                         />
                     </View>
-                    {footer && (
+                    {!!footer && (
                         <View style={styles.smallFooter}>
                             {!footer ||
                             (typeof footer === "object" &&

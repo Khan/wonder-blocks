@@ -8,6 +8,7 @@ import {
 } from "@khanacademy/wonder-blocks-layout";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {MediaLayoutContextType} from "@khanacademy/wonder-blocks-layout";
 
 type Props = {|
     children: React.Node,
@@ -17,7 +18,7 @@ type Props = {|
 export default class ModalDialog extends React.Component<Props> {
     render() {
         const {style, children} = this.props;
-        const contextValue = {
+        const contextValue: MediaLayoutContextType = {
             ssrSize: "large",
             mediaSpec: MEDIA_MODAL_SPEC,
         };

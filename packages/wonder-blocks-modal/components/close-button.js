@@ -7,8 +7,18 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalContext from "./modal-context.js";
 
 type Props = {|
+    /**
+     * Whether the button is on a dark/colored background.
+     *
+     * Sets primary button background color to white, and secondary and
+     * tertiary button title to color.
+     */
     light?: boolean,
+
+    /** Optional click handler */
     onClick?: () => void,
+
+    /** Optional custom styles. */
     style?: StyleType,
 |};
 

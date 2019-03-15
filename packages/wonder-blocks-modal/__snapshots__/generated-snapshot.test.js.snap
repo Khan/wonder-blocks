@@ -877,8 +877,6 @@ exports[`wonder-blocks-modal example 4 1`] = `
                 "minHeight": "100%",
                 "minWidth": 0,
                 "padding": 64,
-                "paddingBottom": 32,
-                "paddingTop": 32,
                 "position": "relative",
                 "zIndex": 0,
               }
@@ -1433,8 +1431,6 @@ exports[`wonder-blocks-modal example 5 1`] = `
                 "minHeight": "100%",
                 "minWidth": 0,
                 "padding": 64,
-                "paddingBottom": 32,
-                "paddingTop": 32,
                 "position": "relative",
                 "zIndex": 0,
               }
@@ -2020,8 +2016,6 @@ exports[`wonder-blocks-modal example 6 1`] = `
                 "minHeight": "100%",
                 "minWidth": 0,
                 "padding": 64,
-                "paddingBottom": 32,
-                "paddingTop": 32,
                 "position": "relative",
                 "zIndex": 0,
               }
@@ -2736,70 +2730,6 @@ exports[`wonder-blocks-modal example 7 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "background": "#0a2a66",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "color": "#ffffff",
-                "display": "flex",
-                "flex": "0 0 auto",
-                "flexDirection": "row",
-                "margin": 0,
-                "maxHeight": 108,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "paddingBottom": 8,
-                "paddingLeft": 64,
-                "paddingRight": 64,
-                "paddingTop": 8,
-                "position": "relative",
-                "zIndex": 0,
-              }
-            }
-          >
-            <div
-              className=""
-              style={
-                Object {
-                  "alignItems": "stretch",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "boxSizing": "border-box",
-                  "display": "flex",
-                  "flexDirection": "column",
-                  "margin": 0,
-                  "minHeight": 0,
-                  "minWidth": 0,
-                  "padding": 0,
-                  "position": "relative",
-                  "zIndex": 0,
-                }
-              }
-            >
-              <span
-                className=""
-                style={
-                  Object {
-                    "MozOsxFontSmoothing": "grayscale",
-                    "WebkitFontSmoothing": "antialiased",
-                    "display": "block",
-                    "fontFamily": "Lato, sans-serif",
-                    "fontSize": 16,
-                    "fontWeight": 400,
-                    "lineHeight": "22px",
-                  }
-                }
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </span>
-            </div>
-          </div>
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
@@ -2810,8 +2740,6 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 "minHeight": "100%",
                 "minWidth": 0,
                 "padding": 64,
-                "paddingBottom": 32,
-                "paddingTop": 32,
                 "position": "relative",
                 "zIndex": 0,
               }
@@ -3782,7 +3710,6 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
-                  "paddingBottom": 32,
                   "position": "relative",
                   "zIndex": 0,
                 }
@@ -4613,7 +4540,6 @@ exports[`wonder-blocks-modal example 11 1`] = `
                   "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
-                  "paddingBottom": 32,
                   "position": "relative",
                   "zIndex": 0,
                 }
@@ -5105,7 +5031,6 @@ exports[`wonder-blocks-modal example 12 1`] = `
                   "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
-                  "paddingBottom": 32,
                   "position": "relative",
                   "zIndex": 0,
                 }
@@ -5819,7 +5744,6 @@ exports[`wonder-blocks-modal example 14 1`] = `
                   "minHeight": "100%",
                   "minWidth": 0,
                   "padding": 64,
-                  "paddingBottom": 32,
                   "position": "relative",
                   "zIndex": 0,
                 }

@@ -77,29 +77,41 @@ describe("TwoColumnModal", () => {
 
     // We already capture desktop snapshots from auto generated tests
     describe("mobile", () => {
-        test("with footer", () => {
-            const wrapper = shallow(
-                <SmallTwoColumnModal
-                    content="Content"
-                    fullBleedSidebar={true}
-                    sidebar="Sidebar"
-                    footer="Footer"
-                />,
-            );
+        describe("with footer", () => {
+            it("should match snapshot", () => {
+                // Arrange
 
-            expect(wrapper).toMatchSnapshot();
+                // Act
+                const wrapper = shallow(
+                    <SmallTwoColumnModal
+                        content="Content"
+                        fullBleedSidebar={true}
+                        sidebar="Sidebar"
+                        footer="Footer"
+                    />,
+                );
+
+                // Assert
+                expect(wrapper).toMatchSnapshot();
+            });
         });
 
-        test("without footer", () => {
-            const wrapper = shallow(
-                <SmallTwoColumnModal
-                    fullBleedSidebar={true}
-                    sidebar="Sidebar"
-                    content="Content"
-                />,
-            );
+        describe("without footer", () => {
+            it("should match snapshot", () => {
+                // Arrange
 
-            expect(wrapper).toMatchSnapshot();
+                // Act
+                const wrapper = shallow(
+                    <SmallTwoColumnModal
+                        fullBleedSidebar={true}
+                        sidebar="Sidebar"
+                        content="Content"
+                    />,
+                );
+
+                // Assert
+                expect(wrapper).toMatchSnapshot();
+            });
         });
     });
 });

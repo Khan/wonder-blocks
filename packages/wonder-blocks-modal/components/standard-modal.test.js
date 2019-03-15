@@ -23,57 +23,61 @@ describe("StandardModal", () => {
     });
 
     // We already capture desktop snapshots from auto generated tests
-    test("mobile", () => {
-        // Arrange
-        const wrapper = mount(
-            <div>
-                <MediaLayoutContext.Provider
-                    value={{
-                        overrideSize: undefined,
-                        ssrSize: "small",
-                        mediaSpec: MEDIA_DEFAULT_SPEC,
-                    }}
-                >
-                    <StandardModal
-                        title="Title"
-                        content="Content"
-                        footer="Footer"
-                    />
-                </MediaLayoutContext.Provider>
-            </div>,
-        );
+    describe("mobile", () => {
+        it("should match snapshot", () => {
+            // Arrange
 
-        // Act
-        const modal = wrapper.find(StandardModal);
+            // Act
+            const wrapper = mount(
+                <div>
+                    <MediaLayoutContext.Provider
+                        value={{
+                            overrideSize: undefined,
+                            ssrSize: "small",
+                            mediaSpec: MEDIA_DEFAULT_SPEC,
+                        }}
+                    >
+                        <StandardModal
+                            title="Title"
+                            content="Content"
+                            footer="Footer"
+                        />
+                    </MediaLayoutContext.Provider>
+                </div>,
+            );
+            const modal = wrapper.find(StandardModal);
 
-        // Assert
-        expect(modal).toMatchSnapshot();
+            // Assert
+            expect(modal).toMatchSnapshot();
+        });
     });
 
     describe("desktop", () => {
-        // Arrange
-        const wrapper = mount(
-            <div>
-                <MediaLayoutContext.Provider
-                    value={{
-                        overrideSize: undefined,
-                        ssrSize: "large",
-                        mediaSpec: MEDIA_DEFAULT_SPEC,
-                    }}
-                >
-                    <StandardModal
-                        title="Title"
-                        content="Content"
-                        footer="Footer"
-                    />
-                </MediaLayoutContext.Provider>
-            </div>,
-        );
+        it("should match snapshot", () => {
+            // Arrange
 
-        // Act
-        const modal = wrapper.find(StandardModal);
+            // Act
+            const wrapper = mount(
+                <div>
+                    <MediaLayoutContext.Provider
+                        value={{
+                            overrideSize: undefined,
+                            ssrSize: "large",
+                            mediaSpec: MEDIA_DEFAULT_SPEC,
+                        }}
+                    >
+                        <StandardModal
+                            title="Title"
+                            content="Content"
+                            footer="Footer"
+                        />
+                    </MediaLayoutContext.Provider>
+                </div>,
+            );
+            const modal = wrapper.find(StandardModal);
 
-        // Assert
-        expect(modal).toMatchSnapshot();
+            // Assert
+            expect(modal).toMatchSnapshot();
+        });
     });
 });

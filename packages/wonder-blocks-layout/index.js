@@ -12,6 +12,7 @@ export * from "./util/specs.js";
 export {queryMatchesSize} from "./util/util.js";
 export {MEDIA_DEFAULT_SPEC} from "./util/specs.js";
 
+export type {MockStyleSheet} from "./components/media-layout.js";
 export type {
     MediaQuery,
     MediaSize,

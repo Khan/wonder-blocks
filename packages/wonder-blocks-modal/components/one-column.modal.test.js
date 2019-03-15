@@ -19,6 +19,8 @@ describe("OneColumnModal", () => {
 
     it("should render SmallOneColumnModal on mobile", () => {
         // Arrange
+
+        // Act
         const wrapper = mount(
             <MediaLayoutContext.Provider
                 value={{
@@ -30,8 +32,6 @@ describe("OneColumnModal", () => {
                 <OneColumnModal content="Content" footer="Footer" />
             </MediaLayoutContext.Provider>,
         );
-
-        // Act
         const modal = wrapper.find(SmallOneColumnModal);
 
         // Assert
@@ -40,6 +40,8 @@ describe("OneColumnModal", () => {
 
     it("should render LargeOneColumnModal on desktop", () => {
         // Arrange
+
+        // Act
         const wrapper = mount(
             <MediaLayoutContext.Provider
                 value={{
@@ -51,8 +53,6 @@ describe("OneColumnModal", () => {
                 <OneColumnModal content="Content" footer="Footer" />
             </MediaLayoutContext.Provider>,
         );
-
-        // Act
         const modal = wrapper.find(LargeOneColumnModal);
 
         // Assert
@@ -61,18 +61,24 @@ describe("OneColumnModal", () => {
 
     // We already capture desktop snapshots from auto generated tests
     describe("mobile", () => {
-        test("with footer", () => {
-            const wrapper = shallow(
-                <SmallOneColumnModal content="Content" footer="Footer" />,
-            );
+        describe("with footer", () => {
+            it("should match snapshot", () => {
+                const wrapper = shallow(
+                    <SmallOneColumnModal content="Content" footer="Footer" />,
+                );
 
-            expect(wrapper).toMatchSnapshot();
+                expect(wrapper).toMatchSnapshot();
+            });
         });
 
-        test("without footer", () => {
-            const wrapper = shallow(<SmallOneColumnModal content="Content" />);
+        describe("without footer", () => {
+            it("should match snapshot", () => {
+                const wrapper = shallow(
+                    <SmallOneColumnModal content="Content" />,
+                );
 
-            expect(wrapper).toMatchSnapshot();
+                expect(wrapper).toMatchSnapshot();
+            });
         });
     });
 });

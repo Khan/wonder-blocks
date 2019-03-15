@@ -105,7 +105,7 @@ export default class StandardModal extends React.Component<Props> {
                             content={content}
                             footer={footer}
                         />
-                        {preview && (
+                        {!!preview && (
                             <ModalPanel
                                 color="dark"
                                 style={styles.preview}

@@ -8,7 +8,7 @@ import {VALID_MEDIA_SIZES} from "../util/specs.js";
 import type {MediaSize, MediaSpec} from "../util/types.js";
 
 // eslint-disable-next-line flowtype/require-exact-type
-type MockStyleSheet = {
+export type MockStyleSheet = {
     [key: string]: StyleType,
 };
 
