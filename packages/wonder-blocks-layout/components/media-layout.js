@@ -6,6 +6,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import MediaLayoutContext from "./media-layout-context.js";
 import {VALID_MEDIA_SIZES} from "../util/specs.js";
 import type {MediaSize, MediaSpec} from "../util/types.js";
+import type {Context} from "./media-layout-context.js";
 
 // eslint-disable-next-line flowtype/require-exact-type
 export type MockStyleSheet = {
@@ -211,31 +212,33 @@ export default class MediaLayout extends React.Component<Props, State> {
         return mockStyleSheet;
     }
 
-    render() {
+    renderChildren({overrideSize, ssrSize, mediaSpec}: Context) {
         const {children} = this.props;
 
+        // We need to figure out what the current media size is
+        // If an override has been specified, we use that.
+        // If we're rendering on the server then we use the default
+        // SSR rendering size.
+        // Otherwise we attempt to get the current size based on
+        // the current MediaSpec.
+        const mediaSize =
+            overrideSize ||
+            (this.isServerSide() && ssrSize) ||
+            this.getCurrentSize(mediaSpec);
+
+        // Generate a mock stylesheet
+        const styles = this.getMockStyleSheet(mediaSize);
+
+        return children({mediaSize, mediaSpec, styles});
+    }
+
+    render() {
         // We listen to the MediaLayoutContext to see what defaults we're
         // being given (this can be overriden by wrapping this component in
         // a MediaLayoutContext.Consumer).
         return (
             <MediaLayoutContext.Consumer>
-                {({overrideSize, ssrSize, mediaSpec}) => {
-                    // We need to figure out what the current media size is
-                    // If an override has been specified, we use that.
-                    // If we're rendering on the server then we use the default
-                    // SSR rendering size.
-                    // Otherwise we attempt to get the current size based on
-                    // the current MediaSpec.
-                    const mediaSize =
-                        overrideSize ||
-                        (this.isServerSide() && ssrSize) ||
-                        this.getCurrentSize(mediaSpec);
-
-                    // Generate a mock stylesheet
-                    const styles = this.getMockStyleSheet(mediaSize);
-
-                    return children({mediaSize, mediaSpec, styles});
-                }}
+                {(contextValue) => this.renderChildren(contextValue)}
             </MediaLayoutContext.Consumer>
         );
     }

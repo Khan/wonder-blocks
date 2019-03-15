@@ -1,39 +1,236 @@
 // @flow
 import {queryMatchesSize} from "./util.js";
 
-import type {MediaQuery, MediaSize} from "./types.js";
+describe("queryMatchesSize", () => {
+    describe("all", () => {
+        // Arrange
+        const query = "all";
 
-const testQueryMatchesSizes = (
-    query: MediaQuery,
-    matchedSizes: Set<MediaSize>,
-) => {
-    describe(query, () => {
-        for (const size of ["small", "medium", "large"]) {
+        it("should match small", () => {
             // Arrange
-            const expectedResult = matchedSizes.has(size);
+            const size = "small";
 
-            it(`${query} should ${
-                expectedResult ? "" : "not "
-            }match ${size}`, () => {
-                // Act
-                const actualResult = queryMatchesSize(query, size);
+            // Act
+            const actualResult = queryMatchesSize(query, size);
 
-                // Assert
-                expect(actualResult).toEqual(expectedResult);
-            });
-        }
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+
+        it("should match medium", () => {
+            // Arrange
+            const size = "medium";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+
+        it("should match large", () => {
+            // Arrange
+            const size = "large";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
     });
-};
 
-describe.only("queryMatchesSize", () => {
-    testQueryMatchesSizes("all", new Set(["small", "medium", "large"]));
-    testQueryMatchesSizes("mdOrSmaller", new Set(["small", "medium"]));
-    testQueryMatchesSizes("mdOrLarger", new Set(["medium", "large"]));
-    testQueryMatchesSizes("large", new Set(["large"]));
-    testQueryMatchesSizes("medium", new Set(["medium"]));
-    testQueryMatchesSizes("small", new Set(["small"]));
+    describe("mdOrLarger", () => {
+        // Arrange
+        const query = "mdOrLarger";
 
-    // TODO(kevinb): figure out how to add $FlowIgnore without breaking things
+        it("should not match small", () => {
+            // Arrange
+            const size = "small";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(false);
+        });
+
+        it("should match medium", () => {
+            // Arrange
+            const size = "medium";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+
+        it("should match large", () => {
+            // Arrange
+            const size = "large";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+    });
+
+    describe("mdOrSmaller", () => {
+        // Arrange
+        const query = "mdOrSmaller";
+
+        it("should match small", () => {
+            // Arrange
+            const size = "small";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+
+        it("should match medium", () => {
+            // Arrange
+            const size = "medium";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+
+        it("should not match large", () => {
+            // Arrange
+            const size = "large";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(false);
+        });
+    });
+
+    describe("small", () => {
+        // Arrange
+        const query = "small";
+
+        it("should match small", () => {
+            // Arrange
+            const size = "small";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+
+        it("should not match medium", () => {
+            // Arrange
+            const size = "medium";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(false);
+        });
+
+        it("should not match large", () => {
+            // Arrange
+            const size = "large";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(false);
+        });
+    });
+
+    describe("medium", () => {
+        // Arrange
+        const query = "medium";
+
+        it("should not match small", () => {
+            // Arrange
+            const size = "small";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(false);
+        });
+
+        it("should match medium", () => {
+            // Arrange
+            const size = "medium";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+
+        it("should not match large", () => {
+            // Arrange
+            const size = "large";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(false);
+        });
+    });
+
+    describe("large", () => {
+        // Arrange
+        const query = "small";
+
+        it("should not match small", () => {
+            // Arrange
+            const size = "small";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(true);
+        });
+
+        it("should not match medium", () => {
+            // Arrange
+            const size = "medium";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(false);
+        });
+
+        it("should not match large", () => {
+            // Arrange
+            const size = "large";
+
+            // Act
+            const actualResult = queryMatchesSize(query, size);
+
+            // Assert
+            expect(actualResult).toBe(false);
+        });
+    });
+
+    // TODO(WEB-531): figure out how to add $FlowIgnore without breaking things
     // it("should throw on invalid query", () => {
     //     // $FlowIgnore: this should be caught by flow, but we're testing it anyways
     //     expect(() => queryMatchesSize("foobar", "small")).toThrow();

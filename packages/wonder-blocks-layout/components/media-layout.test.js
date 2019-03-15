@@ -7,33 +7,6 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import MediaLayout from "./media-layout.js";
 import {resizeWindow, matchMedia} from "../util/test-util.js";
 
-const getArgsToChildren = async (styleSheets) =>
-    new Promise((resolve, reject) => {
-        mount(
-            <MediaLayout styleSheets={styleSheets}>
-                {({mediaSize, mediaSpec, styles}) => {
-                    resolve({mediaSize, mediaSpec, styles});
-                    return <View style={styles.test}>Hello, world!</View>;
-                }}
-            </MediaLayout>,
-        );
-    });
-
-const getStyle = (styleSheets) => {
-    const wrapper = mount(
-        <MediaLayout styleSheets={styleSheets}>
-            {({mediaSize, mediaSpec, styles}) => {
-                return <View style={styles.test}>Hello, world!</View>;
-            }}
-        </MediaLayout>,
-    );
-    const style = wrapper.find("div").prop("style");
-
-    return style;
-};
-
-global.SNAPSHOT_INLINE_APHRODITE = true;
-
 describe("MediaLayout", () => {
     beforeEach(() => {
         unmountAll();
@@ -46,7 +19,18 @@ describe("MediaLayout", () => {
             resizeWindow("small");
 
             // Act
-            const args = await getArgsToChildren();
+            const args = await new Promise((resolve, reject) => {
+                mount(
+                    <MediaLayout>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            resolve({mediaSize, mediaSpec, styles});
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+            });
 
             // Assert
             expect(args.mediaSize).toEqual("small");
@@ -57,7 +41,18 @@ describe("MediaLayout", () => {
             resizeWindow("medium");
 
             // Act
-            const args = await getArgsToChildren();
+            const args = await new Promise((resolve, reject) => {
+                mount(
+                    <MediaLayout>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            resolve({mediaSize, mediaSpec, styles});
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+            });
 
             // Assert
             expect(args.mediaSize).toEqual("medium");
@@ -68,7 +63,18 @@ describe("MediaLayout", () => {
             resizeWindow("large");
 
             // Act
-            const args = await getArgsToChildren();
+            const args = await new Promise((resolve, reject) => {
+                mount(
+                    <MediaLayout>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            resolve({mediaSize, mediaSpec, styles});
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+            });
 
             // Assert
             expect(args.mediaSize).toEqual("large");
@@ -95,7 +101,16 @@ describe("MediaLayout", () => {
                 resizeWindow(size);
 
                 // Act
-                const style = getStyle(styleSheets);
+                const wrapper = mount(
+                    <MediaLayout styleSheets={styleSheets}>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+                const style = wrapper.find("div").prop("style");
 
                 // Assert
                 expect(style.color).toBe("blue");
@@ -118,17 +133,26 @@ describe("MediaLayout", () => {
                     }),
                 };
                 resizeWindow(size);
-
-                // Act
-                const style = getStyle(styleSheets);
-                const color = {
+                const expectedColor = {
                     small: "blue",
                     medium: "blue",
                     large: "orange",
                 }[size];
 
+                // Act
+                const wrapper = mount(
+                    <MediaLayout styleSheets={styleSheets}>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+                const style = wrapper.find("div").prop("style");
+
                 // Assert
-                expect(style.color).toBe(color);
+                expect(style.color).toBe(expectedColor);
             });
 
             it(`"mdOrLarger" should match ${
@@ -148,17 +172,26 @@ describe("MediaLayout", () => {
                     }),
                 };
                 resizeWindow(size);
-
-                // Act
-                const style = getStyle(styleSheets);
-                const color = {
+                const expectedColor = {
                     small: "orange",
                     medium: "blue",
                     large: "blue",
                 }[size];
 
+                // Act
+                const wrapper = mount(
+                    <MediaLayout styleSheets={styleSheets}>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+                const style = wrapper.find("div").prop("style");
+
                 // Assert
-                expect(style.color).toBe(color);
+                expect(style.color).toBe(expectedColor);
             });
 
             it(`"${size}" styles should win over "all" styles`, async () => {
@@ -186,17 +219,26 @@ describe("MediaLayout", () => {
                     }),
                 };
                 resizeWindow(size);
-
-                // Act
-                const style = getStyle(styleSheets);
-                const color = {
+                const expectedColor = {
                     small: "orange",
                     medium: "teal",
                     large: "magenta",
                 }[size];
 
+                // Act
+                const wrapper = mount(
+                    <MediaLayout styleSheets={styleSheets}>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+                const style = wrapper.find("div").prop("style");
+
                 // Assert
-                expect(style.color).toEqual(color);
+                expect(style.color).toEqual(expectedColor);
             });
         }
 
@@ -221,16 +263,25 @@ describe("MediaLayout", () => {
                     }),
                 };
                 resizeWindow(size);
-
-                // Act
-                const style = getStyle(styleSheets);
-                const color = {
+                const expectedColor = {
                     small: "orange",
                     medium: "teal",
                 }[size];
 
+                // Act
+                const wrapper = mount(
+                    <MediaLayout styleSheets={styleSheets}>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+                const style = wrapper.find("div").prop("style");
+
                 // Assert
-                expect(style.color).toEqual(color);
+                expect(style.color).toEqual(expectedColor);
             });
         }
 
@@ -255,16 +306,25 @@ describe("MediaLayout", () => {
                     }),
                 };
                 resizeWindow(size);
-
-                // Act
-                const style = getStyle(styleSheets);
-                const color = {
+                const expectedColor = {
                     medium: "teal",
                     large: "magenta",
                 }[size];
 
+                // Act
+                const wrapper = mount(
+                    <MediaLayout styleSheets={styleSheets}>
+                        {({mediaSize, mediaSpec, styles}) => {
+                            return (
+                                <View style={styles.test}>Hello, world!</View>
+                            );
+                        }}
+                    </MediaLayout>,
+                );
+                const style = wrapper.find("div").prop("style");
+
                 // Assert
-                expect(style.color).toEqual(color);
+                expect(style.color).toEqual(expectedColor);
             });
         }
     });
