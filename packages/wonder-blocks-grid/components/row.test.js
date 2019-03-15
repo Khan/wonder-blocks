@@ -10,25 +10,14 @@ import Row from "./row.js";
 import Cell from "./cell.js";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
-const wait = async (duration) =>
-    new Promise((resolve, reject) => setTimeout(resolve, duration));
-
 describe("Row", () => {
     beforeEach(() => {
         unmountAll();
-        // Prevent jest complaining when JSDOM console.error's an exception
-        jest.spyOn(console, "error");
-        // eslint-disable-next-line no-console
-        console.error.mockImplementation(() => {});
-    });
-
-    afterEach(() => {
-        // eslint-disable-next-line no-console
-        console.error.mockRestore();
     });
 
     describe("large", () => {
         it("should render Cells with largeCols and cols", () => {
+            // Arrange
             const wrapper = mount(
                 <div>
                     <MediaLayoutContext.Provider
@@ -48,12 +37,21 @@ describe("Row", () => {
                 </div>,
             );
 
+            // Act
             const text = wrapper.text();
 
+            // Assert
             expect(text).toEqual("colslargeCols");
         });
 
         it("should throw if there are too many columns", async () => {
+            // Arrange
+
+            // Prevent jest complaining when JSDOM console.error's an exception
+            jest.spyOn(console, "error");
+            // eslint-disable-next-line no-console
+            console.error.mockImplementation(() => {});
+
             const render = () => {
                 mount(
                     <div>
@@ -72,14 +70,17 @@ describe("Row", () => {
                 );
             };
 
+            // Act, Assert
             expect(render).toThrow();
+
+            // eslint-disable-next-line no-console
+            console.error.mockRestore();
         });
     });
 
     describe("medium", () => {
         it("should render Cells with largeCols and cols", async () => {
-            await wait(500);
-
+            // Arrange
             const wrapper = mount(
                 <div>
                     <MediaLayoutContext.Provider
@@ -99,12 +100,21 @@ describe("Row", () => {
                 </div>,
             );
 
+            // Act
             const text = wrapper.text();
 
+            // Assert
             expect(text).toEqual("colsmediumCols");
         });
 
         it("should throw if there are too many columns", () => {
+            // Arrange
+
+            // Prevent jest complaining when JSDOM console.error's an exception
+            jest.spyOn(console, "error");
+            // eslint-disable-next-line no-console
+            console.error.mockImplementation(() => {});
+
             const render = () => {
                 mount(
                     <div>
@@ -123,12 +133,17 @@ describe("Row", () => {
                 );
             };
 
+            // Act, Assert
             expect(render).toThrow();
+
+            // eslint-disable-next-line no-console
+            console.error.mockRestore();
         });
     });
 
-    describe.skip("small", () => {
+    describe("small", () => {
         it("should render Cells with largeCols and cols", () => {
+            // Arrange
             const wrapper = mount(
                 <div>
                     <MediaLayoutContext.Provider
@@ -148,12 +163,21 @@ describe("Row", () => {
                 </div>,
             );
 
+            // Act
             const text = wrapper.text();
 
+            // Assert
             expect(text).toEqual("colssmallCols");
         });
 
         it("should throw if there are too many columns", () => {
+            // Arrange
+
+            // Prevent jest complaining when JSDOM console.error's an exception
+            jest.spyOn(console, "error");
+            // eslint-disable-next-line no-console
+            console.error.mockImplementation(() => {});
+
             const render = () => {
                 mount(
                     <div>
@@ -172,7 +196,11 @@ describe("Row", () => {
                 );
             };
 
+            // Act, Assert
             expect(render).toThrow();
+
+            // eslint-disable-next-line no-console
+            console.error.mockRestore();
         });
     });
 });
