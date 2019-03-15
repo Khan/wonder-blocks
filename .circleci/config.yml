@@ -62,4 +62,5 @@ workflows:
     jobs:
       - lint
       - test
-      - vite
+      # TODO(kevinb): figure out why vite tests
+      # - vite
