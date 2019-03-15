@@ -55,15 +55,12 @@ describe("Test utils", () => {
 
     describe("checkQuery", () => {
         describe("(max-width: 767px)", () => {
-            // Arrange
-            const queryString = "(max-width: 767px)";
-
             it("should match 700px", () => {
                 // Arrange
                 const width = 700;
 
                 // Act
-                const result = checkQuery(queryString, width);
+                const result = checkQuery("(max-width: 767px)", width);
 
                 // Assert
                 expect(result).toBe(true);
@@ -74,7 +71,7 @@ describe("Test utils", () => {
                 const width = 800;
 
                 // Act
-                const result = checkQuery(queryString, width);
+                const result = checkQuery("(max-width: 767px)", width);
 
                 // Assert
                 expect(result).toBe(false);
@@ -82,15 +79,15 @@ describe("Test utils", () => {
         });
 
         describe("(min-width: 768px) and (max-width: 1023px)", () => {
-            // Arrange
-            const queryString = "(min-width: 768px) and (max-width: 1023px)";
-
             it("should not match 700px", () => {
                 // Arrange
                 const width = 700;
 
                 // Act
-                const result = checkQuery(queryString, width);
+                const result = checkQuery(
+                    "(min-width: 768px) and (max-width: 1023px)",
+                    width,
+                );
 
                 // Assert
                 expect(result).toBe(false);
@@ -101,7 +98,10 @@ describe("Test utils", () => {
                 const width = 800;
 
                 // Act
-                const result = checkQuery(queryString, width);
+                const result = checkQuery(
+                    "(min-width: 768px) and (max-width: 1023px)",
+                    width,
+                );
 
                 // Assert
                 expect(result).toBe(true);
@@ -112,7 +112,10 @@ describe("Test utils", () => {
                 const width = 1024;
 
                 // Act
-                const result = checkQuery(queryString, width);
+                const result = checkQuery(
+                    "(min-width: 768px) and (max-width: 1023px)",
+                    width,
+                );
 
                 // Assert
                 expect(result).toBe(false);
@@ -120,15 +123,12 @@ describe("Test utils", () => {
         });
 
         describe("(min-width: 1024px)", () => {
-            // Arrange
-            const queryString = "(min-width: 1024px)";
-
             it("should not match 800px", () => {
                 // Arrange
                 const width = 800;
 
                 // Act
-                const result = checkQuery(queryString, width);
+                const result = checkQuery("(min-width: 1024px)", width);
 
                 // Assert
                 expect(result).toBe(false);
@@ -139,7 +139,7 @@ describe("Test utils", () => {
                 const width = 1024;
 
                 // Act
-                const result = checkQuery(queryString, width);
+                const result = checkQuery("(min-width: 1024px)", width);
 
                 // Assert
                 expect(result).toBe(true);
