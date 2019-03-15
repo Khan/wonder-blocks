@@ -534,7 +534,7 @@ describe("wonder-blocks-button", () => {
             }
 
             componentWillUnmount() {
-                this.timeout.clear();
+                this.timeout && this.timeout.clear();
             }
 
             handleClick() {

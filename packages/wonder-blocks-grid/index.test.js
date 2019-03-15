@@ -8,12 +8,6 @@ describe("@khanacademy/wonder-blocks-grid", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual([
-            "Cell",
-            "FixedWidthCell",
-            "FlexCell",
-            "Gutter",
-            "Row",
-        ].sort());
+        expect(Object.keys(result).sort()).toEqual(["Cell", "Row"].sort());
     });
 });

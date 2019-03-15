@@ -8,18 +8,18 @@ import ModalContext from "./modal-context.js";
 
 type Props = {|
     light?: boolean,
-    onClose?: () => void,
+    onClick?: () => void,
     style?: StyleType,
 |};
 
 export default class CloseButton extends React.Component<Props> {
     render() {
-        const {light, onClose, style} = this.props;
+        const {light, onClick, style} = this.props;
 
         return (
             <ModalContext.Consumer>
                 {({closeModal}) => {
-                    if (closeModal && onClose) {
+                    if (closeModal && onClick) {
                         throw new Error(
                             "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
                         );
@@ -31,7 +31,7 @@ export default class CloseButton extends React.Component<Props> {
                             // TODO(mdr): Translate this string for i18n.
                             // TODO(kevinb): provide a way to set this label
                             aria-label="Close modal"
-                            onClick={onClose || closeModal}
+                            onClick={onClick || closeModal}
                             kind={light ? "primary" : "tertiary"}
                             light={light}
                             style={style}

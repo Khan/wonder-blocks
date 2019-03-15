@@ -9,8 +9,6 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import Cell from "./components/cell.js";
-import FixedWidthCell from "./components/fixed-width-cell.js";
-import FlexCell from "./components/flex-cell.js";
 import Gutter from "./components/gutter.js";
 import Row from "./components/row.js";
 
@@ -54,34 +52,59 @@ describe("wonder-blocks-grid", () => {
                 {({styles}) => (
                     <View style={styles.background}>
                         <Row>
-                            <FlexCell style={styles.cell}>
-                                <Text>FlexCell</Text>
-                                <br />
-                                <br />
-                                <Text>⇠ Margin</Text>
-                                <br />
-                                <View style={{textAlign: "right"}}>
-                                    <Text>Gutter ⇢</Text>
-                                </View>
-                            </FlexCell>
-                            <FixedWidthCell style={styles.cell} width={100}>
-                                <Text>FixedWidthCell (100px)</Text>
-                                <br />
-                                <br />
-                                <View style={{textAlign: "center"}}>
-                                    <Text>⇠ Gutters ⇢</Text>
-                                </View>
-                            </FixedWidthCell>
-                            <Cell largeCols={2} style={styles.cell}>
-                                <Text>Cell (2 columns wide)</Text>
-                                <br />
-                                <br />
-                                <View style={{textAlign: "center"}}>
-                                    <Text>⇠ Gutters ⇢</Text>
-                                </View>
+                            <Cell
+                                smallCols={2}
+                                mediumCols={3}
+                                largeCols={4}
+                                style={styles.cell}
+                            >
+                                {({cols}) => {
+                                    return (
+                                        <View>
+                                            <Text>
+                                                Cell ({cols === 1
+                                                    ? "1 column"
+                                                    : `${cols} columns`}{" "}
+                                                wide)
+                                            </Text>
+                                            <br />
+                                            <br />
+                                            <View style={{textAlign: "right"}}>
+                                                <Text>Gutter ⇢</Text>
+                                            </View>
+                                            <br />
+                                            <View style={{textAlign: "left"}}>
+                                                <Text>Margin ⇢</Text>
+                                            </View>
+                                        </View>
+                                    );
+                                }}
                             </Cell>
                             <Cell
-                                smallCols={1}
+                                mediumCols={2}
+                                largeCols={3}
+                                style={styles.cell}
+                            >
+                                {({cols}) => {
+                                    return (
+                                        <View>
+                                            <Text>
+                                                Cell ({cols === 1
+                                                    ? "1 column"
+                                                    : `${cols} columns`}{" "}
+                                                wide)
+                                            </Text>
+                                            <br />
+                                            <br />
+                                            <View style={{textAlign: "center"}}>
+                                                <Text>⇠ Gutters ⇢</Text>
+                                            </View>
+                                        </View>
+                                    );
+                                }}
+                            </Cell>
+                            <Cell
+                                smallCols={2}
                                 mediumCols={3}
                                 largeCols={5}
                                 style={styles.cell}
@@ -153,14 +176,16 @@ describe("wonder-blocks-grid", () => {
                     <Cell cols={2} style={{background: Color.offBlack8}}>
                         Possible mastery points
                     </Cell>
-                    <FixedWidthCell
-                        width={2000}
+                    <Cell
+                        smallCols={4}
+                        mediumCols={6}
+                        largeCols={10}
                         style={{
                             background: Color.offBlack8,
                         }}
                     >
                         Beginner / Points to Apprentice
-                    </FixedWidthCell>
+                    </Cell>
                 </Row>
                 <Row
                     mediaQuery="large"
@@ -174,7 +199,9 @@ describe("wonder-blocks-grid", () => {
                     <View>Beginner / Points to Apprentice</View>
                 </Row>
                 <Row mediaQuery="mdOrSmaller" style={{height: 50}}>
-                    <FlexCell>Skill Summary</FlexCell>
+                    <Cell smallCols={4} mediumCols={8} largeCols={12}>
+                        Skill Summary
+                    </Cell>
                 </Row>
                 <Row
                     mediaQuery="mdOrSmaller"
@@ -185,9 +212,9 @@ describe("wonder-blocks-grid", () => {
                         borderBottom: `1px solid ${Color.offBlack8}`,
                     }}
                 >
-                    <FlexCell>
+                    <Cell smallCols={4} mediumCols={8} largeCols={12}>
                         Intro to Geometry Angles Quiz 1: 10 questions Polygons
-                    </FlexCell>
+                    </Cell>
                 </Row>
                 <Row mediaQuery="large" style={{padding: "17px 0"}}>
                     <Cell cols={3}>
@@ -201,7 +228,7 @@ describe("wonder-blocks-grid", () => {
                         <hr />
                         Polygons
                     </Cell>
-                    <FlexCell>
+                    <Cell smallCols={1} mediumCols={5} largeCols={9}>
                         <View
                             style={{
                                 background: Color.white,
@@ -223,7 +250,7 @@ describe("wonder-blocks-grid", () => {
                         >
                             Angles
                         </View>
-                    </FlexCell>
+                    </Cell>
                 </Row>
                 <Row
                     mediaQuery="mdOrSmaller"
@@ -231,12 +258,11 @@ describe("wonder-blocks-grid", () => {
                         marginTop: 16,
                         background: Color.white,
                         height: 360,
-                        padding: 24,
                         borderTop: `1px solid ${Color.offBlack8}`,
                         borderBottom: `1px solid ${Color.offBlack8}`,
                     }}
                 >
-                    <FlexCell>Intro to geometry</FlexCell>
+                    Intro to geometry
                 </Row>
                 <Row
                     mediaQuery="mdOrSmaller"
@@ -244,12 +270,11 @@ describe("wonder-blocks-grid", () => {
                         marginTop: 16,
                         background: Color.white,
                         height: 360,
-                        padding: 24,
                         borderTop: `1px solid ${Color.offBlack8}`,
                         borderBottom: `1px solid ${Color.offBlack8}`,
                     }}
                 >
-                    <FlexCell>Angles</FlexCell>
+                    Angles
                 </Row>
             </View>
         );
@@ -365,121 +390,6 @@ describe("wonder-blocks-grid", () => {
                 background: Color.offBlack,
             },
 
-            cell: {
-                height: 100,
-                padding: 5,
-                background: Color.gold,
-            },
-        });
-
-        const example = (
-            <View style={styles.background}>
-                <Row>
-                    <FixedWidthCell style={styles.cell} width={200}>
-                        <Text>FixedWidthCell (200px)</Text>
-                    </FixedWidthCell>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                </Row>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 5", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View, Text} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            background: {
-                background: Color.offBlack,
-            },
-
-            cell: {
-                height: 100,
-                padding: 5,
-                background: Color.gold,
-            },
-        });
-
-        const example = (
-            <View style={styles.background}>
-                <Row>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                </Row>
-                <Row>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                </Row>
-                <Row>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                </Row>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 6", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View, Text} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            background: {
-                background: Color.offBlack,
-            },
-
-            cell: {
-                height: 100,
-                padding: 5,
-                background: Color.gold,
-            },
-        });
-
-        const example = (
-            <View style={styles.background}>
-                <Row>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                </Row>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 7", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View, Text} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
-        const styles = StyleSheet.create({
-            background: {
-                background: Color.offBlack,
-            },
-
             row: {
                 padding: "16px 0",
                 border: `1px solid ${Color.gold}`,
@@ -496,12 +406,22 @@ describe("wonder-blocks-grid", () => {
         const example = (
             <View style={styles.background}>
                 <Row style={styles.row}>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
-                    <FlexCell style={styles.cell}>
-                        <Text>FlexCell</Text>
-                    </FlexCell>
+                    <Cell
+                        smallCols={2}
+                        mediumCols={4}
+                        largeCols={6}
+                        style={styles.cell}
+                    >
+                        <Text>Cell</Text>
+                    </Cell>
+                    <Cell
+                        smallCols={2}
+                        mediumCols={4}
+                        largeCols={6}
+                        style={styles.cell}
+                    >
+                        <Text>Cell</Text>
+                    </Cell>
                 </Row>
             </View>
         );

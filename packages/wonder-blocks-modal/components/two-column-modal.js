@@ -34,7 +34,7 @@ type Props = {|
     onClose?: () => void,
 |};
 
-class SmallTwoColumnModal extends React.Component<Props> {
+export class SmallTwoColumnModal extends React.Component<Props> {
     render() {
         const {
             onClose,
@@ -92,7 +92,7 @@ class SmallTwoColumnModal extends React.Component<Props> {
     }
 }
 
-class LargeTwoColumnModal extends React.Component<Props> {
+export class LargeTwoColumnModal extends React.Component<Props> {
     render() {
         const {
             onClose,
@@ -141,17 +141,15 @@ export default class TwoColumnModal extends React.Component<Props> {
 
     render() {
         return (
-            <React.Fragment>
-                <MediaLayout>
-                    {({mediaSize}) =>
-                        mediaSize === "small" ? (
-                            <SmallTwoColumnModal {...this.props} />
-                        ) : (
-                            <LargeTwoColumnModal {...this.props} />
-                        )
-                    }
-                </MediaLayout>
-            </React.Fragment>
+            <MediaLayout>
+                {({mediaSize}) =>
+                    mediaSize === "small" ? (
+                        <SmallTwoColumnModal {...this.props} />
+                    ) : (
+                        <LargeTwoColumnModal {...this.props} />
+                    )
+                }
+            </MediaLayout>
         );
     }
 }

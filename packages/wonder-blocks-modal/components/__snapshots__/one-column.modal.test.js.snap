@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OneColumnModal mobile with footer 1`] = `
+<ModalDialog
+  style={
+    Object {
+      "_definition": Object {
+        "background": "#ffffff",
+      },
+      "_len": 24,
+      "_name": "dialog_144oaus",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "_definition": Object {
+          "flexDirection": "column",
+          "height": "100%",
+        },
+        "_len": 42,
+        "_name": "contentFooterWrapper_1iwfx9c",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "_definition": Object {
+            "flexDirection": "column",
+            "height": "100%",
+            "overflow": "auto",
+            "width": "100%",
+          },
+          "_len": 75,
+          "_name": "smallContentWrapper_hs5dlt",
+        }
+      }
+    >
+      <ModalPanel
+        color="light"
+        content="Content"
+        scrollOverflow={false}
+        showCloseButton={true}
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "_definition": Object {
+            "minHeight": 64,
+          },
+          "_len": 16,
+          "_name": "smallFooter_clw8y6",
+        }
+      }
+    >
+      <ModalFooter>
+        Footer
+      </ModalFooter>
+    </View>
+  </View>
+</ModalDialog>
+`;
+
+exports[`OneColumnModal mobile without footer 1`] = `
+<ModalDialog
+  style={
+    Object {
+      "_definition": Object {
+        "background": "#ffffff",
+      },
+      "_len": 24,
+      "_name": "dialog_144oaus",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "_definition": Object {
+          "flexDirection": "column",
+          "height": "100%",
+        },
+        "_len": 42,
+        "_name": "contentFooterWrapper_1iwfx9c",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "_definition": Object {
+            "flexDirection": "column",
+            "height": "100%",
+            "overflow": "auto",
+            "width": "100%",
+          },
+          "_len": 75,
+          "_name": "smallContentWrapper_hs5dlt",
+        }
+      }
+    >
+      <ModalPanel
+        color="light"
+        content="Content"
+        scrollOverflow={false}
+        showCloseButton={true}
+      />
+    </View>
+  </View>
+</ModalDialog>
+`;

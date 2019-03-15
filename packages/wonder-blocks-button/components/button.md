@@ -537,7 +537,7 @@ class Example extends React.Component {
     }
 
     componentWillUnmount() {
-        this.timeout.clear();
+        this.timeout && this.timeout.clear();
     }
 
     handleClick() {

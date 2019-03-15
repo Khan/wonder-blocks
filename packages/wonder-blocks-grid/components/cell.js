@@ -2,12 +2,26 @@
 import * as React from "react";
 
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import {View} from "@khanacademy/wonder-blocks-core";
 import type {MediaSize} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import FixedWidthCell from "./fixed-width-cell.js";
+import styles from "../util/styles.js";
+import {flexBasis} from "../util/utils.js";
 
-type ComnmonProps = {|
+type Props = {|
+    /** The number of columns this cell should span on a Small Grid. */
+    smallCols?: number,
+
+    /** The number of columns this cell should span on a Medium Grid. */
+    mediumCols?: number,
+
+    /** The number of columns this cell should span on a Large Grid. */
+    largeCols?: number,
+
+    /** The number of columns this should should span by default. */
+    cols?: number | ((mediaSize: MediaSize) => number),
+
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `mediaSize`, `totalColumns`, and cell
@@ -25,34 +39,11 @@ type ComnmonProps = {|
     style?: StyleType,
 |};
 
-type Props =
-    | {|
-          /** The number of columns this cell should span on a Small Grid. */
-          smallCols: number,
-          ...ComnmonProps,
-      |}
-    | {|
-          /** The number of columns this cell should span on a Medium Grid. */
-          mediumCols: number,
-          ...ComnmonProps,
-      |}
-    | {|
-          /** The number of columns this cell should span on a Large Grid. */
-          largeCols: number,
-          ...ComnmonProps,
-      |}
-    | {|
-          /** The number of columns this should should span by default. */
-          cols: number | ((mediaSize: MediaSize) => number),
-          ...ComnmonProps,
-      |};
-
 /**
- * A Cell is a form of [FixedWidthCell](#fixedwidthcell) whose width is set
- * based on the width of the specified columns at the current grid size.
- * You will specify the number of columns that you want this component to
- * span at each grid size. This component should only be used as a child
- * of a [Row](#row).
+ * A Cell is a container whose width is set based on the width of the
+ * specified columns at the current grid size. You will specify the number
+ * of columns that you want this component to span at each grid size.
+ * This component should only be used as a child of a [Row](#row).
  *
  * This component renders a [View](#view) that
  * uses Flex Box and has a [flex-basis](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis)
@@ -159,9 +150,15 @@ export default class Cell extends React.Component<Props> {
                     // Render a fixed-width cell (flex-basis: size, flex-shrink: 0)
                     // that matches the intended width of the cell
                     return (
-                        <FixedWidthCell width={calcWidth} style={style}>
+                        <View
+                            style={[
+                                styles.cellFixed,
+                                flexBasis(calcWidth),
+                                style,
+                            ]}
+                        >
                             {contents}
-                        </FixedWidthCell>
+                        </View>
                     );
                 }}
             </MediaLayout>
