@@ -9,7 +9,19 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import styles from "../util/styles.js";
 import {flexBasis} from "../util/utils.js";
 
-type ComnmonProps = {|
+type Props = {|
+    /** The number of columns this cell should span on a Small Grid. */
+    smallCols?: number,
+
+    /** The number of columns this cell should span on a Medium Grid. */
+    mediumCols?: number,
+
+    /** The number of columns this cell should span on a Large Grid. */
+    largeCols?: number,
+
+    /** The number of columns this should should span by default. */
+    cols?: number | ((mediaSize: MediaSize) => number),
+
     /**
      * The child components to populate inside the cell. Can also accept a
      * function which receives the `mediaSize`, `totalColumns`, and cell
@@ -26,28 +38,6 @@ type ComnmonProps = {|
     /** The styling to apply to the cell. */
     style?: StyleType,
 |};
-
-type Props =
-    | {|
-          /** The number of columns this cell should span on a Small Grid. */
-          smallCols: number,
-          ...ComnmonProps,
-      |}
-    | {|
-          /** The number of columns this cell should span on a Medium Grid. */
-          mediumCols: number,
-          ...ComnmonProps,
-      |}
-    | {|
-          /** The number of columns this cell should span on a Large Grid. */
-          largeCols: number,
-          ...ComnmonProps,
-      |}
-    | {|
-          /** The number of columns this should should span by default. */
-          cols: number | ((mediaSize: MediaSize) => number),
-          ...ComnmonProps,
-      |};
 
 /**
  * A Cell is a container whose width is set based on the width of the
