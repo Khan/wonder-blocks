@@ -15,5 +15,5 @@ export type {
     MediaQuery,
     MediaSize,
     MediaSpec,
-    Context as MediaLayoutContextType,
+    Context as MediaLayoutContextValue,
 };
