@@ -6,11 +6,10 @@ import {
     MediaLayoutContext,
     MEDIA_DEFAULT_SPEC,
 } from "@khanacademy/wonder-blocks-layout";
-import TwoColumnModal, {
-    SmallTwoColumnModal,
-    LargeTwoColumnModal,
-} from "./two-column-modal.js";
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
+import TwoColumnModal from "./two-column-modal.js";
+import LargeTwoColumnModal from "./large-two-column-modal.js";
+import SmallTwoColumnModal from "./small-two-column-modal.js";
+import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
 describe("TwoColumnModal", () => {
     beforeAll(() => {

@@ -98,7 +98,7 @@ export default class ModalPanel extends React.Component<Props> {
                 <ModalContent>{content}</ModalContent>
             );
 
-        if (mainContent) {
+        if (!mainContent) {
             return mainContent;
         }
 

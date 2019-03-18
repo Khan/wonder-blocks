@@ -1202,6 +1202,42 @@ exports[`StandardModal desktop should match snapshot 1`] = `
                         </Toolbar>
                         <ModalContent
                           scrollOverflow={true}
+                          style={
+                            Array [
+                              Array [
+                                Object {
+                                  "_definition": Object {
+                                    "paddingTop": 32,
+                                  },
+                                  "_len": 17,
+                                  "_name": "hasTitleBar_15lzjb6",
+                                },
+                                false,
+                                false,
+                                Array [
+                                  undefined,
+                                  undefined,
+                                ],
+                              ],
+                              Array [
+                                Object {
+                                  "_definition": Object {
+                                    "paddingBottom": 32,
+                                  },
+                                  "_len": 20,
+                                  "_name": "hasFooter_1pn52au",
+                                },
+                                false,
+                                false,
+                                Array [
+                                  undefined,
+                                  undefined,
+                                ],
+                              ],
+                              false,
+                              undefined,
+                            ]
+                          }
                         >
                           <MediaLayout
                             styleSheets={
@@ -1361,7 +1397,40 @@ exports[`StandardModal desktop should match snapshot 1`] = `
                                             undefined,
                                           ],
                                         ],
-                                        undefined,
+                                        Array [
+                                          Array [
+                                            Object {
+                                              "_definition": Object {
+                                                "paddingTop": 32,
+                                              },
+                                              "_len": 17,
+                                              "_name": "hasTitleBar_15lzjb6",
+                                            },
+                                            false,
+                                            false,
+                                            Array [
+                                              undefined,
+                                              undefined,
+                                            ],
+                                          ],
+                                          Array [
+                                            Object {
+                                              "_definition": Object {
+                                                "paddingBottom": 32,
+                                              },
+                                              "_len": 20,
+                                              "_name": "hasFooter_1pn52au",
+                                            },
+                                            false,
+                                            false,
+                                            Array [
+                                              undefined,
+                                              undefined,
+                                            ],
+                                          ],
+                                          false,
+                                          undefined,
+                                        ],
                                       ]
                                     }
                                   >
@@ -1386,7 +1455,40 @@ exports[`StandardModal desktop should match snapshot 1`] = `
                                               undefined,
                                             ],
                                           ],
-                                          undefined,
+                                          Array [
+                                            Array [
+                                              Object {
+                                                "_definition": Object {
+                                                  "paddingTop": 32,
+                                                },
+                                                "_len": 17,
+                                                "_name": "hasTitleBar_15lzjb6",
+                                              },
+                                              false,
+                                              false,
+                                              Array [
+                                                undefined,
+                                                undefined,
+                                              ],
+                                            ],
+                                            Array [
+                                              Object {
+                                                "_definition": Object {
+                                                  "paddingBottom": 32,
+                                                },
+                                                "_len": 20,
+                                                "_name": "hasFooter_1pn52au",
+                                              },
+                                              false,
+                                              false,
+                                              Array [
+                                                undefined,
+                                                undefined,
+                                              ],
+                                            ],
+                                            false,
+                                            undefined,
+                                          ],
                                         ]
                                       }
                                     >
@@ -1405,6 +1507,8 @@ exports[`StandardModal desktop should match snapshot 1`] = `
                                             "minHeight": "100%",
                                             "minWidth": 0,
                                             "padding": 64,
+                                            "paddingBottom": 32,
+                                            "paddingTop": 32,
                                             "position": "relative",
                                             "zIndex": 0,
                                           }
@@ -2692,6 +2796,42 @@ exports[`StandardModal mobile should match snapshot 1`] = `
                         </Toolbar>
                         <ModalContent
                           scrollOverflow={true}
+                          style={
+                            Array [
+                              Array [
+                                Object {
+                                  "_definition": Object {
+                                    "paddingTop": 32,
+                                  },
+                                  "_len": 17,
+                                  "_name": "hasTitleBar_15lzjb6",
+                                },
+                                false,
+                                false,
+                                Array [
+                                  undefined,
+                                  undefined,
+                                ],
+                              ],
+                              Array [
+                                Object {
+                                  "_definition": Object {
+                                    "paddingBottom": 32,
+                                  },
+                                  "_len": 20,
+                                  "_name": "hasFooter_1pn52au",
+                                },
+                                false,
+                                false,
+                                Array [
+                                  undefined,
+                                  undefined,
+                                ],
+                              ],
+                              false,
+                              undefined,
+                            ]
+                          }
                         >
                           <MediaLayout
                             styleSheets={
@@ -2851,7 +2991,40 @@ exports[`StandardModal mobile should match snapshot 1`] = `
                                             undefined,
                                           ],
                                         ],
-                                        undefined,
+                                        Array [
+                                          Array [
+                                            Object {
+                                              "_definition": Object {
+                                                "paddingTop": 32,
+                                              },
+                                              "_len": 17,
+                                              "_name": "hasTitleBar_15lzjb6",
+                                            },
+                                            false,
+                                            false,
+                                            Array [
+                                              undefined,
+                                              undefined,
+                                            ],
+                                          ],
+                                          Array [
+                                            Object {
+                                              "_definition": Object {
+                                                "paddingBottom": 32,
+                                              },
+                                              "_len": 20,
+                                              "_name": "hasFooter_1pn52au",
+                                            },
+                                            false,
+                                            false,
+                                            Array [
+                                              undefined,
+                                              undefined,
+                                            ],
+                                          ],
+                                          false,
+                                          undefined,
+                                        ],
                                       ]
                                     }
                                   >
@@ -2876,7 +3049,40 @@ exports[`StandardModal mobile should match snapshot 1`] = `
                                               undefined,
                                             ],
                                           ],
-                                          undefined,
+                                          Array [
+                                            Array [
+                                              Object {
+                                                "_definition": Object {
+                                                  "paddingTop": 32,
+                                                },
+                                                "_len": 17,
+                                                "_name": "hasTitleBar_15lzjb6",
+                                              },
+                                              false,
+                                              false,
+                                              Array [
+                                                undefined,
+                                                undefined,
+                                              ],
+                                            ],
+                                            Array [
+                                              Object {
+                                                "_definition": Object {
+                                                  "paddingBottom": 32,
+                                                },
+                                                "_len": 20,
+                                                "_name": "hasFooter_1pn52au",
+                                              },
+                                              false,
+                                              false,
+                                              Array [
+                                                undefined,
+                                                undefined,
+                                              ],
+                                            ],
+                                            false,
+                                            undefined,
+                                          ],
                                         ]
                                       }
                                     >
@@ -2895,6 +3101,8 @@ exports[`StandardModal mobile should match snapshot 1`] = `
                                             "minHeight": "100%",
                                             "minWidth": 0,
                                             "padding": 64,
+                                            "paddingBottom": 32,
+                                            "paddingTop": 32,
                                             "position": "relative",
                                             "zIndex": 0,
                                           }

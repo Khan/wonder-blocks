@@ -6,11 +6,10 @@ import {
     MediaLayoutContext,
     MEDIA_DEFAULT_SPEC,
 } from "@khanacademy/wonder-blocks-layout";
-import OneColumnModal, {
-    SmallOneColumnModal,
-    LargeOneColumnModal,
-} from "./one-column-modal.js";
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
+import OneColumnModal from "./one-column-modal.js";
+import LargeOneColumnModal from "./large-one-column-modal.js";
+import SmallOneColumnModal from "./small-one-column-modal.js";
+import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
 describe("OneColumnModal", () => {
     beforeEach(() => {
@@ -63,20 +62,24 @@ describe("OneColumnModal", () => {
     describe("mobile", () => {
         describe("with footer", () => {
             it("should match snapshot", () => {
+                // Arrange, Act
                 const wrapper = shallow(
                     <SmallOneColumnModal content="Content" footer="Footer" />,
                 );
 
+                // Assert
                 expect(wrapper).toMatchSnapshot();
             });
         });
 
         describe("without footer", () => {
             it("should match snapshot", () => {
+                // Arrange, Act
                 const wrapper = shallow(
                     <SmallOneColumnModal content="Content" />,
                 );
 
+                // Assert
                 expect(wrapper).toMatchSnapshot();
             });
         });
