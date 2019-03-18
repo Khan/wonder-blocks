@@ -17,7 +17,6 @@ type Spec = {|
     maxWidth?: number,
 |};
 
-// eslint-disable-next-line flowtype/require-exact-type
 export type MediaSpec = {|
     small?: Spec,
     medium?: Spec,
