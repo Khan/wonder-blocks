@@ -11,6 +11,7 @@ import type {MediaQuery, MediaSize} from "@khanacademy/wonder-blocks-layout";
 
 import styles from "../util/styles.js";
 import Gutter from "./gutter.js";
+import Cell from "./cell.js";
 
 type Props = {|
     /**
@@ -77,47 +78,37 @@ export default class Row extends React.Component<Props> {
                         return null;
                     }
 
-                    let contents = children;
-
                     // If the contents are a function then we call it with the mediaSize and
                     // totalColumns properties and render the return value.
-                    if (typeof contents === "function") {
-                        contents = contents({mediaSize, totalColumns});
-                    }
+                    const contents =
+                        typeof children === "function"
+                            ? children({mediaSize, totalColumns})
+                            : children;
 
-                    contents = React.Children.toArray(contents);
-
-                    // Go through all of the contents and pre-emptively remove anything
-                    // that shouldn't be rendered and insert Gutters inbetween everything
-                    // that is still visible.
-                    const filteredContents = [];
-                    let hasVisibleCell = false;
-
-                    // TODO(kevin): make shouldDisplay and instance method and call
-                    // it directly on the instance.
-                    for (const item of contents) {
-                        if (
-                            !item.type ||
-                            !item.props ||
-                            !item.type.shouldDisplay ||
-                            (typeof item.type.shouldDisplay === "function" &&
-                                item.type.shouldDisplay(item.props, mediaSize))
-                        ) {
-                            if (hasVisibleCell) {
-                                filteredContents.push(
-                                    <Gutter
-                                        key={`gutter-${
-                                            filteredContents.length
-                                        }`}
-                                    />,
-                                );
-                            }
-
-                            filteredContents.push(item);
-
-                            hasVisibleCell = true;
-                        }
-                    }
+                    const filteredContents = React.Children.toArray(contents)
+                        // Go through all of the contents and pre-emptively remove anything
+                        // that shouldn't be rendered.
+                        .filter(
+                            (item) =>
+                                item.type === Cell
+                                    ? // Flow doesn't know that item.props has to be Cell's Props
+                                      Cell.shouldDisplay(
+                                          (item.props: any),
+                                          mediaSize,
+                                      )
+                                    : true,
+                        )
+                        // Intersperse Gutter elements between the cells.
+                        .reduce(
+                            (acc, elem, index) => [
+                                ...acc,
+                                elem,
+                                <Gutter key={`gutter-${index}`} />,
+                            ],
+                            [],
+                        )
+                        // Remove the extra Gutter at the end.
+                        .slice(0, -1);
 
                     return (
                         <View style={[styles.rowWrap, style]}>

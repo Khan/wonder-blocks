@@ -74,9 +74,14 @@ module.exports = {
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",
-            ignore: [
-                "packages/wonder-blocks-grid/components/fixed-width-cell.js",
-                "packages/wonder-blocks-grid/components/gutter.js",
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-grid/components/gutter.js",
+                    ],
+                },
             ],
         },
         {

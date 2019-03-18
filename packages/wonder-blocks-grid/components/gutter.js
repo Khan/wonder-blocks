@@ -15,8 +15,6 @@ type Props = {|
 |};
 
 /**
- * Gutter is a private component.
- *
  * Gutter is a component whose width is set based on the size of grid currently
  * being displayed. Used for spacing out cells from each other. The gutter
  * itself doesn't hold any content, it just spaces it out.

@@ -141,6 +141,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
               }
             }
           >
@@ -177,6 +182,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
                 Object {
                   "MozOsxFontSmoothing": "grayscale",
                   "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato, sans-serif",
+                  "fontSize": 16,
+                  "fontWeight": 400,
+                  "lineHeight": "20px",
                 }
               }
             >
@@ -210,6 +220,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
                 Object {
                   "MozOsxFontSmoothing": "grayscale",
                   "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato, sans-serif",
+                  "fontSize": 16,
+                  "fontWeight": 400,
+                  "lineHeight": "20px",
                 }
               }
             >
@@ -295,6 +310,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
               }
             }
           >
@@ -331,6 +351,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
                 Object {
                   "MozOsxFontSmoothing": "grayscale",
                   "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato, sans-serif",
+                  "fontSize": 16,
+                  "fontWeight": 400,
+                  "lineHeight": "20px",
                 }
               }
             >
@@ -416,6 +441,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
               }
             }
           >
@@ -432,6 +462,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
               Object {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
               }
             }
           >
@@ -464,6 +499,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
                 Object {
                   "MozOsxFontSmoothing": "grayscale",
                   "WebkitFontSmoothing": "antialiased",
+                  "display": "block",
+                  "fontFamily": "Lato, sans-serif",
+                  "fontSize": 16,
+                  "fontWeight": 400,
+                  "lineHeight": "20px",
                 }
               }
             >

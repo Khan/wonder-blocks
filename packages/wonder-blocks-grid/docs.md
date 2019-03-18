@@ -4,7 +4,8 @@ It's sometimes easiest to just see an example of how it works, like in the follo
 
 ```jsx
 const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View, Text} = require("@khanacademy/wonder-blocks-core");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {LabelMedium} = require("@khanacademy/wonder-blocks-typography");
 const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 const {StyleSheet} = require("aphrodite");
 
@@ -42,20 +43,20 @@ const styleSheets = {
             <Cell smallCols={2} mediumCols={3} largeCols={4} style={styles.cell}>
                 {({cols}) => {
                     return <View>
-                        <Text>
+                        <LabelMedium>
                             Cell ({cols === 1
                                 ? "1 column"
                                 : `${cols} columns`}{" "}
                             wide)
-                        </Text>
+                        </LabelMedium>
                         <br />
                         <br />
                         <View style={{textAlign: "right"}}>
-                            <Text>Gutter ⇢</Text>
+                            <LabelMedium>Gutter ⇢</LabelMedium>
                         </View>
                         <br />
                         <View style={{textAlign: "left"}}>
-                            <Text>Margin ⇢</Text>
+                            <LabelMedium>Margin ⇢</LabelMedium>
                         </View>
                     </View>;
                 }}
@@ -63,16 +64,16 @@ const styleSheets = {
             <Cell mediumCols={2} largeCols={3} style={styles.cell}>
                 {({cols}) => {
                     return <View>
-                        <Text>
+                        <LabelMedium>
                             Cell ({cols === 1
                                 ? "1 column"
                                 : `${cols} columns`}{" "}
                             wide)
-                        </Text>
+                        </LabelMedium>
                         <br />
                         <br />
                         <View style={{textAlign: "center"}}>
-                            <Text>⇠ Gutters ⇢</Text>
+                            <LabelMedium>⇠ Gutters ⇢</LabelMedium>
                         </View>
                     </View>;
                 }}
@@ -81,18 +82,18 @@ const styleSheets = {
 				{({cols}) => {
 					return (
 						<View>
-							<Text>
+							<LabelMedium>
 								Cell ({cols === 1
 									? "1 column"
 									: `${cols} columns`}{" "}
 								wide)
-							</Text>
+							</LabelMedium>
 							<br />
 							<br />
-							<Text>⇠ Gutter</Text>
+							<LabelMedium>⇠ Gutter</LabelMedium>
 							<br />
 							<View style={{textAlign: "right"}}>
-								<Text>Margin ⇢</Text>
+								<LabelMedium>Margin ⇢</LabelMedium>
 							</View>
 						</View>
 					);

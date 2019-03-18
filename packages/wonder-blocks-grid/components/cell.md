@@ -39,42 +39,18 @@ const styleSheets = {
 <MediaLayout styleSheets={styleSheets}>
     {({styles}) => <View style={styles.background}>
         <Row>
-            <Cell cols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell cols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell cols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell cols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell mediumCols={1} largeCols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell mediumCols={1} largeCols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell mediumCols={1} largeCols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell mediumCols={1} largeCols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell largeCols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell largeCols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell largeCols={1} style={styles.cell}>
-                1
-            </Cell>
-            <Cell largeCols={1} style={styles.cell}>
-                1
-            </Cell>
+            <Cell cols={1} style={styles.cell}>1</Cell>
+            <Cell cols={1} style={styles.cell}>1</Cell>
+            <Cell cols={1} style={styles.cell}>1</Cell>
+            <Cell cols={1} style={styles.cell}>1</Cell>
+            <Cell mediumCols={1} largeCols={1} style={styles.cell}>1</Cell>
+            <Cell mediumCols={1} largeCols={1} style={styles.cell}>1</Cell>
+            <Cell mediumCols={1} largeCols={1} style={styles.cell}>1</Cell>
+            <Cell mediumCols={1} largeCols={1} style={styles.cell}>1</Cell>
+            <Cell largeCols={1} style={styles.cell}>1</Cell>
+            <Cell largeCols={1} style={styles.cell}>1</Cell>
+            <Cell largeCols={1} style={styles.cell}>1</Cell>
+            <Cell largeCols={1} style={styles.cell}>1</Cell>
         </Row>
     </View>}
 </MediaLayout>;
