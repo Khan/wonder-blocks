@@ -2,9 +2,12 @@
 import * as React from "react";
 
 import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import ActionMenuOpenerCore from "./action-menu-opener-core.js";
 
 export type SharedProps = {|
+    ...AriaProps,
+
     /**
      * Display text for the opener.
      */
@@ -24,11 +27,6 @@ export type SharedProps = {|
      * Whether the dropdown is open.
      */
     open: boolean,
-
-    /**
-     * Optional aria-label for screen readers.
-     */
-    "aria-label"?: string,
 |};
 
 type Props = {|

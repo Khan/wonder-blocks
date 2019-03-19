@@ -27,6 +27,7 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import TooltipAnchor from "./tooltip-anchor.js";
 import TooltipBubble from "./tooltip-bubble.js";
@@ -35,6 +36,8 @@ import TooltipPopper from "./tooltip-popper.js";
 import type {Placement} from "../util/types.js";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * The content for anchoring the tooltip.
      * This component will be used to position the tooltip.
@@ -92,6 +95,11 @@ type Props = {|
      * Defaults to "top".
      */
     placement: Placement,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 type State = {|

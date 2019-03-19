@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 const heights = {
     xsmall: 16,
@@ -32,6 +32,8 @@ const colors = {
 const StyledPath = addStyle("path");
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * The size of the spinner. (large = 96px, medium = 48px, small = 24px,
      * xsmall = 16px)
@@ -45,6 +47,11 @@ type Props = {|
 
     /** Any (optional) styling to apply to the spinner container. */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 /**

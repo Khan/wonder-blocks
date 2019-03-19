@@ -5,14 +5,13 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {processStyleList} from "../util/util.js";
 
-import type {AriaProps, TextTag} from "../util/types.js";
+import type {TextTag, TextViewSharedProps} from "../util/types.js";
 
-type Props = AriaProps & {
+type Props = {|
+    ...TextViewSharedProps,
     style?: StyleType,
     tag: TextTag,
-    children?: any,
-    [otherProp: string]: any,
-};
+|};
 
 const isHeaderRegex = /^h[1-6]$/;
 
@@ -50,7 +49,7 @@ export default class Text extends React.Component<Props> {
     };
 
     render() {
-        const {children, style, tag: Tag, ...otherProps} = this.props;
+        const {children, style, tag: Tag, testId, ...otherProps} = this.props;
 
         const isHeader = isHeaderRegex.test(Tag);
         const styleAttributes = processStyleList([
@@ -64,6 +63,7 @@ export default class Text extends React.Component<Props> {
                 {...otherProps}
                 style={styleAttributes.style}
                 className={styleAttributes.className}
+                data-test-id={testId}
             >
                 {children}
             </Tag>

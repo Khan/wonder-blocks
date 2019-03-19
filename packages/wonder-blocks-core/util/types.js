@@ -94,7 +94,7 @@ type IdRefList = IdRef | Array<IdRef>;
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
 // TODO(kevinb): convert to disjoint union of exact object types keyed on role
 // eslint-disable-next-line flowtype/require-exact-type
-export type AriaProps = {
+export type AriaProps = {|
     role?: roles,
     "aria-activedescendant"?: IdRef,
     "aria-atomic"?: "false" | "true",
@@ -132,13 +132,93 @@ export type AriaProps = {
     "aria-valuemin"?: number,
     "aria-valuenow"?: number,
     "aria-valuetext"?: string,
-};
+|};
 
-export type Props = AriaProps & {
-    style?: StyleType,
+type MouseEvents = {|
+    onMouseDown?: (e: SyntheticMouseEvent<*>) => void,
+    onMouseUp?: (e: SyntheticMouseEvent<*>) => void,
+    onMouseMove?: (e: SyntheticMouseEvent<*>) => void,
+    onClick?: (e: SyntheticMouseEvent<*>) => void,
+    onDoubleClick?: (e: SyntheticMouseEvent<*>) => void,
+    onMouseEnter?: (e: SyntheticMouseEvent<*>) => void,
+    onMouseLeave?: (e: SyntheticMouseEvent<*>) => void,
+    onMouseOut?: (e: SyntheticMouseEvent<*>) => void,
+    onMouseOver?: (e: SyntheticMouseEvent<*>) => void,
+    onDrag?: (e: SyntheticMouseEvent<*>) => void,
+    onDragEnd?: (e: SyntheticMouseEvent<*>) => void,
+    onDragEnter?: (e: SyntheticMouseEvent<*>) => void,
+    onDragExit?: (e: SyntheticMouseEvent<*>) => void,
+    onDragLeave?: (e: SyntheticMouseEvent<*>) => void,
+    onDragOver?: (e: SyntheticMouseEvent<*>) => void,
+    onDragStart?: (e: SyntheticMouseEvent<*>) => void,
+    onDrop?: (e: SyntheticMouseEvent<*>) => void,
+|};
+
+type KeyboardEvents = {|
+    onKeyDown?: (e: SyntheticKeyboardEvent<*>) => void,
+    onKeyPress?: (e: SyntheticKeyboardEvent<*>) => void,
+    onKeyUp?: (e: SyntheticKeyboardEvent<*>) => void,
+|};
+
+type InputEvents = {|
+    onChange?: (e: SyntheticInputEvent<*>) => void,
+    onInput?: (e: SyntheticInputEvent<*>) => void,
+    onInvalid?: (e: SyntheticInputEvent<*>) => void,
+    onSubmit?: (e: SyntheticInputEvent<*>) => void,
+|};
+
+type TouchEvents = {|
+    onTouchCancel?: (e: SyntheticTouchEvent<*>) => void,
+    onTouchEnd?: (e: SyntheticTouchEvent<*>) => void,
+    onTouchMove?: (e: SyntheticTouchEvent<*>) => void,
+    onTouchStart?: (e: SyntheticTouchEvent<*>) => void,
+|};
+
+type FocusEvents = {|
+    onFocus?: (e: SyntheticFocusEvent<*>) => void,
+    onBlur?: (e: SyntheticFocusEvent<*>) => void,
+|};
+
+type EventHandlers = {|
+    ...MouseEvents,
+    ...KeyboardEvents,
+    ...InputEvents,
+    ...TouchEvents,
+    ...FocusEvents,
+    // TODO: add remaining supported events https://reactjs.org/docs/events.html#supported-events
+|};
+
+// Props shared between Text and View components.
+export type TextViewSharedProps = {|
+    /**
+     * Text to appear on the button.
+     */
     children?: React.Node,
-    [otherProp: string]: any,
-};
+
+    /**
+     * Optional custom styles.
+     */
+    style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    tabIndex?: number,
+
+    id?: string,
+
+    // TODO(kevinb) remove the need for this
+    "data-modal-launcher-portal"?: boolean,
+
+    // Used by tooltip bubble
+    "data-placement"?: string,
+
+    ...AriaProps,
+
+    ...EventHandlers,
+|};
 
 export type MediaSize = "small" | "medium" | "large";
 

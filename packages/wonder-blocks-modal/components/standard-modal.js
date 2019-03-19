@@ -2,6 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
@@ -9,6 +10,8 @@ import ModalContent from "./modal-content.js";
 import CloseButton from "./close-button.js";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * The content of the modal, appearing between the titlebar and footer.
      */
@@ -53,6 +56,11 @@ type Props = {|
      * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
     onClose?: () => void,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 /**

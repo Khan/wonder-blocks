@@ -1,15 +1,6 @@
 // @flow
-import type {Node} from "react";
-import type {
-    AriaProps,
-    TextTag,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import * as React from "react";
 
-// TODO(kevinb): fix style type after upgrading flow
-export type Props = AriaProps & {
-    style?: StyleType,
-    children?: Node,
-    id?: string,
-    tag: TextTag,
-};
+import {Text} from "@khanacademy/wonder-blocks-core";
+
+export type Props = React.ElementConfig<typeof Text>;
