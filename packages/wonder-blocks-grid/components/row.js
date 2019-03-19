@@ -85,17 +85,17 @@ export default class Row extends React.Component<Props> {
                             ? children({mediaSize, totalColumns})
                             : children;
 
-                    const filteredContents = React.Children.toArray(contents)
+                    const filteredContents: Array<
+                        React.Node,
+                    > = (React.Children.toArray(contents): Array<React.Node>)
                         // Go through all of the contents and pre-emptively remove anything
                         // that shouldn't be rendered.
                         .filter(
-                            (item) =>
+                            // Flow doesn't let us check .type on a non-null React.Node so
+                            // we have to cast it to any.
+                            (item: any) =>
                                 item && item.type === Cell
-                                    ? // Flow doesn't know that item.props has to be Cell's Props
-                                      Cell.shouldDisplay(
-                                          (item.props: any),
-                                          mediaSize,
-                                      )
+                                    ? Cell.shouldDisplay(item.props, mediaSize)
                                     : true,
                         )
                         // Intersperse Gutter elements between the cells.
