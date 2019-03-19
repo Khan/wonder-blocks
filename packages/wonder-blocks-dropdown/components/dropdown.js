@@ -165,7 +165,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             const itemRefs = [];
             for (let i = 0; i < props.items.length; i++) {
                 if (props.items[i].focusable) {
-                    const ref = React.createRef();
+                    const ref = React.createRef<null | HTMLDivElement>();
                     itemRefs.push({ref, originalIndex: i});
                 }
             }
