@@ -90,7 +90,7 @@ export default class Row extends React.Component<Props> {
                         // that shouldn't be rendered.
                         .filter(
                             (item) =>
-                                item.type === Cell
+                                item && item.type === Cell
                                     ? // Flow doesn't know that item.props has to be Cell's Props
                                       Cell.shouldDisplay(
                                           (item.props: any),
