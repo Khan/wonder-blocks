@@ -33,14 +33,14 @@ type OptionProps = {|
     /**
      * Optional user-supplied callback when this item is called.
      */
-    onClick?: () => void,
+    onClick?: () => mixed,
 
     /**
      * Callback for when this item is pressed to change its selection state.
      * Passes value of the item. Auto-populated by menu or select.
      * @ignore
      */
-    onToggle: (value: string) => void,
+    onToggle: (value: string) => mixed,
 
     /**
      * Whether this item is selected. Auto-populated by menu or select.

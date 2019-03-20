@@ -2,7 +2,7 @@
 import * as React from "react";
 
 type ContextType = {|
-    closeModal?: () => void,
+    closeModal?: () => mixed,
 |};
 
 const defaultContext: ContextType = {

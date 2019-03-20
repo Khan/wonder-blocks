@@ -56,7 +56,7 @@ type Props = {|
      * `active` will be true whenever the anchor is hovered or focused and false
      * otherwise.
      */
-    onActiveChanged: (active: boolean) => void,
+    onActiveChanged: (active: boolean) => mixed,
 
     /**
      * Optional unique id factory.

@@ -25,7 +25,7 @@ type Props = {|
     error: boolean,
 
     /** Returns the new checked state of the component. */
-    onChange: (newCheckedState: boolean) => void,
+    onChange: (newCheckedState: boolean) => mixed,
 
     /**
      * Used for accessibility purposes, where the label id should match the

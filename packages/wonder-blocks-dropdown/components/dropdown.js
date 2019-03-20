@@ -44,7 +44,7 @@ type DropdownProps = {|
      * the dropdown menu should be open and whether a keyboard event triggered
      * the change.
      */
-    onOpenChanged: (open: boolean, keyboard?: boolean) => void,
+    onOpenChanged: (open: boolean, keyboard?: boolean) => mixed,
 
     /**
      * Whether the menu is open or not.

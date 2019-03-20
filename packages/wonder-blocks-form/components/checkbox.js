@@ -28,7 +28,7 @@ type ChoiceComponentProps = {|
      * Callback when this component is selected. The newCheckedState is the
      * new checked state of the component.
      */
-    onChange: (newCheckedState: boolean) => void,
+    onChange: (newCheckedState: boolean) => mixed,
 
     /**
      * Optional label for the field.

@@ -17,7 +17,7 @@ type Props = {|
     /**
      * Called when the close button is clicked.
      */
-    onClick?: () => void,
+    onClick?: () => mixed,
 |};
 
 /**

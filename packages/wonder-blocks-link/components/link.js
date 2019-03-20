@@ -42,6 +42,11 @@ export type SharedProps = {|
     visitable: boolean,
 
     /**
+     * A target destination window for a link to open in.
+     */
+    target?: string,
+
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string,
@@ -88,7 +93,7 @@ export type SharedProps = {|
      * handler will have its preventDefault() and stopPropagation() methods
      * stubbed out.
      */
-    onClick?: (e: SyntheticEvent<>) => void,
+    onClick?: (e: SyntheticEvent<>) => mixed,
 |};
 
 /**

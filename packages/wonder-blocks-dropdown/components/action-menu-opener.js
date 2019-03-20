@@ -34,7 +34,7 @@ type Props = {|
     /**
      * Callback for when the opener is pressed.
      */
-    onOpenChanged: (open: boolean, keyboard: boolean) => void,
+    onOpenChanged: (open: boolean, keyboard: boolean) => mixed,
 |};
 
 export default class ActionMenuOpener extends React.Component<Props> {

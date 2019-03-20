@@ -5,13 +5,12 @@ import {StyleSheet} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {processStyleList} from "../util/util.js";
 
-import type {TextTag, TextViewSharedProps} from "../util/types.js";
+import type {TextViewSharedProps} from "../util/types.js";
 
-type Props = {|
+type Props = {
     ...TextViewSharedProps,
-    style?: StyleType,
-    tag: TextTag,
-|};
+    tag: string,
+};
 
 const isHeaderRegex = /^h[1-6]$/;
 
