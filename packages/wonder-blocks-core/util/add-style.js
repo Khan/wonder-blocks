@@ -15,7 +15,8 @@ export default function addStyle<T: React.AbstractComponent<*> | string>(
         props: React.ElementConfig<T> & {style: StyleType},
     ) {
         const {style, ...tmpOtherProps} = props;
-        // EXPLAIN
+        // NOTE(jeresig): We need to cast the remaining props to be the right
+        // value to ensure that they're typed properly.
         const otherProps: React.ElementConfig<T> = (tmpOtherProps: any);
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
