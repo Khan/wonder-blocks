@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-form",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "design": "v1",
   "description": "Form components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -15,12 +15,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.1.1",
-    "@khanacademy/wonder-blocks-core": "^2.1.1",
-    "@khanacademy/wonder-blocks-icon": "^1.1.1",
-    "@khanacademy/wonder-blocks-layout": "^1.2.0",
-    "@khanacademy/wonder-blocks-spacing": "^2.1.1",
-    "@khanacademy/wonder-blocks-typography": "^1.1.1"
+    "@khanacademy/wonder-blocks-color": "^1.1.2",
+    "@khanacademy/wonder-blocks-core": "^2.2.0",
+    "@khanacademy/wonder-blocks-icon": "^1.1.2",
+    "@khanacademy/wonder-blocks-layout": "^1.3.0",
+    "@khanacademy/wonder-blocks-spacing": "^2.1.2",
+    "@khanacademy/wonder-blocks-typography": "^1.1.2"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
