@@ -4,76 +4,54 @@ A row inside of a grid containing many Cells. Each cell has a column width of 1 
 
 ```jsx
 const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View, Text, MediaLayout} = require("@khanacademy/wonder-blocks-core");
+const {View, Text} = require("@khanacademy/wonder-blocks-core");
+const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 const {StyleSheet} = require("aphrodite");
 
-const styles = StyleSheet.create({
-	background: {
-		background: Color.offBlack,
-	},
+const styleSheets = {
+    all: StyleSheet.create({
+        background: {
+            background: Color.offBlack,
+        },
 
-	cell: {
-		height: 100,
-		padding: "5px 0",
-	},
+        cell: {
+            height: 100,
+            padding: "5px 0",
+        },
+    }),
+    small: StyleSheet.create({
+        cell: {
+            background: Color.blue,
+        },
+    }),
+    medium: StyleSheet.create({
+        cell: {
+            background: Color.green,
+        },
+    }),
+    large: StyleSheet.create({
+        cell: {
+            background: Color.gold,
+        },
+    }),
+};
 
-	small: {
-		background: Color.blue,
-	},
-
-	medium: {
-		background: Color.green,
-	},
-
-	large: {
-		background: Color.gold,
-	},
-});
-
-// TODO(jeresig): Replace with <Layout/>
-//const cellStyles = [styles.cell, (mediaSize) => styles[mediaSize]];
-const cellStyles = [styles.cell, styles.large];
-
-<View style={styles.background}>
-	<MediaLayout>
-		<Row>
-			<Cell cols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell cols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell cols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell cols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell mediumCols={1} largeCols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell mediumCols={1} largeCols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell mediumCols={1} largeCols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell mediumCols={1} largeCols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell largeCols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell largeCols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell largeCols={1} style={cellStyles}>
-				1
-			</Cell>
-			<Cell largeCols={1} style={cellStyles}>
-				1
-			</Cell>
-		</Row>
-	</MediaLayout>
-</View>;
+<MediaLayout styleSheets={styleSheets}>
+    {({styles}) => <View style={styles.background}>
+        <Row>
+            <Cell cols={1} style={styles.cell}>1</Cell>
+            <Cell cols={1} style={styles.cell}>1</Cell>
+            <Cell cols={1} style={styles.cell}>1</Cell>
+            <Cell cols={1} style={styles.cell}>1</Cell>
+            <Cell mediumCols={1} largeCols={1} style={styles.cell}>1</Cell>
+            <Cell mediumCols={1} largeCols={1} style={styles.cell}>1</Cell>
+            <Cell mediumCols={1} largeCols={1} style={styles.cell}>1</Cell>
+            <Cell mediumCols={1} largeCols={1} style={styles.cell}>1</Cell>
+            <Cell largeCols={1} style={styles.cell}>1</Cell>
+            <Cell largeCols={1} style={styles.cell}>1</Cell>
+            <Cell largeCols={1} style={styles.cell}>1</Cell>
+            <Cell largeCols={1} style={styles.cell}>1</Cell>
+        </Row>
+    </View>}
+</MediaLayout>;
 ```

@@ -74,6 +74,15 @@ module.exports = {
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-grid/components/gutter.js",
+                    ],
+                },
+            ],
         },
         {
             name: "Icon",
