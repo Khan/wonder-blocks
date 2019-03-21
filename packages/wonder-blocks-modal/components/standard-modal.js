@@ -2,6 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
+import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
@@ -67,6 +68,22 @@ type Props = {|
  * The "standard" modal layout: a titlebar, a content area, and a footer.
  */
 export default class StandardModal extends React.Component<Props> {
+    renderCloseButton() {
+        const {onClose, header} = this.props;
+
+        return (
+            <MediaLayout styleSheets={styleSheets}>
+                {({styles}) => (
+                    <CloseButton
+                        light={!!header}
+                        onClick={onClose}
+                        style={styles.closeButton}
+                    />
+                )}
+            </MediaLayout>
+        );
+    }
+
     render() {
         const {
             onClose,
@@ -79,69 +96,65 @@ export default class StandardModal extends React.Component<Props> {
         } = this.props;
 
         return (
-            <ModalDialog
-                // TODO(jeresig): Replace with <Layout/>
-                //style={(mediaSize) => mediaSize !== "small" && styles.wrapper}
-                style={styles.wrapper}
-            >
-                <ModalPanel
-                    onClose={onClose}
-                    titleBar={
-                        <Toolbar
-                            leftContent={
-                                <CloseButton
-                                    light={!!header}
-                                    onClick={onClose}
+            <MediaLayout styleSheets={styleSheets}>
+                {({styles}) => (
+                    <ModalDialog style={styles.wrapper}>
+                        <ModalPanel
+                            onClose={onClose}
+                            titleBar={
+                                <Toolbar
+                                    title={title}
+                                    subtitle={subtitle}
+                                    color={header ? "dark" : "light"}
+                                    leftContent={this.renderCloseButton()}
                                 />
                             }
-                            title={title}
-                            subtitle={subtitle}
-                            color={header ? "dark" : "light"}
+                            header={header}
+                            content={content}
+                            footer={footer}
                         />
-                    }
-                    header={header}
-                    content={content}
-                    footer={footer}
-                />
-                {preview && (
-                    <ModalPanel
-                        color="dark"
-                        style={[
-                            styles.preview,
-                            // TODO(jeresig): Replace with <Layout/>
-                            //(mediaSize) =>
-                            //    mediaSize === "small" && styles.smallPreview
-                        ]}
-                        content={
-                            <ModalContent style={styles.previewContent}>
-                                {preview}
-                            </ModalContent>
-                        }
-                    />
+                        {!!preview && (
+                            <ModalPanel
+                                color="dark"
+                                style={styles.preview}
+                                content={
+                                    <ModalContent style={styles.previewContent}>
+                                        {preview}
+                                    </ModalContent>
+                                }
+                            />
+                        )}
+                    </ModalDialog>
                 )}
-            </ModalDialog>
+            </MediaLayout>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    wrapper: {
-        width: "93.75%",
-        maxWidth: 960,
-        height: "81.25%",
-        maxHeight: 624,
-    },
+const styleSheets = {
+    all: StyleSheet.create({
+        preview: {
+            maxWidth: 392,
+            flex: "1 0 auto",
+        },
 
-    preview: {
-        maxWidth: 392,
-        flex: "1 0 auto",
-    },
+        previewContent: {
+            padding: "0 64px 0 0",
+        },
+    }),
 
-    previewContent: {
-        padding: "0 64px 0 0",
-    },
+    small: StyleSheet.create({
+        preview: {
+            display: "none",
+        },
+    }),
 
-    smallPreview: {
-        display: "none",
-    },
-});
+    mdOrLarger: StyleSheet.create({
+        wrapper: {
+            width: "93.75%",
+            maxWidth: 960,
+            height: "81.25%",
+            maxHeight: 624,
+        },
+    }),
+};
