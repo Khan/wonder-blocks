@@ -62,5 +62,5 @@ workflows:
     jobs:
       - lint
       - test
-      # TODO(kevinb): figure out why vite tests
+      # TODO(WB-532): figure out why vite tests are failing
       # - vite
