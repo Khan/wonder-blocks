@@ -8,6 +8,7 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import MediaLayout from "./components/media-layout.js";
 import Spring from "./components/spring.js";
 import Strut from "./components/strut.js";
 
@@ -50,6 +51,38 @@ describe("wonder-blocks-layout", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
+        const styleSheets = {
+            large: StyleSheet.create({
+                test: {
+                    backgroundColor: "blue",
+                },
+            }),
+            medium: StyleSheet.create({
+                test: {
+                    backgroundColor: "green",
+                },
+            }),
+            small: StyleSheet.create({
+                test: {
+                    backgroundColor: "orange",
+                },
+            }),
+        };
+
+        const example = (
+            <MediaLayout styleSheets={styleSheets}>
+                {({mediaSize, mediaSpec, styles}) => {
+                    return <View style={styles.test}>Hello, world!</View>;
+                }}
+            </MediaLayout>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -68,7 +101,7 @@ describe("wonder-blocks-layout", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 

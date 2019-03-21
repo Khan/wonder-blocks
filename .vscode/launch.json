@@ -12,7 +12,9 @@
             "program": "${workspaceFolder}/node_modules/jest/bin/jest",
             "args": [
                 "--runInBand",
-                "${file}"
+                "${file}",
+                "--config",
+                "${workspaceFolder}/config/jest/test.config.js"
             ],
             "cwd": "${workspaceFolder}"
         },

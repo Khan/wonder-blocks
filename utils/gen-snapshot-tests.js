@@ -9,9 +9,9 @@
  * - run prettier on the output
  * - extract into a separate repo and publish an npm package
  */
-const marked = require("marked");
 const fs = require("fs");
 const path = require("path");
+const marked = require("marked");
 const babylon = require("babylon");
 
 const {
@@ -138,6 +138,11 @@ function extractExamplesAndComponentsForFile(sourceFile, componentFileMap) {
     const match =
         src.match(/export default class \s*(\w+)/) ||
         src.match(/export default \s*\w+\(\s*(\w+)/);
+
+    // Guard against files without default exports.
+    if (!match) {
+        return {examples: [], componentFileMap};
+    }
 
     const alreadyCollated = componentFileMap[match[1]] === sourceFile;
     if (!alreadyCollated) {
