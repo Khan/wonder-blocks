@@ -3,17 +3,13 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {getPathForIcon, viewportPixelsForSize} from "../util/icon-util.js";
 
 import type {IconAsset, IconSize} from "../util/icon-assets.js";
 
 type Props = {|
-    /**
-     * Passed transparently to the SVG. If not provided, we assume the SVG is
-     * purely decorative and it is invisible to screenreaders.
-     */
-    "aria-label"?: string,
+    ...AriaProps,
     /**
      * The color of the icon. Will default to `currentColor`, which means that
      * it will take on the CSS `color` value from the parent element.
@@ -33,6 +29,10 @@ type Props = {|
      * Aphrodite style objects, or arrays thereof.
      */
     style?: StyleType,
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 const StyledSVG = addStyle<"svg">("svg");

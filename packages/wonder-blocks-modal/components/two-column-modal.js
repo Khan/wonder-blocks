@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View, MediaLayoutWrapper} from "@khanacademy/wonder-blocks-core";
-import type {MediaSize} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, MediaSize} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalFooter from "./modal-footer.js";
@@ -12,6 +12,8 @@ import ModalPanel from "./modal-panel.js";
 import ModalContent from "./modal-content.js";
 
 type BaseProps = {|
+    ...AriaProps,
+
     /** Whether to allow the sidebar contents to be fullbleed. */
     fullBleedSidebar: boolean,
 
@@ -31,7 +33,12 @@ type BaseProps = {|
      * Instead, to listen for when the modal closes, add an `onClose` handler
      * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
-    onClose?: () => void,
+    onClose?: () => mixed,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 type WrappedProps = {|

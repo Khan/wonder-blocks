@@ -12,8 +12,11 @@ import {
     LabelLarge,
     LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * Whether we should use the default light color scheme or switch to a
      * darker blue scheme.
@@ -48,6 +51,11 @@ type Props = {|
      * The main title rendered in larger bold text.
      */
     title?: string,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 export default class Toolbar extends React.Component<Props> {

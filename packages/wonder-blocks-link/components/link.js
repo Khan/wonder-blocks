@@ -3,10 +3,12 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import LinkCore from "./link-core.js";
 
 export type SharedProps = {|
+    ...AriaProps,
+
     /**
      * Text to appear on the link.
      */
@@ -38,6 +40,11 @@ export type SharedProps = {|
      * secondary or primary (light) links are not allowed to be visitable.
      */
     visitable: boolean,
+
+    /**
+     * A target destination window for a link to open in.
+     */
+    target?: string,
 
     /**
      * Test ID used for e2e testing.
@@ -86,7 +93,7 @@ export type SharedProps = {|
      * handler will have its preventDefault() and stopPropagation() methods
      * stubbed out.
      */
-    onClick?: (e: SyntheticEvent<>) => void,
+    onClick?: (e: SyntheticEvent<>) => mixed,
 |};
 
 /**

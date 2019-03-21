@@ -55,7 +55,7 @@ type Props = {|
      * Auto-populated by parent. Returns the new checked state of the component.
      * @ignore
      */
-    onChange?: (newCheckedState: boolean) => void,
+    onChange?: (newCheckedState: boolean) => mixed,
 
     /**
      * Auto-populated by parent.

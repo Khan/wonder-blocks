@@ -57,7 +57,7 @@ type SelectOpenerProps = {|
     /**
      * Callback for when the SelectOpener is pressed.
      */
-    onOpenChanged: (open: boolean, keyboard: boolean) => void,
+    onOpenChanged: (open: boolean, keyboard: boolean) => mixed,
 
     /**
      * Whether the dropdown is open.
