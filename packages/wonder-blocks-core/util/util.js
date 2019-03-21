@@ -1,10 +1,8 @@
 // @flow
 import {StyleSheet, css} from "aphrodite";
-import * as React from "react";
-import propTypes from "prop-types";
 import type {CSSProperties} from "aphrodite";
 
-import type {MediaSize, MediaSpec, StyleType} from "./types.js";
+import type {StyleType} from "./types.js";
 
 function flatten(list?: StyleType): Array<CSSProperties> {
     const result: Array<CSSProperties> = [];
@@ -82,34 +80,4 @@ export function processStyleList(style?: StyleType) {
         style: shouldInlineStyles ? inlineStylesObject : {},
         className: css(...stylesheetStyles),
     };
-}
-
-export const mediaContextTypes = {
-    mediaSize: propTypes.string,
-    mediaSpec: propTypes.object,
-};
-
-export function MediaLayoutWrapper<Props: {}>(
-    Component: React.ComponentType<Props>,
-): React.ComponentType<
-    $Diff<Props, {mediaSize: MediaSize | void, mediaSpec: MediaSpec | void}>,
-> {
-    const WrappedComponent = (
-        props: Props,
-        {
-            mediaSize,
-            mediaSpec,
-        }: {
-            mediaSize: MediaSize,
-            mediaSpec: MediaSpec,
-        },
-    ) => {
-        return (
-            <Component {...props} mediaSize={mediaSize} mediaSpec={mediaSpec} />
-        );
-    };
-
-    WrappedComponent.contextTypes = mediaContextTypes;
-
-    return WrappedComponent;
 }
