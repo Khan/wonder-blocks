@@ -65,9 +65,12 @@ export default class Row extends React.Component<Props> {
         return (
             <MediaLayout>
                 {({mediaSize, mediaSpec}) => {
-                    const {marginWidth, maxWidth, totalColumns} = mediaSpec[
-                        mediaSize
-                    ];
+                    const spec = mediaSpec[mediaSize];
+                    if (!spec) {
+                        throw new Error(`mediaSpec.${mediaSize} is undefined`);
+                    }
+
+                    const {marginWidth, maxWidth, totalColumns} = spec;
                     const shouldDisplay = queryMatchesSize(
                         this.props.mediaQuery,
                         mediaSize,

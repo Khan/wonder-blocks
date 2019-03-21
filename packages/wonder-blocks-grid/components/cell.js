@@ -105,10 +105,13 @@ export default class Cell extends React.Component<Props> {
         return (
             <MediaLayout>
                 {({mediaSize, mediaSpec}) => {
+                    const spec = mediaSpec[mediaSize];
+                    if (!spec) {
+                        throw new Error(`mediaSpec.${mediaSize} is undefined`);
+                    }
+
                     // Get the settings for this particular size of grid
-                    const {totalColumns, gutterWidth, marginWidth} = mediaSpec[
-                        mediaSize
-                    ];
+                    const {totalColumns, gutterWidth, marginWidth} = spec;
 
                     const cols = Cell.getCols(this.props, mediaSize);
 

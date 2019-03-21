@@ -36,7 +36,12 @@ export default class Gutter extends React.Component<Props> {
         return (
             <MediaLayout>
                 {({mediaSize, mediaSpec}) => {
-                    const {gutterWidth} = mediaSpec[mediaSize];
+                    const spec = mediaSpec[mediaSize];
+                    if (!spec) {
+                        throw new Error(`mediaSpec.${mediaSize} is undefined`);
+                    }
+
+                    const {gutterWidth} = spec;
 
                     if (!queryMatchesSize(this.props.mediaQuery, mediaSize)) {
                         return null;
