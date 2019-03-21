@@ -5,7 +5,7 @@ import {shallow} from "enzyme";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import expectRenderError from "../../../utils/testing/expect-render-error.js";
 import ModalLauncher from "./modal-launcher.js";
-import OneColumnModal from "./one-column-modal.js";
+import OneColumnModal from "./one-column-modal/one-column-modal.js";
 
 const exampleModal = <OneColumnModal content={<div data-modal-child />} />;
 

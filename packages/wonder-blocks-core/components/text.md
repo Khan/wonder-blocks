@@ -38,3 +38,12 @@ Other props can be passed through `View` or `Text`, as if they were normal tags.
     </Text>
 </View>
 ```
+
+Both `View` and `Text` support a `testId` prop.
+
+```js
+<View>
+    <View testId="foo">Foo</View>
+    <Text testId="bar">Bar</Text>
+</View>
+```

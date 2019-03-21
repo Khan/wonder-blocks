@@ -6,11 +6,10 @@ import {
     MediaLayoutContext,
     MEDIA_DEFAULT_SPEC,
 } from "@khanacademy/wonder-blocks-layout";
-import TwoColumnModal, {
-    SmallTwoColumnModal,
-    LargeTwoColumnModal,
-} from "./two-column-modal.js";
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
+import TwoColumnModal from "./two-column-modal.js";
+import LargeTwoColumnModal from "./large-two-column-modal.js";
+import SmallTwoColumnModal from "./small-two-column-modal.js";
+import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
 describe("TwoColumnModal", () => {
     beforeAll(() => {
@@ -77,29 +76,41 @@ describe("TwoColumnModal", () => {
 
     // We already capture desktop snapshots from auto generated tests
     describe("mobile", () => {
-        test("with footer", () => {
-            const wrapper = shallow(
-                <SmallTwoColumnModal
-                    content="Content"
-                    fullBleedSidebar={true}
-                    sidebar="Sidebar"
-                    footer="Footer"
-                />,
-            );
+        describe("with footer", () => {
+            it("should match snapshot", () => {
+                // Arrange
 
-            expect(wrapper).toMatchSnapshot();
+                // Act
+                const wrapper = shallow(
+                    <SmallTwoColumnModal
+                        content="Content"
+                        fullBleedSidebar={true}
+                        sidebar="Sidebar"
+                        footer="Footer"
+                    />,
+                );
+
+                // Assert
+                expect(wrapper).toMatchSnapshot();
+            });
         });
 
-        test("without footer", () => {
-            const wrapper = shallow(
-                <SmallTwoColumnModal
-                    fullBleedSidebar={true}
-                    sidebar="Sidebar"
-                    content="Content"
-                />,
-            );
+        describe("without footer", () => {
+            it("should match snapshot", () => {
+                // Arrange
 
-            expect(wrapper).toMatchSnapshot();
+                // Act
+                const wrapper = shallow(
+                    <SmallTwoColumnModal
+                        fullBleedSidebar={true}
+                        sidebar="Sidebar"
+                        content="Content"
+                    />,
+                );
+
+                // Assert
+                expect(wrapper).toMatchSnapshot();
+            });
         });
     });
 });

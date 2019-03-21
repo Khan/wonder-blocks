@@ -51,12 +51,17 @@ type CheckboxGroupProps = {|
      * Callback for when selection of the group has changed. Passes the newly
      * selected values.
      */
-    onChange: (selectedValues: Array<string>) => void,
+    onChange: (selectedValues: Array<string>) => mixed,
 
     /**
      * An array of the values of the selected values in this checkbox group.
      */
     selectedValues: Array<string>,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 const StyledFieldset = addStyle<"fieldset">("fieldset");
@@ -93,10 +98,11 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
             groupName,
             selectedValues,
             style,
+            testId,
         } = this.props;
 
         return (
-            <StyledFieldset style={styles.fieldset}>
+            <StyledFieldset data-test-id={testId} style={styles.fieldset}>
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
                     {label && (
