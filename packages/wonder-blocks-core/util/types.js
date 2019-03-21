@@ -10,8 +10,6 @@ export type StyleType =
     | Falsy
     | NestedArray<CSSProperties | Falsy>;
 
-export type TextTag = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-
 // Source: https://www.w3.org/WAI/PF/aria-1.1/roles#role_definitions
 type roles =
     | "alert"
@@ -135,48 +133,48 @@ export type AriaProps = {|
 |};
 
 type MouseEvents = {|
-    onMouseDown?: (e: SyntheticMouseEvent<*>) => void,
-    onMouseUp?: (e: SyntheticMouseEvent<*>) => void,
-    onMouseMove?: (e: SyntheticMouseEvent<*>) => void,
-    onClick?: (e: SyntheticMouseEvent<*>) => void,
-    onDoubleClick?: (e: SyntheticMouseEvent<*>) => void,
-    onMouseEnter?: (e: SyntheticMouseEvent<*>) => void,
-    onMouseLeave?: (e: SyntheticMouseEvent<*>) => void,
-    onMouseOut?: (e: SyntheticMouseEvent<*>) => void,
-    onMouseOver?: (e: SyntheticMouseEvent<*>) => void,
-    onDrag?: (e: SyntheticMouseEvent<*>) => void,
-    onDragEnd?: (e: SyntheticMouseEvent<*>) => void,
-    onDragEnter?: (e: SyntheticMouseEvent<*>) => void,
-    onDragExit?: (e: SyntheticMouseEvent<*>) => void,
-    onDragLeave?: (e: SyntheticMouseEvent<*>) => void,
-    onDragOver?: (e: SyntheticMouseEvent<*>) => void,
-    onDragStart?: (e: SyntheticMouseEvent<*>) => void,
-    onDrop?: (e: SyntheticMouseEvent<*>) => void,
+    onMouseDown?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseUp?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseMove?: (e: SyntheticMouseEvent<*>) => mixed,
+    onClick?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDoubleClick?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseEnter?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseLeave?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseOut?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseOver?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDrag?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragEnd?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragEnter?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragExit?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragLeave?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragOver?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragStart?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDrop?: (e: SyntheticMouseEvent<*>) => mixed,
 |};
 
 type KeyboardEvents = {|
-    onKeyDown?: (e: SyntheticKeyboardEvent<*>) => void,
-    onKeyPress?: (e: SyntheticKeyboardEvent<*>) => void,
-    onKeyUp?: (e: SyntheticKeyboardEvent<*>) => void,
+    onKeyDown?: (e: SyntheticKeyboardEvent<*>) => mixed,
+    onKeyPress?: (e: SyntheticKeyboardEvent<*>) => mixed,
+    onKeyUp?: (e: SyntheticKeyboardEvent<*>) => mixed,
 |};
 
 type InputEvents = {|
-    onChange?: (e: SyntheticInputEvent<*>) => void,
-    onInput?: (e: SyntheticInputEvent<*>) => void,
-    onInvalid?: (e: SyntheticInputEvent<*>) => void,
-    onSubmit?: (e: SyntheticInputEvent<*>) => void,
+    onChange?: (e: SyntheticInputEvent<*>) => mixed,
+    onInput?: (e: SyntheticInputEvent<*>) => mixed,
+    onInvalid?: (e: SyntheticInputEvent<*>) => mixed,
+    onSubmit?: (e: SyntheticInputEvent<*>) => mixed,
 |};
 
 type TouchEvents = {|
-    onTouchCancel?: (e: SyntheticTouchEvent<*>) => void,
-    onTouchEnd?: (e: SyntheticTouchEvent<*>) => void,
-    onTouchMove?: (e: SyntheticTouchEvent<*>) => void,
-    onTouchStart?: (e: SyntheticTouchEvent<*>) => void,
+    onTouchCancel?: (e: SyntheticTouchEvent<*>) => mixed,
+    onTouchEnd?: (e: SyntheticTouchEvent<*>) => mixed,
+    onTouchMove?: (e: SyntheticTouchEvent<*>) => mixed,
+    onTouchStart?: (e: SyntheticTouchEvent<*>) => mixed,
 |};
 
 type FocusEvents = {|
-    onFocus?: (e: SyntheticFocusEvent<*>) => void,
-    onBlur?: (e: SyntheticFocusEvent<*>) => void,
+    onFocus?: (e: SyntheticFocusEvent<*>) => mixed,
+    onBlur?: (e: SyntheticFocusEvent<*>) => mixed,
 |};
 
 type EventHandlers = {|
@@ -189,7 +187,10 @@ type EventHandlers = {|
 |};
 
 // Props shared between Text and View components.
-export type TextViewSharedProps = {|
+// NOTE(jeresig): We want to leave the props for these open so that we can
+// handle uncommon props for elements (e.g. htmlFor for labels).
+// eslint-disable-next-line flowtype/require-exact-type
+export type TextViewSharedProps = {
     /**
      * Text to appear on the button.
      */
@@ -218,7 +219,7 @@ export type TextViewSharedProps = {|
     ...AriaProps,
 
     ...EventHandlers,
-|};
+};
 
 export type MediaSize = "small" | "medium" | "large";
 

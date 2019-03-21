@@ -33,7 +33,7 @@ type BaseProps = {|
      * Instead, to listen for when the modal closes, add an `onClose` handler
      * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
-    onClose?: () => void,
+    onClose?: () => mixed,
 
     /**
      * Test ID used for e2e testing.

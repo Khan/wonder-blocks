@@ -24,7 +24,7 @@ type Props = {|
      * Callback for when the selection changes. Parameter is an updated array of
      * the values that are now selected.
      */
-    onChange: (selectedValues: Array<string>) => void,
+    onChange: (selectedValues: Array<string>) => mixed,
 
     /**
      * The values of the items that are currently selected.

@@ -22,7 +22,7 @@ type Props = {|
      * Callback for when the selection. Parameter is the value of the newly
      * selected item.
      */
-    onChange: (selectedValue: string) => void,
+    onChange: (selectedValue: string) => mixed,
 
     /**
      * Placeholder for the opening component when there are no items selected.

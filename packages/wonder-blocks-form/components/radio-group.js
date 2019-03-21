@@ -50,7 +50,7 @@ type RadioGroupProps = {|
     /**
      * Callback for when the selected value of the radio group has changed.
      */
-    onChange: (selectedValue: string) => void,
+    onChange: (selectedValue: string) => mixed,
 
     /**
      * Value of the selected radio item.

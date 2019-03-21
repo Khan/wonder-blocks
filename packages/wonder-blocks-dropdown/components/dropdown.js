@@ -44,7 +44,7 @@ type DropdownProps = {|
      * the dropdown menu should be open and whether a keyboard event triggered
      * the change.
      */
-    onOpenChanged: (open: boolean, keyboard?: boolean) => void,
+    onOpenChanged: (open: boolean, keyboard?: boolean) => mixed,
 
     /**
      * Whether the menu is open or not.
@@ -165,7 +165,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
             const itemRefs = [];
             for (let i = 0; i < props.items.length; i++) {
                 if (props.items[i].focusable) {
-                    const ref = React.createRef();
+                    const ref = React.createRef<null | HTMLDivElement>();
                     itemRefs.push({ref, originalIndex: i});
                 }
             }

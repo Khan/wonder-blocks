@@ -31,7 +31,7 @@ export type ChoiceComponentProps = {|
     ...ChoiceCoreProps,
     /** Callback when this component is selected. The newCheckedState is the
      * new checked state of the component. */
-    onChange: (newCheckedState: boolean) => void,
+    onChange: (newCheckedState: boolean) => mixed,
     /** Optional label for the field. */
     label?: string,
     /** Optional description for the field. */
@@ -64,14 +64,14 @@ export type SharedGroupProps = {|
 export type CheckboxGroupProps = {|
     /** Callback for when selection of the group has changed. Passes the newly
      * selected values. */
-    onChange: (selectedValues: Array<string>) => void,
+    onChange: (selectedValues: Array<string>) => mixed,
     /** An array of the values of the selected values in this checkbox group. */
     selectedValues: Array<string>,
 |};
 
 export type RadioGroupProps = {|
     /** Callback for when the selected value of the radio group has changed. */
-    onChange: (selectedValue: string) => void,
+    onChange: (selectedValue: string) => mixed,
     /** Value of the selected radio item. */
     selectedValue: string,
 |};

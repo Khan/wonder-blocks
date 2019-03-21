@@ -40,7 +40,7 @@ type Props = {|
      * prop. You probably want to use this instead of `onClose` on the modals
      * themselves, since this will capture a more complete set of close events.
      */
-    onClose?: () => void,
+    onClose?: () => mixed,
 
     /**
      * Renders the modal when true, renders nothing when false.
@@ -156,7 +156,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
 
 /** A component that, when mounted, calls `onClose` when Escape is pressed. */
 class ModalLauncherKeypressListener extends React.Component<{
-    onClose: () => void,
+    onClose: () => mixed,
 }> {
     componentDidMount() {
         window.addEventListener("keyup", this._handleKeyup);

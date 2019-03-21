@@ -100,7 +100,7 @@ export type SharedProps = {|
      * Note: onClick is optional if href is present, but must be defined if
      * href is not
      */
-    onClick?: (e: SyntheticEvent<>) => void,
+    onClick?: (e: SyntheticEvent<>) => mixed,
 |};
 
 /**

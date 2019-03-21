@@ -51,7 +51,7 @@ type CheckboxGroupProps = {|
      * Callback for when selection of the group has changed. Passes the newly
      * selected values.
      */
-    onChange: (selectedValues: Array<string>) => void,
+    onChange: (selectedValues: Array<string>) => mixed,
 
     /**
      * An array of the values of the selected values in this checkbox group.
