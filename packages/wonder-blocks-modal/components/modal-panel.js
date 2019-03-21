@@ -44,7 +44,7 @@ type Props = {|
      * Instead, to listen for when the modal closes, add an `onClose` handler
      * to the `ModalLauncher`.  Doing so will throw an error.
      */
-    onClose?: () => void,
+    onClose?: () => mixed,
 |};
 
 export default class ModalPanel extends React.Component<Props> {

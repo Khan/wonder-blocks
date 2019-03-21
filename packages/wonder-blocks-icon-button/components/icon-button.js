@@ -4,20 +4,17 @@ import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import IconButtonCore from "./icon-button-core.js";
 
 export type SharedProps = {|
+    ...AriaProps,
+
     /**
      * A Wonder Blocks icon asset, an object specifing paths for one or more of
      * the following sizes: small, medium, large, xlarge.
      */
     icon: IconAsset,
-
-    /**
-     * Text to display as the title of the svg element.
-     */
-    "aria-label": string,
 
     /**
      * The color of the icon button, either blue or red.
@@ -103,7 +100,7 @@ export type SharedProps = {|
      * Note: onClick is optional if href is present, but must be defined if
      * href is not
      */
-    onClick?: (e: SyntheticEvent<>) => void,
+    onClick?: (e: SyntheticEvent<>) => mixed,
 |};
 
 /**

@@ -3,22 +3,19 @@
 // from imported types. We've duplicated the shared props for each component
 // they apply to, so that the prop definitions will show up on the generated
 // guide.
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import typeof Choice from "../components/choice.js";
 
 // Shared props for radio-core and checkbox-core
 export type ChoiceCoreProps = {|
+    ...AriaProps,
     /** Whether this component is checked */
     checked: boolean,
     /** Whether this component is disabled */
     disabled: boolean,
     /** Whether this component should show an error state */
     error: boolean,
-    /** Optional label if it is not obvious from the context what the checkbox
-     * does. If the label and id props are defined, this props does not need to
-     * be provided as the label would be matched to this input. */
-    "aria-label"?: string,
     /** Name for the checkbox or radio button group */
     groupName?: string,
     /** Unique identifier attached to the HTML input element. If used, need to
@@ -34,7 +31,7 @@ export type ChoiceComponentProps = {|
     ...ChoiceCoreProps,
     /** Callback when this component is selected. The newCheckedState is the
      * new checked state of the component. */
-    onChange: (newCheckedState: boolean) => void,
+    onChange: (newCheckedState: boolean) => mixed,
     /** Optional label for the field. */
     label?: string,
     /** Optional description for the field. */
@@ -67,14 +64,14 @@ export type SharedGroupProps = {|
 export type CheckboxGroupProps = {|
     /** Callback for when selection of the group has changed. Passes the newly
      * selected values. */
-    onChange: (selectedValues: Array<string>) => void,
+    onChange: (selectedValues: Array<string>) => mixed,
     /** An array of the values of the selected values in this checkbox group. */
     selectedValues: Array<string>,
 |};
 
 export type RadioGroupProps = {|
     /** Callback for when the selected value of the radio group has changed. */
-    onChange: (selectedValue: string) => void,
+    onChange: (selectedValue: string) => mixed,
     /** Value of the selected radio item. */
     selectedValue: string,
 |};

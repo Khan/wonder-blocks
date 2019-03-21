@@ -16,7 +16,7 @@ type Props = {|
     light?: boolean,
 
     /** Optional click handler */
-    onClick?: () => void,
+    onClick?: () => mixed,
 
     /** Optional custom styles. */
     style?: StyleType,

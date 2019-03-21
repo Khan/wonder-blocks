@@ -1,3 +1,5 @@
+## Spring and Strut
+
 `Spring` and `Strut` are two components that can make certain layouts easier to implement.
 `Spring` is infinitely compressible and expands to fill available space while `Strut`
 is uncompressible and occupies a fixed amount of space specified by its `size` prop.
@@ -33,26 +35,28 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+## MediaLayout
+
 `MediaLayout` is a container component takes in a `styleSheets` object whose keys are
 media sizes.  I listens for changes to the current media size and passes the current
 `mediaSize`, `mediaSpec`, and `styles` to `children` which is a render function taking
 those three values as object.
 
 Valid keys for the `styleSheets` object are (in order of precedence):
-- small, medium, large
-- mdOrSmaller, mdOrLarger
-- all
+- `small`, `medium`, `large`
+- `mdOrSmaller`, `mdOrLarger`
+- `all`
 
 `MediaLayout` will merge style rules from multiple styles that match the current media
-size.
+query, e.g. `"(min-width: 1024px)"`.
 
-The `mediaSpec` is an object with one or more of the following keys: small, medium, or
-large.  Each value contains the following data:
+The `mediaSpec` is an object with one or more of the following keys: `small`, `medium`,
+or `large`.  Each value contains the following data:
 - `query: string` e.g. "(min-width: 1024px)"
 - `totalColumns: number`
-- `gutterWidth: number` (in pixels)
-- `marginWidth: number` (in pixels)
-- `maxWidth: number` (in pixels)
+- `gutterWidth: number`
+- `marginWidth: number`
+- `maxWidth: number`
 
 By default, `MediaLayout` uses `MEDIA_DEFAULT_SPEC` but others can be specified using
 `MediaLayoutContext.Provider`.  See media-layout-context.test.js for examples of how

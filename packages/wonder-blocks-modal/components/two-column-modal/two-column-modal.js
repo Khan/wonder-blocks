@@ -1,11 +1,14 @@
 // @flow
 import * as React from "react";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import LargeTwoColumnModal from "./large-two-column-modal.js";
 import SmallTwoColumnModal from "./small-two-column-modal.js";
 
 export type Props = {|
+    ...AriaProps,
+
     /** Whether to allow the sidebar contents to be fullbleed. */
     fullBleedSidebar: boolean,
 

@@ -50,12 +50,17 @@ type RadioGroupProps = {|
     /**
      * Callback for when the selected value of the radio group has changed.
      */
-    onChange: (selectedValue: string) => void,
+    onChange: (selectedValue: string) => mixed,
 
     /**
      * Value of the selected radio item.
      */
     selectedValue: string,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 const StyledFieldset = addStyle<"fieldset">("fieldset");
@@ -83,10 +88,11 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
             groupName,
             selectedValue,
             style,
+            testId,
         } = this.props;
 
         return (
-            <StyledFieldset style={styles.fieldset}>
+            <StyledFieldset data-test-id={testId} style={styles.fieldset}>
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
                     {label && (

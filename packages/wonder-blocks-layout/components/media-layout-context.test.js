@@ -23,7 +23,9 @@ describe("MediaLayoutContext", () => {
         it("should override the currentSize", async () => {
             // Arrange
             resizeWindow("large");
-            const promise = new Promise((resolve, reject) => {
+
+            // Act
+            const args = await new Promise((resolve, reject) => {
                 mount(
                     <MediaLayoutContext.Provider
                         value={{
@@ -41,9 +43,6 @@ describe("MediaLayoutContext", () => {
                     </MediaLayoutContext.Provider>,
                 );
             });
-
-            // Act
-            const args = await promise;
 
             // Assert
             expect(args.mediaSize).toEqual("small");
@@ -75,7 +74,9 @@ describe("MediaLayoutContext", () => {
         it("should use the provided ssrSize on the server", async () => {
             // Arrange
             delete window.matchMedia;
-            const promise = new Promise((resolve, reject) => {
+
+            // Act
+            const args = await new Promise((resolve, reject) => {
                 mount(
                     <MediaLayoutContext.Provider
                         value={{
@@ -94,9 +95,6 @@ describe("MediaLayoutContext", () => {
                 );
             });
 
-            // Act
-            const args = await promise;
-
             // Assert
             expect(args.mediaSize).toEqual("small");
         });
@@ -106,7 +104,9 @@ describe("MediaLayoutContext", () => {
         it("MEDIA_INTERNAL_SPEC is always large", async () => {
             // Arrange
             resizeWindow("small");
-            const promise = new Promise((resolve, reject) => {
+
+            // Act
+            const args = await new Promise((resolve, reject) => {
                 mount(
                     <MediaLayoutContext.Provider
                         value={{
@@ -125,9 +125,6 @@ describe("MediaLayoutContext", () => {
                 );
             });
 
-            // Act
-            const args = await promise;
-
             // Assert
             expect(args.mediaSize).toEqual("large");
         });
@@ -135,7 +132,9 @@ describe("MediaLayoutContext", () => {
         it("MEDIA_MODAL_SPEC is not medium", async () => {
             // Arrange
             resizeWindow("medium");
-            const promise = new Promise((resolve, reject) => {
+
+            // Act
+            const args = await new Promise((resolve, reject) => {
                 mount(
                     <MediaLayoutContext.Provider
                         value={{
@@ -153,9 +152,6 @@ describe("MediaLayoutContext", () => {
                     </MediaLayoutContext.Provider>,
                 );
             });
-
-            // Act
-            const args = await promise;
 
             // Assert
             expect(args.mediaSize).toEqual("large");

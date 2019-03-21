@@ -11,7 +11,7 @@ import type {ModalElement} from "../util/types.js";
 
 type Props = {|
     children: ModalElement,
-    onCloseModal: () => void,
+    onCloseModal: () => mixed,
 |};
 
 /**

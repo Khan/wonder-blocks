@@ -355,10 +355,9 @@ describe("MediaLayout", () => {
                 </MediaLayout>,
             );
 
+            // Act
             resizeWindow("small");
             wrapper.update();
-
-            // Act
             const style = wrapper.find("div").prop("style");
 
             // Assert
@@ -390,10 +389,9 @@ describe("MediaLayout", () => {
                 </MediaLayout>,
             );
 
+            // Act
             resizeWindow("large");
             wrapper.update();
-
-            // Act
             const style = wrapper.find("div").prop("style");
 
             // Assert

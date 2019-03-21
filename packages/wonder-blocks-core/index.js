@@ -3,7 +3,6 @@ import type {ClickableHandlers} from "./components/clickable-behavior.js";
 import type {
     AriaProps,
     IIdentifierFactory,
-    TextTag,
     MediaSize,
     MediaSpec,
     StyleType,
@@ -33,7 +32,6 @@ export type {
     ClickableHandlers,
     Intersection,
     IIdentifierFactory,
-    TextTag,
     MediaSize,
     MediaSpec,
     StyleType,

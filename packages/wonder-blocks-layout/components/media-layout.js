@@ -108,11 +108,14 @@ export default class MediaLayout extends React.Component<Props, State> {
         let matchedSize;
 
         for (const size of VALID_MEDIA_SIZES) {
-            if (!spec[size]) {
+            // Flow has issues with checking !spec[size] directly so we store
+            // spec[size] in a new variable to get around the issue.
+            const _spec = spec[size];
+            if (!_spec) {
                 continue;
             }
 
-            const {query} = spec[size];
+            const {query} = _spec;
 
             // Don't watch sizes that don't have an associated query
             if (!query) {

@@ -1,11 +1,14 @@
 // @flow
 import * as React from "react";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import LargeOneColumnModal from "./large-one-column-modal.js";
 import SmallOneColumnModal from "./small-one-column-modal.js";
 
 export type Props = {|
+    ...AriaProps,
+
     /** The modal's content. */
     content: React.Node,
 
