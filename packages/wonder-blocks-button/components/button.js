@@ -81,6 +81,11 @@ export type SharedProps = {|
     href?: string,
 
     /**
+     * A target destination window for a link to open in.
+     */
+    target?: string,
+
+    /**
      * Whether to avoid using client-side navigation.
      *
      * If the URL passed to href is local to the client-side, e.g.
