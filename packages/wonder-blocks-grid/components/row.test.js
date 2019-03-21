@@ -15,10 +15,7 @@ describe("Row", () => {
         unmountAll();
 
         // eslint-disable-next-line no-console
-        if (console.error.mockRestore) {
-            // eslint-disable-next-line no-console
-            console.error.mockRestore();
-        }
+        console.error.mockRestore && console.error.mockRestore();
     });
 
     describe("large", () => {

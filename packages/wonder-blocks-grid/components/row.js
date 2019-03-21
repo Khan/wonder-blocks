@@ -107,7 +107,9 @@ export default class Row extends React.Component<Props> {
                             ],
                             [],
                         )
-                        // Remove the extra Gutter at the end.
+                        // We only want gutters between each cell in the row.  The reduce
+                        // adds a gutter after every cell so we need to remove the last
+                        // element which is an unnecessary gutteer.
                         .slice(0, -1);
 
                     return (
