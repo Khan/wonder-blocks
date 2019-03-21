@@ -10,8 +10,6 @@ export type StyleType =
     | Falsy
     | NestedArray<CSSProperties | Falsy>;
 
-export type TextTag = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-
 // Source: https://www.w3.org/WAI/PF/aria-1.1/roles#role_definitions
 type roles =
     | "alert"
@@ -94,7 +92,7 @@ type IdRefList = IdRef | Array<IdRef>;
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
 // TODO(kevinb): convert to disjoint union of exact object types keyed on role
 // eslint-disable-next-line flowtype/require-exact-type
-export type AriaProps = {
+export type AriaProps = {|
     role?: roles,
     "aria-activedescendant"?: IdRef,
     "aria-atomic"?: "false" | "true",
@@ -132,12 +130,95 @@ export type AriaProps = {
     "aria-valuemin"?: number,
     "aria-valuenow"?: number,
     "aria-valuetext"?: string,
-};
+|};
 
-export type Props = AriaProps & {
-    style?: StyleType,
+type MouseEvents = {|
+    onMouseDown?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseUp?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseMove?: (e: SyntheticMouseEvent<*>) => mixed,
+    onClick?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDoubleClick?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseEnter?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseLeave?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseOut?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseOver?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDrag?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragEnd?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragEnter?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragExit?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragLeave?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragOver?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDragStart?: (e: SyntheticMouseEvent<*>) => mixed,
+    onDrop?: (e: SyntheticMouseEvent<*>) => mixed,
+|};
+
+type KeyboardEvents = {|
+    onKeyDown?: (e: SyntheticKeyboardEvent<*>) => mixed,
+    onKeyPress?: (e: SyntheticKeyboardEvent<*>) => mixed,
+    onKeyUp?: (e: SyntheticKeyboardEvent<*>) => mixed,
+|};
+
+type InputEvents = {|
+    onChange?: (e: SyntheticInputEvent<*>) => mixed,
+    onInput?: (e: SyntheticInputEvent<*>) => mixed,
+    onInvalid?: (e: SyntheticInputEvent<*>) => mixed,
+    onSubmit?: (e: SyntheticInputEvent<*>) => mixed,
+|};
+
+type TouchEvents = {|
+    onTouchCancel?: (e: SyntheticTouchEvent<*>) => mixed,
+    onTouchEnd?: (e: SyntheticTouchEvent<*>) => mixed,
+    onTouchMove?: (e: SyntheticTouchEvent<*>) => mixed,
+    onTouchStart?: (e: SyntheticTouchEvent<*>) => mixed,
+|};
+
+type FocusEvents = {|
+    onFocus?: (e: SyntheticFocusEvent<*>) => mixed,
+    onBlur?: (e: SyntheticFocusEvent<*>) => mixed,
+|};
+
+type EventHandlers = {|
+    ...MouseEvents,
+    ...KeyboardEvents,
+    ...InputEvents,
+    ...TouchEvents,
+    ...FocusEvents,
+    // TODO: add remaining supported events https://reactjs.org/docs/events.html#supported-events
+|};
+
+// Props shared between Text and View components.
+// NOTE(jeresig): We want to leave the props for these open so that we can
+// handle uncommon props for elements (e.g. htmlFor for labels).
+// eslint-disable-next-line flowtype/require-exact-type
+export type TextViewSharedProps = {
+    /**
+     * Text to appear on the button.
+     */
     children?: React.Node,
-    [otherProp: string]: any,
+
+    /**
+     * Optional custom styles.
+     */
+    style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    tabIndex?: number,
+
+    id?: string,
+
+    // TODO(kevinb) remove the need for this
+    "data-modal-launcher-portal"?: boolean,
+
+    // Used by tooltip bubble
+    "data-placement"?: string,
+
+    ...AriaProps,
+
+    ...EventHandlers,
 };
 
 /**

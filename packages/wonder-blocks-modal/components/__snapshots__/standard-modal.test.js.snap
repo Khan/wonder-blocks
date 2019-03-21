@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` 1`] = `
+exports[`StandardModal desktop should match snapshot 1`] = `
 <StandardModal
   content="Content"
   footer="Footer"
@@ -1625,7 +1625,7 @@ exports[` 1`] = `
 </StandardModal>
 `;
 
-exports[`StandardModal mobile 1`] = `
+exports[`StandardModal mobile should match snapshot 1`] = `
 <StandardModal
   content="Content"
   footer="Footer"

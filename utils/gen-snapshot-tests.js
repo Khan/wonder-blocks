@@ -139,6 +139,7 @@ function extractExamplesAndComponentsForFile(sourceFile, componentFileMap) {
         src.match(/export default class \s*(\w+)/) ||
         src.match(/export default \s*\w+\(\s*(\w+)/);
 
+    // Guard against files without default exports.
     if (!match) {
         return {examples: [], componentFileMap};
     }

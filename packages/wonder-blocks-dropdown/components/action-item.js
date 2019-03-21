@@ -61,7 +61,7 @@ type ActionProps = {|
      * Note: onClick is optional if href is present, but must be defined if
      * href is not
      */
-    onClick?: () => void,
+    onClick?: () => mixed,
 
     /**
      * Whether this item should be indented to have menu items left-align in

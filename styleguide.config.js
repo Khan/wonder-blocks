@@ -74,9 +74,14 @@ module.exports = {
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
             components: "packages/wonder-blocks-grid/components/*.js",
-            ignore: [
-                "packages/wonder-blocks-grid/components/fixed-width-cell.js",
-                "packages/wonder-blocks-grid/components/gutter.js",
+            sections: [
+                {
+                    name: "Internal Components",
+                    private: true,
+                    components: [
+                        "packages/wonder-blocks-grid/components/gutter.js",
+                    ],
+                },
             ],
         },
         {
@@ -114,8 +119,8 @@ module.exports = {
                     name: "Modals",
                     components: [
                         "packages/wonder-blocks-modal/components/standard-modal.js",
-                        "packages/wonder-blocks-modal/components/two-column-modal.js",
-                        "packages/wonder-blocks-modal/components/one-column-modal.js",
+                        "packages/wonder-blocks-modal/components/two-column-modal/two-column-modal.js",
+                        "packages/wonder-blocks-modal/components/one-column-modal/one-column-modal.js",
                     ],
                 },
                 {

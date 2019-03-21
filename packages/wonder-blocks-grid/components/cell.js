@@ -92,6 +92,8 @@ export default class Cell extends React.Component<Props> {
         return null;
     }
 
+    // HACK(kevinb): we use a stack method here because we can't get a ref to
+    // each cell in a row without cloning them all.
     static shouldDisplay(props: Props, mediaSize: MediaSize) {
         const cols = Cell.getCols(props, mediaSize);
         return cols !== null && cols !== 0;
@@ -103,10 +105,13 @@ export default class Cell extends React.Component<Props> {
         return (
             <MediaLayout>
                 {({mediaSize, mediaSpec}) => {
+                    const spec = mediaSpec[mediaSize];
+                    if (!spec) {
+                        throw new Error(`mediaSpec.${mediaSize} is undefined`);
+                    }
+
                     // Get the settings for this particular size of grid
-                    const {totalColumns, gutterWidth, marginWidth} = mediaSpec[
-                        mediaSize
-                    ];
+                    const {totalColumns, gutterWidth, marginWidth} = spec;
 
                     const cols = Cell.getCols(this.props, mediaSize);
 
@@ -139,13 +144,12 @@ export default class Cell extends React.Component<Props> {
                     const calcWidth = `calc(${contentWidth} * ${cols /
                         totalColumns} + ${gutterWidth * (cols - 1)}px)`;
 
-                    let contents = children;
-
                     // If the contents are a function then we call it with the mediaSize,
                     // totalColumns, and cols properties and render the return value.
-                    if (typeof contents === "function") {
-                        contents = contents({mediaSize, totalColumns, cols});
-                    }
+                    const contents =
+                        typeof children === "function"
+                            ? children({mediaSize, totalColumns, cols})
+                            : children;
 
                     // Render a fixed-width cell (flex-basis: size, flex-shrink: 0)
                     // that matches the intended width of the cell

@@ -5,8 +5,9 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
-
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {MockStyleSheet} from "@khanacademy/wonder-blocks-layout";
+
 import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
 import ModalFooter from "./modal-footer.js";
@@ -43,7 +44,7 @@ type Props = {|
      * Instead, to listen for when the modal closes, add an `onClose` handler
      * to the `ModalLauncher`.  Doing so will throw an error.
      */
-    onClose?: () => void,
+    onClose?: () => mixed,
 |};
 
 export default class ModalPanel extends React.Component<Props> {
@@ -78,7 +79,7 @@ export default class ModalPanel extends React.Component<Props> {
         );
     }
 
-    render() {
+    renderMainContent(styles: MockStyleSheet) {
         const {
             content,
             titleBar,
@@ -86,41 +87,45 @@ export default class ModalPanel extends React.Component<Props> {
             footer,
             scrollOverflow,
             showCloseButton,
-            color,
-            style,
         } = this.props;
+
+        const mainContent =
+            content &&
+            typeof content === "object" &&
+            content.type === ModalContent ? (
+                ((content: any): React.Element<typeof ModalContent>)
+            ) : (
+                <ModalContent>{content}</ModalContent>
+            );
+
+        if (!mainContent) {
+            return mainContent;
+        }
+
+        return React.cloneElement(mainContent, {
+            // Pass the scrollOverflow and header in to the main content
+            scrollOverflow,
+            header: header || mainContent.props.header,
+            // We override the styling of the main content to help position
+            // it if there is a title bar, footer, or close button being
+            // shown. We have to do this here as the ModalContent doesn't
+            // know about things being positioned around it.
+            style: [
+                !!titleBar && styles.hasTitleBar,
+                !!footer && styles.hasFooter,
+                showCloseButton && !titleBar && styles.withCloseButton,
+                mainContent.props.style,
+            ],
+        });
+    }
+
+    render() {
+        const {titleBar, footer, color, style} = this.props;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => {
-                    let mainContent =
-                        content &&
-                        typeof content === "object" &&
-                        content.type === ModalContent ? (
-                            ((content: any): React.Element<typeof ModalContent>)
-                        ) : (
-                            <ModalContent>{content}</ModalContent>
-                        );
-
-                    if (mainContent) {
-                        mainContent = React.cloneElement(mainContent, {
-                            // Pass the scrollOverflow and header in to the main content
-                            scrollOverflow,
-                            header: header || mainContent.props.header,
-                            // We override the styling of the main content to help position
-                            // it if there is a title bar, footer, or close button being
-                            // shown. We have to do this here as the ModalContent doesn't
-                            // know about things being positioned around it.
-                            style: [
-                                !!titleBar && styles.hasTitleBar,
-                                !!footer && styles.hasFooter,
-                                showCloseButton &&
-                                    !titleBar &&
-                                    styles.withCloseButton,
-                                mainContent.props.style,
-                            ],
-                        });
-                    }
+                    const mainContent = this.renderMainContent(styles);
 
                     return (
                         <View

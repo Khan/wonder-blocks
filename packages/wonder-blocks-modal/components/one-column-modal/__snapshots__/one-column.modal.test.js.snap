@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OneColumnModal mobile with footer 1`] = `
+exports[`OneColumnModal mobile with footer should match snapshot 1`] = `
 <ModalDialog
   style={
     Object {
@@ -64,7 +64,7 @@ exports[`OneColumnModal mobile with footer 1`] = `
 </ModalDialog>
 `;
 
-exports[`OneColumnModal mobile without footer 1`] = `
+exports[`OneColumnModal mobile without footer should match snapshot 1`] = `
 <ModalDialog
   style={
     Object {

@@ -15,8 +15,6 @@ type Props = {|
 |};
 
 /**
- * Gutter is a private component.
- *
  * Gutter is a component whose width is set based on the size of grid currently
  * being displayed. Used for spacing out cells from each other. The gutter
  * itself doesn't hold any content, it just spaces it out.
@@ -38,7 +36,12 @@ export default class Gutter extends React.Component<Props> {
         return (
             <MediaLayout>
                 {({mediaSize, mediaSpec}) => {
-                    const {gutterWidth} = mediaSpec[mediaSize];
+                    const spec = mediaSpec[mediaSize];
+                    if (!spec) {
+                        throw new Error(`mediaSpec.${mediaSize} is undefined`);
+                    }
+
+                    const {gutterWidth} = spec;
 
                     if (!queryMatchesSize(this.props.mediaQuery, mediaSize)) {
                         return null;

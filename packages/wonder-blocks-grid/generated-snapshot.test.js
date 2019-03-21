@@ -15,7 +15,8 @@ import Row from "./components/row.js";
 describe("wonder-blocks-grid", () => {
     it("example 1", () => {
         const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View, Text} = require("@khanacademy/wonder-blocks-core");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {LabelMedium} = require("@khanacademy/wonder-blocks-typography");
         const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
         const {StyleSheet} = require("aphrodite");
 
@@ -61,20 +62,24 @@ describe("wonder-blocks-grid", () => {
                                 {({cols}) => {
                                     return (
                                         <View>
-                                            <Text>
+                                            <LabelMedium>
                                                 Cell ({cols === 1
                                                     ? "1 column"
                                                     : `${cols} columns`}{" "}
                                                 wide)
-                                            </Text>
+                                            </LabelMedium>
                                             <br />
                                             <br />
                                             <View style={{textAlign: "right"}}>
-                                                <Text>Gutter ⇢</Text>
+                                                <LabelMedium>
+                                                    Gutter ⇢
+                                                </LabelMedium>
                                             </View>
                                             <br />
                                             <View style={{textAlign: "left"}}>
-                                                <Text>Margin ⇢</Text>
+                                                <LabelMedium>
+                                                    Margin ⇢
+                                                </LabelMedium>
                                             </View>
                                         </View>
                                     );
@@ -88,16 +93,18 @@ describe("wonder-blocks-grid", () => {
                                 {({cols}) => {
                                     return (
                                         <View>
-                                            <Text>
+                                            <LabelMedium>
                                                 Cell ({cols === 1
                                                     ? "1 column"
                                                     : `${cols} columns`}{" "}
                                                 wide)
-                                            </Text>
+                                            </LabelMedium>
                                             <br />
                                             <br />
                                             <View style={{textAlign: "center"}}>
-                                                <Text>⇠ Gutters ⇢</Text>
+                                                <LabelMedium>
+                                                    ⇠ Gutters ⇢
+                                                </LabelMedium>
                                             </View>
                                         </View>
                                     );
@@ -112,18 +119,20 @@ describe("wonder-blocks-grid", () => {
                                 {({cols}) => {
                                     return (
                                         <View>
-                                            <Text>
+                                            <LabelMedium>
                                                 Cell ({cols === 1
                                                     ? "1 column"
                                                     : `${cols} columns`}{" "}
                                                 wide)
-                                            </Text>
+                                            </LabelMedium>
                                             <br />
                                             <br />
-                                            <Text>⇠ Gutter</Text>
+                                            <LabelMedium>⇠ Gutter</LabelMedium>
                                             <br />
                                             <View style={{textAlign: "right"}}>
-                                                <Text>Margin ⇢</Text>
+                                                <LabelMedium>
+                                                    Margin ⇢
+                                                </LabelMedium>
                                             </View>
                                         </View>
                                     );

@@ -72,7 +72,7 @@ type Props = {|
     /**
      * A function to be executed `onclick`.
      */
-    onClick?: (e: SyntheticEvent<>) => void,
+    onClick?: (e: SyntheticEvent<>) => mixed,
 
     /**
      * Passed in by withRouter HOC.
@@ -113,19 +113,19 @@ type State = {|
 |};
 
 export type ClickableHandlers = {|
-    onClick: (e: SyntheticMouseEvent<>) => void,
-    onMouseEnter: (e: SyntheticMouseEvent<>) => void,
-    onMouseLeave: () => void,
-    onMouseDown: () => void,
-    onMouseUp: (e: SyntheticMouseEvent<>) => void,
-    onDragStart: (e: SyntheticMouseEvent<>) => void,
-    onTouchStart: () => void,
-    onTouchEnd: () => void,
-    onTouchCancel: () => void,
-    onKeyDown: (e: SyntheticKeyboardEvent<*>) => void,
-    onKeyUp: (e: SyntheticKeyboardEvent<*>) => void,
-    onFocus: (e: SyntheticFocusEvent<*>) => void,
-    onBlur: (e: SyntheticFocusEvent<*>) => void,
+    onClick: (e: SyntheticMouseEvent<>) => mixed,
+    onMouseEnter: (e: SyntheticMouseEvent<>) => mixed,
+    onMouseLeave: () => mixed,
+    onMouseDown: () => mixed,
+    onMouseUp: (e: SyntheticMouseEvent<>) => mixed,
+    onDragStart: (e: SyntheticMouseEvent<>) => mixed,
+    onTouchStart: () => mixed,
+    onTouchEnd: () => mixed,
+    onTouchCancel: () => mixed,
+    onKeyDown: (e: SyntheticKeyboardEvent<*>) => mixed,
+    onKeyUp: (e: SyntheticKeyboardEvent<*>) => mixed,
+    onFocus: (e: SyntheticFocusEvent<*>) => mixed,
+    onBlur: (e: SyntheticFocusEvent<*>) => mixed,
     tabIndex: number,
 |};
 

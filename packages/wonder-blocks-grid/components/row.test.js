@@ -13,11 +13,16 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 describe("Row", () => {
     beforeEach(() => {
         unmountAll();
+
+        // eslint-disable-next-line no-console
+        console.error.mockRestore && console.error.mockRestore();
     });
 
     describe("large", () => {
         it("should render Cells with largeCols and cols", () => {
             // Arrange
+
+            // Act
             const wrapper = mount(
                 <div>
                     <MediaLayoutContext.Provider
@@ -36,8 +41,6 @@ describe("Row", () => {
                     </MediaLayoutContext.Provider>
                 </div>,
             );
-
-            // Act
             const text = wrapper.text();
 
             // Assert
@@ -72,15 +75,14 @@ describe("Row", () => {
 
             // Act, Assert
             expect(render).toThrow();
-
-            // eslint-disable-next-line no-console
-            console.error.mockRestore();
         });
     });
 
     describe("medium", () => {
         it("should render Cells with largeCols and cols", async () => {
             // Arrange
+
+            // Act
             const wrapper = mount(
                 <div>
                     <MediaLayoutContext.Provider
@@ -99,8 +101,6 @@ describe("Row", () => {
                     </MediaLayoutContext.Provider>
                 </div>,
             );
-
-            // Act
             const text = wrapper.text();
 
             // Assert
@@ -135,15 +135,14 @@ describe("Row", () => {
 
             // Act, Assert
             expect(render).toThrow();
-
-            // eslint-disable-next-line no-console
-            console.error.mockRestore();
         });
     });
 
     describe("small", () => {
         it("should render Cells with largeCols and cols", () => {
             // Arrange
+
+            // Act
             const wrapper = mount(
                 <div>
                     <MediaLayoutContext.Provider
@@ -162,8 +161,6 @@ describe("Row", () => {
                     </MediaLayoutContext.Provider>
                 </div>,
             );
-
-            // Act
             const text = wrapper.text();
 
             // Assert
@@ -198,9 +195,6 @@ describe("Row", () => {
 
             // Act, Assert
             expect(render).toThrow();
-
-            // eslint-disable-next-line no-console
-            console.error.mockRestore();
         });
     });
 });
