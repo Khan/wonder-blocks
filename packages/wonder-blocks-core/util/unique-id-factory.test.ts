@@ -1,5 +1,5 @@
 // @flow
-import UniqueIDFactory from "./unique-id-factory.js";
+import UniqueIDFactory from "./unique-id-factory";
 
 describe("UniqueIDFactory", () => {
     describe("#constructor", () => {

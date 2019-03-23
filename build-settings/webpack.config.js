@@ -8,6 +8,7 @@ const fs = require("fs");
 const path = require("path");
 
 const babelOptions = require("./babel.config.js");
+const tsBabelOptions = require("./ts.babel.config.js");
 
 const packages = fs
     .readdirSync(path.join(process.cwd(), "packages"))
@@ -23,7 +24,9 @@ const genWebpackConfig = function(subPkgRoot) {
         : [];
 
     return {
-        entry: path.join(subPkgRoot, "index.js"),
+        entry: pkgJson.types === "dist/index.d.ts"
+            ? path.join(subPkgRoot, "index.ts")
+            : path.join(subPkgRoot, "index.js"),
         output: {
             libraryTarget: "commonjs2",
             filename: path.relative(
@@ -43,7 +46,20 @@ const genWebpackConfig = function(subPkgRoot) {
                         options: babelOptions,
                     },
                 },
+                // Note: sometimes webpack warns about exports it can't find
+                // https://github.com/webpack/webpack/issues/7378
+                {
+                    test: /\.ts[x]?$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: "babel-loader",
+                        options: tsBabelOptions,
+                    },
+                }
             ],
+        },
+        resolve: {
+            extensions: ['.tsx', '.ts', '.js']
         },
         optimization: {
             minimize: false,

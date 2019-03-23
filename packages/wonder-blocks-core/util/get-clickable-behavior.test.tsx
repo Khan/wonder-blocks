@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter} from "react-router-dom";
-import ClickableBehavior from "../components/clickable-behavior.js";
-import getClickableBehavior from "./get-clickable-behavior.js";
+import ClickableBehavior from "../components/clickable-behavior";
+import getClickableBehavior from "./get-clickable-behavior";
 
 describe("getClickableBehavior", () => {
     test("Without href, returns ClickableBehavior", () => {
@@ -69,6 +69,11 @@ describe("getClickableBehavior", () => {
                     );
 
                     // Assert
+                    /**
+                     * Property 'displayName' does not exist on type 'typeof ClickableBehavior | ComponentClass<Pick<any, string | number | symbol>, any>'.
+  Property 'displayName' does not exist on type 'typeof ClickableBehavior'.ts(2339)
+                     */
+                    // @ts-ignore
                     expect(result.displayName).toBe(expectation);
                 });
             });
@@ -84,6 +89,11 @@ describe("getClickableBehavior", () => {
                 const result = getClickableBehavior(url, skipClientNav, router);
 
                 // Assert
+                /**
+                 * Property 'displayName' does not exist on type 'typeof ClickableBehavior | ComponentClass<Pick<any, string | number | symbol>, any>'.
+  Property 'displayName' does not exist on type 'typeof ClickableBehavior'.ts(2339)
+                 */
+                // @ts-ignore
                 expect(result.displayName).toBe(expectation);
             });
 

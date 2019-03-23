@@ -11,10 +11,10 @@
  */
 import {withRouter} from "react-router-dom";
 
-import ClickableBehavior from "../components/clickable-behavior.js";
-import isExternalUrl from "./is-external-url.js";
+import ClickableBehavior from "../components/clickable-behavior";
+import isExternalUrl from "./is-external-url";
 
-const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
+const ClickableBehaviorWithRouter = withRouter<any>(ClickableBehavior);
 
 export default function getClickableBehavior(
     /**

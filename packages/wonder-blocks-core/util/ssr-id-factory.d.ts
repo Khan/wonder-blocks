@@ -1,6 +1,4 @@
-// @flow
-import type {IIdentifierFactory} from "./types.js";
-
+import { IIdentifierFactory } from "./types";
 /**
  * This is NOT for direct use. Instead, see the UniqueIDProvider component.
  *
@@ -11,12 +9,9 @@ import type {IIdentifierFactory} from "./types.js";
  * The identifiers are not guaranteed to be unique, but they will match between
  * server and the first client render.
  */
-class SsrIDFactory implements IIdentifierFactory {
-    static Default = new SsrIDFactory();
-
-    get(id: string) {
-        return id;
-    }
+declare class SsrIDFactory implements IIdentifierFactory {
+    static Default: SsrIDFactory;
+    get(id: string): string;
 }
-
-export default SsrIDFactory.Default;
+declare const _default: SsrIDFactory;
+export default _default;

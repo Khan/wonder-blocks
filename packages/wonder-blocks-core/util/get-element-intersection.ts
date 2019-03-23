@@ -1,5 +1,5 @@
 // @flow
-import enumerateScrollAncestors from "./enumerate-scroll-ancestors.js";
+import enumerateScrollAncestors from "./enumerate-scroll-ancestors";
 
 /**
  * Indicates the intersection state of an item on a single axis.
@@ -17,13 +17,13 @@ export type AxisIntersection =
 /**
  * Indicates the visibility of an item on the horizontal and vertical axes.
  */
-export type Intersection = {|
+export type Intersection = {
     // The intersection on the horizontal axis.
-    horizontal: ?AxisIntersection,
+    horizontal: AxisIntersection | null,
 
     // The intersection on the vertical axis.
-    vertical: ?AxisIntersection,
-|};
+    vertical: AxisIntersection | null,
+};
 
 function UndeterminedIntersection() {
     return {
@@ -32,21 +32,21 @@ function UndeterminedIntersection() {
     };
 }
 
-function FullIntersection() {
+function FullIntersection(): Intersection {
     return {
         horizontal: "within",
         vertical: "within",
     };
 }
 
-type Rect = {|
+type Rect = {
     top: number,
     bottom: number,
     left: number,
     right: number,
     width: number,
     height: number,
-|};
+};
 
 function getAxisIntersection(
     intersectingRect: ClientRect | DOMRect,
@@ -79,9 +79,7 @@ function getElementIntersectionAgainstParent(
     // element isn't clipping or otherwise hiding things outside its bounds,
     // then checking against bounds isn't going to be much use.
     // So, let's get the style for the element and use the overflow values.
-    const style =
-        ((boundsElement: any).currentStyle: ?CSSStyleDeclaration) ||
-        window.getComputedStyle(boundsElement);
+    const style = window.getComputedStyle(boundsElement);
 
     const boundsRect = {...boundsElement.getBoundingClientRect()};
 
@@ -91,7 +89,7 @@ function getElementIntersectionAgainstParent(
     // of the body to corect the bounds.
     // TODO(kevinb): screenshot test this
     if (boundsElement === document.body) {
-        boundsRect.height = (boundsElement: any).scrollHeight;
+        boundsRect.height = boundsElement.scrollHeight;
         boundsRect.bottom = boundsRect.top + boundsRect.height;
     }
 

@@ -3,7 +3,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
-import enumerateScrollAncestors from "./enumerate-scroll-ancestors.js";
+import enumerateScrollAncestors from "./enumerate-scroll-ancestors";
 
 describe("enumerateScrollAncestors", () => {
     beforeEach(() => {
@@ -12,7 +12,7 @@ describe("enumerateScrollAncestors", () => {
 
     test("@@iterator() method returns iterator", () => {
         // Arrange
-        const enumerator = enumerateScrollAncestors((null: any));
+        const enumerator = enumerateScrollAncestors(null);
 
         // Act
         // Flow doesn't want us to index  $FlowFixMe
@@ -29,7 +29,7 @@ describe("enumerateScrollAncestors", () => {
 
     test("if passed an invalid parameter, yields nothing", () => {
         // Arrange
-        const param = (("this is not an element": any): Element);
+        const param = ("this is not an element" as any) as Element;
 
         // Act
         const result = Array.from(enumerateScrollAncestors(param));
@@ -52,7 +52,7 @@ describe("enumerateScrollAncestors", () => {
 
         const actAndAssert = (ref) => {
             if (ref) {
-                const domNode = ((ReactDOM.findDOMNode(ref): any): Element);
+                const domNode = ReactDOM.findDOMNode(ref);
 
                 // Act
                 const result = Array.from(enumerateScrollAncestors(domNode));
@@ -87,7 +87,7 @@ describe("enumerateScrollAncestors", () => {
 
         const actAndAssert = (ref) => {
             if (ref) {
-                const domNode = ((ReactDOM.findDOMNode(ref): any): Element);
+                const domNode = ReactDOM.findDOMNode(ref);
 
                 // Act
                 const result = Array.from(enumerateScrollAncestors(domNode));

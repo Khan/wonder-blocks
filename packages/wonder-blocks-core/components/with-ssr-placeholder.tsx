@@ -1,17 +1,17 @@
 // @flow
-import * as React from "react";
+import React, {ReactNode} from "react";
 
 /**
  * We use render functions so that we don't do any work unless we need to.
  * This avoids rendering but not mounting potentially complex component trees.
  */
-type Props = {|
+type Props = {
     /**
      * The content that is client-only.  This is what is rendered when
      * not server-side rendering, or (when server-side rendering) after
      * the initial rehydration has finished.
      */
-    children: () => ?React.Node,
+    children: () => ReactNode | null,
 
     /**
      * What to render during server-side rendering, or null not to
@@ -22,12 +22,12 @@ type Props = {|
      * the server-side renderer and the rehydration -- or it defeats
      * the purpose of using the WithSSRPlaceholder component.
      */
-    placeholder: ?() => ?React.Node,
-|};
+    placeholder: (() => ReactNode | null) | null,
+};
 
-type State = {|
+type State = {
     mounted: boolean,
-|};
+};
 
 type RenderState = "root" | "initial" | "standard";
 /**

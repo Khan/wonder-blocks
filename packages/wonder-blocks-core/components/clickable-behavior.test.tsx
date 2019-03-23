@@ -1,9 +1,9 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {shallow} from "enzyme";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
-import ClickableBehavior from "./clickable-behavior.js";
+import ClickableBehavior from "./clickable-behavior";
 
 const keyCodes = {
     tab: 9,

@@ -1,8 +1,7 @@
 // @flow
-import {StyleSheet, css} from "aphrodite";
-import type {CSSProperties} from "aphrodite";
+import {StyleSheet, CSSProperties, css} from "aphrodite";
 
-import type {StyleType} from "./types.js";
+import {StyleType} from "./types";
 
 function flatten(list?: StyleType): Array<CSSProperties> {
     const result: Array<CSSProperties> = [];
@@ -14,6 +13,14 @@ function flatten(list?: StyleType): Array<CSSProperties> {
             result.push(...flatten(item));
         }
     } else {
+        /**
+         * error TS2345: Argument of type 'OpenCSSProperties | NestedArray<false | void | 0 | OpenCSSProperties>' is not assignable to parameter of type 'CSSProperties'.
+  Type 'NestedArray<false | void | 0 | OpenCSSProperties>' is not assignable to type 'CSSProperties'.
+    Type 'NestedArray<false | void | 0 | OpenCSSProperties>' is not assignable to type 'Pick<Properties<string | number>, "all" | "left" | "right" | "top" | "bottom" | "font" | "clipPath" | "cursor" | "filter" | "marker" | "mask" | "resize" | "color" | "contain" | ... 720 more ... | "vectorEffect">'.
+      Types of property 'filter' are incompatible.
+        Type '{ <S extends StyleType>(callbackfn: (value: StyleType, index: number, array: ReadonlyArray<StyleType>) => value is S, thisArg?: any): S[]; (callbackfn: (value: StyleType, index: number, array: ReadonlyArray<StyleType>) => any, thisArg?: any): StyleType[]; }' is not assignable to type 'string'.
+         */
+        // @ts-ignore
         result.push(list);
     }
 
@@ -21,8 +28,8 @@ function flatten(list?: StyleType): Array<CSSProperties> {
 }
 
 export function processStyleList(style?: StyleType) {
-    const stylesheetStyles = [];
-    const inlineStyles = [];
+    const stylesheetStyles: any[] = [];
+    const inlineStyles: any[] = [];
 
     if (!style) {
         return {
@@ -32,12 +39,13 @@ export function processStyleList(style?: StyleType) {
     }
 
     // Check to see if we should inline all the styles for snapshot tests.
-    const shouldInlineStyles =
+    const shouldInlineStyles: boolean =
+        // @ts-ignore - TODO: pass this in from jest in a typesafe way
         typeof global !== "undefined" && global.SNAPSHOT_INLINE_APHRODITE;
 
-    flatten(style).forEach((child) => {
+    flatten(style).forEach((child: any) => {
         // Check for aphrodite internal property
-        if ((child: any)._definition) {
+        if (child._definition) {
             if (shouldInlineStyles) {
                 const def = {};
                 // React 16 complains about invalid keys in inline styles.

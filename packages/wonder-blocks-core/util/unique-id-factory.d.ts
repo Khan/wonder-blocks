@@ -1,6 +1,4 @@
-// @flow
-import type {IIdentifierFactory} from "./types.js";
-
+import { IIdentifierFactory } from "./types";
 /**
  * This is NOT for direct use. Instead, see the UniqueIDProvider component.
  *
@@ -8,9 +6,7 @@ import type {IIdentifierFactory} from "./types.js";
  */
 export default class UniqueIDFactory implements IIdentifierFactory {
     _uniqueFactoryName: string;
-
-    static _factoryUniquenessCounter = 0;
-
+    static _factoryUniquenessCounter: number;
     /**
      * Creates a UniqueIDFactory instance.
      *
@@ -20,30 +16,14 @@ export default class UniqueIDFactory implements IIdentifierFactory {
      * differentiating elements when debugging the DOM. This must contain only
      * hyphen and alphanumeric characters.
      */
-    constructor(scope?: string) {
-        scope = typeof scope === "string" ? scope : "";
-        const normalizedScope = scope.toLowerCase();
-        if (!this._hasValidIdChars(normalizedScope)) {
-            throw new Error(`Invalid factory scope: ${scope}`);
-        }
-        this._uniqueFactoryName = `uid-${normalizedScope}-${UniqueIDFactory._factoryUniquenessCounter++}`;
-    }
-
+    constructor(scope?: string);
     /**
      * This method verifies that a string contains valid characters for an
      * identifier. It does not assert that a string IS a valid identifier (for
      * example, that it doesn't start with numbers). We don't need to do that
      * here because all identifiers are prefixed to avoid needing that check.
      */
-    _hasValidIdChars(value: ?string) {
-        if (typeof value !== "string") {
-            return false;
-        }
-
-        const invalidCharsReplaced = value.replace(/[^\d\w-]/g, "-");
-        return value === invalidCharsReplaced;
-    }
-
+    _hasValidIdChars(value: string | null): boolean;
     /**
      * Provides a unique identifier with the given key.
      *
@@ -53,11 +33,5 @@ export default class UniqueIDFactory implements IIdentifierFactory {
      * key in this factory. This must contain only hyphen and alphanumeric
      * characters.
      */
-    get = (key: string) => {
-        const normalizedKey = key.toLowerCase();
-        if (!this._hasValidIdChars(key)) {
-            throw new Error(`Invalid identifier key: ${key}`);
-        }
-        return `${this._uniqueFactoryName}-${normalizedKey}`;
-    };
+    get: (key: string) => string;
 }

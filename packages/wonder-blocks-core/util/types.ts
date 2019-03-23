@@ -1,14 +1,16 @@
 // @flow
-import * as React from "react";
+import React, {MouseEvent, KeyboardEvent, TouchEvent, FormEvent, FocusEvent, ReactNode} from "react";
 
-import type {CSSProperties} from "aphrodite";
+import {OpenCSSProperties} from "aphrodite";
 
-type NestedArray<T> = $ReadOnlyArray<T | NestedArray<T>>;
 type Falsy = false | 0 | null | void;
+
+interface NestedArray<T> extends ReadonlyArray<T | NestedArray<T>> { };
+
 export type StyleType =
-    | CSSProperties
+    | OpenCSSProperties
     | Falsy
-    | NestedArray<CSSProperties | Falsy>;
+    | NestedArray<OpenCSSProperties | Falsy>;
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/roles#role_definitions
 type roles =
@@ -87,26 +89,26 @@ type roles =
     | "window";
 
 type IdRef = string;
-type IdRefList = IdRef | Array<IdRef>;
+type IdRefList = IdRef; //  | Array<IdRef>;
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
 // TODO(kevinb): convert to disjoint union of exact object types keyed on role
 // eslint-disable-next-line flowtype/require-exact-type
-export type AriaProps = {|
+export type AriaProps = {
     role?: roles,
     "aria-activedescendant"?: IdRef,
     "aria-atomic"?: "false" | "true",
     "aria-autocomplete"?: "both" | "inline" | "list" | "none",
     "aria-busy"?: "true" | "false",
-    "aria-checked"?: "false" | "mixed" | "true" | "undefined",
+    "aria-checked"?: "false" | "mixed" | "true" | boolean,
     "aria-controls"?: IdRefList,
     "aria-describedat"?: string, // URI
     "aria-describedby"?: IdRefList,
     "aria-disabled"?: "false" | "true",
     "aria-dropeffect"?: "copy" | "execute" | "link" | "move" | "none" | "popup",
-    "aria-expanded"?: "false" | "true" | "undefined",
+    "aria-expanded"?: "false" | "true" | boolean,
     "aria-flowto"?: IdRefList,
-    "aria-grabbed"?: "false" | "true" | "undefined",
+    "aria-grabbed"?: "false" | "true" | boolean,
     "aria-haspopup"?: "false" | "true",
     "aria-hidden"?: "false" | "true",
     "aria-invalid"?: "grammar" | "false" | "spelling" | "true",
@@ -119,72 +121,68 @@ export type AriaProps = {|
     "aria-orientation"?: "horizontal" | "vertical",
     "aria-owns"?: IdRefList,
     "aria-posinset"?: number, // integer
-    "aria-pressed"?: "false" | "mixed" | "true" | "undefined",
+    "aria-pressed"?: "false" | "mixed" | "true" | boolean,
     "aria-readonly"?: "false" | "true",
-    "aria-relevant"?: void, // Not using aria-relevant is a best practice
+    "aria-relevant"?: "text" | "all" | "additions" | "additions text" | "removals", // Not using aria-relevant is a best practice
     "aria-required"?: "false" | "true",
-    "aria-selected"?: "false" | "true" | "undefined",
+    "aria-selected"?: "false" | "true" | boolean,
     "aria-setsize"?: number, // integer
     "aria-sort"?: "ascending" | "descending" | "none" | "other",
     "aria-valuemax"?: number,
     "aria-valuemin"?: number,
     "aria-valuenow"?: number,
     "aria-valuetext"?: string,
-|};
+};
 
-type MouseEvents = {|
-    onMouseDown?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseUp?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseMove?: (e: SyntheticMouseEvent<*>) => mixed,
-    onClick?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDoubleClick?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseEnter?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseLeave?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseOut?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseOver?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDrag?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragEnd?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragEnter?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragExit?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragLeave?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragOver?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragStart?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDrop?: (e: SyntheticMouseEvent<*>) => mixed,
-|};
+type MouseEvents = {
+    onMouseDown?: (e: MouseEvent) => unknown,
+    onMouseUp?: (e: MouseEvent) => unknown,
+    onMouseMove?: (e: MouseEvent) => unknown,
+    onClick?: (e: MouseEvent) => unknown,
+    onDoubleClick?: (e: MouseEvent) => unknown,
+    onMouseEnter?: (e: MouseEvent) => unknown,
+    onMouseLeave?: (e: MouseEvent) => unknown,
+    onMouseOut?: (e: MouseEvent) => unknown,
+    onMouseOver?: (e: MouseEvent) => unknown,
+    onDrag?: (e: MouseEvent) => unknown,
+    onDragEnd?: (e: MouseEvent) => unknown,
+    onDragEnter?: (e: MouseEvent) => unknown,
+    onDragExit?: (e: MouseEvent) => unknown,
+    onDragLeave?: (e: MouseEvent) => unknown,
+    onDragOver?: (e: MouseEvent) => unknown,
+    onDragStart?: (e: MouseEvent) => unknown,
+    onDrop?: (e: MouseEvent) => unknown,
+};
 
-type KeyboardEvents = {|
-    onKeyDown?: (e: SyntheticKeyboardEvent<*>) => mixed,
-    onKeyPress?: (e: SyntheticKeyboardEvent<*>) => mixed,
-    onKeyUp?: (e: SyntheticKeyboardEvent<*>) => mixed,
-|};
+type KeyboardEvents = {
+    onKeyDown?: (e: KeyboardEvent) => unknown,
+    onKeyPress?: (e: KeyboardEvent) => unknown,
+    onKeyUp?: (e: KeyboardEvent) => unknown,
+};
 
-type InputEvents = {|
-    onChange?: (e: SyntheticInputEvent<*>) => mixed,
-    onInput?: (e: SyntheticInputEvent<*>) => mixed,
-    onInvalid?: (e: SyntheticInputEvent<*>) => mixed,
-    onSubmit?: (e: SyntheticInputEvent<*>) => mixed,
-|};
+type InputEvents = {
+    onChange?: (e: FormEvent) => unknown,
+    onInput?: (e: FormEvent) => unknown,
+    onInvalid?: (e: FormEvent) => unknown,
+    onSubmit?: (e: FormEvent) => unknown,
+};
 
-type TouchEvents = {|
-    onTouchCancel?: (e: SyntheticTouchEvent<*>) => mixed,
-    onTouchEnd?: (e: SyntheticTouchEvent<*>) => mixed,
-    onTouchMove?: (e: SyntheticTouchEvent<*>) => mixed,
-    onTouchStart?: (e: SyntheticTouchEvent<*>) => mixed,
-|};
+type TouchEvents = {
+    onTouchCancel?: (e: TouchEvent) => unknown,
+    onTouchEnd?: (e: TouchEvent) => unknown,
+    onTouchMove?: (e: TouchEvent) => unknown,
+    onTouchStart?: (e: TouchEvent) => unknown,
+};
 
-type FocusEvents = {|
-    onFocus?: (e: SyntheticFocusEvent<*>) => mixed,
-    onBlur?: (e: SyntheticFocusEvent<*>) => mixed,
-|};
+type FocusEvents = {
+    onFocus?: (e: FocusEvent) => unknown,
+    onBlur?: (e: FocusEvent) => unknown,
+};
 
-type EventHandlers = {|
-    ...MouseEvents,
-    ...KeyboardEvents,
-    ...InputEvents,
-    ...TouchEvents,
-    ...FocusEvents,
+type EventHandlers =
+    MouseEvents & KeyboardEvents & InputEvents & TouchEvents & FocusEvents;
     // TODO: add remaining supported events https://reactjs.org/docs/events.html#supported-events
-|};
+
 
 // Props shared between Text and View components.
 // NOTE(jeresig): We want to leave the props for these open so that we can
@@ -194,7 +192,7 @@ export type TextViewSharedProps = {
     /**
      * Text to appear on the button.
      */
-    children?: React.Node,
+    children?: ReactNode,
 
     /**
      * Optional custom styles.
@@ -215,11 +213,7 @@ export type TextViewSharedProps = {
 
     // Used by tooltip bubble
     "data-placement"?: string,
-
-    ...AriaProps,
-
-    ...EventHandlers,
-};
+} & AriaProps & EventHandlers;
 
 /**
  * Interface implemented by types that can provide identifiers.

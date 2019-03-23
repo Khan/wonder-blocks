@@ -11,6 +11,9 @@ const fs = require("fs");
 const packages = fs.readdirSync(path.join(__dirname, "../packages"));
 
 for (const pkg of packages) {
+    if (pkg.types === "dist/index.d.ts") {
+        continue;
+    }
     // eslint-disable-next-line no-console
     console.log(`copying flow files in ${pkg}`);
     const filename = path.join(

@@ -31,7 +31,7 @@ const canScroll = function(node: Element) {
 // iterator property itself. $FlowFixMe
 class ScrollAncestorsIterator implements Iterator<Element> {
     done: boolean = false;
-    parentElement: ?Element;
+    parentElement: Element | null;
 
     constructor(element: Element) {
         if (!(element instanceof HTMLElement)) {
@@ -46,13 +46,13 @@ class ScrollAncestorsIterator implements Iterator<Element> {
         return this;
     }
 
-    next(): IteratorResult<Element, void> {
+    next(): IteratorResult<Element> {
         if (this.done) {
-            return {done: true};
+            return {done: true, value: undefined};
         }
 
         // Climb the DOM looking for the next scroll candidate.
-        let scrollCandidate: ?Element;
+        let scrollCandidate: Element | null;
         do {
             scrollCandidate = this.parentElement;
             this.parentElement =
@@ -68,14 +68,14 @@ class ScrollAncestorsIterator implements Iterator<Element> {
             // If we don't have a documentElement, we are actually done right
             // now, rather than on the next call.
             if (!document.documentElement) {
-                return {done: true};
+                return {done: true, value: undefined};
             }
 
             // Otherwise, as we have a documentElement, this is our penultimate
             // iteration .
             return {
                 done: false,
-                value: (document.documentElement: Element),
+                value: document.documentElement,
             };
         }
 

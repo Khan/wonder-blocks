@@ -4,12 +4,12 @@ import * as ReactDOMServer from "react-dom/server.js";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
-import View from "./view.js";
+import View from "./view";
 
-import SsrIDFactory from "../util/ssr-id-factory.js";
-import UniqueIDFactory from "../util/unique-id-factory.js";
-import UniqueIDProvider from "./unique-id-provider.js";
-import WithSSRPlaceholder from "./with-ssr-placeholder.js";
+import SsrIDFactory from "../util/ssr-id-factory";
+import UniqueIDFactory from "../util/unique-id-factory";
+import UniqueIDProvider from "./unique-id-provider";
+import WithSSRPlaceholder from "./with-ssr-placeholder";
 
 describe("UniqueIDProvider", () => {
     beforeEach(() => {

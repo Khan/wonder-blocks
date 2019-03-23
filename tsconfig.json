@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "lib": ["dom", "es2018"],
+        "jsx": "react",
+
+        // This allows `import React, {Component} from "react"`
+        "allowSyntheticDefaultImports": true,
+
+        // Without this we can do `const element: Element = null` without an error
+        "strictNullChecks": true,
+    }
+}

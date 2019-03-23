@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 
 // NOTE: Potentially add to this as more cases come up.
 type ClickableRole =
@@ -12,7 +12,7 @@ type ClickableRole =
     | "menuitem"
     | "menu";
 
-const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
+const getAppropriateTriggersForRole = (role: ClickableRole | null | undefined) => {
     switch (role) {
         // Triggers on ENTER, but not SPACE
         case "link":
@@ -41,14 +41,14 @@ const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
     }
 };
 
-type Props = {|
+type Props = {
     /**
      * A function that returns the a React `Element`.
      *
      * The React `Element` returned should take in this component's state
      * (`{hovered, focused, pressed}`) as props.
      */
-    children: (state: State, handlers: ClickableHandlers) => React$Element<*>,
+    children: (state: State, handlers: ClickableHandlers) => React.ReactElement,
 
     /**
      * Whether the component is disabled.
@@ -72,7 +72,7 @@ type Props = {|
     /**
      * A function to be executed `onclick`.
      */
-    onClick?: (e: SyntheticEvent<>) => mixed,
+    onClick?: (e: React.MouseEvent) => unknown,
 
     /**
      * Passed in by withRouter HOC.
@@ -87,9 +87,9 @@ type Props = {|
      * enter and space keys.
      */
     role?: ClickableRole,
-|};
+};
 
-type State = {|
+type State = {
     /**
      * Whether the component is hovered.
      *
@@ -110,24 +110,24 @@ type State = {|
      * See component documentation for more details.
      */
     pressed: boolean,
-|};
+};
 
-export type ClickableHandlers = {|
-    onClick: (e: SyntheticMouseEvent<>) => mixed,
-    onMouseEnter: (e: SyntheticMouseEvent<>) => mixed,
-    onMouseLeave: () => mixed,
-    onMouseDown: () => mixed,
-    onMouseUp: (e: SyntheticMouseEvent<>) => mixed,
-    onDragStart: (e: SyntheticMouseEvent<>) => mixed,
-    onTouchStart: () => mixed,
-    onTouchEnd: () => mixed,
-    onTouchCancel: () => mixed,
-    onKeyDown: (e: SyntheticKeyboardEvent<*>) => mixed,
-    onKeyUp: (e: SyntheticKeyboardEvent<*>) => mixed,
-    onFocus: (e: SyntheticFocusEvent<*>) => mixed,
-    onBlur: (e: SyntheticFocusEvent<*>) => mixed,
+export type ClickableHandlers = {
+    onClick: (e: React.MouseEvent) => unknown,
+    onMouseEnter: (e: React.MouseEvent) => unknown,
+    onMouseLeave: (e: React.MouseEvent) => unknown,
+    onMouseDown: (e: React.MouseEvent) => unknown,
+    onMouseUp: (e: React.MouseEvent) => unknown,
+    onDragStart: (e: React.MouseEvent) => unknown,
+    onTouchStart: (e: React.TouchEvent) => unknown,
+    onTouchEnd: (e: React.TouchEvent) => unknown,
+    onTouchCancel: (e: React.TouchEvent) => unknown,
+    onKeyDown: (e: React.KeyboardEvent) => unknown,
+    onKeyUp: (e: React.KeyboardEvent) => unknown,
+    onFocus: (e: React.FocusEvent) => unknown,
+    onBlur: (e: React.FocusEvent) => unknown,
     tabIndex: number,
-|};
+};
 
 const disabledHandlers = {
     onClick: () => void 0,
@@ -263,7 +263,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         this.dragging = false;
     }
 
-    handleClick = (e: SyntheticMouseEvent<>) => {
+    handleClick = (e: React.MouseEvent) => {
         if (this.enterClick) {
             return;
         } else if (this.props.onClick) {
@@ -272,7 +272,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         }
     };
 
-    handleMouseEnter = (e: SyntheticMouseEvent<>) => {
+    handleMouseEnter = (e: React.MouseEvent) => {
         // When the left button is pressed already, we want it to be pressed
         if (e.buttons === 1) {
             this.dragging = true;
@@ -282,18 +282,18 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         }
     };
 
-    handleMouseLeave = () => {
+    handleMouseLeave = (e: React.MouseEvent) => {
         if (!this.waitingForClick) {
             this.dragging = false;
             this.setState({hovered: false, pressed: false, focused: false});
         }
     };
 
-    handleMouseDown = () => {
+    handleMouseDown = (e: React.MouseEvent) => {
         this.setState({pressed: true});
     };
 
-    handleMouseUp = (e: SyntheticMouseEvent<>) => {
+    handleMouseUp = (e: React.MouseEvent) => {
         if (this.dragging) {
             this.dragging = false;
             this.handleClick(e);
@@ -301,26 +301,26 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         this.setState({pressed: false, focused: false});
     };
 
-    handleDragStart = (e: SyntheticMouseEvent<>) => {
+    handleDragStart = (e: React.MouseEvent) => {
         this.dragging = true;
         e.preventDefault();
     };
 
-    handleTouchStart = () => {
+    handleTouchStart = (e: React.TouchEvent) => {
         this.setState({pressed: true});
     };
 
-    handleTouchEnd = () => {
+    handleTouchEnd = (e: React.TouchEvent) => {
         this.setState({pressed: false});
         this.waitingForClick = true;
     };
 
-    handleTouchCancel = () => {
+    handleTouchCancel = (e: React.TouchEvent) => {
         this.setState({pressed: false});
         this.waitingForClick = true;
     };
 
-    handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {
+    handleKeyDown = (e: React.KeyboardEvent) => {
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
             this.props.role,
@@ -342,7 +342,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         }
     };
 
-    handleKeyUp = (e: SyntheticKeyboardEvent<*>) => {
+    handleKeyUp = (e: React.KeyboardEvent) => {
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
             this.props.role,
@@ -360,7 +360,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
 
             this.setState({pressed: false, focused: true});
             if (this.props.onClick) {
-                this.props.onClick(e);
+                this.props.onClick((e as any) as React.MouseEvent);
             }
             this.maybeNavigate();
         } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
@@ -368,11 +368,11 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         }
     };
 
-    handleFocus = (e: SyntheticFocusEvent<*>) => {
+    handleFocus = (e: React.FocusEvent) => {
         this.setState({focused: true});
     };
 
-    handleBlur = (e: SyntheticFocusEvent<*>) => {
+    handleBlur = (e: React.FocusEvent) => {
         this.setState({focused: false, pressed: false});
     };
 

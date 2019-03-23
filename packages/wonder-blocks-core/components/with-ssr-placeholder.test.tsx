@@ -2,9 +2,9 @@
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server.js";
 
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
+import {mount, unmountAll} from "../../../utils/testing/mount";
 
-import WithSSRPlaceholder from "./with-ssr-placeholder.js";
+import WithSSRPlaceholder from "./with-ssr-placeholder";
 
 describe("WithSSRPlaceholder", () => {
     beforeEach(() => {
