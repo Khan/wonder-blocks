@@ -4,9 +4,21 @@ import type {StyleDeclaration} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import MediaLayoutContext from "./media-layout-context.js";
-import {VALID_MEDIA_SIZES} from "../util/specs.js";
 import type {MediaSize, MediaSpec} from "../util/types.js";
 import type {Context} from "./media-layout-context.js";
+import {
+    MEDIA_DEFAULT_SPEC,
+    MEDIA_INTERNAL_SPEC,
+    MEDIA_MODAL_SPEC,
+} from "../util/specs.js";
+
+const queries = [
+    ...Object.values(MEDIA_DEFAULT_SPEC).map((spec: any) => spec.query),
+    ...Object.values(MEDIA_INTERNAL_SPEC).map((spec: any) => spec.query),
+    ...Object.values(MEDIA_MODAL_SPEC).map((spec: any) => spec.query),
+];
+
+const mediaQueryLists: {[key: string]: MediaQueryList} = {};
 
 // eslint-disable-next-line flowtype/require-exact-type
 export type MockStyleSheet = {
@@ -52,104 +64,74 @@ type State = {|
 // fall back to this state.
 const DEFAULT_SIZE = "large";
 
+type CombinedProps = {|...Props, ...Context|};
+
 /**
  * `MediaLayout` is responsible for changing the rendering of contents at
  * differently sized viewports.  `MediaLayoutContext.Provider` can be used
  * to specify different breakpoint configurations.  By default it uses
  * `MEDIA_DEFAULT_SPEC`.  See media-layout-context.js for additiional options.
  */
-export default class MediaLayout extends React.Component<Props, State> {
-    watchHandlers: ?{
-        [query: string]: any,
-    };
+class MediaLayoutInternal extends React.Component<CombinedProps, State> {
+    // A collection of thunks that's used to clean up event listeners
+    // when the component is unmounted.
+    cleanupThunks: Array<() => void>;
 
-    static WATCHERS: {
-        [query: string]: any,
-    } = {};
+    constructor(props: CombinedProps) {
+        super(props);
+        this.state = {
+            size: undefined,
+        };
+        this.cleanupThunks = [];
+    }
 
-    state = {
-        size: undefined,
-    };
+    componentDidMount() {
+        // TODO(WB-534): handle changes to mediaSpec prop
+        const entries = ((Object.entries(this.props.mediaSpec): any): Array<
+            [MediaSize, {query: string}],
+        >);
 
-    componentWillUnmount() {
-        // We go through the component and remove all of the listeners
-        // that getCurrentSize attached.
-        for (const query of Object.keys(MediaLayout.WATCHERS)) {
-            const watcher = MediaLayout.WATCHERS[query];
-
-            if (watcher && this.watchHandlers) {
-                const {watchHandlers} = this;
-                const handler = this.watchHandlers[query];
-                watcher.removeListener(handler);
-                delete watchHandlers[query];
+        for (const [size, spec] of entries) {
+            const mql = mediaQueryLists[spec.query];
+            // during SSR there are no MediaQueryLists
+            if (!mql) {
+                continue;
             }
+            const listener = (e) => {
+                if (e.matches) {
+                    this.setState({size});
+                }
+            };
+            mql.addListener(listener);
+            this.cleanupThunks.push(() => mql.removeListener(listener));
         }
     }
 
-    getCurrentSize(spec: MediaSpec) {
+    componentWillUnmount() {
+        // Remove our listeners.
+        this.cleanupThunks.forEach((cleaup) => cleaup());
+    }
+
+    getCurrentSize(spec: MediaSpec): MediaSize {
         // If we have a state with the current size in it then we always want
         // to use that. This will happen if the viewport changes sizes after
         // we've already initialized.
         if (this.state.size) {
             return this.state.size;
-        }
+        } else {
+            const entries = ((Object.entries(this.props.mediaSpec): any): Array<
+                [MediaSize, {query: string}],
+            >);
 
-        // watchHandlers should never be undefined when state.size is also
-        // undefined, but just in case we fall back to the default size
-        if (this.watchHandlers) {
-            return DEFAULT_SIZE;
-        }
-
-        // We then go through and set up matchMedia watchers for each breakpoint
-        // (if they haven't been created already) and we add listeners to
-        // watch for when the viewport changes size.
-        this.watchHandlers = {};
-
-        let matchedSize;
-
-        for (const size of VALID_MEDIA_SIZES) {
-            // Flow has issues with checking !spec[size] directly so we store
-            // spec[size] in a new variable to get around the issue.
-            const _spec = spec[size];
-            if (!_spec) {
-                continue;
-            }
-
-            const {query} = _spec;
-
-            // Don't watch sizes that don't have an associated query
-            if (!query) {
-                continue;
-            }
-
-            // Create a new matchMedia watcher if one doesn't exist yet
-            // TODO(kevinb): move this to componentWillMount
-            if (!MediaLayout.WATCHERS[query]) {
-                MediaLayout.WATCHERS[query] = window.matchMedia(query);
-            }
-
-            const watcher = MediaLayout.WATCHERS[query];
-
-            // Attach a handler that watches for the change, saving a
-            // references to it so we can remove it later
-            const handler = (this.watchHandlers[query] = (e) => {
-                if (e.matches) {
-                    this.setState({size});
+            for (const [size, spec] of entries) {
+                const mql = mediaQueryLists[spec.query];
+                if (mql.matches) {
+                    return size;
                 }
-            });
-
-            watcher.addListener(handler);
-
-            // If one of the watchers matches the current size, then save
-            // the size that was matched.
-            if (watcher.matches) {
-                matchedSize = size;
             }
         }
 
-        // If a size was never defined, or matched, then we return the default
-        // media layout size
-        return matchedSize || DEFAULT_SIZE;
+        return DEFAULT_SIZE;
     }
 
     // We assume that we're running on the server (or, at least, an unsupported
@@ -163,6 +145,7 @@ export default class MediaLayout extends React.Component<Props, State> {
     // We do this by looking at all of the stylesheets specified in the
     // styleSheets prop and then all of the individual styles. We merge the
     // styles together
+    // TODO(WB-533): move to util.js to make it easier to test
     getMockStyleSheet(mediaSize: MediaSize) {
         const {styleSheets} = this.props;
 
@@ -215,8 +198,18 @@ export default class MediaLayout extends React.Component<Props, State> {
         return mockStyleSheet;
     }
 
-    renderChildren({overrideSize, ssrSize, mediaSpec}: Context) {
-        const {children} = this.props;
+    render() {
+        const {children, mediaSpec, ssrSize, overrideSize} = this.props;
+
+        // We need to create the MediaQueryLists during the first render in order
+        // to query whether any of them match.
+        if (!this.isServerSide()) {
+            for (const query of queries.filter(
+                (query) => !mediaQueryLists[query],
+            )) {
+                mediaQueryLists[query] = window.matchMedia(query);
+            }
+        }
 
         // We need to figure out what the current media size is
         // If an override has been specified, we use that.
@@ -234,14 +227,24 @@ export default class MediaLayout extends React.Component<Props, State> {
 
         return children({mediaSize, mediaSpec, styles});
     }
+}
 
+// gen-snapshot-tests.js only understands `export default class ...`
+export default class MediaLayout extends React.Component<Props> {
     render() {
         // We listen to the MediaLayoutContext to see what defaults we're
         // being given (this can be overriden by wrapping this component in
         // a MediaLayoutContext.Consumer).
         return (
             <MediaLayoutContext.Consumer>
-                {(contextValue) => this.renderChildren(contextValue)}
+                {({overrideSize, ssrSize, mediaSpec}) => (
+                    <MediaLayoutInternal
+                        {...this.props}
+                        overrideSize={overrideSize}
+                        ssrSize={ssrSize}
+                        mediaSpec={mediaSpec}
+                    />
+                )}
             </MediaLayoutContext.Consumer>
         );
     }
