@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -19,7 +19,7 @@
     "@khanacademy/wonder-blocks-core": "^2.2.0",
     "@khanacademy/wonder-blocks-icon": "^1.1.2",
     "@khanacademy/wonder-blocks-icon-button": "^3.1.2",
-    "@khanacademy/wonder-blocks-layout": "^1.3.0",
+    "@khanacademy/wonder-blocks-layout": "^1.3.1",
     "@khanacademy/wonder-blocks-toolbar": "^2.1.2",
     "@khanacademy/wonder-blocks-typography": "^1.1.2"
   },
