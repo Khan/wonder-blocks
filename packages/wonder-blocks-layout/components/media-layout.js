@@ -88,9 +88,11 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 
     componentDidMount() {
         // TODO(WB-534): handle changes to mediaSpec prop
-        for (const [size, spec] of ((Object.entries(
-            this.props.mediaSpec,
-        ): any): Array<[MediaSize, {query: string}]>)) {
+        const entries = ((Object.entries(this.props.mediaSpec): any): Array<
+            [MediaSize, {query: string}],
+        >);
+
+        for (const [size, spec] of entries) {
             const mql = MEDIA_QUERY_LISTS[spec.query];
             // during SSR there are no MediaQueryLists
             if (!mql) {
@@ -107,7 +109,8 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
     }
 
     componentWillUnmount() {
-        this.cleanupThunks.map((thunk) => thunk());
+        // Remove our listeners.
+        this.cleanupThunks.forEach((cleaup) => cleaup());
     }
 
     getCurrentSize(spec: MediaSpec): MediaSize {
@@ -117,9 +120,11 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         if (this.state.size) {
             return this.state.size;
         } else {
-            for (const [size, spec] of ((Object.entries(
-                this.props.mediaSpec,
-            ): any): Array<[MediaSize, {query: string}]>)) {
+            const entries = ((Object.entries(this.props.mediaSpec): any): Array<
+                [MediaSize, {query: string}],
+            >);
+
+            for (const [size, spec] of entries) {
                 const mql = MEDIA_QUERY_LISTS[spec.query];
                 if (mql.matches) {
                     return size;
@@ -199,8 +204,10 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 
         // We need to create the MediaQueryLists during the first render in order
         // to query whether any of them match.
-        for (const query of queries) {
-            if (!MEDIA_QUERY_LISTS[query] && !this.isServerSide()) {
+        if (!this.isServerSide()) {
+            for (const query of queries.filter(
+                (query) => !MEDIA_QUERY_LISTS[query],
+            )) {
                 MEDIA_QUERY_LISTS[query] = window.matchMedia(query);
             }
         }
