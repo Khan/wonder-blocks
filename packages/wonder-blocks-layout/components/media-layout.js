@@ -6,22 +6,19 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import MediaLayoutContext from "./media-layout-context.js";
 import type {MediaSize, MediaSpec} from "../util/types.js";
 import type {Context} from "./media-layout-context.js";
+import {
+    MEDIA_DEFAULT_SPEC,
+    MEDIA_INTERNAL_SPEC,
+    MEDIA_MODAL_SPEC,
+} from "../util/specs.js";
 
 const queries = [
-    // normal queries
-    "(max-width: 767px)", // small
-    "(min-width: 768px) and (max-width: 1023px)", // medium
-    "(min-width: 1024px)", // large
-
-    // internal tools
-    "(min-width: 1px)", // large
-
-    // modal queries
-    "(max-width: 767px)", // small
-    "(min-width: 768px)", // large
+    ...Object.values(MEDIA_DEFAULT_SPEC).map((spec: any) => spec.query),
+    ...Object.values(MEDIA_INTERNAL_SPEC).map((spec: any) => spec.query),
+    ...Object.values(MEDIA_MODAL_SPEC).map((spec: any) => spec.query),
 ];
 
-const MEDIA_QUERY_LISTS: {[key: string]: MediaQueryList} = {};
+const mediaQueryLists: {[key: string]: MediaQueryList} = {};
 
 // eslint-disable-next-line flowtype/require-exact-type
 export type MockStyleSheet = {
@@ -76,6 +73,8 @@ type CombinedProps = {|...Props, ...Context|};
  * `MEDIA_DEFAULT_SPEC`.  See media-layout-context.js for additiional options.
  */
 class MediaLayoutInternal extends React.Component<CombinedProps, State> {
+    // A collection of thunks that's used to clean up event listeners
+    // when the component is unmounted.
     cleanupThunks: Array<() => void>;
 
     constructor(props: CombinedProps) {
@@ -93,7 +92,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         >);
 
         for (const [size, spec] of entries) {
-            const mql = MEDIA_QUERY_LISTS[spec.query];
+            const mql = mediaQueryLists[spec.query];
             // during SSR there are no MediaQueryLists
             if (!mql) {
                 continue;
@@ -125,7 +124,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
             >);
 
             for (const [size, spec] of entries) {
-                const mql = MEDIA_QUERY_LISTS[spec.query];
+                const mql = mediaQueryLists[spec.query];
                 if (mql.matches) {
                     return size;
                 }
@@ -206,9 +205,9 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         // to query whether any of them match.
         if (!this.isServerSide()) {
             for (const query of queries.filter(
-                (query) => !MEDIA_QUERY_LISTS[query],
+                (query) => !mediaQueryLists[query],
             )) {
-                MEDIA_QUERY_LISTS[query] = window.matchMedia(query);
+                mediaQueryLists[query] = window.matchMedia(query);
             }
         }
 
