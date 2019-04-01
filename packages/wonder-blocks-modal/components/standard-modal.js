@@ -3,7 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "./modal-dialog.js";
 import ModalPanel from "./modal-panel.js";
@@ -62,6 +62,11 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Optional custom styles.
+     */
+    style?: StyleType,
 |};
 
 /**
@@ -93,12 +98,13 @@ export default class StandardModal extends React.Component<Props> {
             footer,
             content,
             preview,
+            style,
         } = this.props;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
-                    <ModalDialog style={styles.wrapper}>
+                    <ModalDialog style={[styles.wrapper, style]}>
                         <ModalPanel
                             onClose={onClose}
                             titleBar={

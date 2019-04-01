@@ -98,6 +98,300 @@ exports[`wonder-blocks-modal example 2 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 512,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundImage": "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        "backgroundPosition": "0 0, 0 10px, 10px -10px, -10px 0px",
+        "backgroundSize": "20px 20px",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "bottom": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "left": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      aria-labelledby="wb-modal-title"
+      className=""
+      role="dialog"
+      style={
+        Object {
+          "alignItems": "stretch",
+          "background": "#ffffff",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "maxHeight": 200,
+          "maxWidth": 300,
+          "minHeight": 0,
+          "minWidth": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "64.65%",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "white",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flex": "1 1 auto",
+              "flexDirection": "column",
+              "height": "100%",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          <button
+            aria-label="Close modal"
+            className=""
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "::MozFocusInner": Object {
+                  "border": 0,
+                },
+                "alignItems": "center",
+                "background": "none",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "rgba(33,36,44,0.64)",
+                "cursor": "pointer",
+                "display": "inline-flex",
+                "height": 40,
+                "justifyContent": "center",
+                "left": 16,
+                "margin": -8,
+                "outline": "none",
+                "padding": 0,
+                "position": "absolute",
+                "textDecoration": "none",
+                "top": 16,
+                "touchAction": "manipulation",
+                "width": 40,
+                "zIndex": 1,
+              }
+            }
+            tabIndex={0}
+            type="button"
+          >
+            <svg
+              className=""
+              height={24}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "flexGrow": 0,
+                  "flexShrink": 0,
+                  "verticalAlign": "text-bottom",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "flex": 1,
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "overflow": "auto",
+                "padding": 0,
+                "position": "relative",
+                "zIndex": 0,
+              }
+            }
+          >
+            <div
+              className=""
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "margin": 0,
+                  "minHeight": "100%",
+                  "minWidth": 0,
+                  "padding": 64,
+                  "position": "relative",
+                  "zIndex": 0,
+                }
+              }
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "alignItems": "stretch",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "padding": 0,
+                    "position": "relative",
+                    "zIndex": 0,
+                  }
+                }
+              >
+                <h1
+                  className=""
+                  style={
+                    Object {
+                      "@media (maxWidth: 1023px)": Object {
+                        "fontSize": 28,
+                        "lineHeight": "32px",
+                      },
+                      "@media (minWidth: 1024px)": Object {
+                        "fontSize": 36,
+                        "lineHeight": "40px",
+                      },
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontWeight": 900,
+                      "marginBottom": 0,
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  Title
+                </h1>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Hello World!
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
       "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -328,7 +622,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 3 1`] = `
+exports[`wonder-blocks-modal example 4 1`] = `
 <div
   className=""
   style={
@@ -507,7 +801,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 4 1`] = `
+exports[`wonder-blocks-modal example 5 1`] = `
 <div
   className=""
   style={
@@ -1048,7 +1342,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 5 1`] = `
+exports[`wonder-blocks-modal example 6 1`] = `
 <div
   className=""
   style={
@@ -1635,7 +1929,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 6 1`] = `
+exports[`wonder-blocks-modal example 7 1`] = `
 <div
   className=""
   style={
@@ -2359,7 +2653,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 7 1`] = `
+exports[`wonder-blocks-modal example 8 1`] = `
 <div
   className=""
   style={
@@ -3012,7 +3306,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 8 1`] = `
+exports[`wonder-blocks-modal example 9 1`] = `
 <div
   className=""
   style={
@@ -3434,7 +3728,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 9 1`] = `
+exports[`wonder-blocks-modal example 10 1`] = `
 <div
   className=""
   style={
@@ -3992,7 +4286,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 10 1`] = `
+exports[`wonder-blocks-modal example 11 1`] = `
 <div
   className=""
   style={
@@ -4300,7 +4594,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 11 1`] = `
+exports[`wonder-blocks-modal example 12 1`] = `
 <div
   className=""
   style={
@@ -4813,7 +5107,7 @@ exports[`wonder-blocks-modal example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 12 1`] = `
+exports[`wonder-blocks-modal example 13 1`] = `
 <div
   className=""
   style={
@@ -5305,7 +5599,7 @@ exports[`wonder-blocks-modal example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 13 1`] = `
+exports[`wonder-blocks-modal example 14 1`] = `
 <div
   className=""
   style={
@@ -5599,7 +5893,7 @@ exports[`wonder-blocks-modal example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 14 1`] = `
+exports[`wonder-blocks-modal example 15 1`] = `
 <div
   className=""
   style={

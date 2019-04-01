@@ -19,10 +19,11 @@ export default class LargeTwoColumnModal extends React.Component<Props> {
             content,
             footer,
             fullBleedSidebar,
+            style,
         } = this.props;
 
         return (
-            <ModalDialog style={styles.dialog}>
+            <ModalDialog style={[styles.dialog, style]}>
                 <View style={styles.contentWrapper}>
                     <ModalPanel
                         showCloseButton

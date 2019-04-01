@@ -20,10 +20,11 @@ export default class SmallTwoColumnModal extends React.Component<Props> {
             content,
             footer,
             fullBleedSidebar,
+            style,
         } = this.props;
 
         return (
-            <ModalDialog style={styles.smallDialog}>
+            <ModalDialog style={[styles.smallDialog, style]}>
                 <View style={styles.contentFooterWrapper}>
                     <View
                         style={[
