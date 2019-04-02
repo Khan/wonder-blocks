@@ -79,5 +79,36 @@ describe("StandardModal", () => {
             // Assert
             expect(modal).toMatchSnapshot();
         });
+
+        it("should match snapshot with custom style", () => {
+            // Arrange
+
+            // Act
+            const wrapper = mount(
+                <div>
+                    <MediaLayoutContext.Provider
+                        value={{
+                            overrideSize: undefined,
+                            ssrSize: "large",
+                            mediaSpec: MEDIA_DEFAULT_SPEC,
+                        }}
+                    >
+                        <StandardModal
+                            title="Title"
+                            content="Content"
+                            footer="Footer"
+                            style={{
+                                maxWidth: 300,
+                                maxHeight: 200,
+                            }}
+                        />
+                    </MediaLayoutContext.Provider>
+                </div>,
+            );
+            const modal = wrapper.find(StandardModal);
+
+            // Assert
+            expect(modal).toMatchSnapshot();
+        });
     });
 });

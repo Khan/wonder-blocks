@@ -13,10 +13,10 @@ import type {Props} from "./one-column-modal.js";
 
 export default class SmallOneColumnModal extends React.Component<Props> {
     render() {
-        const {onClose, content, footer} = this.props;
+        const {onClose, content, footer, style} = this.props;
 
         return (
-            <ModalDialog style={styles.dialog}>
+            <ModalDialog style={[styles.dialog, style]}>
                 <View style={styles.contentFooterWrapper}>
                     <View style={styles.smallContentWrapper}>
                         <ModalPanel

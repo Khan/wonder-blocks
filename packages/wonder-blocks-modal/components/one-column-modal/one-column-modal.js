@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import LargeOneColumnModal from "./large-one-column-modal.js";
 import SmallOneColumnModal from "./small-one-column-modal.js";
@@ -23,6 +23,11 @@ export type Props = {|
      * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
     onClose?: () => void,
+
+    /**
+     * Optional custom styles.
+     */
+    style?: StyleType,
 |};
 
 /**

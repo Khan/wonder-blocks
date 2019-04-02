@@ -58,6 +58,34 @@ describe("OneColumnModal", () => {
         expect(modal);
     });
 
+    it("should render OneColumnModal with custom style", () => {
+        // Arrange
+
+        // Act
+        const wrapper = mount(
+            <MediaLayoutContext.Provider
+                value={{
+                    overrideSize: undefined,
+                    ssrSize: "large",
+                    mediaSpec: MEDIA_DEFAULT_SPEC,
+                }}
+            >
+                <OneColumnModal
+                    content="Content"
+                    footer="Footer"
+                    style={{
+                        maxWidth: 300,
+                        maxHeight: 200,
+                    }}
+                />
+            </MediaLayoutContext.Provider>,
+        );
+        const modal = wrapper.find(LargeOneColumnModal);
+
+        // Assert
+        expect(modal).toMatchSnapshot();
+    });
+
     // We already capture desktop snapshots from auto generated tests
     describe("mobile", () => {
         describe("with footer", () => {
