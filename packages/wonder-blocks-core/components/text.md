@@ -1,3 +1,10 @@
+**WARNING:** `Text` is meant for internal use only.  Please use the typogrpahy
+components from `@khanacademy/wonder-blocks-typography` for all text.  The
+`font-weight` and `font-style` of these components can be customized using the
+`style` prop.  If you need to create type styles that are different sizes and/or font
+families than those in `@khanacademy/wonder-block-typography` please create custom
+type components that wrap `Text`.
+
 ```js
 const {StyleSheet} = require("aphrodite");
 
