@@ -22,6 +22,1205 @@ exports[`wonder-blocks-typography example 1 1`] = `
 >
   <h1
     className=""
+    dir="rtl"
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 36,
+          "lineHeight": "40px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 900,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    مرحبا
+  </h1>
+  <h2
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    مرحبا
+  </h2>
+  <h3
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 22,
+          "lineHeight": "26px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    مرحبا
+  </h3>
+  <h4
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    مرحبا
+  </h4>
+  <h4
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "letterSpacing": 0.6,
+        "lineHeight": "16px",
+        "marginBottom": 0,
+        "marginTop": 0,
+        "textTransform": "uppercase",
+      }
+    }
+  >
+    مرحبا
+  </h4>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 22,
+        "fontWeight": 400,
+        "lineHeight": "28px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 18,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata, monospace",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "16px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 400,
+        "lineHeight": "24px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    مرحبا
+  </span>
+  <h1
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 36,
+          "lineHeight": "40px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 900,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </h1>
+  <h2
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </h2>
+  <h3
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 22,
+          "lineHeight": "26px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </h3>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </h4>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "letterSpacing": 0.6,
+        "lineHeight": "16px",
+        "marginBottom": 0,
+        "marginTop": 0,
+        "textTransform": "uppercase",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </h4>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 22,
+        "fontWeight": 400,
+        "lineHeight": "28px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 18,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata, monospace",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "16px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 400,
+        "lineHeight": "24px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    ᑕᓂᓯ
+  </span>
+  <h1
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 36,
+          "lineHeight": "40px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 900,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    שלום
+  </h1>
+  <h2
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    שלום
+  </h2>
+  <h3
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 22,
+          "lineHeight": "26px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    שלום
+  </h3>
+  <h4
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    שלום
+  </h4>
+  <h4
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "letterSpacing": 0.6,
+        "lineHeight": "16px",
+        "marginBottom": 0,
+        "marginTop": 0,
+        "textTransform": "uppercase",
+      }
+    }
+  >
+    שלום
+  </h4>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 22,
+        "fontWeight": 400,
+        "lineHeight": "28px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 18,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata, monospace",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "16px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 400,
+        "lineHeight": "24px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <span
+    className=""
+    dir="rtl"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    שלום
+  </span>
+  <h1
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 36,
+          "lineHeight": "40px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 900,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Привет
+  </h1>
+  <h2
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Привет
+  </h2>
+  <h3
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 22,
+          "lineHeight": "26px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Привет
+  </h3>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Привет
+  </h4>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "letterSpacing": 0.6,
+        "lineHeight": "16px",
+        "marginBottom": 0,
+        "marginTop": 0,
+        "textTransform": "uppercase",
+      }
+    }
+  >
+    Привет
+  </h4>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 22,
+        "fontWeight": 400,
+        "lineHeight": "28px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 18,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata, monospace",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "16px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 400,
+        "lineHeight": "24px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Привет
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Привет
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-typography example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <h1
+    className=""
     id="example-Title"
     style={
       Object {
@@ -36,7 +1235,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontWeight": 900,
         "marginBottom": 0,
         "marginTop": 0,
@@ -61,7 +1260,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -86,7 +1285,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -103,7 +1302,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -122,7 +1321,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 12,
         "fontWeight": 700,
         "letterSpacing": 0.6,
@@ -143,7 +1342,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "serif",
+        "fontFamily": "\\"Noto Serif\\", serif",
         "fontSize": 22,
         "fontWeight": 400,
         "lineHeight": "28px",
@@ -160,7 +1359,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "serif",
+        "fontFamily": "\\"Noto Serif\\", serif",
         "fontSize": 18,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -194,7 +1393,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -211,7 +1410,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -228,7 +1427,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -245,7 +1444,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -262,7 +1461,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "16px",
@@ -279,7 +1478,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 20,
         "fontWeight": 400,
         "lineHeight": "24px",
@@ -296,7 +1495,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -313,7 +1512,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, sans-serif",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -325,7 +1524,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-typography example 2 1`] = `
+exports[`wonder-blocks-typography example 3 1`] = `
 <h1
   className=""
   style={
@@ -342,7 +1541,7 @@ exports[`wonder-blocks-typography example 2 1`] = `
       "WebkitFontSmoothing": "antialiased",
       "color": "#1865f2",
       "display": "block",
-      "fontFamily": "Lato, sans-serif",
+      "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
       "fontWeight": 900,
       "marginBottom": 0,
       "marginTop": 0,
@@ -353,7 +1552,7 @@ exports[`wonder-blocks-typography example 2 1`] = `
 </h1>
 `;
 
-exports[`wonder-blocks-typography example 3 1`] = `
+exports[`wonder-blocks-typography example 4 1`] = `
 <h1
   aria-label="Accessible Title"
   className=""
@@ -370,7 +1569,7 @@ exports[`wonder-blocks-typography example 3 1`] = `
       "MozOsxFontSmoothing": "grayscale",
       "WebkitFontSmoothing": "antialiased",
       "display": "block",
-      "fontFamily": "Lato, sans-serif",
+      "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
       "fontWeight": 900,
       "marginBottom": 0,
       "marginTop": 0,
@@ -381,7 +1580,7 @@ exports[`wonder-blocks-typography example 3 1`] = `
 </h1>
 `;
 
-exports[`wonder-blocks-typography example 4 1`] = `
+exports[`wonder-blocks-typography example 5 1`] = `
 <span
   className=""
   style={

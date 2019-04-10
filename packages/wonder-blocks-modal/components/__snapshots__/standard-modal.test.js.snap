@@ -1336,13 +1336,13 @@ exports[`StandardModal desktop should match snapshot 1`] = `
                                                           Object {
                                                             "_definition": Object {
                                                               "display": "block",
-                                                              "fontFamily": "Lato, sans-serif",
+                                                              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
                                                               "fontSize": 20,
                                                               "fontWeight": 700,
                                                               "lineHeight": "24px",
                                                             },
-                                                            "_len": 102,
-                                                            "_name": "HeadingSmall_1c07c7n",
+                                                            "_len": 117,
+                                                            "_name": "HeadingSmall_7nqewa",
                                                           },
                                                           undefined,
                                                         ]
@@ -1357,7 +1357,7 @@ exports[`StandardModal desktop should match snapshot 1`] = `
                                                             "MozOsxFontSmoothing": "grayscale",
                                                             "WebkitFontSmoothing": "antialiased",
                                                             "display": "block",
-                                                            "fontFamily": "Lato, sans-serif",
+                                                            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
                                                             "fontSize": 20,
                                                             "fontWeight": 700,
                                                             "lineHeight": "24px",
@@ -3315,13 +3315,13 @@ exports[`StandardModal desktop should match snapshot with custom style 1`] = `
                                                           Object {
                                                             "_definition": Object {
                                                               "display": "block",
-                                                              "fontFamily": "Lato, sans-serif",
+                                                              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
                                                               "fontSize": 20,
                                                               "fontWeight": 700,
                                                               "lineHeight": "24px",
                                                             },
-                                                            "_len": 102,
-                                                            "_name": "HeadingSmall_1c07c7n",
+                                                            "_len": 117,
+                                                            "_name": "HeadingSmall_7nqewa",
                                                           },
                                                           undefined,
                                                         ]
@@ -3336,7 +3336,7 @@ exports[`StandardModal desktop should match snapshot with custom style 1`] = `
                                                             "MozOsxFontSmoothing": "grayscale",
                                                             "WebkitFontSmoothing": "antialiased",
                                                             "display": "block",
-                                                            "fontFamily": "Lato, sans-serif",
+                                                            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
                                                             "fontSize": 20,
                                                             "fontWeight": 700,
                                                             "lineHeight": "24px",
@@ -5248,13 +5248,13 @@ exports[`StandardModal mobile should match snapshot 1`] = `
                                                           Object {
                                                             "_definition": Object {
                                                               "display": "block",
-                                                              "fontFamily": "Lato, sans-serif",
+                                                              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
                                                               "fontSize": 20,
                                                               "fontWeight": 700,
                                                               "lineHeight": "24px",
                                                             },
-                                                            "_len": 102,
-                                                            "_name": "HeadingSmall_1c07c7n",
+                                                            "_len": 117,
+                                                            "_name": "HeadingSmall_7nqewa",
                                                           },
                                                           undefined,
                                                         ]
@@ -5269,7 +5269,7 @@ exports[`StandardModal mobile should match snapshot 1`] = `
                                                             "MozOsxFontSmoothing": "grayscale",
                                                             "WebkitFontSmoothing": "antialiased",
                                                             "display": "block",
-                                                            "fontFamily": "Lato, sans-serif",
+                                                            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
                                                             "fontSize": 20,
                                                             "fontWeight": 700,
                                                             "lineHeight": "24px",

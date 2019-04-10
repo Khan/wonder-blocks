@@ -1,0 +1,93 @@
+/* Arabic */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/arabic/NotoNaskhArabic-Regular.ttf");
+    unicode-range: U+0600-06FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/arabic/NotoSansArabic-Regular.ttf");
+    unicode-range: U+0600-06FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/arabic/NotoSansArabic-Bold.ttf");
+    unicode-range: U+0600-06FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/arabic/NotoSansArabic-Black.ttf");
+    unicode-range: U+0600-06FF;
+}
+
+/* Hebrew */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/hebrew/NotoSerifHebrew-Regular.ttf");
+    unicode-range: U+0590-05FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/hebrew/NotoSansHebrew-Regular.ttf");
+    unicode-range: U+0590-05FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/hebrew/NotoSansHebrew-Bold.ttf");
+    unicode-range: U+0590-05FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/hebrew/NotoSansHebrew-Black.ttf");
+    unicode-range: U+0590-05FF;
+}
+
+/* Cyrillic */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/NotoSerif-Regular.ttf");
+    unicode-range: U+0400-04FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/NotoSans-Regular.ttf");
+    unicode-range: U+0400-04FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/NotoSans-Bold.ttf");
+    unicode-range: U+0400-04FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/NotoSans-Black.ttf");
+    unicode-range: U+0400-04FF;
+}
+
+/* Cree */
+@font-face {
+    font-family: "Noto Sans";
+    src: url("fonts/cree/NotoSansCanadianAboriginal-Regular.ttf");
+    unicode-range: U+1400-167F;
+}

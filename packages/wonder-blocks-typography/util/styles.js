@@ -12,13 +12,15 @@ const common = {
     display: "block",
 };
 
-const LatoFamily = "Lato, sans-serif";
+const SansFamily = 'Lato, "Noto Sans", sans-serif';
+// TODO(kevinb): Use Minion Pro here
+const SerifFamily = '"Noto Serif", serif';
 const InconsolataFamily = "Inconsolata, monospace";
 
 const styles = StyleSheet.create({
     Title: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Black,
         [desktop]: {
             fontSize: 36,
@@ -31,14 +33,14 @@ const styles = StyleSheet.create({
     },
     Tagline: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 20,
         lineHeight: "24px",
     },
     HeadingLarge: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Bold,
         [desktop]: {
             fontSize: 28,
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     },
     HeadingMedium: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Bold,
         [desktop]: {
             fontSize: 24,
@@ -64,14 +66,14 @@ const styles = StyleSheet.create({
     },
     HeadingSmall: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Bold,
         fontSize: 20,
         lineHeight: "24px",
     },
     HeadingXSmall: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Bold,
         fontSize: 12,
         lineHeight: "16px",
@@ -79,17 +81,15 @@ const styles = StyleSheet.create({
         textTransform: "uppercase",
     },
     BodySerifBlock: {
-        // TODO(alex): Use Minion Pro here
         ...common,
-        fontFamily: "serif",
+        fontFamily: SerifFamily,
         fontWeight: Regular,
         fontSize: 22,
         lineHeight: "28px",
     },
     BodySerif: {
-        // TODO(alex): Use Minion Pro here
         ...common,
-        fontFamily: "serif",
+        fontFamily: SerifFamily,
         fontWeight: Regular,
         fontSize: 18,
         lineHeight: "22px",
@@ -103,49 +103,49 @@ const styles = StyleSheet.create({
     },
     Body: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 16,
         lineHeight: "22px",
     },
     LabelLarge: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Bold,
         fontSize: 16,
         lineHeight: "20px",
     },
     LabelMedium: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 16,
         lineHeight: "20px",
     },
     LabelSmall: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 14,
         lineHeight: "18px",
     },
     LabelXSmall: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 12,
         lineHeight: "16px",
     },
     Caption: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 14,
         lineHeight: "20px",
     },
     Footnote: {
         ...common,
-        fontFamily: LatoFamily,
+        fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 12,
         lineHeight: "18px",
