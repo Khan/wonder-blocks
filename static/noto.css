@@ -2,57 +2,86 @@
 @font-face {
     font-family: "Noto Serif";
     font-weight: 400;
-    src: url("fonts/arabic/NotoNaskhArabic-Regular.ttf");
+    src: url("fonts/arabic/NotoNaskhArabic-Regular.woff2");
     unicode-range: U+0600-06FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 400;
-    src: url("fonts/arabic/NotoSansArabic-Regular.ttf");
+    src: url("fonts/arabic/NotoSansArabic-Regular.woff2");
     unicode-range: U+0600-06FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 700;
-    src: url("fonts/arabic/NotoSansArabic-Bold.ttf");
+    src: url("fonts/arabic/NotoSansArabic-Bold.woff2");
     unicode-range: U+0600-06FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 900;
-    src: url("fonts/arabic/NotoSansArabic-Black.ttf");
+    src: url("fonts/arabic/NotoSansArabic-Black.woff2");
     unicode-range: U+0600-06FF;
+}
+
+/* Greek */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/NotoSerif-Regular.woff2");
+    unicode-range: U+0370-03FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/NotoSans-Regular.woff2");
+    unicode-range: U+0370-03FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/NotoSans-Bold.woff2");
+    unicode-range: U+0370-03FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/NotoSans-Black.woff2");
+    unicode-range: U+0370-03FF;
 }
 
 /* Hebrew */
 @font-face {
     font-family: "Noto Serif";
     font-weight: 400;
-    src: url("fonts/hebrew/NotoSerifHebrew-Regular.ttf");
+    src: url("fonts/hebrew/NotoSerifHebrew-Regular.woff2");
     unicode-range: U+0590-05FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 400;
-    src: url("fonts/hebrew/NotoSansHebrew-Regular.ttf");
+    src: url("fonts/hebrew/NotoSansHebrew-Regular.woff2");
     unicode-range: U+0590-05FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 700;
-    src: url("fonts/hebrew/NotoSansHebrew-Bold.ttf");
+    src: url("fonts/hebrew/NotoSansHebrew-Bold.woff2");
     unicode-range: U+0590-05FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 900;
-    src: url("fonts/hebrew/NotoSansHebrew-Black.ttf");
+    src: url("fonts/hebrew/NotoSansHebrew-Black.woff2");
     unicode-range: U+0590-05FF;
 }
 
@@ -60,34 +89,27 @@
 @font-face {
     font-family: "Noto Serif";
     font-weight: 400;
-    src: url("fonts/NotoSerif-Regular.ttf");
+    src: url("fonts/NotoSerif-Regular.woff2");
     unicode-range: U+0400-04FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 400;
-    src: url("fonts/NotoSans-Regular.ttf");
+    src: url("fonts/NotoSans-Regular.woff2");
     unicode-range: U+0400-04FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 700;
-    src: url("fonts/NotoSans-Bold.ttf");
+    src: url("fonts/NotoSans-Bold.woff2");
     unicode-range: U+0400-04FF;
 }
 
 @font-face {
     font-family: "Noto Sans";
     font-weight: 900;
-    src: url("fonts/NotoSans-Black.ttf");
+    src: url("fonts/NotoSans-Black.woff2");
     unicode-range: U+0400-04FF;
-}
-
-/* Cree */
-@font-face {
-    font-family: "Noto Sans";
-    src: url("fonts/cree/NotoSansCanadianAboriginal-Regular.ttf");
-    unicode-range: U+1400-167F;
 }
