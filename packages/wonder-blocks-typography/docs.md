@@ -1,5 +1,3 @@
-## Lato for Latin languages
-
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -48,6 +46,31 @@ components
 
 ```js
 <Title aria-label="Accessible Title">Title</Title>
+```
+
+## Lato is use for Latin and Cyrillic languages
+
+```js
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+<View>
+    <Title>Привет</Title>
+    <HeadingLarge>Привет</HeadingLarge>
+    <HeadingMedium>Привет</HeadingMedium>
+    <HeadingSmall>Привет</HeadingSmall>
+    <HeadingXSmall>Привет</HeadingXSmall>
+    <BodySerifBlock>Привет</BodySerifBlock>
+    <BodySerif>Привет</BodySerif>
+    <BodyMonospace>Привет</BodyMonospace>
+    <Body>Привет</Body>
+    <LabelLarge>Привет</LabelLarge>
+    <LabelMedium>Привет</LabelMedium>
+    <LabelSmall>Привет</LabelSmall>
+    <LabelXSmall>Привет</LabelXSmall>
+    <Tagline>Привет</Tagline>
+    <Caption>Привет</Caption>
+    <Footnote>Привет</Footnote>
+</View>
 ```
 
 ## Noto for non-Latin languages
@@ -106,22 +129,5 @@ const {View} = require("@khanacademy/wonder-blocks-core");
     <Tagline dir="rtl">שלום</Tagline>
     <Caption dir="rtl">שלום</Caption>
     <Footnote dir="rtl">שלום</Footnote>
-
-    <Title>Привет</Title>
-    <HeadingLarge>Привет</HeadingLarge>
-    <HeadingMedium>Привет</HeadingMedium>
-    <HeadingSmall>Привет</HeadingSmall>
-    <HeadingXSmall>Привет</HeadingXSmall>
-    <BodySerifBlock>Привет</BodySerifBlock>
-    <BodySerif>Привет</BodySerif>
-    <BodyMonospace>Привет</BodyMonospace>
-    <Body>Привет</Body>
-    <LabelLarge>Привет</LabelLarge>
-    <LabelMedium>Привет</LabelMedium>
-    <LabelSmall>Привет</LabelSmall>
-    <LabelXSmall>Привет</LabelXSmall>
-    <Tagline>Привет</Tagline>
-    <Caption>Привет</Caption>
-    <Footnote>Привет</Footnote>
 </View>
 ```

@@ -91,6 +91,32 @@ describe("wonder-blocks-typography", () => {
 
         const example = (
             <View>
+                <Title>Привет</Title>
+                <HeadingLarge>Привет</HeadingLarge>
+                <HeadingMedium>Привет</HeadingMedium>
+                <HeadingSmall>Привет</HeadingSmall>
+                <HeadingXSmall>Привет</HeadingXSmall>
+                <BodySerifBlock>Привет</BodySerifBlock>
+                <BodySerif>Привет</BodySerif>
+                <BodyMonospace>Привет</BodyMonospace>
+                <Body>Привет</Body>
+                <LabelLarge>Привет</LabelLarge>
+                <LabelMedium>Привет</LabelMedium>
+                <LabelSmall>Привет</LabelSmall>
+                <LabelXSmall>Привет</LabelXSmall>
+                <Tagline>Привет</Tagline>
+                <Caption>Привет</Caption>
+                <Footnote>Привет</Footnote>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const example = (
+            <View>
                 <Title dir="rtl">مرحبا</Title>
                 <HeadingLarge dir="rtl">مرحبا</HeadingLarge>
                 <HeadingMedium dir="rtl">مرحبا</HeadingMedium>
@@ -141,29 +167,12 @@ describe("wonder-blocks-typography", () => {
                 <Tagline dir="rtl">שלום</Tagline>
                 <Caption dir="rtl">שלום</Caption>
                 <Footnote dir="rtl">שלום</Footnote>
-
-                <Title>Привет</Title>
-                <HeadingLarge>Привет</HeadingLarge>
-                <HeadingMedium>Привет</HeadingMedium>
-                <HeadingSmall>Привет</HeadingSmall>
-                <HeadingXSmall>Привет</HeadingXSmall>
-                <BodySerifBlock>Привет</BodySerifBlock>
-                <BodySerif>Привет</BodySerif>
-                <BodyMonospace>Привет</BodyMonospace>
-                <Body>Привет</Body>
-                <LabelLarge>Привет</LabelLarge>
-                <LabelMedium>Привет</LabelMedium>
-                <LabelSmall>Привет</LabelSmall>
-                <LabelXSmall>Привет</LabelXSmall>
-                <Tagline>Привет</Tagline>
-                <Caption>Привет</Caption>
-                <Footnote>Привет</Footnote>
             </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 6", () => {
         const Code = ({children}) => (
             <BodyMonospace style={{whiteSpace: "pre"}}>
                 {children}
