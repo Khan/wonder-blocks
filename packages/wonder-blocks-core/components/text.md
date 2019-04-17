@@ -1,4 +1,4 @@
-**WARNING:** `Text` is meant for internal use only.  Please use the typogrpahy
+**WARNING:** `Text` is meant for internal use only.  Please use the typography
 components from `@khanacademy/wonder-blocks-typography` for all text.  The
 `font-weight` and `font-style` of these components can be customized using the
 `style` prop.  If you need to create type styles that are different sizes and/or font
