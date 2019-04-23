@@ -27,6 +27,16 @@ type Props = {|
     onChange: (selectedValues: Array<string>) => mixed,
 
     /**
+     * Callback for when the dropdown is opened.
+     */
+    onOpen?: () => mixed,
+
+    /**
+     * Callback for when the dropdown is closed.
+     */
+    onClose?: () => mixed,
+
+    /**
      * The values of the items that are currently selected.
      */
     selectedValues: Array<string>,
@@ -126,6 +136,12 @@ export default class MultiSelect extends React.Component<Props, State> {
             open,
             keyboard,
         });
+
+        if (open) {
+            this.props.onOpen && this.props.onOpen();
+        } else {
+            this.props.onClose && this.props.onClose();
+        }
     };
 
     handleToggle = (selectedValue: string) => {

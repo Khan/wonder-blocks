@@ -25,6 +25,16 @@ type Props = {|
     onChange: (selectedValue: string) => mixed,
 
     /**
+     * Callback for when the dropdown is opened.
+     */
+    onOpen?: () => mixed,
+
+    /**
+     * Callback for when the dropdown is closed.
+     */
+    onClose?: () => mixed,
+
+    /**
      * Placeholder for the opening component when there are no items selected.
      */
     placeholder: string,
@@ -111,6 +121,12 @@ export default class SingleSelect extends React.Component<Props, State> {
             open,
             keyboard,
         });
+
+        if (open) {
+            this.props.onOpen && this.props.onOpen();
+        } else {
+            this.props.onClose && this.props.onClose();
+        }
     };
 
     handleToggle = (selectedValue: string) => {

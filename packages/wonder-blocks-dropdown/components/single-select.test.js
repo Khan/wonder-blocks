@@ -10,11 +10,21 @@ import {keyCodes} from "../util/constants.js";
 describe("SingleSelect", () => {
     let select;
     const onChange = jest.fn();
+    const onOpen = jest.fn();
+    const onClose = jest.fn();
 
     beforeEach(() => {
+        onChange.mockClear();
+        onOpen.mockClear();
+        onClose.mockClear();
         window.scrollTo = jest.fn();
         select = mount(
-            <SingleSelect onChange={onChange} placeholder="Choose">
+            <SingleSelect
+                onChange={onChange}
+                onOpen={onOpen}
+                onClose={onClose}
+                placeholder="Choose"
+            >
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
                 <OptionItem label="item 3" value="3" />
@@ -27,7 +37,7 @@ describe("SingleSelect", () => {
         unmountAll();
     });
 
-    it("closes/opens the select on mouse click, space, and enter", () => {
+    it("closes/opens the select on mouse click", () => {
         const opener = select.find(SelectOpener);
         expect(select.state("open")).toEqual(false);
 
@@ -36,16 +46,76 @@ describe("SingleSelect", () => {
         opener.simulate("mouseup");
         opener.simulate("click");
         expect(select.state("open")).toEqual(true);
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(0);
+
+        // Close select with mouse
+        opener.simulate("mousedown");
+        opener.simulate("mouseup");
+        opener.simulate("click");
+        expect(select.state("open")).toEqual(false);
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(1);
+
+        // Open select with mouse
+        opener.simulate("mousedown");
+        opener.simulate("mouseup");
+        opener.simulate("click");
+        expect(select.state("open")).toEqual(true);
+        expect(onOpen).toHaveBeenCalledTimes(2);
+        expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("closes/opens the select on space", () => {
+        const opener = select.find(SelectOpener);
+        expect(select.state("open")).toEqual(false);
+
+        // Open select with space
+        opener.simulate("keydown", {keyCode: keyCodes.space});
+        opener.simulate("keyup", {keyCode: keyCodes.space});
+        expect(select.state("open")).toEqual(true);
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(0);
 
         // Close select with space
         opener.simulate("keydown", {keyCode: keyCodes.space});
         opener.simulate("keyup", {keyCode: keyCodes.space});
         expect(select.state("open")).toEqual(false);
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(1);
 
-        // Should open with enter
+        // Open select with space
+        opener.simulate("keydown", {keyCode: keyCodes.space});
+        opener.simulate("keyup", {keyCode: keyCodes.space});
+        expect(select.state("open")).toEqual(true);
+        expect(onOpen).toHaveBeenCalledTimes(2);
+        expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("closes/opens the select on enter", () => {
+        const opener = select.find(SelectOpener);
+        expect(select.state("open")).toEqual(false);
+
+        // Open select with enter
         opener.simulate("keydown", {keyCode: keyCodes.enter});
         opener.simulate("keyup", {keyCode: keyCodes.enter});
         expect(select.state("open")).toEqual(true);
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(0);
+
+        // Close select with enter
+        opener.simulate("keydown", {keyCode: keyCodes.enter});
+        opener.simulate("keyup", {keyCode: keyCodes.enter});
+        expect(select.state("open")).toEqual(false);
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(1);
+
+        // Open select with enter
+        opener.simulate("keydown", {keyCode: keyCodes.enter});
+        opener.simulate("keyup", {keyCode: keyCodes.enter});
+        expect(select.state("open")).toEqual(true);
+        expect(onOpen).toHaveBeenCalledTimes(2);
+        expect(onClose).toHaveBeenCalledTimes(1);
     });
 
     it("displays selected item label as expected", () => {
