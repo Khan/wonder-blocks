@@ -13,6 +13,11 @@ import {View} from "@khanacademy/wonder-blocks-core";
  * A separator used in a dropdown menu.
  */
 export default class SeparatorItem extends React.Component<{}> {
+    static __IS_SEPARATOR_ITEM__ = true;
+    static isClassOf(instance: React.Element<any>) {
+        return instance && instance.type && instance.type.__IS_SEPARATOR_ITEM__;
+    }
+
     render() {
         return <View style={styles.separator} />;
     }

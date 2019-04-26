@@ -56,9 +56,7 @@ export default class SmallTwoColumnModal extends React.Component<Props> {
                     </View>
                     {!!footer && (
                         <View style={styles.smallFooter}>
-                            {!footer ||
-                            (typeof footer === "object" &&
-                                footer.type === ModalFooter) ? (
+                            {!footer || ModalFooter.isClassOf(footer) ? (
                                 footer
                             ) : (
                                 <ModalFooter>{footer}</ModalFooter>

@@ -89,14 +89,11 @@ export default class ModalPanel extends React.Component<Props> {
             showCloseButton,
         } = this.props;
 
-        const mainContent =
-            content &&
-            typeof content === "object" &&
-            content.type === ModalContent ? (
-                ((content: any): React.Element<typeof ModalContent>)
-            ) : (
-                <ModalContent>{content}</ModalContent>
-            );
+        const mainContent = ModalContent.isClassOf(content) ? (
+            ((content: any): React.Element<typeof ModalContent>)
+        ) : (
+            <ModalContent>{content}</ModalContent>
+        );
 
         if (!mainContent) {
             return mainContent;

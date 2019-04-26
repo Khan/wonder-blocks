@@ -12,6 +12,11 @@ type Props = {|
 |};
 
 export default class ModalFooter extends React.Component<Props> {
+    static __IS_MODAL_FOOTER__ = true;
+    static isClassOf(instance: any) {
+        return instance && instance.type && instance.type.__IS_MODAL_FOOTER__;
+    }
+
     render() {
         const {style, children} = this.props;
         return <View style={[styles.footer, style]}>{children}</View>;

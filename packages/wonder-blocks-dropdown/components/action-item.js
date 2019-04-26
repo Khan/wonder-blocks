@@ -94,6 +94,10 @@ export default class ActionItem extends React.Component<ActionProps> {
     };
 
     static contextTypes = {router: PropTypes.any};
+    static __IS_ACTION_ITEM__ = true;
+    static isClassOf(instance: React.Element<any>) {
+        return instance && instance.type && instance.type.__IS_ACTION_ITEM__;
+    }
 
     render() {
         const {
