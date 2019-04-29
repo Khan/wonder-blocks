@@ -14,6 +14,14 @@ module.exports = {
                 "This section only appears to developers. If you want to include content that only appears in the development server, add `private: true` to the section configuration in `styleguide.config.js`.",
         },
         {
+            name: "Breadcrumb",
+            content: "packages/wonder-blocks-breadcrumb/docs.md",
+            components: [
+                "packages/wonder-blocks-breadcrumb/components/breadcrumb.js",
+                "packages/wonder-blocks-breadcrumb/components/breadcrumb-item.js",
+            ],
+        },
+        {
             name: "Button",
             content: "packages/wonder-blocks-button/docs.md",
             components: "packages/wonder-blocks-button/components/button.js",

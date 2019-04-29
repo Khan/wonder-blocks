@@ -334,6 +334,17 @@ type _CSSProperties = {|
     ":disabled"?: _CSSProperties,
     "::-moz-focus-inner"?: _CSSProperties,
 
+    // Filters
+    ":first-of-type"?: _CSSProperties,
+    ":not(:first-of-type)"?: _CSSProperties,
+    ":last-of-type"?: _CSSProperties,
+    ":not(:last-of-type)"?: _CSSProperties,
+    ":first-child"?: _CSSProperties,
+    ":not(:first-child)"?: _CSSProperties,
+    ":last-child"?: _CSSProperties,
+    ":not(:last-child)"?: _CSSProperties,
+    ":nth-of-type(odd)"?: _CSSProperties,
+
     // Contents
     ":first-letter"?: _CSSProperties,
     ":before"?: _CSSProperties,
