@@ -97,7 +97,7 @@ export default class Row extends React.Component<Props> {
                             // Flow doesn't let us check .type on a non-null React.Node so
                             // we have to cast it to any.
                             (item: any) =>
-                                item && item.type === Cell
+                                Cell.isClassOf(item)
                                     ? Cell.shouldDisplay(item.props, mediaSize)
                                     : true,
                         )

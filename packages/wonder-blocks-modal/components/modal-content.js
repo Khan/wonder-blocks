@@ -23,6 +23,11 @@ export default class ModalContent extends React.Component<Props> {
         scrollOverflow: true,
     };
 
+    static __IS_MODAL_CONTENT__ = true;
+    static isClassOf(instance: any) {
+        return instance && instance.type && instance.type.__IS_MODAL_CONTENT__;
+    }
+
     render() {
         const {header, scrollOverflow, style, children} = this.props;
 
@@ -35,9 +40,7 @@ export default class ModalContent extends React.Component<Props> {
                             scrollOverflow && styles.scrollOverflow,
                         ]}
                     >
-                        {!header ||
-                        (typeof header === "object" &&
-                            header.type === ModalHeader) ? (
+                        {!header || ModalHeader.isClassOf(header) ? (
                             header
                         ) : (
                             <ModalHeader>{header}</ModalHeader>

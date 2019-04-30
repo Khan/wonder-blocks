@@ -139,11 +139,8 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         return React.Children.toArray(children)
             .filter(Boolean)
             .map((item) => {
-                const {
-                    type,
-                    props: {disabled, value},
-                } = item;
-                if (type === ActionItem) {
+                const {disabled, value} = item.props;
+                if (ActionItem.isClassOf(item)) {
                     return {
                         component: item,
                         focusable: !disabled,
@@ -152,7 +149,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                             onClick: this.handleItemSelected,
                         },
                     };
-                } else if (type === OptionItem) {
+                } else if (OptionItem.isClassOf(item)) {
                     return {
                         component: item,
                         focusable: !disabled,
