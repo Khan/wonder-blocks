@@ -2,7 +2,7 @@ Once the modal is launched, tab focus wraps inside the modal content. Pressing T
 
 ```js
 const {StyleSheet, css} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 
@@ -20,27 +20,39 @@ const styles = StyleSheet.create({
         margin: "0 auto",
         maxWidth: 544,
     },
+
+    aboveStyles: {
+        background: "url(/modal-above.png)",
+        width: 874,
+        height: 551,
+        position: "absolute",
+        top: -260,
+        left: -420
+    },
+
+    belowStyles: {
+        background: "url(/modal-below.png)",
+        width: 868,
+        height: 521,
+        position: "absolute",
+        top: -420,
+        left: -581
+    },
 });
 
-const standardModal = ({closeModal}) => (
-    <StandardModal
+const StyledContainer = addStyle("div");
+
+const onePaneDialog = ({closeModal}) => (
+    <OnePaneDialog
         title="Title"
         subtitle="You're reading the subtitle!"
+        above={<StyledContainer style={styles.aboveStyles} />}
+        below={<StyledContainer style={styles.belowStyles} />}
         content={
             <View style={styles.modalContent}>
                 <Body tag="p">
                     {
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                    }
-                </Body>
-                <Body tag="p">
-                    {
-                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                    }
-                </Body>
-                <Body tag="p">
-                    {
-                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                     }
                 </Body>
             </View>
@@ -53,101 +65,9 @@ const standardModal = ({closeModal}) => (
     />
 );
 
-const twoColumnModal = ({closeModal}) => <TwoColumnModal
-    sidebar={
-        <View>
-            <Title style={styles.title}>Sidebar</Title>
-            <Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris.
-            </Body>
-        </View>
-    }
-    content={
-        <View>
-            <Title style={styles.title}>Contents</Title>
-            <View>
-                <label>
-                    <LabelSmall>Username:</LabelSmall>
-                    <input type="text" />
-                </label>
-            </View>
-            <View>
-                <label>
-                    <LabelSmall>Password:</LabelSmall>
-                    <input type="password" />
-                </label>
-            </View>
-            <View>
-                <Button
-                    onClick={closeModal}
-                    style={{marginTop: 16}}
-                >
-                    Go back
-                </Button>
-                <Button
-                    onClick={() => alert("Just kidding, no-op!")}
-                    style={{marginTop: 16}}
-                >
-                    Log in
-                </Button>
-            </View>
-        </View>
-    }
-/>;
-
-const oneColumnModal = ({closeModal}) => <OneColumnModal
-    content={
-        <View>
-            <Title style={styles.title}>Title</Title>
-            <View>
-                <label>
-                    <LabelSmall>Username:</LabelSmall>
-                    <input type="text" />
-                </label>
-            </View>
-            <View>
-                <label>
-                    <LabelSmall>Password:</LabelSmall>
-                    <input type="password" />
-                </label>
-            </View>
-            <View>
-                <Button
-                    onClick={closeModal}
-                    style={{marginTop: 16}}
-                >
-                    Go back
-                </Button>
-                <Button
-                    onClick={() => alert("Just kidding, no-op!")}
-                    style={{marginTop: 16}}
-                >
-                    Log in
-                </Button>
-            </View>
-        </View>
-    }
-    footer={
-        <View>
-            <button>Sample Button</button>
-        </View>
-    }
-/>;
-
 <View style={styles.example}>
-    <ModalLauncher modal={standardModal}>
-        {({openModal}) => <Button onClick={openModal}>Standard modal</Button>}
-    </ModalLauncher>
-    <br/>
-    <ModalLauncher modal={twoColumnModal}>
-        {({openModal}) => <Button onClick={openModal}>Two-column modal</Button>}
-    </ModalLauncher>
-    <br/>
-    <ModalLauncher modal={oneColumnModal}>
-        {({openModal}) => <Button onClick={openModal}>One-column modal</Button>}
+    <ModalLauncher modal={onePaneDialog}>
+        {({openModal}) => <Button onClick={openModal}>OnePaneDialog</Button>}
     </ModalLauncher>
 </View>;
 ```
@@ -198,7 +118,8 @@ class Example extends React.Component {
                 onClose={() => this.handleClose()}
                 opened={this.state.opened}
                 modal={({closeModal}) => (
-                    <OneColumnModal
+                    <OnePaneDialog
+                        title="Triggered from action menu"
                         content={
                             <View>
                                 <Title>Hello, world</Title>

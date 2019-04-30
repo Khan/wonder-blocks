@@ -256,6 +256,26 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
       styleSheets={
         Object {
           "all": Object {
+            "above": Object {
+              "_definition": Object {
+                "pointerEvents": "none",
+                "position": "absolute",
+                "transform": "translate(-50%, -50%)",
+                "zIndex": 1,
+              },
+              "_len": 93,
+              "_name": "above_1xrkqe5",
+            },
+            "below": Object {
+              "_definition": Object {
+                "pointerEvents": "none",
+                "position": "absolute",
+                "transform": "translate(-50%, -50%)",
+                "zIndex": -1,
+              },
+              "_len": 94,
+              "_name": "below_3amkmo",
+            },
             "wrapper": Object {
               "_definition": Object {
                 "alignItems": "stretch",
@@ -305,6 +325,26 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
         styleSheets={
           Object {
             "all": Object {
+              "above": Object {
+                "_definition": Object {
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "transform": "translate(-50%, -50%)",
+                  "zIndex": 1,
+                },
+                "_len": 93,
+                "_name": "above_1xrkqe5",
+              },
+              "below": Object {
+                "_definition": Object {
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "transform": "translate(-50%, -50%)",
+                  "zIndex": -1,
+                },
+                "_len": 94,
+                "_name": "below_3amkmo",
+              },
               "wrapper": Object {
                 "_definition": Object {
                   "alignItems": "stretch",
@@ -1292,10 +1332,10 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                               "boxSizing": "border-box",
                                               "flex": 1,
                                               "minHeight": "100%",
-                                              "padding": 64,
+                                              "padding": 32,
                                             },
                                             "_len": 67,
-                                            "_name": "content_9s1qwq",
+                                            "_name": "content_1gbedy1",
                                           },
                                           "scrollOverflow": Object {
                                             "_definition": Object {
@@ -1351,10 +1391,10 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                                 "boxSizing": "border-box",
                                                 "flex": 1,
                                                 "minHeight": "100%",
-                                                "padding": 64,
+                                                "padding": 32,
                                               },
                                               "_len": 67,
-                                              "_name": "content_9s1qwq",
+                                              "_name": "content_1gbedy1",
                                             },
                                             "scrollOverflow": Object {
                                               "_definition": Object {
@@ -1488,10 +1528,10 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                                         "boxSizing": "border-box",
                                                         "flex": 1,
                                                         "minHeight": "100%",
-                                                        "padding": 64,
+                                                        "padding": 32,
                                                       },
                                                       "_len": 67,
-                                                      "_name": "content_9s1qwq",
+                                                      "_name": "content_1gbedy1",
                                                     },
                                                     false,
                                                     false,
@@ -1532,10 +1572,10 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                                           "boxSizing": "border-box",
                                                           "flex": 1,
                                                           "minHeight": "100%",
-                                                          "padding": 64,
+                                                          "padding": 32,
                                                         },
                                                         "_len": 67,
-                                                        "_name": "content_9s1qwq",
+                                                        "_name": "content_1gbedy1",
                                                       },
                                                       false,
                                                       false,
@@ -1907,10 +1947,10 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                               "boxSizing": "border-box",
                                               "flex": 1,
                                               "minHeight": "100%",
-                                              "padding": 64,
+                                              "padding": 32,
                                             },
                                             "_len": 67,
-                                            "_name": "content_9s1qwq",
+                                            "_name": "content_1gbedy1",
                                           },
                                           "scrollOverflow": Object {
                                             "_definition": Object {
@@ -1966,10 +2006,10 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                                 "boxSizing": "border-box",
                                                 "flex": 1,
                                                 "minHeight": "100%",
-                                                "padding": 64,
+                                                "padding": 32,
                                               },
                                               "_len": 67,
-                                              "_name": "content_9s1qwq",
+                                              "_name": "content_1gbedy1",
                                             },
                                             "scrollOverflow": Object {
                                               "_definition": Object {
@@ -2103,10 +2143,10 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                                         "boxSizing": "border-box",
                                                         "flex": 1,
                                                         "minHeight": "100%",
-                                                        "padding": 64,
+                                                        "padding": 32,
                                                       },
                                                       "_len": 67,
-                                                      "_name": "content_9s1qwq",
+                                                      "_name": "content_1gbedy1",
                                                     },
                                                     false,
                                                     false,
@@ -2147,10 +2187,10 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                                           "boxSizing": "border-box",
                                                           "flex": 1,
                                                           "minHeight": "100%",
-                                                          "padding": 64,
+                                                          "padding": 32,
                                                         },
                                                         "_len": 67,
-                                                        "_name": "content_9s1qwq",
+                                                        "_name": "content_1gbedy1",
                                                       },
                                                       false,
                                                       false,
@@ -2196,7 +2236,7 @@ exports[`TwoColumnModal should render TwoColumnModal with custom style 1`] = `
                                                       "margin": 0,
                                                       "minHeight": "100%",
                                                       "minWidth": 0,
-                                                      "padding": 64,
+                                                      "padding": 32,
                                                       "paddingBottom": 32,
                                                       "position": "relative",
                                                       "zIndex": 0,
