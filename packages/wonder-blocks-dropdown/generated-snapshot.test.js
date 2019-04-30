@@ -832,7 +832,7 @@ describe("wonder-blocks-dropdown", () => {
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
         const {
-            StandardModal,
+            OnePaneDialog,
             ModalLauncher,
         } = require("@khanacademy/wonder-blocks-modal");
         const Button = require("@khanacademy/wonder-blocks-button").default;
@@ -904,7 +904,7 @@ describe("wonder-blocks-dropdown", () => {
         );
 
         const modal = (
-            <StandardModal
+            <OnePaneDialog
                 title="Westerosi modal"
                 footer=""
                 content={modalContent}

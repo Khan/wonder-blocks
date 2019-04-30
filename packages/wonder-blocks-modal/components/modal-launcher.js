@@ -77,7 +77,7 @@ type State = {|
  * ```
  *
  * The actual modal itself is constructed separately, using a layout component
- * like StandardModal, OneColumnModal, or TwoColumnModal, and is provided via
+ * like OnePaneDialog and is provided via
  * the `modal` prop.
  */
 export default class ModalLauncher extends React.Component<Props, State> {

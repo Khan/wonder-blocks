@@ -3,13 +3,13 @@ import * as React from "react";
 import {mount} from "enzyme";
 
 import ModalBackdrop from "./modal-backdrop.js";
-import StandardModal from "./standard-modal.js";
+import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
 
 const sleep = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));
 
 const exampleModal = (
-    <StandardModal
+    <OnePaneDialog
         content={<div data-modal-content />}
         title="Title"
         footer={<div data-modal-footer />}
@@ -17,7 +17,7 @@ const exampleModal = (
 );
 
 const exampleModalWithButtons = (
-    <StandardModal
+    <OnePaneDialog
         content={
             <div>
                 <button data-button-id="1" />

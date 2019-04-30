@@ -119,9 +119,6 @@ module.exports = {
                     name: "Modals",
                     components: [
                         "packages/wonder-blocks-modal/components/one-pane-dialog/one-pane-dialog.js",
-                        "packages/wonder-blocks-modal/components/standard-modal.js",
-                        "packages/wonder-blocks-modal/components/two-column-modal/two-column-modal.js",
-                        "packages/wonder-blocks-modal/components/one-column-modal/one-column-modal.js",
                     ],
                 },
                 {
