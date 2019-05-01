@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-grid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"

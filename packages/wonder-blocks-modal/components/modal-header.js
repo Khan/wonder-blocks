@@ -18,6 +18,11 @@ export default class ModalHeader extends React.Component<Props> {
         color: "dark",
     };
 
+    static __IS_MODAL_HEADER__ = true;
+    static isClassOf(instance: any) {
+        return instance && instance.type && instance.type.__IS_MODAL_HEADER__;
+    }
+
     render() {
         const {style, color, children} = this.props;
         return (

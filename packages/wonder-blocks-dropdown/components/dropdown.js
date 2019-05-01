@@ -488,7 +488,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
                 ]}
             >
                 {items.map((item, index) => {
-                    if (item.component.type === SeparatorItem) {
+                    if (SeparatorItem.isClassOf(item.component)) {
                         return item.component;
                     } else {
                         if (item.focusable) {
