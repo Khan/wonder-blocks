@@ -1,5 +1,5 @@
 // @flow
-describe("@khanacademy/wonder-blocks-breadcrumb", () => {
+describe("@khanacademy/wonder-blocks-breadcrumbs", () => {
     test("package exports default", async () => {
         // Arrange
         const importedModule = import("./index.js");
@@ -9,7 +9,7 @@ describe("@khanacademy/wonder-blocks-breadcrumb", () => {
 
         // Assert
         expect(Object.keys(result).sort()).toEqual(
-            ["BreadcrumbItem", "default"].sort(),
+            ["BreadcrumbsItem", "Breadcrumbs"].sort(),
         );
     });
 });
