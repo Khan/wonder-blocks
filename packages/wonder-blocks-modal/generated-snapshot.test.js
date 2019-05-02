@@ -155,7 +155,7 @@ describe("wonder-blocks-modal", () => {
                 maxWidth: 544,
             },
 
-            aboveStyles: {
+            above: {
                 background: "url(/modal-above.png)",
                 width: 874,
                 height: 551,
@@ -164,7 +164,7 @@ describe("wonder-blocks-modal", () => {
                 left: -420,
             },
 
-            belowStyles: {
+            below: {
                 background: "url(/modal-below.png)",
                 width: 868,
                 height: 521,
@@ -180,8 +180,8 @@ describe("wonder-blocks-modal", () => {
             <OnePaneDialog
                 title="Title"
                 subtitle="You're reading the subtitle!"
-                above={<StyledContainer style={styles.aboveStyles} />}
-                below={<StyledContainer style={styles.belowStyles} />}
+                above={<StyledContainer style={styles.above} />}
+                below={<StyledContainer style={styles.below} />}
                 content={
                     <View style={styles.modalContent}>
                         <Body tag="p">
