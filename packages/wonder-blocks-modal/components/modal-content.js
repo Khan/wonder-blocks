@@ -70,7 +70,7 @@ const styleSheets = {
         content: {
             flex: 1,
             minHeight: "100%",
-            padding: 32,
+            padding: 64,
             boxSizing: "border-box",
         },
     }),
