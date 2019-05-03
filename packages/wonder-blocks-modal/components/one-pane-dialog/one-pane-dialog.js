@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "../modal-dialog.js";
 import ModalPanel from "../modal-panel.js";
 import CloseButton from "../close-button.js";
+import ModalHeader from "../modal-header.js";
 
 type Props = {|
     ...AriaProps,
@@ -118,16 +118,15 @@ export default class OnePaneDialog extends React.Component<Props> {
                     >
                         <ModalPanel
                             onClose={onClose}
-                            titleBar={
-                                <Toolbar
-                                    title={title}
-                                    subtitle={subtitle}
-                                    color="light"
-                                    rightContent={this.renderCloseButton()}
-                                />
+                            header={
+                                <ModalHeader>
+                                    <h1>{title}</h1>
+                                    <h2>{subtitle}</h2>
+                                </ModalHeader>
                             }
                             content={content}
                             footer={footer}
+                            showCloseButton={true}
                         />
                     </ModalDialog>
                 )}
