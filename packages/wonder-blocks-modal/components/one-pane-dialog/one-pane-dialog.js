@@ -6,7 +6,6 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "../modal-dialog.js";
 import ModalPanel from "../modal-panel.js";
-import CloseButton from "../close-button.js";
 import ModalHeader from "../modal-header.js";
 
 type Props = {|
@@ -80,22 +79,6 @@ type Props = {|
  * The content of the dialog itself is fully customizable, but the left/right/top/bottom padding is fixed.
  */
 export default class OnePaneDialog extends React.Component<Props> {
-    renderCloseButton() {
-        const {onClose} = this.props;
-
-        return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => (
-                    <CloseButton
-                        light={false}
-                        onClick={onClose}
-                        style={styles.closeButton}
-                    />
-                )}
-            </MediaLayout>
-        );
-    }
-
     render() {
         const {
             onClose,

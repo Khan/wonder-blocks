@@ -135,9 +135,7 @@ export default class ModalPanel extends React.Component<Props> {
                             {this.maybeRenderCloseButton()}
                             {titleBar}
                             {mainContent}
-                            {!footer ||
-                            (typeof footer === "object" &&
-                                footer.type === ModalFooter) ? (
+                            {!footer || ModalFooter.isClassOf(footer) ? (
                                 footer
                             ) : (
                                 <ModalFooter>{footer}</ModalFooter>
