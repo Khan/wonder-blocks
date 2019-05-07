@@ -3,13 +3,13 @@ const Link = require("@khanacademy/wonder-blocks-link").default;
 const {BreadcrumbsItem} = require("@khanacademy/wonder-blocks-breadcrumbs");
 
 <Breadcrumbs>
-  <BreadcrumbsItem>
-    <Link href="https://khanacademy.org/">Home</Link>
-  </BreadcrumbsItem>
     <BreadcrumbsItem>
-    <Link href="https://khanacademy.org/about">About</Link>
-  </BreadcrumbsItem>
-  <BreadcrumbsItem aria-current="page">Current page</BreadcrumbsItem>
+        <Link href="https://khanacademy.org/">Home</Link>
+    </BreadcrumbsItem>
+    <BreadcrumbsItem>
+        <Link href="https://khanacademy.org/about">About</Link>
+    </BreadcrumbsItem>
+    <BreadcrumbsItem aria-current="page">Current page</BreadcrumbsItem>
 </Breadcrumbs>
 ```
 

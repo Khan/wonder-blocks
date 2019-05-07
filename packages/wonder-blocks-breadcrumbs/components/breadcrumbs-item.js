@@ -17,8 +17,9 @@ type Props = {|
 
     /**
      * When true, the separator is shown; otherwise, the separator is not shown.
+     * @ignore
      */
-    showSeparator: boolean,
+    showSeparator?: boolean,
 
     /**
      * Test ID used for e2e testing.

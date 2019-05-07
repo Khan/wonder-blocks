@@ -11,7 +11,6 @@ type Props = {|
 
     /**
      * This is the content for the collection of Breadcrumbs
-     *
      */
     children: React.ChildrenArray<React.Element<typeof BreadcrumbsItem>>,
 
@@ -39,7 +38,7 @@ export default class Breadcrumbs extends React.Component<Props> {
         const {children} = this.props;
         // using React.Children allows to deal with opaque data structures
         // e.g. children = 'string' vs children = []
-        const numChildren = React.Children.count(children) - 1;
+        const lastChildIndex = React.Children.count(children) - 1;
 
         return (
             <nav aria-label="Breadcrumb">
@@ -47,7 +46,7 @@ export default class Breadcrumbs extends React.Component<Props> {
                     {React.Children.map(children, (item, index) =>
                         React.cloneElement(item, {
                             ...item.props,
-                            showSeparator: index !== numChildren,
+                            showSeparator: index !== lastChildIndex,
                         }),
                     )}
                 </StyledList>
