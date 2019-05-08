@@ -1,3 +1,5 @@
+Looking for docs for StandardModal, OneColumnModal, or TwoColumnModal click [here](https://deploy-preview-389--wonder-blocks.netlify.com/#modal)
+
 ## Wrapping Modals
 
 Often you'll want to define a new modal component by wrapping an existing
@@ -85,7 +87,6 @@ const styleSheets = {
 
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
-
         <MediaLayout styleSheets={styleSheets}>
             {({styles}) => (
                 <OnePaneDialog

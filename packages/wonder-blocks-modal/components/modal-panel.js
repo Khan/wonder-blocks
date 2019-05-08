@@ -157,6 +157,7 @@ const styleSheets = {
             flexDirection: "column",
             background: "white",
             boxSizing: "border-box",
+            overflow: "hidden",
             height: "100%",
             width: "100%",
         },

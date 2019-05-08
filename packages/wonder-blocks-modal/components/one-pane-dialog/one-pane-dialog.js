@@ -50,9 +50,6 @@ type Props = {|
      * When set, provides a component that can render content above the top of the modal;
      * when not set, no additional content is shown above the modal.
      * This prop is passed down to the ModalDialog.
-     *
-     * NOTE: Devs can customize this content by rendering the component assigned to this prop with custom styles,
-     * such as by wrapping it in a View.
      */
     above?: React.Node,
 
@@ -95,7 +92,7 @@ export default class OnePaneDialog extends React.Component<Props> {
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
                     <ModalDialog
-                        style={[styles.wrapper, style]}
+                        style={[styles.dialog, style]}
                         above={above}
                         below={below}
                     >
@@ -119,12 +116,16 @@ export default class OnePaneDialog extends React.Component<Props> {
 }
 
 const styleSheets = {
-    all: StyleSheet.create({}),
-
-    small: StyleSheet.create({}),
+    small: StyleSheet.create({
+        dialog: {
+            width: "100%",
+            height: "100%",
+            overflow: "hidden",
+        },
+    }),
 
     mdOrLarger: StyleSheet.create({
-        wrapper: {
+        dialog: {
             width: "93.75%",
             maxWidth: 576,
             height: "81.25%",

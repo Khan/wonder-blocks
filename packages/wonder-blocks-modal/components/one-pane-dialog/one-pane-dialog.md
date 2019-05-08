@@ -1,9 +1,9 @@
 ### Example: OnePaneDialog with above/below containers
 
 ```js
-const {StyleSheet, css} = require("aphrodite");
-const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
-const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
@@ -33,22 +33,21 @@ const styles = StyleSheet.create({
         maxWidth: 544,
     },
 
-    aboveStyles: {
+    above: {
         background: "url(/modal-above.png)",
-        width: 874,
-        height: 551,
+        backgroundSize: "cover",
+        width: 787,
+        height: 496,
         position: "absolute",
-        top: -260,
-        left: -420
+        top: -20,
+        left: -100
     },
 });
-
-const StyledContainer = addStyle("div");
 
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <OnePaneDialog
-            title="Title"
+            title="Modal with above container"
             content={
                 <View style={styles.modalContent}>
                     <Body>
@@ -56,22 +55,20 @@ const StyledContainer = addStyle("div");
                     </Body>
                 </View>
             }
-            footer={<View>
-                <Button type="button">Button (no-op)</Button>
-            </View>}
+            footer={<Button type="button">Button (no-op)</Button>}
             onClose={() => alert("This would close the modal.")}
-            above={<StyledContainer style={styles.aboveStyles} />}
+            above={<View style={styles.above} />}
         />
     </View>
 </View>;
 ```
 
-### Example: Long content (overflows)
+### Example: Custom OnePaneDialog with long content (overflows)
 
 ```js
-const {StyleSheet, css} = require("aphrodite");
+const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
-const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
@@ -95,13 +92,28 @@ const styles = StyleSheet.create({
         top: 0,
         bottom: 0,
     },
+
+    customModal: {
+        maxWidth: 400,
+        maxHeight: 400,
+    },
+
+    above: {
+        background: "url(/modal-above.png)",
+        backgroundSize: "cover",
+        width: 630,
+        height: 397,
+        position: "absolute",
+        top: 40,
+        left: -120
+    },
 });
 
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
         <OnePaneDialog
-            title="Title"
-            subtitle="Wow, look at all this content!"
+            title="Custom modal"
+            subtitle="With long content"
             content={
                 <View>
                     <Body>
@@ -115,10 +127,10 @@ const styles = StyleSheet.create({
                     </Body>
                 </View>
             }
-            footer={<View>
-                <Button type="button">Button (no-op)</Button>
-            </View>}
+            footer={<Button type="button">Button (no-op)</Button>}
+            above={<View style={styles.above} />}
             onClose={() => alert("This would close the modal.")}
+            style={styles.customModal}
         />
     </View>
 </View>;

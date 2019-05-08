@@ -158,12 +158,11 @@ export default class ModalLauncher extends React.Component<Props, State> {
                         </FocusTrap>,
                         body,
                     )}
-                {this.state.opened &&
-                    this.props.backdropDismissEnabled && (
-                        <ModalLauncherKeypressListener
-                            onClose={this.handleCloseModal}
-                        />
-                    )}
+                {this.state.opened && (
+                    <ModalLauncherKeypressListener
+                        onClose={this.handleCloseModal}
+                    />
+                )}
                 {this.state.opened && <ScrollDisabler />}
             </ModalContext.Provider>
         );
