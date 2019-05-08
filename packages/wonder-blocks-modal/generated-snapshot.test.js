@@ -131,13 +131,9 @@ describe("wonder-blocks-modal", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            Title,
-            Body,
-            LabelSmall,
-        } = require("@khanacademy/wonder-blocks-typography");
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
         const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
@@ -160,8 +156,8 @@ describe("wonder-blocks-modal", () => {
                 width: 874,
                 height: 551,
                 position: "absolute",
-                top: -260,
-                left: -420,
+                top: 40,
+                left: -140,
             },
 
             below: {
@@ -169,19 +165,17 @@ describe("wonder-blocks-modal", () => {
                 width: 868,
                 height: 521,
                 position: "absolute",
-                top: -420,
-                left: -581,
+                top: -100,
+                left: -300,
             },
         });
-
-        const StyledContainer = addStyle("div");
 
         const onePaneDialog = ({closeModal}) => (
             <OnePaneDialog
                 title="Title"
                 subtitle="You're reading the subtitle!"
-                above={<StyledContainer style={styles.above} />}
-                below={<StyledContainer style={styles.below} />}
+                above={<View style={styles.above} />}
+                below={<View style={styles.below} />}
                 content={
                     <View style={styles.modalContent}>
                         <Body tag="p">
@@ -208,6 +202,54 @@ describe("wonder-blocks-modal", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+
+        const styles = StyleSheet.create({
+            example: {
+                padding: 32,
+                alignItems: "center",
+            },
+
+            modalContent: {
+                margin: "0 auto",
+                maxWidth: 544,
+            },
+        });
+
+        const exampleModal = ({closeModal}) => (
+            <OnePaneDialog
+                title="Backdrop dismission disabled"
+                content={
+                    <View style={styles.modalContent}>
+                        <Body tag="p">
+                            {
+                                "This window won't be closed if you click/tap outside of the ModalPanel. To do that, you can still press `esc` or use the close button located on the top right."
+                            }
+                        </Body>
+                    </View>
+                }
+            />
+        );
+
+        const example = (
+            <View style={styles.example}>
+                <ModalLauncher
+                    modal={exampleModal}
+                    backdropDismissEnabled={false}
+                >
+                    {({openModal}) => (
+                        <Button onClick={openModal}>Open modal</Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
         const React = require("react");
 
         const {Title} = require("@khanacademy/wonder-blocks-typography");
@@ -273,10 +315,10 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+    it("example 6", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
         const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
@@ -307,23 +349,22 @@ describe("wonder-blocks-modal", () => {
                 maxWidth: 544,
             },
 
-            aboveStyles: {
+            above: {
                 background: "url(/modal-above.png)",
-                width: 874,
-                height: 551,
+                backgroundSize: "cover",
+                width: 787,
+                height: 496,
                 position: "absolute",
-                top: -260,
-                left: -420,
+                top: -20,
+                left: -100,
             },
         });
-
-        const StyledContainer = addStyle("div");
 
         const example = (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
                     <OnePaneDialog
-                        title="Title"
+                        title="Modal with above container"
                         content={
                             <View style={styles.modalContent}>
                                 <Body>
@@ -333,13 +374,9 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
-                        footer={
-                            <View>
-                                <Button type="button">Button (no-op)</Button>
-                            </View>
-                        }
+                        footer={<Button type="button">Button (no-op)</Button>}
                         onClose={() => alert("This would close the modal.")}
-                        above={<StyledContainer style={styles.aboveStyles} />}
+                        above={<View style={styles.above} />}
                     />
                 </View>
             </View>
@@ -347,10 +384,10 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
-        const {StyleSheet, css} = require("aphrodite");
+    it("example 7", () => {
+        const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
         const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
@@ -375,14 +412,29 @@ describe("wonder-blocks-modal", () => {
                 top: 0,
                 bottom: 0,
             },
+
+            customModal: {
+                maxWidth: 400,
+                maxHeight: 400,
+            },
+
+            above: {
+                background: "url(/modal-above.png)",
+                backgroundSize: "cover",
+                width: 630,
+                height: 397,
+                position: "absolute",
+                top: 40,
+                left: -120,
+            },
         });
 
         const example = (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
                     <OnePaneDialog
-                        title="Title"
-                        subtitle="Wow, look at all this content!"
+                        title="Custom modal"
+                        subtitle="With long content"
                         content={
                             <View>
                                 <Body>
@@ -402,74 +454,10 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
-                        footer={
-                            <View>
-                                <Button type="button">Button (no-op)</Button>
-                            </View>
-                        }
+                        footer={<Button type="button">Button (no-op)</Button>}
+                        above={<View style={styles.above} />}
                         onClose={() => alert("This would close the modal.")}
-                    />
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 7", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-
-        const styles = StyleSheet.create({
-            previewSizer: {
-                height: 512,
-            },
-
-            modalPositioner: {
-                // Checkerboard background
-                backgroundImage:
-                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-                backgroundSize: "20px 20px",
-                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-
-            modalContent: {
-                margin: "0 auto",
-                maxWidth: 544,
-            },
-        });
-
-        const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <StandardModal
-                        title="Title"
-                        content={
-                            <View style={styles.modalContent}>
-                                <Body>
-                                    {
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                                    }
-                                </Body>
-                            </View>
-                        }
-                        footer={
-                            <View>
-                                <Button type="button">Button (no-op)</Button>
-                            </View>
-                        }
-                        onClose={() => alert("This would close the modal.")}
+                        style={styles.customModal}
                     />
                 </View>
             </View>
@@ -505,6 +493,11 @@ describe("wonder-blocks-modal", () => {
                 top: 0,
                 bottom: 0,
             },
+
+            modalContent: {
+                margin: "0 auto",
+                maxWidth: 544,
+            },
         });
 
         const example = (
@@ -512,22 +505,11 @@ describe("wonder-blocks-modal", () => {
                 <View style={styles.modalPositioner}>
                     <StandardModal
                         title="Title"
-                        subtitle="Wow, look at all this content!"
                         content={
-                            <View>
+                            <View style={styles.modalContent}>
                                 <Body>
                                     {
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                                     }
                                 </Body>
                             </View>
@@ -563,7 +545,6 @@ describe("wonder-blocks-modal", () => {
                 backgroundSize: "20px 20px",
                 backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
 
-                display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
@@ -583,25 +564,6 @@ describe("wonder-blocks-modal", () => {
                         title="Title"
                         subtitle="Wow, look at all this content!"
                         content={
-                            <View>
-                                <Body>
-                                    {
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                            </View>
-                        }
-                        preview={
                             <View>
                                 <Body>
                                     {
@@ -689,6 +651,94 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                             </View>
                         }
+                        preview={
+                            <View>
+                                <Body>
+                                    {
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                                    }
+                                </Body>
+                                <Body>
+                                    {
+                                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                    }
+                                </Body>
+                                <Body>
+                                    {
+                                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                    }
+                                </Body>
+                            </View>
+                        }
+                        footer={
+                            <View>
+                                <Button type="button">Button (no-op)</Button>
+                            </View>
+                        }
+                        onClose={() => alert("This would close the modal.")}
+                    />
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 11", () => {
+        const {StyleSheet, css} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+
+        const styles = StyleSheet.create({
+            previewSizer: {
+                height: 512,
+            },
+
+            modalPositioner: {
+                // Checkerboard background
+                backgroundImage:
+                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+                backgroundSize: "20px 20px",
+                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+            },
+        });
+
+        const example = (
+            <View style={styles.previewSizer}>
+                <View style={styles.modalPositioner}>
+                    <StandardModal
+                        title="Title"
+                        subtitle="Wow, look at all this content!"
+                        content={
+                            <View>
+                                <Body>
+                                    {
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                                    }
+                                </Body>
+                                <Body>
+                                    {
+                                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                    }
+                                </Body>
+                                <Body>
+                                    {
+                                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                    }
+                                </Body>
+                            </View>
+                        }
                         header={
                             <View>
                                 <Body>
@@ -711,7 +761,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -787,7 +837,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
+    it("example 13", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -883,7 +933,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
+    it("example 14", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -928,7 +978,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
+    it("example 15", () => {
         const {StyleSheet, css} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -1002,7 +1052,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 15", () => {
+    it("example 16", () => {
         const {StyleSheet, css} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -1077,7 +1127,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 16", () => {
+    it("example 17", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -1141,7 +1191,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 17", () => {
+    it("example 18", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");

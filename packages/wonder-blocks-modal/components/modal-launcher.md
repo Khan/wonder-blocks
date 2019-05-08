@@ -1,9 +1,9 @@
 Once the modal is launched, tab focus wraps inside the modal content. Pressing Tab at the end of the modal will focus the modal's first element, and pressing Shift-Tab at the start of the modal will focus the modal's last element.
 
 ```js
-const {StyleSheet, css} = require("aphrodite");
-const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
-const {Title, Body, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         width: 874,
         height: 551,
         position: "absolute",
-        top: -260,
-        left: -420
+        top: 40,
+        left: -140
     },
 
     below: {
@@ -35,19 +35,17 @@ const styles = StyleSheet.create({
         width: 868,
         height: 521,
         position: "absolute",
-        top: -420,
-        left: -581
+        top: -100,
+        left: -300
     },
 });
-
-const StyledContainer = addStyle("div");
 
 const onePaneDialog = ({closeModal}) => (
     <OnePaneDialog
         title="Title"
         subtitle="You're reading the subtitle!"
-        above={<StyledContainer style={styles.above} />}
-        below={<StyledContainer style={styles.below} />}
+        above={<View style={styles.above} />}
+        below={<View style={styles.below} />}
         content={
             <View style={styles.modalContent}>
                 <Body tag="p">
@@ -72,9 +70,53 @@ const onePaneDialog = ({closeModal}) => (
 </View>;
 ```
 
+## Disabling backdrop dismission
+
+By default, `ModalLauncher` allows you to close the modal by clicking on the overlay/backdrop window. Somethimes you might need to disable it, and to to this, you can set `backgropDismissEnabled` to `false`.
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Body} = require("@khanacademy/wonder-blocks-typography");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+
+const styles = StyleSheet.create({
+    example: {
+        padding: 32,
+        alignItems: "center",
+    },
+
+    modalContent: {
+        margin: "0 auto",
+        maxWidth: 544,
+    },
+});
+
+const exampleModal = ({closeModal}) => (
+    <OnePaneDialog
+        title="Backdrop dismission disabled"
+        content={
+            <View style={styles.modalContent}>
+                <Body tag="p">
+                    {
+                        "This window won't be closed if you click/tap outside of the ModalPanel. To do that, you can still press `esc` or use the close button located on the top right."
+                    }
+                </Body>
+            </View>
+        }
+    />
+);
+
+<View style={styles.example}>
+    <ModalLauncher modal={exampleModal} backdropDismissEnabled={false}>
+        {({openModal}) => <Button onClick={openModal}>Open modal</Button>}
+    </ModalLauncher>
+</View>
+```
+
 ## Triggering programmatically
 
-Sometimes you'll want to trigger a modal programmatically.  This can be done
+Sometimes you'll want to trigger a modal programmatically. This can be done
 by rendering `ModalLauncher` without any children and instead setting its
 `opened` prop to `true`.  In this situation `ModalLauncher` is a uncontrolled
 component which means you'll also have to update `opened` to `false` in

@@ -38,7 +38,7 @@ class ModalWrapper extends React.Component {
 </View>
 ```
 
-### Example: Modals with custom styles 
+### Example: Modals with custom styles
 
 Sometimes you'll want to customize the styling of the modal .e.g., custom width or height.  You can pass in `style` which will customize the styling of the modal wrapper.
 To use styling for different screen sizes, wrap your component with `MediaLayout` component.  Please see example code below for details.
@@ -84,7 +84,6 @@ const styleSheets = {
 
 <View style={styles.previewSizer}>
     <View style={styles.modalPositioner}>
-    
         <MediaLayout styleSheets={styleSheets}>
             {({styles}) => (
                 <OneColumnModal

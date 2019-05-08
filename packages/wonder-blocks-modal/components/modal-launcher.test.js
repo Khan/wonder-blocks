@@ -181,4 +181,24 @@ describe("ModalLauncher", () => {
             "either 'children' or 'opened' must be set",
         );
     });
+
+    test("If backdropDismissEnabled set to false, clicking the backdrop does not trigger `onClose`", () => {
+        const onClose = jest.fn();
+
+        // We use `mount` instead of `shallow` here, because the component's
+        // click handler expects actual DOM events.
+        const wrapper = mount(
+            <ModalLauncher
+                onClose={onClose}
+                modal={exampleModal}
+                opened={true}
+                backdropDismissEnabled={false}
+            />,
+        );
+
+        expect(onClose).not.toHaveBeenCalled();
+
+        wrapper.simulate("click");
+        expect(onClose).not.toHaveBeenCalled();
+    });
 });
