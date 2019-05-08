@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
                 </View>
             }
             footer={<Button type="button">Button (no-op)</Button>}
+            showCloseButton={false}
             onClose={() => alert("This would close the modal.")}
             above={<View style={styles.above} />}
         />

@@ -47,6 +47,11 @@ type Props = {|
     onClose?: () => mixed,
 
     /**
+     * Should a close button be shown on the panel?
+     */
+    showCloseButton?: boolean,
+
+    /**
      * When set, provides a component that can render content above the top of the modal;
      * when not set, no additional content is shown above the modal.
      * This prop is passed down to the ModalDialog.
@@ -76,6 +81,10 @@ type Props = {|
  * The content of the dialog itself is fully customizable, but the left/right/top/bottom padding is fixed.
  */
 export default class OnePaneDialog extends React.Component<Props> {
+    static defaultProps = {
+        showCloseButton: true,
+    };
+
     render() {
         const {
             onClose,
@@ -86,6 +95,7 @@ export default class OnePaneDialog extends React.Component<Props> {
             above,
             below,
             style,
+            showCloseButton,
         } = this.props;
 
         return (
@@ -106,7 +116,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                             }
                             content={content}
                             footer={footer}
-                            showCloseButton={true}
+                            showCloseButton={showCloseButton}
                         />
                     </ModalDialog>
                 )}
