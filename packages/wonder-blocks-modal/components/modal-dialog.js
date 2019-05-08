@@ -21,9 +21,6 @@ type Props = {|
      * When set, provides a component that can render content above the top of the modal;
      * when not set, no additional content is shown above the modal.
      * This prop is passed down to the ModalDialog.
-     *
-     * NOTE: Devs can customize this content by rendering the component assigned to this prop with custom styles,
-     * such as by wrapping it in a View.
      */
     above?: React.Node,
 
