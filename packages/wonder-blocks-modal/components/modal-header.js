@@ -4,38 +4,67 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
-
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    HeadingMedium,
+    LabelMedium,
+} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {|
-    children: React.Node,
-    style?: StyleType,
-    color: "light" | "dark",
+    /**
+     * The main title rendered in larger bold text.
+     */
+    title: string,
+
+    /**
+     * The dialog subtitle.
+     */
+    subtitle?: string,
+
+    /**
+     * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
+     */
+    breadcrumbs?: React.Node,
+
+    /**
+     * Whether to display the "light" version of this component instead, for
+     * use when the item is used on a dark background.
+     */
+    light: boolean,
 |};
 
 export default class ModalHeader extends React.Component<Props> {
     static defaultProps = {
-        color: "dark",
+        light: true,
     };
 
-    static __IS_MODAL_HEADER__ = true;
-    static isClassOf(instance: any) {
-        return instance && instance.type && instance.type.__IS_MODAL_HEADER__;
-    }
-
     render() {
-        const {style, color, children} = this.props;
+        const {light, title, subtitle, breadcrumbs} = this.props;
+
+        if (subtitle && breadcrumbs) {
+            throw new Error(
+                "'subtitle' and 'breadcrumbs' can't be used together",
+            );
+        }
+
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
-                    <View
-                        style={[
-                            styles.header,
-                            color === "dark" && styles.dark,
-                            style,
-                        ]}
-                    >
-                        {children}
+                    <View style={[styles.header, !light && styles.dark]}>
+                        {breadcrumbs &&
+                            !subtitle && (
+                                <View style={styles.breadcrumbs}>
+                                    {breadcrumbs}
+                                </View>
+                            )}
+                        <HeadingMedium id="wb-toolbar-title">
+                            {title}
+                        </HeadingMedium>
+                        {subtitle &&
+                            !breadcrumbs && (
+                                <LabelMedium style={light && styles.subtitle}>
+                                    {subtitle}
+                                </LabelMedium>
+                            )}
                     </View>
                 )}
             </MediaLayout>
@@ -46,21 +75,28 @@ export default class ModalHeader extends React.Component<Props> {
 const styleSheets = {
     all: StyleSheet.create({
         header: {
-            flex: "0 0 auto",
-            boxSizing: "border-box",
-            maxHeight: 108,
-            paddingLeft: 64,
-            paddingRight: 64,
-            paddingTop: 8,
-            paddingBottom: 8,
-
+            border: "1px solid rgba(33, 36, 44, 0.16)",
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
+            minHeight: 66,
+            padding: "24px 32px",
+            position: "relative",
+            width: "100%",
         },
 
         dark: {
             background: Color.darkBlue,
             color: Color.white,
+        },
+
+        breadcrumbs: {
+            color: "rgba(33, 36, 44, 0.64)",
+            marginBottom: 8,
+        },
+
+        subtitle: {
+            color: "rgba(33, 36, 44, 0.64)",
+            marginTop: 8,
         },
     }),
 

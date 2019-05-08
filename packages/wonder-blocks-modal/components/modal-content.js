@@ -5,11 +5,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import ModalHeader from "./modal-header.js";
 
 type Props = {|
-    /** An optional header to display above the content. */
-    header?: React.Element<typeof ModalHeader> | React.Node,
     /** Should the content scroll on overflow, or just expand. */
     scrollOverflow: boolean,
     /** The contents of the ModalContent */
@@ -29,7 +26,7 @@ export default class ModalContent extends React.Component<Props> {
     }
 
     render() {
-        const {header, scrollOverflow, style, children} = this.props;
+        const {scrollOverflow, style, children} = this.props;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
@@ -40,11 +37,6 @@ export default class ModalContent extends React.Component<Props> {
                             scrollOverflow && styles.scrollOverflow,
                         ]}
                     >
-                        {!header || ModalHeader.isClassOf(header) ? (
-                            header
-                        ) : (
-                            <ModalHeader>{header}</ModalHeader>
-                        )}
                         <View style={[styles.content, style]}>{children}</View>
                     </View>
                 )}
@@ -70,7 +62,7 @@ const styleSheets = {
         content: {
             flex: 1,
             minHeight: "100%",
-            padding: 64,
+            padding: 32,
             boxSizing: "border-box",
         },
     }),

@@ -18,9 +18,6 @@ type Props = {|
 
     /**
      * The title of the modal, appearing in the titlebar.
-     *
-     * If a subtitle is also present, this becomes smaller to accommodate both
-     * within the title bar.
      */
     title: string,
 
@@ -28,6 +25,11 @@ type Props = {|
      * The subtitle of the modal, appearing in the titlebar, below the title.
      */
     subtitle?: string,
+
+    /**
+     * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
+     */
+    breadcrumbs?: React.Node,
 
     /**
      * The content of the modal's footer. A great place for buttons!
@@ -47,9 +49,9 @@ type Props = {|
     onClose?: () => mixed,
 
     /**
-     * Should a close button be shown on the panel?
+     * When true, the close button is shown; otherwise, the close button is not shown.
      */
-    showCloseButton?: boolean,
+    closeButtonVisible?: boolean,
 
     /**
      * When set, provides a component that can render content above the top of the modal;
@@ -72,6 +74,11 @@ type Props = {|
      * Optional custom styles.
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 /**
@@ -82,7 +89,7 @@ type Props = {|
  */
 export default class OnePaneDialog extends React.Component<Props> {
     static defaultProps = {
-        showCloseButton: true,
+        closeButtonVisible: true,
     };
 
     render() {
@@ -90,12 +97,13 @@ export default class OnePaneDialog extends React.Component<Props> {
             onClose,
             title,
             subtitle,
+            breadcrumbs,
             footer,
             content,
             above,
             below,
             style,
-            showCloseButton,
+            closeButtonVisible,
         } = this.props;
 
         return (
@@ -109,14 +117,15 @@ export default class OnePaneDialog extends React.Component<Props> {
                         <ModalPanel
                             onClose={onClose}
                             header={
-                                <ModalHeader>
-                                    <h1>{title}</h1>
-                                    <h2>{subtitle}</h2>
-                                </ModalHeader>
+                                <ModalHeader
+                                    title={title}
+                                    subtitle={subtitle}
+                                    breadcrumbs={breadcrumbs}
+                                />
                             }
                             content={content}
                             footer={footer}
-                            showCloseButton={showCloseButton}
+                            closeButtonVisible={closeButtonVisible}
                         />
                     </ModalDialog>
                 )}

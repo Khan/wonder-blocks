@@ -70,7 +70,7 @@ const onePaneDialog = ({closeModal}) => (
 </View>;
 ```
 
-## Disabling backdrop dismission
+### Disabling backdrop dismission
 
 By default, `ModalLauncher` allows you to close the modal by clicking on the overlay/backdrop window. Somethimes you might need to disable it, and to to this, you can set `backgropDismissEnabled` to `false`.
 
@@ -114,7 +114,7 @@ const exampleModal = ({closeModal}) => (
 </View>
 ```
 
-## Triggering programmatically
+### Triggering programmatically
 
 Sometimes you'll want to trigger a modal programmatically. This can be done
 by rendering `ModalLauncher` without any children and instead setting its

@@ -1,5 +1,24 @@
 Looking for docs for StandardModal, OneColumnModal, or TwoColumnModal click [here](https://deploy-preview-389--wonder-blocks.netlify.com/#modal)
 
+## Accessibility
+
+It should follow guidelines from [W3C](https://www.w3.org/TR/wai-aria-practices/#dialog_modal).
+
+### Keyboard Interaction
+When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.
+
+- Tab:
+    - Moves focus to the next tabbable element inside the dialog.
+    - If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
+- Shift + Tab:
+    - Moves focus to the previous tabbable element inside the dialog.
+    - If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
+- Escape: Closes the dialog.
+
+### WAI-ARIA Roles
+- The element that serves as the **dialog container** has `aria-role` defined as `dialog`.
+- The dialog has a value set for the `aria-labelledby` property that refers to a **visible dialog title**.
+
 ## Wrapping Modals
 
 Often you'll want to define a new modal component by wrapping an existing
@@ -16,7 +35,7 @@ const Button = require("@khanacademy/wonder-blocks-button").default;
 class ModalWrapper extends React.Component {
     render() {
         return <OnePaneDialog
-            title="Title"
+            title="Single-line title"
             content={
                 <View>
                     <Title>Hello, world</Title>
@@ -82,6 +101,16 @@ const styleSheets = {
             maxWidth: 300,
             maxHeight: 200,
         },
+
+        above: {
+            background: "url(/modal-above.png)",
+            backgroundSize: "cover",
+            width: 378,
+            height: 238,
+            position: "absolute",
+            top: 0,
+            left: -60
+        },
     }),
 };
 
@@ -91,16 +120,16 @@ const styleSheets = {
             {({styles}) => (
                 <OnePaneDialog
                     style={styles.customModal}
-                    title="title"
+                    title="Single-line title"
                     content={
                         <View>
-                            <Title style={styles.title}>Title</Title>
                             <Body>
                                 Hello World!
                             </Body>
                         </View>
                     }
                     onClose={() => alert("This would close the modal.")}
+                    above={<View style={styles.above} />}
                 />
             )}
         </MediaLayout>

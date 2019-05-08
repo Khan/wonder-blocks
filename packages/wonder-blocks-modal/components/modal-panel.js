@@ -4,7 +4,6 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
-import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {MockStyleSheet} from "@khanacademy/wonder-blocks-layout";
 
@@ -19,14 +18,14 @@ type Props = {|
      * are positioned around it.
      */
     content: React.Element<typeof ModalContent> | React.Node,
-    /** A title bar (with optional subtitle) to show at the top of the panel. */
-    titleBar?: React.Element<typeof Toolbar>,
-    /** A header to show above the contents, but below the title bar. */
+    /** The Dialog header */
     header?: React.Element<typeof ModalHeader> | React.Node,
     /** A footer to show beneath the contents. */
     footer?: React.Element<typeof ModalFooter> | React.Node,
-    /** Should a close button be shown on the panel? */
-    showCloseButton: boolean,
+    /**
+     * When true, the close button is shown; otherwise, the close button is not shown.
+     */
+    closeButtonVisible: boolean,
     /**
      * Should the contents of the panel become scrollable should they
      * become too tall?
@@ -49,28 +48,23 @@ type Props = {|
 
 export default class ModalPanel extends React.Component<Props> {
     static defaultProps = {
-        showCloseButton: false,
+        closeButtonVisible: true,
         scrollOverflow: true,
         color: "light",
     };
 
     maybeRenderCloseButton() {
-        const {showCloseButton, onClose, color, titleBar} = this.props;
+        const {closeButtonVisible, onClose, color} = this.props;
 
-        if (!showCloseButton) {
+        if (!closeButtonVisible) {
             return null;
         }
-
-        // Figure out the background color that'll be behind the close button
-        // If a titlebar is specified then we use that, otherwise we use the
-        // default background color.
-        const topBackgroundColor = (titleBar && titleBar.props.color) || color;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
                     <CloseButton
-                        light={topBackgroundColor === "dark"}
+                        light={color === "dark"}
                         onClick={onClose}
                         style={styles.closeButton}
                     />
@@ -82,11 +76,9 @@ export default class ModalPanel extends React.Component<Props> {
     renderMainContent(styles: MockStyleSheet) {
         const {
             content,
-            titleBar,
-            header,
             footer,
             scrollOverflow,
-            showCloseButton,
+            closeButtonVisible,
         } = this.props;
 
         const mainContent = ModalContent.isClassOf(content) ? (
@@ -102,22 +94,20 @@ export default class ModalPanel extends React.Component<Props> {
         return React.cloneElement(mainContent, {
             // Pass the scrollOverflow and header in to the main content
             scrollOverflow,
-            header: header || mainContent.props.header,
             // We override the styling of the main content to help position
             // it if there is a title bar, footer, or close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
             style: [
-                !!titleBar && styles.hasTitleBar,
                 !!footer && styles.hasFooter,
-                showCloseButton && !titleBar && styles.withCloseButton,
+                closeButtonVisible && styles.withCloseButton,
                 mainContent.props.style,
             ],
         });
     }
 
     render() {
-        const {titleBar, footer, color, style} = this.props;
+        const {footer, header, color, style} = this.props;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
@@ -133,7 +123,7 @@ export default class ModalPanel extends React.Component<Props> {
                             ]}
                         >
                             {this.maybeRenderCloseButton()}
-                            {titleBar}
+                            {header}
                             {mainContent}
                             {!footer || ModalFooter.isClassOf(footer) ? (
                                 footer
@@ -164,7 +154,7 @@ const styleSheets = {
 
         closeButton: {
             position: "absolute",
-            left: 16,
+            right: 16,
             top: 16,
             // This is to allow the button to be tab-ordered before the modal
             // content but still be above the header and content.
@@ -176,10 +166,6 @@ const styleSheets = {
             color: Color.white,
         },
 
-        hasTitleBar: {
-            paddingTop: 32,
-        },
-
         hasFooter: {
             paddingBottom: 32,
         },
@@ -187,7 +173,7 @@ const styleSheets = {
 
     small: StyleSheet.create({
         closeButton: {
-            left: 16,
+            right: 16,
             top: 16,
         },
 

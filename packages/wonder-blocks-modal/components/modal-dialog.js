@@ -53,6 +53,7 @@ export default class ModalDialog extends React.Component<Props> {
                             <View
                                 role="dialog"
                                 aria-labelledby="wb-modal-title"
+                                style={styles.dialog}
                             >
                                 {children}
                             </View>
@@ -71,9 +72,20 @@ const styleSheets = {
             display: "flex",
             flexDirection: "row",
             alignItems: "stretch",
+            width: "100%",
+            height: "100%",
             position: "relative",
             borderRadius: 4,
         },
+
+        /**
+         * Ensures the dialog container uses the container size
+         */
+        dialog: {
+            width: "100%",
+            height: "100%",
+        },
+
         above: {
             pointerEvents: "none",
             position: "absolute",
@@ -83,6 +95,7 @@ const styleSheets = {
             right: 0,
             zIndex: 1,
         },
+
         below: {
             pointerEvents: "none",
             position: "absolute",
@@ -95,10 +108,7 @@ const styleSheets = {
     }),
 
     small: StyleSheet.create({
-        // On small viewports, we consume the full screen size.
         wrapper: {
-            width: "100%",
-            height: "100%",
             padding: Spacing.medium,
             flexDirection: "column",
         },

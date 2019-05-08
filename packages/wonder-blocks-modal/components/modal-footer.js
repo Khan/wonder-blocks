@@ -4,11 +4,8 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
 type Props = {|
     children: React.Node,
-    style?: StyleType,
 |};
 
 export default class ModalFooter extends React.Component<Props> {
@@ -18,8 +15,8 @@ export default class ModalFooter extends React.Component<Props> {
     }
 
     render() {
-        const {style, children} = this.props;
-        return <View style={[styles.footer, style]}>{children}</View>;
+        const {children} = this.props;
+        return <View style={styles.footer}>{children}</View>;
     }
 }
 
