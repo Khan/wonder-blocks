@@ -72,6 +72,7 @@ const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const {Breadcrumbs, BreadcrumbsItem} = require("@khanacademy/wonder-blocks-breadcrumbs");
 const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
 const styles = StyleSheet.create({
@@ -142,7 +143,17 @@ const Footer = () => (
     <View style={styles.modalPositioner}>
         <OnePaneDialog
             title="Multi-line title that wraps to show how this component adjusts with longer content"
-            breadcrumbs="Bread · Crumb · Trail"
+            breadcrumbs={
+                <Breadcrumbs>
+                    <BreadcrumbsItem>
+                        Bread
+                    </BreadcrumbsItem>
+                    <BreadcrumbsItem>
+                        Crumb
+                    </BreadcrumbsItem>
+                    <BreadcrumbsItem aria-current="page">Trail</BreadcrumbsItem>
+                </Breadcrumbs>
+            }
             content={
                 <View>
                     <Body>

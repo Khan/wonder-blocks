@@ -1540,7 +1540,98 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 }
               }
             >
-              Bread · Crumb · Trail
+              <nav
+                aria-label="Breadcrumb"
+              >
+                <ol
+                  className=""
+                  style={
+                    Object {
+                      "display": "flex",
+                      "listStyle": "none",
+                      "margin": 0,
+                      "overflow": "hidden",
+                      "padding": 0,
+                    }
+                  }
+                >
+                  <li
+                    className=""
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "marginRight": 4,
+                      }
+                    }
+                  >
+                    Bread
+                    <svg
+                      aria-hidden={true}
+                      className=""
+                      height={16}
+                      style={
+                        Object {
+                          "marginLeft": 4,
+                        }
+                      }
+                      viewBox="0 0 16 16"
+                      width={16}
+                    >
+                      <circle
+                        cx="8"
+                        cy="9"
+                        r="1.5"
+                      />
+                    </svg>
+                  </li>
+                  <li
+                    className=""
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "marginRight": 4,
+                      }
+                    }
+                  >
+                    Crumb
+                    <svg
+                      aria-hidden={true}
+                      className=""
+                      height={16}
+                      style={
+                        Object {
+                          "marginLeft": 4,
+                        }
+                      }
+                      viewBox="0 0 16 16"
+                      width={16}
+                    >
+                      <circle
+                        cx="8"
+                        cy="9"
+                        r="1.5"
+                      />
+                    </svg>
+                  </li>
+                  <li
+                    className=""
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "marginRight": 4,
+                      }
+                    }
+                  >
+                    Trail
+                  </li>
+                </ol>
+              </nav>
             </div>
             <h3
               className=""
