@@ -19,11 +19,11 @@ When a dialog opens, focus moves to an element inside the dialog. See notes belo
 - The element that serves as the **dialog container** has `aria-role` defined as `dialog`.
 - The dialog has a value set for the `aria-labelledby` property that refers to a **visible dialog title**.
 
-## Wrapping Modals
+## Wrapping Dialogs
 
-Often you'll want to define a new modal component by wrapping an existing
-modal component.  These wrapped components will also work with ModalLauncher
-in the same way the default ones do.
+Often you'll want to define a new `Dialog` component by wrapping an existing
+`Dialog` component (e.g. `OnePaneDialog`). These wrapped components will also
+work with `ModalLauncher` in the same way the default ones do.
 
 ```js
 const React = require("react");
@@ -60,9 +60,9 @@ class ModalWrapper extends React.Component {
 </View>
 ```
 
-### Example: Modals with custom styles
+### Example: Dialogs with custom styles
 
-Sometimes you'll want to customize the styling of the modal .e.g., custom width or height.  You can pass in `style` which will customize the styling of the modal wrapper.
+Sometimes you'll want to customize the styling of the **Dialog** .e.g., custom width or height.  You can pass in `style` which will customize the styling of the modal wrapper.
 To use styling for different screen sizes, wrap your component with `MediaLayout` component.  Please see example code below for details.
 
 ```js
@@ -102,14 +102,24 @@ const styleSheets = {
             maxHeight: 200,
         },
 
-        above: {
-            background: "url(/modal-above.png)",
+        below: {
+            background: "url(/blue-blob.png)",
             backgroundSize: "cover",
-            width: 378,
-            height: 238,
+            width: 294,
+            height: 306,
             position: "absolute",
             top: 0,
             left: -60
+        },
+
+        above: {
+            background: "url(/asteroid.png)",
+            backgroundSize: "cover",
+            width: 418,
+            height: 260,
+            position: "absolute",
+            top: -10,
+            left: -5
         },
     }),
 };
@@ -129,6 +139,7 @@ const styleSheets = {
                         </View>
                     }
                     onClose={() => alert("This would close the modal.")}
+                    below={<View style={styles.below} />}
                     above={<View style={styles.above} />}
                 />
             )}

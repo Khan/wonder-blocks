@@ -75,7 +75,7 @@ export default class ModalHeader extends React.Component<Props> {
 const styleSheets = {
     all: StyleSheet.create({
         header: {
-            border: "1px solid rgba(33, 36, 44, 0.16)",
+            boxShadow: "0px 1px 0px rgba(33, 36, 44, 0.16)",
             display: "flex",
             flexDirection: "column",
             minHeight: 66,

@@ -75,7 +75,6 @@ const styleSheets = {
             width: "100%",
             height: "100%",
             position: "relative",
-            borderRadius: 4,
         },
 
         /**
@@ -84,6 +83,8 @@ const styleSheets = {
         dialog: {
             width: "100%",
             height: "100%",
+            borderRadius: 4,
+            overflow: "hidden",
         },
 
         above: {

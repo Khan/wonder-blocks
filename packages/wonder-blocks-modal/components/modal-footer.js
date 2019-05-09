@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
@@ -35,8 +34,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-end",
 
-        borderTopStyle: "solid",
-        borderTopColor: Color.offBlack16,
-        borderTopWidth: 1,
+        boxShadow: "0px -1px 0px rgba(33, 36, 44, 0.16)",
     },
 });

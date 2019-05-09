@@ -146,7 +146,6 @@ exports[`wonder-blocks-modal example 2 1`] = `
       style={
         Object {
           "alignItems": "stretch",
-          "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -166,12 +165,63 @@ exports[`wonder-blocks-modal example 2 1`] = `
       }
     >
       <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "bottom": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "left": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "pointerEvents": "none",
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": -1,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "background": "url(/blue-blob.png)",
+              "backgroundSize": "cover",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "height": 306,
+              "left": -60,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 0,
+              "width": 294,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
+      <div
         aria-labelledby="wb-modal-title"
         className=""
         role="dialog"
         style={
           Object {
             "alignItems": "stretch",
+            "borderRadius": 4,
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
@@ -181,6 +231,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
+            "overflow": "hidden",
             "padding": 0,
             "position": "relative",
             "width": "100%",
@@ -283,9 +334,9 @@ exports[`wonder-blocks-modal example 2 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "border": "1px solid rgba(33, 36, 44, 0.16)",
                 "borderStyle": "solid",
                 "borderWidth": 0,
+                "boxShadow": "0px 1px 0px rgba(33, 36, 44, 0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
@@ -435,22 +486,22 @@ exports[`wonder-blocks-modal example 2 1`] = `
           style={
             Object {
               "alignItems": "stretch",
-              "background": "url(/modal-above.png)",
+              "background": "url(/asteroid.png)",
               "backgroundSize": "cover",
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
               "display": "flex",
               "flexDirection": "column",
-              "height": 238,
-              "left": -60,
+              "height": 260,
+              "left": -5,
               "margin": 0,
               "minHeight": 0,
               "minWidth": 0,
               "padding": 0,
               "position": "absolute",
-              "top": 0,
-              "width": 378,
+              "top": -10,
+              "width": 418,
               "zIndex": 0,
             }
           }
@@ -879,7 +930,6 @@ exports[`wonder-blocks-modal example 6 1`] = `
       style={
         Object {
           "alignItems": "stretch",
-          "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -905,6 +955,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
         style={
           Object {
             "alignItems": "stretch",
+            "borderRadius": 4,
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
@@ -914,6 +965,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
+            "overflow": "hidden",
             "padding": 0,
             "position": "relative",
             "width": "100%",
@@ -1016,9 +1068,9 @@ exports[`wonder-blocks-modal example 6 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "border": "1px solid rgba(33, 36, 44, 0.16)",
                 "borderStyle": "solid",
                 "borderWidth": 0,
+                "boxShadow": "0px 1px 0px rgba(33, 36, 44, 0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
@@ -1163,10 +1215,8 @@ exports[`wonder-blocks-modal example 6 1`] = `
               Object {
                 "alignItems": "center",
                 "borderStyle": "solid",
-                "borderTopColor": "rgba(33,36,44,0.16)",
-                "borderTopStyle": "solid",
-                "borderTopWidth": 1,
                 "borderWidth": 0,
+                "boxShadow": "0px -1px 0px rgba(33, 36, 44, 0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flex": "0 0 auto",
@@ -1366,7 +1416,6 @@ exports[`wonder-blocks-modal example 7 1`] = `
       style={
         Object {
           "alignItems": "stretch",
-          "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -1392,6 +1441,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
         style={
           Object {
             "alignItems": "stretch",
+            "borderRadius": 4,
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
@@ -1401,6 +1451,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
+            "overflow": "hidden",
             "padding": 0,
             "position": "relative",
             "width": "100%",
@@ -1503,9 +1554,9 @@ exports[`wonder-blocks-modal example 7 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "border": "1px solid rgba(33, 36, 44, 0.16)",
                 "borderStyle": "solid",
                 "borderWidth": 0,
+                "boxShadow": "0px 1px 0px rgba(33, 36, 44, 0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
@@ -1745,10 +1796,8 @@ exports[`wonder-blocks-modal example 7 1`] = `
               Object {
                 "alignItems": "center",
                 "borderStyle": "solid",
-                "borderTopColor": "rgba(33,36,44,0.16)",
-                "borderTopStyle": "solid",
-                "borderTopWidth": 1,
                 "borderWidth": 0,
+                "boxShadow": "0px -1px 0px rgba(33, 36, 44, 0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flex": "0 0 auto",
@@ -2062,7 +2111,6 @@ exports[`wonder-blocks-modal example 8 1`] = `
       style={
         Object {
           "alignItems": "stretch",
-          "borderRadius": 4,
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
@@ -2088,6 +2136,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
         style={
           Object {
             "alignItems": "stretch",
+            "borderRadius": 4,
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
@@ -2097,6 +2146,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
+            "overflow": "hidden",
             "padding": 0,
             "position": "relative",
             "width": "100%",
@@ -2199,9 +2249,9 @@ exports[`wonder-blocks-modal example 8 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "border": "1px solid rgba(33, 36, 44, 0.16)",
                 "borderStyle": "solid",
                 "borderWidth": 0,
+                "boxShadow": "0px 1px 0px rgba(33, 36, 44, 0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
@@ -2327,10 +2377,8 @@ exports[`wonder-blocks-modal example 8 1`] = `
               Object {
                 "alignItems": "center",
                 "borderStyle": "solid",
-                "borderTopColor": "rgba(33,36,44,0.16)",
-                "borderTopStyle": "solid",
-                "borderTopWidth": 1,
                 "borderWidth": 0,
+                "boxShadow": "0px -1px 0px rgba(33, 36, 44, 0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flex": "0 0 auto",

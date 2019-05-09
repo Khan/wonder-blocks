@@ -18,22 +18,37 @@ type Props = {|
      * are positioned around it.
      */
     content: React.Element<typeof ModalContent> | React.Node,
-    /** The Dialog header */
+
+    /**
+     * The modal header to show at the top of the panel.
+     */
     header?: React.Element<typeof ModalHeader> | React.Node,
-    /** A footer to show beneath the contents. */
+
+    /**
+     * A footer to show beneath the contents.
+     */
     footer?: React.Element<typeof ModalFooter> | React.Node,
+
     /**
      * When true, the close button is shown; otherwise, the close button is not shown.
      */
     closeButtonVisible: boolean,
+
     /**
      * Should the contents of the panel become scrollable should they
      * become too tall?
      */
     scrollOverflow: boolean,
-    /** The color of the panel (defaults to light). */
-    color: "light" | "dark",
-    /** Any optional styling to apply to the panel. */
+
+    /**
+     * Whether to display the "light" version of this component instead, for
+     * use when the item is used on a dark background.
+     */
+    light: boolean,
+
+    /**
+     * Any optional styling to apply to the panel.
+     */
     style?: StyleType,
 
     /**
@@ -50,11 +65,11 @@ export default class ModalPanel extends React.Component<Props> {
     static defaultProps = {
         closeButtonVisible: true,
         scrollOverflow: true,
-        color: "light",
+        light: true,
     };
 
     maybeRenderCloseButton() {
-        const {closeButtonVisible, onClose, color} = this.props;
+        const {closeButtonVisible, onClose, light} = this.props;
 
         if (!closeButtonVisible) {
             return null;
@@ -64,7 +79,7 @@ export default class ModalPanel extends React.Component<Props> {
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
                     <CloseButton
-                        light={color === "dark"}
+                        light={!light}
                         onClick={onClose}
                         style={styles.closeButton}
                     />
@@ -107,7 +122,7 @@ export default class ModalPanel extends React.Component<Props> {
     }
 
     render() {
-        const {footer, header, color, style} = this.props;
+        const {footer, header, light, style} = this.props;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
@@ -118,7 +133,7 @@ export default class ModalPanel extends React.Component<Props> {
                         <View
                             style={[
                                 styles.wrapper,
-                                color === "dark" && styles.dark,
+                                !light && styles.dark,
                                 style,
                             ]}
                         >

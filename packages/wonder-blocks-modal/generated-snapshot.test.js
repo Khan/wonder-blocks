@@ -99,14 +99,24 @@ describe("wonder-blocks-modal", () => {
                     maxHeight: 200,
                 },
 
-                above: {
-                    background: "url(/modal-above.png)",
+                below: {
+                    background: "url(/blue-blob.png)",
                     backgroundSize: "cover",
-                    width: 378,
-                    height: 238,
+                    width: 294,
+                    height: 306,
                     position: "absolute",
                     top: 0,
                     left: -60,
+                },
+
+                above: {
+                    background: "url(/asteroid.png)",
+                    backgroundSize: "cover",
+                    width: 418,
+                    height: 260,
+                    position: "absolute",
+                    top: -10,
+                    left: -5,
                 },
             }),
         };
@@ -127,6 +137,7 @@ describe("wonder-blocks-modal", () => {
                                 onClose={() =>
                                     alert("This would close the modal.")
                                 }
+                                below={<View style={styles.below} />}
                                 above={<View style={styles.above} />}
                             />
                         )}
