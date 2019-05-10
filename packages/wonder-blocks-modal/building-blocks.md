@@ -1,5 +1,7 @@
 Use these low-level building blocks to build your own modal dialog, instead of using OnePaneDialog. This should happen very rarely and only when a specific exception is required.
 
+### Example: Custom Two-Pane Dialog
+
 ```js
 const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
