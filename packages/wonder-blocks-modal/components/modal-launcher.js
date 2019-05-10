@@ -52,6 +52,11 @@ type Props = {|
      * error being thrown.
      */
     opened?: boolean,
+
+    /**
+     * Enables the backdrop to dismiss the modal on click/tap
+     */
+    backdropDismissEnabled?: boolean,
 |};
 
 type State = {|
@@ -76,6 +81,10 @@ type State = {|
  * the `modal` prop.
  */
 export default class ModalLauncher extends React.Component<Props, State> {
+    static defaultProps = {
+        backdropDismissEnabled: true,
+    };
+
     static getDerivedStateFromProps(props: Props, state: State) {
         if (typeof props.opened === "boolean" && props.children) {
             throw new Error("'children' and 'opened' can't be used together");
@@ -137,7 +146,13 @@ export default class ModalLauncher extends React.Component<Props, State> {
                         /* We need the container View that FocusTrap creates to be at the
                            correct z-index so that it'll be above the global nav in webapp. */
                         <FocusTrap style={styles.container}>
-                            <ModalBackdrop onCloseModal={this.handleCloseModal}>
+                            <ModalBackdrop
+                                onCloseModal={
+                                    this.props.backdropDismissEnabled
+                                        ? this.handleCloseModal
+                                        : () => {}
+                                }
+                            >
                                 {this._renderModal()}
                             </ModalBackdrop>
                         </FocusTrap>,
