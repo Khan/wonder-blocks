@@ -54,6 +54,12 @@ const styles = StyleSheet.create({
                     <Body>
                         {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."}
                     </Body>
+                    <Body>
+                        {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."}
+                    </Body>
+                    <Body>
+                        {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."}
+                    </Body>
                 </View>
             }
             footer={<Button type="button">Button (no-op)</Button>}
@@ -67,11 +73,14 @@ const styles = StyleSheet.create({
 
 ### Example: Custom Footer (3 actions)
 
+This component is fully responsive, try it by resizing the window.
+
 ```js
 const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 const {Breadcrumbs, BreadcrumbsItem} = require("@khanacademy/wonder-blocks-breadcrumbs");
 const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
@@ -104,7 +113,7 @@ const defaultStyles = StyleSheet.create({
         justifyContent: "flex-end"
     },
     button: {
-        marginRight: 16
+        marginRight: Spacing.medium
     }
 });
 
@@ -114,7 +123,7 @@ const smallStyles = StyleSheet.create({
         width: "100%"
     },
     button: {
-        marginBottom: 16
+        marginBottom: Spacing.medium
     }
 });
 
@@ -151,7 +160,7 @@ const Footer = () => (
                     <BreadcrumbsItem>
                         Crumb
                     </BreadcrumbsItem>
-                    <BreadcrumbsItem aria-current="page">Trail</BreadcrumbsItem>
+                    <BreadcrumbsItem>Trail</BreadcrumbsItem>
                 </Breadcrumbs>
             }
             content={

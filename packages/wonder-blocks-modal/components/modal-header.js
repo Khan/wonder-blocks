@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     HeadingMedium,
     LabelMedium,
@@ -75,11 +76,11 @@ export default class ModalHeader extends React.Component<Props> {
 const styleSheets = {
     all: StyleSheet.create({
         header: {
-            boxShadow: "0px 1px 0px rgba(33, 36, 44, 0.16)",
+            boxShadow: `0px 1px 0px ${Color.offBlack16}`,
             display: "flex",
             flexDirection: "column",
             minHeight: 66,
-            padding: "24px 32px",
+            padding: `${Spacing.large}px ${Spacing.xLarge}px`,
             position: "relative",
             width: "100%",
         },
@@ -90,20 +91,20 @@ const styleSheets = {
         },
 
         breadcrumbs: {
-            color: "rgba(33, 36, 44, 0.64)",
-            marginBottom: 8,
+            color: Color.offBlack64,
+            marginBottom: Spacing.xSmall,
         },
 
         subtitle: {
-            color: "rgba(33, 36, 44, 0.64)",
-            marginTop: 8,
+            color: Color.offBlack64,
+            marginTop: Spacing.xSmall,
         },
     }),
 
     small: StyleSheet.create({
         header: {
-            paddingLeft: 16,
-            paddingRight: 16,
+            paddingLeft: Spacing.medium,
+            paddingRight: Spacing.medium,
         },
     }),
 };

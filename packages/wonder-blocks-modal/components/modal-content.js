@@ -3,6 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -62,14 +63,14 @@ const styleSheets = {
         content: {
             flex: 1,
             minHeight: "100%",
-            padding: 32,
+            padding: Spacing.xLarge,
             boxSizing: "border-box",
         },
     }),
 
     small: StyleSheet.create({
         content: {
-            padding: "32px 16px",
+            padding: `${Spacing.xLarge}px ${Spacing.medium}px`,
         },
     }),
 };

@@ -5,15 +5,16 @@ const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
 const styles = StyleSheet.create({
     example: {
-        padding: 32,
+        padding: Spacing.xLarge,
         alignItems: "center",
     },
 
     title: {
-        marginBottom: 16,
+        marginBottom: Spacing.medium,
     },
 
     modalContent: {
@@ -79,10 +80,11 @@ const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
 const styles = StyleSheet.create({
     example: {
-        padding: 32,
+        padding: Spacing.xLarge,
         alignItems: "center",
     },
 

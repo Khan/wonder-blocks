@@ -3,9 +3,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {MockStyleSheet} from "@khanacademy/wonder-blocks-layout";
 
 import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
@@ -68,33 +67,8 @@ export default class ModalPanel extends React.Component<Props> {
         light: true,
     };
 
-    maybeRenderCloseButton() {
-        const {closeButtonVisible, onClose, light} = this.props;
-
-        if (!closeButtonVisible) {
-            return null;
-        }
-
-        return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => (
-                    <CloseButton
-                        light={!light}
-                        onClick={onClose}
-                        style={styles.closeButton}
-                    />
-                )}
-            </MediaLayout>
-        );
-    }
-
-    renderMainContent(styles: MockStyleSheet) {
-        const {
-            content,
-            footer,
-            scrollOverflow,
-            closeButtonVisible,
-        } = this.props;
+    renderMainContent() {
+        const {content, footer, scrollOverflow} = this.props;
 
         const mainContent = ModalContent.isClassOf(content) ? (
             ((content: any): React.Element<typeof ModalContent>)
@@ -110,90 +84,74 @@ export default class ModalPanel extends React.Component<Props> {
             // Pass the scrollOverflow and header in to the main content
             scrollOverflow,
             // We override the styling of the main content to help position
-            // it if there is a title bar, footer, or close button being
+            // it if there is a footer or close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
-            style: [
-                !!footer && styles.hasFooter,
-                closeButtonVisible && styles.withCloseButton,
-                mainContent.props.style,
-            ],
+            style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
     }
 
     render() {
-        const {footer, header, light, style} = this.props;
+        const {
+            closeButtonVisible,
+            footer,
+            header,
+            light,
+            onClose,
+            style,
+        } = this.props;
+
+        const mainContent = this.renderMainContent();
 
         return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => {
-                    const mainContent = this.renderMainContent(styles);
-
-                    return (
-                        <View
-                            style={[
-                                styles.wrapper,
-                                !light && styles.dark,
-                                style,
-                            ]}
-                        >
-                            {this.maybeRenderCloseButton()}
-                            {header}
-                            {mainContent}
-                            {!footer || ModalFooter.isClassOf(footer) ? (
-                                footer
-                            ) : (
-                                <ModalFooter>{footer}</ModalFooter>
-                            )}
-                        </View>
-                    );
-                }}
-            </MediaLayout>
+            <View style={[styles.wrapper, !light && styles.dark, style]}>
+                {closeButtonVisible && (
+                    <CloseButton
+                        light={!light}
+                        onClick={onClose}
+                        style={styles.closeButton}
+                    />
+                )}
+                {header}
+                {mainContent}
+                {!footer || ModalFooter.isClassOf(footer) ? (
+                    footer
+                ) : (
+                    <ModalFooter>{footer}</ModalFooter>
+                )}
+            </View>
         );
     }
 }
 
-const styleSheets = {
-    all: StyleSheet.create({
-        wrapper: {
-            flex: "1 1 auto",
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            background: "white",
-            boxSizing: "border-box",
-            overflow: "hidden",
-            height: "100%",
-            width: "100%",
-        },
+const styles = StyleSheet.create({
+    wrapper: {
+        flex: "1 1 auto",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        background: "white",
+        boxSizing: "border-box",
+        overflow: "hidden",
+        height: "100%",
+        width: "100%",
+    },
 
-        closeButton: {
-            position: "absolute",
-            right: 16,
-            top: 16,
-            // This is to allow the button to be tab-ordered before the modal
-            // content but still be above the header and content.
-            zIndex: 1,
-        },
+    closeButton: {
+        position: "absolute",
+        right: Spacing.medium,
+        top: Spacing.medium,
+        // This is to allow the button to be tab-ordered before the modal
+        // content but still be above the header and content.
+        zIndex: 1,
+    },
 
-        dark: {
-            background: Color.darkBlue,
-            color: Color.white,
-        },
+    dark: {
+        background: Color.darkBlue,
+        color: Color.white,
+    },
 
-        hasFooter: {
-            paddingBottom: 32,
-        },
-    }),
-
-    small: StyleSheet.create({
-        closeButton: {
-            right: 16,
-            top: 16,
-        },
-
-        withCloseButton: {
-            paddingTop: 64,
-        },
-    }),
-};
+    hasFooter: {
+        paddingBottom: Spacing.xLarge,
+    },
+});

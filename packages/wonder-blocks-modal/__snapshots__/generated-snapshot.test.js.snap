@@ -336,7 +336,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
-                "boxShadow": "0px 1px 0px rgba(33, 36, 44, 0.16)",
+                "boxShadow": "0px 1px 0px rgba(33,36,44,0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
@@ -1070,7 +1070,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
-                "boxShadow": "0px 1px 0px rgba(33, 36, 44, 0.16)",
+                "boxShadow": "0px 1px 0px rgba(33,36,44,0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
@@ -1115,7 +1115,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                 Object {
                   "MozOsxFontSmoothing": "grayscale",
                   "WebkitFontSmoothing": "antialiased",
-                  "color": "rgba(33, 36, 44, 0.64)",
+                  "color": "rgba(33,36,44,0.64)",
                   "display": "block",
                   "fontFamily": "Lato, sans-serif",
                   "fontSize": 16,
@@ -1206,6 +1206,38 @@ exports[`wonder-blocks-modal example 6 1`] = `
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
                 </span>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "display": "block",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontSize": 16,
+                      "fontWeight": 400,
+                      "lineHeight": "22px",
+                    }
+                  }
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                </span>
               </div>
             </div>
           </div>
@@ -1216,7 +1248,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                 "alignItems": "center",
                 "borderStyle": "solid",
                 "borderWidth": 0,
-                "boxShadow": "0px -1px 0px rgba(33, 36, 44, 0.16)",
+                "boxShadow": "0px -1px 0px rgba(33,36,44,0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flex": "0 0 auto",
@@ -1556,7 +1588,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
-                "boxShadow": "0px 1px 0px rgba(33, 36, 44, 0.16)",
+                "boxShadow": "0px 1px 0px rgba(33,36,44,0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
@@ -1578,7 +1610,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "borderStyle": "solid",
                   "borderWidth": 0,
                   "boxSizing": "border-box",
-                  "color": "rgba(33, 36, 44, 0.64)",
+                  "color": "rgba(33,36,44,0.64)",
                   "display": "flex",
                   "flexDirection": "column",
                   "margin": 0,
@@ -1797,7 +1829,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                 "alignItems": "center",
                 "borderStyle": "solid",
                 "borderWidth": 0,
-                "boxShadow": "0px -1px 0px rgba(33, 36, 44, 0.16)",
+                "boxShadow": "0px -1px 0px rgba(33,36,44,0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flex": "0 0 auto",
@@ -2251,7 +2283,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
-                "boxShadow": "0px 1px 0px rgba(33, 36, 44, 0.16)",
+                "boxShadow": "0px 1px 0px rgba(33,36,44,0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flexDirection": "column",
@@ -2378,7 +2410,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 "alignItems": "center",
                 "borderStyle": "solid",
                 "borderWidth": 0,
-                "boxShadow": "0px -1px 0px rgba(33, 36, 44, 0.16)",
+                "boxShadow": "0px -1px 0px rgba(33,36,44,0.16)",
                 "boxSizing": "border-box",
                 "display": "flex",
                 "flex": "0 0 auto",
