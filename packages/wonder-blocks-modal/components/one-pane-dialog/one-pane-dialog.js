@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -29,7 +30,7 @@ type Props = {|
     /**
      * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
      */
-    breadcrumbs?: React.Node,
+    breadcrumbs?: React.Element<typeof Breadcrumbs>,
 
     /**
      * The content of the modal's footer. A great place for buttons!

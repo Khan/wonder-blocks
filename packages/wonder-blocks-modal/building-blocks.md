@@ -42,7 +42,7 @@ const styleSheets = {
             minHeight: 308,
         },
 
-        row: {
+        panelGroup: {
             flexDirection: "row",
             flex: 1,
         },
@@ -75,7 +75,7 @@ const styleSheets = {
             overflow: "hidden",
         },
 
-        row: {
+        panelGroup: {
             flexDirection: "column",
             flex: 1
         }
@@ -91,7 +91,7 @@ const styleSheets = {
                     below={<View style={styles.below} />}
                     above={<View style={styles.above} />}
                 >
-                    <View style={styles.row}>
+                    <View style={styles.panelGroup}>
                         <ModalPanel
                             onClose={() => alert("This would close the modal.")}
                             content={

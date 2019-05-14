@@ -15,6 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@khanacademy/wonder-blocks-breadcrumbs": "^1.0.1",
     "@khanacademy/wonder-blocks-color": "^1.1.2",
     "@khanacademy/wonder-blocks-core": "^2.2.0",
     "@khanacademy/wonder-blocks-icon": "^1.1.2",
@@ -29,7 +30,6 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-breadcrumbs": "^1.0.1",
     "@khanacademy/wonder-blocks-button": "^2.3.3",
     "wb-dev-build-settings": "^0.0.2"
   }
