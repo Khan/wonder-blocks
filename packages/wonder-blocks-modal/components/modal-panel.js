@@ -3,10 +3,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
-import Toolbar from "@khanacademy/wonder-blocks-toolbar";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {MockStyleSheet} from "@khanacademy/wonder-blocks-layout";
 
 import ModalContent from "./modal-content.js";
 import ModalHeader from "./modal-header.js";
@@ -19,22 +17,37 @@ type Props = {|
      * are positioned around it.
      */
     content: React.Element<typeof ModalContent> | React.Node,
-    /** A title bar (with optional subtitle) to show at the top of the panel. */
-    titleBar?: React.Element<typeof Toolbar>,
-    /** A header to show above the contents, but below the title bar. */
+
+    /**
+     * The modal header to show at the top of the panel.
+     */
     header?: React.Element<typeof ModalHeader> | React.Node,
-    /** A footer to show beneath the contents. */
+
+    /**
+     * A footer to show beneath the contents.
+     */
     footer?: React.Element<typeof ModalFooter> | React.Node,
-    /** Should a close button be shown on the panel? */
-    showCloseButton: boolean,
+
+    /**
+     * When true, the close button is shown; otherwise, the close button is not shown.
+     */
+    closeButtonVisible: boolean,
+
     /**
      * Should the contents of the panel become scrollable should they
      * become too tall?
      */
     scrollOverflow: boolean,
-    /** The color of the panel (defaults to light). */
-    color: "light" | "dark",
-    /** Any optional styling to apply to the panel. */
+
+    /**
+     * Whether to display the "light" version of this component instead, for
+     * use when the item is used on a dark background.
+     */
+    light: boolean,
+
+    /**
+     * Any optional styling to apply to the panel.
+     */
     style?: StyleType,
 
     /**
@@ -49,45 +62,13 @@ type Props = {|
 
 export default class ModalPanel extends React.Component<Props> {
     static defaultProps = {
-        showCloseButton: false,
+        closeButtonVisible: true,
         scrollOverflow: true,
-        color: "light",
+        light: true,
     };
 
-    maybeRenderCloseButton() {
-        const {showCloseButton, onClose, color, titleBar} = this.props;
-
-        if (!showCloseButton) {
-            return null;
-        }
-
-        // Figure out the background color that'll be behind the close button
-        // If a titlebar is specified then we use that, otherwise we use the
-        // default background color.
-        const topBackgroundColor = (titleBar && titleBar.props.color) || color;
-
-        return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => (
-                    <CloseButton
-                        light={topBackgroundColor === "dark"}
-                        onClick={onClose}
-                        style={styles.closeButton}
-                    />
-                )}
-            </MediaLayout>
-        );
-    }
-
-    renderMainContent(styles: MockStyleSheet) {
-        const {
-            content,
-            titleBar,
-            header,
-            footer,
-            scrollOverflow,
-            showCloseButton,
-        } = this.props;
+    renderMainContent() {
+        const {content, footer, scrollOverflow} = this.props;
 
         const mainContent = ModalContent.isClassOf(content) ? (
             ((content: any): React.Element<typeof ModalContent>)
@@ -102,99 +83,75 @@ export default class ModalPanel extends React.Component<Props> {
         return React.cloneElement(mainContent, {
             // Pass the scrollOverflow and header in to the main content
             scrollOverflow,
-            header: header || mainContent.props.header,
             // We override the styling of the main content to help position
-            // it if there is a title bar, footer, or close button being
+            // it if there is a footer or close button being
             // shown. We have to do this here as the ModalContent doesn't
             // know about things being positioned around it.
-            style: [
-                !!titleBar && styles.hasTitleBar,
-                !!footer && styles.hasFooter,
-                showCloseButton && !titleBar && styles.withCloseButton,
-                mainContent.props.style,
-            ],
+            style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
     }
 
     render() {
-        const {titleBar, footer, color, style} = this.props;
+        const {
+            closeButtonVisible,
+            footer,
+            header,
+            light,
+            onClose,
+            style,
+        } = this.props;
+
+        const mainContent = this.renderMainContent();
 
         return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => {
-                    const mainContent = this.renderMainContent(styles);
-
-                    return (
-                        <View
-                            style={[
-                                styles.wrapper,
-                                color === "dark" && styles.dark,
-                                style,
-                            ]}
-                        >
-                            {this.maybeRenderCloseButton()}
-                            {titleBar}
-                            {mainContent}
-                            {!footer ||
-                            (typeof footer === "object" &&
-                                footer.type === ModalFooter) ? (
-                                footer
-                            ) : (
-                                <ModalFooter>{footer}</ModalFooter>
-                            )}
-                        </View>
-                    );
-                }}
-            </MediaLayout>
+            <View style={[styles.wrapper, !light && styles.dark, style]}>
+                {closeButtonVisible && (
+                    <CloseButton
+                        light={!light}
+                        onClick={onClose}
+                        style={styles.closeButton}
+                    />
+                )}
+                {header}
+                {mainContent}
+                {!footer || ModalFooter.isClassOf(footer) ? (
+                    footer
+                ) : (
+                    <ModalFooter>{footer}</ModalFooter>
+                )}
+            </View>
         );
     }
 }
 
-const styleSheets = {
-    all: StyleSheet.create({
-        wrapper: {
-            flex: "1 1 auto",
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            background: "white",
-            boxSizing: "border-box",
-            overflow: "hidden",
-            height: "100%",
-            width: "100%",
-        },
+const styles = StyleSheet.create({
+    wrapper: {
+        flex: "1 1 auto",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        background: "white",
+        boxSizing: "border-box",
+        overflow: "hidden",
+        height: "100%",
+        width: "100%",
+    },
 
-        closeButton: {
-            position: "absolute",
-            left: 16,
-            top: 16,
-            // This is to allow the button to be tab-ordered before the modal
-            // content but still be above the header and content.
-            zIndex: 1,
-        },
+    closeButton: {
+        position: "absolute",
+        right: Spacing.medium,
+        top: Spacing.medium,
+        // This is to allow the button to be tab-ordered before the modal
+        // content but still be above the header and content.
+        zIndex: 1,
+    },
 
-        dark: {
-            background: Color.darkBlue,
-            color: Color.white,
-        },
+    dark: {
+        background: Color.darkBlue,
+        color: Color.white,
+    },
 
-        hasTitleBar: {
-            paddingTop: 32,
-        },
-
-        hasFooter: {
-            paddingBottom: 32,
-        },
-    }),
-
-    small: StyleSheet.create({
-        closeButton: {
-            left: 16,
-            top: 16,
-        },
-
-        withCloseButton: {
-            paddingTop: 64,
-        },
-    }),
-};
+    hasFooter: {
+        paddingBottom: Spacing.xLarge,
+    },
+});

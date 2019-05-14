@@ -6,7 +6,7 @@ import {mount} from "enzyme";
 import {ModalLauncherPortalAttributeName} from "./constants.js";
 import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element.js";
 import ModalLauncher from "../components/modal-launcher.js";
-import StandardModal from "../components/standard-modal.js";
+import OnePaneDialog from "../components/one-pane-dialog/one-pane-dialog.js";
 
 describe("maybeGetPortalMountedModalHostElement", () => {
     test("when candidate is null, returns null", () => {
@@ -53,7 +53,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
             );
 
             const modal = (
-                <StandardModal
+                <OnePaneDialog
                     title="Testing"
                     footer="Footer"
                     content={modalContent}
@@ -85,7 +85,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                     </div>
                 );
                 const modal = (
-                    <StandardModal
+                    <OnePaneDialog
                         title="Testing"
                         footer="Footer"
                         content={modalContent}

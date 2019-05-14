@@ -3,12 +3,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 type Props = {|
     children: React.Node,
-    style?: StyleType,
 |};
 
 export default class ModalFooter extends React.Component<Props> {
@@ -18,8 +16,8 @@ export default class ModalFooter extends React.Component<Props> {
     }
 
     render() {
-        const {style, children} = this.props;
-        return <View style={[styles.footer, style]}>{children}</View>;
+        const {children} = this.props;
+        return <View style={styles.footer}>{children}</View>;
     }
 }
 
@@ -27,19 +25,17 @@ const styles = StyleSheet.create({
     footer: {
         flex: "0 0 auto",
         boxSizing: "border-box",
-        minHeight: 64,
-        paddingLeft: 16,
-        paddingRight: 16,
-        paddingTop: 8,
-        paddingBottom: 8,
+        minHeight: Spacing.xxxLarge,
+        paddingLeft: Spacing.medium,
+        paddingRight: Spacing.medium,
+        paddingTop: Spacing.xSmall,
+        paddingBottom: Spacing.xSmall,
 
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
 
-        borderTopStyle: "solid",
-        borderTopColor: Color.offBlack16,
-        borderTopWidth: 1,
+        boxShadow: `0px -1px 0px ${Color.offBlack16}`,
     },
 });

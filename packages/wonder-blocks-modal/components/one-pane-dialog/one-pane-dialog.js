@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import Toolbar from "@khanacademy/wonder-blocks-toolbar";
+import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ModalDialog from "../modal-dialog.js";
 import ModalPanel from "../modal-panel.js";
-import CloseButton from "../close-button.js";
+import ModalHeader from "../modal-header.js";
 
 type Props = {|
     ...AriaProps,
@@ -19,9 +19,6 @@ type Props = {|
 
     /**
      * The title of the modal, appearing in the titlebar.
-     *
-     * If a subtitle is also present, this becomes smaller to accommodate both
-     * within the title bar.
      */
     title: string,
 
@@ -29,6 +26,11 @@ type Props = {|
      * The subtitle of the modal, appearing in the titlebar, below the title.
      */
     subtitle?: string,
+
+    /**
+     * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
+     */
+    breadcrumbs?: React.Element<typeof Breadcrumbs>,
 
     /**
      * The content of the modal's footer. A great place for buttons!
@@ -46,6 +48,11 @@ type Props = {|
      * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
     onClose?: () => mixed,
+
+    /**
+     * When true, the close button is shown; otherwise, the close button is not shown.
+     */
+    closeButtonVisible?: boolean,
 
     /**
      * When set, provides a component that can render content above the top of the modal;
@@ -68,6 +75,11 @@ type Props = {|
      * Optional custom styles.
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 /**
@@ -77,32 +89,22 @@ type Props = {|
  * The content of the dialog itself is fully customizable, but the left/right/top/bottom padding is fixed.
  */
 export default class OnePaneDialog extends React.Component<Props> {
-    renderCloseButton() {
-        const {onClose} = this.props;
-
-        return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => (
-                    <CloseButton
-                        light={false}
-                        onClick={onClose}
-                        style={styles.closeButton}
-                    />
-                )}
-            </MediaLayout>
-        );
-    }
+    static defaultProps = {
+        closeButtonVisible: true,
+    };
 
     render() {
         const {
             onClose,
             title,
             subtitle,
+            breadcrumbs,
             footer,
             content,
             above,
             below,
             style,
+            closeButtonVisible,
         } = this.props;
 
         return (
@@ -115,16 +117,16 @@ export default class OnePaneDialog extends React.Component<Props> {
                     >
                         <ModalPanel
                             onClose={onClose}
-                            titleBar={
-                                <Toolbar
+                            header={
+                                <ModalHeader
                                     title={title}
                                     subtitle={subtitle}
-                                    color="light"
-                                    rightContent={this.renderCloseButton()}
+                                    breadcrumbs={breadcrumbs}
                                 />
                             }
                             content={content}
                             footer={footer}
+                            closeButtonVisible={closeButtonVisible}
                         />
                     </ModalDialog>
                 )}
