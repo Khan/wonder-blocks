@@ -1,10 +1,29 @@
 Looking for docs for StandardModal, OneColumnModal, or TwoColumnModal click [here](https://deploy-preview-389--wonder-blocks.netlify.com/#modal)
 
-## Wrapping Modals
+## Accessibility
 
-Often you'll want to define a new modal component by wrapping an existing
-modal component.  These wrapped components will also work with ModalLauncher
-in the same way the default ones do.
+It should follow guidelines from [W3C](https://www.w3.org/TR/wai-aria-practices/#dialog_modal).
+
+### Keyboard Interaction
+When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.
+
+- Tab:
+    - Moves focus to the next tabbable element inside the dialog.
+    - If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
+- Shift + Tab:
+    - Moves focus to the previous tabbable element inside the dialog.
+    - If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
+- Escape: Closes the dialog.
+
+### WAI-ARIA Roles
+- The element that serves as the **dialog container** has `aria-role` defined as `dialog`.
+- The dialog has a value set for the `aria-labelledby` property that refers to a **visible dialog title**.
+
+## Wrapping Dialogs
+
+Often you'll want to define a new `Dialog` component by wrapping an existing
+`Dialog` component (e.g. `OnePaneDialog`). These wrapped components will also
+work with `ModalLauncher` in the same way the default ones do.
 
 ```js
 const React = require("react");
@@ -16,7 +35,7 @@ const Button = require("@khanacademy/wonder-blocks-button").default;
 class ModalWrapper extends React.Component {
     render() {
         return <OnePaneDialog
-            title="Title"
+            title="Single-line title"
             content={
                 <View>
                     <Title>Hello, world</Title>
@@ -41,9 +60,9 @@ class ModalWrapper extends React.Component {
 </View>
 ```
 
-### Example: Modals with custom styles
+### Example: Dialogs with custom styles
 
-Sometimes you'll want to customize the styling of the modal .e.g., custom width or height.  You can pass in `style` which will customize the styling of the modal wrapper.
+Sometimes you'll want to customize the styling of the **Dialog** .e.g., custom width or height.  You can pass in `style` which will customize the styling of the modal wrapper.
 To use styling for different screen sizes, wrap your component with `MediaLayout` component.  Please see example code below for details.
 
 ```js
@@ -82,6 +101,26 @@ const styleSheets = {
             maxWidth: 300,
             maxHeight: 200,
         },
+
+        below: {
+            background: "url(/blue-blob.png)",
+            backgroundSize: "cover",
+            width: 294,
+            height: 306,
+            position: "absolute",
+            top: 0,
+            left: -60
+        },
+
+        above: {
+            background: "url(/asteroid.png)",
+            backgroundSize: "cover",
+            width: 418,
+            height: 260,
+            position: "absolute",
+            top: -10,
+            left: -5
+        },
     }),
 };
 
@@ -91,16 +130,17 @@ const styleSheets = {
             {({styles}) => (
                 <OnePaneDialog
                     style={styles.customModal}
-                    title="title"
+                    title="Single-line title"
                     content={
                         <View>
-                            <Title style={styles.title}>Title</Title>
                             <Body>
                                 Hello World!
                             </Body>
                         </View>
                     }
                     onClose={() => alert("This would close the modal.")}
+                    below={<View style={styles.below} />}
+                    above={<View style={styles.above} />}
                 />
             )}
         </MediaLayout>
