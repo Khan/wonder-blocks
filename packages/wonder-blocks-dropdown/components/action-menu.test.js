@@ -94,94 +94,98 @@ describe("ActionMenu", () => {
     });
 
     it("deselects selected OptionItems", () => {
-        let selectedValues = ["toggle_a", "toggle_b"];
-
+        // Arrange
+        const onChange = jest.fn();
         const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
-                onChange={(values) => (selectedValues = values)}
-                selectedValues={selectedValues}
+                onChange={onChange}
+                selectedValues={["toggle_a", "toggle_b"]}
             >
                 <OptionItem label="Toggle A" value="toggle_a" />
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-
         menu.setState({open: true});
 
+        // Act
         // toggle second OptionItem
         const optionItem = menu.find(OptionItem).at(1);
         optionItem.props().onToggle("toggle_b");
 
-        expect(selectedValues).toEqual(["toggle_a"]);
+        // Assert
+        expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
     });
 
     it("doesn't break with OptionItems but no onChange callback", () => {
-        const selectedValues = ["toggle_a", "toggle_b"];
-
+        // Arrange
         const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
-                selectedValues={selectedValues}
+                selectedValues={["toggle_a", "toggle_b"]}
             >
                 <OptionItem label="Toggle A" value="toggle_a" />
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-
         menu.setState({open: true});
 
-        // toggle second OptionItem
-        const optionItem = menu.find(OptionItem).at(1);
-        optionItem.props().onToggle("toggle_b");
-
-        expect(selectedValues).toEqual(["toggle_a", "toggle_b"]);
+        // Act, Assert
+        expect(() => {
+            // toggle second OptionItem
+            const optionItem = menu.find(OptionItem).at(1);
+            optionItem.props().onToggle("toggle_b");
+        }).not.toThrow();
     });
 
     it("works with extra selected values", () => {
-        let selectedValues = ["toggle_a", "toggle_z"];
-
+        // Arrange
+        const onChange = jest.fn();
         const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
-                onChange={(values) => (selectedValues = values)}
-                selectedValues={selectedValues}
+                onChange={onChange}
+                selectedValues={["toggle_a", "toggle_z"]}
             >
                 <OptionItem label="Toggle A" value="toggle_a" />
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-
         menu.setState({open: true});
 
+        // Act
         // toggle second OptionItem
         const optionItem = menu.find(OptionItem).at(0);
         optionItem.props().onToggle("toggle_a");
 
-        expect(selectedValues).toEqual(["toggle_z"]);
+        // Assert
+        expect(onChange).toHaveBeenCalledWith(["toggle_z"]);
     });
 
     it("can have a menu with a single item", () => {
+        // Arrange, Act
         const menu = mount(
             <ActionMenu menuText={"Action menu!"}>
                 <ActionItem label="Action" />
             </ActionMenu>,
         );
-
         menu.setState({open: true});
 
+        // Assert
         expect(menu.find(ActionItem)).toHaveLength(1);
     });
 
     it("can have a menu with no items", () => {
+        // Arrange, Act
         const menu = mount(<ActionMenu menuText={"Action menu!"} />);
-
         menu.setState({open: true});
 
+        // Assert
         expect(menu.find(ActionItem)).toHaveLength(0);
     });
 
     it("can have falsy items", () => {
+        // Arrange, Act
         const showDeleteAction = false;
         const menu = mount(
             <ActionMenu menuText={"Action menu!"}>
@@ -189,9 +193,9 @@ describe("ActionMenu", () => {
                 {showDeleteAction && <ActionItem label="Delete" />}
             </ActionMenu>,
         );
-
         menu.setState({open: true});
 
+        // Assert
         expect(menu.find(ActionItem)).toHaveLength(1);
         expect(menu.find(ActionItem).at(0)).toHaveProp("label", "Create");
     });
