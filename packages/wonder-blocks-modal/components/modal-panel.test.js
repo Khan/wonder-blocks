@@ -12,7 +12,7 @@ describe("ModalPanel", () => {
                 <ModalPanel
                     content="Hello, world"
                     onClose={() => {}}
-                    showCloseButton={true}
+                    closeButtonVisible={true}
                 />
             </ModalContext.Provider>,
             "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",

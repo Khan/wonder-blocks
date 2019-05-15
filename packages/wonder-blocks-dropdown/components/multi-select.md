@@ -190,7 +190,7 @@ This multi select is in a modal.
 const {StyleSheet} = require("aphrodite");
 const React = require("react");
 const {View, Text} = require("@khanacademy/wonder-blocks-core");
-const {StandardModal, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
+const {OnePaneDialog, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 
 const styles = StyleSheet.create({
@@ -258,7 +258,7 @@ const modalContent = (
 );
 
 const modal = (
-    <StandardModal
+    <OnePaneDialog
         title="Westerosi modal"
         footer=""
         content={modalContent}

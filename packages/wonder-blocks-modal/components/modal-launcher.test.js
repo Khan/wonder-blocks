@@ -5,9 +5,14 @@ import {shallow} from "enzyme";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import expectRenderError from "../../../utils/testing/expect-render-error.js";
 import ModalLauncher from "./modal-launcher.js";
-import OneColumnModal from "./one-column-modal/one-column-modal.js";
+import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
 
-const exampleModal = <OneColumnModal content={<div data-modal-child />} />;
+const exampleModal = (
+    <OnePaneDialog
+        title="Modal launcher test"
+        content={<div data-modal-child />}
+    />
+);
 
 describe("ModalLauncher", () => {
     window.scrollTo = jest.fn();

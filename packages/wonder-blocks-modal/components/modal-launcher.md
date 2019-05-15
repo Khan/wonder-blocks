@@ -5,15 +5,16 @@ const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
 const styles = StyleSheet.create({
     example: {
-        padding: 32,
+        padding: Spacing.xLarge,
         alignItems: "center",
     },
 
     title: {
-        marginBottom: 16,
+        marginBottom: Spacing.medium,
     },
 
     modalContent: {
@@ -70,7 +71,7 @@ const onePaneDialog = ({closeModal}) => (
 </View>;
 ```
 
-## Disabling backdrop dismission
+### Disabling backdrop dismission
 
 By default, `ModalLauncher` allows you to close the modal by clicking on the overlay/backdrop window. Somethimes you might need to disable it, and to to this, you can set `backgropDismissEnabled` to `false`.
 
@@ -79,10 +80,11 @@ const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
 const styles = StyleSheet.create({
     example: {
-        padding: 32,
+        padding: Spacing.xLarge,
         alignItems: "center",
     },
 
@@ -114,7 +116,7 @@ const exampleModal = ({closeModal}) => (
 </View>
 ```
 
-## Triggering programmatically
+### Triggering programmatically
 
 Sometimes you'll want to trigger a modal programmatically. This can be done
 by rendering `ModalLauncher` without any children and instead setting its
