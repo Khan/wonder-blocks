@@ -32,6 +32,11 @@ type Props = {|
      * use when the item is used on a dark background.
      */
     light: boolean,
+
+    /**
+     * An optional id to provide a selector for the title element.
+     */
+    id?: string,
 |};
 
 export default class ModalHeader extends React.Component<Props> {
@@ -40,7 +45,7 @@ export default class ModalHeader extends React.Component<Props> {
     };
 
     render() {
-        const {light, title, subtitle, breadcrumbs} = this.props;
+        const {id, light, title, subtitle, breadcrumbs} = this.props;
 
         if (subtitle && breadcrumbs) {
             throw new Error(
@@ -52,21 +57,17 @@ export default class ModalHeader extends React.Component<Props> {
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
                     <View style={[styles.header, !light && styles.dark]}>
-                        {breadcrumbs &&
-                            !subtitle && (
-                                <View style={styles.breadcrumbs}>
-                                    {breadcrumbs}
-                                </View>
-                            )}
-                        <HeadingMedium id="wb-toolbar-title">
-                            {title}
-                        </HeadingMedium>
-                        {subtitle &&
-                            !breadcrumbs && (
-                                <LabelMedium style={light && styles.subtitle}>
-                                    {subtitle}
-                                </LabelMedium>
-                            )}
+                        {breadcrumbs && (
+                            <View style={styles.breadcrumbs}>
+                                {breadcrumbs}
+                            </View>
+                        )}
+                        <HeadingMedium id={id}>{title}</HeadingMedium>
+                        {subtitle && (
+                            <LabelMedium style={light && styles.subtitle}>
+                                {subtitle}
+                            </LabelMedium>
+                        )}
                     </View>
                 )}
             </MediaLayout>

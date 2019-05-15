@@ -35,15 +35,22 @@ type Props = {|
      * Custom styles
      */
     style?: StyleType,
+
+    /**
+     * An optional id to provide a selector for the title element.
+     */
+    id?: string,
 |};
 
 export default class ModalDialog extends React.Component<Props> {
     render() {
-        const {above, below, style, children} = this.props;
+        const {above, below, style, children, id} = this.props;
+
         const contextValue: MediaLayoutContextValue = {
             ssrSize: "large",
             mediaSpec: MEDIA_MODAL_SPEC,
         };
+
         return (
             <MediaLayoutContext.Provider value={contextValue}>
                 <MediaLayout styleSheets={styleSheets}>
@@ -52,7 +59,7 @@ export default class ModalDialog extends React.Component<Props> {
                             {below && <View style={styles.below}>{below}</View>}
                             <View
                                 role="dialog"
-                                aria-labelledby="wb-modal-title"
+                                aria-labelledby={id}
                                 style={styles.dialog}
                             >
                                 {children}

@@ -8,6 +8,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalDialog from "../modal-dialog.js";
 import ModalPanel from "../modal-panel.js";
 import ModalHeader from "../modal-header.js";
+import UniqueDialog from "../unique-dialog.js";
 
 type Props = {|
     ...AriaProps,
@@ -80,6 +81,12 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * An optional id parameter for the title. If one is
+     * not provided, a unique id will be generated.
+     */
+    id?: string,
 |};
 
 /**
@@ -105,30 +112,37 @@ export default class OnePaneDialog extends React.Component<Props> {
             below,
             style,
             closeButtonVisible,
+            id,
         } = this.props;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
-                    <ModalDialog
-                        style={[styles.dialog, style]}
-                        above={above}
-                        below={below}
-                    >
-                        <ModalPanel
-                            onClose={onClose}
-                            header={
-                                <ModalHeader
-                                    title={title}
-                                    subtitle={subtitle}
-                                    breadcrumbs={breadcrumbs}
+                    <UniqueDialog id={id}>
+                        {(uniqueId) => (
+                            <ModalDialog
+                                style={[styles.dialog, style]}
+                                above={above}
+                                below={below}
+                                id={uniqueId}
+                            >
+                                <ModalPanel
+                                    onClose={onClose}
+                                    header={
+                                        <ModalHeader
+                                            title={title}
+                                            subtitle={subtitle}
+                                            breadcrumbs={breadcrumbs}
+                                            id={uniqueId}
+                                        />
+                                    }
+                                    content={content}
+                                    footer={footer}
+                                    closeButtonVisible={closeButtonVisible}
                                 />
-                            }
-                            content={content}
-                            footer={footer}
-                            closeButtonVisible={closeButtonVisible}
-                        />
-                    </ModalDialog>
+                            </ModalDialog>
+                        )}
+                    </UniqueDialog>
                 )}
             </MediaLayout>
         );
