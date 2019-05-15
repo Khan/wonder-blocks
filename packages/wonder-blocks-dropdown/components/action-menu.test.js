@@ -10,14 +10,21 @@ import ActionMenu from "./action-menu.js";
 import {keyCodes} from "../util/constants.js";
 
 describe("ActionMenu", () => {
-    let menu;
     const onClick = jest.fn();
     const onToggle = jest.fn();
     const onChange = jest.fn();
 
     beforeEach(() => {
         window.scrollTo = jest.fn();
-        menu = mount(
+    });
+
+    afterEach(() => {
+        window.scrollTo.mockClear();
+        unmountAll();
+    });
+
+    it("closes/opens the menu on mouse click, space, and enter", () => {
+        const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
                 onChange={onChange}
@@ -28,14 +35,7 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
             </ActionMenu>,
         );
-    });
 
-    afterEach(() => {
-        window.scrollTo.mockClear();
-        unmountAll();
-    });
-
-    it("closes/opens the menu on mouse click, space, and enter", () => {
         const opener = menu.find("ActionMenuOpener");
 
         expect(menu.state("open")).toEqual(false);
@@ -58,6 +58,18 @@ describe("ActionMenu", () => {
     });
 
     it("triggers actions and toggles select items as expected", () => {
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                onChange={onChange}
+                selectedValues={[]}
+            >
+                <ActionItem label="Action" onClick={onClick} />
+                <SeparatorItem />
+                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
+            </ActionMenu>,
+        );
+
         menu.setState({open: true});
 
         const noop = jest.fn();
@@ -79,5 +91,112 @@ describe("ActionMenu", () => {
         optionItem.simulate("click", nativeEvent);
         expect(onToggle).toHaveBeenCalledTimes(1);
         expect(onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it("deselects selected OptionItems", () => {
+        // Arrange
+        const onChange = jest.fn();
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                onChange={onChange}
+                selectedValues={["toggle_a", "toggle_b"]}
+            >
+                <OptionItem label="Toggle A" value="toggle_a" />
+                <OptionItem label="Toggle B" value="toggle_b" />
+            </ActionMenu>,
+        );
+        menu.setState({open: true});
+
+        // Act
+        // toggle second OptionItem
+        const optionItem = menu.find(OptionItem).at(1);
+        optionItem.props().onToggle("toggle_b");
+
+        // Assert
+        expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
+    });
+
+    it("doesn't break with OptionItems but no onChange callback", () => {
+        // Arrange
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                selectedValues={["toggle_a", "toggle_b"]}
+            >
+                <OptionItem label="Toggle A" value="toggle_a" />
+                <OptionItem label="Toggle B" value="toggle_b" />
+            </ActionMenu>,
+        );
+        menu.setState({open: true});
+
+        // Act, Assert
+        expect(() => {
+            // toggle second OptionItem
+            const optionItem = menu.find(OptionItem).at(1);
+            optionItem.props().onToggle("toggle_b");
+        }).not.toThrow();
+    });
+
+    it("works with extra selected values", () => {
+        // Arrange
+        const onChange = jest.fn();
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                onChange={onChange}
+                selectedValues={["toggle_a", "toggle_z"]}
+            >
+                <OptionItem label="Toggle A" value="toggle_a" />
+                <OptionItem label="Toggle B" value="toggle_b" />
+            </ActionMenu>,
+        );
+        menu.setState({open: true});
+
+        // Act
+        // toggle second OptionItem
+        const optionItem = menu.find(OptionItem).at(0);
+        optionItem.props().onToggle("toggle_a");
+
+        // Assert
+        expect(onChange).toHaveBeenCalledWith(["toggle_z"]);
+    });
+
+    it("can have a menu with a single item", () => {
+        // Arrange, Act
+        const menu = mount(
+            <ActionMenu menuText={"Action menu!"}>
+                <ActionItem label="Action" />
+            </ActionMenu>,
+        );
+        menu.setState({open: true});
+
+        // Assert
+        expect(menu.find(ActionItem)).toHaveLength(1);
+    });
+
+    it("can have a menu with no items", () => {
+        // Arrange, Act
+        const menu = mount(<ActionMenu menuText={"Action menu!"} />);
+        menu.setState({open: true});
+
+        // Assert
+        expect(menu.find(ActionItem)).toHaveLength(0);
+    });
+
+    it("can have falsy items", () => {
+        // Arrange, Act
+        const showDeleteAction = false;
+        const menu = mount(
+            <ActionMenu menuText={"Action menu!"}>
+                <ActionItem label="Create" />
+                {showDeleteAction && <ActionItem label="Delete" />}
+            </ActionMenu>,
+        );
+        menu.setState({open: true});
+
+        // Assert
+        expect(menu.find(ActionItem)).toHaveLength(1);
+        expect(menu.find(ActionItem).at(0)).toHaveProp("label", "Create");
     });
 });
