@@ -7,6 +7,9 @@ import expectRenderError from "../../../utils/testing/expect-render-error.js";
 import ModalLauncher from "./modal-launcher.js";
 import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
 
+const sleep = (duration: number = 0) =>
+    new Promise((resolve, reject) => setTimeout(resolve, duration));
+
 const exampleModal = (
     <OnePaneDialog
         title="Modal launcher test"
@@ -205,5 +208,49 @@ describe("ModalLauncher", () => {
 
         wrapper.simulate("click");
         expect(onClose).not.toHaveBeenCalled();
+    });
+
+    test("return focus to the last element focused outside the modal", async () => {
+        // Arrange
+        let savedCloseModal = () => {
+            throw new Error(`closeModal wasn't saved`);
+        };
+
+        const wrapper = mount(
+            <ModalLauncher
+                modal={({closeModal}) => {
+                    savedCloseModal = closeModal;
+                    return exampleModal;
+                }}
+            >
+                {({openModal}) => (
+                    <button onClick={openModal} data-last-focused-button />
+                )}
+            </ModalLauncher>,
+        );
+
+        // Act
+        const lastButton = wrapper
+            .find("[data-last-focused-button]")
+            .getDOMNode();
+        // force focus
+        lastButton.focus();
+
+        // Launch the modal.
+        wrapper.find("button").simulate("click");
+
+        // wait for styles to be applied
+        await sleep();
+
+        // focus has been moved inside the modal
+        expect(document.activeElement).not.toBe(lastButton);
+
+        // Close the modal.
+        savedCloseModal();
+        wrapper.update();
+
+        // Assert
+        // check that focus is returned to the parent element
+        expect(document.activeElement).toBe(lastButton);
     });
 });
