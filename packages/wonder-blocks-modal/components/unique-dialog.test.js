@@ -26,7 +26,7 @@ describe("UniqueDialog", () => {
 
         // Act
         shallow(
-            <UniqueDialog id={titleId} testId="with ID">
+            <UniqueDialog id={titleId} scope="modal">
                 {renderDialogFn}
             </UniqueDialog>,
         );
@@ -40,7 +40,7 @@ describe("UniqueDialog", () => {
         const renderDialogFn = jest.fn(() => <div />);
 
         // Act
-        mount(<UniqueDialog>{renderDialogFn}</UniqueDialog>);
+        mount(<UniqueDialog scope="modal">{renderDialogFn}</UniqueDialog>);
 
         // Assert
         expect(renderDialogFn).toHaveBeenCalledWith(mockIDENTIFIER);

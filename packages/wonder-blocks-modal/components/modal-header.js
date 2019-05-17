@@ -34,9 +34,9 @@ type Props = {|
     light: boolean,
 
     /**
-     * An optional id to provide a selector for the title element.
+     * An id to provide a selector for the title element.
      */
-    id?: string,
+    titleId: string,
 |};
 
 export default class ModalHeader extends React.Component<Props> {
@@ -45,7 +45,7 @@ export default class ModalHeader extends React.Component<Props> {
     };
 
     render() {
-        const {id, light, title, subtitle, breadcrumbs} = this.props;
+        const {breadcrumbs, light, subtitle, title, titleId} = this.props;
 
         if (subtitle && breadcrumbs) {
             throw new Error(
@@ -62,7 +62,7 @@ export default class ModalHeader extends React.Component<Props> {
                                 {breadcrumbs}
                             </View>
                         )}
-                        <HeadingMedium id={id}>{title}</HeadingMedium>
+                        <HeadingMedium id={titleId}>{title}</HeadingMedium>
                         {subtitle && (
                             <LabelMedium style={light && styles.subtitle}>
                                 {subtitle}

@@ -7,11 +7,12 @@ import {
     MEDIA_MODAL_SPEC,
 } from "@khanacademy/wonder-blocks-layout";
 import {View} from "@khanacademy/wonder-blocks-core";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {MediaLayoutContextValue} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 type Props = {|
+    ...AriaProps,
     /**
      * The dialog content
      */
@@ -35,16 +36,17 @@ type Props = {|
      * Custom styles
      */
     style?: StyleType,
-
-    /**
-     * An optional id to provide a selector for the title element.
-     */
-    id?: string,
 |};
 
 export default class ModalDialog extends React.Component<Props> {
     render() {
-        const {above, below, style, children, id} = this.props;
+        const {
+            above,
+            below,
+            style,
+            children,
+            "aria-labelledby": ariaLabelledBy,
+        } = this.props;
 
         const contextValue: MediaLayoutContextValue = {
             ssrSize: "large",
@@ -59,7 +61,7 @@ export default class ModalDialog extends React.Component<Props> {
                             {below && <View style={styles.below}>{below}</View>}
                             <View
                                 role="dialog"
-                                aria-labelledby={id}
+                                aria-labelledby={ariaLabelledBy}
                                 style={styles.dialog}
                             >
                                 {children}

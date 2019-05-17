@@ -10,7 +10,12 @@ type Props = {|
      * use anywhere within children. This provides a way of adding a unique title
      * to an existant modal variation (OnePaneDialog) or a custom modal implementation.
      */
-    children: (uniqueId?: string) => React.Node,
+    children: (uniqueId: string) => React.Node,
+
+    /**
+     * Scope for the unique identifier
+     */
+    scope: string,
 
     /**
      * An optional id parameter for the title. If one is
@@ -46,7 +51,7 @@ export default class UniqueDialog extends React.Component<Props> {
     }
 
     render() {
-        const {id} = this.props;
+        const {id, scope} = this.props;
 
         if (id) {
             // Let's bypass the extra weight of an id provider since we don't
@@ -54,7 +59,7 @@ export default class UniqueDialog extends React.Component<Props> {
             return this.renderChildren();
         } else {
             return (
-                <UniqueIDProvider scope="modal" mockOnFirstRender={true}>
+                <UniqueIDProvider scope={scope} mockOnFirstRender={true}>
                     {(ids) => this.renderChildren(ids)}
                 </UniqueIDProvider>
             );

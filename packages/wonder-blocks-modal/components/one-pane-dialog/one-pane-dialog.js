@@ -86,7 +86,7 @@ type Props = {|
      * An optional id parameter for the title. If one is
      * not provided, a unique id will be generated.
      */
-    id?: string,
+    titleId?: string,
 |};
 
 /**
@@ -112,19 +112,19 @@ export default class OnePaneDialog extends React.Component<Props> {
             below,
             style,
             closeButtonVisible,
-            id,
+            titleId,
         } = this.props;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
-                    <UniqueDialog id={id}>
+                    <UniqueDialog id={titleId} scope="modal">
                         {(uniqueId) => (
                             <ModalDialog
                                 style={[styles.dialog, style]}
                                 above={above}
                                 below={below}
-                                id={uniqueId}
+                                aria-labelledby={uniqueId}
                             >
                                 <ModalPanel
                                     onClose={onClose}
@@ -133,7 +133,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                                             title={title}
                                             subtitle={subtitle}
                                             breadcrumbs={breadcrumbs}
-                                            id={uniqueId}
+                                            titleId={uniqueId}
                                         />
                                     }
                                     content={content}
