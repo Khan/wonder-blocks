@@ -2,8 +2,10 @@
  * This is the main jest config.  It runs tests using the default
  * test environment: jest-environment-jsdom.
  */
+const path = require("path");
+
 module.exports = {
-    rootDir: "../../",
+    rootDir: path.join(__dirname, "../../"),
     transform: {
         "^.+\\.jsx?$": "<rootDir>/config/jest/test.transform.js",
     },

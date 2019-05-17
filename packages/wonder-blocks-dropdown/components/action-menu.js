@@ -16,7 +16,7 @@ type MenuProps = {|
     /**
      * The items in this dropdown.
      */
-    children?: Array<Item>,
+    children?: Array<Item> | Item,
 
     /**
      * Text for the opener of this menu.
