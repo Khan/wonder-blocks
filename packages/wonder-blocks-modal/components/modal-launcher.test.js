@@ -210,7 +210,34 @@ describe("ModalLauncher", () => {
         expect(onClose).not.toHaveBeenCalled();
     });
 
-    test("return focus to the last element focused outside the modal", async () => {
+    test("if modal is launched, move focus inside the modal", async () => {
+        // Arrange
+        const wrapper = mount(
+            <ModalLauncher modal={exampleModal}>
+                {({openModal}) => (
+                    <button onClick={openModal} data-last-focused-button />
+                )}
+            </ModalLauncher>,
+        );
+
+        const lastButton = wrapper
+            .find("[data-last-focused-button]")
+            .getDOMNode();
+        // force focus
+        lastButton.focus();
+
+        // Act
+        // Launch the modal.
+        wrapper.find("button").simulate("click");
+
+        // wait for styles to be applied
+        await sleep();
+
+        // Assert
+        expect(document.activeElement).not.toBe(lastButton);
+    });
+
+    test("if modal is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
         let savedCloseModal = () => {
             throw new Error(`closeModal wasn't saved`);
@@ -229,7 +256,6 @@ describe("ModalLauncher", () => {
             </ModalLauncher>,
         );
 
-        // Act
         const lastButton = wrapper
             .find("[data-last-focused-button]")
             .getDOMNode();
@@ -242,15 +268,11 @@ describe("ModalLauncher", () => {
         // wait for styles to be applied
         await sleep();
 
-        // focus has been moved inside the modal
-        expect(document.activeElement).not.toBe(lastButton);
-
-        // Close the modal.
-        savedCloseModal();
+        // Act
+        savedCloseModal(); // close the modal
         wrapper.update();
 
         // Assert
-        // check that focus is returned to the parent element
         expect(document.activeElement).toBe(lastButton);
     });
 });
