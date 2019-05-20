@@ -116,18 +116,17 @@ export default class Row extends React.Component<Props> {
                         .slice(0, -1);
 
                     return (
-                        <View style={[styles.rowWrap, style]}>
-                            <View
-                                style={[
-                                    styles.row,
-                                    !!maxWidth && styles.rowMaxWidth,
-                                    !!maxWidth && {maxWidth},
-                                ]}
-                            >
-                                <Strut size={marginWidth} />
-                                {filteredContents}
-                                <Strut size={marginWidth} />
-                            </View>
+                        <View
+                            style={[
+                                styles.row,
+                                !!maxWidth && styles.rowMaxWidth,
+                                !!maxWidth && {maxWidth},
+                                style,
+                            ]}
+                        >
+                            <Strut size={marginWidth} />
+                            {filteredContents}
+                            <Strut size={marginWidth} />
                         </View>
                     );
                 }}

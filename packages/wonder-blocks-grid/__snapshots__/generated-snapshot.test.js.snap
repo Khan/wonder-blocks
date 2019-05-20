@@ -25,6 +25,9 @@ exports[`wonder-blocks-grid example 1 1`] = `
     className=""
     style={
       Object {
+        "@media (minWidth: 1168px)": Object {
+          "margin": "0 auto",
+        },
         "alignItems": "center",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -32,90 +35,108 @@ exports[`wonder-blocks-grid example 1 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "margin": 0,
+        "maxWidth": 1168,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "100%",
         "zIndex": 0,
       }
     }
   >
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "row",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
-          "maxWidth": 1168,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": "100%",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 150,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 5,
+          "position": "relative",
           "zIndex": 0,
         }
       }
     >
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 24,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 150,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
             "zIndex": 0,
           }
         }
       >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Cell (
+          4 columns
+
+          wide)
+        </span>
+        <br />
+        <br />
         <div
           className=""
           style={
@@ -131,6 +152,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "minWidth": 0,
               "padding": 0,
               "position": "relative",
+              "textAlign": "right",
               "zIndex": 0,
             }
           }
@@ -149,142 +171,10 @@ exports[`wonder-blocks-grid example 1 1`] = `
               }
             }
           >
-            Cell (
-            4 columns
-             
-            wide)
+            Gutter ⇢
           </span>
-          <br />
-          <br />
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "textAlign": "right",
-                "zIndex": 0,
-              }
-            }
-          >
-            <span
-              className=""
-              style={
-                Object {
-                  "MozOsxFontSmoothing": "grayscale",
-                  "WebkitFontSmoothing": "antialiased",
-                  "display": "block",
-                  "fontFamily": "Lato, sans-serif",
-                  "fontSize": 16,
-                  "fontWeight": 400,
-                  "lineHeight": "20px",
-                }
-              }
-            >
-              Gutter ⇢
-            </span>
-          </div>
-          <br />
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "textAlign": "left",
-                "zIndex": 0,
-              }
-            }
-          >
-            <span
-              className=""
-              style={
-                Object {
-                  "MozOsxFontSmoothing": "grayscale",
-                  "WebkitFontSmoothing": "antialiased",
-                  "display": "block",
-                  "fontFamily": "Lato, sans-serif",
-                  "fontSize": 16,
-                  "fontWeight": 400,
-                  "lineHeight": "20px",
-                }
-              }
-            >
-              Margin ⇢
-            </span>
-          </div>
         </div>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 150,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
+        <br />
         <div
           className=""
           style={
@@ -300,6 +190,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
               "minWidth": 0,
               "padding": 0,
               "position": "relative",
+              "textAlign": "left",
               "zIndex": 0,
             }
           }
@@ -318,227 +209,316 @@ exports[`wonder-blocks-grid example 1 1`] = `
               }
             }
           >
-            Cell (
-            3 columns
-             
-            wide)
+            Margin ⇢
           </span>
-          <br />
-          <br />
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "textAlign": "center",
-                "zIndex": 0,
-              }
-            }
-          >
-            <span
-              className=""
-              style={
-                Object {
-                  "MozOsxFontSmoothing": "grayscale",
-                  "WebkitFontSmoothing": "antialiased",
-                  "display": "block",
-                  "fontFamily": "Lato, sans-serif",
-                  "fontSize": 16,
-                  "fontWeight": 400,
-                  "lineHeight": "20px",
-                }
-              }
-            >
-              ⇠ Gutters ⇢
-            </span>
-          </div>
         </div>
       </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 150,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
-              "zIndex": 0,
-            }
-          }
-        >
-          <span
-            className=""
-            style={
-              Object {
-                "MozOsxFontSmoothing": "grayscale",
-                "WebkitFontSmoothing": "antialiased",
-                "display": "block",
-                "fontFamily": "Lato, sans-serif",
-                "fontSize": 16,
-                "fontWeight": 400,
-                "lineHeight": "20px",
-              }
-            }
-          >
-            Cell (
-            5 columns
-             
-            wide)
-          </span>
-          <br />
-          <br />
-          <span
-            className=""
-            style={
-              Object {
-                "MozOsxFontSmoothing": "grayscale",
-                "WebkitFontSmoothing": "antialiased",
-                "display": "block",
-                "fontFamily": "Lato, sans-serif",
-                "fontSize": 16,
-                "fontWeight": 400,
-                "lineHeight": "20px",
-              }
-            }
-          >
-            ⇠ Gutter
-          </span>
-          <br />
-          <div
-            className=""
-            style={
-              Object {
-                "alignItems": "stretch",
-                "borderStyle": "solid",
-                "borderWidth": 0,
-                "boxSizing": "border-box",
-                "display": "flex",
-                "flexDirection": "column",
-                "margin": 0,
-                "minHeight": 0,
-                "minWidth": 0,
-                "padding": 0,
-                "position": "relative",
-                "textAlign": "right",
-                "zIndex": 0,
-              }
-            }
-          >
-            <span
-              className=""
-              style={
-                Object {
-                  "MozOsxFontSmoothing": "grayscale",
-                  "WebkitFontSmoothing": "antialiased",
-                  "display": "block",
-                  "fontFamily": "Lato, sans-serif",
-                  "fontSize": 16,
-                  "fontWeight": 400,
-                  "lineHeight": "20px",
-                }
-              }
-            >
-              Margin ⇢
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
     </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 150,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 5,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Cell (
+          3 columns
+
+          wide)
+        </span>
+        <br />
+        <br />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "textAlign": "center",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            ⇠ Gutters ⇢
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 150,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 5,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          Cell (
+          5 columns
+
+          wide)
+        </span>
+        <br />
+        <br />
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "20px",
+            }
+          }
+        >
+          ⇠ Gutter
+        </span>
+        <br />
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "textAlign": "right",
+              "zIndex": 0,
+            }
+          }
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 400,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Margin ⇢
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
   </div>
 </div>
 `;
@@ -568,6 +548,9 @@ exports[`wonder-blocks-grid example 2 1`] = `
     className=""
     style={
       Object {
+        "@media (minWidth: 1168px)": Object {
+          "margin": "0 auto",
+        },
         "alignItems": "center",
         "background": "#0a2a66",
         "borderBottom": "1px solid rgba(255,255,255,0.64)",
@@ -578,96 +561,76 @@ exports[`wonder-blocks-grid example 2 1`] = `
         "flexDirection": "row",
         "height": 64,
         "margin": 0,
+        "maxWidth": 1168,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "100%",
         "zIndex": 0,
       }
     }
   >
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "row",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
-          "maxWidth": 1168,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": "100%",
+          "width": 24,
           "zIndex": 0,
         }
       }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
+    />
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
         }
-      />
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
+      }
+    />
   </div>
   <div
     className=""
     style={
       Object {
+        "@media (minWidth: 1168px)": Object {
+          "margin": "0 auto",
+        },
         "alignItems": "center",
         "background": "#0a2a66",
         "borderStyle": "solid",
@@ -677,96 +640,76 @@ exports[`wonder-blocks-grid example 2 1`] = `
         "flexDirection": "row",
         "height": 136,
         "margin": 0,
+        "maxWidth": 1168,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "100%",
         "zIndex": 0,
       }
     }
   >
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "row",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
-          "maxWidth": 1168,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": "100%",
+          "width": 24,
           "zIndex": 0,
         }
       }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
+    />
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
         }
-      />
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
+      }
+    />
   </div>
   <div
     className=""
     style={
       Object {
+        "@media (minWidth: 1168px)": Object {
+          "margin": "0 auto",
+        },
         "alignItems": "center",
         "background": "#ffffff",
         "borderBottom": "1px solid rgba(33,36,44,0.08)",
@@ -777,169 +720,149 @@ exports[`wonder-blocks-grid example 2 1`] = `
         "flexDirection": "row",
         "height": 71,
         "margin": 0,
+        "maxWidth": 1168,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "100%",
         "zIndex": 0,
       }
     }
   >
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "row",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
-          "maxWidth": 1168,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": "100%",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        Possible mastery points
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        Beginner / Points to Apprentice
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
+      Possible mastery points
     </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      Beginner / Points to Apprentice
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
   </div>
   <div
     className=""
     style={
       Object {
+        "@media (minWidth: 1168px)": Object {
+          "margin": "0 auto",
+        },
         "alignItems": "center",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -947,225 +870,202 @@ exports[`wonder-blocks-grid example 2 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "margin": 0,
+        "maxWidth": 1168,
         "minHeight": 0,
         "minWidth": 0,
         "padding": "17px 0",
         "position": "relative",
+        "width": "100%",
         "zIndex": 0,
       }
     }
   >
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "row",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
-          "maxWidth": 1168,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": "100%",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      Skill Summary
+      <hr />
+      Intro to Geometry
+      <hr />
+      Angles
+      <hr />
+      Quiz 1: 10 questions
+      <hr />
+      Polygons
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.75 + 256px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
           "zIndex": 0,
         }
       }
     >
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
             "alignItems": "stretch",
+            "background": "#ffffff",
+            "border": "1px solid rgba(33,36,44,0.08)",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 24,
             "flexDirection": "column",
-            "flexShrink": 0,
+            "height": 360,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
+            "padding": 24,
             "position": "relative",
             "zIndex": 0,
           }
         }
       >
-        Skill Summary
-        <hr />
-        Intro to Geometry
-        <hr />
+        Intro to geometry
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "background": "#ffffff",
+            "border": "1px solid rgba(33,36,44,0.08)",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 360,
+            "margin": 0,
+            "marginTop": 16,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 24,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
         Angles
-        <hr />
-        Quiz 1: 10 questions
-        <hr />
-        Polygons
       </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.75 + 256px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "background": "#ffffff",
-              "border": "1px solid rgba(33,36,44,0.08)",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "height": 360,
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 24,
-              "position": "relative",
-              "zIndex": 0,
-            }
-          }
-        >
-          Intro to geometry
-        </div>
-        <div
-          className=""
-          style={
-            Object {
-              "alignItems": "stretch",
-              "background": "#ffffff",
-              "border": "1px solid rgba(33,36,44,0.08)",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "height": 360,
-              "margin": 0,
-              "marginTop": 16,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 24,
-              "position": "relative",
-              "zIndex": 0,
-            }
-          }
-        >
-          Angles
-        </div>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
     </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
   </div>
 </div>
 `;
@@ -1195,6 +1095,9 @@ exports[`wonder-blocks-grid example 3 1`] = `
     className=""
     style={
       Object {
+        "@media (minWidth: 1168px)": Object {
+          "margin": "0 auto",
+        },
         "alignItems": "center",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1202,713 +1105,690 @@ exports[`wonder-blocks-grid example 3 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "margin": 0,
+        "maxWidth": 1168,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": "100%",
         "zIndex": 0,
       }
     }
   >
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "row",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
-          "maxWidth": 1168,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": "100%",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": "5px 0",
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        1
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
+      1
     </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": "5px 0",
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
   </div>
 </div>
 `;
@@ -1938,6 +1818,9 @@ exports[`wonder-blocks-grid example 4 1`] = `
     className=""
     style={
       Object {
+        "@media (minWidth: 1168px)": Object {
+          "margin": "0 auto",
+        },
         "alignItems": "center",
         "background": "#ffffff",
         "border": "1px solid #ffb100",
@@ -1947,193 +1830,170 @@ exports[`wonder-blocks-grid example 4 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "margin": 0,
+        "maxWidth": 1168,
         "minHeight": 0,
         "minWidth": 0,
         "padding": "16px 0",
         "position": "relative",
+        "width": "100%",
         "zIndex": 0,
       }
     }
   >
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
-          "@media (minWidth: 1168px)": Object {
-            "margin": "0 auto",
-          },
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexDirection": "row",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
-          "maxWidth": 1168,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": "100%",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 5,
+          "position": "relative",
           "zIndex": 0,
         }
       }
     >
-      <div
-        aria-hidden="true"
+      <span
         className=""
         style={
           Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.5 + 160px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
           }
         }
       >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          Cell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 32,
-            "MsFlexPreferredSize": 32,
-            "WebkitFlexBasis": 32,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 32,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 32,
-            "zIndex": 0,
-          }
-        }
-      />
-      <div
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
-            "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.5 + 160px)",
-            "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
-            "alignItems": "stretch",
-            "background": "#ffb100",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "height": 100,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 5,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-            }
-          }
-        >
-          Cell
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 24,
-            "MsFlexPreferredSize": 24,
-            "WebkitFlexBasis": 24,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 24,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 24,
-            "zIndex": 0,
-          }
-        }
-      />
+        Cell
+      </span>
     </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+          "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+          "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+          "alignItems": "stretch",
+          "background": "#ffb100",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "height": 100,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 5,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+          }
+        }
+      >
+        Cell
+      </span>
+    </div>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 24,
+          "MsFlexPreferredSize": 24,
+          "WebkitFlexBasis": 24,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 24,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 24,
+          "zIndex": 0,
+        }
+      }
+    />
   </div>
 </div>
 `;
