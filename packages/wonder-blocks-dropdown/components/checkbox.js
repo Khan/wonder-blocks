@@ -47,15 +47,15 @@ export default function Checkbox(props: CheckProps) {
     const bgColor = disabled
         ? offWhite
         : selected && !clickInteraction
-            ? blue
-            : white;
+        ? blue
+        : white;
     const checkColor = disabled
         ? offBlack32
         : clickInteraction
-            ? pressed
-                ? activeBlue
-                : blue
-            : white;
+        ? pressed
+            ? activeBlue
+            : blue
+        : white;
 
     return (
         <View
