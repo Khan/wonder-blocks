@@ -51,18 +51,20 @@ const {StyleSheet} = require("aphrodite");
 const styles = StyleSheet.create({
     view: {
         background: Color.offBlack,
-        height: "200px",
+        height: "400px",
     },
 
     row: {
-        padding: "16px 0",
-        border: `1px solid ${Color.gold}`,
+        alignItems: "stretch",
         background: Color.white,
+        border: `1px solid ${Color.gold}`,
+        display: "flex",
+        height: "100%",
+        padding: "16px 0",
     },
 
     cell: {
         background: Color.gold,
-        height: "100%",
         overflowY: "auto",
         padding: 5,
     },
