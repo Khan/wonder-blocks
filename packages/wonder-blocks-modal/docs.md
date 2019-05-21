@@ -31,6 +31,8 @@ const React = require("react");
 const {Title} = require("@khanacademy/wonder-blocks-typography");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
 class ModalWrapper extends React.Component {
     render() {
@@ -38,13 +40,22 @@ class ModalWrapper extends React.Component {
             title="Single-line title"
             content={
                 <View>
-                    <Title>Hello, world</Title>
+                    <View>
+                        <label>Label</label>
+                        <input type="text" />
+                    </View>
                 </View>
             }
             footer={
-                <Button onClick={this.props.onClose}>
-                    Close Modal
-                </Button>
+                <React.Fragment>
+                    <Button kind="tertiary" onClick={this.props.onClose}>
+                        Cancel
+                    </Button>
+                    <Strut size={Spacing.medium} />
+                    <Button>
+                        Submit
+                    </Button>
+                </React.Fragment>
             }
         />
     }

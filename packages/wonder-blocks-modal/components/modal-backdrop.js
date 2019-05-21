@@ -15,6 +15,13 @@ type Props = {|
 |};
 
 /**
+ * List of elements that can be focused
+ * @see https://www.w3.org/TR/html5/editing.html#can-be-focused
+ */
+const FOCUSABLE_ELEMENTS =
+    'a[href], details, input, textarea, select, button:not([aria-label^="Close"])';
+
+/**
  * A private component used by ModalLauncher. This is the fixed-position
  * container element that gets mounted outside the DOM. It overlays the modal
  * content (provided as `children`) over the content, with a gray backdrop
@@ -26,25 +33,30 @@ type Props = {|
  */
 export default class ModalBackdrop extends React.Component<Props> {
     componentDidMount() {
-        // Focus the last button in the modal, on the assumption that it'll be
-        // a sensible default action.
-        //
-        // TODO(mdr): Not sure how robust this is; or whether we'll sometimes
-        //     want the default to be something in the modal content, or a
-        //     different button, or something else.
         const node: HTMLElement = (ReactDOM.findDOMNode(this): any);
         if (!node) {
             return;
         }
 
-        const buttons = node.querySelectorAll("button");
-        const lastButton = buttons[buttons.length - 1];
-        if (!lastButton) {
-            return;
+        // try to get a collection of elements that can be focused
+        const focusableElements = node.querySelectorAll(FOCUSABLE_ELEMENTS);
+
+        // try to focus the first focusable element
+        let firstFocusableElement: HTMLElement = focusableElements[0];
+
+        if (!firstFocusableElement) {
+            // If no focusable elements are found,
+            // the dialog content element itself will receive focus.
+            firstFocusableElement = (ReactDOM.findDOMNode(
+                node.querySelector('[role="dialog"]'),
+            ): any);
+            // add tabIndex to make the Dialog focusable
+            firstFocusableElement.tabIndex = -1;
         }
+
         // wait for styles to applied
         setTimeout(() => {
-            lastButton.focus();
+            firstFocusableElement.focus();
         }, 0);
     }
 
