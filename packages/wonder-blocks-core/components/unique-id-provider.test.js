@@ -20,7 +20,11 @@ describe("UniqueIDProvider", () => {
         test("initial render is nothing on server", () => {
             // Arrange
             const children = jest.fn(() => null);
-            const nodes = <UniqueIDProvider mockOnFirstRender={false}>{children}</UniqueIDProvider>;
+            const nodes = (
+                <UniqueIDProvider mockOnFirstRender={false}>
+                    {children}
+                </UniqueIDProvider>
+            );
 
             // Act
             ReactDOMServer.renderToStaticMarkup(nodes);
@@ -32,7 +36,11 @@ describe("UniqueIDProvider", () => {
         test("initial render is skipped on client", () => {
             // Arrange
             const children = jest.fn(() => null);
-            const nodes = <UniqueIDProvider mockOnFirstRender={false}>{children}</UniqueIDProvider>;
+            const nodes = (
+                <UniqueIDProvider mockOnFirstRender={false}>
+                    {children}
+                </UniqueIDProvider>
+            );
 
             // Act
             mount(nodes);
@@ -49,7 +57,11 @@ describe("UniqueIDProvider", () => {
         test("all renders get same unique id factory", () => {
             // Arrange
             const children = jest.fn(() => <View />);
-            const nodes = <UniqueIDProvider mockOnFirstRender={false}>{children}</UniqueIDProvider>;
+            const nodes = (
+                <UniqueIDProvider mockOnFirstRender={false}>
+                    {children}
+                </UniqueIDProvider>
+            );
             const wrapper = mount(nodes);
 
             // Act

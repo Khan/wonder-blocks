@@ -8,24 +8,26 @@ describe("@khanacademy/wonder-blocks-typography", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual([
-            "Body",
-            "BodyMonospace",
-            "BodySerif",
-            "BodySerifBlock",
-            "Caption",
-            "Footnote",
-            "HeadingLarge",
-            "HeadingMedium",
-            "HeadingSmall",
-            "HeadingXSmall",
-            "LabelLarge",
-            "LabelMedium",
-            "LabelSmall",
-            "LabelXSmall",
-            "Tagline",
-            "Title",
-            "styles",
-        ].sort());
+        expect(Object.keys(result).sort()).toEqual(
+            [
+                "Body",
+                "BodyMonospace",
+                "BodySerif",
+                "BodySerifBlock",
+                "Caption",
+                "Footnote",
+                "HeadingLarge",
+                "HeadingMedium",
+                "HeadingSmall",
+                "HeadingXSmall",
+                "LabelLarge",
+                "LabelMedium",
+                "LabelSmall",
+                "LabelXSmall",
+                "Tagline",
+                "Title",
+                "styles",
+            ].sort(),
+        );
     });
 });

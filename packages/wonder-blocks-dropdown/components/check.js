@@ -38,8 +38,8 @@ export default function Check(props: CheckProps) {
                 disabled
                     ? offBlack32
                     : pressed || hovered || focused
-                        ? white
-                        : offBlack
+                    ? white
+                    : offBlack
             }
             style={[styles.bounds, !selected && styles.hide]}
         />

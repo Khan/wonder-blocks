@@ -8,9 +8,8 @@ describe("@khanacademy/wonder-blocks-tooltip", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual([
-            "default",
-            "TooltipContent",
-        ].sort());
+        expect(Object.keys(result).sort()).toEqual(
+            ["default", "TooltipContent"].sort(),
+        );
     });
 });
