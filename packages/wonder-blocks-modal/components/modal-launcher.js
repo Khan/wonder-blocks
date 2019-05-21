@@ -81,6 +81,12 @@ type State = {|
  * the `modal` prop.
  */
 export default class ModalLauncher extends React.Component<Props, State> {
+    /**
+     * The most recent element _outside this component_ that received focus.
+     * Be default, it captures the element that triggered the modal opening
+     */
+    lastElementFocusedOutsideModal: ?HTMLElement;
+
     static defaultProps = {
         backdropDismissEnabled: true,
     };
@@ -103,13 +109,32 @@ export default class ModalLauncher extends React.Component<Props, State> {
 
     state = {opened: false};
 
+    componentDidUpdate(prevProps: Props) {
+        const {opened} = this.props;
+        // ensures the element is stored only when the modal is opened
+        if (!prevProps.opened && opened) {
+            this._saveLastElementFocused();
+        }
+    }
+
+    _saveLastElementFocused = () => {
+        // keep a reference of the element that triggers the modal
+        this.lastElementFocusedOutsideModal = document.activeElement;
+    };
+
     _openModal = () => {
+        this._saveLastElementFocused();
         this.setState({opened: true});
     };
 
     handleCloseModal = () => {
         this.setState({opened: false}, () => {
             this.props.onClose && this.props.onClose();
+
+            if (this.lastElementFocusedOutsideModal != null) {
+                // return focus to the element that triggered the modal
+                this.lastElementFocusedOutsideModal.focus();
+            }
         });
     };
 

@@ -116,10 +116,8 @@ type Props = {|
             variant,
             ...coreProps
         } = this.props;
-
         const ChoiceCore = this.getChoiceCoreComponent();
         const ClickableBehavior = getClickableBehavior();
-
         return (
             <View style={style}>
                 <ClickableBehavior
