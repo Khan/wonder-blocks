@@ -52,21 +52,19 @@ export default class ModalHeader extends React.Component<Props> {
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
                     <View style={[styles.header, !light && styles.dark]}>
-                        {breadcrumbs &&
-                            !subtitle && (
-                                <View style={styles.breadcrumbs}>
-                                    {breadcrumbs}
-                                </View>
-                            )}
+                        {breadcrumbs && !subtitle && (
+                            <View style={styles.breadcrumbs}>
+                                {breadcrumbs}
+                            </View>
+                        )}
                         <HeadingMedium id="wb-toolbar-title">
                             {title}
                         </HeadingMedium>
-                        {subtitle &&
-                            !breadcrumbs && (
-                                <LabelMedium style={light && styles.subtitle}>
-                                    {subtitle}
-                                </LabelMedium>
-                            )}
+                        {subtitle && !breadcrumbs && (
+                            <LabelMedium style={light && styles.subtitle}>
+                                {subtitle}
+                            </LabelMedium>
+                        )}
                     </View>
                 )}
             </MediaLayout>

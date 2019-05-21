@@ -63,7 +63,8 @@ describe("wonder-blocks-grid", () => {
                                     return (
                                         <View>
                                             <LabelMedium>
-                                                Cell ({cols === 1
+                                                Cell (
+                                                {cols === 1
                                                     ? "1 column"
                                                     : `${cols} columns`}{" "}
                                                 wide)
@@ -94,7 +95,8 @@ describe("wonder-blocks-grid", () => {
                                     return (
                                         <View>
                                             <LabelMedium>
-                                                Cell ({cols === 1
+                                                Cell (
+                                                {cols === 1
                                                     ? "1 column"
                                                     : `${cols} columns`}{" "}
                                                 wide)
@@ -120,7 +122,8 @@ describe("wonder-blocks-grid", () => {
                                     return (
                                         <View>
                                             <LabelMedium>
-                                                Cell ({cols === 1
+                                                Cell (
+                                                {cols === 1
                                                     ? "1 column"
                                                     : `${cols} columns`}{" "}
                                                 wide)

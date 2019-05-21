@@ -88,9 +88,9 @@ export default class Row extends React.Component<Props> {
                             ? children({mediaSize, totalColumns})
                             : children;
 
-                    const filteredContents: Array<
-                        React.Node,
-                    > = (React.Children.toArray(contents): Array<React.Node>)
+                    const filteredContents: Array<React.Node> = (React.Children.toArray(
+                        contents,
+                    ): Array<React.Node>)
                         // Go through all of the contents and pre-emptively remove anything
                         // that shouldn't be rendered.
                         .filter(
