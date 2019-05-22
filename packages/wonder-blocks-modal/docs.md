@@ -5,6 +5,7 @@ Looking for docs for StandardModal, OneColumnModal, or TwoColumnModal click [her
 It should follow guidelines from [W3C](https://www.w3.org/TR/wai-aria-practices/#dialog_modal).
 
 ### Keyboard Interaction
+
 When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.
 
 - Tab:
@@ -14,6 +15,64 @@ When a dialog opens, focus moves to an element inside the dialog. See notes belo
     - Moves focus to the previous tabbable element inside the dialog.
     - If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
 - Escape: Closes the dialog.
+
+#### Initial focus placement:
+The initial focus placement depends on the following scenarios:
+
+1. `initialFocusId` (default): `ModalLauncher` exposes this prop as a string. The dialog will try to find this element into the DOM. If it's found, focus is initially set on this element.
+2. focusable elements: This is the second scenario, where the dialog tries to find the first ocurrence of possible focusable elements.
+3. Dialog: If the first two conditions are not met, then focus is initially set to the Dialog element itself.
+
+### Example: Set initial focus on a given element inside the modal
+
+```js
+const React = require("react");
+
+const {Title} = require("@khanacademy/wonder-blocks-typography");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+const modalInitialFocus = ({closeModal}) => (
+    <OnePaneDialog
+        title="Single-line title"
+        content={
+            <View>
+                <View>
+                    <label>Label</label>
+                    <input type="text" />
+                    <Strut size={Spacing.medium} />
+                    <Button data-initial-focus>
+                        Button to receive initial focus
+                    </Button>
+                </View>
+            </View>
+        }
+        footer={
+            <React.Fragment>
+                <Button kind="tertiary" onClick={closeModal}>
+                    Cancel
+                </Button>
+                <Strut size={Spacing.medium} />
+                <Button>
+                    Submit
+                </Button>
+            </React.Fragment>
+        }
+    />
+);
+
+<View style={{flexDirection: "row"}}>
+    <ModalLauncher
+        onClose={() => window.alert("you closed the modal")}
+        initialFocusId="[data-initial-focus]"
+        modal={modalInitialFocus}
+    >
+        {({openModal}) => <Button onClick={openModal}>Open modal with initial focus</Button>}
+    </ModalLauncher>
+</View>
+```
 
 ### WAI-ARIA Roles
 - The element that serves as the **dialog container** has `aria-role` defined as `dialog`.

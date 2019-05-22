@@ -12,6 +12,11 @@ import type {ModalElement} from "../util/types.js";
 type Props = {|
     children: ModalElement,
     onCloseModal: () => mixed,
+    /**
+     * The selector for the element that will be focused when the dialog shows.
+     * When not set, the first tabbable element within the dialog will be used.
+     */
+    initialFocusId?: string,
 |};
 
 /**
@@ -38,26 +43,61 @@ export default class ModalBackdrop extends React.Component<Props> {
             return;
         }
 
-        // try to get a collection of elements that can be focused
-        const focusableElements = node.querySelectorAll(FOCUSABLE_ELEMENTS);
-
-        // try to focus the first focusable element
-        let firstFocusableElement: HTMLElement = focusableElements[0];
-
-        if (!firstFocusableElement) {
-            // If no focusable elements are found,
-            // the dialog content element itself will receive focus.
-            firstFocusableElement = (ReactDOM.findDOMNode(
-                node.querySelector('[role="dialog"]'),
-            ): any);
-            // add tabIndex to make the Dialog focusable
-            firstFocusableElement.tabIndex = -1;
-        }
+        const firstFocusableElement =
+            // 1. try to get element specified by the user
+            this._getInitialFocusElement(node) ||
+            // 2. get first occurence from list of focusable elements
+            this._getFirstFocusableElement(node) ||
+            // 3. get the dialog itself
+            this._getDialogElement(node);
 
         // wait for styles to applied
         setTimeout(() => {
             firstFocusableElement.focus();
         }, 0);
+    }
+
+    /**
+     * Returns an element specified by the user
+     */
+    _getInitialFocusElement(node: HTMLElement): HTMLElement | null {
+        if (!this.props.initialFocusId) {
+            return null;
+        }
+
+        return (ReactDOM.findDOMNode(
+            node.querySelector(this.props.initialFocusId),
+        ): any);
+    }
+
+    /**
+     * Returns the first focusable element found inside the Dialog
+     */
+    _getFirstFocusableElement(node: HTMLElement): HTMLElement | null {
+        // get a collection of elements that can be focused
+        const focusableElements = node.querySelectorAll(FOCUSABLE_ELEMENTS);
+
+        if (!focusableElements) {
+            return null;
+        }
+
+        // if found, return the first focusable element
+        return focusableElements[0];
+    }
+
+    /**
+     * Returns the dialog element
+     */
+    _getDialogElement(node: HTMLElement): HTMLElement {
+        // If no focusable elements are found,
+        // the dialog content element itself will receive focus.
+        const dialogElement: HTMLElement = (ReactDOM.findDOMNode(
+            node.querySelector('[role="dialog"]'),
+        ): any);
+        // add tabIndex to make the Dialog focusable
+        dialogElement.tabIndex = -1;
+
+        return dialogElement;
     }
 
     /**

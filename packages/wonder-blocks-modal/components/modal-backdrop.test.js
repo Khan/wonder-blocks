@@ -16,6 +16,19 @@ const exampleModal = (
     />
 );
 
+const exampleModalWithInitialFocus = (
+    <OnePaneDialog
+        content={
+            <div data-modal-content>
+                <input type="text" />
+                <button data-initial-focus />
+            </div>
+        }
+        title="Title"
+        footer={<div data-modal-footer />}
+    />
+);
+
 const exampleModalWithButtons = (
     <OnePaneDialog
         content={
@@ -82,7 +95,58 @@ describe("ModalBackdrop", () => {
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
-    test("On mount, we focus the first button in the modal", async () => {
+    test("If initialFocusId is set and element is found, we focus that element inside the modal", async () => {
+        // Arrange
+        const initialFocusId = "[data-initial-focus]";
+
+        const wrapper = mount(
+            <ModalBackdrop
+                initialFocusId={initialFocusId}
+                onCloseModal={() => {}}
+            >
+                {exampleModalWithInitialFocus}
+            </ModalBackdrop>,
+        );
+
+        // Act
+        await sleep(); // wait for styles to be applied
+        const initialFocusElement = wrapper.find(initialFocusId);
+
+        // Assert
+        // first we verify the element exists in the DOM
+        expect(initialFocusElement).toHaveLength(1);
+        // verify the focus is set on the correct element
+        expect(document.activeElement).toBe(initialFocusElement.getDOMNode());
+    });
+
+    test("If initialFocusId is set but element is NOT found, we focus on the first focusable element instead", async () => {
+        // Arrange
+        const initialFocusId = "[data-initial-focus]";
+        const firstFocusableElement = "[data-first-button]";
+
+        const wrapper = mount(
+            <ModalBackdrop
+                initialFocusId={initialFocusId}
+                onCloseModal={() => {}}
+            >
+                {exampleModalWithButtons}
+            </ModalBackdrop>,
+        );
+
+        // Act
+        await sleep(); // wait for styles to be applied
+        const initialFocusElement = wrapper.find(initialFocusId);
+
+        // Assert
+        // first we verify the element doesn't exist in the DOM
+        expect(initialFocusElement).toHaveLength(0);
+        // verify the focus is set on the first focusable element instead
+        expect(document.activeElement).toBe(
+            wrapper.find(firstFocusableElement).getDOMNode(),
+        );
+    });
+
+    test("If no initialFocusId is set, we focus the first button in the modal", async () => {
         // Arrange
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
@@ -100,7 +164,7 @@ describe("ModalBackdrop", () => {
         expect(document.activeElement).toBe(focusableElement);
     });
 
-    test("If there are no buttons, we focus the Dialog instead", async () => {
+    test("If there are no focusable elements, we focus the Dialog instead", async () => {
         // Arrange
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
