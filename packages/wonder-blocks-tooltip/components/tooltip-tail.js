@@ -174,21 +174,21 @@ export default class TooltipTail extends React.Component<Props> {
                 y={y}
             >
                 {/* Here we provide a nice blur that will be our shadow
-                * The stdDeviation is the spread of the blur. We don't want it
-                * too diffuse.
-                */}
+                 * The stdDeviation is the spread of the blur. We don't want it
+                 * too diffuse.
+                 */}
                 <feGaussianBlur
                     in="SourceAlpha"
                     stdDeviation={Spacing.xxSmall / 2}
                 />
 
                 {/* Here we adjust the alpha (feFuncA) linearly so as to blend
-                * the shadow to match the rest of the tooltip bubble shadow.
-                * It is a combination of the diffuse blur and this alpha
-                * value that will make it look right.
-                *
-                * The value of 0.3. was arrived at from trial and error.
-                */}
+                 * the shadow to match the rest of the tooltip bubble shadow.
+                 * It is a combination of the diffuse blur and this alpha
+                 * value that will make it look right.
+                 *
+                 * The value of 0.3. was arrived at from trial and error.
+                 */}
                 <feComponentTransfer>
                     <feFuncA type="linear" slope="0.3" />
                 </feComponentTransfer>

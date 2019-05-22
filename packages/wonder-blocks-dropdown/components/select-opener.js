@@ -107,8 +107,8 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             ? "currentColor"
                             : white
                         : disabled
-                            ? offBlack32
-                            : offBlack64;
+                        ? offBlack32
+                        : offBlack64;
 
                     const style = [
                         styles.shared,

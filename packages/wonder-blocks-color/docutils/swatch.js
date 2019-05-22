@@ -42,9 +42,7 @@ export default class Swatch extends React.Component<Props> {
     }
     renderThreeSegments() {
         const {color} = this.props;
-
         const content = this.getContent();
-
         return (
             <View style={[styles.row, styles.border]}>
                 <View
@@ -66,9 +64,7 @@ export default class Swatch extends React.Component<Props> {
     }
     renderTwoSegments() {
         const {color} = this.props;
-
         const content = this.getContent();
-
         return (
             <View style={[styles.row, styles.border]}>
                 <View style={[styles.white, styles.box]} />
@@ -85,9 +81,7 @@ export default class Swatch extends React.Component<Props> {
     }
     renderOneSegment() {
         const {color, use} = this.props;
-
         const content = this.getContent();
-
         return (
             <View
                 style={[
@@ -101,8 +95,9 @@ export default class Swatch extends React.Component<Props> {
                     },
                 ]}
             >
-                {use === "text" &&
-                    content && <HeadingLarge>{content}</HeadingLarge>}
+                {use === "text" && content && (
+                    <HeadingLarge>{content}</HeadingLarge>
+                )}
             </View>
         );
     }

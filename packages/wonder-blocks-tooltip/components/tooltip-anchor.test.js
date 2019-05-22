@@ -24,9 +24,9 @@ describe("TooltipAnchor", () => {
         jest.clearAllTimers();
         jest.useFakeTimers();
 
-        const {
-            default: ActiveTracker,
-        } = await import("../util/active-tracker.js");
+        const {default: ActiveTracker} = await import(
+            "../util/active-tracker.js"
+        );
         // We know there's one global instance of this import, so let's
         // reset it.
         // Flow doesn't know this is a mock $FlowFixMe
@@ -229,9 +229,9 @@ describe("TooltipAnchor", () => {
     describe("receives keyboard focus", () => {
         test("active state was not stolen, delays set active", async () => {
             // Arrange
-            const {
-                default: ActiveTracker,
-            } = await import("../util/active-tracker.js");
+            const {default: ActiveTracker} = await import(
+                "../util/active-tracker.js"
+            );
             // Let's tell the tooltip it isn't stealing and therefore it should
             // be using a delay to show the tooltip.
             // Flow doesn't know this is a mock $FlowFixMe
@@ -274,9 +274,9 @@ describe("TooltipAnchor", () => {
 
         test("active state was stolen, set active immediately", async () => {
             // Arrange
-            const {
-                default: ActiveTracker,
-            } = await import("../util/active-tracker.js");
+            const {default: ActiveTracker} = await import(
+                "../util/active-tracker.js"
+            );
             // Let's tell the tooltip it is stealing and therefore it should
             // not be using a delay to show the tooltip.
             // Flow doesn't know this is a mock $FlowFixMe
@@ -352,9 +352,9 @@ describe("TooltipAnchor", () => {
 
         test("active state was not stolen, gives up active state", async () => {
             // Arrange
-            const {
-                default: ActiveTracker,
-            } = await import("../util/active-tracker.js");
+            const {default: ActiveTracker} = await import(
+                "../util/active-tracker.js"
+            );
             // Flow doesn't know this is a mock $FlowFixMe
             const mockTracker = ActiveTracker.mock.instances[0];
 
@@ -430,9 +430,9 @@ describe("TooltipAnchor", () => {
 
         test("active state was stolen, so it does not have it to give up", async () => {
             // Arrange
-            const {
-                default: ActiveTracker,
-            } = await import("../util/active-tracker.js");
+            const {default: ActiveTracker} = await import(
+                "../util/active-tracker.js"
+            );
             // Flow doesn't know this is a mock $FlowFixMe
             const mockTracker = ActiveTracker.mock.instances[0];
             // Arrange
@@ -505,9 +505,9 @@ describe("TooltipAnchor", () => {
     describe("is hovered", () => {
         test("active state was not stolen, delays set active", async () => {
             // Arrange
-            const {
-                default: ActiveTracker,
-            } = await import("../util/active-tracker.js");
+            const {default: ActiveTracker} = await import(
+                "../util/active-tracker.js"
+            );
             // Let's tell the tooltip it isn't stealing and therefore it should
             // be using a delay to show the tooltip.
             // Flow doesn't know this is a mock $FlowFixMe
@@ -545,9 +545,9 @@ describe("TooltipAnchor", () => {
 
         test("active state was stolen, set active immediately", async () => {
             // Arrange
-            const {
-                default: ActiveTracker,
-            } = await import("../util/active-tracker.js");
+            const {default: ActiveTracker} = await import(
+                "../util/active-tracker.js"
+            );
             // Let's tell the tooltip it is stealing and therefore it should
             // not be using a delay to show the tooltip.
             // Flow doesn't know this is a mock $FlowFixMe
@@ -617,9 +617,9 @@ describe("TooltipAnchor", () => {
 
         test("active state was not stolen, gives up active state", async () => {
             // Arrange
-            const {
-                default: ActiveTracker,
-            } = await import("../util/active-tracker.js");
+            const {default: ActiveTracker} = await import(
+                "../util/active-tracker.js"
+            );
             // Flow doesn't know this is a mock $FlowFixMe
             const mockTracker = ActiveTracker.mock.instances[0];
             let activeState = false;
@@ -692,9 +692,9 @@ describe("TooltipAnchor", () => {
 
         test("active state was stolen, so it does not have it to give up", async () => {
             // Arrange
-            const {
-                default: ActiveTracker,
-            } = await import("../util/active-tracker.js");
+            const {default: ActiveTracker} = await import(
+                "../util/active-tracker.js"
+            );
             // Flow doesn't know this is a mock $FlowFixMe
             const mockTracker = ActiveTracker.mock.instances[0];
             // Arrange

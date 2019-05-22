@@ -34,6 +34,11 @@
         // We turned this off too as we didn't see an explicit benefit
         "react/sort-prop-types": 0,
     },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "extends": [
         "prettier/react"
     ],

@@ -179,17 +179,17 @@ export default class FocusTrap extends React.Component<Props> {
         return (
             <React.Fragment>
                 {/* When you press Tab on the last focusable node of the
-                  * document, some browsers will move your tab focus outside of
-                  * the document. But we want to capture that as a focus event,
-                  * and move focus back into the modal! So, we add focusable
-                  * sentinel nodes. That way, tabbing out of the modal should
-                  * take you to a sentinel node, rather than taking you out of
-                  * the document. These sentinels aren't critical to focus
-                  * wrapping, though; we're resilient to any kind of focus
-                  * shift, whether it's to the sentinels or somewhere else!
-                  * We set the sentinels to be position: fixed to make sure
-                  * they're always in view, this prevents page scrolling when
-                  * tabbing. */}
+                 * document, some browsers will move your tab focus outside of
+                 * the document. But we want to capture that as a focus event,
+                 * and move focus back into the modal! So, we add focusable
+                 * sentinel nodes. That way, tabbing out of the modal should
+                 * take you to a sentinel node, rather than taking you out of
+                 * the document. These sentinels aren't critical to focus
+                 * wrapping, though; we're resilient to any kind of focus
+                 * shift, whether it's to the sentinels or somewhere else!
+                 * We set the sentinels to be position: fixed to make sure
+                 * they're always in view, this prevents page scrolling when
+                 * tabbing. */}
                 <div tabIndex="0" style={{position: "fixed"}} />
                 <View style={style} ref={this.getModalRoot}>
                     {this.props.children}
