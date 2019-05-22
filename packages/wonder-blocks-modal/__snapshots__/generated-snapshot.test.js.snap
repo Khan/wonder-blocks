@@ -308,7 +308,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
         />
       </div>
       <div
-        aria-labelledby="wb-modal-title"
+        aria-labelledby="uid-modal-0-wb-title"
         className=""
         role="dialog"
         style={
@@ -445,7 +445,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
           >
             <h3
               className=""
-              id="wb-toolbar-title"
+              id="uid-modal-0-wb-title"
               style={
                 Object {
                   "@media (maxWidth: 1023px)": Object {
@@ -1042,7 +1042,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
       }
     >
       <div
-        aria-labelledby="wb-modal-title"
+        aria-labelledby="uid-modal-1-wb-title"
         className=""
         role="dialog"
         style={
@@ -1179,7 +1179,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
           >
             <h3
               className=""
-              id="wb-toolbar-title"
+              id="uid-modal-1-wb-title"
               style={
                 Object {
                   "@media (maxWidth: 1023px)": Object {
@@ -1560,7 +1560,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
       }
     >
       <div
-        aria-labelledby="wb-modal-title"
+        aria-labelledby="uid-modal-2-wb-title"
         className=""
         role="dialog"
         style={
@@ -1811,7 +1811,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
             </div>
             <h3
               className=""
-              id="wb-toolbar-title"
+              id="uid-modal-2-wb-title"
               style={
                 Object {
                   "@media (maxWidth: 1023px)": Object {
@@ -2255,7 +2255,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
       }
     >
       <div
-        aria-labelledby="wb-modal-title"
+        aria-labelledby="uid-modal-3-wb-title"
         className=""
         role="dialog"
         style={
@@ -2392,7 +2392,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
           >
             <h3
               className=""
-              id="wb-toolbar-title"
+              id="uid-modal-3-wb-title"
               style={
                 Object {
                   "@media (maxWidth: 1023px)": Object {
@@ -2876,7 +2876,6 @@ exports[`wonder-blocks-modal example 10 1`] = `
         />
       </div>
       <div
-        aria-labelledby="wb-modal-title"
         className=""
         role="dialog"
         style={
