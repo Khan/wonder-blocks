@@ -18,7 +18,9 @@ const exampleBreadcrumbs = (
 describe("ModalHeader", () => {
     test("renders the title by default", () => {
         // Arrange, Act
-        const wrapper = shallow(<ModalHeader title="Title" />);
+        const wrapper = shallow(
+            <ModalHeader title="Title" titleId="modal-title" />,
+        );
 
         // Assert
         expect(wrapper.exists()).toBe(true);
@@ -27,7 +29,11 @@ describe("ModalHeader", () => {
     test("using only `breadcrumbs` should render the header", () => {
         // Arrange, Act
         const wrapper = shallow(
-            <ModalHeader title="Title" breadcrumbs={exampleBreadcrumbs} />,
+            <ModalHeader
+                title="Title"
+                breadcrumbs={exampleBreadcrumbs}
+                titleId="modal-title"
+            />,
         );
 
         // Assert
@@ -37,7 +43,11 @@ describe("ModalHeader", () => {
     test("using only `subtitle` should render the header", () => {
         // Arrange, Act
         const wrapper = shallow(
-            <ModalHeader title="Title" subtitle="Subtitle" />,
+            <ModalHeader
+                title="Title"
+                subtitle="Subtitle"
+                titleId="modal-title"
+            />,
         );
 
         // Assert
@@ -48,6 +58,7 @@ describe("ModalHeader", () => {
         expectRenderError(
             <ModalHeader
                 title="Title"
+                titleId="modal-title"
                 subtitle="Subtitle"
                 breadcrumbs={exampleBreadcrumbs}
             />,
