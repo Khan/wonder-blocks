@@ -35,7 +35,7 @@ describe("wonder-blocks-modal", () => {
                             <label>Label</label>
                             <input type="text" />
                             <Strut size={Spacing.medium} />
-                            <Button data-initial-focus>
+                            <Button id="initial-focus">
                                 Button to receive initial focus
                             </Button>
                         </View>
@@ -57,7 +57,7 @@ describe("wonder-blocks-modal", () => {
             <View style={{flexDirection: "row"}}>
                 <ModalLauncher
                     onClose={() => window.alert("you closed the modal")}
-                    initialFocusId="[data-initial-focus]"
+                    initialFocusId="initial-focus"
                     modal={modalInitialFocus}
                 >
                     {({openModal}) => (

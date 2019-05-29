@@ -16,19 +16,6 @@ const exampleModal = (
     />
 );
 
-const exampleModalWithInitialFocus = (
-    <OnePaneDialog
-        content={
-            <div data-modal-content>
-                <input type="text" />
-                <button data-initial-focus />
-            </div>
-        }
-        title="Title"
-        footer={<div data-modal-footer />}
-    />
-);
-
 const exampleModalWithButtons = (
     <OnePaneDialog
         content={
@@ -97,20 +84,29 @@ describe("ModalBackdrop", () => {
 
     test("If initialFocusId is set and element is found, we focus that element inside the modal", async () => {
         // Arrange
-        const initialFocusId = "[data-initial-focus]";
+        const initialFocusId = "initial-focus";
 
         const wrapper = mount(
             <ModalBackdrop
                 initialFocusId={initialFocusId}
                 onCloseModal={() => {}}
             >
-                {exampleModalWithInitialFocus}
+                <OnePaneDialog
+                    content={
+                        <div data-modal-content>
+                            <input type="text" />
+                            <button id="initial-focus" />
+                        </div>
+                    }
+                    title="Title"
+                    footer={<div data-modal-footer />}
+                />
             </ModalBackdrop>,
         );
 
         // Act
         await sleep(); // wait for styles to be applied
-        const initialFocusElement = wrapper.find(initialFocusId);
+        const initialFocusElement = wrapper.find(`#${initialFocusId}`);
 
         // Assert
         // first we verify the element exists in the DOM
@@ -121,7 +117,7 @@ describe("ModalBackdrop", () => {
 
     test("If initialFocusId is set but element is NOT found, we focus on the first focusable element instead", async () => {
         // Arrange
-        const initialFocusId = "[data-initial-focus]";
+        const initialFocusId = "initial-focus";
         const firstFocusableElement = "[data-first-button]";
 
         const wrapper = mount(
@@ -135,7 +131,7 @@ describe("ModalBackdrop", () => {
 
         // Act
         await sleep(); // wait for styles to be applied
-        const initialFocusElement = wrapper.find(initialFocusId);
+        const initialFocusElement = wrapper.find(`#${initialFocusId}`);
 
         // Assert
         // first we verify the element doesn't exist in the DOM

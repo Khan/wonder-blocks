@@ -61,12 +61,14 @@ export default class ModalBackdrop extends React.Component<Props> {
      * Returns an element specified by the user
      */
     _getInitialFocusElement(node: HTMLElement): HTMLElement | null {
-        if (!this.props.initialFocusId) {
+        const {initialFocusId} = this.props;
+
+        if (!initialFocusId) {
             return null;
         }
 
         return (ReactDOM.findDOMNode(
-            node.querySelector(this.props.initialFocusId),
+            node.querySelector(`#${initialFocusId}`),
         ): any);
     }
 
