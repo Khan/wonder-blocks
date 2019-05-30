@@ -19,12 +19,20 @@ import ModalFooter from "./components/modal-footer.js";
 describe("wonder-blocks-modal", () => {
     it("example 1", () => {
         const React = require("react");
+        const {StyleSheet} = require("aphrodite");
 
         const {Title} = require("@khanacademy/wonder-blocks-typography");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {Strut} = require("@khanacademy/wonder-blocks-layout");
         const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+        });
 
         const modalInitialFocus = ({closeModal}) => (
             <OnePaneDialog
@@ -54,7 +62,7 @@ describe("wonder-blocks-modal", () => {
         );
 
         const example = (
-            <View style={{flexDirection: "row"}}>
+            <View style={styles.example}>
                 <ModalLauncher
                     onClose={() => window.alert("you closed the modal")}
                     initialFocusId="initial-focus"
@@ -73,55 +81,70 @@ describe("wonder-blocks-modal", () => {
     });
     it("example 2", () => {
         const React = require("react");
+        const {StyleSheet} = require("aphrodite");
 
-        const {Title} = require("@khanacademy/wonder-blocks-typography");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
-        class ModalWrapper extends React.Component {
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+        });
+
+        class ModalContainer extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    count: 0,
+                };
+            }
+
+            updateContents(openModal) {
+                this.setState({state: this.state.count++});
+                openModal();
+            }
+
             render() {
                 return (
-                    <OnePaneDialog
-                        title="Single-line title"
-                        content={
-                            <View>
-                                <View>
-                                    <label>Label</label>
-                                    <input type="text" />
-                                </View>
-                            </View>
-                        }
-                        footer={
-                            <React.Fragment>
+                    <React.Fragment>
+                        <ModalLauncher
+                            onClose={() => console.log("you closed the modal")}
+                            modal={({closeModal}) => (
+                                <OnePaneDialog
+                                    title={`Dialog #${this.state.count}`}
+                                    content={
+                                        <View>
+                                            <Body>
+                                                You have opened this modal{" "}
+                                                {this.state.count} time(s).
+                                            </Body>
+                                        </View>
+                                    }
+                                />
+                            )}
+                        >
+                            {({openModal}) => (
                                 <Button
-                                    kind="tertiary"
-                                    onClick={this.props.onClose}
+                                    onClick={() =>
+                                        this.updateContents(openModal)
+                                    }
                                 >
-                                    Cancel
+                                    Open Modal
                                 </Button>
-                                <Strut size={Spacing.medium} />
-                                <Button>Submit</Button>
-                            </React.Fragment>
-                        }
-                    />
+                            )}
+                        </ModalLauncher>
+                    </React.Fragment>
                 );
             }
         }
 
         const example = (
-            <View style={{flexDirection: "row"}}>
-                <ModalLauncher
-                    onClose={() => window.alert("you closed the modal")}
-                    modal={({closeModal}) => (
-                        <ModalWrapper onClose={closeModal} />
-                    )}
-                >
-                    {({openModal}) => (
-                        <Button onClick={openModal}>Open Modal</Button>
-                    )}
-                </ModalLauncher>
+            <View style={styles.example}>
+                <ModalContainer />
             </View>
         );
         const tree = renderer.create(example).toJSON();
@@ -598,7 +621,7 @@ describe("wonder-blocks-modal", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
-        const styles = StyleSheet.create({
+        const exampleStyles = StyleSheet.create({
             previewSizer: {
                 height: 512,
             },
@@ -622,7 +645,7 @@ describe("wonder-blocks-modal", () => {
             },
         });
 
-        const defaultStyles = StyleSheet.create({
+        const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
                 justifyContent: "flex-end",
@@ -635,53 +658,31 @@ describe("wonder-blocks-modal", () => {
             },
         });
 
-        const smallStyles = StyleSheet.create({
-            footer: {
-                justifyContent: "flex-end",
-            },
-            label: {
-                display: "none",
-            },
-        });
-
-        const styleSheets = {
-            all: defaultStyles,
-            small: smallStyles,
-        };
-
         const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <MediaLayout styleSheets={styleSheets}>
-                        {({styles}) => (
-                            <OnePaneDialog
-                                title="Dialog with multi-step footer"
-                                content={
-                                    <View>
-                                        <Body>
-                                            {
-                                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                                            }
-                                        </Body>
-                                    </View>
-                                }
-                                footer={
-                                    <View style={styles.footer}>
-                                        <LabelLarge style={styles.label}>
-                                            Step 1 of 4
-                                        </LabelLarge>
-                                        <View style={styles.row}>
-                                            <Button kind="tertiary">
-                                                Previous
-                                            </Button>
-                                            <Strut size={16} />
-                                            <Button kind="primary">Next</Button>
-                                        </View>
-                                    </View>
-                                }
-                            />
-                        )}
-                    </MediaLayout>
+            <View style={exampleStyles.previewSizer}>
+                <View style={exampleStyles.modalPositioner}>
+                    <OnePaneDialog
+                        title="Dialog with multi-step footer"
+                        content={
+                            <View>
+                                <Body>
+                                    {
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                                    }
+                                </Body>
+                            </View>
+                        }
+                        footer={
+                            <View style={styles.footer}>
+                                <LabelLarge>Step 1 of 4</LabelLarge>
+                                <View style={styles.row}>
+                                    <Button kind="tertiary">Previous</Button>
+                                    <Strut size={16} />
+                                    <Button kind="primary">Next</Button>
+                                </View>
+                            </View>
+                        }
+                    />
                 </View>
             </View>
         );
