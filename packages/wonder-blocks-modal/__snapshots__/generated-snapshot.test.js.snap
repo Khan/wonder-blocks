@@ -87,13 +87,106 @@ exports[`wonder-blocks-modal example 1 1`] = `
         }
       }
     >
-      Open Modal
+      Open modal with initial focus
     </span>
   </button>
 </div>
 `;
 
 exports[`wonder-blocks-modal example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-label=""
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "flex",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Open Modal
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-modal example 3 1`] = `
 <div
   className=""
   style={
@@ -512,7 +605,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 3 1`] = `
+exports[`wonder-blocks-modal example 4 1`] = `
 <div
   className=""
   style={
@@ -605,7 +698,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 4 1`] = `
+exports[`wonder-blocks-modal example 5 1`] = `
 <div
   className=""
   style={
@@ -698,7 +791,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 5 1`] = `
+exports[`wonder-blocks-modal example 6 1`] = `
 <div
   className=""
   style={
@@ -877,7 +970,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 6 1`] = `
+exports[`wonder-blocks-modal example 7 1`] = `
 <div
   className=""
   style={
@@ -1395,7 +1488,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 7 1`] = `
+exports[`wonder-blocks-modal example 8 1`] = `
 <div
   className=""
   style={
@@ -2090,7 +2183,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 8 1`] = `
+exports[`wonder-blocks-modal example 9 1`] = `
 <div
   className=""
   style={
@@ -2662,7 +2755,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-modal example 9 1`] = `
+exports[`wonder-blocks-modal example 10 1`] = `
 <div
   className=""
   style={

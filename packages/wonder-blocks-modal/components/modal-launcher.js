@@ -57,6 +57,12 @@ type Props = {|
      * Enables the backdrop to dismiss the modal on click/tap
      */
     backdropDismissEnabled?: boolean,
+
+    /**
+     * The selector for the element that will be focused when the dialog shows.
+     * When not set, the first tabbable element within the dialog will be used.
+     */
+    initialFocusId?: string,
 |};
 
 type State = {|
@@ -172,6 +178,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                            correct z-index so that it'll be above the global nav in webapp. */
                         <FocusTrap style={styles.container}>
                             <ModalBackdrop
+                                initialFocusId={this.props.initialFocusId}
                                 onCloseModal={
                                     this.props.backdropDismissEnabled
                                         ? this.handleCloseModal

@@ -23,6 +23,62 @@ describe("wonder-blocks-modal", () => {
         const {Title} = require("@khanacademy/wonder-blocks-typography");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const modalInitialFocus = ({closeModal}) => (
+            <OnePaneDialog
+                title="Single-line title"
+                content={
+                    <View>
+                        <View>
+                            <label>Label</label>
+                            <input type="text" />
+                            <Strut size={Spacing.medium} />
+                            <Button id="initial-focus">
+                                Button to receive initial focus
+                            </Button>
+                        </View>
+                    </View>
+                }
+                footer={
+                    <React.Fragment>
+                        <Button kind="tertiary" onClick={closeModal}>
+                            Cancel
+                        </Button>
+                        <Strut size={Spacing.medium} />
+                        <Button>Submit</Button>
+                    </React.Fragment>
+                }
+            />
+        );
+
+        const example = (
+            <View style={{flexDirection: "row"}}>
+                <ModalLauncher
+                    onClose={() => window.alert("you closed the modal")}
+                    initialFocusId="initial-focus"
+                    modal={modalInitialFocus}
+                >
+                    {({openModal}) => (
+                        <Button onClick={openModal}>
+                            Open modal with initial focus
+                        </Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const React = require("react");
+
+        const {Title} = require("@khanacademy/wonder-blocks-typography");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
         class ModalWrapper extends React.Component {
             render() {
@@ -31,13 +87,23 @@ describe("wonder-blocks-modal", () => {
                         title="Single-line title"
                         content={
                             <View>
-                                <Title>Hello, world</Title>
+                                <View>
+                                    <label>Label</label>
+                                    <input type="text" />
+                                </View>
                             </View>
                         }
                         footer={
-                            <Button onClick={this.props.onClose}>
-                                Close Modal
-                            </Button>
+                            <React.Fragment>
+                                <Button
+                                    kind="tertiary"
+                                    onClick={this.props.onClose}
+                                >
+                                    Cancel
+                                </Button>
+                                <Strut size={Spacing.medium} />
+                                <Button>Submit</Button>
+                            </React.Fragment>
                         }
                     />
                 );
@@ -61,7 +127,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
+    it("example 3", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -148,7 +214,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Body} = require("@khanacademy/wonder-blocks-typography");
@@ -220,7 +286,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 5", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Body} = require("@khanacademy/wonder-blocks-typography");
@@ -269,7 +335,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 6", () => {
         const React = require("react");
 
         const {Title} = require("@khanacademy/wonder-blocks-typography");
@@ -335,7 +401,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 7", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Body} = require("@khanacademy/wonder-blocks-typography");
@@ -416,7 +482,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Body} = require("@khanacademy/wonder-blocks-typography");
@@ -523,7 +589,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Body} = require("@khanacademy/wonder-blocks-typography");
@@ -622,7 +688,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Button = require("@khanacademy/wonder-blocks-button").default;
