@@ -4,6 +4,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
@@ -23,6 +25,8 @@ const {
 } = Color;
 
 type SelectOpenerProps = {|
+    ...AriaProps,
+
     /**
      * Display text in the SelectOpener.
      */
@@ -33,6 +37,12 @@ type SelectOpenerProps = {|
      * Default false.
      */
     disabled: boolean,
+
+    /**
+     * Auto-populated by parent. Used for accessibility purposes, where the label
+     * id should match the field id.
+     */
+    id?: string,
 
     //TODO: error state
     // error: boolean,
@@ -84,8 +94,10 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
     render() {
         const {
+            "aria-labelledby": ariaLabelledBy,
             children,
             disabled,
+            id,
             isPlaceholder,
             light,
             open,
@@ -122,10 +134,12 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
                     return (
                         <StyledButton
+                            aria-labelledby={ariaLabelledBy}
                             aria-expanded={open ? "true" : "false"}
                             aria-haspopup="listbox"
                             data-test-id={testId}
                             disabled={disabled}
+                            id={id}
                             style={style}
                             type="button"
                             {...handlers}

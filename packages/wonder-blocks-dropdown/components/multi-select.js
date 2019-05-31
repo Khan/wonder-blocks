@@ -3,7 +3,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ActionItem from "./action-item.js";
 import Dropdown from "./dropdown.js";
@@ -15,10 +15,19 @@ import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * The items in this select.
      */
     children?: Array<React.Element<OptionItem>>,
+
+    /**
+     * Unique identifier attached to the field control. If used, we need to
+     * guarantee that the ID is unique within everything rendered on a page.
+     * Used to match `<label>` with `<button>` elements for screenreaders.
+     */
+    id?: string,
 
     /**
      * Callback for when the selection changes. Parameter is an updated array of
@@ -262,7 +271,9 @@ export default class MultiSelect extends React.Component<Props, State> {
     render() {
         const {
             alignment,
+            "aria-labelledby": ariaLabelledBy,
             disabled,
+            id,
             light,
             placeholder,
             style,
@@ -277,7 +288,9 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         const opener = (
             <SelectOpener
+                aria-labelledby={ariaLabelledBy}
                 disabled={items.length === 0 || disabled}
+                id={id}
                 isPlaceholder={menuText === placeholder}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}

@@ -288,3 +288,31 @@ const styles = StyleSheet.create({
     <MultiSelect menuText="Empty" placeholder="empty" />
 </View>
 ```
+
+### Accessibility
+
+If you need to associate this component with another element (e.g. `<label>`),
+make sure to pass the `aria-labelledby` and/or `id` props to the `MultiSelect` component.
+This way, the `opener` will receive this value and it will associate both elements.
+
+```js
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+
+<View>
+    <LabelLarge
+        tag="label"
+        id="label-for-multi-select"
+        htmlFor="unique-multi-select"
+    >
+        Associated label element
+    </LabelLarge>
+    <MultiSelect
+        aria-labelledby="label-for-multi-select"
+        id="unique-multi-select"
+        placeholder="Accessible MultiSelect"
+    >
+        <OptionItem label="some value" value="" />
+    </MultiSelect>
+</View>
+```
