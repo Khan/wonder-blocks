@@ -1,14 +1,15 @@
 // @flow
 import * as React from "react";
 
-import {UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
-import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
+import UniqueIDProvider from "./unique-id-provider.js";
+
+import type {IIdentifierFactory} from "../util/types.js";
 
 type Props = {|
     /**
      * Use the children-as-function pattern to pass a uniqueId string for
-     * use anywhere within children. This provides a way of adding a unique title
-     * to an existant modal variation (OnePaneDialog) or a custom modal implementation.
+     * use anywhere within children. This provides a way of adding a unique identifier
+     * to a given component for a11y purposes.
      */
     children: (uniqueId: string) => React.Node,
 
@@ -30,24 +31,25 @@ type Props = {|
 |};
 
 /**
- * This is a Dialog wrapper that returns a unique Modal Title for A11Y purposes.
- * This way, the wrapped Dialog will receive this custom ID and will use it to refer to a
- * visible dialog title.
+ * This is a wrapper that returns a unique Identifier for A11Y purposes.
+ * This way, the wrapped component will receive this custom ID and will use it to connect
+ * different elements.
  *
- * @see https://www.w3.org/TR/wai-aria-practices/#dialog_roles_states_props
+ * e.g. It uses the same generated id to connect a Dialog with its main title, or form label
+ * with the associated input element, etc.
  */
-export default class UniqueDialog extends React.Component<Props> {
-    static defaultTitleId = "wb-title";
+export default class IDProvider extends React.Component<Props> {
+    static defaultId = "wb-id";
 
     renderChildren(ids?: IIdentifierFactory) {
         const {id, children} = this.props;
-        const titleId = ids ? ids.get(UniqueDialog.defaultTitleId) : id;
+        const uniqueId = ids ? ids.get(IDProvider.defaultId) : id;
 
-        if (!titleId) {
+        if (!uniqueId) {
             throw new Error("Did not get an identifier factory nor a id prop");
         }
 
-        return children(titleId);
+        return children(uniqueId);
     }
 
     render() {
