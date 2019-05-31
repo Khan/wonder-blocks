@@ -17,6 +17,22 @@ import WithSSRPlaceholder from "./components/with-ssr-placeholder.js";
 
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
+        const children = (uniqueId) => (
+            <label htmlFor={uniqueId}>
+                Label with ID {uniqueId}:
+                <input type="text" id={uniqueId} />
+            </label>
+        );
+
+        const example = (
+            <View>
+                <IDProvider scope="field">{children}</IDProvider>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -46,7 +62,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
+    it("example 3", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -59,7 +75,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 4", () => {
         const example = (
             <View>
                 <View testId="foo">Foo</View>
@@ -69,7 +85,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 5", () => {
         const {
             Body,
             HeadingSmall,
@@ -120,7 +136,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 6", () => {
         const {
             Body,
             BodyMonospace,
@@ -163,7 +179,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 7", () => {
         const {
             Body,
             HeadingSmall,
@@ -194,7 +210,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const {
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
@@ -218,7 +234,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 9", () => {
         const {StyleSheet} = require("aphrodite");
 
         const styles = StyleSheet.create({
@@ -248,7 +264,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 10", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -261,7 +277,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 11", () => {
         const example = (
             <WithSSRPlaceholder
                 placeholder={() => (
@@ -282,7 +298,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 12", () => {
         const example = (
             <WithSSRPlaceholder placeholder={null}>
                 {() => (
@@ -296,7 +312,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
+    it("example 13", () => {
         const {
             Body,
             BodyMonospace,
@@ -375,7 +391,7 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
+    it("example 14", () => {
         const {
             Body,
             BodyMonospace,

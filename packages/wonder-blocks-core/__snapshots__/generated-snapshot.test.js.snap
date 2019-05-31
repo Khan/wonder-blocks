@@ -6,6 +6,40 @@ exports[`wonder-blocks-core example 1 1`] = `
   style={
     Object {
       "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <label
+    htmlFor="uid-field-0-wb-id"
+  >
+    Label with ID 
+    uid-field-0-wb-id
+    :
+    <input
+      id="uid-field-0-wb-id"
+      type="text"
+    />
+  </label>
+</div>
+`;
+
+exports[`wonder-blocks-core example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
       "backgroundColor": "plum",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -59,7 +93,7 @@ exports[`wonder-blocks-core example 1 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 2 1`] = `
+exports[`wonder-blocks-core example 3 1`] = `
 <div
   className=""
   style={
@@ -116,7 +150,7 @@ exports[`wonder-blocks-core example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 3 1`] = `
+exports[`wonder-blocks-core example 4 1`] = `
 <div
   className=""
   style={
@@ -173,7 +207,7 @@ exports[`wonder-blocks-core example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 4 1`] = `
+exports[`wonder-blocks-core example 5 1`] = `
 <div
   className=""
   style={
@@ -384,13 +418,13 @@ exports[`wonder-blocks-core example 4 1`] = `
       Render 
       0
       : 
-      uid--0-my-unique-id
+      uid--1-my-unique-id
     </span>
   </div>
 </div>
 `;
 
-exports[`wonder-blocks-core example 5 1`] = `
+exports[`wonder-blocks-core example 6 1`] = `
 <div
   className=""
   style={
@@ -560,7 +594,7 @@ exports[`wonder-blocks-core example 5 1`] = `
       }
     >
       get("an-id"): 
-      uid--1-an-id
+      uid--2-an-id
     </span>
     <span
       className=""
@@ -577,13 +611,13 @@ exports[`wonder-blocks-core example 5 1`] = `
       }
     >
       get("something"): 
-      uid--1-something
+      uid--2-something
     </span>
   </div>
 </div>
 `;
 
-exports[`wonder-blocks-core example 6 1`] = `
+exports[`wonder-blocks-core example 7 1`] = `
 <div
   className=""
   style={
@@ -655,7 +689,7 @@ exports[`wonder-blocks-core example 6 1`] = `
       }
     >
       The id returned for "my-identifier": 
-      uid-first-2-my-identifier
+      uid-first-3-my-identifier
     </span>
   </div>
   <h4
@@ -710,13 +744,13 @@ exports[`wonder-blocks-core example 6 1`] = `
       }
     >
       The id returned for "my-identifier": 
-      uid-second-3-my-identifier
+      uid-second-4-my-identifier
     </span>
   </div>
 </div>
 `;
 
-exports[`wonder-blocks-core example 7 1`] = `
+exports[`wonder-blocks-core example 8 1`] = `
 <div
   className=""
   style={
@@ -833,7 +867,7 @@ exports[`wonder-blocks-core example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 8 1`] = `
+exports[`wonder-blocks-core example 9 1`] = `
 <div
   className=""
   style={
@@ -892,7 +926,7 @@ exports[`wonder-blocks-core example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 9 1`] = `
+exports[`wonder-blocks-core example 10 1`] = `
 <div
   className=""
   style={
@@ -949,7 +983,7 @@ exports[`wonder-blocks-core example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 10 1`] = `
+exports[`wonder-blocks-core example 11 1`] = `
 <div
   className=""
   style={
@@ -973,7 +1007,7 @@ exports[`wonder-blocks-core example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 11 1`] = `
+exports[`wonder-blocks-core example 12 1`] = `
 <div
   className=""
   style={
@@ -997,7 +1031,7 @@ exports[`wonder-blocks-core example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 12 1`] = `
+exports[`wonder-blocks-core example 13 1`] = `
 <div
   className=""
   style={
@@ -1076,7 +1110,7 @@ exports[`wonder-blocks-core example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 13 1`] = `
+exports[`wonder-blocks-core example 14 1`] = `
 <div
   className=""
   style={
