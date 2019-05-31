@@ -84,7 +84,7 @@ export default class Icon extends React.PureComponent<Props> {
         // double-quotes on commit. So the aria-label prop isn't included in
         // props validation.
         // eslint-disable-next-line react/prop-types
-        const {"aria-label": ariaLabel} = this.props;
+        const {"aria-hidden": ariaHidden, "aria-label": ariaLabel} = this.props;
         const {color, icon, size, style} = this.props;
 
         const {assetSize, path} = getPathForIcon(icon, size);
@@ -95,6 +95,7 @@ export default class Icon extends React.PureComponent<Props> {
                 style={[styles.svg, style]}
                 width={pixelSize}
                 height={pixelSize}
+                aria-hidden={ariaHidden}
                 aria-label={ariaLabel}
                 viewBox={`0 0 ${viewboxPixelSize} ${viewboxPixelSize}`}
             >
