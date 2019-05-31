@@ -32,6 +32,10 @@ type Props = {|
 
 /**
  * This is a wrapper that returns a unique Identifier for A11Y purposes.
+ *
+ * The main difference with UniqueIDProvider is that IDProvider has a single responsibility,
+ * to return an identifier that can by used by the children that are rendered internally.
+ *
  * This way, the wrapped component will receive this custom ID and will use it to connect
  * different elements.
  *

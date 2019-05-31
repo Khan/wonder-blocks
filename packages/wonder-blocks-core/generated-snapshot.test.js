@@ -17,16 +17,16 @@ import WithSSRPlaceholder from "./components/with-ssr-placeholder.js";
 
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
-        const children = (uniqueId) => (
-            <label htmlFor={uniqueId}>
-                Label with ID {uniqueId}:
-                <input type="text" id={uniqueId} />
-            </label>
-        );
-
         const example = (
             <View>
-                <IDProvider scope="field">{children}</IDProvider>
+                <IDProvider scope="field">
+                    {(uniqueId) => (
+                        <label htmlFor={uniqueId}>
+                            Label with ID {uniqueId}:
+                            <input type="text" id={uniqueId} />
+                        </label>
+                    )}
+                </IDProvider>
             </View>
         );
         const tree = renderer.create(example).toJSON();
