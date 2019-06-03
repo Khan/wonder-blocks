@@ -44,7 +44,7 @@ export default class Timeout implements ITimeout {
      * @memberof Timeout
      */
     get isSet(): boolean {
-        return !!this._timeoutId;
+        return this._timeoutId != null;
     }
 
     /**
@@ -79,7 +79,7 @@ export default class Timeout implements ITimeout {
     clear(resolve?: boolean): void {
         const timeoutId = this._timeoutId;
         this._timeoutId = null;
-        if (!timeoutId) {
+        if (timeoutId == null) {
             return;
         }
         clearTimeout(timeoutId);
