@@ -618,7 +618,7 @@ describe("wonder-blocks-dropdown", () => {
 
         const example = (
             <View style={styles.row}>
-                <SingleSelect menuText="Empty" placeholder="empty" />
+                <SingleSelect placeholder="empty" />
             </View>
         );
         const tree = renderer.create(example).toJSON();
@@ -960,7 +960,7 @@ describe("wonder-blocks-dropdown", () => {
 
         const example = (
             <View style={styles.row}>
-                <MultiSelect menuText="Empty" placeholder="empty" />
+                <MultiSelect placeholder="empty" />
             </View>
         );
         const tree = renderer.create(example).toJSON();

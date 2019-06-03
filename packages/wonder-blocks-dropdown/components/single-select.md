@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
-    <SingleSelect menuText="Empty" placeholder="empty" />
+    <SingleSelect placeholder="empty" />
 </View>
 ```
 

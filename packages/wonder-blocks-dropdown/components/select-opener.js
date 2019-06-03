@@ -94,7 +94,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
     render() {
         const {
-            "aria-labelledby": ariaLabelledBy,
             children,
             disabled,
             id,
@@ -102,6 +101,9 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
             light,
             open,
             testId,
+            // eslint-disable-next-line no-unused-vars
+            onOpenChanged,
+            ...sharedProps
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior(this.context.router);
@@ -134,7 +136,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
                     return (
                         <StyledButton
-                            aria-labelledby={ariaLabelledBy}
+                            {...sharedProps}
                             aria-expanded={open ? "true" : "false"}
                             aria-haspopup="listbox"
                             data-test-id={testId}
