@@ -85,3 +85,47 @@ export interface IInterval {
      */
     clear(resolve?: boolean): void;
 }
+
+/**
+ * Encapsulates everything associated with calling requestAnimationFrame/
+ * cancelAnimationFrame, and managing the lifecycle of that request, including
+ * the ability to resolve or cancel a pending request.
+ *
+ * @export
+ * @interface IAnimationFrame
+ */
+export interface IAnimationFrame {
+    /**
+     * Determine if the request is set or not.
+     *
+     * @returns {boolean} true if the request is set (aka pending), otherwise
+     * false.
+     * @memberof IAnimationFrame
+     */
+    get isSet(): boolean;
+
+    /**
+     * Set the request.
+     *
+     * If the request is pending, this cancels that pending request and
+     * starts a request afresh. If the request is not pending, this
+     * starts the request.
+     *
+     * @memberof IAnimationFrame
+     */
+    set(): void;
+
+    /**
+     * Clear the set request.
+     *
+     * If the request is pending, this cancels that pending request. If no
+     * request is pending, this does nothing.
+     *
+     * @param {boolean} [resolve] When true, if the request was set when called,
+     * the request action is invoked after cancelling the request. Defaults to
+     * false.
+     *
+     * @memberof IAnimationFrame
+     */
+    clear(resolve?: boolean): void;
+}
