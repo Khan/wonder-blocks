@@ -1,5 +1,6 @@
 {
     "name": "@khanacademy/wonder-blocks-timing",
+    "private": true,
     "version": "0.0.1",
     "design": "v1",
     "publishConfig": {
