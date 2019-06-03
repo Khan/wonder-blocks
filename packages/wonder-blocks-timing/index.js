@@ -1,4 +1,4 @@
 // @flow
-import type {ITimeout} from "./util/types.js";
+import type {ITimeout, IInterval} from "./util/types.js";
 
-export type {ITimeout};
+export type {ITimeout, IInterval};

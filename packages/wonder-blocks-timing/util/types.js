@@ -22,9 +22,8 @@ export interface ITimeout {
      * Set the timeout.
      *
      * If the timeout is pending, this cancels that pending timeout and
-     * starts the timeout a fresh. If the timeout is not pending, this
-     * starts a new timeout equivalent to constructing a timeout instance
-     * with the same parameters as the instance on which this is called.
+     * starts the timeout afresh. If the timeout is not pending, this
+     * starts the timeout.
      *
      * @memberof ITimeout
      */
@@ -33,14 +32,56 @@ export interface ITimeout {
     /**
      * Clear the set timeout.
      *
-     * If the timeout is pending, this cancels that pending timeout without
-     * invoking the action. If no timeout is pending, this does nothing.
+     * If the timeout is pending, this cancels that pending timeout. If no
+     * timeout is pending, this does nothing.
      *
      * @param {boolean} [resolve] When true, if the timeout was set when called,
      * the timeout action is invoked after cancelling the timeout. Defaults to
      * false.
      *
      * @memberof ITimeout
+     */
+    clear(resolve?: boolean): void;
+}
+
+/**
+ * Encapsulates everything associated with calling setInterval/clearInterval,
+ * and managing the lifecycle of that interval, including the ability to resolve
+ * or cancel an active interval.
+ *
+ * @export
+ * @interface IInterval
+ */
+export interface IInterval {
+    /**
+     * Determine if the interval is active or not.
+     *
+     * @returns {boolean} true if the interval is active, otherwise false.
+     * @memberof IInterval
+     */
+    get isSet(): boolean;
+
+    /**
+     * Set the interval.
+     *
+     * If the interval is active, this cancels that interval and restarts it
+     * afresh. If the timeout is not active, this starts the interval.
+     *
+     * @memberof IInterval
+     */
+    set(): void;
+
+    /**
+     * Clear the active interval.
+     *
+     * If the interval is active, this cancels that interval. If the interval
+     * is not active, this does nothing.
+     *
+     * @param {boolean} [resolve] When true, if the interval was active when
+     * called, the associated action is invoked after cancelling the interval.
+     * Defaults to false.
+     *
+     * @memberof IInterval
      */
     clear(resolve?: boolean): void;
 }
