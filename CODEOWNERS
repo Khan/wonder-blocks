@@ -6,5 +6,6 @@ packages/wonder-blocks-core/*   @somewhatabstract @kevinbarabash @jeresig
 packages/wonder-blocks-icon-button/*   @kevinbarabash @jeresig
 packages/wonder-blocks-link/*   @kevinbarabash @jeresig
 packages/wonder-blocks-modal/*   @jandrade @kevinbarabash @jeresig
+packages/wonder-blocks-timing/*   @somewhatabstract @jeresig
 packages/wonder-blocks-tooltip/*   @somewhatabstract @kevinbarabash @jeresig
 packages/wonder-blocks-typography/*   @briangenisio @kevinbarabash @jeresig
