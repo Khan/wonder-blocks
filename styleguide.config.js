@@ -155,6 +155,11 @@ module.exports = {
             content: "packages/wonder-blocks-spacing/docs.md",
         },
         {
+            private: true,
+            name: "Timing",
+            content: "packages/wonder-blocks-timing/docs.md",
+        },
+        {
             name: "Toolbar",
             content: "packages/wonder-blocks-toolbar/docs.md",
             components: "packages/wonder-blocks-toolbar/components/toolbar.js",
