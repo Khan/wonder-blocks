@@ -1033,6 +1033,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         Choose a fruit
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1169,6 +1170,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
         Choose a pet
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1304,6 +1306,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
         Banana juice
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1440,6 +1443,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
         Banana juice
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1600,6 +1604,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
           Boba order
         </span>
         <svg
+          aria-hidden="true"
           className=""
           height={16}
           style={
@@ -1737,6 +1742,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
         empty
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1892,6 +1898,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
         Accessible SingleSelect
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -2028,6 +2035,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
         Color palette
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -2163,6 +2171,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
         Solar system
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -2298,6 +2307,7 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
         Sophie
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -2527,6 +2537,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
         empty
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -2682,6 +2693,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
         Accessible MultiSelect
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
