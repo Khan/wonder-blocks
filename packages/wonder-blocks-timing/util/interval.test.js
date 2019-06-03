@@ -110,6 +110,19 @@ describe("Interval", () => {
             // Assert
             expect(action).toHaveBeenCalledTimes(1);
         });
+
+        it("should set an interval that stays active while not cleared", () => {
+            // Arrange
+            const action = jest.fn();
+            const interval = new Interval(() => action(), 500);
+            interval.set();
+
+            // Act
+            jest.runTimersToTime(1501);
+
+            // Assert
+            expect(action).toHaveBeenCalledTimes(3);
+        });
     });
 
     describe("#clear", () => {

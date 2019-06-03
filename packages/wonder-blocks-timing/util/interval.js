@@ -59,10 +59,7 @@ export default class Interval implements IInterval {
         if (this.isSet) {
             this.clear(false);
         }
-        this._intervalId = setInterval(
-            () => this.clear(true),
-            this._intervalMs,
-        );
+        this._intervalId = setInterval(() => this._action(), this._intervalMs);
     }
 
     /**
