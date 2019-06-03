@@ -158,7 +158,6 @@ export default class Button extends React.Component<SharedProps> {
         size: "medium",
         disabled: false,
         spinner: false,
-        "aria-label": "",
     };
 
     static contextTypes = {router: PropTypes.any};
