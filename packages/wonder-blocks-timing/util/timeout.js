@@ -17,7 +17,7 @@ export default class Timeout implements ITimeout {
 
     /**
      * Creates a timeout that will invoke the given action after
-     * the given period. The timeout does not start until set is called
+     * the given period. The timeout does not start until set is called.
      *
      * @param {() => mixed} action The action to be invoked when the timeout
      * period has passed.
