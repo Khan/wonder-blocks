@@ -152,6 +152,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                                 color={iconColor}
                                 size="small"
                                 style={styles.caret}
+                                aria-hidden="true"
                             />
                         </StyledButton>
                     );
