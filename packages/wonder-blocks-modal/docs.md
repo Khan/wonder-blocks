@@ -104,50 +104,89 @@ const styles = StyleSheet.create({
     example: {
         padding: Spacing.xLarge,
         alignItems: "center",
+    },
+    row: {
+        flexDirection: "row",
+        justifyContent: "flex-end"
+    },
+    footer: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%"
     }
 });
 
-class ModalContainer extends React.Component {
+class ExerciseModal extends React.Component {
+    render() {
+        const {current, handleNextButton, handlePrevButton, question, total} = this.props;
+
+        return (
+            <OnePaneDialog
+                title="Exercises"
+                content={
+                    <View>
+                        <Body>This is the current question: {question}</Body>
+                    </View>
+                }
+                footer={
+                    <View style={styles.footer}>
+                        <LabelLarge>Step {current+1} of {total}</LabelLarge>
+                        <View style={styles.row}>
+                            <Button kind="tertiary" onClick={handlePrevButton}>Previous</Button>
+                            <Strut size={16} />
+                            <Button kind="primary" onClick={handleNextButton}>Next</Button>
+                        </View>
+                    </View>
+                }
+            />
+        );
+    }
+}
+
+class ExerciseContainer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            count: 0
+            currentQuestion: 0
         };
     }
 
-    updateContents(openModal) {
-        this.setState({state: this.state.count++});
-        openModal();
+    handleNextButton() {
+        this.setState({
+            currentQuestion: Math.min(this.state.currentQuestion + 1, this.props.questions.length - 1),
+        });
+   };
+
+    handlePrevButton() {
+        this.setState({
+            currentQuestion: Math.max(0, this.state.currentQuestion - 1),
+        });
     }
 
     render() {
         return (
-            <React.Fragment>
-                <ModalLauncher
-                    onClose={() => console.log("you closed the modal")}
-                    modal={({closeModal}) =>
-                        <OnePaneDialog
-                            title={`Dialog #${this.state.count}`}
-                            content={
-                                <View>
-                                    <Body>
-                                        You have opened this modal {this.state.count} time(s).
-                                    </Body>
-                                </View>
-                            }
-                        />
-                    }
-                >
-                    {({openModal}) => <Button onClick={() => this.updateContents(openModal)}>Open Modal</Button>}
-                </ModalLauncher>
-            </React.Fragment>
+            <ModalLauncher
+                onClose={() => console.log("you closed the modal")}
+                modal={
+                    <ExerciseModal
+                        question={this.props.questions[this.state.currentQuestion]}
+                        current={this.state.currentQuestion}
+                        total={this.props.questions.length}
+                        handlePrevButton={() => this.handlePrevButton()}
+                        handleNextButton={() => this.handleNextButton()}
+                    />
+                }
+            >
+                {({openModal}) => <Button onClick={openModal}>Open flexible modal</Button>}
+            </ModalLauncher>
         );
     }
 }
 
 <View style={styles.example}>
-    <ModalContainer />
+    <ExerciseContainer questions={["First question", "Second question", "Last question"]} />
 </View>
 ```
 

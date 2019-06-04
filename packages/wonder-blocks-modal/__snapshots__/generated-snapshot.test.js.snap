@@ -178,7 +178,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
         }
       }
     >
-      Open Modal
+      Open flexible modal
     </span>
   </button>
 </div>
