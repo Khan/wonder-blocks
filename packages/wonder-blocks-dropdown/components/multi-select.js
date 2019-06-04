@@ -14,8 +14,13 @@ import {selectDropdownStyle} from "../util/constants.js";
 import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
 
-type SelectOpenerProps = {|
+type Props = {|
     ...AriaProps,
+
+    /**
+     * The items in this select.
+     */
+    children?: Array<React.Element<OptionItem>>,
 
     /**
      * Whether this component is disabled. A disabled dropdown may not be opened
@@ -29,20 +34,6 @@ type SelectOpenerProps = {|
      * Used to match `<label>` with `<button>` elements for screenreaders.
      */
     id?: string,
-
-    /**
-     * Test ID used for e2e testing.
-     */
-    testId?: string,
-|};
-
-type Props = {|
-    ...SelectOpenerProps,
-
-    /**
-     * The items in this select.
-     */
-    children?: Array<React.Element<OptionItem>>,
 
     /**
      * Callback for when the selection changes. Parameter is an updated array of
@@ -89,6 +80,11 @@ type Props = {|
      * Optional styling to add to the opener component wrapper.
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 
     /**
      * Optional styling to add to the dropdown wrapper.
