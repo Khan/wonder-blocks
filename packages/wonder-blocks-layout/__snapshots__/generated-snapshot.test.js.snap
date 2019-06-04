@@ -22,7 +22,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
   }
 >
   <button
-    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -119,7 +118,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
     }
   />
   <button
-    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -216,7 +214,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
     }
   />
   <button
-    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -308,7 +305,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
     }
   />
   <button
-    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -405,7 +401,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
     }
   />
   <button
-    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
