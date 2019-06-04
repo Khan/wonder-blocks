@@ -1,24 +1,24 @@
 {
-    "name": "@khanacademy/wonder-blocks-timing",
-    "private": true,
-    "version": "0.0.1",
-    "design": "v1",
-    "publishConfig": {
-      "access": "restricted"
-    },
-    "description": "",
-    "main": "dist/index.js",
-    "module": "dist/es/index.js",
-    "source": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "peerDependencies": {
-      "react": "^16.4.1"
-    },
-    "devDependencies": {
-      "wb-dev-build-settings": "^0.0.2"
-    },
-    "author": "",
-    "license": "MIT"
+  "name": "@khanacademy/wonder-blocks-timing",
+  "private": true,
+  "version": "0.0.2",
+  "design": "v1",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "source": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.0.2"
+  },
+  "author": "",
+  "license": "MIT"
 }
