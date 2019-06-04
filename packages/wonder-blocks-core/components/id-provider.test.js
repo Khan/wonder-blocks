@@ -2,9 +2,9 @@
 import React from "react";
 import {mount, shallow} from "enzyme";
 
-import UniqueDialog from "./unique-dialog.js";
+import IDProvider from "./id-provider.js";
 
-const mockIDENTIFIER = `uid-modal-0-${UniqueDialog.defaultTitleId}`;
+const mockIDENTIFIER = `uid-component-0-${IDProvider.defaultId}`;
 
 jest.mock("@khanacademy/wonder-blocks-core", () => {
     const Core = jest.requireActual("@khanacademy/wonder-blocks-core");
@@ -26,9 +26,9 @@ describe("UniqueDialog", () => {
 
         // Act
         shallow(
-            <UniqueDialog id={titleId} scope="modal">
+            <IDProvider id={titleId} scope="component">
                 {renderDialogFn}
-            </UniqueDialog>,
+            </IDProvider>,
         );
 
         // Assert
@@ -40,7 +40,7 @@ describe("UniqueDialog", () => {
         const renderDialogFn = jest.fn(() => <div />);
 
         // Act
-        mount(<UniqueDialog scope="modal">{renderDialogFn}</UniqueDialog>);
+        mount(<IDProvider scope="component">{renderDialogFn}</IDProvider>);
 
         // Assert
         expect(renderDialogFn).toHaveBeenCalledWith(mockIDENTIFIER);

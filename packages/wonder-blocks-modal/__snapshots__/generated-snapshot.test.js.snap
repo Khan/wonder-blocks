@@ -306,7 +306,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
         />
       </div>
       <div
-        aria-labelledby="uid-modal-0-wb-title"
+        aria-labelledby="uid-modal-0-wb-id"
         className=""
         role="dialog"
         style={
@@ -443,7 +443,7 @@ exports[`wonder-blocks-modal example 3 1`] = `
           >
             <h3
               className=""
-              id="uid-modal-0-wb-title"
+              id="uid-modal-0-wb-id"
               style={
                 Object {
                   "@media (maxWidth: 1023px)": Object {
@@ -1038,7 +1038,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
       }
     >
       <div
-        aria-labelledby="uid-modal-1-wb-title"
+        aria-labelledby="uid-modal-1-wb-id"
         className=""
         role="dialog"
         style={
@@ -1175,7 +1175,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
           >
             <h3
               className=""
-              id="uid-modal-1-wb-title"
+              id="uid-modal-1-wb-id"
               style={
                 Object {
                   "@media (maxWidth: 1023px)": Object {
@@ -1555,7 +1555,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
       }
     >
       <div
-        aria-labelledby="uid-modal-2-wb-title"
+        aria-labelledby="uid-modal-2-wb-id"
         className=""
         role="dialog"
         style={
@@ -1806,7 +1806,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
             </div>
             <h3
               className=""
-              id="uid-modal-2-wb-title"
+              id="uid-modal-2-wb-id"
               style={
                 Object {
                   "@media (maxWidth: 1023px)": Object {
@@ -2247,7 +2247,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
       }
     >
       <div
-        aria-labelledby="uid-modal-3-wb-title"
+        aria-labelledby="uid-modal-3-wb-id"
         className=""
         role="dialog"
         style={
@@ -2384,7 +2384,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
           >
             <h3
               className=""
-              id="uid-modal-3-wb-title"
+              id="uid-modal-3-wb-id"
               style={
                 Object {
                   "@media (maxWidth: 1023px)": Object {

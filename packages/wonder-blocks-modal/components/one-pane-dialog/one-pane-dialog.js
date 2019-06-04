@@ -5,10 +5,10 @@ import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {IDProvider} from "@khanacademy/wonder-blocks-core";
 import ModalDialog from "../modal-dialog.js";
 import ModalPanel from "../modal-panel.js";
 import ModalHeader from "../modal-header.js";
-import UniqueDialog from "../unique-dialog.js";
 
 type Props = {|
     ...AriaProps,
@@ -118,7 +118,7 @@ export default class OnePaneDialog extends React.Component<Props> {
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
-                    <UniqueDialog id={titleId} scope="modal">
+                    <IDProvider id={titleId} scope="modal">
                         {(uniqueId) => (
                             <ModalDialog
                                 style={[styles.dialog, style]}
@@ -142,7 +142,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                                 />
                             </ModalDialog>
                         )}
-                    </UniqueDialog>
+                    </IDProvider>
                 )}
             </MediaLayout>
         );
