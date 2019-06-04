@@ -618,13 +618,38 @@ describe("wonder-blocks-dropdown", () => {
 
         const example = (
             <View style={styles.row}>
-                <SingleSelect menuText="Empty" placeholder="empty" />
+                <SingleSelect placeholder="empty" />
             </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 12", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+
+        const example = (
+            <View>
+                <LabelLarge
+                    tag="label"
+                    id="label-for-single-select"
+                    htmlFor="unique-single-select"
+                >
+                    Associated label element
+                </LabelLarge>
+                <SingleSelect
+                    aria-labelledby="label-for-single-select"
+                    id="unique-single-select"
+                    placeholder="Accessible SingleSelect"
+                >
+                    <OptionItem label="some value" value="" />
+                </SingleSelect>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 13", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -695,7 +720,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
+    it("example 14", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -760,7 +785,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
+    it("example 15", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -827,7 +852,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 15", () => {
+    it("example 16", () => {
         const {StyleSheet} = require("aphrodite");
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
@@ -923,7 +948,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 16", () => {
+    it("example 17", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -935,7 +960,32 @@ describe("wonder-blocks-dropdown", () => {
 
         const example = (
             <View style={styles.row}>
-                <MultiSelect menuText="Empty" placeholder="empty" />
+                <MultiSelect placeholder="empty" />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 18", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+
+        const example = (
+            <View>
+                <LabelLarge
+                    tag="label"
+                    id="label-for-multi-select"
+                    htmlFor="unique-multi-select"
+                >
+                    Associated label element
+                </LabelLarge>
+                <MultiSelect
+                    aria-labelledby="label-for-multi-select"
+                    id="unique-multi-select"
+                    placeholder="Accessible MultiSelect"
+                >
+                    <OptionItem label="some value" value="" />
+                </MultiSelect>
             </View>
         );
         const tree = renderer.create(example).toJSON();

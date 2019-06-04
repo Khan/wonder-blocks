@@ -29,7 +29,6 @@ const StyledInput = addStyle("input");
 
     render() {
         const {
-            "aria-label": ariaLabel,
             checked,
             disabled,
             error,
@@ -39,6 +38,7 @@ const StyledInput = addStyle("input");
             hovered,
             focused,
             pressed,
+            ...sharedProps
         } = this.props;
         const stateStyles = _generateStyles(checked, error);
         const defaultStyle = [
@@ -57,9 +57,9 @@ const StyledInput = addStyle("input");
         return (
             <React.Fragment>
                 <StyledInput
+                    {...sharedProps}
                     type="radio"
                     aria-checked={checked}
-                    aria-label={ariaLabel}
                     checked={checked}
                     disabled={disabled}
                     id={id}
