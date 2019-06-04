@@ -23,6 +23,12 @@ type Props = {|
     children?: Array<React.Element<OptionItem>>,
 
     /**
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
+     */
+    disabled: boolean,
+
+    /**
      * Unique identifier attached to the field control. If used, we need to
      * guarantee that the ID is unique within everything rendered on a page.
      * Used to match `<label>` with `<button>` elements for screenreaders.
@@ -63,12 +69,6 @@ type Props = {|
      * opener component. Defaults to left-aligned.
      */
     alignment: "left" | "right",
-
-    /**
-     * Whether this component is disabled. A disabled dropdown may not be opened
-     * and does not support interaction. Defaults to false.
-     */
-    disabled: boolean,
 
     /**
      * Whether to display the "light" version of this component instead, for
@@ -271,7 +271,6 @@ export default class MultiSelect extends React.Component<Props, State> {
     render() {
         const {
             alignment,
-            "aria-labelledby": ariaLabelledBy,
             disabled,
             id,
             light,
@@ -279,6 +278,16 @@ export default class MultiSelect extends React.Component<Props, State> {
             style,
             testId,
             dropdownStyle,
+            // the following props are being included here to avoid
+            // passing them down to the opener as part of sharedProps
+            /* eslint-disable no-unused-vars */
+            children,
+            onChange,
+            selectedValues,
+            selectItemType,
+            shortcuts,
+            /* eslint-enable no-unused-vars */
+            ...sharedProps
         } = this.props;
         const {open} = this.state;
 
@@ -288,7 +297,7 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         const opener = (
             <SelectOpener
-                aria-labelledby={ariaLabelledBy}
+                {...sharedProps}
                 disabled={items.length === 0 || disabled}
                 id={id}
                 isPlaceholder={menuText === placeholder}

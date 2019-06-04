@@ -175,7 +175,6 @@ export default class SingleSelect extends React.Component<Props, State> {
     render() {
         const {
             alignment,
-            "aria-labelledby": ariaLabelledBy,
             children,
             disabled,
             dropdownStyle,
@@ -185,6 +184,9 @@ export default class SingleSelect extends React.Component<Props, State> {
             selectedValue,
             style,
             testId,
+            // eslint-disable-next-line no-unused-vars
+            onChange,
+            ...sharedProps
         } = this.props;
         const {open} = this.state;
 
@@ -199,8 +201,8 @@ export default class SingleSelect extends React.Component<Props, State> {
 
         const opener = (
             <SelectOpener
+                {...sharedProps}
                 disabled={items.length === 0 || disabled}
-                aria-labelledby={ariaLabelledBy}
                 id={id}
                 isPlaceholder={!selectedItem}
                 light={light}

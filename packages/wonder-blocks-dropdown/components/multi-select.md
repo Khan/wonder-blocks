@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
-    <MultiSelect menuText="Empty" placeholder="empty" />
+    <MultiSelect placeholder="empty" />
 </View>
 ```
 

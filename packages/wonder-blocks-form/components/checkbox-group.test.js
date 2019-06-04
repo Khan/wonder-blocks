@@ -18,9 +18,9 @@ describe("CheckboxGroup", () => {
                 onChange={onChange}
                 selectedValues={["a", "b"]}
             >
-                <Choice label="a" value="a" />
-                <Choice label="b" value="b" />
-                <Choice label="c" value="c" />
+                <Choice label="a" value="a" aria-labelledby="test-a" />
+                <Choice label="b" value="b" aria-labelledby="test-b" />
+                <Choice label="c" value="c" aria-labelledby="test-c" />
             </CheckboxGroup>,
         );
     });
@@ -75,5 +75,14 @@ describe("CheckboxGroup", () => {
         const bTarget = b.find("ClickableBehavior");
         bTarget.simulate("click");
         expect(onChange).toHaveBeenCalledTimes(2);
+    });
+
+    it("checks that aria attributes have been added correctly", () => {
+        const a = group.find(Choice).at(0);
+        const b = group.find(Choice).at(1);
+        const c = group.find(Choice).at(2);
+        expect(a.find("input").prop("aria-labelledby")).toEqual("test-a");
+        expect(b.find("input").prop("aria-labelledby")).toEqual("test-b");
+        expect(c.find("input").prop("aria-labelledby")).toEqual("test-c");
     });
 });

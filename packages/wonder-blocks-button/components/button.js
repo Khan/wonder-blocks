@@ -3,11 +3,18 @@ import * as React from "react";
 import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import ButtonCore from "./button-core.js";
 
 export type SharedProps = {|
+    /**
+     * aria-label should be used when `spinner={true}` to let people using screen
+     * readers that the action taken by clicking the button will take some
+     * time to complete.
+     */
+    ...AriaProps,
+
     /**
      * Text to appear on the button.
      */
@@ -26,13 +33,6 @@ export type SharedProps = {|
      * TODO(kevinb): support spinner + light once we have designs
      */
     spinner: boolean,
-
-    /**
-     * This should be use when `spinner={true}` to let people using screen
-     * readers that the action taken by clicking the button will take some
-     * time to complete.
-     */
-    "aria-label": string,
 
     /**
      * The color of the button, either blue or red.
@@ -158,7 +158,6 @@ export default class Button extends React.Component<SharedProps> {
         size: "medium",
         disabled: false,
         spinner: false,
-        "aria-label": "",
     };
 
     static contextTypes = {router: PropTypes.any};

@@ -2,11 +2,13 @@
 
 import * as React from "react";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import Checkbox from "./checkbox.js";
 import Radio from "./radio.js";
 
 type Props = {|
+    ...AriaProps,
+
     /** User-defined. Label for the field. */
     label: string,
 
