@@ -22,7 +22,7 @@ const checkPublishConfig = ({name, publishConfig, private: isPrivate}) => {
     // also check if is marked as private and there's restricted access defined
     if (isPrivate && publishConfig.access !== "restricted") {
         console.error(
-            `ERROR: ${name} is marked as private but there is a "publishConfig": {"access": "public"} section already defined. Please change it to "access": "restricted".`,
+            `ERROR: ${name} is marked as private but there is a "publishConfig": {"access": "public"} section already defined. Please change it to "access": "restricted" or remove "private": true to make the package public.`,
         );
         process.exit(1);
     }
