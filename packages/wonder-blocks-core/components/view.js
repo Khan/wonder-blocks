@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const StyledDiv = addStyle<"div">("div", styles.default);
+let StyledDiv = addStyle<"div">("div", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly
@@ -42,7 +42,11 @@ const StyledDiv = addStyle<"div">("div", styles.default);
  */
 export default class View extends React.Component<TextViewSharedProps> {
     render() {
-        const {testId, ...restProps} = this.props;
+        if (this.props.tag) {
+            StyledDiv = addStyle<string>(this.props.tag, styles.default);
+        }
+        /* eslint-disable no-unused-vars */
+        const {testId, tag, ...restProps} = this.props;
         return <StyledDiv data-test-id={testId} {...restProps} />;
     }
 }
