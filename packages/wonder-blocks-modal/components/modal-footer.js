@@ -9,6 +9,15 @@ type Props = {|
     children: React.Node,
 |};
 
+/**
+ * Modal footer included after the content.
+ *
+ * **Implementation notes**:
+ *
+ * If you are creating a custom Dialog, make sure to follow these guidelines:
+ * - Make sure to include it as part of `<ModalPanel />` by using the `footer` prop.
+ * - The footer is completely flexible. Meaning the developer needs to add its own custom layout to match design specs.
+ */
 export default class ModalFooter extends React.Component<Props> {
     static __IS_MODAL_FOOTER__ = true;
     static isClassOf(instance: any) {
