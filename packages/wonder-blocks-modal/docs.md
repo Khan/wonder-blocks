@@ -27,12 +27,20 @@ The initial focus placement depends on the following scenarios:
 
 ```js
 const React = require("react");
+const {StyleSheet} = require("aphrodite");
 
 const {Title} = require("@khanacademy/wonder-blocks-typography");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
 const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+const styles = StyleSheet.create({
+    example: {
+        padding: Spacing.xLarge,
+        alignItems: "center",
+    }
+});
 
 const modalInitialFocus = ({closeModal}) => (
     <OnePaneDialog
@@ -63,7 +71,7 @@ const modalInitialFocus = ({closeModal}) => (
     />
 );
 
-<View style={{flexDirection: "row"}}>
+<View style={styles.example}>
     <ModalLauncher
         onClose={() => window.alert("you closed the modal")}
         initialFocusId="initial-focus"
@@ -78,55 +86,107 @@ const modalInitialFocus = ({closeModal}) => (
 - The element that serves as the **dialog container** has `aria-role` defined as `dialog`.
 - The dialog has a value set for the `aria-labelledby` property that refers to a **visible dialog title**.
 
-## Wrapping Dialogs
+## Customization
 
-Often you'll want to define a new `Dialog` component by wrapping an existing
-`Dialog` component (e.g. `OnePaneDialog`). These wrapped components will also
-work with `ModalLauncher` in the same way the default ones do.
+### Example: Flexible dialogs
+
+This example illustrates how we can easily update the Modal's contents by wrapping it into a new component/container. **Modal** is built in a way that provides great flexibility and makes it work with different variations and/or layouts (see Custom Two-Pane Dialog example).
 
 ```js
 const React = require("react");
+const {StyleSheet} = require("aphrodite");
 
-const {Title} = require("@khanacademy/wonder-blocks-typography");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Button = require("@khanacademy/wonder-blocks-button").default;
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
-class ModalWrapper extends React.Component {
+const styles = StyleSheet.create({
+    example: {
+        padding: Spacing.xLarge,
+        alignItems: "center",
+    },
+    row: {
+        flexDirection: "row",
+        justifyContent: "flex-end"
+    },
+    footer: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%"
+    }
+});
+
+class ExerciseModal extends React.Component {
     render() {
-        return <OnePaneDialog
-            title="Single-line title"
-            content={
-                <View>
+        const {current, handleNextButton, handlePrevButton, question, total} = this.props;
+
+        return (
+            <OnePaneDialog
+                title="Exercises"
+                content={
                     <View>
-                        <label>Label</label>
-                        <input type="text" />
+                        <Body>This is the current question: {question}</Body>
                     </View>
-                </View>
-            }
-            footer={
-                <React.Fragment>
-                    <Button kind="tertiary" onClick={this.props.onClose}>
-                        Cancel
-                    </Button>
-                    <Strut size={Spacing.medium} />
-                    <Button>
-                        Submit
-                    </Button>
-                </React.Fragment>
-            }
-        />
+                }
+                footer={
+                    <View style={styles.footer}>
+                        <LabelLarge>Step {current+1} of {total}</LabelLarge>
+                        <View style={styles.row}>
+                            <Button kind="tertiary" onClick={handlePrevButton}>Previous</Button>
+                            <Strut size={16} />
+                            <Button kind="primary" onClick={handleNextButton}>Next</Button>
+                        </View>
+                    </View>
+                }
+            />
+        );
     }
 }
 
-<View style={{flexDirection: "row"}}>
-    <ModalLauncher
-        onClose={() => window.alert("you closed the modal")}
-        modal={({closeModal}) => <ModalWrapper onClose={closeModal}/>}
-    >
-        {({openModal}) => <Button onClick={openModal}>Open Modal</Button>}
-    </ModalLauncher>
+class ExerciseContainer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currentQuestion: 0
+        };
+    }
+
+    handleNextButton() {
+        this.setState({
+            currentQuestion: Math.min(this.state.currentQuestion + 1, this.props.questions.length - 1),
+        });
+   };
+
+    handlePrevButton() {
+        this.setState({
+            currentQuestion: Math.max(0, this.state.currentQuestion - 1),
+        });
+    }
+
+    render() {
+        return (
+            <ModalLauncher
+                onClose={() => console.log("you closed the modal")}
+                modal={
+                    <ExerciseModal
+                        question={this.props.questions[this.state.currentQuestion]}
+                        current={this.state.currentQuestion}
+                        total={this.props.questions.length}
+                        handlePrevButton={() => this.handlePrevButton()}
+                        handleNextButton={() => this.handleNextButton()}
+                    />
+                }
+            >
+                {({openModal}) => <Button onClick={openModal}>Open flexible modal</Button>}
+            </ModalLauncher>
+        );
+    }
+}
+
+<View style={styles.example}>
+    <ExerciseContainer questions={["First question", "Second question", "Last question"]} />
 </View>
 ```
 
