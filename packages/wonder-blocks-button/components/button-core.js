@@ -83,7 +83,6 @@ export default class ButtonCore extends React.Component<Props> {
         ];
 
         const commonProps = {
-            "aria-disabled": undefined,
             "data-test-id": testId,
             role: "button",
             style: [defaultStyle, style],
