@@ -108,4 +108,28 @@ describe("Button", () => {
         // Assert
         expect(wrapper.find("#foo").exists()).toBe(false);
     });
+
+    test("checks that aria-disabled is not added when disabled is set", () => {
+        // Arrange
+        // Prevent jest to output warnings when running tests
+        const consoleWarnMockFn = jest
+            .spyOn(global.console, "warn")
+            .mockImplementationOnce(() => jest.fn());
+
+        const wrapper = mount(
+            <Button disabled={true} aria-disabled="true">
+                Disabled button
+            </Button>,
+        );
+        // Act
+        const buttonWrapper = wrapper.find("button").first();
+
+        // Assert
+        expect(buttonWrapper.prop("disabled")).toEqual(true);
+        // we should expect to throw a warning to devs
+        expect(consoleWarnMockFn).toHaveBeenCalled();
+        expect(buttonWrapper.prop("aria-disabled")).not.toBeDefined();
+
+        consoleWarnMockFn.mockRestore();
+    });
 });

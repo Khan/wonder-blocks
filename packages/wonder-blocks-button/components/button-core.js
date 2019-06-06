@@ -83,11 +83,22 @@ export default class ButtonCore extends React.Component<Props> {
         ];
 
         const commonProps = {
+            "aria-disabled": undefined,
             "data-test-id": testId,
             role: "button",
             style: [defaultStyle, style],
             ...handlers,
         };
+
+        if (commonProps["aria-disabled"]) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "wb-button: <button> supports the 'disabled' attribute. You don't need to use the 'aria-disabled' attribute.",
+            );
+
+            // WB-535: Allows only to use `disabled` (even if is set from the parent component)
+            commonProps["aria-disabled"] = undefined;
+        }
 
         const Label = size === "small" ? LabelSmall : LabelLarge;
 
@@ -136,8 +147,6 @@ export default class ButtonCore extends React.Component<Props> {
                     type="button"
                     {...commonProps}
                     disabled={disabled}
-                    // WB-535: Allows only to use `disabled`
-                    aria-disabled={undefined}
                 >
                     {contents}
                 </StyledButton>

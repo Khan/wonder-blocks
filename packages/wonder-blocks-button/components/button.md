@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-Buttons can be `disabled` (**Note:** you don't need to add `aria-disabled`):
+Buttons can be `disabled`:
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -119,6 +119,8 @@ const styles = StyleSheet.create({
     </Button>
 </View>
 ```
+
+**Note:** If you are adding `disabled` you don't need to add `aria-disabled`. Doing so will result in a console.warn().
 
 Buttons on a `darkBlue` background should set `light` to `true`.
 ```jsx

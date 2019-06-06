@@ -102,6 +102,16 @@ export default class IconButtonCore extends React.Component<Props> {
             ...handlers,
         };
 
+        if (commonProps["aria-disabled"]) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "wb-icon-button: <button> supports the 'disabled' attribute. You don't need to use the 'aria-disabled' attribute.",
+            );
+
+            // WB-535: Allows only to use `disabled` (even if is set from the parent component)
+            commonProps["aria-disabled"] = undefined;
+        }
+
         if (href && !disabled) {
             return router && !skipClientNav ? (
                 <StyledLink {...commonProps} to={href}>
@@ -118,8 +128,6 @@ export default class IconButtonCore extends React.Component<Props> {
                     type="button"
                     {...commonProps}
                     disabled={disabled}
-                    // WB-535: Allows only to use `disabled`
-                    aria-disabled={undefined}
                 >
                     {child}
                 </StyledButton>
