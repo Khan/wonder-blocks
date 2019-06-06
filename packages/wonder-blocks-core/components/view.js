@@ -29,7 +29,7 @@ type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
 // eslint-disable-next-line flowtype/require-exact-type
 type Props = {
     ...TextViewSharedProps,
-    tag?: ValidViewTags,
+    tag: ValidViewTags,
 };
 
 const StyledDiv = addStyle<"div">("div", styles.default);
@@ -52,6 +52,10 @@ const StyledSection = addStyle<"section">("section", styles.default);
  * - An array combining the above
  */
 export default class View extends React.Component<Props> {
+    static defaultProps = {
+        tag: "div",
+    };
+
     render() {
         const {testId, tag, ...restProps} = this.props;
         switch (tag) {
@@ -63,6 +67,8 @@ export default class View extends React.Component<Props> {
                 return <StyledNav data-test-id={testId} {...restProps} />;
             case "section":
                 return <StyledSection data-test-id={testId} {...restProps} />;
+            case "div":
+                return <StyledDiv data-test-id={testId} {...restProps} />;
             default:
                 return <StyledDiv data-test-id={testId} {...restProps} />;
         }
