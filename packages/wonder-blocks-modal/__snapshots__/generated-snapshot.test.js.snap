@@ -5,16 +5,16 @@ exports[`wonder-blocks-modal example 1 1`] = `
   className=""
   style={
     Object {
-      "alignItems": "stretch",
+      "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row",
+      "flexDirection": "column",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
-      "padding": 0,
+      "padding": 32,
       "position": "relative",
       "zIndex": 0,
     }
@@ -97,16 +97,16 @@ exports[`wonder-blocks-modal example 2 1`] = `
   className=""
   style={
     Object {
-      "alignItems": "stretch",
+      "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row",
+      "flexDirection": "column",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
-      "padding": 0,
+      "padding": 32,
       "position": "relative",
       "zIndex": 0,
     }
@@ -178,7 +178,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
         }
       }
     >
-      Open Modal
+      Open flexible modal
     </span>
   </button>
 </div>
