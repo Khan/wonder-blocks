@@ -210,8 +210,6 @@ export type TextViewSharedProps = {
 
     id?: string,
 
-    tag?: string,
-
     // TODO(kevinb) remove the need for this
     "data-modal-launcher-portal"?: boolean,
 
