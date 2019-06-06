@@ -603,7 +603,6 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
     }
   >
     <button
-      aria-disabled="true"
       aria-expanded="true"
       aria-haspopup="menu"
       className=""

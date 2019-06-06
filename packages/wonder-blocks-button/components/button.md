@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-Buttons can be `disabled`.
+Buttons can be `disabled` (**Note:** you don't need to add `aria-disabled`):
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");

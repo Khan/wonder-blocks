@@ -61,7 +61,6 @@ export default class IconButtonCore extends React.Component<Props> {
     render() {
         const {
             skipClientNav,
-            "aria-label": ariaLabel,
             color,
             disabled,
             focused,
@@ -98,9 +97,6 @@ export default class IconButtonCore extends React.Component<Props> {
         const child = <Icon size="medium" color="currentColor" icon={icon} />;
 
         const commonProps = {
-            // TODO(kevinb): figure out a better way of forward ARIA props
-            "aria-disabled": disabled ? "true" : undefined,
-            "aria-label": ariaLabel,
             "data-test-id": testId,
             style: [defaultStyle, style],
             ...handlers,
@@ -122,6 +118,8 @@ export default class IconButtonCore extends React.Component<Props> {
                     type="button"
                     {...commonProps}
                     disabled={disabled}
+                    // WB-535: Allows only to use `disabled`
+                    aria-disabled={undefined}
                 >
                     {child}
                 </StyledButton>
