@@ -106,6 +106,9 @@ const sharedStyles = StyleSheet.create({
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
+        ":focus": {
+            WebkitTapHighlightColor: "rgba(0,0,0,0)",
+        },
     },
     disabled: {
         cursor: "auto",

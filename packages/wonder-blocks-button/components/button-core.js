@@ -168,6 +168,9 @@ const sharedStyles = StyleSheet.create({
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
         userSelect: "none",
+        ":focus": {
+            WebkitTapHighlightColor: "rgba(0,0,0,0)",
+        },
     },
     withIcon: {
         // The left padding for the button with icon should have 4px less padding

@@ -302,6 +302,9 @@ exports[`wonder-blocks-core example 6 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "#1865f2",
           "border": "none",
