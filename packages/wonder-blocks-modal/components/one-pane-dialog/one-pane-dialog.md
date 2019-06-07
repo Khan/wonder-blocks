@@ -188,7 +188,7 @@ const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
-const styles = StyleSheet.create({
+const exampleStyles = StyleSheet.create({
     previewSizer: {
         height: 512,
     },
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const defaultStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         justifyContent: "flex-end"
@@ -224,46 +224,28 @@ const defaultStyles = StyleSheet.create({
     }
 });
 
-const smallStyles = StyleSheet.create({
-    footer: {
-        justifyContent: "flex-end"
-    },
-    label: {
-        display: "none"
-    }
-});
-
-const styleSheets = {
-    all: defaultStyles,
-    small: smallStyles
-};
-
-<View style={styles.previewSizer}>
-    <View style={styles.modalPositioner}>
-        <MediaLayout styleSheets={styleSheets}>
-            {({styles}) => (
-                <OnePaneDialog
-                    title="Dialog with multi-step footer"
-                    content={
-                        <View>
-                            <Body>
-                                {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."}
-                            </Body>
-                        </View>
-                    }
-                    footer={
-                        <View style={styles.footer}>
-                            <LabelLarge style={styles.label}>Step 1 of 4</LabelLarge>
-                            <View style={styles.row}>
-                                <Button kind="tertiary">Previous</Button>
-                                <Strut size={16} />
-                                <Button kind="primary">Next</Button>
-                            </View>
-                        </View>
-                    }
-                />
-            )}
-        </MediaLayout>
+<View style={exampleStyles.previewSizer}>
+    <View style={exampleStyles.modalPositioner}>
+        <OnePaneDialog
+            title="Dialog with multi-step footer"
+            content={
+                <View>
+                    <Body>
+                        {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."}
+                    </Body>
+                </View>
+            }
+            footer={
+                <View style={styles.footer}>
+                    <LabelLarge>Step 1 of 4</LabelLarge>
+                    <View style={styles.row}>
+                        <Button kind="tertiary">Previous</Button>
+                        <Strut size={16} />
+                        <Button kind="primary">Next</Button>
+                    </View>
+                </View>
+            }
+        />
     </View>
 </View>;
 ```
