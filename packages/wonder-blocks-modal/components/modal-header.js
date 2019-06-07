@@ -48,7 +48,7 @@ type Props = {|
  *
  * **Accessibility notes:**
  *
- * - By default (e.g. using [OnePaneDialog](/#onepanedialog)), `titleId` is populated automaticallyby the parent container.
+ * - By default (e.g. using [OnePaneDialog](/#onepanedialog)), `titleId` is populated automatically by the parent container.
  * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the ModalHeader doesn’t have to have
  * the `titleId` prop however this is recommended. It should match the `aria-labelledby` prop of the [ModalDialog](/#modaldialog) component.
  * If you want to see an example of how to generate this ID, check [IDProvider](/#idprovider).
