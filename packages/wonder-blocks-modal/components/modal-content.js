@@ -16,6 +16,9 @@ type Props = {|
     style?: StyleType,
 |};
 
+/**
+ * The Modal content included after the header
+ */
 export default class ModalContent extends React.Component<Props> {
     static defaultProps = {
         scrollOverflow: true,

@@ -12,7 +12,6 @@ import ModalLauncher from "./components/modal-launcher.js";
 import OnePaneDialog from "./components/one-pane-dialog/one-pane-dialog.js";
 import ModalDialog from "./components/modal-dialog.js";
 import ModalPanel from "./components/modal-panel.js";
-import ModalContent from "./components/modal-content.js";
 import ModalHeader from "./components/modal-header.js";
 import ModalFooter from "./components/modal-footer.js";
 

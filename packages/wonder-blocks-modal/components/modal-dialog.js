@@ -38,6 +38,16 @@ type Props = {|
     style?: StyleType,
 |};
 
+/**
+ * `ModalDialog` is a component that contains these elements:
+ * - The visual dialog element itself (`<div role="dialog"/>`)
+ * - The custom contents below and/or above the Dialog itself (e.g. decorative graphics).
+ *
+ * **Accessibility notes:**
+ * - By default (e.g. using `OnePaneDialog`), `aria-labelledby` is populated automatically using the dialog title `id`.
+ * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the dialog element doesn’t have to have
+ * the `aria-labelledby` attribute however this is recommended. It should match the `id` of the dialog title.
+ */
 export default class ModalDialog extends React.Component<Props> {
     render() {
         const {
