@@ -66,8 +66,8 @@ type Props = {|
  * **Implementation notes:**
  *
  * If you are creating a custom Dialog, make sure to follow these guidelines:
- * - Make sure to add this component inside the **ModalDialog**.
- * - If needed, you can also add a **ModalHeader** using the `header` prop. Same goes for **ModalFooter**.
+ * - Make sure to add this component inside the [ModalDialog](/#modaldialog).
+ * - If needed, you can also add a [ModalHeader](/#modalheader) using the `header` prop. Same goes for [ModalFooter](/#modalfooter).
  *
  * ```js
  * <ModalDialog>

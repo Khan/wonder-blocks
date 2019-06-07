@@ -44,20 +44,21 @@ type Props = {|
  * It is always pinned to the top of the dialog, is responsive using the same behavior as its parent dialog,
  * and has the following properties:
  * - title
- * - breadcrumb OR 2B subtitle, but not both.
+ * - breadcrumb OR subtitle, but not both.
  *
  * **Accessibility notes:**
  *
- * - By default (e.g. using `OnePaneDialog`), `titleId` is populated automaticallyby the parent container.
+ * - By default (e.g. using [OnePaneDialog](/#onepanedialog)), `titleId` is populated automaticallyby the parent container.
  * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the ModalHeader doesn’t have to have
- * the `titleId` prop however this is recommended. It should match the `aria-labelledby` prop of the ModalDialog component.
+ * the `titleId` prop however this is recommended. It should match the `aria-labelledby` prop of the [ModalDialog](/#modaldialog) component.
+ * If you want to see an example of how to generate this ID, check [IDProvider](/#idprovider).
  *
  * **Implementation notes:**
  *
  * If you are creating a custom Dialog, make sure to follow these guidelines:
- * - Make sure to include it as part of `<ModalPanel />` by using the `header` prop.
+ * - Make sure to include it as part of [ModalPanel](/#modalpanel) by using the `header` prop.
  * - Add a title (required).
- * -  Optionally add a subtitle or breadcrumbs.
+ * - Optionally add a subtitle or breadcrumbs.
  * - We encourage you to add `titleId` (see Accessibility notes).
  * - If the `ModalPanel` has a dark background, make sure to set `light` to `false`.
  *
