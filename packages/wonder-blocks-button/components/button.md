@@ -1,3 +1,5 @@
+#### Example: kind
+
 There are three `kind`s of buttons: `"primary"` (default), `"secondary"`, and
 `"tertiary"`:
 ```jsx
@@ -37,8 +39,10 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-Buttons have a `color` that is either `"default"` (the default, as shown
-above) or `"destructive"` (as can seen below):
+#### Example: color
+
+Buttons have a `color` that is either `"default"` (the default, as shown above) or `"destructive"` (as can seen below):
+
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -79,7 +83,19 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+#### Example: disabled
+
 Buttons can be `disabled`:
+
+⚠️ Buttons do not need an `aria-disabled` attribute, if it also has a `disabled` attribute.
+Users operating the web page through a screen reader may not be able to fully evaluate the implied
+behaviors of the button element itself.
+
+Links:
+- [Implicit ARIA semantics](https://www.w3.org/TR/wai-aria-1.1/#implicit_semantics)
+- [Document conformance requirements](https://www.w3.org/TR/html-aria/#document-conformance-requirements-for-use-of-aria-attributes-in-html)
+
+
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -120,7 +136,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-**Note:** If you are adding `disabled` you don't need to add `aria-disabled`. Doing so will result in a console.warn().
+#### Example: dark
 
 Buttons on a `darkBlue` background should set `light` to `true`.
 ```jsx
@@ -192,6 +208,8 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+#### Example: size
+
 Buttons have a `size` that's either `"medium"` (default) or `"small"`.
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -232,6 +250,8 @@ const styles = StyleSheet.create({
     </Button>
 </View>
 ```
+
+#### Example: Navigation
 
 Buttons can have an `href` or an `onClick` handler or both.
 
@@ -276,6 +296,8 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+#### Example: Navigation with React Router
+
 Buttons do client-side navigation by default, if React Router exists:
 ```jsx
 const {StyleSheet} = require("aphrodite");
@@ -310,6 +332,8 @@ const styles = StyleSheet.create({
 </MemoryRouter>
 ```
 
+#### Example: spinner
+
 Buttons can show a `spinner`.  This is useful when indicating to a user that
 their input has been recognized but that the operation will take some time.
 While the `spinner` property is set to `true` the button is disabled.
@@ -337,6 +361,8 @@ const styles = StyleSheet.create({
     </Button>
 </View>
 ```
+
+#### Example: style
 
 Buttons can have a `style` props which supports width, position, margin,
 and flex styles.

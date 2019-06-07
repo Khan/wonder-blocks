@@ -3,6 +3,8 @@ import React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
+import expectRenderError from "../../../utils/testing/expect-render-error.js";
+
 import Button from "./button.js";
 
 describe("Button", () => {
@@ -110,26 +112,11 @@ describe("Button", () => {
     });
 
     test("checks that aria-disabled is not added when disabled is set", () => {
-        // Arrange
-        // Prevent jest to output warnings when running tests
-        const consoleWarnMockFn = jest
-            .spyOn(global.console, "warn")
-            .mockImplementationOnce(() => jest.fn());
-
-        const wrapper = mount(
+        expectRenderError(
             <Button disabled={true} aria-disabled="true">
                 Disabled button
             </Button>,
+            "wb-button: <button> supports the 'disabled' attribute. You should not use the 'aria-disabled' attribute.",
         );
-        // Act
-        const buttonWrapper = wrapper.find("button").first();
-
-        // Assert
-        expect(buttonWrapper.prop("disabled")).toEqual(true);
-        // we should expect to throw a warning to devs
-        expect(consoleWarnMockFn).toHaveBeenCalled();
-        expect(buttonWrapper.prop("aria-disabled")).not.toBeDefined();
-
-        consoleWarnMockFn.mockRestore();
     });
 });
