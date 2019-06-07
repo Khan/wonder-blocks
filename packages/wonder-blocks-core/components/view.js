@@ -70,7 +70,11 @@ export default class View extends React.Component<Props> {
             case "div":
                 return <StyledDiv data-test-id={testId} {...restProps} />;
             default:
-                return <StyledDiv data-test-id={testId} {...restProps} />;
+                // eslint-disable-next-line no-unused-expressions
+                (tag: empty);
+                throw Error(
+                    `${tag} is not an allowed value for the 'tag' prop`,
+                );
         }
     }
 }
