@@ -169,6 +169,7 @@ const sharedStyles = StyleSheet.create({
         touchAction: "manipulation",
         userSelect: "none",
         ":focus": {
+            // Mobile: Removes a blue highlight style shown when the user clicks a button
             WebkitTapHighlightColor: "rgba(0,0,0,0)",
         },
     },

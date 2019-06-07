@@ -150,6 +150,7 @@ const sharedStyles = StyleSheet.create({
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
         ":focus": {
+            // Mobile: Removes a blue highlight style shown when the user clicks a button
             WebkitTapHighlightColor: "rgba(0,0,0,0)",
         },
     },
