@@ -68,6 +68,9 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "none",
           "border": "none",
@@ -268,6 +271,9 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "none",
           "border": "none",
@@ -446,6 +452,9 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "none",
@@ -626,6 +635,9 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "none",
           "border": "none",
@@ -805,6 +817,9 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "none",
@@ -2372,6 +2387,9 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "#1865f2",

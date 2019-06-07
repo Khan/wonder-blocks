@@ -10,6 +10,10 @@ describe("@khanacademy/wonder-blocks-modal", () => {
         // Assert
         expect(Object.keys(result).sort()).toEqual(
             [
+                "ModalDialog",
+                "ModalFooter",
+                "ModalHeader",
+                "ModalPanel",
                 "ModalLauncher",
                 "OnePaneDialog",
                 "maybeGetPortalMountedModalHostElement",

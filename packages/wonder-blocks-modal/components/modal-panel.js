@@ -60,6 +60,21 @@ type Props = {|
     onClose?: () => mixed,
 |};
 
+/**
+ * ModalPanel is  the content container.
+ *
+ * **Implementation notes:**
+ *
+ * If you are creating a custom Dialog, make sure to follow these guidelines:
+ * - Make sure to add this component inside the [ModalDialog](/#modaldialog).
+ * - If needed, you can also add a [ModalHeader](/#modalheader) using the `header` prop. Same goes for [ModalFooter](/#modalfooter).
+ *
+ * ```js
+ * <ModalDialog>
+ *      <ModalPanel content={"custom content goes here"} />
+ * </ModalDialog>
+ * ```
+ */
 export default class ModalPanel extends React.Component<Props> {
     static defaultProps = {
         closeButtonVisible: true,

@@ -130,14 +130,11 @@ module.exports = {
                     ],
                 },
                 {
-                    // NOTE(jeresig): Not ready to be used yet, need docs.
-                    private: true,
                     name: "Building Blocks",
                     content: "packages/wonder-blocks-modal/building-blocks.md",
                     components: [
                         "packages/wonder-blocks-modal/components/modal-dialog.js",
                         "packages/wonder-blocks-modal/components/modal-panel.js",
-                        "packages/wonder-blocks-modal/components/modal-content.js",
                         "packages/wonder-blocks-modal/components/modal-header.js",
                         "packages/wonder-blocks-modal/components/modal-footer.js",
                     ],

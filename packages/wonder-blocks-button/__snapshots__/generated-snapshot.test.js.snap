@@ -42,6 +42,9 @@ exports[`wonder-blocks-button example 1 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -111,6 +114,9 @@ exports[`wonder-blocks-button example 1 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -184,6 +190,9 @@ exports[`wonder-blocks-button example 1 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -278,6 +287,9 @@ exports[`wonder-blocks-button example 2 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#d92916",
         "border": "none",
@@ -347,6 +359,9 @@ exports[`wonder-blocks-button example 2 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -420,6 +435,9 @@ exports[`wonder-blocks-button example 2 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -514,6 +532,9 @@ exports[`wonder-blocks-button example 3 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "rgba(33,36,44,0.32)",
         "border": "none",
@@ -583,6 +604,9 @@ exports[`wonder-blocks-button example 3 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -656,6 +680,9 @@ exports[`wonder-blocks-button example 3 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -751,6 +778,9 @@ exports[`wonder-blocks-button example 4 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#ffffff",
         "border": "none",
@@ -820,6 +850,9 @@ exports[`wonder-blocks-button example 4 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -894,6 +927,9 @@ exports[`wonder-blocks-button example 4 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "none",
         "border": "none",
@@ -964,6 +1000,9 @@ exports[`wonder-blocks-button example 4 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#b5cefb",
         "border": "none",
@@ -1033,6 +1072,9 @@ exports[`wonder-blocks-button example 4 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -1106,6 +1148,9 @@ exports[`wonder-blocks-button example 4 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -1200,6 +1245,9 @@ exports[`wonder-blocks-button example 5 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1269,6 +1317,9 @@ exports[`wonder-blocks-button example 5 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -1342,6 +1393,9 @@ exports[`wonder-blocks-button example 5 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -1433,6 +1487,9 @@ exports[`wonder-blocks-button example 6 1`] = `
     role="button"
     style={
       Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1500,6 +1557,9 @@ exports[`wonder-blocks-button example 6 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -1571,6 +1631,9 @@ exports[`wonder-blocks-button example 6 1`] = `
     role="button"
     style={
       Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "none",
         "border": "none",
@@ -1659,6 +1722,9 @@ exports[`wonder-blocks-button example 7 1`] = `
     role="button"
     style={
       Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1724,6 +1790,9 @@ exports[`wonder-blocks-button example 7 1`] = `
     role="button"
     style={
       Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -1815,6 +1884,9 @@ exports[`wonder-blocks-button example 8 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "rgba(33,36,44,0.32)",
@@ -1940,6 +2012,9 @@ exports[`wonder-blocks-button example 8 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "rgba(33,36,44,0.32)",
@@ -2108,6 +2183,9 @@ exports[`wonder-blocks-button example 9 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "#1865f2",
           "border": "none",
@@ -2197,6 +2275,9 @@ exports[`wonder-blocks-button example 9 1`] = `
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "none",
@@ -2290,6 +2371,9 @@ exports[`wonder-blocks-button example 9 1`] = `
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "none",
@@ -2402,6 +2486,9 @@ exports[`wonder-blocks-button example 9 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "#1865f2",
           "border": "none",
@@ -2492,6 +2579,9 @@ exports[`wonder-blocks-button example 9 1`] = `
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "none",
@@ -2586,6 +2676,9 @@ exports[`wonder-blocks-button example 9 1`] = `
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "none",
@@ -2702,6 +2795,9 @@ exports[`wonder-blocks-button example 10 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "#1865f2",
         "border": "none",
@@ -2813,6 +2909,9 @@ exports[`wonder-blocks-button example 11 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "#1865f2",
           "border": "none",
@@ -2922,6 +3021,9 @@ exports[`wonder-blocks-button example 11 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "#1865f2",
           "border": "none",
@@ -3015,6 +3117,9 @@ exports[`wonder-blocks-button example 12 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
         "alignItems": "center",
         "background": "none",
         "border": "none",
@@ -3088,6 +3193,9 @@ exports[`wonder-blocks-button example 12 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "#1865f2",
@@ -3202,6 +3310,9 @@ exports[`wonder-blocks-button example 13 1`] = `
           "::MozFocusInner": Object {
             "border": 0,
           },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
           "background": "none",
           "border": "none",
@@ -3271,6 +3382,9 @@ exports[`wonder-blocks-button example 13 1`] = `
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "#1865f2",
@@ -3365,6 +3479,9 @@ exports[`wonder-blocks-button example 14 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "#1865f2",
