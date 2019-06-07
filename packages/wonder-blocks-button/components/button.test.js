@@ -3,7 +3,6 @@ import React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
-import expectRenderError from "../../../utils/testing/expect-render-error.js";
 
 import Button from "./button.js";
 
@@ -109,14 +108,5 @@ describe("Button", () => {
 
         // Assert
         expect(wrapper.find("#foo").exists()).toBe(false);
-    });
-
-    test("checks that aria-disabled is not added when disabled is set", () => {
-        expectRenderError(
-            <Button disabled={true} aria-disabled="true">
-                Disabled button
-            </Button>,
-            "wb-button: <button> supports the 'disabled' attribute. You should not use the 'aria-disabled' attribute.",
-        );
     });
 });

@@ -89,13 +89,6 @@ export default class ButtonCore extends React.Component<Props> {
             ...handlers,
         };
 
-        if (commonProps["aria-disabled"]) {
-            // WB-535: Allows only to use `disabled` (even if is set from the parent component)
-            throw new Error(
-                "wb-button: <button> supports the 'disabled' attribute. You should not use the 'aria-disabled' attribute.",
-            );
-        }
-
         const Label = size === "small" ? LabelSmall : LabelLarge;
 
         const label = (
