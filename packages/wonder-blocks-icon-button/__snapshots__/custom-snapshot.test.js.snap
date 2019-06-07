@@ -24,6 +24,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -89,6 +92,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -160,6 +166,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -229,6 +238,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -301,6 +313,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -366,6 +381,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -437,6 +455,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -506,6 +527,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -578,6 +602,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -643,6 +670,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -714,6 +744,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -783,6 +816,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -855,6 +891,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -920,6 +959,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -991,6 +1033,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1060,6 +1105,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1132,6 +1180,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1197,6 +1248,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1268,6 +1322,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1337,6 +1394,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1409,6 +1469,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1474,6 +1537,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1545,6 +1611,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1614,6 +1683,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1686,6 +1758,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1751,6 +1826,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1822,6 +1900,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1891,6 +1972,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1963,6 +2047,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2028,6 +2115,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2099,6 +2189,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2168,6 +2261,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2240,6 +2336,9 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2305,6 +2404,9 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2376,6 +2478,9 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2445,6 +2550,9 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2517,6 +2625,9 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2582,6 +2693,9 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2653,6 +2767,9 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2722,6 +2839,9 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2794,6 +2914,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2859,6 +2982,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2930,6 +3056,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2999,6 +3128,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3071,6 +3203,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3136,6 +3271,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3207,6 +3345,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3276,6 +3417,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3348,6 +3492,9 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3413,6 +3560,9 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3484,6 +3634,9 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3553,6 +3706,9 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3625,6 +3781,9 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3690,6 +3849,9 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3761,6 +3923,9 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3830,6 +3995,9 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3902,6 +4070,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3967,6 +4138,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -4038,6 +4212,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4107,6 +4284,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -4179,6 +4359,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4244,6 +4427,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -4315,6 +4501,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4384,6 +4573,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
