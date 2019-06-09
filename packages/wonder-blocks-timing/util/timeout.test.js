@@ -17,6 +17,30 @@ describe("Timeout", () => {
             expect(result).toBeDefined();
         });
 
+        it("throws if the action is not a function", () => {
+            // Arrange
+
+            // Act
+            const underTest = () => new Timeout((null: any), 0);
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Action must be a function"`,
+            );
+        });
+
+        it("throws if the period is less than 0", () => {
+            // Arrange
+
+            // Act
+            const underTest = () => new Timeout(() => {}, -1);
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Timeout period must be >= 0"`,
+            );
+        });
+
         it("sets a timeout when autoSet is true", () => {
             // Arrange
 

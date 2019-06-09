@@ -9,6 +9,10 @@ jest.mock("./interval.js");
 jest.mock("./animation-frame.js");
 
 describe("ActionScheduler", () => {
+    afterEach(() => {
+        jest.resetAllMocks();
+    });
+
     describe("constructor", () => {
         it("creates instance", () => {
             // Arrange
@@ -33,8 +37,6 @@ describe("ActionScheduler", () => {
             // Assert
             expect(result).toBeDefined();
         });
-
-        it("should throw if period is less than 0", () => {});
 
         it("should pass arguments to Timeout", () => {
             // Arrange
@@ -99,8 +101,6 @@ describe("ActionScheduler", () => {
             // Assert
             expect(result).toBeDefined();
         });
-
-        it("should throw if period is less than 1", () => {});
 
         it("should pass arguments to Interval", () => {
             // Arrange
@@ -215,5 +215,40 @@ describe("ActionScheduler", () => {
         });
     });
 
-    describe("#clearAll", () => {});
+    describe("#clearAll", () => {
+        it("should call clear on all registered items", () => {
+            // Arrange
+            const actionScheduler = new ActionScheduler();
+            const action = jest.fn();
+            const timeout = actionScheduler.timeout(action, 10);
+            const interval = actionScheduler.interval(action, 10);
+            const animationFrame = actionScheduler.animationFrame(action);
+
+            // Act
+            actionScheduler.clearAll();
+
+            // Assert
+            expect(timeout.clear).toHaveBeenCalledTimes(1);
+            expect(interval.clear).toHaveBeenCalledTimes(1);
+            expect(animationFrame.clear).toHaveBeenCalledTimes(1);
+        });
+
+        it("should not call clear on items more than once", () => {
+            // Arrange
+            const actionScheduler = new ActionScheduler();
+            const action = jest.fn();
+            const timeout = actionScheduler.timeout(action, 10);
+            const interval = actionScheduler.interval(action, 10);
+            const animationFrame = actionScheduler.animationFrame(action);
+            actionScheduler.clearAll();
+
+            // Act
+            actionScheduler.clearAll();
+
+            // Assert
+            expect(timeout.clear).toHaveBeenCalledTimes(1);
+            expect(interval.clear).toHaveBeenCalledTimes(1);
+            expect(animationFrame.clear).toHaveBeenCalledTimes(1);
+        });
+    });
 });
