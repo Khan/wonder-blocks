@@ -56,7 +56,7 @@ describe("Timeout", () => {
     describe("isSet", () => {
         it("is false when the timeout has not been set", () => {
             // Arrange
-            const timeout = new Timeout(() => {}, 0);
+            const timeout = new Timeout(() => {}, 0, false);
 
             // Act
             const result = timeout.isSet;
@@ -94,7 +94,7 @@ describe("Timeout", () => {
     describe("#set", () => {
         it("should call setTimeout", () => {
             // Arrange
-            const timeout = new Timeout(() => {}, 500);
+            const timeout = new Timeout(() => {}, 500, false);
 
             // Act
             timeout.set();
@@ -138,7 +138,7 @@ describe("Timeout", () => {
         it("should set the timeout again if it has already executed", () => {
             // Arrange
             const action = jest.fn();
-            const timeout = new Timeout(action, 500);
+            const timeout = new Timeout(action, 500, false);
             timeout.set();
             jest.runOnlyPendingTimers();
 
@@ -195,7 +195,7 @@ describe("Timeout", () => {
         it("should not invoke the action if timeout is not pending", () => {
             // Arrange
             const action = jest.fn();
-            const timeout = new Timeout(action, 500);
+            const timeout = new Timeout(action, 500, false);
 
             // Act
             timeout.clear(true);

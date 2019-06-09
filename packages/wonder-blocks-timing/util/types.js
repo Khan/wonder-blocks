@@ -228,3 +228,17 @@ export interface IScheduleActions {
      */
     clearAll(): void;
 }
+
+/**
+ * Extends the given props with props that the `withActionScheduler` higher
+ * order component will inject.
+ */
+export type WithActionScheduler<TOwnProps: {||}> = {|
+    ...TOwnProps,
+
+    /**
+     * An instance of the `IScheduleActions` API to use for scheduling
+     * intervals, timeouts, and animation frame requests.
+     */
+    schedule: IScheduleActions,
+|};

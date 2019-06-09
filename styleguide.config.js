@@ -154,6 +154,13 @@ module.exports = {
         {
             name: "Timing",
             content: "packages/wonder-blocks-timing/docs.md",
+            sections: [
+                {
+                    name: "withActionScheduler",
+                    content:
+                        "packages/wonder-blocks-timing/components/with-action-scheduler.md",
+                },
+            ],
         },
         {
             name: "Toolbar",

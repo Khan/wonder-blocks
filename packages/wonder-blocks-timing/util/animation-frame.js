@@ -21,7 +21,7 @@ export default class AnimationFrame implements IAnimationFrame {
      * @param {() => mixed} action The action to be invoked.
      * @param {boolean} [autoSet] When true, the request is made immediately on
      * instanstiation; otherwise, `set` must be called to make the request.
-     * Defaults to `false`.
+     * Defaults to `true`.
      * @memberof AnimationFrame
      */
     constructor(action: () => mixed, autoSet?: boolean) {
@@ -31,7 +31,7 @@ export default class AnimationFrame implements IAnimationFrame {
 
         this._action = action;
 
-        if (autoSet) {
+        if (autoSet || autoSet == null) {
             this.set();
         }
     }

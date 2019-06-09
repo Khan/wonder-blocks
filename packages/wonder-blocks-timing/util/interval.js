@@ -25,7 +25,7 @@ export default class Interval implements IInterval {
      * @param {boolean} [autoSet] When true, the interval is activated
      * immediately on instanstiation; otherwise, `set` must be called to
      * activate the interval.
-     * Defaults to `false`.
+     * Defaults to `true`.
      * @memberof Interval
      */
     constructor(action: () => mixed, intervalMs: number, autoSet?: boolean) {
@@ -40,7 +40,7 @@ export default class Interval implements IInterval {
         this._action = action;
         this._intervalMs = intervalMs;
 
-        if (autoSet) {
+        if (autoSet || autoSet == null) {
             this.set();
         }
     }

@@ -24,7 +24,7 @@ export default class Timeout implements ITimeout {
      * @param {number} timeoutMs The timeout period.
      * @param {boolean} [autoSet] When true, the timer is set immediately on
      * instanstiation; otherwise, `set` must be called to set the timeout.
-     * Defaults to `false`.
+     * Defaults to `true`.
      * @memberof Timeout
      */
     constructor(action: () => mixed, timeoutMs: number, autoSet?: boolean) {
@@ -39,7 +39,7 @@ export default class Timeout implements ITimeout {
         this._action = action;
         this._timeoutMs = timeoutMs;
 
-        if (autoSet) {
+        if (autoSet || autoSet == null) {
             this.set();
         }
     }
