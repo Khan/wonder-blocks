@@ -14,8 +14,10 @@ describe("Row", () => {
     beforeEach(() => {
         unmountAll();
 
-        // eslint-disable-next-line no-console
+        /* eslint-disable no-console */
+        // Flow doesn't know we added jest mocks to this $FlowFixMe
         console.error.mockRestore && console.error.mockRestore();
+        /* eslint-enable no-console */
     });
 
     describe("large", () => {
@@ -52,8 +54,10 @@ describe("Row", () => {
 
             // Prevent jest complaining when JSDOM console.error's an exception
             jest.spyOn(console, "error");
-            // eslint-disable-next-line no-console
+            /* eslint-disable no-console */
+            // Flow doesn't know we added jest mocks to this $FlowFixMe
             console.error.mockImplementation(() => {});
+            /* eslint-enable no-console */
 
             const render = () => {
                 mount(
@@ -112,8 +116,10 @@ describe("Row", () => {
 
             // Prevent jest complaining when JSDOM console.error's an exception
             jest.spyOn(console, "error");
-            // eslint-disable-next-line no-console
+            /* eslint-disable no-console */
+            // Flow doesn't know we added jest mocks to this $FlowFixMe
             console.error.mockImplementation(() => {});
+            /* eslint-enable no-console */
 
             const render = () => {
                 mount(
@@ -172,8 +178,10 @@ describe("Row", () => {
 
             // Prevent jest complaining when JSDOM console.error's an exception
             jest.spyOn(console, "error");
-            // eslint-disable-next-line no-console
+            /* eslint-disable no-console */
+            // Flow doesn't know we added jest mocks to this $FlowFixMe
             console.error.mockImplementation(() => {});
+            /* eslint-enable no-console */
 
             const render = () => {
                 mount(
