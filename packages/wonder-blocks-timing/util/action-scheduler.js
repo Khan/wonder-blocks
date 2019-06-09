@@ -1,14 +1,14 @@
 // @flow
-import {
+import Timeout from "./timeout.js";
+import Interval from "./interval.js";
+import AnimationFrame from "./animation-frame.js";
+
+import type {
     IAnimationFrame,
     IInterval,
     ITimeout,
     IScheduleActions,
 } from "./types.js";
-
-import Timeout from "./timeout.js";
-import Interval from "./interval.js";
-import AnimationFrame from "./animation-frame.js";
 
 /**
  * Implements the `IScheduleActions` API to provide timeout, interval, and
