@@ -64,14 +64,14 @@ describe("wonder-blocks-timing", () => {
         const example = (
             <IDProvider>
                 {(id) => (
-                    <_>
+                    <View>
                         <Unmounter>
                             <MyNaughtyComponent targetId={id} />
                         </Unmounter>
                         <View>
                             <View id={id} />
                         </View>
-                    </_>
+                    </View>
                 )}
             </IDProvider>
         );
@@ -139,14 +139,14 @@ describe("wonder-blocks-timing", () => {
         const example = (
             <IDProvider>
                 {(id) => (
-                    <_>
+                    <View>
                         <Unmounter>
                             <MyGoodComponentWithScheduler targetId={id} />
                         </Unmounter>
                         <View>
                             <View id={id} />
                         </View>
-                    </_>
+                    </View>
                 )}
             </IDProvider>
         );

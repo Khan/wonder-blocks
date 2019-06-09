@@ -62,14 +62,14 @@ class MyNaughtyComponent extends React.Component {
 
 <IDProvider>
     {id => (
-        <_>
+        <View>
             <Unmounter>
                 <MyNaughtyComponent targetId={id} />
             </Unmounter>
             <View>
                 <View id={id}></View>
             </View>
-        </_>
+        </View>
     )}
 </IDProvider>
 ```
@@ -135,14 +135,14 @@ const MyGoodComponentWithScheduler = withActionScheduler(MyGoodComponent);
 
 <IDProvider>
     {id => (
-        <_>
+        <View>
             <Unmounter>
                 <MyGoodComponentWithScheduler targetId={id} />
             </Unmounter>
             <View>
                 <View id={id}></View>
             </View>
-        </_>
+        </View>
     )}
 </IDProvider>
 ```
