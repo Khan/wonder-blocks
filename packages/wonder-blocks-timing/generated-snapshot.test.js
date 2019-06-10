@@ -42,7 +42,6 @@ describe("wonder-blocks-timing", () => {
             }
 
             render() {
-                console.error("This should fail!");
                 return <View>{this.maybeRenderKids()}</View>;
             }
         }

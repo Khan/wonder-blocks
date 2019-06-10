@@ -37,7 +37,6 @@ class Unmounter extends React.Component {
     }
 
     render() {
-        console.error("This should fail!");
         return (
             <View>
                 {this.maybeRenderKids()}
