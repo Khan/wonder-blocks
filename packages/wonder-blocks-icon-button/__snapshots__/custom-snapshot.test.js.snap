@@ -2,7 +2,6 @@
 
 exports[`IconButtonCore kind:primary color:default size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -291,7 +290,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
 
 exports[`IconButtonCore kind:primary color:default size:default light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -580,7 +578,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
 
 exports[`IconButtonCore kind:primary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -869,7 +866,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
 
 exports[`IconButtonCore kind:primary color:default size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1158,7 +1154,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1447,7 +1442,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1736,7 +1730,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2025,7 +2018,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2314,7 +2306,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
 
 exports[`IconButtonCore kind:secondary color:default size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2603,7 +2594,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2892,7 +2882,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
 
 exports[`IconButtonCore kind:secondary color:destructive size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3181,7 +3170,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3470,7 +3458,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 
 exports[`IconButtonCore kind:tertiary color:default size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3759,7 +3746,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -4048,7 +4034,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
 
 exports[`IconButtonCore kind:tertiary color:destructive size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -4337,7 +4322,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
