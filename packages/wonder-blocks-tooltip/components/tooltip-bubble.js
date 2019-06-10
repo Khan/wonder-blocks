@@ -92,7 +92,6 @@ export default class TooltipBubble extends React.Component<Props, State> {
 
     _handleMouseLeave = () => {
         this.props.onActiveChanged(false);
-        this._updateActiveState(false);
     };
 
     render() {

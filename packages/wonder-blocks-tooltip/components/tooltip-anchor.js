@@ -262,7 +262,7 @@ export default class TooltipAnchor extends React.Component<Props, State>
                 this._setActiveState(active, true);
                 this.props.onTimeoutChanged(null);
             }, delay);
-            this.props.onTimeoutChanged(this._timeoutID);
+            this.props.onTimeoutChanged(instant ? null : this._timeoutID);
         }
     }
 
