@@ -70,7 +70,6 @@ export default class TooltipBubble extends React.Component<Props, State> {
 
         bubbleNode.addEventListener("mouseenter", this._handleMouseEnter);
         bubbleNode.addEventListener("mouseleave", this._handleMouseLeave);
-        //console.log("Bubbble was mounted");
     }
 
     _updateActiveState(hovered: boolean) {
