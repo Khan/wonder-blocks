@@ -131,7 +131,6 @@ export default class TooltipBubble extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
     bubble: {
-        //pointerEvents: "none",
         position: "absolute",
     },
 
