@@ -8,11 +8,12 @@ our pretend log even after it was unmounted.
 
 ```jsx
 const Button = require("@khanacademy/wonder-blocks-button").default;
-const {IDProvider} = require("@khanacademy/wonder-blocks-core");
+const {IDProvider, View} = require("@khanacademy/wonder-blocks-core");
 
 
 class Unmounter extends React.Component {
     constructor() {
+        super();
         this.state = {
             mountKids: true,
         };
@@ -21,10 +22,10 @@ class Unmounter extends React.Component {
     maybeRenderKids() {
         if (this.state.mountKids) {
             return (
-                <_>
+                <React.Fragment>
                     <Button onClick={() => this.onClick()}>Unmount</Button>
                     {this.props.children}
-                </_>
+                </React.Fragment>
             );
         } else {
             return "Children unmounted";
@@ -36,6 +37,7 @@ class Unmounter extends React.Component {
     }
 
     render() {
+        console.error("This should fail!");
         return (
             <View>
                 {this.maybeRenderKids()}
@@ -80,11 +82,12 @@ just fine. Unmount the component, and the logging stops.
 ```jsx
 const {withActionScheduler} = require("@khanacademy/wonder-blocks-timing");
 const Button = require("@khanacademy/wonder-blocks-button").default;
-const {IDProvider} = require("@khanacademy/wonder-blocks-core");
+const {IDProvider, View} = require("@khanacademy/wonder-blocks-core");
 
 
 class Unmounter extends React.Component {
     constructor() {
+        super();
         this.state = {
             mountKids: true,
         };
@@ -93,10 +96,10 @@ class Unmounter extends React.Component {
     maybeRenderKids() {
         if (this.state.mountKids) {
             return (
-                <_>
+                <React.Fragment>
                     <Button onClick={() => this.onClick()}>Unmount</Button>
                     {this.props.children}
-                </_>
+                </React.Fragment>
             );
         } else {
             return "Children unmounted";
