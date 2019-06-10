@@ -1,6 +1,7 @@
 // @flow
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -37,12 +38,61 @@ export type Props = {|
 
     /** The `TooltipContent` element that will be rendered in the bubble. */
     children: React.Element<typeof TooltipContent>,
+
+    onActiveChanged: (active: boolean) => mixed,
+
+    onTimeoutChanged: (timeoutID: ?TimeoutID) => mixed,
+
+    anchorTimeoutID: ?TimeoutID,
+
     // TODO(somewhatabstract): Update react-docgen to support spread operators
     // (v3 beta introduces this)
     ...TooltipBubbleProps,
 |};
 
-export default class TooltipBubble extends React.Component<Props> {
+type State = {|
+    active: boolean,
+|};
+
+export default class TooltipBubble extends React.Component<Props, State> {
+    state = {
+        active: false,
+    };
+
+    componentDidMount() {
+        const bubbleNode = ReactDOM.findDOMNode(this);
+
+        if (!bubbleNode) {
+            return;
+        }
+
+        bubbleNode.addEventListener("mouseenter", this._handleMouseEnter);
+        bubbleNode.addEventListener("mouseleave", this._handleMouseLeave);
+        //console.log("Bubbble was mounted");
+    }
+
+    _updateActiveState(hovered: boolean) {
+        this._setActiveState(hovered);
+    }
+
+    _setActiveState(active: boolean, instant?: boolean) {
+        this.setState({active});
+        this.props.onActiveChanged(active);
+    }
+
+    _handleMouseEnter = () => {
+        if (this.props.anchorTimeoutID) {
+            clearTimeout(this.props.anchorTimeoutID);
+            this.props.onTimeoutChanged(null);
+        }
+        this._updateActiveState(true);
+    };
+
+    _handleMouseLeave = () => {
+        this.props.onActiveChanged(false);
+        this._updateActiveState(false);
+    };
+
     render() {
         const {
             id,
@@ -81,7 +131,7 @@ export default class TooltipBubble extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     bubble: {
-        pointerEvents: "none",
+        //pointerEvents: "none",
         position: "absolute",
     },
 

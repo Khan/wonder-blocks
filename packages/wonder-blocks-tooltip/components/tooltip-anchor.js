@@ -59,6 +59,14 @@ type Props = {|
     onActiveChanged: (active: boolean) => mixed,
 
     /**
+     * Callback to pass timeoutID back to Tooltip.
+     *
+     * `timeoutID` will change if the timeout has finished executing or if it has been canceled.
+     * The timeout will become cancelled once a user hovers onto the tooltip bubble.
+     */
+    onTimeoutChanged: (timeoutID: ?TimeoutID) => mixed,
+
+    /**
      * Optional unique id factory.
      */
     ids?: IIdentifierFactory,
@@ -224,7 +232,7 @@ export default class TooltipAnchor extends React.Component<Props, State>
             // So, if active is stolen from us, we are changing active state,
             // or we are inactive and have a timer, clear the action.
             this._clearPendingAction();
-        } else if (active === this.state.active) {
+        } else if (active === this.state.active && !this._timeoutID) {
             // Nothing to do if we're already active.
             return;
         }
@@ -252,7 +260,9 @@ export default class TooltipAnchor extends React.Component<Props, State>
             this._timeoutID = setTimeout(() => {
                 this._timeoutID = null;
                 this._setActiveState(active, true);
+                this.props.onTimeoutChanged(null);
             }, delay);
+            this.props.onTimeoutChanged(this._timeoutID);
         }
     }
 

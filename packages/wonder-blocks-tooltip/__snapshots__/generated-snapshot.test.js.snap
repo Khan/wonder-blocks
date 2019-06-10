@@ -1626,7 +1626,6 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -1814,7 +1813,6 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -2002,7 +2000,6 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -2162,7 +2159,6 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -2350,7 +2346,6 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
