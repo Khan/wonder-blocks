@@ -41,8 +41,10 @@ export type Props = {|
 
     onActiveChanged: (active: boolean) => mixed,
 
+    /* A callback for updating the timeoutID refrence in tooltip  */
     onTimeoutChanged: (timeoutID: ?TimeoutID) => mixed,
 
+    /* The timeoutID attached to the tooltip anchor */
     anchorTimeoutID: ?TimeoutID,
 
     // TODO(somewhatabstract): Update react-docgen to support spread operators
