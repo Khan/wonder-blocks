@@ -531,6 +531,7 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
+            // Flow doesn't know we added jest mocks to this $FlowFixMe
             setTimeout.mockClear();
             ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
 
@@ -821,6 +822,7 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
+            // Flow doesn't know we added jest mocks to this $FlowFixMe
             setTimeout.mockClear();
             ref && ref.dispatchEvent(new FocusEvent("focusin"));
 

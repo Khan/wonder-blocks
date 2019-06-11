@@ -40,6 +40,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             hovered,
             pressed,
             testId,
+            open,
             "aria-label": ariaLabel,
             ...handlers
         } = this.props;

@@ -31,6 +31,18 @@ describe("AnimationFrame", () => {
             expect(result).toBeDefined();
         });
 
+        it("throws if the action is not a function", () => {
+            // Arrange
+
+            // Act
+            const underTest = () => new AnimationFrame((null: any));
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Action must be a function"`,
+            );
+        });
+
         it("requests an animation frame when autoSet is true", () => {
             // Arrange
 
@@ -101,6 +113,7 @@ describe("AnimationFrame", () => {
             const action = jest.fn();
             const animationFrame = new AnimationFrame(() => action());
             animationFrame.set();
+            // Flow doesn't know we added jest mocks to this $FlowFixMe
             const scheduledAction = requestAnimationFrame.mock.calls[0][0];
 
             // Act

@@ -1,4 +1,9 @@
 // @flow
-import type {IAnimationFrame, IInterval, ITimeout} from "./util/types.js";
+import type {
+    IAnimationFrame,
+    IInterval,
+    IScheduleActions,
+    ITimeout,
+} from "./util/types.js";
 
-export type {IAnimationFrame, IInterval, ITimeout};
+export type {IAnimationFrame, IInterval, IScheduleActions, ITimeout};

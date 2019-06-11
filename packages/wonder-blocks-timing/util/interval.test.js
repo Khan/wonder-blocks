@@ -17,6 +17,30 @@ describe("Interval", () => {
             expect(result).toBeDefined();
         });
 
+        it("throws if the action is not a function", () => {
+            // Arrange
+
+            // Act
+            const underTest = () => new Interval((null: any), 1);
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Action must be a function"`,
+            );
+        });
+
+        it("throws if the period is less than 1", () => {
+            // Arrange
+
+            // Act
+            const underTest = () => new Interval(() => {}, 0);
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Interval period must be >= 1"`,
+            );
+        });
+
         it("sets an interval when autoSet is true", () => {
             // Arrange
 
@@ -88,6 +112,7 @@ describe("Interval", () => {
             const action = jest.fn();
             const interval = new Interval(() => action(), 500);
             interval.set();
+            // Flow doesn't know we added jest mocks to this $FlowFixMe
             const scheduledAction = setInterval.mock.calls[0][0];
 
             // Act
