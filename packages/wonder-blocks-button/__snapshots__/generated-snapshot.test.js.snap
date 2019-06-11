@@ -511,7 +511,6 @@ exports[`wonder-blocks-button example 3 1`] = `
   }
 >
   <button
-    aria-disabled="true"
     className=""
     disabled={true}
     onBlur={[Function]}
@@ -585,7 +584,6 @@ exports[`wonder-blocks-button example 3 1`] = `
     </span>
   </button>
   <button
-    aria-disabled="true"
     className=""
     disabled={true}
     onBlur={[Function]}
@@ -662,7 +660,6 @@ exports[`wonder-blocks-button example 3 1`] = `
     </span>
   </button>
   <button
-    aria-disabled="true"
     className=""
     disabled={true}
     onBlur={[Function]}
@@ -982,7 +979,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     </span>
   </button>
   <button
-    aria-disabled="true"
     className=""
     disabled={true}
     onBlur={[Function]}
@@ -1056,7 +1052,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     </span>
   </button>
   <button
-    aria-disabled="true"
     className=""
     disabled={true}
     onBlur={[Function]}
@@ -1133,7 +1128,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     </span>
   </button>
   <button
-    aria-disabled="true"
     className=""
     disabled={true}
     onBlur={[Function]}
@@ -1869,7 +1863,6 @@ exports[`wonder-blocks-button example 8 1`] = `
   }
 >
   <button
-    aria-disabled="true"
     aria-label="loading"
     className=""
     disabled={true}
@@ -1998,7 +1991,6 @@ exports[`wonder-blocks-button example 8 1`] = `
     </div>
   </button>
   <button
-    aria-disabled="true"
     aria-label="loading"
     className=""
     disabled={true}

@@ -2,7 +2,6 @@
 
 exports[`ButtonCore kind:primary color:default size:medium light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -310,7 +309,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
 
 exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -618,7 +616,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
 
 exports[`ButtonCore kind:primary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -926,7 +923,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
 
 exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -1234,7 +1230,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -1542,7 +1537,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -1850,7 +1844,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
 
 exports[`ButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -2158,7 +2151,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
 
 exports[`ButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -2466,7 +2458,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
 
 exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
 <button
-  aria-disabled="true"
   aria-label="loading"
   className=""
   disabled={true}
@@ -2597,7 +2588,6 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
 
 exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
 <button
-  aria-disabled="true"
   aria-label="loading"
   className=""
   disabled={true}
@@ -2728,7 +2718,6 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
 
 exports[`ButtonCore kind:secondary color:default size:medium light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -3045,7 +3034,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
 
 exports[`ButtonCore kind:secondary color:default size:medium light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -3362,7 +3350,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
 
 exports[`ButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -3679,7 +3666,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
 
 exports[`ButtonCore kind:secondary color:default size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -3996,7 +3982,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -4313,7 +4298,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -4630,7 +4614,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -4947,7 +4930,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -5264,7 +5246,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
 
 exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
 <button
-  aria-disabled="true"
   aria-label="loading"
   className=""
   disabled={true}
@@ -5398,7 +5379,6 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
 
 exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
 <button
-  aria-disabled="true"
   aria-label="loading"
   className=""
   disabled={true}
@@ -5532,7 +5512,6 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -5867,7 +5846,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -6202,7 +6180,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
 
 exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -6537,7 +6514,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
 
 exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -6872,7 +6848,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -7207,7 +7182,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -7542,7 +7516,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -7877,7 +7850,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label=""
   className=""
   disabled={true}
@@ -8212,7 +8184,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
 
 exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
 <button
-  aria-disabled="true"
   aria-label="loading"
   className=""
   disabled={true}
@@ -8343,7 +8314,6 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
 
 exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
 <button
-  aria-disabled="true"
   aria-label="loading"
   className=""
   disabled={true}

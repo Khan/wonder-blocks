@@ -40,6 +40,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             hovered,
             pressed,
             testId,
+            open,
             "aria-label": ariaLabel,
             ...handlers
         } = this.props;
@@ -62,7 +63,6 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
 
         return (
             <StyledButton
-                aria-disabled={disabled ? "true" : undefined}
                 aria-expanded={open ? "true" : "false"}
                 aria-haspopup="menu"
                 aria-label={ariaLabel}
