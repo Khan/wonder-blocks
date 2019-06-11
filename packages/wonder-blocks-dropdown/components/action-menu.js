@@ -191,6 +191,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             children,
             onChange,
             selectedValues,
+            "aria-disabled": ariaDisabled, // WB-535 avoids passing this prop to the opener
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;

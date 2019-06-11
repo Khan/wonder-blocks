@@ -8,7 +8,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import IconButtonCore from "./icon-button-core.js";
 
 export type SharedProps = {|
-    ...AriaProps,
+    ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
 
     /**
      * A Wonder Blocks icon asset, an object specifing paths for one or more of

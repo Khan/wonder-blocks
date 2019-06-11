@@ -293,7 +293,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     }
   />
   <button
-    aria-disabled="true"
     aria-label="search"
     className=""
     disabled={true}
@@ -386,7 +385,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     }
   />
   <button
-    aria-disabled="true"
     aria-label="search"
     className=""
     disabled={true}

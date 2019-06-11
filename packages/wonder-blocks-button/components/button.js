@@ -13,7 +13,7 @@ export type SharedProps = {|
      * readers that the action taken by clicking the button will take some
      * time to complete.
      */
-    ...AriaProps,
+    ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
 
     /**
      * Text to appear on the button.

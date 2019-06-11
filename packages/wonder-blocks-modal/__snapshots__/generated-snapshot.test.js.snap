@@ -845,7 +845,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
     }
   >
     <button
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="menu"
       className=""
       disabled={false}
@@ -862,7 +862,6 @@ exports[`wonder-blocks-modal example 6 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      open={false}
       style={
         Object {
           "::MozFocusInner": Object {
