@@ -44,7 +44,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
     }
   >
     <button
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="menu"
       className=""
       data-test-id="teacher-menu"
@@ -62,7 +62,6 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      open={false}
       style={
         Object {
           "::MozFocusInner": Object {
@@ -248,7 +247,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     }
   >
     <button
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="menu"
       className=""
       disabled={false}
@@ -265,7 +264,6 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      open={false}
       style={
         Object {
           "::MozFocusInner": Object {
@@ -430,7 +428,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
     }
   >
     <button
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="menu"
       className=""
       disabled={false}
@@ -447,7 +445,6 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      open={false}
       style={
         Object {
           "::MozFocusInner": Object {
@@ -612,8 +609,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
     }
   >
     <button
-      aria-disabled="true"
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="menu"
       className=""
       disabled={true}
@@ -630,7 +626,6 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      open={false}
       style={
         Object {
           "::MozFocusInner": Object {
@@ -795,7 +790,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
     }
   >
     <button
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="menu"
       className=""
       data-test-id="teacher-menu"
@@ -813,7 +808,6 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      open={false}
       style={
         Object {
           "::MozFocusInner": Object {

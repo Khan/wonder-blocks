@@ -12,7 +12,9 @@ import type {
 
 /**
  * Implements the `IScheduleActions` API to provide timeout, interval, and
- * animation frame support.
+ * animation frame support. This is not intended for direct use, but instead
+ * is to be used solely by the `ActionSchedulerProvider` to provide an
+ * `IScheduleActions` instance.
  */
 export default class ActionScheduler implements IScheduleActions {
     _registeredActions: Array<() => void> = [];
