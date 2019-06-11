@@ -6,7 +6,7 @@ import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import ActionMenuOpenerCore from "./action-menu-opener-core.js";
 
 export type SharedProps = {|
-    ...AriaProps,
+    ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
 
     /**
      * Display text for the opener.

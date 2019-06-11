@@ -62,7 +62,6 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
 
         return (
             <StyledButton
-                aria-disabled={disabled ? "true" : undefined}
                 aria-expanded={open ? "true" : "false"}
                 aria-haspopup="menu"
                 aria-label={ariaLabel}
