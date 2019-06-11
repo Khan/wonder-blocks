@@ -28,6 +28,14 @@ export default class Timeout implements ITimeout {
      * @memberof Timeout
      */
     constructor(action: () => mixed, timeoutMs: number, autoSet?: boolean) {
+        if (typeof action !== "function") {
+            throw new Error("Action must be a function");
+        }
+
+        if (timeoutMs < 0) {
+            throw new Error("Timeout period must be >= 0");
+        }
+
         this._action = action;
         this._timeoutMs = timeoutMs;
 
