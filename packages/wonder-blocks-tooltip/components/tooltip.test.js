@@ -11,7 +11,6 @@ import TooltipBubble from "./tooltip-bubble.js";
 import TooltipContent from "./tooltip-content.js";
 
 const mockIDENTIFIER = "mock-identifier";
-
 jest.mock("./tooltip-bubble.js");
 jest.mock("@khanacademy/wonder-blocks-core", () => {
     const Core = jest.requireActual("@khanacademy/wonder-blocks-core");
