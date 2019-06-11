@@ -1,7 +1,6 @@
 // @flow
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -61,17 +60,6 @@ export default class TooltipBubble extends React.Component<Props, State> {
         active: false,
     };
 
-    componentDidMount() {
-        const bubbleNode = ReactDOM.findDOMNode(this);
-
-        if (!bubbleNode) {
-            return;
-        }
-
-        bubbleNode.addEventListener("mouseenter", this._handleMouseEnter);
-        bubbleNode.addEventListener("mouseleave", this._handleMouseLeave);
-    }
-
     _updateActiveState(hovered: boolean) {
         this._setActiveState(hovered);
     }
@@ -110,6 +98,8 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 id={id}
                 role="tooltip"
                 data-placement={placement}
+                onMouseEnter={() => this._handleMouseEnter()}
+                onMouseLeave={() => this._handleMouseLeave()}
                 ref={updateBubbleRef}
                 style={[
                     outOfBoundaries && styles.hide,

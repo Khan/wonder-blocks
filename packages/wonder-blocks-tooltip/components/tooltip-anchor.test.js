@@ -253,7 +253,7 @@ describe("TooltipAnchor", () => {
             mockTracker.steal.mockImplementationOnce(() => false);
 
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
 
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -263,7 +263,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -302,17 +302,17 @@ describe("TooltipAnchor", () => {
             mockTracker.steal.mockImplementationOnce(() => true);
 
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
                         anchorRef={resolve}
                         onActiveChanged={(active) => {
                             activeState = active;
-                            thisTimeoutID = 9;
+                            currentTimeoutID = 9;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -337,7 +337,7 @@ describe("TooltipAnchor", () => {
         test("active state was not stolen, active is set to false with delay", async () => {
             // Arrange
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -346,7 +346,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -385,7 +385,7 @@ describe("TooltipAnchor", () => {
             const mockTracker = ActiveTracker.mock.instances[0];
 
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -394,7 +394,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -428,7 +428,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             let wrapper;
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -437,7 +437,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -472,7 +472,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             let wrapper;
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -481,7 +481,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -508,7 +508,7 @@ describe("TooltipAnchor", () => {
         test("if hovered, remains active", async () => {
             // Arrange
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -517,7 +517,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -557,7 +557,7 @@ describe("TooltipAnchor", () => {
             mockTracker.steal.mockImplementationOnce(() => false);
 
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -566,7 +566,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -601,7 +601,7 @@ describe("TooltipAnchor", () => {
             mockTracker.steal.mockImplementationOnce(() => true);
 
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -610,7 +610,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -631,7 +631,7 @@ describe("TooltipAnchor", () => {
         test("active state was not stolen, active is set to false with delay", async () => {
             // Arrange
             let activeState = false;
-            let thisTimeoutID = false;
+            let currentTimeoutID = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -640,7 +640,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -677,7 +677,7 @@ describe("TooltipAnchor", () => {
             // Flow doesn't know this is a mock $FlowFixMe
             const mockTracker = ActiveTracker.mock.instances[0];
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -686,7 +686,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -719,7 +719,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             let wrapper;
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -728,7 +728,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -762,7 +762,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             let wrapper;
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -771,7 +771,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -798,7 +798,7 @@ describe("TooltipAnchor", () => {
         test("if focused, remains active", async () => {
             // Arrange
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -807,7 +807,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
@@ -968,7 +968,7 @@ describe("TooltipAnchor", () => {
         test("when active, escape dismisses tooltip", async () => {
             // Arrange
             let activeState = false;
-            let thisTimeoutID = null;
+            let currentTimeoutID = null;
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -977,7 +977,7 @@ describe("TooltipAnchor", () => {
                             activeState = active;
                         }}
                         onTimeoutChanged={(timeoutID) => {
-                            thisTimeoutID = timeoutID;
+                            currentTimeoutID = timeoutID;
                         }}
                     >
                         Anchor Text
