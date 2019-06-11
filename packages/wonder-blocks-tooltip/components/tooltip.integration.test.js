@@ -13,7 +13,7 @@ describe("tooltip integration tests", () => {
         jest.useFakeTimers();
     });
 
-    it("timeoutId should be null when TooltipBubble is active", () => {
+    it("should set timeoutId be null when TooltipBubble is active", () => {
         const wrapper = mount(
             <Tooltip content="hello, world">an anchor</Tooltip>,
         );
@@ -51,6 +51,7 @@ describe("tooltip integration tests", () => {
         const bubbleTimeoutCheck = (callback) =>
             setTimeout(() => {
                 expect(wrapper.state("timeoutID")).toEqual(expect.any(Number));
+                expect(wrapper.state("active")).toEqual(true);
                 callback && callback();
             }, TooltipDisappearanceDelay / 2);
 
@@ -83,6 +84,7 @@ describe("tooltip integration tests", () => {
         const bubbleTimeoutCheck = (callback) =>
             setTimeout(() => {
                 expect(wrapper.state("timeoutID")).toEqual(null);
+                expect(wrapper.state("active")).toEqual(false);
                 callback && callback();
             }, TooltipDisappearanceDelay + 10);
 
