@@ -25,6 +25,10 @@ export default class AnimationFrame implements IAnimationFrame {
      * @memberof AnimationFrame
      */
     constructor(action: () => mixed, autoSet?: boolean) {
+        if (typeof action !== "function") {
+            throw new Error("Action must be a function");
+        }
+
         this._action = action;
 
         if (autoSet) {

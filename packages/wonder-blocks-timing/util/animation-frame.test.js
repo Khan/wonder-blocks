@@ -31,6 +31,18 @@ describe("AnimationFrame", () => {
             expect(result).toBeDefined();
         });
 
+        it("throws if the action is not a function", () => {
+            // Arrange
+
+            // Act
+            const underTest = () => new AnimationFrame((null: any));
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Action must be a function"`,
+            );
+        });
+
         it("requests an animation frame when autoSet is true", () => {
             // Arrange
 
