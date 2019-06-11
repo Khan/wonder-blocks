@@ -18,7 +18,7 @@ type Props = {|
  *
  * ```jsx
  * <ActionSchedulerProvider>
- *     {actionScheduler => this.renderThingThatNeedsTimers(actionScheduler)}
+ *     {schedule => this.renderThingThatNeedsTimers(schedule)}
  * </ActionSchedulerProvider>
  * ```
  */
