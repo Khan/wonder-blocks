@@ -129,3 +129,102 @@ export interface IAnimationFrame {
      */
     clear(resolve?: boolean): void;
 }
+
+/**
+ * Provides means to request timeouts, intervals, and animation frames, with
+ * additional support for clearing all requested actions.
+ *
+ * This interface describes a replacement for the `setTimeout`/`clearTimeout`,
+ * `setInterval`/`clearInterval` and `requestAnimationFrame`/`cancelAnimationFrame`
+ * APIs that supports the ability to easily clear all pending actions.
+ *
+ * @export
+ * @interface IScheduleActions
+ */
+export interface IScheduleActions {
+    /**
+     * Request a timeout.
+     *
+     * A timeout will wait for a given period and then invoke a given action.
+     *
+     * @param {() => void} action The action to be invoked when the timeout
+     * period is reached.
+     * @param {number} period The timeout period in milliseconds. The action
+     * will be invoked after this period has passed since the timeout was set.
+     * This value must be greater than or equal to zero.
+     * @param {boolean} [autoSet] Whether or not to set the timeout as soon
+     * as this call is made, or wait until `set` is explicitly called. Defaults
+     * to true.
+     * @param {boolean} [resolveOnClear] Whether or not the associated action
+     * will be invoked if it is still pending at the point the timeout is
+     * cleared. Defaults to false.
+     * @returns {ITimeout} A interface for manipulating the created timeout.
+     * @memberof IScheduleActions
+     */
+    timeout(
+        action: () => mixed,
+        period: number,
+        autoSet?: boolean,
+        resolveOnClear?: boolean,
+    ): ITimeout;
+
+    /**
+     * Request an interval.
+     *
+     * An interval will invoke a given action each time the given period has
+     * passed until the interval is cleared.
+     *
+     * @param {() => void} action The action to be invoked when the timeout
+     * period is reached.
+     * @param {number} period The interval period in milliseconds. The action
+     * will be invoked each time this period has passed since the interval was
+     * set or last occurred.
+     * This value must be greater than zero.
+     * @param {boolean} [autoSet] Whether or not to set the interval as soon
+     * as this call is made, or wait until `set` is explicitly called. Defaults
+     * to true.
+     * @param {boolean} [resolveOnClear] Whether or not the associated action
+     * will be invoked at the point the interval is cleared if the interval
+     * is running at that time. Defaults to false.
+     * @returns {IInterval} An interface for manipulating the created interval.
+     * @memberof IScheduleActions
+     */
+    interval(
+        action: () => mixed,
+        period: number,
+        autoSet?: boolean,
+        resolveOnClear?: boolean,
+    ): IInterval;
+
+    /**
+     * Request an animation frame.
+     *
+     * An animation frame request tells the browser that you wish to perform an
+     * animation and requests that the browser call a specified function to
+     * update an animation before the next repaint.
+     *
+     * @param {() => void} action The action to be invoked before the repaint.
+     * @param {boolean} [autoSet] Whether or not to make the request as soon
+     * as this call is made, or wait until `set` is explicitly called. Defaults
+     * to true.
+     * @param {boolean} [resolveOnClear] Whether or not the associated action
+     * will be invoked at the point the request is cleared if it has not yet
+     * executed. Defaults to false.
+     * @returns {IAnimationFrame} An interface for manipulating the created
+     * request.
+     * @memberof IScheduleActions
+     */
+    animationFrame(
+        action: () => void,
+        autoSet?: boolean,
+        resolveOnClear?: boolean,
+    ): IAnimationFrame;
+
+    /**
+     * Clears all timeouts, intervals, and animation frame requests that were
+     * made with this scheduler.
+     *
+     * @memberof IScheduleActions
+     */
+    clearAll(): void;
+}

@@ -29,6 +29,14 @@ export default class Interval implements IInterval {
      * @memberof Interval
      */
     constructor(action: () => mixed, intervalMs: number, autoSet?: boolean) {
+        if (typeof action !== "function") {
+            throw new Error("Action must be a function");
+        }
+
+        if (intervalMs < 1) {
+            throw new Error("Interval period must be >= 1");
+        }
+
         this._action = action;
         this._intervalMs = intervalMs;
 
