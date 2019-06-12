@@ -41,7 +41,7 @@ describe("Interval", () => {
             );
         });
 
-        it("sets an interval when autoSet is true", () => {
+        it("sets an interval when autoSchedule is true", () => {
             // Arrange
 
             // Act

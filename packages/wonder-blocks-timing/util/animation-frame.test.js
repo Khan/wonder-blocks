@@ -43,7 +43,7 @@ describe("AnimationFrame", () => {
             );
         });
 
-        it("requests an animation frame when autoSet is true", () => {
+        it("requests an animation frame when autoSchedule is true", () => {
             // Arrange
 
             // Act

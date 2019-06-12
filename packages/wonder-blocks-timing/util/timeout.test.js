@@ -41,7 +41,7 @@ describe("Timeout", () => {
             );
         });
 
-        it("sets a timeout when autoSet is true", () => {
+        it("sets a timeout when autoSchedule is true", () => {
             // Arrange
 
             // Act
