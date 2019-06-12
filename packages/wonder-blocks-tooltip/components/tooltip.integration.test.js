@@ -58,51 +58,49 @@ describe("tooltip integration tests", () => {
     });
 
     it("should disable the timeout if the mouse hovers over TooltipAnchor within the TooltipDisappearanceDelay", () => {
+        // Arrange
         const wrapper = mount(
             <Tooltip content="hello, world">an anchor</Tooltip>,
         );
 
-        wrapper.setState({active: true});
+        const anchor = wrapper.find(TooltipAnchor).getDOMNode();
+        anchor && anchor.dispatchEvent(new FocusEvent("mouseenter"));
+        jest.runAllTimers();
+        wrapper.update();
 
         const bubbleWrapper = wrapper.find(TooltipBubble);
-        expect(bubbleWrapper.length).toEqual(1);
 
-        const anchorWrapper = wrapper.find(TooltipAnchor);
-        expect(anchorWrapper.length).toEqual(1);
-
-        const anchorInstance = anchorWrapper.instance();
-        anchorInstance._setActiveState(true, false);
-
-        anchorWrapper.simulate("mouseleave");
-
+        // Act
+        anchor && anchor.dispatchEvent(new FocusEvent("mouseleave"));
         jest.advanceTimersByTime(TooltipDisappearanceDelay / 2);
+        wrapper.update();
 
         bubbleWrapper.simulate("mouseenter");
+        wrapper.update();
+
+        // Assert
         expect(wrapper.state("timeoutID")).toEqual(null);
         expect(wrapper.state("active")).toEqual(true);
     });
 
     it("should close TooltipBubble on mouseleave on TooltipBubble", () => {
+        // Arrange
         const wrapper = mount(
             <Tooltip content="hello, world">an anchor</Tooltip>,
         );
 
-        wrapper.setState({active: true});
+        const anchor = wrapper.find(TooltipAnchor).getDOMNode();
+        anchor && anchor.dispatchEvent(new FocusEvent("mouseenter"));
+        jest.runAllTimers();
+        wrapper.update();
 
         const bubbleWrapper = wrapper.find(TooltipBubble);
-        expect(bubbleWrapper.length).toEqual(1);
 
-        const anchorWrapper = wrapper.find(TooltipAnchor);
-        expect(anchorWrapper.length).toEqual(1);
-
-        const anchorInstance = anchorWrapper.instance();
-        anchorInstance._setActiveState(true, false);
-
-        anchorWrapper.simulate("mouseleave");
-        bubbleWrapper.simulate("mouseenter");
-        expect(wrapper.state("timeoutID")).toEqual(null);
-
+        // Act
         bubbleWrapper.simulate("mouseleave");
+
+        // Assert
+        expect(wrapper.state("timeoutID")).toEqual(null);
         expect(wrapper.state("active")).toEqual(false);
     });
 });
