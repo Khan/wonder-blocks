@@ -65,7 +65,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
         this.props.onActiveChanged(active);
     }
 
-    _handleMouseEnter = () => {
+    handleMouseEnter = () => {
         if (this.props.anchorTimeoutID) {
             clearTimeout(this.props.anchorTimeoutID);
             this.props.onTimeoutChanged(null);
@@ -73,7 +73,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
         this._setActiveState(true);
     };
 
-    _handleMouseLeave = () => {
+    handleMouseLeave = () => {
         this.props.onActiveChanged(false);
     };
 
@@ -94,10 +94,8 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 id={id}
                 role="tooltip"
                 data-placement={placement}
-                // eslint-disable-next-line react/jsx-handler-names
-                onMouseEnter={this._handleMouseEnter}
-                // eslint-disable-next-line react/jsx-handler-names
-                onMouseLeave={this._handleMouseLeave}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
                 ref={updateBubbleRef}
                 style={[
                     outOfBoundaries && styles.hide,
