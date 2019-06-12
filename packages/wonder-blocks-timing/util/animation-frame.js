@@ -19,19 +19,19 @@ export default class AnimationFrame implements IAnimationFrame {
      * The request is not made until set is called.
      *
      * @param {() => mixed} action The action to be invoked.
-     * @param {boolean} [autoSet] When true, the request is made immediately on
+     * @param {boolean} [autoSchedule] When true, the request is made immediately on
      * instanstiation; otherwise, `set` must be called to make the request.
      * Defaults to `true`.
      * @memberof AnimationFrame
      */
-    constructor(action: () => mixed, autoSet?: boolean) {
+    constructor(action: () => mixed, autoSchedule?: boolean) {
         if (typeof action !== "function") {
             throw new Error("Action must be a function");
         }
 
         this._action = action;
 
-        if (autoSet || autoSet == null) {
+        if (autoSchedule || autoSchedule == null) {
             this.set();
         }
     }

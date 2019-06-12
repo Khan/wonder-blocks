@@ -152,7 +152,7 @@ export interface IScheduleActions {
      * @param {number} period The timeout period in milliseconds. The action
      * will be invoked after this period has passed since the timeout was set.
      * This value must be greater than or equal to zero.
-     * @param {boolean} [autoSet] Whether or not to set the timeout as soon
+     * @param {boolean} [autoSchedule] Whether or not to set the timeout as soon
      * as this call is made, or wait until `set` is explicitly called. Defaults
      * to true.
      * @param {boolean} [resolveOnClear] Whether or not the associated action
@@ -164,7 +164,7 @@ export interface IScheduleActions {
     timeout(
         action: () => mixed,
         period: number,
-        autoSet?: boolean,
+        autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): ITimeout;
 
@@ -180,7 +180,7 @@ export interface IScheduleActions {
      * will be invoked each time this period has passed since the interval was
      * set or last occurred.
      * This value must be greater than zero.
-     * @param {boolean} [autoSet] Whether or not to set the interval as soon
+     * @param {boolean} [autoSchedule] Whether or not to set the interval as soon
      * as this call is made, or wait until `set` is explicitly called. Defaults
      * to true.
      * @param {boolean} [resolveOnClear] Whether or not the associated action
@@ -192,7 +192,7 @@ export interface IScheduleActions {
     interval(
         action: () => mixed,
         period: number,
-        autoSet?: boolean,
+        autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): IInterval;
 
@@ -204,7 +204,7 @@ export interface IScheduleActions {
      * update an animation before the next repaint.
      *
      * @param {() => void} action The action to be invoked before the repaint.
-     * @param {boolean} [autoSet] Whether or not to make the request as soon
+     * @param {boolean} [autoSchedule] Whether or not to make the request as soon
      * as this call is made, or wait until `set` is explicitly called. Defaults
      * to true.
      * @param {boolean} [resolveOnClear] Whether or not the associated action
@@ -216,7 +216,7 @@ export interface IScheduleActions {
      */
     animationFrame(
         action: () => void,
-        autoSet?: boolean,
+        autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): IAnimationFrame;
 

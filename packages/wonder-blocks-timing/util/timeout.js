@@ -22,12 +22,16 @@ export default class Timeout implements ITimeout {
      * @param {() => mixed} action The action to be invoked when the timeout
      * period has passed.
      * @param {number} timeoutMs The timeout period.
-     * @param {boolean} [autoSet] When true, the timer is set immediately on
+     * @param {boolean} [autoSchedule] When true, the timer is set immediately on
      * instanstiation; otherwise, `set` must be called to set the timeout.
      * Defaults to `true`.
      * @memberof Timeout
      */
-    constructor(action: () => mixed, timeoutMs: number, autoSet?: boolean) {
+    constructor(
+        action: () => mixed,
+        timeoutMs: number,
+        autoSchedule?: boolean,
+    ) {
         if (typeof action !== "function") {
             throw new Error("Action must be a function");
         }
@@ -39,7 +43,7 @@ export default class Timeout implements ITimeout {
         this._action = action;
         this._timeoutMs = timeoutMs;
 
-        if (autoSet || autoSet == null) {
+        if (autoSchedule || autoSchedule == null) {
             this.set();
         }
     }
