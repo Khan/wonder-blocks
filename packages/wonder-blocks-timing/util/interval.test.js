@@ -41,7 +41,7 @@ describe("Interval", () => {
             );
         });
 
-        it("sets an interval when autoSet is true", () => {
+        it("sets an interval when autoSchedule is true", () => {
             // Arrange
 
             // Act
@@ -56,7 +56,7 @@ describe("Interval", () => {
     describe("isSet", () => {
         it("is false when the interval has not been set", () => {
             // Arrange
-            const interval = new Interval(() => {}, 1000);
+            const interval = new Interval(() => {}, 1000, false);
 
             // Act
             const result = interval.isSet;
@@ -195,7 +195,7 @@ describe("Interval", () => {
         it("should not invoke the action if interval is inactive", () => {
             // Arrange
             const action = jest.fn();
-            const interval = new Interval(action, 500);
+            const interval = new Interval(action, 500, false);
 
             // Act
             interval.clear(true);
