@@ -22,13 +22,17 @@ export default class Interval implements IInterval {
      * @param {() => mixed} action The action to be invoked each time the
      * interval period has passed.
      * @param {number} intervalMs The interval period.
-     * @param {boolean} [autoSet] When true, the interval is activated
+     * @param {boolean} [autoSchedule] When true, the interval is activated
      * immediately on instanstiation; otherwise, `set` must be called to
      * activate the interval.
-     * Defaults to `false`.
+     * Defaults to `true`.
      * @memberof Interval
      */
-    constructor(action: () => mixed, intervalMs: number, autoSet?: boolean) {
+    constructor(
+        action: () => mixed,
+        intervalMs: number,
+        autoSchedule?: boolean,
+    ) {
         if (typeof action !== "function") {
             throw new Error("Action must be a function");
         }
@@ -40,7 +44,7 @@ export default class Interval implements IInterval {
         this._action = action;
         this._intervalMs = intervalMs;
 
-        if (autoSet) {
+        if (autoSchedule || autoSchedule == null) {
             this.set();
         }
     }

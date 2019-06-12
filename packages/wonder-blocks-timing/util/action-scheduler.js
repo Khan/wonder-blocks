@@ -22,10 +22,10 @@ export default class ActionScheduler implements IScheduleActions {
     timeout(
         action: () => mixed,
         period: number,
-        autoSet?: boolean,
+        autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): ITimeout {
-        const timeout = new Timeout(action, period, autoSet);
+        const timeout = new Timeout(action, period, autoSchedule);
         this._registeredActions.push(() => timeout.clear(resolveOnClear));
         return timeout;
     }
@@ -33,20 +33,20 @@ export default class ActionScheduler implements IScheduleActions {
     interval(
         action: () => mixed,
         period: number,
-        autoSet?: boolean,
+        autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): IInterval {
-        const interval = new Interval(action, period, autoSet);
+        const interval = new Interval(action, period, autoSchedule);
         this._registeredActions.push(() => interval.clear(resolveOnClear));
         return interval;
     }
 
     animationFrame(
         action: () => void,
-        autoSet?: boolean,
+        autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): IAnimationFrame {
-        const animationFrame = new AnimationFrame(action, autoSet);
+        const animationFrame = new AnimationFrame(action, autoSchedule);
         this._registeredActions.push(() =>
             animationFrame.clear(resolveOnClear),
         );

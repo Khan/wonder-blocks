@@ -43,7 +43,7 @@ describe("AnimationFrame", () => {
             );
         });
 
-        it("requests an animation frame when autoSet is true", () => {
+        it("requests an animation frame when autoSchedule is true", () => {
             // Arrange
 
             // Act
@@ -58,7 +58,7 @@ describe("AnimationFrame", () => {
     describe("isSet", () => {
         it("is false when the request has not been set", () => {
             // Arrange
-            const animationFrame = new AnimationFrame(() => {});
+            const animationFrame = new AnimationFrame(() => {}, false);
 
             // Act
             const result = animationFrame.isSet;
@@ -140,7 +140,7 @@ describe("AnimationFrame", () => {
         it("should set the timeout again if it has already executed", () => {
             // Arrange
             const action = jest.fn();
-            const animationFrame = new AnimationFrame(action);
+            const animationFrame = new AnimationFrame(action, false);
             animationFrame.set();
             jest.runOnlyPendingTimers();
 
@@ -197,7 +197,7 @@ describe("AnimationFrame", () => {
         it("should not invoke the action if timeout is not pending", () => {
             // Arrange
             const action = jest.fn();
-            const animationFrame = new AnimationFrame(action);
+            const animationFrame = new AnimationFrame(action, false);
 
             // Act
             animationFrame.clear(true);
