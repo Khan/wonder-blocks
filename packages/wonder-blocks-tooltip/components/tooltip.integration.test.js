@@ -76,10 +76,12 @@ describe("tooltip integration tests", () => {
         wrapper.update();
 
         bubbleWrapper.simulate("mouseenter");
+        jest.advanceTimersByTime(TooltipDisappearanceDelay + 100);
         wrapper.update();
 
         // Assert
         expect(wrapper.state("timeoutID")).toEqual(null);
+        expect(wrapper.find(TooltipBubble).exists()).toBeTruthy();
         expect(wrapper.state("active")).toEqual(true);
     });
 
@@ -101,6 +103,7 @@ describe("tooltip integration tests", () => {
 
         // Assert
         expect(wrapper.state("timeoutID")).toEqual(null);
+        expect(wrapper.find(TooltipBubble).exists()).toBeFalsy();
         expect(wrapper.state("active")).toEqual(false);
     });
 });
