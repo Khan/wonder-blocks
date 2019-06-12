@@ -76,11 +76,10 @@ function generateTestFile(root, examples, componentFileMap) {
         lines.push(
             ...example
                 .split("\n")
-                .map(
-                    (line, index) =>
-                        index + 1 === lastStatement.loc.start.line
-                            ? `        const example = ${line}`
-                            : `        ${line}`,
+                .map((line, index) =>
+                    index + 1 === lastStatement.loc.start.line
+                        ? `        const example = ${line}`
+                        : `        ${line}`,
                 ),
         );
 
