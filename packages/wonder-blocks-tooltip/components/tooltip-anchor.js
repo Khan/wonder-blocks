@@ -105,7 +105,6 @@ export default class TooltipAnchor extends React.Component<Props, State>
     }
 
     componentDidMount() {
-        // debugger;
         const anchorNode = ReactDOM.findDOMNode(this);
 
         // This should never happen, but we have this check here to make flow
@@ -280,7 +279,6 @@ export default class TooltipAnchor extends React.Component<Props, State>
     };
 
     _handleMouseLeave = () => {
-        // debugger;
         this._updateActiveState(false, this._focused);
     };
 

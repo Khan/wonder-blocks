@@ -71,7 +71,7 @@
     "flow-coverage-report": "^0.5.0",
     "glob": "^7.1.2",
     "jest": "^23.5.0",
-    "jest-enzyme": "^6.0.2",
+    "jest-enzyme": "^7.0.2",
     "lerna": "^2.11.0",
     "marked": "^0.3.19",
     "pre-commit": "^1.2.2",

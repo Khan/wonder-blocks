@@ -15,36 +15,44 @@ describe("tooltip integration tests", () => {
     });
 
     it("should set timeoutId be null when TooltipBubble is active", () => {
+        // Arrange
         const wrapper = mount(
             <Tooltip content="hello, world">an anchor</Tooltip>,
         );
+        const anchor = wrapper.find(TooltipAnchor).getDOMNode();
 
-        wrapper.setState({active: true});
+        // Act
+        anchor && anchor.dispatchEvent(new FocusEvent("mouseenter"));
+        // There's a 100ms delay before TooltipAnchor calls _setActiveState with
+        // instant set to true.  This second call is what actually triggers the
+        // call to this.props.onActiveChanged() which updates Tooltip's active
+        // state.
+        jest.runAllTimers();
+        // Since the call to update Tooltip's active state happens in a timeout
+        // we need to call update b/c it happens outside of the normal React lifecycle
+        // methods.
+        wrapper.update();
 
-        const bubbleWrapper = wrapper.find(TooltipBubble);
-        expect(bubbleWrapper.length).toEqual(1);
-
+        // Assert
+        expect(wrapper).toContainMatchingElement(TooltipBubble);
         expect(wrapper).toHaveState("timeoutID", null);
     });
 
-    //TODO: Fix, this test interferes with the next one somehow
-    it.skip("should set a timeout on mouseleave on TooltipAnchor", () => {
+    it("should set a timeout on mouseleave on TooltipAnchor", () => {
+        // Arrange
         const wrapper = mount(
             <Tooltip content="hello, world">an anchor</Tooltip>,
         );
+        const anchor = wrapper.find(TooltipAnchor).getDOMNode();
+        anchor && anchor.dispatchEvent(new FocusEvent("mouseenter"));
+        jest.runAllTimers();
+        wrapper.update();
 
-        wrapper.setState({active: true});
+        // Act
+        anchor && anchor.dispatchEvent(new FocusEvent("mouseleave"));
+        wrapper.update();
 
-        const bubbleWrapper = wrapper.find(TooltipBubble);
-        expect(bubbleWrapper.length).toEqual(1);
-
-        const anchorWrapper = wrapper.find(TooltipAnchor);
-        expect(anchorWrapper.length).toEqual(1);
-
-        const anchorInstance = anchorWrapper.instance();
-        anchorInstance._setActiveState(true, false);
-
-        anchorWrapper.simulate("mouseleave");
+        // Assert
         expect(wrapper.state("timeoutID")).toEqual(expect.any(Number));
         expect(wrapper.state("active")).toEqual(true);
     });
