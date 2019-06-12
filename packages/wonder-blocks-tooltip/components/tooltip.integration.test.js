@@ -81,7 +81,7 @@ describe("tooltip integration tests", () => {
 
         // Assert
         expect(wrapper.state("timeoutID")).toEqual(null);
-        expect(wrapper.find(TooltipBubble).exists()).toBeTruthy();
+        expect(wrapper).toContainMatchingElement(TooltipBubble);
         expect(wrapper.state("active")).toEqual(true);
     });
 
@@ -103,7 +103,7 @@ describe("tooltip integration tests", () => {
 
         // Assert
         expect(wrapper.state("timeoutID")).toEqual(null);
-        expect(wrapper.find(TooltipBubble).exists()).toBeFalsy();
+        expect(wrapper).not.toContainMatchingElement(TooltipBubble);
         expect(wrapper.state("active")).toEqual(false);
     });
 });
