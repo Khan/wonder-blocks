@@ -1,4 +1,5 @@
 node_modules
+flow-typed/**/*.js
 coverage
 **/generated-snapshot.test.js
 
