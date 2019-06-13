@@ -1,5 +1,6 @@
-// flow-typed signature: f5997c5ee181aaeba6fc2d2a2158feb3
-// flow-typed version: cefb07e7f4/jest_v24.x.x/flow_>=v0.39.x
+// flow-typed signature: f5a484315a3dea13d273645306e4076a
+// flow-typed version: 7c5d14b3d4/jest_v23.x.x/flow_>=v0.39.x
+import type {ComponentType} from "react";
 
 type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {
     (...args: TArguments): TReturn,
@@ -257,6 +258,11 @@ type JestJQueryMatchersType = {
     toBeMatchedBy(sel: string): void,
     toHaveDescendant(sel: string): void,
     toHaveDescendantWithText(sel: string, text: string | RegExp): void,
+};
+
+// TODO(WEB-902): create flow types for jest-enzyme
+type JestEnzymeMatchersType = {
+    toContainMatchingElement(selector: string | ComponentType<*>): void,
 };
 
 // Jest Extended Matchers: https://github.com/jest-community/jest-extended
@@ -564,6 +570,7 @@ interface JestExpectType {
         EnzymeMatchersType &
         DomTestingLibraryType &
         JestJQueryMatchersType &
+        JestEnzymeMatchersType &
         JestStyledComponentsMatchersType &
         JestExtendedMatchersType;
     /**
@@ -1136,6 +1143,7 @@ declare var expect: {
         EnzymeMatchersType &
         DomTestingLibraryType &
         JestJQueryMatchersType &
+        JestEnzymeMatchersType &
         JestStyledComponentsMatchersType &
         JestExtendedMatchersType,
 

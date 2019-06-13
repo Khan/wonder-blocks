@@ -43,6 +43,9 @@ describe("TooltipBubble", () => {
                         placement={props.placement}
                         tailOffset={props.tailOffset}
                         updateBubbleRef={resolve}
+                        anchorTimeoutID={null}
+                        onTimeoutChanged={() => {}}
+                        onActiveChanged={() => {}}
                     >
                         {fakeContent}
                     </TooltipBubble>
