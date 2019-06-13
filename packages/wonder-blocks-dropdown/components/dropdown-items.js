@@ -55,8 +55,5 @@ export default class DropdownItems extends React.Component<
             });
     }
 
-    render = () => {
-        // debugger;
-        return <span>{this.props.children}</span>;
-    };
+    render = () => null;
 }

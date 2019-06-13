@@ -38,7 +38,7 @@ export default class DropdownLauncher extends React.Component<Props, State> {
 
     getMenuItems(): Array<DropdownItem> {
         const selectedValues = [];
-        return React.Children.toArray(this.props.menuItemsTwo)
+        return React.Children.toArray(this.props.menuItemsTwo.props.children)
             .filter(Boolean)
             .map((item) => {
                 const {disabled, value} = item.props;
@@ -79,8 +79,8 @@ export default class DropdownLauncher extends React.Component<Props, State> {
 
     render() {
         console.log("MenuItemsTwo", this.props.menuItemsTwo);
-        console.log("dropRef", this.props.dropdownRef.current);
-
+        console.log("dropRef", this.props.dropdownRef);
+        console.log("GetMenuItems", this.getMenuItems());
         const {
             // the following props are being included here to avoid
             // passing them down to the opener as part of sharedProps
