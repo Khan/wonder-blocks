@@ -14,7 +14,7 @@ module.exports = {
         SNAPSHOT_INLINE_APHRODITE: true,
     },
     testMatch: ["<rootDir>/**/*.test.js"],
-    setupTestFrameworkScriptFile: "<rootDir>/config/jest/test-setup.js",
+    setupFilesAfterEnv: ["<rootDir>/config/jest/test-setup.js"],
     moduleNameMapper: {
         "^@khanacademy/(.*)$":
             "<rootDir>/node_modules/@khanacademy/$1/index.js",

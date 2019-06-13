@@ -32,8 +32,7 @@ module.exports = {
     globalSetup: "@khanacademy/jest-environment-vite/dist/global-setup.js",
     globalTeardown:
         "@khanacademy/jest-environment-vite/dist/global-teardown.js",
-    setupTestFrameworkScriptFile:
-        "@khanacademy/jest-environment-vite/dist/setup.js",
+    setupFilesAfterEnv: ["@khanacademy/jest-environment-vite/dist/setup.js"],
     collectCoverageFrom: [
         "packages/**/*.js",
         "!packages/**/*.test.js",
