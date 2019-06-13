@@ -18,10 +18,9 @@ export default class DropdownItems extends React.Component<
     DropdownItemProps,
     State,
 > {
-    Items: Array<DropdownItem>;
-    _mapChildrenToItems(): Array<DropdownItem> {
+    getMenuItems(): Array<DropdownItem> {
         const selectedValues = [];
-        return React.Children.toArray(this.props.children())
+        return React.Children.toArray(this.props.children)
             .filter(Boolean)
             .map((item) => {
                 const {disabled, value} = item.props;
@@ -31,7 +30,7 @@ export default class DropdownItems extends React.Component<
                         focusable: !disabled,
                         populatedProps: {
                             indent: true,
-                            onClick: this.actionItemHandler,
+                            onClick: this.handleItemSelected,
                         },
                     };
                 } else if (OptionItem.isClassOf(item)) {
@@ -39,7 +38,7 @@ export default class DropdownItems extends React.Component<
                         component: item,
                         focusable: !disabled,
                         populatedProps: {
-                            onToggle: this.optionItemHandler,
+                            onToggle: this.handleOptionSelected,
                             selected: selectedValues
                                 ? selectedValues.includes(value)
                                 : false,
@@ -57,7 +56,7 @@ export default class DropdownItems extends React.Component<
     }
 
     render = () => {
-        this.setState({dItems: this._mapChildrenToItems()});
-        return <span />;
+        // debugger;
+        return <span>{this.props.children}</span>;
     };
 }

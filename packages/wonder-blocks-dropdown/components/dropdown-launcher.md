@@ -8,10 +8,13 @@ const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const {StyleSheet} = require("aphrodite");
 
+const dropdownRef = React.createRef();
 const dropItems = () => {
     return (
-    <DropdownItems>
-        <ActionItem label="Profile" href="http://khanacademy.org/profile" testId="profile" />
+    <DropdownItems
+    ref={dropdownRef}
+    >
+        <ActionItem label="Profile Test" href="http://khanacademy.org/profile" testId="profile" />
         <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" testId="dashboard" />
         <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} testId="settings" />
         <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} testId="help" />
@@ -24,8 +27,10 @@ const dropItems = () => {
 
 <View>
     <DropdownLauncher
+        dropdownRef={dropdownRef}
         menuText="Betsy Appleseed"
         testId="teacher-menu"
+        menuItemsTwo={dropItems()}
         menuItems={[<ActionItem label="Profile" href="http://khanacademy.org/profile" testId="profile" />,
         <ActionItem label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" testId="dashboard" />,
         <ActionItem label="Settings (onClick)" onClick={() => console.log("user clicked on settings")} testId="settings" />,
