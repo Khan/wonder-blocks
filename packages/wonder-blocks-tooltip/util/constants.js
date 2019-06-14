@@ -4,4 +4,4 @@
  */
 export const TooltipPortalAttributeName = "data-tooltip-portal";
 export const TooltipAppearanceDelay = 100;
-export const TooltipDisappearanceDelay = 75;
+export const TooltipDisappearanceDelay = 100;

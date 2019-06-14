@@ -211,7 +211,7 @@ export default class TooltipAnchor extends React.Component<Props, State>
         this._hovered = hovered;
         this._focused = focused;
 
-        this._setActiveState(hovered || focused);
+        this._setActiveState(hovered || focused, false);
     }
 
     _clearPendingAction() {
