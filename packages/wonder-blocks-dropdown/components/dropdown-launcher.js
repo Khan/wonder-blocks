@@ -198,12 +198,16 @@ export default class DropdownLauncher extends React.Component<Props, State> {
             ...sharedProps
         } = this.props;
 
+        const childAnchor = React.cloneElement(children(this._openDropdown), {
+            disabled,
+        });
+
         const opener = (
             <span
                 ref={this.handleOpenerRef}
                 disabled={!dropdownItems.length || disabled}
             >
-                {children(this._openDropdown)}
+                {childAnchor}
             </span>
         );
 

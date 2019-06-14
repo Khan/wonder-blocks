@@ -18,6 +18,7 @@ const dropdownItems = [<ActionItem label="Profile" href="http://khanacademy.org/
 
 <View>
     <DropdownLauncher
+        disabled={false}
         menuText="Betsy Appleseed"
         testId="teacher-menu"
         menuItems={dropdownItems}>
