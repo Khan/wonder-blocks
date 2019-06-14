@@ -2,6 +2,7 @@
 import * as React from "react";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
+import {Title} from "@khanacademy/wonder-blocks-typography";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import ActionItem from "./action-item.js";
 import SeparatorItem from "./separator-item.js";

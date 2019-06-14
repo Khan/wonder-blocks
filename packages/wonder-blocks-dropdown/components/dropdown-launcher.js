@@ -4,6 +4,10 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {Title} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Dropdown from "./dropdown.js";
 import type {Item, DropdownItem} from "../util/types.js";
 import ActionItem from "./action-item.js";
@@ -198,7 +202,8 @@ export default class DropdownLauncher extends React.Component<Props, State> {
             ...sharedProps
         } = this.props;
 
-        const opener = (
+        const childAnchor = children(this._openDropdown);
+        let opener = (
             <span
                 ref={this.handleOpenerRef}
                 disabled={!dropdownItems.length || disabled}
@@ -206,6 +211,45 @@ export default class DropdownLauncher extends React.Component<Props, State> {
                 {children(this._openDropdown)}
             </span>
         );
+
+        /*         TODO: Enforce better type check here
+        Currently this only looks for the 'icon' prop to decide
+        if an element is a IconButton or not as the 'isClassOf' method isnt present
+        */
+        if (childAnchor.props.icon) {
+            opener = (
+                <span
+                    ref={this.handleOpenerRef}
+                    disabled={!dropdownItems.length || disabled}
+                >
+                    {children(this._openDropdown)}
+                </span>
+            );
+        } else {
+            opener = (
+                <View
+                    ref={this.handleOpenerRef}
+                    disabled={!dropdownItems.length || disabled}
+                    style={{display: "inline-block"}}
+                >
+                    <span style={{float: "left", cursor: "pointer"}}>
+                        {children(this._openDropdown)}
+                    </span>
+                    <Icon
+                        icon={icons.caretDown}
+                        aria-label="Close modal"
+                        onClick={this._openDropdown}
+                        style={{
+                            float: "left",
+                            paddingTop: "0.5em",
+                            paddingLeft: "4px",
+                            color: "black",
+                            cursor: "pointer",
+                        }}
+                    />
+                </View>
+            );
+        }
 
         return (
             <Dropdown
@@ -239,6 +283,6 @@ const styles = StyleSheet.create({
 
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
-        top: -4,
+        top: 4,
     },
 });
