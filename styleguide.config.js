@@ -53,7 +53,6 @@ module.exports = {
                     components: [
                         "packages/wonder-blocks-dropdown/components/dropdown.js",
                         "packages/wonder-blocks-dropdown/components/dropdown-launcher.js",
-                        "packages/wonder-blocks-dropdown/components/dropdown-items.js",
                     ],
                 },
             ],

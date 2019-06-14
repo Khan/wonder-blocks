@@ -16,7 +16,6 @@ import SingleSelect from "./components/single-select.js";
 import MultiSelect from "./components/multi-select.js";
 import Dropdown from "./components/dropdown.js";
 import DropdownLauncher from "./components/dropdown-launcher.js";
-import DropdownItems from "./components/dropdown-items.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
@@ -1006,7 +1005,6 @@ describe("wonder-blocks-dropdown", () => {
                 <DropdownLauncher
                     menuText="Betsy Appleseed"
                     testId="teacher-menu"
-                    disabled={false}
                     menuItems={[
                         <ActionItem
                             label="Profile"
@@ -1050,7 +1048,7 @@ describe("wonder-blocks-dropdown", () => {
                     {(openDropdown) => (
                         <IconButton
                             onClick={openDropdown}
-                            icon={icons.search}
+                            icon={icons.caretDown}
                             aria-label="search"
                         />
                     )}

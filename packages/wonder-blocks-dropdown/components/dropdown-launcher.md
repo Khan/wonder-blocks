@@ -1,5 +1,4 @@
-Dropdown launcher
-
+A DropdownLauncher allows various elements to be used as dropdown menus. In this example we use the IconButton to open a Dropown of items to select from.
 
 ```js
 const React = require("react");
@@ -12,7 +11,6 @@ const {StyleSheet} = require("aphrodite");
     <DropdownLauncher
         menuText="Betsy Appleseed"
         testId="teacher-menu"
-        disabled={false}
         menuItems={[<ActionItem label="Profile" href="http://khanacademy.org/profile" testId="profile" />,
         <ActionItem
         label="Teacher dashboard" href="http://khanacademy.org/coach/dashboard" testId="dashboard" />,
@@ -24,7 +22,7 @@ const {StyleSheet} = require("aphrodite");
         {
             openDropdown => (<IconButton
                         onClick={openDropdown}
-                        icon={icons.search}
+                        icon={icons.caretDown}
                         aria-label="search"/>)
         }
     </DropdownLauncher>
