@@ -13,16 +13,12 @@ type Props = {|
     ...AriaProps,
 
     /*
-     * The callback function used to open the Dropdown.
+     * The callback function that's passed the openDropdown function, used to rerender
+     the opener
      */
     children: (openDropdown: () => void) => React.Element<any>,
 
     opened?: boolean,
-
-    /*
-     * Text for the opener of this menu.
-     */
-    menuText: string,
 
     /*
      * The items present in the dropdown.
@@ -229,19 +225,6 @@ export default class DropdownLauncher extends React.Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-    caret: {
-        marginLeft: 4,
-    },
-
-    // The design calls for additional offset around the opener.
-    opener: {
-        whiteSpace: "nowrap",
-        userSelect: "none",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-
-    // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
         top: -4,
     },
