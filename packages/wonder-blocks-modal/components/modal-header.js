@@ -28,7 +28,13 @@ type Common = {|
      */
     titleId: string,
 
-    // Keep flow happy
+    /**
+     * Without these, flow complains about subtitle and breadcrumbs not being
+     * available on props at all b/c these are exact object types, flow looks
+     * for subtitle in each of Common, WithSubtitle and WithBreadcrumbs. I also
+     * tried making the types inexact and flow still complains when destructuring
+     * which is a little odd.
+     */
     subtitle?: void,
     breadcrumbs?: void,
 |};
