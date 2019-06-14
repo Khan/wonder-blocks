@@ -31,6 +31,7 @@ const dropdownItems = [<ActionItem label="Profile" href="http://khanacademy.org/
 </View>
 ```
 
+Here the DropdownLauncher is being used to convert a Title element into a custom dropdown.
 ```js
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
