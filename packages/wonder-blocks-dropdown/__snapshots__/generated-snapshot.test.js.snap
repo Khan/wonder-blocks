@@ -2773,61 +2773,6 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
   >
     <span
       disabled={false}
-      menuItems={
-        Array [
-          <ActionItem
-            disabled={false}
-            href="http://khanacademy.org/profile"
-            indent={false}
-            label="Profile"
-            role="menuitem"
-            testId="profile"
-          />,
-          <ActionItem
-            disabled={false}
-            href="http://khanacademy.org/coach/dashboard"
-            indent={false}
-            label="Teacher dashboard"
-            role="menuitem"
-            testId="dashboard"
-          />,
-          <ActionItem
-            disabled={false}
-            indent={false}
-            label="Settings (onClick)"
-            onClick={[Function]}
-            role="menuitem"
-            testId="settings"
-          />,
-          <ActionItem
-            disabled={true}
-            indent={false}
-            label="Help"
-            onClick={[Function]}
-            role="menuitem"
-            testId="help"
-          />,
-          <ActionItem
-            disabled={true}
-            href="/feedback"
-            indent={false}
-            label="Feedback"
-            role="menuitem"
-            testId="feedback"
-          />,
-          <SeparatorItem />,
-          <ActionItem
-            disabled={false}
-            href="http://khanacademy.org/logout"
-            indent={false}
-            label="Log out"
-            role="menuitem"
-            testId="logout"
-          />,
-        ]
-      }
-      menuText="Betsy Appleseed"
-      testId="teacher-menu"
     >
       <button
         aria-label="search"
