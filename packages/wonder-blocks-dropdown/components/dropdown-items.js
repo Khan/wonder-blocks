@@ -1,7 +1,7 @@
 //@flow
 import * as React from "react";
-import ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
+// import ReactDOM from "react-dom";
+// import {StyleSheet} from "aphrodite";
 import type {Item, DropdownItem} from "../util/types.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
@@ -30,7 +30,7 @@ export default class DropdownItems extends React.Component<
                         focusable: !disabled,
                         populatedProps: {
                             indent: true,
-                            onClick: this.handleItemSelected,
+                            onClick: null,
                         },
                     };
                 } else if (OptionItem.isClassOf(item)) {
@@ -38,7 +38,7 @@ export default class DropdownItems extends React.Component<
                         component: item,
                         focusable: !disabled,
                         populatedProps: {
-                            onToggle: this.handleOptionSelected,
+                            onToggle: null,
                             selected: selectedValues
                                 ? selectedValues.includes(value)
                                 : false,

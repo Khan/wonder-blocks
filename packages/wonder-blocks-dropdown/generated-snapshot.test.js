@@ -15,6 +15,8 @@ import ActionMenu from "./components/action-menu.js";
 import SingleSelect from "./components/single-select.js";
 import MultiSelect from "./components/multi-select.js";
 import Dropdown from "./components/dropdown.js";
+import DropdownLauncher from "./components/dropdown-launcher.js";
+import DropdownItems from "./components/dropdown-items.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
@@ -986,6 +988,73 @@ describe("wonder-blocks-dropdown", () => {
                 >
                     <OptionItem label="some value" value="" />
                 </MultiSelect>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 19", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
+            .default;
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const {StyleSheet} = require("aphrodite");
+
+        const example = (
+            <View>
+                <DropdownLauncher
+                    menuText="Betsy Appleseed"
+                    testId="teacher-menu"
+                    disabled={false}
+                    menuItems={[
+                        <ActionItem
+                            label="Profile"
+                            href="http://khanacademy.org/profile"
+                            testId="profile"
+                        />,
+                        <ActionItem
+                            label="Teacher dashboard"
+                            href="http://khanacademy.org/coach/dashboard"
+                            testId="dashboard"
+                        />,
+                        <ActionItem
+                            label="Settings (onClick)"
+                            onClick={() =>
+                                console.log("user clicked on settings")
+                            }
+                            testId="settings"
+                        />,
+                        <ActionItem
+                            label="Help"
+                            disabled={true}
+                            onClick={() =>
+                                console.log("this item is disabled...")
+                            }
+                            testId="help"
+                        />,
+                        <ActionItem
+                            label="Feedback"
+                            disabled={true}
+                            href="/feedback"
+                            testId="feedback"
+                        />,
+                        <SeparatorItem />,
+                        <ActionItem
+                            label="Log out"
+                            href="http://khanacademy.org/logout"
+                            testId="logout"
+                        />,
+                    ]}
+                >
+                    {(openDropdown) => (
+                        <IconButton
+                            onClick={openDropdown}
+                            icon={icons.search}
+                            aria-label="search"
+                        />
+                    )}
+                </DropdownLauncher>
             </View>
         );
         const tree = renderer.create(example).toJSON();

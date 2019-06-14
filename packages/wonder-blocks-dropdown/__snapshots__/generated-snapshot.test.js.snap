@@ -2728,3 +2728,174 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
   </div>
 </div>
 `;
+
+exports[`wonder-blocks-dropdown example 19 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      disabled={false}
+      menuItems={
+        Array [
+          <ActionItem
+            disabled={false}
+            href="http://khanacademy.org/profile"
+            indent={false}
+            label="Profile"
+            role="menuitem"
+            testId="profile"
+          />,
+          <ActionItem
+            disabled={false}
+            href="http://khanacademy.org/coach/dashboard"
+            indent={false}
+            label="Teacher dashboard"
+            role="menuitem"
+            testId="dashboard"
+          />,
+          <ActionItem
+            disabled={false}
+            indent={false}
+            label="Settings (onClick)"
+            onClick={[Function]}
+            role="menuitem"
+            testId="settings"
+          />,
+          <ActionItem
+            disabled={true}
+            indent={false}
+            label="Help"
+            onClick={[Function]}
+            role="menuitem"
+            testId="help"
+          />,
+          <ActionItem
+            disabled={true}
+            href="/feedback"
+            indent={false}
+            label="Feedback"
+            role="menuitem"
+            testId="feedback"
+          />,
+          <SeparatorItem />,
+          <ActionItem
+            disabled={false}
+            href="http://khanacademy.org/logout"
+            indent={false}
+            label="Log out"
+            role="menuitem"
+            testId="logout"
+          />,
+        ]
+      }
+      menuText="Betsy Appleseed"
+      testId="teacher-menu"
+    >
+      <button
+        aria-label="search"
+        className=""
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragStart={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "::MozFocusInner": Object {
+              "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+            },
+            "alignItems": "center",
+            "background": "none",
+            "border": "none",
+            "boxSizing": "border-box",
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "display": "inline-flex",
+            "height": 40,
+            "justifyContent": "center",
+            "margin": -8,
+            "outline": "none",
+            "padding": 0,
+            "position": "relative",
+            "textDecoration": "none",
+            "touchAction": "manipulation",
+            "width": 40,
+          }
+        }
+        tabIndex={0}
+        type="button"
+      >
+        <svg
+          className=""
+          height={24}
+          style={
+            Object {
+              "display": "inline-block",
+              "flexGrow": 0,
+              "flexShrink": 0,
+              "verticalAlign": "text-bottom",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={24}
+        >
+          <path
+            d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </span>
+  </div>
+</div>
+`;

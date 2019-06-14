@@ -15,7 +15,7 @@ type Props = {|
     /*
      * The callback function used to open the Dropdown.
      */
-    children: ({openDropdown: () => void}) => React.Element<any>,
+    children: (openDropdown: () => void) => React.Element<any>,
 
     opened?: boolean,
 
@@ -140,43 +140,44 @@ export default class DropdownLauncher extends React.Component<Props, State> {
         this.setState({open: true});
     };
 
-    _getMenuItems(): Array<DropdownItem> {
+    _getMenuItems = (): Array<DropdownItem> => {
         const {selectedValues} = this.props;
         return React.Children.toArray(this.props.menuItems)
             .filter(Boolean)
             .map((item) => {
-                const {disabled, value} = item.props;
-                switch (item) {
-                    case ActionItem.isClassOf(item):
-                        return {
-                            component: item,
-                            focusable: !disabled,
-                            populatedProps: {
-                                indent: true,
-                                onClick: this.handleItemSelected,
-                            },
-                        };
-                    case OptionItem.isClassOf(item):
-                        return {
-                            component: item,
-                            focusable: !disabled,
-                            populatedProps: {
-                                onToggle: this.handleOptionSelected,
-                                selected: selectedValues
-                                    ? selectedValues.includes(value)
-                                    : false,
-                                variant: "check",
-                            },
-                        };
-                    default:
-                        return {
-                            component: item,
-                            focusable: false,
-                            populatedProps: {},
-                        };
+                const {value, disabled} = item.props;
+                const itemObject = {
+                    component: item,
+                    focusable:
+                        ActionItem.isClassOf(item) || OptionItem.isClassOf(item)
+                            ? !disabled
+                            : false,
+                    populatedProps: {},
+                };
+                if (ActionItem.isClassOf(item)) {
+                    return {
+                        ...itemObject,
+                        populatedProps: {
+                            indent: true,
+                            onClick: this.handleItemSelected,
+                        },
+                    };
+                } else if (OptionItem.isClassOf(item)) {
+                    return {
+                        ...itemObject,
+                        populatedProps: {
+                            onToggle: this.handleOptionSelected,
+                            selected: selectedValues
+                                ? selectedValues.includes(value)
+                                : false,
+                            variant: "check",
+                        },
+                    };
+                } else {
+                    return itemObject;
                 }
             });
-    }
+    };
 
     handleOpenerRef = (node: any) => {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
@@ -189,7 +190,6 @@ export default class DropdownLauncher extends React.Component<Props, State> {
             alignment,
             disabled,
             style,
-            testId,
             dropdownStyle,
             /* eslint-disable no-unused-vars */
             onChange,
@@ -200,12 +200,10 @@ export default class DropdownLauncher extends React.Component<Props, State> {
 
         const opener = (
             <span
-                testId={testId}
-                {...sharedProps}
                 ref={this.handleOpenerRef}
                 disabled={!dropdownItems.length || disabled}
             >
-                {children({openDropdown: this._openDropdown})}
+                {children(this._openDropdown)}
             </span>
         );
 
