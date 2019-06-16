@@ -19,3 +19,16 @@ const {View} = require("@khanacademy/wonder-blocks-core");
     </p>
 </View>
 ```
+
+Link with Typhography element:
+
+```js
+const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+<View>
+    <Link href="#nonexistent-link">
+        <HeadingSmall>Heading with link</HeadingSmall>
+    </Link>
+</View>
+```

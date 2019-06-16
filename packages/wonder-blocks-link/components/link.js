@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import LinkCore from "./link-core.js";
 
 export type SharedProps = {|
@@ -12,7 +13,7 @@ export type SharedProps = {|
     /**
      * Text to appear on the link.
      */
-    children: string,
+    children: string | React.Element<Typography>,
 
     /**
      * URL to navigate to.

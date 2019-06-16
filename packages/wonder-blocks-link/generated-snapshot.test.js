@@ -54,4 +54,18 @@ describe("wonder-blocks-link", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+    it("example 2", () => {
+        const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const example = (
+            <View>
+                <Link href="#nonexistent-link">
+                    <HeadingSmall>Heading with link</HeadingSmall>
+                </Link>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
