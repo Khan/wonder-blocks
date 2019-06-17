@@ -196,10 +196,9 @@ export default class DropdownLauncher extends React.Component<Props, State> {
 
         const opener = (
             <DropdownAnchor
+                handleOpenDropdown={this._openDropdown}
                 anchorRef={(ref) =>
-                    (this.openerElement = ((ReactDOM.findDOMNode(
-                        ref,
-                    ): any): HTMLElement))
+                    (this.openerElement = ReactDOM.findDOMNode(ref))
                 }
             >
                 {childAnchor}

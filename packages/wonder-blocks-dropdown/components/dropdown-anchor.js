@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
@@ -10,7 +11,7 @@ type Props = {|
      * We allow children to be a string so that we can add tooltips to
      * words within a large block of text easily.
      */
-    children: React.Element<any> | string,
+    children: React.Element<any>,
 
     /**
      * Callback to be invoked when the anchored content is mounted.
@@ -18,6 +19,12 @@ type Props = {|
      * used for calculating tooltip bubble positioning.
      */
     anchorRef: (?Element | ?Text) => mixed,
+
+    /**
+     * Function passed from DropdownLauncher to handle open and close
+     * the dropdown on click.
+     */
+    handleOpenDropdown: () => void,
 |};
 
 export default class DropdownAnchor extends React.Component<Props> {
@@ -26,5 +33,19 @@ export default class DropdownAnchor extends React.Component<Props> {
         this.props.anchorRef(anchorNode);
     }
 
-    render = () => this.props.children;
+    render() {
+        const ClickableBehavior = getClickableBehavior();
+        return (
+            <ClickableBehavior
+                disabled={false}
+                onClick={this.props.handleOpenDropdown}
+            >
+                {(state, handlers) =>
+                    React.cloneElement(this.props.children, {
+                        ...handlers,
+                    })
+                }
+            </ClickableBehavior>
+        );
+    }
 }
