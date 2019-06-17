@@ -51,7 +51,6 @@ const dropdownItems = [
 >
     {(openDropdown) => (
         <IconButton
-            //onClick={openDropdown}
             icon={icons.caretDown}
             aria-label="search"
         />
@@ -113,7 +112,6 @@ const dropdownItems = [
     >
         {(openDropdown) => (
             <Title
-                onClick={openDropdown}
                 aria-label="search"
             >
             Hello, World!
