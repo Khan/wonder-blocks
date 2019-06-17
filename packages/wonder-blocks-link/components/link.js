@@ -11,7 +11,7 @@ export type SharedProps = {|
     ...AriaProps,
 
     /**
-     * Text to appear on the link.
+     * Text to appear on the link. It can be a plain text or a Typography element.
      */
     children: string | React.Element<Typography>,
 

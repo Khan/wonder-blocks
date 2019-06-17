@@ -61,7 +61,7 @@ describe("wonder-blocks-link", () => {
         const example = (
             <View>
                 <Link href="#nonexistent-link">
-                    <HeadingSmall>Heading with link</HeadingSmall>
+                    <HeadingSmall>Heading inside a Link element</HeadingSmall>
                 </Link>
             </View>
         );

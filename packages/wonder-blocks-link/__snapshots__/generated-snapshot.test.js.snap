@@ -234,7 +234,7 @@ exports[`wonder-blocks-link example 2 1`] = `
         }
       }
     >
-      Heading with link
+      Heading inside a Link element
     </h4>
   </a>
 </div>

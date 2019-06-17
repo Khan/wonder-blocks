@@ -1,4 +1,4 @@
-Link example:
+### Example: Link
 
 ```js
 const Color = require("@khanacademy/wonder-blocks-color").default;
@@ -20,7 +20,9 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 </View>
 ```
 
-Link with Typhography element:
+### Example: Link with Typography element
+
+You can also use a Typography element instead of just plain text.
 
 ```js
 const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
@@ -28,7 +30,7 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 
 <View>
     <Link href="#nonexistent-link">
-        <HeadingSmall>Heading with link</HeadingSmall>
+        <HeadingSmall>Heading inside a Link element</HeadingSmall>
     </Link>
 </View>
 ```
