@@ -58,7 +58,7 @@ const dropdownItems = [
 </DropdownLauncher>
 ```
 
-In this example we use a Title component with a DropdownLauncher.
+In this example we use a Title component with a DropdownLauncher. You can define custom styles that will take place of different mouse events that ClickableBehavior supports.
 
 ```js
 const React = require("react");
@@ -66,6 +66,20 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const {StyleSheet} = require("aphrodite");
+
+
+const styles = StyleSheet.create({
+    focused: {
+        border: "solid 2px blue"
+    },
+    hovered: {
+        background:"#89c8f9"
+    },
+    pressed: {
+        background:"#42f4a1"
+    }
+});
+
 
 const dropdownItems = [
     <ActionItem
@@ -110,9 +124,14 @@ const dropdownItems = [
         testId="teacher-menu"
         menuItems={dropdownItems}
     >
-        {(openDropdown) => (
+        {(openDropdown, state) => (
             <Title
-                aria-label="search"
+                aria-role="menu"
+                style={[
+                    state.focused && styles.focused,
+                    state.hovered && styles.hovered,
+                    state.pressed && styles.pressed,
+                ]}
             >
             Hello, World!
             </Title>

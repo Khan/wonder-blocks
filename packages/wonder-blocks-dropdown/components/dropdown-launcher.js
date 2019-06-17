@@ -4,6 +4,7 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import Dropdown from "./dropdown.js";
 import type {Item, DropdownItem} from "../util/types.js";
 import ActionItem from "./action-item.js";
@@ -17,7 +18,10 @@ type Props = {|
      * The callback function that's passed the openDropdown function, used to rerender
      the opener
      */
-    children: (openDropdown: () => void) => React.Element<any>,
+    children: (
+        openDropdown: () => void,
+        state: ClickableState,
+    ) => React.Element<any>,
 
     opened?: boolean,
 
@@ -44,12 +48,6 @@ type Props = {|
      */
     alignment: "left" | "right",
 
-    /**
-     * Whether this component is disabled. A disabled dropdown may not be opened
-     * and does not support interaction. Defaults to false.
-     */
-    disabled: boolean,
-
     /*
      * Optional styling to add to the opener component wrapper.
      */
@@ -64,6 +62,12 @@ type Props = {|
      * Optional styling to add to the dropdown wrapper.
      */
     dropdownStyle?: StyleType,
+|};
+
+type ClickableState = {|
+    pressed: boolean,
+    hovered: boolean,
+    focused: boolean,
 |};
 
 type State = {|
@@ -133,7 +137,7 @@ export default class DropdownLauncher extends React.Component<Props, State> {
         this.handleItemSelected();
     };
 
-    _openDropdown = () => {
+    handleOpenDropdown = () => {
         this.setState({open: true});
     };
 
@@ -180,7 +184,6 @@ export default class DropdownLauncher extends React.Component<Props, State> {
         const {
             children,
             alignment,
-            disabled,
             style,
             dropdownStyle,
             /* eslint-disable no-unused-vars */
@@ -190,19 +193,26 @@ export default class DropdownLauncher extends React.Component<Props, State> {
             ...sharedProps
         } = this.props;
 
-        const childAnchor = React.cloneElement(children(this._openDropdown), {
-            disabled,
-        });
+        const ClickableBehavior = getClickableBehavior();
 
         const opener = (
-            <DropdownAnchor
-                handleOpenDropdown={this._openDropdown}
-                anchorRef={(ref) =>
-                    (this.openerElement = ReactDOM.findDOMNode(ref))
-                }
-            >
-                {childAnchor}
-            </DropdownAnchor>
+            <ClickableBehavior onClick={this.handleOpenDropdown}>
+                {(state, handlers) => (
+                    <DropdownAnchor
+                        anchorRef={(ref) =>
+                            (this.openerElement = ReactDOM.findDOMNode(ref))
+                        }
+                    >
+                        {React.cloneElement(
+                            children(this.handleOpenDropdown, state),
+                            {
+                                ...handlers,
+                                ...state,
+                            },
+                        )}
+                    </DropdownAnchor>
+                )}
+            </ClickableBehavior>
         );
 
         return (
