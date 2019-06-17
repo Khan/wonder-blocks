@@ -58,7 +58,7 @@ const dropdownItems = [
 </DropdownLauncher>
 ```
 
-In this example we use a Title component with a DropdownLauncher. You can define custom styles that will take place of different mouse events that ClickableBehavior supports.
+In this example we use a Title component with a DropdownLauncher. You can define custom styles that will take place on different mouse events that ClickableBehavior supports.
 
 ```js
 const React = require("react");
