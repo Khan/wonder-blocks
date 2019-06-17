@@ -8,6 +8,7 @@ import Dropdown from "./dropdown.js";
 import type {Item, DropdownItem} from "../util/types.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
+import DropdownAnchor from "./dropdown-anchor.js";
 
 type Props = {|
     ...AriaProps,
@@ -175,12 +176,7 @@ export default class DropdownLauncher extends React.Component<Props, State> {
             });
     };
 
-    handleOpenerRef = (node: any) => {
-        this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
-    };
-
     render() {
-        const dropdownItems = this._getMenuItems();
         const {
             children,
             alignment,
@@ -199,12 +195,15 @@ export default class DropdownLauncher extends React.Component<Props, State> {
         });
 
         const opener = (
-            <span
-                ref={this.handleOpenerRef}
-                disabled={!dropdownItems.length || disabled}
+            <DropdownAnchor
+                anchorRef={(ref) =>
+                    (this.openerElement = ((ReactDOM.findDOMNode(
+                        ref,
+                    ): any): HTMLElement))
+                }
             >
                 {childAnchor}
-            </span>
+            </DropdownAnchor>
         );
 
         return (
