@@ -46,12 +46,7 @@ type Props = {|
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment: "left" | "right",
-
-    /*
-     * Optional styling to add to the opener component wrapper.
-     */
-    style?: StyleType,
+    alignment?: "left" | "right",
 
     /*
      * Test ID used for e2e testing.
@@ -87,7 +82,6 @@ export default class DropdownLauncher extends React.Component<Props, State> {
 
     static defaultProps = {
         alignment: "left",
-        disabled: false,
     };
 
     constructor(props: Props) {
@@ -137,9 +131,10 @@ export default class DropdownLauncher extends React.Component<Props, State> {
         this.handleItemSelected();
     };
 
-    handleOpenDropdown = () => {
-        this.setState({open: true});
-    };
+    handleOpenDropdown = () => this.setState({open: true});
+
+    handleClick = (e: SyntheticEvent<>) =>
+        this.handleOpenChanged(!this.state.open, e.type === "keyup");
 
     _getMenuItems = (): Array<DropdownItem> => {
         const {selectedValues} = this.props;
@@ -184,7 +179,6 @@ export default class DropdownLauncher extends React.Component<Props, State> {
         const {
             children,
             alignment,
-            style,
             dropdownStyle,
             /* eslint-disable no-unused-vars */
             onChange,
@@ -194,12 +188,13 @@ export default class DropdownLauncher extends React.Component<Props, State> {
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior();
-
+        const isOpen = this.state.open;
         const opener = (
-            <ClickableBehavior onClick={this.handleOpenDropdown}>
+            <ClickableBehavior onClick={this.handleClick}>
                 {(state, handlers) => (
                     <DropdownAnchor
                         anchorRef={(ref) =>
+                            //TODO: Fix this flow error
                             (this.openerElement = ReactDOM.findDOMNode(ref))
                         }
                     >
@@ -226,7 +221,6 @@ export default class DropdownLauncher extends React.Component<Props, State> {
                 opener={opener}
                 openerElement={this.openerElement}
                 role="menu"
-                style={style}
             />
         );
     }

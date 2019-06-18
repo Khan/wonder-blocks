@@ -15,11 +15,8 @@ describe("Dropdown Launcher", () => {
     let dropdownLauncher;
 
     beforeEach(() => {
-        // const dummyOpener = <button />;
-        // const openChanged = jest.fn();
         dropdownLauncher = mount(
             <DropdownLauncher
-                menuText="Betsy Appleseed"
                 testId="teacher-menu"
                 menuItems={[
                     <ActionItem
@@ -57,13 +54,8 @@ describe("Dropdown Launcher", () => {
                     />,
                 ]}
             >
-                {(handleDropdown) => (
-                    <IconButton
-                        // eslint-disable-next-line react/jsx-handler-names
-                        onClick={handleDropdown}
-                        icon={icons.search}
-                        aria-label="search"
-                    />
+                {(handleDropdown, state) => (
+                    <IconButton icon={icons.search} aria-label="search" />
                 )}
             </DropdownLauncher>,
         );
@@ -82,6 +74,19 @@ describe("Dropdown Launcher", () => {
 
         // Assert
         expect(dropdownLauncher.state("open")).toBe(true);
+    });
+
+    it("closes when the anchor is clicked and it was open", () => {
+        // Arrange
+        const anchor = dropdownLauncher.find(IconButton);
+
+        // Act
+        anchor.simulate("click");
+        expect(dropdownLauncher.state("open")).toBe(true);
+        anchor.simulate("click");
+
+        // Assert
+        expect(dropdownLauncher.state("open")).toBe(false);
     });
 
     it("can handle keyboard navigation", () => {

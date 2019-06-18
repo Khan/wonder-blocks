@@ -17,7 +17,7 @@ type Props = {|
      * This provides a reference to the anchored content, which can then be
      * used for calculating tooltip bubble positioning.
      */
-    anchorRef: (?Element | ?Text) => mixed,
+    anchorRef: (?Element | ?Text | ?HTMLElement) => mixed,
 |};
 
 export default class DropdownAnchor extends React.Component<Props> {

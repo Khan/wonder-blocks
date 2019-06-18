@@ -119,8 +119,6 @@ const dropdownItems = [
 
 <View>
     <DropdownLauncher
-        disabled={false}
-        menuText="Betsy Appleseed"
         testId="teacher-menu"
         menuItems={dropdownItems}
     >
