@@ -6,7 +6,7 @@ import ReactDOM from "react-dom";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ActionItem from "./action-item.js";
-import Dropdown from "./dropdown.js";
+import DropdownCore from "./dropdown-core.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
 import {selectDropdownStyle} from "../util/constants.js";
@@ -312,7 +312,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         );
 
         return (
-            <Dropdown
+            <DropdownCore
                 role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}

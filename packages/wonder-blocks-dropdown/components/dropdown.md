@@ -1,4 +1,4 @@
-A DropdownLauncher allows various elements to be used as dropdown menus. In this example we use the IconButton to open a Dropown of items to select from.
+A Dropdown allows various elements to be used as dropdown menus. In this example we use the IconButton to open a Dropown of items to select from.
 
 ```js
 const React = require("react");
@@ -43,7 +43,7 @@ const dropdownItems = [
     />,
 ];
 
-<DropdownLauncher
+<Dropdown
     disabled={false}
     menuText="Betsy Appleseed"
     testId="teacher-menu"
@@ -55,10 +55,10 @@ const dropdownItems = [
             aria-label="search"
         />
     )}
-</DropdownLauncher>
+</Dropdown>
 ```
 
-In this example we use a Title component with a DropdownLauncher. You can define custom styles that will take place on different mouse events that ClickableBehavior supports.
+In this example we use a Title component with a Dropdown. You can define custom styles that will take place on different mouse events that ClickableBehavior supports.
 
 ```js
 const React = require("react");
@@ -66,7 +66,7 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
 const {StyleSheet} = require("aphrodite");
-
+const {Title} = require("@khanacademy/wonder-blocks-typography");
 
 const styles = StyleSheet.create({
     focused: {
@@ -118,13 +118,12 @@ const dropdownItems = [
 ];
 
 <View>
-    <DropdownLauncher
+    <Dropdown
         testId="teacher-menu"
         menuItems={dropdownItems}
     >
         {(openDropdown, state) => (
             <Title
-                aria-role="menu"
                 style={[
                     state.focused && styles.focused,
                     state.hovered && styles.hovered,
@@ -134,6 +133,8 @@ const dropdownItems = [
             Hello, World!
             </Title>
         )}
-    </DropdownLauncher>
+    </Dropdown>
 </View>;
 ```
+
+

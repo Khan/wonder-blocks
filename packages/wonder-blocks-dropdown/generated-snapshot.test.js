@@ -15,7 +15,6 @@ import ActionMenu from "./components/action-menu.js";
 import SingleSelect from "./components/single-select.js";
 import MultiSelect from "./components/multi-select.js";
 import Dropdown from "./components/dropdown.js";
-import DropdownLauncher from "./components/dropdown-launcher.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
@@ -1037,7 +1036,7 @@ describe("wonder-blocks-dropdown", () => {
         ];
 
         const example = (
-            <DropdownLauncher
+            <Dropdown
                 disabled={false}
                 menuText="Betsy Appleseed"
                 testId="teacher-menu"
@@ -1046,7 +1045,7 @@ describe("wonder-blocks-dropdown", () => {
                 {(openDropdown) => (
                     <IconButton icon={icons.caretDown} aria-label="search" />
                 )}
-            </DropdownLauncher>
+            </Dropdown>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
@@ -1058,6 +1057,7 @@ describe("wonder-blocks-dropdown", () => {
             .default;
         const {icons} = require("@khanacademy/wonder-blocks-icon");
         const {StyleSheet} = require("aphrodite");
+        const {Title} = require("@khanacademy/wonder-blocks-typography");
 
         const styles = StyleSheet.create({
             focused: {
@@ -1109,10 +1109,7 @@ describe("wonder-blocks-dropdown", () => {
 
         const example = (
             <View>
-                <DropdownLauncher
-                    testId="teacher-menu"
-                    menuItems={dropdownItems}
-                >
+                <Dropdown testId="teacher-menu" menuItems={dropdownItems}>
                     {(openDropdown, state) => (
                         <Title
                             aria-role="menu"
@@ -1125,7 +1122,7 @@ describe("wonder-blocks-dropdown", () => {
                             Hello, World!
                         </Title>
                     )}
-                </DropdownLauncher>
+                </Dropdown>
             </View>
         );
         const tree = renderer.create(example).toJSON();

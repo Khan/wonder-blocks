@@ -36,7 +36,7 @@ module.exports = {
             components: "packages/wonder-blocks-core/components/*.js",
         },
         {
-            name: "Dropdown",
+            name: "DropdownCore",
             content: "packages/wonder-blocks-dropdown/docs.md",
             components: [
                 "packages/wonder-blocks-dropdown/components/action-item.js",
@@ -52,7 +52,6 @@ module.exports = {
                     private: true,
                     components: [
                         "packages/wonder-blocks-dropdown/components/dropdown.js",
-                        "packages/wonder-blocks-dropdown/components/dropdown-launcher.js",
                     ],
                 },
             ],

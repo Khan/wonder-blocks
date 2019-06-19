@@ -2,7 +2,7 @@
   "name": "@khanacademy/wonder-blocks-dropdown",
   "version": "1.3.0",
   "design": "v1",
-  "description": "Dropdown variants for Wonder Blocks.",
+  "description": "DropdownCore variants for Wonder Blocks.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "source": "index.js",
