@@ -26,5 +26,7 @@ export default class DropdownAnchor extends React.Component<Props> {
         this.props.anchorRef(anchorNode);
     }
 
-    render = () => this.props.children;
+    render() {
+        return this.props.children;
+    }
 }

@@ -1111,16 +1111,15 @@ describe("wonder-blocks-dropdown", () => {
             <View>
                 <Dropdown testId="teacher-menu" menuItems={dropdownItems}>
                     {(openDropdown, state) => (
-                        <Title
-                            aria-role="menu"
-                            style={[
-                                state.focused && styles.focused,
-                                state.hovered && styles.hovered,
-                                state.pressed && styles.pressed,
-                            ]}
+                        <div
+                        // style={[
+                        //     state.focused && styles.focused,
+                        //     state.hovered && styles.hovered,
+                        //     state.pressed && styles.pressed,
+                        // ]}
                         >
                             Hello, World!
-                        </Title>
+                        </div>
                     )}
                 </Dropdown>
             </View>

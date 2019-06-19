@@ -201,10 +201,7 @@ export default class Dropdown extends React.Component<Props, State> {
                     >
                         {React.cloneElement(
                             children(this.handleOpenDropdown, state),
-                            {
-                                ...handlers,
-                                ...state,
-                            },
+                            handlers,
                         )}
                     </DropdownAnchor>
                 )}

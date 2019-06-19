@@ -123,15 +123,15 @@ const dropdownItems = [
         menuItems={dropdownItems}
     >
         {(openDropdown, state) => (
-            <Title
-                style={[
-                    state.focused && styles.focused,
-                    state.hovered && styles.hovered,
-                    state.pressed && styles.pressed,
-                ]}
+            <div
+                // style={[
+                //     state.focused && styles.focused,
+                //     state.hovered && styles.hovered,
+                //     state.pressed && styles.pressed,
+                // ]}
             >
             Hello, World!
-            </Title>
+            </div>
         )}
     </Dropdown>
 </View>;
