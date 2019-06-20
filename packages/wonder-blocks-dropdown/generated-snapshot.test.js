@@ -1011,7 +1011,7 @@ describe("wonder-blocks-dropdown", () => {
                 testId="dashboard"
             />,
             <ActionItem
-                label="Settings (onClick)"
+                label="Settings"
                 onClick={() => console.log("user clicked on settings")}
                 testId="settings"
             />,
@@ -1032,6 +1032,16 @@ describe("wonder-blocks-dropdown", () => {
                 label="Log out"
                 href="http://khanacademy.org/logout"
                 testId="logout"
+            />,
+            <OptionItem
+                label="Show homework assignments"
+                value="homework"
+                onClick={() => console.log(`Show homework assignments toggled`)}
+            />,
+            <OptionItem
+                label="Show in-class assignments"
+                value="in-class"
+                onClick={() => console.log(`Show in-class assignments toggled`)}
             />,
         ];
 
@@ -1059,69 +1069,122 @@ describe("wonder-blocks-dropdown", () => {
         const {StyleSheet} = require("aphrodite");
         const {Title} = require("@khanacademy/wonder-blocks-typography");
 
+        // Custom styles for mouse events can be defined like so
         const styles = StyleSheet.create({
             focused: {
-                border: "solid 2px blue",
+                border: "none",
             },
             hovered: {
-                background: "#89c8f9",
+                textDecoration: "underline",
             },
-            pressed: {
-                background: "#42f4a1",
+            pressed: {},
+            cursor: {
+                cursor: "pointer",
+                outline: "none",
             },
         });
 
         const dropdownItems = [
-            <ActionItem
-                label="Profile"
-                href="http://khanacademy.org/profile"
-                testId="profile"
-            />,
-            <ActionItem
-                label="Teacher dashboard"
-                href="http://khanacademy.org/coach/dashboard"
-                testId="dashboard"
-            />,
-            <ActionItem
-                label="Settings (onClick)"
-                onClick={() => console.log("user clicked on settings")}
-                testId="settings"
-            />,
-            <ActionItem
-                label="Help"
-                disabled={true}
-                onClick={() => console.log("this item is disabled...")}
-                testId="help"
-            />,
-            <ActionItem
-                label="Feedback"
-                disabled={true}
-                href="/feedback"
-                testId="feedback"
-            />,
+            <ActionItem label="Change password" />,
+            <ActionItem label="Manage email" />,
+            <ActionItem label="Set up 2FA" />,
+            <ActionItem label="Get Help" />,
             <SeparatorItem />,
-            <ActionItem
-                label="Log out"
-                href="http://khanacademy.org/logout"
-                testId="logout"
-            />,
+            <ActionItem label="Log out" />,
         ];
 
         const example = (
             <View>
                 <Dropdown testId="teacher-menu" menuItems={dropdownItems}>
                     {(openDropdown, state) => (
-                        <div
-                        // style={[
-                        //     state.focused && styles.focused,
-                        //     state.hovered && styles.hovered,
-                        //     state.pressed && styles.pressed,
-                        // ]}
+                        <Title
+                            style={[
+                                styles.cursor,
+                                state.focused && styles.focused,
+                                state.hovered && styles.hovered,
+                                state.pressed && styles.pressed,
+                            ]}
                         >
-                            Hello, World!
-                        </div>
+                            Settings ⌄
+                        </Title>
                     )}
                 </Dropdown>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 21", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+        const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
+
+        const styles = StyleSheet.create({
+            focused: {
+                border: "none",
+            },
+            hovered: {
+                textDecoration: "underline",
+            },
+            cursor: {
+                cursor: "pointer",
+                outline: "none",
+            },
+        });
+
+        class MixedDropdownExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: ["kumail"],
+                };
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(update) {
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                const dropdownItems = [
+                    <ActionItem label="Add new" />,
+                    <SeparatorItem />,
+                    <OptionItem label="Alex" value="alex" />,
+                    <OptionItem label="Cathy" value="cathy" />,
+                    <OptionItem label="Kumail" value="kumail" />,
+                    <OptionItem label="Salman" value="salman" />,
+                    <OptionItem label="Yan" value="yan" />,
+                    <OptionItem label="Yash" value="yash" />,
+                ];
+
+                return (
+                    <Dropdown
+                        menuItems={dropdownItems}
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                    >
+                        {(open, state) => (
+                            <HeadingSmall
+                                style={[
+                                    styles.cursor,
+                                    state.focused && styles.focused,
+                                    state.hovered && styles.hovered,
+                                ]}
+                            >
+                                Manage students
+                            </HeadingSmall>
+                        )}
+                    </Dropdown>
+                );
+            }
+        }
+
+        const example = (
+            <View>
+                <MixedDropdownExample />
             </View>
         );
         const tree = renderer.create(example).toJSON();

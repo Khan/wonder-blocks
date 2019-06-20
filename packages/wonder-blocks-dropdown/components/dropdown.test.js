@@ -4,6 +4,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import ActionItem from "./action-item.js";
+import OptionItem from "./option-item.js";
 import SeparatorItem from "./separator-item.js";
 import DropdownCore from "./dropdown-core.js";
 import Dropdown from "./dropdown.js";
@@ -15,8 +16,6 @@ describe("Dropdown Launcher", () => {
     let dropdownLauncher;
 
     beforeEach(() => {
-        // const dummyOpener = <button />;
-        // const openChanged = jest.fn();
         dropdownLauncher = mount(
             <Dropdown
                 testId="teacher-menu"
@@ -49,11 +48,12 @@ describe("Dropdown Launcher", () => {
                         testId="feedback"
                     />,
                     <SeparatorItem />,
-                    <ActionItem
-                        label="Log out"
-                        href="http://khanacademy.org/logout"
-                        testId="logout"
-                    />,
+                    <OptionItem label="Alex" value="alex" />,
+                    <OptionItem label="Cathy" value="cathy" />,
+                    <OptionItem label="Kumail" value="kumail" />,
+                    <OptionItem label="Salman" value="salman" />,
+                    <OptionItem label="Yan" value="yan" />,
+                    <OptionItem label="Yash" value="yash" />,
                 ]}
             >
                 {(handleDropdown) => (

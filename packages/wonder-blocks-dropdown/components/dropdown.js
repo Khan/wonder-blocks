@@ -14,29 +14,32 @@ import DropdownAnchor from "./dropdown-anchor.js";
 type Props = {|
     ...AriaProps,
 
-    /*
-     * The callback function that's passed the openDropdown function, used to rerender
-     the opener
+    /**
+     * The child function, that takes in a function to open the dropdown and state and
+     * returns an Element which will become the opener element for the dropdown.
      */
     children: (
         openDropdown: () => void,
         state: ClickableState,
     ) => React.Element<any>,
 
+    /**
+     * Can be used to override the state of the Dropdown by parent elemnents
+     */
     opened?: boolean,
 
-    /*
-     * The items present in the dropdown.
+    /**
+     * The items present in the Dropdown
      */
     menuItems: Array<Item> | Item,
 
-    /*
+    /**
      * A callback that returns items that are newly selected. Use only if this
      * menu contains select items (and make sure selectedValues is defined).
      */
     onChange?: (selectedItems: Array<string>) => mixed,
 
-    /*
+    /**
      * The values of the items that are currently selected. Use only if this
      * menu contains select items (and make sure onChange is defined).
      */
@@ -48,12 +51,12 @@ type Props = {|
      */
     alignment?: "left" | "right",
 
-    /*
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string,
 
-    /*
+    /**
      * Optional styling to add to the dropdown wrapper.
      */
     dropdownStyle?: StyleType,
@@ -226,6 +229,6 @@ export default class Dropdown extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
     menuTopSpace: {
-        top: -4,
+        top: 0,
     },
 });
