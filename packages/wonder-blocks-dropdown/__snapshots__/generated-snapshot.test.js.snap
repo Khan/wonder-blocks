@@ -2863,11 +2863,7 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
       }
     }
   >
-    <h1
-      aria-role="menu"
-      className=""
-      focused="false"
-      hovered={false}
+    <div
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -2881,30 +2877,10 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      pressed={false}
-      style={
-        Object {
-          "@media (maxWidth: 1023px)": Object {
-            "fontSize": 28,
-            "lineHeight": "32px",
-          },
-          "@media (minWidth: 1024px)": Object {
-            "fontSize": 36,
-            "lineHeight": "40px",
-          },
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "display": "block",
-          "fontFamily": "Lato, sans-serif",
-          "fontWeight": 900,
-          "marginBottom": 0,
-          "marginTop": 0,
-        }
-      }
       tabIndex={0}
     >
       Hello, World!
-    </h1>
+    </div>
   </div>
 </div>
 `;
