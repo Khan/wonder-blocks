@@ -10,7 +10,7 @@ import ModalDialog from "../modal-dialog.js";
 import ModalPanel from "../modal-panel.js";
 import ModalHeader from "../modal-header.js";
 
-type Props = {|
+type Common = {|
     ...AriaProps,
 
     /**
@@ -22,16 +22,6 @@ type Props = {|
      * The title of the modal, appearing in the titlebar.
      */
     title: string,
-
-    /**
-     * The subtitle of the modal, appearing in the titlebar, below the title.
-     */
-    subtitle?: string,
-
-    /**
-     * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
-     */
-    breadcrumbs?: React.Element<typeof Breadcrumbs>,
 
     /**
      * The content of the modal's footer. A great place for buttons!
@@ -87,7 +77,37 @@ type Props = {|
      * not provided, a unique id will be generated.
      */
     titleId?: string,
+
+    /**
+     * Without these, flow complains about subtitle and breadcrumbs not being
+     * available on props at all b/c these are exact object types, flow looks
+     * for subtitle in each of Common, WithSubtitle and WithBreadcrumbs. I also
+     * tried making the types inexact and flow still complains when destructuring
+     * which is a little odd.
+     */
+    subtitle?: void,
+    breadcrumbs?: void,
 |};
+
+type WithSubtitle = {|
+    ...Common,
+
+    /**
+     * The subtitle of the modal, appearing in the titlebar, below the title.
+     */
+    subtitle?: string,
+|};
+
+type WithBreadcrumbs = {|
+    ...Common,
+
+    /**
+     * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
+     */
+    breadcrumbs?: React.Element<typeof Breadcrumbs>,
+|};
+
+type Props = Common | WithSubtitle | WithBreadcrumbs;
 
 /**
  * This is the standard layout for most straightforward modal experiences.
@@ -100,12 +120,35 @@ export default class OnePaneDialog extends React.Component<Props> {
         closeButtonVisible: true,
     };
 
+    renderHeader(uniqueId: string): React.Element<typeof ModalHeader> {
+        const {title, subtitle, breadcrumbs} = this.props;
+
+        if (breadcrumbs) {
+            return (
+                <ModalHeader
+                    title={title}
+                    breadcrumbs={
+                        (breadcrumbs: React.Element<typeof Breadcrumbs>)
+                    }
+                    titleId={uniqueId}
+                />
+            );
+        } else if (subtitle) {
+            return (
+                <ModalHeader
+                    title={title}
+                    subtitle={(subtitle: string)}
+                    titleId={uniqueId}
+                />
+            );
+        } else {
+            return <ModalHeader title={title} titleId={uniqueId} />;
+        }
+    }
+
     render() {
         const {
             onClose,
-            title,
-            subtitle,
-            breadcrumbs,
             footer,
             content,
             above,
@@ -128,14 +171,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                             >
                                 <ModalPanel
                                     onClose={onClose}
-                                    header={
-                                        <ModalHeader
-                                            title={title}
-                                            subtitle={subtitle}
-                                            breadcrumbs={breadcrumbs}
-                                            titleId={uniqueId}
-                                        />
-                                    }
+                                    header={this.renderHeader(uniqueId)}
                                     content={content}
                                     footer={footer}
                                     closeButtonVisible={closeButtonVisible}
