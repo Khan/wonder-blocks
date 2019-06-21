@@ -1,0 +1,354 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-popover example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": "12px 0",
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#0a2a66",
+        "border": "solid 1px rgba(33,36,44,0.16)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxShadow": "0 8px 8px 0 rgba(33,36,44,0.08)",
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": 420,
+        "minHeight": 0,
+        "minWidth": 0,
+        "overflow": "hidden",
+        "padding": 24,
+        "position": "relative",
+        "textAlign": "center",
+        "width": 420,
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-label="Close Popover"
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "outline": "none",
+          "padding": 0,
+          "position": "absolute",
+          "right": 8,
+          "textDecoration": "none",
+          "top": 8,
+          "touchAction": "manipulation",
+          "width": 40,
+          "zIndex": 1,
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <h4
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 20,
+            "fontWeight": 700,
+            "lineHeight": "24px",
+            "marginBottom": 0,
+            "marginTop": 0,
+          }
+        }
+      >
+        Custom popover title
+      </h4>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": "12px 0",
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "height": 100,
+              "justifyContent": "center",
+              "margin": 12,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 2,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            className=""
+            height={48}
+            style={
+              Object {
+                "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 16 16"
+            width={48}
+          >
+            <path
+              d="M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z"
+              fill="#ffb100"
+            />
+          </svg>
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Option 1
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "height": 100,
+              "justifyContent": "center",
+              "margin": 12,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 2,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            className=""
+            height={48}
+            style={
+              Object {
+                "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 16 16"
+            width={48}
+          >
+            <path
+              d="M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z"
+              fill="#00a60e"
+            />
+          </svg>
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Option 2
+          </span>
+        </div>
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "center",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "height": 100,
+              "justifyContent": "center",
+              "margin": 12,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 2,
+              "position": "relative",
+              "zIndex": 0,
+            }
+          }
+        >
+          <svg
+            className=""
+            height={48}
+            style={
+              Object {
+                "display": "inline-block",
+                "flexGrow": 0,
+                "flexShrink": 0,
+                "verticalAlign": "text-bottom",
+              }
+            }
+            viewBox="0 0 16 16"
+            width={48}
+          >
+            <path
+              d="M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z"
+              fill="#1865f2"
+            />
+          </svg>
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "display": "block",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": 700,
+                "lineHeight": "20px",
+              }
+            }
+          >
+            Option 3
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

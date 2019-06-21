@@ -142,6 +142,18 @@ module.exports = {
             ],
         },
         {
+            name: "Popover",
+            content: "packages/wonder-blocks-popover/docs.md",
+            sections: [
+                {
+                    name: "Building Blocks",
+                    components: [
+                        "packages/wonder-blocks-popover/components/popover-content-core.js",
+                    ],
+                },
+            ],
+        },
+        {
             name: "ProgressSpinner",
             content: "packages/wonder-blocks-progress-spinner/docs.md",
             components:
