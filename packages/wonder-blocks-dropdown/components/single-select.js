@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import Dropdown from "./dropdown.js";
+import DropdownCore from "./dropdown-core.js";
 import SelectOpener from "./select-opener.js";
 import {selectDropdownStyle} from "../util/constants.js";
 
@@ -216,7 +216,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         );
 
         return (
-            <Dropdown
+            <DropdownCore
                 role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}
