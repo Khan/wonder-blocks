@@ -51,7 +51,7 @@ module.exports = {
                     name: "Internal Components",
                     private: true,
                     components: [
-                        "packages/wonder-blocks-dropdown/components/dropdown.js",
+                        "packages/wonder-blocks-dropdown/components/dropdown-core.js",
                     ],
                 },
             ],
