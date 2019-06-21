@@ -176,7 +176,7 @@ class MixedDropdownExample extends React.Component {
     render() {
         const dropdownItems = [
             <ActionItem
-                label="Add new"
+                label="Add new +"
             />,
             <SeparatorItem />,
             <OptionItem
@@ -230,5 +230,4 @@ class MixedDropdownExample extends React.Component {
     <MixedDropdownExample />
 </View>
 ```
-
 
