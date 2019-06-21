@@ -4,10 +4,10 @@ import * as ReactDOM from "react-dom";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import OptionItem from "./option-item.js";
-import Dropdown from "./dropdown.js";
+import DropdownCore from "./dropdown-core.js";
 import {keyCodes} from "../util/constants.js";
 
-describe("Dropdown", () => {
+describe("DropdownCore", () => {
     window.scrollTo = jest.fn();
     window.getComputedStyle = jest.fn();
 
@@ -17,7 +17,7 @@ describe("Dropdown", () => {
         const dummyOpener = <button />;
         const openChanged = jest.fn();
         dropdown = mount(
-            <Dropdown
+            <DropdownCore
                 initialFocusedIndex={0}
                 // mock the items
                 items={[
@@ -161,8 +161,8 @@ describe("Dropdown", () => {
 
         ReactDOM.render(
             <div>
-                <h1 id="foo">Dropdown test</h1>
-                <Dropdown
+                <h1 id="foo">DropdownCore test</h1>
+                <DropdownCore
                     initialFocusedIndex={0}
                     // mock the items
                     items={[

@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import Dropdown from "./dropdown.js";
+import DropdownCore from "./dropdown-core.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import ActionMenuOpener from "./action-menu-opener.js";
@@ -213,7 +213,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         );
 
         return (
-            <Dropdown
+            <DropdownCore
                 alignment={alignment}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                 items={items}

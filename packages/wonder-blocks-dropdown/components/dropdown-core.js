@@ -117,7 +117,10 @@ type State = {|
  * part of the dropdown menu. Renders the dropdown as a portal to avoid clipping
  * in overflow: auto containers.
  */
-export default class Dropdown extends React.Component<DropdownProps, State> {
+export default class DropdownCore extends React.Component<
+    DropdownProps,
+    State,
+> {
     // Keeps track of the index of the focused item, out of a list of focusable items
     focusedIndex: number;
     // Keeps track of the index of the focused item in the context of all the
@@ -160,7 +163,7 @@ export default class Dropdown extends React.Component<DropdownProps, State> {
     static getDerivedStateFromProps(props: DropdownProps, state: State) {
         if (
             (state.itemRefs.length === 0 && props.open) ||
-            !Dropdown.sameItemsFocusable(state.prevItems, props.items)
+            !DropdownCore.sameItemsFocusable(state.prevItems, props.items)
         ) {
             const itemRefs = [];
             for (let i = 0; i < props.items.length; i++) {
