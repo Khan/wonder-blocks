@@ -6,8 +6,8 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {icons} from "@khanacademy/wonder-blocks-icon";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
+
+import CloseButton from "./close-button.js";
 
 type Props = {|
     ...AriaProps,
@@ -16,6 +16,11 @@ type Props = {|
      * The content to render inside the popover.
      */
     children: React.Node,
+
+    /**
+     * Close button label for use in screen readers
+     */
+    closeButtonLabel?: string,
 
     /**
      * When true, the close button is shown; otherwise, the close button is not shown.
@@ -37,6 +42,11 @@ type Props = {|
      * Custom styles
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 /**
@@ -47,21 +57,22 @@ export default class PopoverContentCore extends React.Component<Props> {
     static defaultProps = {
         color: "light",
         closeButtonVisible: true,
-        "aria-label": "Close Popover",
     };
 
     render() {
         const {
             children,
+            closeButtonLabel,
             closeButtonVisible,
             color,
             style,
             onClose,
-            "aria-label": ariaLabel,
+            testId,
         } = this.props;
 
         return (
             <View
+                data-test-id={testId}
                 style={[
                     styles.content,
                     color !== "light" && styles[color],
@@ -69,13 +80,10 @@ export default class PopoverContentCore extends React.Component<Props> {
                 ]}
             >
                 {closeButtonVisible && (
-                    <IconButton
-                        icon={icons.dismiss}
-                        aria-label={ariaLabel}
-                        onClick={onClose}
-                        kind={color !== "light" ? "primary" : "tertiary"}
+                    <CloseButton
+                        aria-label={closeButtonLabel}
                         light={color !== "light"}
-                        style={styles.closeButton}
+                        onClose={onClose}
                     />
                 )}
                 {children}
@@ -108,13 +116,5 @@ const styles = StyleSheet.create({
     dark: {
         backgroundColor: Colors.darkBlue,
         color: Colors.white,
-    },
-
-    closeButton: {
-        position: "absolute",
-        right: Spacing.xSmall,
-        top: Spacing.xSmall,
-        // Allows the button to be above the title and/or custom content
-        zIndex: 1,
     },
 });
