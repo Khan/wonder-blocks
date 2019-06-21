@@ -9,8 +9,6 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
-import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
-
 type Props = {|
     ...AriaProps,
 
@@ -31,15 +29,13 @@ type Props = {|
     color: "blue" | "dark" | "light",
 
     /**
-     * The placement of the popover window with respect to the anchor.
-     */
-    placement: Placement,
-
-    /**
      * Called when the popover closes
      */
     onClose?: () => mixed,
 
+    /**
+     * Custom styles
+     */
     style?: StyleType,
 |};
 
@@ -50,7 +46,6 @@ type Props = {|
 export default class PopoverContentCore extends React.Component<Props> {
     static defaultProps = {
         color: "light",
-        placement: "bottom",
         closeButtonVisible: true,
         "aria-label": "Close Popover",
     };
