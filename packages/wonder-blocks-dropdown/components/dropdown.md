@@ -75,11 +75,9 @@ In this example we use a Title component with a Dropdown. You can define custom 
 ```js
 const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
-const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
-const {icons} = require("@khanacademy/wonder-blocks-icon");
 const {StyleSheet} = require("aphrodite");
 const {Title} = require("@khanacademy/wonder-blocks-typography");
-
+const Color = require("@khanacademy/wonder-blocks-color").default;
 // Custom styles for mouse events can be defined like so
 const styles = StyleSheet.create({
     focused: {
@@ -88,7 +86,9 @@ const styles = StyleSheet.create({
     hovered: {
         textDecoration: "underline",
     },
-    pressed: {},
+    pressed: {
+        color: Color.teal,
+    },
     cursor: {
         cursor: "pointer",
         outline: "none",
@@ -144,7 +144,6 @@ const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
-
 const styles = StyleSheet.create({
     focused: {
         border: "none",

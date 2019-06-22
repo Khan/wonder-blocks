@@ -19,6 +19,7 @@ describe("Dropdown Launcher", () => {
         dropdown = mount(
             <Dropdown
                 testId="teacher-menu"
+                selectedValues={["A"]}
                 menuItems={[
                     <ActionItem
                         label="Profile"
@@ -48,12 +49,9 @@ describe("Dropdown Launcher", () => {
                         testId="feedback"
                     />,
                     <SeparatorItem />,
-                    <OptionItem label="Alex" value="alex" />,
-                    <OptionItem label="Cathy" value="cathy" />,
-                    <OptionItem label="Kumail" value="kumail" />,
-                    <OptionItem label="Salman" value="salman" />,
-                    <OptionItem label="Yan" value="yan" />,
-                    <OptionItem label="Yash" value="yash" />,
+                    <OptionItem label="A" value="A" />,
+                    <OptionItem label="B" value="B" />,
+                    <OptionItem label="C" value="C" />,
                 ]}
             >
                 {(handleDropdown) => (
@@ -80,7 +78,7 @@ describe("Dropdown Launcher", () => {
         anchor.simulate("click");
 
         // Assert
-        expect(dropdown.state("open")).toBe(true);
+        expect(dropdown.state("opened")).toBe(true);
     });
 
     it("can handle keyboard navigation", () => {
@@ -114,7 +112,7 @@ describe("Dropdown Launcher", () => {
         dropdownCore.simulate("keyup", {keyCode: keyCodes.escape});
 
         // Assert
-        expect(dropdown.state("open")).toBe(false);
+        expect(dropdown.state("opened")).toBe(false);
     });
 
     it("closes itself on tab", () => {
@@ -128,7 +126,7 @@ describe("Dropdown Launcher", () => {
         dropdownCore.simulate("keyup", {keyCode: keyCodes.tab});
 
         // Assert
-        expect(dropdown.state("open")).toBe(false);
+        expect(dropdown.state("opened")).toBe(false);
     });
 
     it("closes itself on an external mouse click", () => {
@@ -140,7 +138,7 @@ describe("Dropdown Launcher", () => {
         document.dispatchEvent(new MouseEvent("mouseup"));
 
         // Assert
-        expect(dropdown.state("open")).toBe(false);
+        expect(dropdown.state("opened")).toBe(false);
     });
 
     it("open on down key when focused", () => {
@@ -153,6 +151,6 @@ describe("Dropdown Launcher", () => {
         anchor.simulate("keyup", {keyCode: keyCodes.down});
 
         // Assert
-        expect(dropdown.state("open")).toBe(true);
+        expect(dropdown.state("opened")).toBe(true);
     });
 });

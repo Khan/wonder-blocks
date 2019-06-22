@@ -207,7 +207,7 @@ const _generateStyles = (color, kind, light) => {
             color: offBlack64,
         };
     } else {
-        throw new Error(" kind not recognized");
+        throw new Error("IconButton kind not recognized");
     }
 
     styles[buttonType] = StyleSheet.create(newStyles);

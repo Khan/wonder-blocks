@@ -72,7 +72,7 @@ type State = {|
     /**
      * Whether or not the dropdown is currently open.
      */
-    open: boolean,
+    opened: boolean,
 
     /**
      * Whether or not last open state change was triggered by a keyboard click.
@@ -90,7 +90,7 @@ export default class Dropdown extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            open: false,
+            opened: false,
             keyboard: false,
         };
     }
@@ -100,15 +100,11 @@ export default class Dropdown extends React.Component<Props, State> {
         if (this.openerElement) {
             this.openerElement.focus();
         }
-
-        this.setState({
-            open: false, // close the menu upon selection
-        });
     };
 
-    handleOpenChanged = (open: boolean, keyboard?: boolean) => {
+    handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
         this.setState({
-            open,
+            opened,
             keyboard,
         });
     };
@@ -134,10 +130,10 @@ export default class Dropdown extends React.Component<Props, State> {
         this.handleItemSelected();
     };
 
-    handleOpenDropdown = () => this.setState({open: true});
+    handleOpenDropdown = () => this.setState({opened: true});
 
     handleClick = (e: SyntheticEvent<>) =>
-        this.handleOpenChanged(!this.state.open, e.type === "keyup");
+        this.handleOpenChanged(!this.state.opened, e.type === "keyup");
 
     _getMenuItems = (): Array<DropdownItem> => {
         const {selectedValues} = this.props;
@@ -191,7 +187,7 @@ export default class Dropdown extends React.Component<Props, State> {
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior();
-        const isOpen = this.state.open;
+        const isOpen = this.state.opened;
         const opener = (
             <ClickableBehavior onClick={this.handleClick}>
                 {(state, handlers) => (
@@ -218,7 +214,7 @@ export default class Dropdown extends React.Component<Props, State> {
                 keyboard={this.state.keyboard}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                 onOpenChanged={this.handleOpenChanged}
-                open={this.state.open}
+                open={this.state.opened}
                 opener={opener}
                 openerElement={this.openerElement}
                 role="menu"
