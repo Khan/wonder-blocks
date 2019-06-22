@@ -9,7 +9,7 @@ import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
 import PopoverContentCore from "./popover-content-core.js";
 
-type Props = {|
+type CommonProps = {|
     ...AriaProps,
 
     /**
@@ -38,25 +38,6 @@ type Props = {|
     closeButtonVisible?: boolean,
 
     /**
-     * When true, changes the popover window background to blue; otherwise, the
-     * popover window background is not modified. It can be used only with
-     * Text-only popovers. It cannot be used with icon or image.
-     */
-    emphasized?: boolean,
-
-    /**
-     * Decorate the popover with an illustrated icon. It cannot be used at the
-     * same time with image.
-     */
-    icon?: string,
-
-    /**
-     * Decorate the popover with a full-bleed illustration. It cannot be used at
-     * the same time with icon.
-     */
-    image?: string,
-
-    /**
      * Called when the popover closes
      */
     onClose?: () => mixed,
@@ -70,8 +51,50 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Without these, flow complains about icon, image and emphasized not being
+     * available on props at all b/c these are exact object types.
+     */
+    icon?: void,
+    image?: void,
+    emphasized?: void,
 |};
 
+type WithEmphasized = {|
+    ...CommonProps,
+
+    /**
+     * When true, changes the popover window background to blue; otherwise, the
+     * popover window background is not modified. It can be used only with
+     * Text-only popovers. It cannot be used with icon or image.
+     */
+    emphasized: boolean,
+|};
+
+type WithIcon = {|
+    ...CommonProps,
+
+    /**
+     * Decorate the popover with an illustrated icon. It cannot be used at the
+     * same time with image.
+     */
+    icon?: string,
+|};
+
+type WithImage = {|
+    ...CommonProps,
+
+    /**
+     * Decorate the popover with a full-bleed illustration. It cannot be used at
+     * the same time with icon.
+     */
+    image?: string,
+|};
+
+type Props = CommonProps | WithEmphasized | WithIcon | WithImage;
+
+// Created to add custom styles to the icon or image elements
 const StyledImage = addStyle("img");
 
 /**
@@ -80,7 +103,6 @@ const StyledImage = addStyle("img");
  */
 export default class PopoverContent extends React.Component<Props> {
     static defaultProps = {
-        emphasis: false,
         closeButtonVisible: false,
     };
 
@@ -108,9 +130,11 @@ export default class PopoverContent extends React.Component<Props> {
                 style={style}
                 testId={testId}
             >
-                <View style={[!!icon && styles.withIcon]}>
+                <View style={!!icon && styles.withIcon}>
                     {image && <StyledImage style={styles.image} src={image} />}
+
                     {icon && <StyledImage style={styles.icon} src={icon} />}
+
                     <View style={styles.text}>
                         <HeadingSmall style={styles.title}>
                             {title}
@@ -118,6 +142,7 @@ export default class PopoverContent extends React.Component<Props> {
                         <Body>{content}</Body>
                     </View>
                 </View>
+
                 {actions && <View style={styles.actions}>{actions}</View>}
             </PopoverContentCore>
         );
