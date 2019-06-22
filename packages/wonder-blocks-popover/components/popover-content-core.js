@@ -56,7 +56,7 @@ type Props = {|
 export default class PopoverContentCore extends React.Component<Props> {
     static defaultProps = {
         color: "light",
-        closeButtonVisible: true,
+        closeButtonVisible: false,
     };
 
     render() {

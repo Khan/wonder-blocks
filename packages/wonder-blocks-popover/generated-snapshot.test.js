@@ -8,10 +8,116 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import PopoverContent from "./components/popover-content.js";
 import PopoverContentCore from "./components/popover-content-core.js";
 
 describe("wonder-blocks-popover", () => {
     it("example 1", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const styles = StyleSheet.create({
+            example: {
+                alignItems: "center",
+            },
+        });
+
+        const example = (
+            <View style={styles.example}>
+                <PopoverContent
+                    closeButtonVisible
+                    title="Title"
+                    content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const {StyleSheet} = require("aphrodite");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+
+        const styles = StyleSheet.create({
+            example: {
+                alignItems: "center",
+            },
+            row: {
+                flexDirection: "row",
+            },
+        });
+
+        const example = (
+            <View style={styles.example}>
+                <PopoverContent
+                    title="Title"
+                    content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                    emphasized
+                    actions={
+                        <View style={styles.row}>
+                            <Button light={true} kind="secondary">
+                                Previous
+                            </Button>
+                            <Strut size={16} />
+                            <Button light={true} kind="primary">
+                                Next
+                            </Button>
+                        </View>
+                    }
+                />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const styles = StyleSheet.create({
+            example: {
+                alignItems: "center",
+            },
+        });
+
+        const example = (
+            <View style={styles.example}>
+                <PopoverContent
+                    title="Title"
+                    content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                    icon="/logo.svg"
+                />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const styles = StyleSheet.create({
+            example: {
+                alignItems: "center",
+            },
+        });
+
+        const example = (
+            <View style={styles.example}>
+                <PopoverContent
+                    title="Title"
+                    content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                    image="/illustration.svg"
+                    closeButtonVisible
+                />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {
