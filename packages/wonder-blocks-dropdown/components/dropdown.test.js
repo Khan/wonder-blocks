@@ -2,6 +2,7 @@
 import * as React from "react";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
+import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
@@ -172,7 +173,8 @@ describe("Dropdown Launcher", () => {
     it("open on down key when focused", () => {
         // Arrange
         const anchor = dropdown.find(IconButton);
-        anchor.simulate("click");
+        const clickableBehavior = dropdown.find(ClickableBehavior);
+        clickableBehavior.simulate("click");
 
         // Act
         anchor.simulate("keydown", {keyCode: keyCodes.down});
