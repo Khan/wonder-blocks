@@ -5,10 +5,44 @@ import {icons} from "@khanacademy/wonder-blocks-icon";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
-import SeparatorItem from "./separator-item.js";
 import DropdownCore from "./dropdown-core.js";
 import Dropdown from "./dropdown.js";
 import {keyCodes} from "../util/constants.js";
+
+type Props = {||};
+type State = {|
+    selectedValues: Array<*>,
+|};
+
+class ControlledComponent extends React.Component<Props, State> {
+    state = {
+        selectedValues: ["A"],
+    };
+
+    handleChange = (update) =>
+        this.setState({
+            selectedValues: update,
+        });
+
+    render() {
+        const dropdownItems = [
+            <OptionItem label="A" value="A" />,
+            <OptionItem label="B" value="B" />,
+            <OptionItem label="C" value="C" />,
+            <OptionItem label="D" value="D" />,
+        ];
+
+        return (
+            <Dropdown
+                menuItems={dropdownItems}
+                onChange={this.handleChange}
+                selectedValues={this.state.selectedValues}
+            >
+                {(open, state) => <h1>Manage students</h1>}
+            </Dropdown>
+        );
+    }
+}
 
 describe("Dropdown Launcher", () => {
     window.scrollTo = jest.fn();
@@ -21,6 +55,9 @@ describe("Dropdown Launcher", () => {
                 testId="teacher-menu"
                 selectedValues={["A"]}
                 menuItems={[
+                    <OptionItem label="A" value="A" />,
+                    <OptionItem label="B" value="B" />,
+                    <OptionItem label="C" value="C" />,
                     <ActionItem
                         label="Profile"
                         href="http://khanacademy.org/profile"
@@ -48,10 +85,6 @@ describe("Dropdown Launcher", () => {
                         href="/feedback"
                         testId="feedback"
                     />,
-                    <SeparatorItem />,
-                    <OptionItem label="A" value="A" />,
-                    <OptionItem label="B" value="B" />,
-                    <OptionItem label="C" value="C" />,
                 ]}
             >
                 {(handleDropdown) => (
@@ -152,5 +185,41 @@ describe("Dropdown Launcher", () => {
 
         // Assert
         expect(dropdown.state("opened")).toBe(true);
+    });
+
+    it.only("updates selectedValues when OptionItem clicked", () => {
+        // Arrange
+        const controlledComponent = mount(<ControlledComponent />);
+        controlledComponent.simulate("click");
+        dropdown = controlledComponent.find(DropdownCore);
+
+        // Act
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
+        expect(dropdown.instance().focusedIndex).toBe(0);
+
+        const optionItem = controlledComponent.find(OptionItem).at(1);
+        optionItem.simulate("click");
+
+        // Assert
+        expect(controlledComponent.state("selectedValues").length).toBe(2);
+    });
+
+    it.only("removes selected values from selectedValues", () => {
+        // Arrange
+        const controlledComponent = mount(<ControlledComponent />);
+        controlledComponent.simulate("click");
+        dropdown = controlledComponent.find(DropdownCore);
+
+        // Act
+        dropdown.simulate("keydown", {keyCode: keyCodes.down});
+        dropdown.simulate("keyup", {keyCode: keyCodes.down});
+        expect(dropdown.instance().focusedIndex).toBe(0);
+
+        const optionItem = controlledComponent.find(OptionItem).at(0);
+        optionItem.simulate("click");
+
+        // Assert
+        expect(controlledComponent.state("selectedValues").length).toBe(0);
     });
 });
