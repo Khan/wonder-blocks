@@ -79,7 +79,7 @@ describe("wonder-blocks-dropdown", () => {
                 testId="teacher-menu"
                 menuItems={dropdownItems}
             >
-                {(openDropdown) => (
+                {(state) => (
                     <IconButton icon={icons.caretDown} aria-label="search" />
                 )}
             </Dropdown>
@@ -122,7 +122,7 @@ describe("wonder-blocks-dropdown", () => {
         const example = (
             <View>
                 <Dropdown testId="teacher-menu" menuItems={dropdownItems}>
-                    {(openDropdown, state) => (
+                    {(state) => (
                         <Title
                             style={[
                                 styles.cursor,
@@ -191,7 +191,7 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                     >
-                        {(open, state) => (
+                        {(state) => (
                             <HeadingSmall
                                 style={[
                                     styles.cursor,

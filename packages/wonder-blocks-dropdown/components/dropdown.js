@@ -15,13 +15,10 @@ type Props = {|
     ...AriaProps,
 
     /**
-     * The child function, that takes in a function to open the dropdown and state and
+     * The child function, that takes in state the state of the element and
      * returns an Element which will become the opener element for the dropdown.
      */
-    children: (
-        openDropdown: () => void,
-        state: ClickableState,
-    ) => React.Element<any>,
+    children: (state: ClickableState) => React.Element<any>,
 
     /**
      * Can be used to override the state of the Dropdown by parent elemnents
@@ -130,10 +127,9 @@ export default class Dropdown extends React.Component<Props, State> {
         this.handleItemSelected();
     };
 
-    handleOpenDropdown = () => this.setState({opened: true});
-
-    handleClick = (e: SyntheticEvent<>) =>
-        this.handleOpenChanged(!this.state.opened, e.type === "keyup");
+    handleClick = (e: SyntheticEvent<>) => {
+        return this.handleOpenChanged(!this.state.opened, e.type === "keyup");
+    };
 
     _getMenuItems = (): Array<DropdownItem> => {
         const {selectedValues} = this.props;
@@ -198,10 +194,7 @@ export default class Dropdown extends React.Component<Props, State> {
                             (this.openerElement = ReactDOM.findDOMNode(ref))
                         }
                     >
-                        {React.cloneElement(
-                            children(this.handleOpenDropdown, state),
-                            handlers,
-                        )}
+                        {React.cloneElement(children(state), handlers)}
                     </DropdownAnchor>
                 )}
             </ClickableBehavior>

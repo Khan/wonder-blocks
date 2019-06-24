@@ -1,7 +1,7 @@
 
 ### Custom opener attached to Dropdown
 
-A Dropdown allows various elements to be used as dropdown menus. In this example we use the IconButton to open a Dropown of items to select from.
+A Dropdown allows various elements to be used as dropdown menus. In this example we use the IconButton to open a Dropown of items to select from. A custom dropdown can be implemented by nesting a function which takes in a state parameter and returns your custom opener component inside a Dropdown.
 
 ```js
 const React = require("react");
@@ -60,7 +60,7 @@ const dropdownItems = [
     testId="teacher-menu"
     menuItems={dropdownItems}
 >
-    {(openDropdown) => (
+    {state => (
         <IconButton
             icon={icons.caretDown}
             aria-label="search"
@@ -119,7 +119,7 @@ const dropdownItems = [
         testId="teacher-menu"
         menuItems={dropdownItems}
     >
-        {(openDropdown, state) => (
+        {state => (
             <Title
                 style={[
                     styles.cursor,
@@ -209,7 +209,7 @@ class MixedDropdownExample extends React.Component {
                 onChange={this.handleChange}
                 selectedValues={this.state.selectedValues}
             >
-                {(open, state) => (
+                {state => (
                     <HeadingSmall
                         style={[
                             styles.cursor,
