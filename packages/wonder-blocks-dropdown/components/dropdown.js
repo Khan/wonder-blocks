@@ -18,7 +18,7 @@ type Props = {|
      * The child function, that takes in state the state of the element and
      * returns an Element which will become the opener element for the dropdown.
      */
-    children: (state: ClickableState) => React.Element<any>,
+    children: (eventState: ClickableState) => React.Element<any>,
 
     /**
      * Can be used to override the state of the Dropdown by parent elemnents
@@ -184,10 +184,9 @@ export default class Dropdown extends React.Component<Props, State> {
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior();
-        const isOpen = this.state.opened;
         const opener = (
             <ClickableBehavior onClick={this.handleClick}>
-                {(state, handlers) => (
+                {(eventState, handlers) => (
                     <DropdownAnchor
                         anchorRef={(ref) =>
                             (this.openerElement = ((ReactDOM.findDOMNode(
@@ -195,7 +194,7 @@ export default class Dropdown extends React.Component<Props, State> {
                             ): any): ?HTMLElement))
                         }
                     >
-                        {React.cloneElement(children(state), handlers)}
+                        {React.cloneElement(children(eventState), handlers)}
                     </DropdownAnchor>
                 )}
             </ClickableBehavior>

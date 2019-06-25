@@ -60,7 +60,7 @@ const dropdownItems = [
     testId="teacher-menu"
     menuItems={dropdownItems}
 >
-    {state => (
+    {eventState => (
         <IconButton
             icon={icons.caretDown}
             aria-label="search"
@@ -109,13 +109,13 @@ const dropdownItems = [
         testId="teacher-menu"
         menuItems={dropdownItems}
     >
-        {state => (
+        {eventState => (
             <Title
                 style={[
                     styles.cursor,
-                    state.focused && styles.focused,
-                    state.hovered && styles.hovered,
-                    state.pressed && styles.pressed,
+                    eventState.focused && styles.focused,
+                    eventState.hovered && styles.hovered,
+                    eventState.pressed && styles.pressed,
                 ]}
             >
             Settings ⌄
@@ -181,12 +181,12 @@ class MixedDropdownExample extends React.Component {
                 onChange={this.handleChange}
                 selectedValues={this.state.selectedValues}
             >
-                {(state) => (
+                {(eventState) => (
                     <HeadingSmall
                         style={[
                             styles.cursor,
-                            state.focused && styles.focused,
-                            state.hovered && styles.hovered,
+                            eventState.focused && styles.focused,
+                            eventState.hovered && styles.hovered,
                         ]}
                     >
                         Manage students
