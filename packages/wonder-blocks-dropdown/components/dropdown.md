@@ -96,22 +96,12 @@ const styles = StyleSheet.create({
 });
 
 const dropdownItems = [
-    <ActionItem
-        label="Change password"
-    />,
-    <ActionItem
-        label="Manage email"
-    />,
-    <ActionItem
-        label="Set up 2FA"
-    />,
-    <ActionItem
-        label="Get Help"
-    />,
+    <ActionItem label="Change password" />,
+    <ActionItem label="Manage email" />,
+    <ActionItem label="Set up 2FA" />,
+    <ActionItem label="Get Help" />,
     <SeparatorItem />,
-    <ActionItem
-        label="Log out"
-    />,
+    <ActionItem label="Log out" />,
 ];
 
 <View>
@@ -157,6 +147,7 @@ const styles = StyleSheet.create({
     }
 });
 
+
 class MixedDropdownExample extends React.Component {
     constructor() {
         super();
@@ -174,33 +165,14 @@ class MixedDropdownExample extends React.Component {
 
     render() {
         const dropdownItems = [
-            <ActionItem
-                label="Add new +"
-            />,
+            <ActionItem label="Add new +" />,
             <SeparatorItem />,
-            <OptionItem
-                label="Alex"
-                value="alex"
-            />,
-            <OptionItem
-                label="Cathy"
-                value="cathy"
-            />,
-            <OptionItem
-                label="Kumail"
-                value="kumail" />,
-            <OptionItem
-                label="Salman"
-                value="salman"
-            />,
-            <OptionItem
-                label="Yan"
-                value="yan"
-            />,
-            <OptionItem
-                label="Yash"
-                value="yash"
-            />,
+            <OptionItem label="Alex" value="alex" />,
+            <OptionItem label="Cathy" value="cathy" />,
+            <OptionItem label="Kumail" value="kumail" />,
+            <OptionItem label="Salman" value="salman" />,
+            <OptionItem label="Yan" value="yan" />,
+            <OptionItem label="Yash" value="yash" />,
         ];
 
         return (
@@ -209,7 +181,7 @@ class MixedDropdownExample extends React.Component {
                 onChange={this.handleChange}
                 selectedValues={this.state.selectedValues}
             >
-                {state => (
+                {(state) => (
                     <HeadingSmall
                         style={[
                             styles.cursor,
@@ -224,6 +196,7 @@ class MixedDropdownExample extends React.Component {
         );
     }
 }
+
 
 <View>
     <MixedDropdownExample />

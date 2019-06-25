@@ -59,6 +59,7 @@ type Props = {|
     dropdownStyle?: StyleType,
 |};
 
+// TODO: WB-609 create a shared type for this
 type ClickableState = {|
     pressed: boolean,
     hovered: boolean,
