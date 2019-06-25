@@ -15,7 +15,7 @@ type State = {|
     selectedValues: Array<*>,
 |};
 
-describe("Dropdown Launcher", () => {
+describe("Dropdown", () => {
     window.scrollTo = jest.fn();
     window.getComputedStyle = jest.fn();
     let dropdown;

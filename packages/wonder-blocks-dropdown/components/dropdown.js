@@ -190,9 +190,9 @@ export default class Dropdown extends React.Component<Props, State> {
                 {(state, handlers) => (
                     <DropdownAnchor
                         anchorRef={(ref) =>
-                            //TODO: Fix this flow error
-                            //$FlowFixMe
-                            (this.openerElement = ReactDOM.findDOMNode(ref))
+                            (this.openerElement = ((ReactDOM.findDOMNode(
+                                ref,
+                            ): any): ?HTMLElement))
                         }
                     >
                         {React.cloneElement(children(state), handlers)}
