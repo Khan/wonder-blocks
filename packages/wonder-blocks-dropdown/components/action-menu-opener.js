@@ -16,7 +16,7 @@ export type SharedProps = {|
     /**
      * Whether the opener is disabled. If disabled, disallows interaction.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Test ID used for e2e testing.
