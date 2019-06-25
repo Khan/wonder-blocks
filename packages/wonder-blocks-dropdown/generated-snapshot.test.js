@@ -8,6 +8,7 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import Dropdown from "./components/dropdown.js";
 import ActionItem from "./components/action-item.js";
 import SeparatorItem from "./components/separator-item.js";
 import OptionItem from "./components/option-item.js";
@@ -18,6 +19,203 @@ import DropdownCore from "./components/dropdown-core.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
+            .default;
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const {StyleSheet} = require("aphrodite");
+
+        const dropdownItems = [
+            <ActionItem
+                label="Profile"
+                href="http://khanacademy.org/profile"
+                testId="profile"
+            />,
+            <ActionItem
+                label="Teacher dashboard"
+                href="http://khanacademy.org/coach/dashboard"
+                testId="dashboard"
+            />,
+            <ActionItem
+                label="Settings"
+                onClick={() => console.log("user clicked on settings")}
+                testId="settings"
+            />,
+            <ActionItem
+                label="Help"
+                disabled={true}
+                onClick={() => console.log("this item is disabled...")}
+                testId="help"
+            />,
+            <ActionItem
+                label="Feedback"
+                disabled={true}
+                href="/feedback"
+                testId="feedback"
+            />,
+            <SeparatorItem />,
+            <ActionItem
+                label="Log out"
+                href="http://khanacademy.org/logout"
+                testId="logout"
+            />,
+            <OptionItem
+                label="Show homework assignments"
+                value="homework"
+                onClick={() => console.log(`Show homework assignments toggled`)}
+            />,
+            <OptionItem
+                label="Show in-class assignments"
+                value="in-class"
+                onClick={() => console.log(`Show in-class assignments toggled`)}
+            />,
+        ];
+
+        const example = (
+            <Dropdown
+                disabled={false}
+                menuText="Betsy Appleseed"
+                testId="teacher-menu"
+                menuItems={dropdownItems}
+            >
+                {(eventState) => (
+                    <IconButton icon={icons.caretDown} aria-label="search" />
+                )}
+            </Dropdown>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+        const {Title} = require("@khanacademy/wonder-blocks-typography");
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        // Custom styles for mouse events can be defined like so
+        const styles = StyleSheet.create({
+            focused: {
+                border: "none",
+            },
+            hovered: {
+                textDecoration: "underline",
+            },
+            pressed: {
+                color: Color.teal,
+            },
+            cursor: {
+                cursor: "pointer",
+                outline: "none",
+            },
+        });
+
+        const dropdownItems = [
+            <ActionItem label="Change password" />,
+            <ActionItem label="Manage email" />,
+            <ActionItem label="Set up 2FA" />,
+            <ActionItem label="Get Help" />,
+            <SeparatorItem />,
+            <ActionItem label="Log out" />,
+        ];
+
+        const example = (
+            <View>
+                <Dropdown testId="teacher-menu" menuItems={dropdownItems}>
+                    {(eventState) => (
+                        <Title
+                            style={[
+                                styles.cursor,
+                                eventState.focused && styles.focused,
+                                eventState.hovered && styles.hovered,
+                                eventState.pressed && styles.pressed,
+                            ]}
+                        >
+                            Settings ⌄
+                        </Title>
+                    )}
+                </Dropdown>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const React = require("react");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {StyleSheet} = require("aphrodite");
+        const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
+        const styles = StyleSheet.create({
+            focused: {
+                border: "none",
+            },
+            hovered: {
+                textDecoration: "underline",
+            },
+            cursor: {
+                cursor: "pointer",
+                outline: "none",
+            },
+        });
+
+        class MixedDropdownExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: ["kumail"],
+                };
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(update) {
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                const dropdownItems = [
+                    <ActionItem label="Add new +" />,
+                    <SeparatorItem />,
+                    <OptionItem label="Alex" value="alex" />,
+                    <OptionItem label="Cathy" value="cathy" />,
+                    <OptionItem label="Kumail" value="kumail" />,
+                    <OptionItem label="Salman" value="salman" />,
+                    <OptionItem label="Yan" value="yan" />,
+                    <OptionItem label="Yash" value="yash" />,
+                ];
+
+                return (
+                    <Dropdown
+                        menuItems={dropdownItems}
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                    >
+                        {(eventState) => (
+                            <HeadingSmall
+                                style={[
+                                    styles.cursor,
+                                    eventState.focused && styles.focused,
+                                    eventState.hovered && styles.hovered,
+                                ]}
+                            >
+                                Manage students
+                            </HeadingSmall>
+                        )}
+                    </Dropdown>
+                );
+            }
+        }
+
+        const example = (
+            <View>
+                <MixedDropdownExample />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -73,7 +271,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
+    it("example 5", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -116,7 +314,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 6", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -204,7 +402,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 7", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -222,7 +420,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 8", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -282,7 +480,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 9", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -357,7 +555,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 10", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -420,7 +618,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 11", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -475,7 +673,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
+    it("example 12", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -531,7 +729,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
+    it("example 13", () => {
         const React = require("react");
         const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -606,7 +804,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
+    it("example 14", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -624,7 +822,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
+    it("example 15", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
@@ -649,7 +847,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
+    it("example 16", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -720,7 +918,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
+    it("example 17", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -785,7 +983,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 15", () => {
+    it("example 18", () => {
         const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -852,7 +1050,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 16", () => {
+    it("example 19", () => {
         const {StyleSheet} = require("aphrodite");
         const React = require("react");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
@@ -948,7 +1146,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 17", () => {
+    it("example 20", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -966,7 +1164,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 18", () => {
+    it("example 21", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
