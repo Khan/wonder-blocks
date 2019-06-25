@@ -3,7 +3,11 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    ClickableHandlers,
+} from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import DropdownCore from "./dropdown-core.js";
 import type {Item, DropdownItem} from "../util/types.js";
@@ -18,7 +22,10 @@ type Props = {|
      * The child function, that takes in state the state of the element and
      * returns an Element which will become the opener element for the dropdown.
      */
-    children: (state: ClickableState) => React.Element<any>,
+    children: (
+        state: ClickableState,
+        handlers: ClickableHandlers,
+    ) => React.Element<any>,
 
     /**
      * Can be used to override the state of the Dropdown by parent elemnents
@@ -52,6 +59,11 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Optional styling for the entire dropdown component.
+     */
+    style?: StyleType,
 
     /**
      * Optional styling to add to the dropdown wrapper.
@@ -175,6 +187,7 @@ export default class Dropdown extends React.Component<Props, State> {
             children,
             alignment,
             dropdownStyle,
+            style,
             /* eslint-disable no-unused-vars */
             onChange,
             selectedValues,
@@ -194,7 +207,7 @@ export default class Dropdown extends React.Component<Props, State> {
                             (this.openerElement = ReactDOM.findDOMNode(ref))
                         }
                     >
-                        {React.cloneElement(children(state), handlers)}
+                        {children(state, handlers)}
                     </DropdownAnchor>
                 )}
             </ClickableBehavior>
@@ -205,6 +218,7 @@ export default class Dropdown extends React.Component<Props, State> {
                 alignment={alignment}
                 items={this._getMenuItems()}
                 keyboard={this.state.keyboard}
+                style={style}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                 onOpenChanged={this.handleOpenChanged}
                 open={this.state.opened}

@@ -136,19 +136,6 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
   >
     <h1
       className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
       style={
         Object {
           "@media (maxWidth: 1023px)": Object {
@@ -170,7 +157,6 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "outline": "none",
         }
       }
-      tabIndex={0}
     >
       Settings ⌄
     </h1>
@@ -222,19 +208,6 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
   >
     <h4
       className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
       style={
         Object {
           "MozOsxFontSmoothing": "grayscale",
@@ -250,7 +223,6 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "outline": "none",
         }
       }
-      tabIndex={0}
     >
       Manage students
     </h4>
@@ -909,7 +881,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           "touchAction": "manipulation",
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="button"
     >
       <div
