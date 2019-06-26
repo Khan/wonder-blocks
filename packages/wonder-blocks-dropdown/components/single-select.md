@@ -267,7 +267,7 @@ class LightRightAlignedExample extends React.Component {
             alignment="right"
             light={true}
             onChange={this.handleChange}
-            placeholder="Boba order"
+            placeholder="Choose a drink"
             selectedValue={this.state.selectedValue}
         >
             <OptionItem label="Regular milk tea with boba" value="regular" />

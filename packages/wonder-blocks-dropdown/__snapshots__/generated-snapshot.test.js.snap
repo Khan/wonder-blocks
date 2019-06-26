@@ -1868,7 +1868,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
             }
           }
         >
-          Boba order
+          Choose a drink
         </span>
         <svg
           aria-hidden="true"

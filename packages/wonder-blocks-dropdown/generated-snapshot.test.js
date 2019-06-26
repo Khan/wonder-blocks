@@ -773,7 +773,7 @@ describe("wonder-blocks-dropdown", () => {
                         alignment="right"
                         light={true}
                         onChange={this.handleChange}
-                        placeholder="Boba order"
+                        placeholder="Choose a drink"
                         selectedValue={this.state.selectedValue}
                     >
                         <OptionItem
