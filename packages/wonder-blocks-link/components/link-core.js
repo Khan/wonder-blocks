@@ -6,16 +6,16 @@ import PropTypes from "prop-types";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
+import type {
+    ClickableHandlers,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./link.js";
 
 type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
-
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
+    ...ClickableState,
     href: string,
 |};
 

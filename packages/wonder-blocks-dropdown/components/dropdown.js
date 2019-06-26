@@ -3,7 +3,11 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    StyleType,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import DropdownCore from "./dropdown-core.js";
 import type {Item, DropdownItem} from "../util/types.js";
@@ -60,11 +64,6 @@ type Props = {|
 |};
 
 // TODO: WB-609 create a shared type for this
-type ClickableState = {|
-    pressed: boolean,
-    hovered: boolean,
-    focused: boolean,
-|};
 
 type State = {|
     /**

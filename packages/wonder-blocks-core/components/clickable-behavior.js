@@ -90,6 +90,10 @@ type Props = {|
 |};
 
 type State = {|
+    ...ClickableState,
+|};
+
+export type ClickableState = {|
     /**
      * Whether the component is hovered.
      *
