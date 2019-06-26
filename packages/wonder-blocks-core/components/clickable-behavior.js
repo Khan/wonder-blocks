@@ -89,9 +89,7 @@ type Props = {|
     role?: ClickableRole,
 |};
 
-type State = {|
-    ...ClickableState,
-|};
+type State = ClickableState;
 
 export type ClickableState = {|
     /**
