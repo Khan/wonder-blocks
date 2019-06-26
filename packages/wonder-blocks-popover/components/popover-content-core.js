@@ -51,7 +51,7 @@ type Props = {|
 
 /**
  * This is the base popover container. It’s used internally by all the variants.
- * Also, It can be used to create flexible popovers.
+ * Also, it can be used to create flexible popovers.
  */
 export default class PopoverContentCore extends React.Component<Props> {
     static defaultProps = {
