@@ -8,6 +8,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
 import PopoverContentCore from "./popover-content-core.js";
+import PopoverContext from "./popover-context.js";
 
 type CommonProps = {|
     ...AriaProps,
@@ -24,8 +25,13 @@ type CommonProps = {|
 
     /**
      * User-defined actions.
+     *
+     * It can be either a Node or a function using the children-as-function
+     * pattern to pass a close function for use anywhere within the actions.
+     * This provides a lot of flexibility in terms of what actions may trigger
+     * the Popover to close the popover window.
      */
-    actions?: React.Node,
+    actions?: React.Node | (({close: () => mixed}) => React.Node),
 
     /**
      * Close button label for use in screen readers
@@ -120,31 +126,60 @@ export default class PopoverContent extends React.Component<Props> {
             title,
             testId,
         } = this.props;
-
         return (
-            <PopoverContentCore
-                color={emphasized ? "blue" : "light"}
-                closeButtonLabel={closeButtonLabel}
-                closeButtonVisible={closeButtonVisible}
-                onClose={onClose}
-                style={style}
-                testId={testId}
-            >
-                <View style={!!icon && styles.withIcon}>
-                    {image && <StyledImage style={styles.image} src={image} />}
+            <PopoverContext.Consumer>
+                {({close}) => {
+                    if (close && onClose) {
+                        throw new Error(
+                            "You've specified 'onClose' on the content when using Popover. Please specify 'onClose' on the Popover instead",
+                        );
+                    }
 
-                    {icon && <StyledImage style={styles.icon} src={icon} />}
+                    return (
+                        <PopoverContentCore
+                            color={emphasized ? "blue" : "light"}
+                            closeButtonLabel={closeButtonLabel}
+                            closeButtonVisible={closeButtonVisible}
+                            onClose={onClose}
+                            style={style}
+                            testId={testId}
+                        >
+                            <View style={!!icon && styles.withIcon}>
+                                {image && (
+                                    <StyledImage
+                                        style={styles.image}
+                                        src={image}
+                                    />
+                                )}
 
-                    <View style={styles.text}>
-                        <HeadingSmall style={styles.title}>
-                            {title}
-                        </HeadingSmall>
-                        <Body>{content}</Body>
-                    </View>
-                </View>
+                                {icon && (
+                                    <StyledImage
+                                        style={styles.icon}
+                                        src={icon}
+                                    />
+                                )}
 
-                {actions && <View style={styles.actions}>{actions}</View>}
-            </PopoverContentCore>
+                                <View style={styles.text}>
+                                    <HeadingSmall style={styles.title}>
+                                        {title}
+                                    </HeadingSmall>
+                                    <Body>{content}</Body>
+                                </View>
+                            </View>
+
+                            {actions && (
+                                <View style={styles.actions}>
+                                    {typeof actions === "function"
+                                        ? actions({
+                                              close: (close || onClose: any),
+                                          })
+                                        : actions}
+                                </View>
+                            )}
+                        </PopoverContentCore>
+                    );
+                }}
+            </PopoverContext.Consumer>
         );
     }
 }

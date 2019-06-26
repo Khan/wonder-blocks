@@ -7,6 +7,8 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
+import PopoverContext from "./popover-context.js";
+
 type Props = {|
     ...AriaProps,
 
@@ -36,14 +38,25 @@ export default class CloseButton extends React.Component<Props> {
     render() {
         const {light, onClose, "aria-label": ariaLabel} = this.props;
         return (
-            <IconButton
-                icon={icons.dismiss}
-                aria-label={ariaLabel}
-                onClick={onClose}
-                kind={light ? "primary" : "tertiary"}
-                light={light}
-                style={styles.closeButton}
-            />
+            <PopoverContext.Consumer>
+                {({close}) => {
+                    if (close && onClose) {
+                        throw new Error(
+                            "You've specified 'onClose' on the content when using Popover. Please specify 'onClose' on the Popover instead",
+                        );
+                    }
+                    return (
+                        <IconButton
+                            icon={icons.dismiss}
+                            aria-label={ariaLabel}
+                            onClick={onClose || close}
+                            kind={light ? "primary" : "tertiary"}
+                            light={light}
+                            style={styles.closeButton}
+                        />
+                    );
+                }}
+            </PopoverContext.Consumer>
         );
     }
 }

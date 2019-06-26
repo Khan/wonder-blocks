@@ -7,7 +7,7 @@ import * as React from "react";
 import {Popper} from "react-popper";
 import type {PopperChildrenProps} from "react-popper";
 
-import TooltipBubble from "./tooltip-bubble.js";
+// import TooltipBubble from "./tooltip-bubble.js";
 // NOTE(jeff): Here we share some code for use with PopperJS. Long term,
 // we should either contribute this code to the PopperJS component, or its
 // own non-wonder-blocks package.
@@ -23,7 +23,7 @@ type Props = {|
      * implementation, except we enforce the return type to be our
      * `TooltipBubble` component.
      */
-    children: (TooltipBubbleProps) => React.Element<typeof TooltipBubble>,
+    children: (TooltipBubbleProps) => React.Node,
 
     /**
      * The element that anchors the tooltip bubble.
