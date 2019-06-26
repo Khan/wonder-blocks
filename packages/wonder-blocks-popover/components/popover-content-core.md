@@ -1,3 +1,7 @@
+#### Example: Custom content
+
+This component provides a flexible variant that can be used for example, for our Confidence Prompt in test prep and popovers that don't fit into other categories. If you want to use a different background, you can set `color` as part of `PopoverContentCore`.
+
 ```js
 const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-### Accessibility notes
+#### Accessibility notes
 The popover component will populate the `aria-describedby` attribute
 automatically, unless the user sets an `id` prop inside the Popover instance.
 Internally, it will be set on the trigger element.
