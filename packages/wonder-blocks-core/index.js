@@ -1,5 +1,8 @@
 // @flow
-import type {ClickableHandlers} from "./components/clickable-behavior.js";
+import type {
+    ClickableHandlers,
+    ClickableState,
+} from "./components/clickable-behavior.js";
 import type {AriaProps, IIdentifierFactory, StyleType} from "./util/types.js";
 import type {Intersection} from "./util/get-element-intersection.js";
 
@@ -22,6 +25,7 @@ export {
 export type {
     AriaProps,
     ClickableHandlers,
+    ClickableState,
     Intersection,
     IIdentifierFactory,
     StyleType,

@@ -11,12 +11,12 @@ type Props = {|
     /**
      * Callback used to pass the childs Ref back up to the parent element
      */
-    anchorRef: (?Element | ?Text | ?HTMLElement) => mixed,
+    anchorRef: (?HTMLElement) => mixed,
 |};
 
 export default class DropdownAnchor extends React.Component<Props> {
     componentDidMount() {
-        const anchorNode = ReactDOM.findDOMNode(this);
+        const anchorNode = ((ReactDOM.findDOMNode(this): any): ?HTMLElement);
         this.props.anchorRef(anchorNode);
     }
 

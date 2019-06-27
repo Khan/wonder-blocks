@@ -10,37 +10,17 @@ import Color, {
     fade,
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
+import type {
+    ClickableHandlers,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import type {SharedProps} from "./icon-button.js";
 
 type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
-
-    /**
-     * Whether the IconButton is hovered.
-     *
-     * Same styling as focused. Refer to `ClickableBehavior` for more
-     * information on when this prop should be `true`.
-     */
-    hovered: boolean,
-
-    /**
-     * Whether the IconButton is focused.
-     *
-     * Same styling as hvoered. Refer to `ClickableBehavior` for more
-     * information on when this prop should be `true`.
-     */
-    focused: boolean,
-
-    /**
-     * Whether the IconButton is pressed.
-     *
-     * Refer to `ClickableBehavior` for more information on when this prop
-     * should be `true`.
-     */
-    pressed: boolean,
+    ...ClickableState,
 
     /**
      * URL to navigate to.

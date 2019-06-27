@@ -60,7 +60,7 @@ const dropdownItems = [
     testId="teacher-menu"
     menuItems={dropdownItems}
 >
-    {state => (
+    {eventState => (
         <IconButton
             icon={icons.caretDown}
             aria-label="search"
@@ -96,22 +96,12 @@ const styles = StyleSheet.create({
 });
 
 const dropdownItems = [
-    <ActionItem
-        label="Change password"
-    />,
-    <ActionItem
-        label="Manage email"
-    />,
-    <ActionItem
-        label="Set up 2FA"
-    />,
-    <ActionItem
-        label="Get Help"
-    />,
+    <ActionItem label="Change password" />,
+    <ActionItem label="Manage email" />,
+    <ActionItem label="Set up 2FA" />,
+    <ActionItem label="Get Help" />,
     <SeparatorItem />,
-    <ActionItem
-        label="Log out"
-    />,
+    <ActionItem label="Log out" />,
 ];
 
 <View>
@@ -119,13 +109,13 @@ const dropdownItems = [
         testId="teacher-menu"
         menuItems={dropdownItems}
     >
-        {state => (
+        {eventState => (
             <Title
                 style={[
                     styles.cursor,
-                    state.focused && styles.focused,
-                    state.hovered && styles.hovered,
-                    state.pressed && styles.pressed,
+                    eventState.focused && styles.focused,
+                    eventState.hovered && styles.hovered,
+                    eventState.pressed && styles.pressed,
                 ]}
             >
             Settings ⌄
@@ -174,33 +164,14 @@ class MixedDropdownExample extends React.Component {
 
     render() {
         const dropdownItems = [
-            <ActionItem
-                label="Add new +"
-            />,
+            <ActionItem label="Add new +" />,
             <SeparatorItem />,
-            <OptionItem
-                label="Alex"
-                value="alex"
-            />,
-            <OptionItem
-                label="Cathy"
-                value="cathy"
-            />,
-            <OptionItem
-                label="Kumail"
-                value="kumail" />,
-            <OptionItem
-                label="Salman"
-                value="salman"
-            />,
-            <OptionItem
-                label="Yan"
-                value="yan"
-            />,
-            <OptionItem
-                label="Yash"
-                value="yash"
-            />,
+            <OptionItem label="Alex" value="alex" />,
+            <OptionItem label="Cathy" value="cathy" />,
+            <OptionItem label="Kumail" value="kumail" />,
+            <OptionItem label="Salman" value="salman" />,
+            <OptionItem label="Yan" value="yan" />,
+            <OptionItem label="Yash" value="yash" />,
         ];
 
         return (
@@ -209,12 +180,12 @@ class MixedDropdownExample extends React.Component {
                 onChange={this.handleChange}
                 selectedValues={this.state.selectedValues}
             >
-                {state => (
+                {(eventState) => (
                     <HeadingSmall
                         style={[
                             styles.cursor,
-                            state.focused && styles.focused,
-                            state.hovered && styles.hovered,
+                            eventState.focused && styles.focused,
+                            eventState.hovered && styles.hovered,
                         ]}
                     >
                         Manage students

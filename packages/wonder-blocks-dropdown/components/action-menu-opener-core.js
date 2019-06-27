@@ -9,18 +9,12 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import type {
-    AriaProps,
-    ClickableHandlers,
-} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, ClickableState} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
-    ...ClickableHandlers,
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
     ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
 
+    ...ClickableState,
     /**
      * Display text for the opener.
      */

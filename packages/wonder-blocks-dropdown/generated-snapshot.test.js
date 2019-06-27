@@ -79,7 +79,7 @@ describe("wonder-blocks-dropdown", () => {
                 testId="teacher-menu"
                 menuItems={dropdownItems}
             >
-                {(state) => (
+                {(eventState) => (
                     <IconButton icon={icons.caretDown} aria-label="search" />
                 )}
             </Dropdown>
@@ -122,13 +122,13 @@ describe("wonder-blocks-dropdown", () => {
         const example = (
             <View>
                 <Dropdown testId="teacher-menu" menuItems={dropdownItems}>
-                    {(state) => (
+                    {(eventState) => (
                         <Title
                             style={[
                                 styles.cursor,
-                                state.focused && styles.focused,
-                                state.hovered && styles.hovered,
-                                state.pressed && styles.pressed,
+                                eventState.focused && styles.focused,
+                                eventState.hovered && styles.hovered,
+                                eventState.pressed && styles.pressed,
                             ]}
                         >
                             Settings ⌄
@@ -191,12 +191,12 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                     >
-                        {(state) => (
+                        {(eventState) => (
                             <HeadingSmall
                                 style={[
                                     styles.cursor,
-                                    state.focused && styles.focused,
-                                    state.hovered && styles.hovered,
+                                    eventState.focused && styles.focused,
+                                    eventState.hovered && styles.hovered,
                                 ]}
                             >
                                 Manage students
@@ -773,7 +773,7 @@ describe("wonder-blocks-dropdown", () => {
                         alignment="right"
                         light={true}
                         onChange={this.handleChange}
-                        placeholder="Boba order"
+                        placeholder="Choose a drink"
                         selectedValue={this.state.selectedValue}
                     >
                         <OptionItem

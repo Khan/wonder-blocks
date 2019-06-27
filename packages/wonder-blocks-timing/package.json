@@ -1,7 +1,7 @@
 {
   "name": "@khanacademy/wonder-blocks-timing",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "design": "v1",
   "publishConfig": {
     "access": "restricted"

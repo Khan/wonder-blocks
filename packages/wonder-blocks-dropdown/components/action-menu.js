@@ -92,7 +92,6 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             alignment,
             disabled,
             menuText,
-            style,
             testId,
             dropdownStyle,
             // the following props are being included here to avoid
@@ -101,6 +100,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             children,
             onChange,
             selectedValues,
+            style,
             "aria-disabled": ariaDisabled, // WB-535 avoids passing this prop to the opener
             /* eslint-enable no-unused-vars */
             ...sharedProps
@@ -109,18 +109,16 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const menuItems = React.Children.toArray(this.props.children);
         return (
             <Dropdown
-                style={style}
                 alignment={alignment}
                 menuItems={menuItems}
                 onChange={this.props.onChange}
                 selectedValues={this.props.selectedValues}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
             >
-                {(state, handlers) => (
+                {(eventState) => (
                     <ActionMenuOpenerCore
                         {...sharedProps}
-                        {...state}
-                        {...handlers}
+                        {...eventState}
                         opened={this.state.opened}
                         disabled={menuItems.length === 0 || disabled}
                         testId={testId}

@@ -15,37 +15,7 @@ type State = {|
     selectedValues: Array<*>,
 |};
 
-class ControlledComponent extends React.Component<Props, State> {
-    state = {
-        selectedValues: ["A"],
-    };
-
-    handleChange = (update) =>
-        this.setState({
-            selectedValues: update,
-        });
-
-    render() {
-        const dropdownItems = [
-            <OptionItem label="A" value="A" />,
-            <OptionItem label="B" value="B" />,
-            <OptionItem label="C" value="C" />,
-            <OptionItem label="D" value="D" />,
-        ];
-
-        return (
-            <Dropdown
-                menuItems={dropdownItems}
-                onChange={this.handleChange}
-                selectedValues={this.state.selectedValues}
-            >
-                {(state) => <h1>Manage students</h1>}
-            </Dropdown>
-        );
-    }
-}
-
-describe("Dropdown Launcher", () => {
+describe("Dropdown", () => {
     window.scrollTo = jest.fn();
     window.getComputedStyle = jest.fn();
     let dropdown;
@@ -110,7 +80,7 @@ describe("Dropdown Launcher", () => {
         expect(dropdown.state("opened")).toBe(true);
     });
 
-    it("can handle keyboard navigation", () => {
+    it("should navigate to the first item when pressing down", () => {
         // Arrange
         const anchor = dropdown.find(IconButton);
         anchor.simulate("click");
@@ -119,14 +89,25 @@ describe("Dropdown Launcher", () => {
         // Act & Assert
         dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
         dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+
+        // Assert
         expect(dropdownCore.instance().focusedIndex).toBe(0);
+    });
+    it("should navigate from one item to the next when pressing down", () => {
+        // Arrange
+        const anchor = dropdown.find(IconButton);
+        anchor.simulate("click");
+        const dropdownCore = dropdown.find(DropdownCore);
 
+        // Act
         dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
         dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdownCore.instance().focusedIndex).toBe(1);
-
         dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
         dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+        dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
+        dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+
+        // Assert
         expect(dropdownCore.instance().focusedIndex).toBe(2);
     });
 
@@ -173,7 +154,7 @@ describe("Dropdown Launcher", () => {
     it("open on down key when focused", () => {
         // Arrange
         const anchor = dropdown.find(IconButton);
-        const clickableBehavior = dropdown.find(ClickableBehavior);
+        const clickableBehavior = dropdown.find(ClickableBehavior).at(0);
         clickableBehavior.simulate("click");
 
         // Act
@@ -183,59 +164,98 @@ describe("Dropdown Launcher", () => {
         // Assert
         expect(dropdown.state("opened")).toBe(true);
     });
+    describe("use controlled components", () => {
+        window.scrollTo = jest.fn();
+        window.getComputedStyle = jest.fn();
+        let controlledComponent;
 
-    it.only("updates selectedValues when OptionItem clicked", () => {
-        // Arrange
-        const controlledComponent = mount(<ControlledComponent />);
-        controlledComponent.simulate("click");
-        dropdown = controlledComponent.find(DropdownCore);
+        class ControlledComponent extends React.Component<Props, State> {
+            state = {
+                selectedValues: ["A"],
+            };
 
-        // Act
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(0);
+            handleChange = (update) =>
+                this.setState({
+                    selectedValues: update,
+                });
 
-        const optionItem = controlledComponent.find(OptionItem).at(1);
-        optionItem.simulate("click");
+            render() {
+                const dropdownItems = [
+                    <OptionItem label="A" value="A" />,
+                    <OptionItem label="B" value="B" />,
+                    <OptionItem label="C" value="C" />,
+                    <OptionItem label="D" value="D" />,
+                ];
 
-        // Assert
-        expect(controlledComponent.state("selectedValues").length).toBe(2);
-    });
+                return (
+                    <Dropdown
+                        menuItems={dropdownItems}
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                    >
+                        {(state) => <h1>Manage students</h1>}
+                    </Dropdown>
+                );
+            }
+        }
 
-    it("removes selected values from selectedValues", () => {
-        // Arrange
-        const controlledComponent = mount(<ControlledComponent />);
-        controlledComponent.simulate("click");
-        dropdown = controlledComponent.find(DropdownCore);
+        beforeEach(() => {
+            controlledComponent = mount(<ControlledComponent />);
+        });
 
-        // Act
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        afterEach(() => {
+            unmountAll();
+        });
+        it("updates selectedValues when OptionItem clicked", () => {
+            // Arrange
+            controlledComponent.simulate("click");
+            const dropdownCore = controlledComponent.find(DropdownCore);
 
-        const optionItem = controlledComponent.find(OptionItem).at(0);
-        optionItem.simulate("click");
+            // Act
+            dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
+            dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+            expect(dropdownCore.instance().focusedIndex).toBe(0);
 
-        // Assert
-        expect(controlledComponent.state("selectedValues").length).toBe(0);
-    });
+            const optionItem = controlledComponent.find(OptionItem).at(1);
+            optionItem.simulate("click");
 
-    it("does nothing when optionItem selected if selectedValues is null", () => {
-        // Arrange
-        const controlledComponent = mount(<ControlledComponent />);
-        controlledComponent.simulate("click");
-        controlledComponent.setState({selectedValues: null});
-        dropdown = controlledComponent.find(DropdownCore);
+            // Assert
+            expect(controlledComponent.state("selectedValues").length).toBe(2);
+        });
 
-        // Act
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        it("removes selected values from selectedValues", () => {
+            // Arrange
+            const controlledComponent = mount(<ControlledComponent />);
+            controlledComponent.simulate("click");
+            const dropdownCore = controlledComponent.find(DropdownCore);
 
-        const optionItem = controlledComponent.find(OptionItem).at(0);
-        optionItem.simulate("click");
+            // Act
+            dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
+            dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
 
-        // Assert
-        expect(controlledComponent.state("selectedValues")).toBeFalsy();
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(controlledComponent.state("selectedValues").length).toBe(0);
+        });
+
+        it("does nothing when optionItem selected if selectedValues is null", () => {
+            // Arrange
+            const controlledComponent = mount(<ControlledComponent />);
+            controlledComponent.simulate("click");
+            controlledComponent.setState({selectedValues: null});
+            const dropdownCore = controlledComponent.find(DropdownCore);
+
+            // Act
+            dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
+            dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(controlledComponent.state("selectedValues")).toBeFalsy();
+        });
     });
 });

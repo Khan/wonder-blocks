@@ -136,6 +136,19 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
   >
     <h1
       className=""
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "@media (maxWidth: 1023px)": Object {
@@ -157,6 +170,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "outline": "none",
         }
       }
+      tabIndex={0}
     >
       Settings ⌄
     </h1>
@@ -208,6 +222,19 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
   >
     <h4
       className=""
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
       style={
         Object {
           "MozOsxFontSmoothing": "grayscale",
@@ -223,6 +250,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "outline": "none",
         }
       }
+      tabIndex={0}
     >
       Manage students
     </h4>
@@ -471,7 +499,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 100,
+        "width": "fit-content",
         "zIndex": 0,
       }
     }
@@ -1840,7 +1868,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
             }
           }
         >
-          Boba order
+          Choose a drink
         </span>
         <svg
           aria-hidden="true"
