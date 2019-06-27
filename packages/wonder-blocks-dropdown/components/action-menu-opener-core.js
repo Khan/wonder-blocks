@@ -10,15 +10,16 @@ import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
+import type {
+    ClickableHandlers,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./action-menu-opener.js";
 
 type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
+    ...ClickableState,
 |};
 
 const StyledButton = addStyle<"button">("button");

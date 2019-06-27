@@ -15,15 +15,16 @@ import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
+import type {
+    ClickableHandlers,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./button.js";
 
 type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
+    ...ClickableState,
 |};
 
 const StyledAnchor = addStyle<"a">("a");
