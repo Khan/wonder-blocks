@@ -29,7 +29,7 @@ type CommonProps = {|
      * It can be either a Node or a function using the children-as-function
      * pattern to pass a close function for use anywhere within the actions.
      * This provides a lot of flexibility in terms of what actions may trigger
-     * the Popover to close the popover window.
+     * the Popover to close the popover dialog.
      */
     actions?: React.Node | (({close: () => mixed}) => React.Node),
 
@@ -59,11 +59,16 @@ type CommonProps = {|
     testId?: string,
 
     /**
-     * Without these, flow complains about icon, image and emphasized not being
+     * Decorate the popover with a full-bleed illustration. It cannot be used at
+     * the same time with icon.
+     */
+    image?: React.Element<"img"> | React.Element<"svg">,
+
+    /**
+     * Without these, flow complains about icon and emphasized not being
      * available on props at all b/c these are exact object types.
      */
     icon?: void,
-    image?: void,
     emphasized?: void,
 |};
 
@@ -71,8 +76,8 @@ type WithEmphasized = {|
     ...CommonProps,
 
     /**
-     * When true, changes the popover window background to blue; otherwise, the
-     * popover window background is not modified. It can be used only with
+     * When true, changes the popover dialog background to blue; otherwise, the
+     * popover dialog background is not modified. It can be used only with
      * Text-only popovers. It cannot be used with icon or image.
      */
     emphasized: boolean,
@@ -85,20 +90,10 @@ type WithIcon = {|
      * Decorate the popover with an illustrated icon. It cannot be used at the
      * same time with image.
      */
-    icon?: string,
+    icon: string,
 |};
 
-type WithImage = {|
-    ...CommonProps,
-
-    /**
-     * Decorate the popover with a full-bleed illustration. It cannot be used at
-     * the same time with icon.
-     */
-    image?: string,
-|};
-
-type Props = CommonProps | WithEmphasized | WithIcon | WithImage;
+type Props = CommonProps | WithEmphasized | WithIcon;
 
 // Created to add custom styles to the icon or image elements
 const StyledImage = addStyle("img");
@@ -111,6 +106,16 @@ export default class PopoverContent extends React.Component<Props> {
     static defaultProps = {
         closeButtonVisible: false,
     };
+
+    componentDidMount() {
+        const {icon, image} = this.props;
+
+        if (image && icon) {
+            throw new Error(
+                "'image' and 'icon' cannot be used at the same time. You can fix this by either removing 'image' or 'icon' from your instance.",
+            );
+        }
+    }
 
     render() {
         const {
@@ -126,18 +131,29 @@ export default class PopoverContent extends React.Component<Props> {
             title,
             testId,
         } = this.props;
+
         return (
             <PopoverContext.Consumer>
-                {({close}) => {
+                {({close, placement}) => {
                     if (close && onClose) {
                         throw new Error(
                             "You've specified 'onClose' on the content when using Popover. Please specify 'onClose' on the Popover instead",
                         );
                     }
 
+                    if (
+                        image &&
+                        (placement === "left" || placement === "right")
+                    ) {
+                        throw new Error(
+                            "'image' can only be vertically placed. You can fix this by either changing `placement` to `top` or `bottom` or removing the `image` prop inside `content`.",
+                        );
+                    }
+
                     return (
                         <PopoverContentCore
-                            color={emphasized ? "blue" : "light"}
+                            color={emphasized ? "blue" : "white"}
+                            closeButtonLight={image && placement === "top"}
                             closeButtonLabel={closeButtonLabel}
                             closeButtonVisible={closeButtonVisible}
                             onClose={onClose}
@@ -146,10 +162,15 @@ export default class PopoverContent extends React.Component<Props> {
                         >
                             <View style={!!icon && styles.withIcon}>
                                 {image && (
-                                    <StyledImage
-                                        style={styles.image}
-                                        src={image}
-                                    />
+                                    <View
+                                        style={[
+                                            styles.image,
+                                            placement === "bottom" &&
+                                                styles.imageToBottom,
+                                        ]}
+                                    >
+                                        {image}
+                                    </View>
                                 )}
 
                                 {icon && (
@@ -224,5 +245,11 @@ const styles = StyleSheet.create({
         marginRight: -Spacing.large,
         marginTop: -Spacing.large,
         width: `calc(100% + ${Spacing.large * 2}px)`,
+    },
+
+    imageToBottom: {
+        marginBottom: -Spacing.large,
+        marginTop: Spacing.large,
+        order: 1,
     },
 });

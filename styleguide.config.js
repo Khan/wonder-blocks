@@ -146,9 +146,13 @@ module.exports = {
             content: "packages/wonder-blocks-popover/docs.md",
             sections: [
                 {
-                    name: "Building Blocks",
                     components: [
                         "packages/wonder-blocks-popover/components/popover.js",
+                    ],
+                },
+                {
+                    name: "Building Blocks",
+                    components: [
                         "packages/wonder-blocks-popover/components/popover-content.js",
                         "packages/wonder-blocks-popover/components/popover-content-core.js",
                     ],

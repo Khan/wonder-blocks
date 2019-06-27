@@ -1,20 +1,21 @@
 // @flow
 import * as React from "react";
 import ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
 
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {TooltipPopper, TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
-
+import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
-import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import type {
+    Placement,
+    PopperElementProps,
+} from "@khanacademy/wonder-blocks-tooltip";
 
 import PopoverContent from "./popover-content.js";
 import PopoverContentCore from "./popover-content-core.js";
 import PopoverContext from "./popover-context.js";
 import PopoverAnchor from "./popover-anchor.js";
+import PopoverDialog from "./popover-dialog.js";
 
 type Props = {|
     ...AriaProps,
@@ -24,7 +25,7 @@ type Props = {|
      * position the popover. It can be either a Node or a function using the
      * children-as-function pattern to pass an open function for use anywhere
      * within children. The latter provides a lot of flexibility in terms of
-     * what actions may trigger the `Popover` to launch the popover window.
+     * what actions may trigger the `Popover` to launch the popover dialog.
      */
     children: React.Element<any> | (({open: () => void}) => React.Node),
 
@@ -69,7 +70,7 @@ type Props = {|
      * If this is not provided, the
      * [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
      * attribute will be added to the children with a unique identifier pointing
-     * to the popover window.
+     * to the popover dialog.
      */
     id?: string,
 
@@ -96,6 +97,7 @@ type Props = {|
 type State = {|
     opened: boolean,
     anchorElement: ?HTMLElement,
+    placement: Placement,
 |};
 
 /**
@@ -114,29 +116,21 @@ export default class Popover extends React.Component<Props, State> {
         placement: "top",
     };
 
-    state = {
-        opened: false,
-        anchorElement: null,
-    };
-
-    componentDidMount() {
-        // check if the current content contains an illustration
-        React.Children.map(this.props.content, (child) => {
-            // if it's an illustration, check that placement is vertical
-            if (
-                child.props.image &&
-                (this.props.placement === "left" ||
-                    this.props.placement === "right")
-            ) {
-                throw new Error(
-                    "'image' can only be vertically placed. You can fix this by either changing `placement` to `top` or `bottom` or removing the `image` prop inside `content`.",
-                );
-            }
-        });
+    static getDerivedStateFromProps(props: Props, state: State) {
+        return {
+            opened:
+                typeof props.opened === "boolean" ? props.opened : state.opened,
+        };
     }
 
+    state = {
+        opened: !!this.props.opened,
+        anchorElement: null,
+        placement: this.props.placement,
+    };
+
     /**
-     * Popover window closed
+     * Popover dialog closed
      */
     handleClose = () => {
         this.setState({opened: false}, () => {
@@ -145,7 +139,7 @@ export default class Popover extends React.Component<Props, State> {
     };
 
     /**
-     * Popover window opened
+     * Popover dialog opened
      */
     handleOpen = () => {
         this.setState({opened: true});
@@ -170,29 +164,6 @@ export default class Popover extends React.Component<Props, State> {
         }
     }
 
-    renderFrame(props: any) {
-        const {placement} = this.props;
-
-        return (
-            <View
-                ref={props.updateBubbleRef}
-                data-placement={placement}
-                style={[
-                    props.outOfBoundaries && styles.hide,
-                    styles[`content-${placement}`],
-                    props.style,
-                ]}
-            >
-                {this.renderContent()}
-                <TooltipTail
-                    updateRef={props.updateTailRef}
-                    placement={props.placement}
-                    offset={props.tailOffset}
-                />
-            </View>
-        );
-    }
-
     renderPopper() {
         const {placement} = this.props;
 
@@ -201,7 +172,14 @@ export default class Popover extends React.Component<Props, State> {
                 anchorElement={this.state.anchorElement}
                 placement={placement}
             >
-                {(props: any) => this.renderFrame(props)}
+                {(props: PopperElementProps) => (
+                    <PopoverDialog
+                        {...props}
+                        onUpdate={(placement) => this.setState({placement})}
+                    >
+                        {this.renderContent()}
+                    </PopoverDialog>
+                )}
             </TooltipPopper>
         );
     }
@@ -219,12 +197,16 @@ export default class Popover extends React.Component<Props, State> {
 
     render() {
         const {children} = this.props;
-        const {opened} = this.state;
-
+        const {opened, placement} = this.state;
         const popperHost = this.getHost();
 
         return (
-            <PopoverContext.Provider value={{close: this.handleClose}}>
+            <PopoverContext.Provider
+                value={{
+                    close: this.handleClose,
+                    placement: placement,
+                }}
+            >
                 <PopoverAnchor
                     anchorRef={(ref) => this.updateRef(ref)}
                     onClick={this.handleOpen}
@@ -238,34 +220,3 @@ export default class Popover extends React.Component<Props, State> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    /**
-     * The hide style ensures that the bounds of the popover stay unchanged.
-     * This is because popper.js calculates the bubble position based off its
-     * bounds and if we stopped rendering it entirely, it wouldn't know where to
-     * place it when it reappeared.
-     */
-    hide: {
-        pointerEvents: "none",
-        opacity: 0,
-        backgroundColor: "transparent",
-        color: "transparent",
-    },
-
-    /**
-     * Ensure the content and tail are properly arranged.
-     */
-    "content-top": {
-        flexDirection: "column",
-    },
-    "content-right": {
-        flexDirection: "row-reverse",
-    },
-    "content-bottom": {
-        flexDirection: "column-reverse",
-    },
-    "content-left": {
-        flexDirection: "row",
-    },
-});

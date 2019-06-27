@@ -111,6 +111,221 @@ exports[`wonder-blocks-popover example 2 1`] = `
       "minHeight": 0,
       "minWidth": 0,
       "padding": "12px 0",
+      "paddingTop": 300,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": "12px 0",
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Anchor element (it doesn't open the popover)
+      </span>
+    </button>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Outside button (click here to re-open the popover)
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
       "position": "relative",
       "zIndex": 0,
     }
@@ -185,13 +400,13 @@ exports[`wonder-blocks-popover example 2 1`] = `
         }
       }
     >
-      Open custom popover
+      Open emphasized popover
     </span>
   </button>
 </div>
 `;
 
-exports[`wonder-blocks-popover example 3 1`] = `
+exports[`wonder-blocks-popover example 4 1`] = `
 <div
   className=""
   style={
@@ -227,7 +442,7 @@ exports[`wonder-blocks-popover example 3 1`] = `
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
-        "maxWidth": 280,
+        "maxWidth": 288,
         "minHeight": 0,
         "minWidth": 0,
         "overflow": "hidden",
@@ -385,7 +600,7 @@ exports[`wonder-blocks-popover example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-popover example 4 1`] = `
+exports[`wonder-blocks-popover example 5 1`] = `
 <div
   className=""
   style={
@@ -422,7 +637,7 @@ exports[`wonder-blocks-popover example 4 1`] = `
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
-        "maxWidth": 280,
+        "maxWidth": 288,
         "minHeight": 0,
         "minWidth": 0,
         "overflow": "hidden",
@@ -726,7 +941,7 @@ exports[`wonder-blocks-popover example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-popover example 5 1`] = `
+exports[`wonder-blocks-popover example 6 1`] = `
 <div
   className=""
   style={
@@ -762,7 +977,7 @@ exports[`wonder-blocks-popover example 5 1`] = `
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
-        "maxWidth": 280,
+        "maxWidth": 288,
         "minHeight": 0,
         "minWidth": 0,
         "overflow": "hidden",
@@ -861,7 +1076,7 @@ exports[`wonder-blocks-popover example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-popover example 6 1`] = `
+exports[`wonder-blocks-popover example 7 1`] = `
 <div
   className=""
   style={
@@ -897,7 +1112,7 @@ exports[`wonder-blocks-popover example 6 1`] = `
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
-        "maxWidth": 280,
+        "maxWidth": 288,
         "minHeight": 0,
         "minWidth": 0,
         "overflow": "hidden",
@@ -936,7 +1151,7 @@ exports[`wonder-blocks-popover example 6 1`] = `
           "background": "none",
           "border": "none",
           "boxSizing": "border-box",
-          "color": "rgba(33,36,44,0.64)",
+          "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
           "height": 40,
@@ -995,19 +1210,32 @@ exports[`wonder-blocks-popover example 6 1`] = `
         }
       }
     >
-      <img
+      <div
         className=""
-        src="/illustration.svg"
         style={
           Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
             "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
             "marginTop": -24,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
             "width": "calc(100% + 48px)",
+            "zIndex": 0,
           }
         }
-      />
+      >
+        /illustration.svg
+      </div>
       <div
         className=""
         style={
@@ -1068,7 +1296,7 @@ exports[`wonder-blocks-popover example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-popover example 7 1`] = `
+exports[`wonder-blocks-popover example 8 1`] = `
 <div
   className=""
   style={

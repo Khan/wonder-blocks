@@ -7,7 +7,6 @@ import * as React from "react";
 import {Popper} from "react-popper";
 import type {PopperChildrenProps} from "react-popper";
 
-// import TooltipBubble from "./tooltip-bubble.js";
 // NOTE(jeff): Here we share some code for use with PopperJS. Long term,
 // we should either contribute this code to the PopperJS component, or its
 // own non-wonder-blocks package.
@@ -15,15 +14,14 @@ import type {PopperChildrenProps} from "react-popper";
 import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibility-modifier.js"; // eslint-disable-line import/no-restricted-paths
 import RefTracker from "../util/ref-tracker.js";
 import type {Placement} from "../util/types.js";
-import type {TooltipBubbleProps} from "./tooltip-bubble.js";
+import type {PopperElementProps} from "./tooltip-bubble.js";
 
 type Props = {|
     /**
      * This uses the children-as-a-function approach, mirroring react-popper's
-     * implementation, except we enforce the return type to be our
-     * `TooltipBubble` component.
+     * implementation.
      */
-    children: (TooltipBubbleProps) => React.Node,
+    children: (PopperElementProps) => React.Element<any>,
 
     /**
      * The element that anchors the tooltip bubble.

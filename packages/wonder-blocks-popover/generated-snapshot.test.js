@@ -27,14 +27,19 @@ describe("wonder-blocks-popover", () => {
         const example = (
             <View style={styles.example}>
                 <Popover
-                    placement="top"
                     onClose={() => console.log("popover closed!")}
                     content={
                         <PopoverContent
                             closeButtonVisible
                             title="Title"
                             content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
-                            image="/illustration.svg"
+                            image={
+                                <img
+                                    src="/illustration.svg"
+                                    width={288}
+                                    height={200}
+                                />
+                            }
                         />
                     }
                 >
@@ -50,23 +55,27 @@ describe("wonder-blocks-popover", () => {
     it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            HeadingSmall,
-            LabelLarge,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
         const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
         const {
             default: Icon,
             icons,
         } = require("@khanacademy/wonder-blocks-icon");
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+        const {
+            HeadingSmall,
+            LabelLarge,
+        } = require("@khanacademy/wonder-blocks-typography");
 
         const customIcon = {
             small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
         };
 
         const styles = StyleSheet.create({
+            example: {
+                paddingTop: 300,
+            },
             customPopover: {
                 maxWidth: 420,
                 width: 420,
@@ -78,6 +87,7 @@ describe("wonder-blocks-popover", () => {
                 padding: `${Spacing.small}px 0`,
             },
             action: {
+                cursor: "pointer",
                 margin: Spacing.small,
                 height: 100,
                 padding: 2,
@@ -86,59 +96,140 @@ describe("wonder-blocks-popover", () => {
             },
         });
 
-        const example = (
-            <View style={styles.row}>
-                <Popover
-                    placement="bottom"
-                    onClose={() => console.log("popover closed!")}
-                    content={({close}) => (
-                        <PopoverContentCore
-                            color="dark"
-                            style={styles.customPopover}
-                            onClose={() => console.log("close popover!")}
+        class ControlledPopover extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    popoverOpened: true,
+                };
+            }
+
+            render() {
+                return (
+                    <View style={[styles.row]}>
+                        <Popover
+                            opened={this.state.popoverOpened}
+                            onClose={() => {
+                                console.log("popover closed!");
+                                this.setState({popoverOpened: false});
+                            }}
+                            content={({close}) => (
+                                <PopoverContentCore
+                                    color="darkBlue"
+                                    style={styles.customPopover}
+                                >
+                                    <View>
+                                        <HeadingSmall>
+                                            Custom popover title
+                                        </HeadingSmall>
+                                        <View style={styles.row}>
+                                            <View
+                                                style={styles.action}
+                                                onClick={close}
+                                            >
+                                                <Icon
+                                                    icon={customIcon}
+                                                    color={Color.gold}
+                                                    size="large"
+                                                />
+                                                <LabelLarge>
+                                                    Option 1
+                                                </LabelLarge>
+                                            </View>
+                                            <View
+                                                style={styles.action}
+                                                onClick={close}
+                                            >
+                                                <Icon
+                                                    icon={customIcon}
+                                                    color={Color.green}
+                                                    size="large"
+                                                />
+                                                <LabelLarge>
+                                                    Option 2
+                                                </LabelLarge>
+                                            </View>
+                                            <View
+                                                style={styles.action}
+                                                onClick={close}
+                                            >
+                                                <Icon
+                                                    icon={customIcon}
+                                                    color={Color.blue}
+                                                    size="large"
+                                                />
+                                                <LabelLarge>
+                                                    Option 3
+                                                </LabelLarge>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </PopoverContentCore>
+                            )}
                         >
-                            <View>
-                                <HeadingSmall>
-                                    Custom popover title
-                                </HeadingSmall>
-                                <View style={styles.row}>
-                                    <View style={styles.action} onClick={close}>
-                                        <Icon
-                                            icon={customIcon}
-                                            color={Color.gold}
-                                            size="large"
-                                        />
-                                        <LabelLarge>Option 1</LabelLarge>
-                                    </View>
-                                    <View style={styles.action}>
-                                        <Icon
-                                            icon={customIcon}
-                                            color={Color.green}
-                                            size="large"
-                                        />
-                                        <LabelLarge>Option 2</LabelLarge>
-                                    </View>
-                                    <View style={styles.action}>
-                                        <Icon
-                                            icon={customIcon}
-                                            color={Color.blue}
-                                            size="large"
-                                        />
-                                        <LabelLarge>Option 3</LabelLarge>
-                                    </View>
-                                </View>
-                            </View>
-                        </PopoverContentCore>
-                    )}
-                >
-                    <Button>Open custom popover</Button>
-                </Popover>
+                            <Button
+                                onClick={() =>
+                                    console.log("This is a controlled popover.")
+                                }
+                            >
+                                Anchor element (it doesn't open the popover)
+                            </Button>
+                        </Popover>
+                        <Strut size={32} />
+                        <Button
+                            onClick={() => this.setState({popoverOpened: true})}
+                        >
+                            Outside button (click here to re-open the popover)
+                        </Button>
+                    </View>
+                );
+            }
+        }
+
+        const example = (
+            <View style={[styles.row, styles.example]}>
+                <ControlledPopover />
             </View>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
+        const {StyleSheet} = require("aphrodite");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const styles = StyleSheet.create({
+            example: {
+                alignItems: "center",
+            },
+        });
+
+        const example = (
+            <View style={styles.example}>
+                <Popover
+                    placement="top"
+                    onClose={() => console.log("popover closed!")}
+                    content={
+                        <PopoverContent
+                            closeButtonVisible
+                            title="Title"
+                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                            emphasized
+                        />
+                    }
+                >
+                    <Button onClick={() => console.log("Custom click")}>
+                        Open emphasized popover
+                    </Button>
+                </Popover>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -160,7 +251,7 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 5", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -198,7 +289,7 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 6", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -220,7 +311,7 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 7", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -243,7 +334,7 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 8", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {
@@ -284,7 +375,7 @@ describe("wonder-blocks-popover", () => {
         const example = (
             <View style={styles.row}>
                 <PopoverContentCore
-                    color="dark"
+                    color="darkBlue"
                     style={styles.customPopover}
                     onClose={() => alert("close popover!")}
                 >

@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 
 <View style={styles.row}>
     <PopoverContentCore
-        color="dark"
+        color="darkBlue"
         style={styles.customPopover}
         onClose={() => alert("close popover!")}
     >

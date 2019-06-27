@@ -15,7 +15,8 @@ type Props = {|
      * position the popover. It can be either a Node or a function using the
      * children-as-function pattern to pass an open function for use anywhere
      * within children. The latter provides a lot of flexibility in terms of
-     * what actions may trigger the `Popover` to launch the popover window.
+     * what actions may trigger the `Popover` to launch the
+     * [PopoverDialog](#PopoverDialog).
      */
     children: React.Element<any> | (({open: () => void}) => React.Node),
 
@@ -25,6 +26,10 @@ type Props = {|
     onClick: () => void,
 |};
 
+/**
+ * The element that triggers the popover dialog. This is also used as reference
+ * to position the dialog itself.
+ */
 export default class PopoverAnchor extends React.Component<Props> {
     componentDidMount() {
         const anchorNode = ((ReactDOM.findDOMNode(this): any): ?HTMLElement);
@@ -42,9 +47,16 @@ export default class PopoverAnchor extends React.Component<Props> {
                 open: onClick,
             });
         } else {
+            // add onClick handler to automatically open the dialog after
+            // clicking on this anchor element
             return React.cloneElement(children, {
                 ...children.props,
-                onClick: onClick,
+                onClick: children.props.onClick
+                    ? () => {
+                          children.props.onClick();
+                          onClick();
+                      }
+                    : onClick,
             });
         }
     }

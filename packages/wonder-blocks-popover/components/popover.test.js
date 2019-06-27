@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
 // @flow
 import * as React from "react";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
-import expectRenderError from "../../../utils/testing/expect-render-error.js";
 
 import Popover from "./popover.js";
 import PopoverContent from "./popover-content.js";
@@ -19,7 +17,6 @@ describe("Popover", () => {
         const wrapper = mount(
             <Popover
                 placement="top"
-                onClose={() => console.log("popover closed!")}
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}) => (
@@ -44,7 +41,6 @@ describe("Popover", () => {
         const wrapper = mount(
             <Popover
                 placement="top"
-                onClose={() => console.log("popover closed!")}
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}) => (
@@ -64,7 +60,6 @@ describe("Popover", () => {
         const wrapper = mount(
             <Popover
                 placement="top"
-                onClose={() => console.log("popover closed!")}
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}) => (
@@ -116,23 +111,5 @@ describe("Popover", () => {
 
         // Assert
         expect(onCloseMock).toBeCalled();
-    });
-
-    it("should warn when setting a horizontal placement with an Illustration popover", () => {
-        expectRenderError(
-            <Popover
-                placement="left"
-                content={
-                    <PopoverContent
-                        title="illustration"
-                        content="content"
-                        image="dummy-image.png"
-                    />
-                }
-            >
-                <button>open popover</button>
-            </Popover>,
-            "'image' can only be vertically placed. You can fix this by either changing `placement` to `top` or `bottom` or removing the `image` prop inside `content`.",
-        );
     });
 });

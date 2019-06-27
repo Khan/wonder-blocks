@@ -1,9 +1,7 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
@@ -22,6 +20,11 @@ type Props = {|
      * Called when the popover closes
      */
     onClose?: () => mixed,
+
+    /**
+     * Custom styles
+     */
+    style?: StyleType,
 |};
 
 /**
@@ -36,7 +39,7 @@ export default class CloseButton extends React.Component<Props> {
     };
 
     render() {
-        const {light, onClose, "aria-label": ariaLabel} = this.props;
+        const {light, onClose, "aria-label": ariaLabel, style} = this.props;
         return (
             <PopoverContext.Consumer>
                 {({close}) => {
@@ -52,7 +55,7 @@ export default class CloseButton extends React.Component<Props> {
                             onClick={onClose || close}
                             kind={light ? "primary" : "tertiary"}
                             light={light}
-                            style={styles.closeButton}
+                            style={style}
                         />
                     );
                 }}
@@ -60,13 +63,3 @@ export default class CloseButton extends React.Component<Props> {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    closeButton: {
-        position: "absolute",
-        right: Spacing.xSmall,
-        top: Spacing.xSmall,
-        // Allows the button to be above the title and/or custom content
-        zIndex: 1,
-    },
-});
