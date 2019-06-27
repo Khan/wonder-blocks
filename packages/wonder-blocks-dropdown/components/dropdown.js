@@ -63,8 +63,6 @@ type Props = {|
     dropdownStyle?: StyleType,
 |};
 
-// TODO: WB-609 create a shared type for this
-
 type State = {|
     /**
      * Whether or not the dropdown is currently open.
