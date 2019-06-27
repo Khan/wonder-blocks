@@ -217,6 +217,15 @@ describe("wonder-blocks-popover", () => {
                             title="Title"
                             content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
                             emphasized
+                            actions={({close}) => (
+                                <Button
+                                    onClick={close}
+                                    light={true}
+                                    kind="primary"
+                                >
+                                    Continue
+                                </Button>
+                            )}
                         />
                     }
                 >
@@ -230,6 +239,76 @@ describe("wonder-blocks-popover", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
+        const {StyleSheet} = require("aphrodite");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const styles = StyleSheet.create({
+            example: {
+                alignItems: "center",
+            },
+        });
+
+        const example = (
+            <View style={styles.example}>
+                <Popover
+                    placement="top"
+                    onClose={() => console.log("popover closed!")}
+                    content={
+                        <PopoverContent
+                            title="Title"
+                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                            icon="/logo.svg"
+                            closeButtonVisible
+                        />
+                    }
+                >
+                    <Button>Open icon popover</Button>
+                </Popover>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
+        const {StyleSheet} = require("aphrodite");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const styles = StyleSheet.create({
+            example: {
+                alignItems: "center",
+            },
+        });
+
+        const example = (
+            <View style={styles.example}>
+                <Popover
+                    placement="top"
+                    onClose={() => console.log("popover closed!")}
+                    content={
+                        <PopoverContent
+                            title="Title"
+                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                            image={
+                                <img
+                                    src="/illustration.svg"
+                                    width={288}
+                                    height={200}
+                                />
+                            }
+                            closeButtonVisible
+                        />
+                    }
+                >
+                    <Button>Open illustration popover</Button>
+                </Popover>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -251,7 +330,7 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
+    it("example 7", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
@@ -289,7 +368,7 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
+    it("example 8", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -311,7 +390,7 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
+    it("example 9", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
@@ -326,7 +405,9 @@ describe("wonder-blocks-popover", () => {
                 <PopoverContent
                     title="Title"
                     content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
-                    image="/illustration.svg"
+                    image={
+                        <img src="/illustration.svg" width={288} height={200} />
+                    }
                     closeButtonVisible
                 />
             </View>
@@ -334,7 +415,7 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
+    it("example 10", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {

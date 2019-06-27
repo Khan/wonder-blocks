@@ -25,7 +25,9 @@ const styles = StyleSheet.create({
             />
         }
     >
-        {({open}) => <Button onClick={open}>Open default popover</Button>}
+        {({open}) => (
+            <Button onClick={open}>Open default popover</Button>
+        )}
     </Popover>
 </View>
 ```
@@ -150,7 +152,7 @@ class ControlledPopover extends React.Component {
 
 ### Variants
 
-#### Example: Emphasized popover (text-only)
+#### Example: Text-only popover (with emphasis and actions)
 
 Text-only variant with added emphasis.
 
@@ -175,10 +177,84 @@ const styles = StyleSheet.create({
                 title="Title"
                 content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
                 emphasized
+                actions={({close}) => (
+                    <Button onClick={close} light={true} kind="primary">
+                        Continue
+                    </Button>
+                )}
             />
         }
     >
         <Button onClick={() => console.log('Custom click')}>Open emphasized popover</Button>
+    </Popover>
+</View>
+```
+
+#### Example: Icon Popover
+
+Decorate the popover with an illustrated icon. In order to use this variant, you
+will need to set the `icon` prop inside the `PopoverContent`.
+
+```jsx
+const {StyleSheet} = require("aphrodite");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    example: {
+        alignItems: "center",
+    }
+});
+
+<View style={styles.example}>
+    <Popover
+        placement="top"
+        onClose={()=> console.log('popover closed!')}
+        content={
+            <PopoverContent
+                title="Title"
+                content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                icon="/logo.svg"
+                closeButtonVisible
+            />
+        }
+    >
+        <Button>Open icon popover</Button>
+    </Popover>
+</View>
+```
+
+#### Example: PopoverContent with illustration
+
+Call attention to the popover using a full-bleed illustration. In order to use
+this variant correctly, you will need to set the `icon` prop inside the
+`PopoverContent`. Also, make sure to add a defined size to the image.
+
+```jsx
+const {StyleSheet} = require("aphrodite");
+const Button = require("@khanacademy/wonder-blocks-button").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    example: {
+        alignItems: "center",
+    }
+});
+
+<View style={styles.example}>
+    <Popover
+        placement="top"
+        onClose={()=> console.log('popover closed!')}
+        content={
+            <PopoverContent
+                title="Title"
+                content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                image={<img src="/illustration.svg" width={288} height={200} />}
+                closeButtonVisible
+            />
+        }
+    >
+        <Button>Open illustration popover</Button>
     </Popover>
 </View>
 ```

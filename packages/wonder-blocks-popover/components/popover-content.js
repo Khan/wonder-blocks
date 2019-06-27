@@ -110,6 +110,8 @@ export default class PopoverContent extends React.Component<Props> {
     componentDidMount() {
         const {icon, image} = this.props;
 
+        // this runtime check is added to support <svg> and <img> elements
+        // inside the image prop
         if (image && icon) {
             throw new Error(
                 "'image' and 'icon' cannot be used at the same time. You can fix this by either removing 'image' or 'icon' from your instance.",
@@ -141,6 +143,7 @@ export default class PopoverContent extends React.Component<Props> {
                         );
                     }
 
+                    // illustration popover can't be placed horizontally
                     if (
                         image &&
                         (placement === "left" || placement === "right")

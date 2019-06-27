@@ -1,4 +1,4 @@
-### Example: Default popover
+#### Example: Default PopoverContent
 
 Default popover variant that displays text-only.
 
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-### Example: Emphasized popover with custom actions (text-only)
+#### Example: Emphasized PopoverContent with custom actions (text-only)
 
 Text-only variant with added emphasis.
 
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-### Example: Icon Popover
+#### Example: PopoverContent with icon
 
 Decorate the popover with an illustrated icon.
 
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-### Example: Illustration Popover
+#### Example: PopoverContent with illustration
 
 Call attention to the popover using a full-bleed illustration.
 
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     <PopoverContent
         title="Title"
         content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
-        image="/illustration.svg"
+        image={<img src="/illustration.svg" width={288} height={200} />}
         closeButtonVisible
     />
 </View>

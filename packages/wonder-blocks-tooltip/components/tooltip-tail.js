@@ -9,6 +9,13 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {getRefFn, Placement, Offset} from "../util/types.js";
 
 export type Props = {|
+    /**
+     * Whether we should use the default white background color or switch to a
+     * different bg color.
+     *
+     * NOTE: Added to support custom popovers
+     * @ignore
+     */
     color: $Keys<typeof Colors>,
 
     /** The offset of the tail indicating where it should be positioned. */
