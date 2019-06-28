@@ -58,6 +58,11 @@ type Props = {|
     testId?: string,
 
     /**
+     * Optional styling that can be passed to DropdownCore.
+     */
+    style?: StyleType,
+
+    /**
      * Optional styling to add to the dropdown wrapper.
      */
     dropdownStyle?: StyleType,
@@ -202,6 +207,7 @@ export default class Dropdown extends React.Component<Props, State> {
                 alignment={alignment}
                 items={this._getMenuItems()}
                 keyboard={this.state.keyboard}
+                style={this.props.style}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                 onOpenChanged={this.handleOpenChanged}
                 open={this.state.opened}

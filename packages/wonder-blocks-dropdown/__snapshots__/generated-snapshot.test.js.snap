@@ -499,7 +499,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": "fit-content",
+        "width": 100,
         "zIndex": 0,
       }
     }

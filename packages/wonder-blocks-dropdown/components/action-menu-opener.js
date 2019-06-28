@@ -31,7 +31,7 @@ export type SharedProps = {|
 
 type Props = {|
     ...SharedProps,
-    /**˜
+    /**
      * Callback for when the opener is pressed.
      */
     onOpenChanged: (open: boolean, keyboard: boolean) => mixed,

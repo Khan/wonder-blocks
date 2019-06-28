@@ -113,6 +113,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 menuItems={menuItems}
                 onChange={this.props.onChange}
                 selectedValues={this.props.selectedValues}
+                style={style}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
             >
                 {(eventState) => (

@@ -25,7 +25,7 @@ describe("ActionMenu", () => {
         unmountAll();
     });
 
-    it.only("closes/opens the menu on mouse click, space, and enter", () => {
+    it("closes/opens the menu on mouse click, space, and enter", () => {
         const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
@@ -56,42 +56,51 @@ describe("ActionMenu", () => {
         expect(menu.find(Dropdown).state("opened")).toEqual(true);
     });
 
-    it("triggers actions and toggles select items as expected", () => {
+    it.only("triggers actions", () => {
+        // Arrange
+        const onChange = jest.fn();
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                onChange={onChange}
+                selectedValues={["toggle_a", "toggle_b"]}
+            >
+                <OptionItem label="Toggle A" value="toggle_a" />
+                <OptionItem label="Toggle B" value="toggle_b" />
+            </ActionMenu>,
+        );
+        menu.find(ClickableBehavior).simulate("click");
+
+        // Act
+        // toggle second OptionItem
+        const optionItem = menu.find(OptionItem).at(1);
+        optionItem.props().onToggle("toggle_b");
+
+        // Assert
+        expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
+    });
+
+    it("toggles select items", () => {
+        // Arrange
+        const onChange = jest.fn();
         const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
                 onChange={onChange}
                 selectedValues={[]}
             >
-                <ActionItem label="Action" onClick={onClick} />
-                <SeparatorItem />
-                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
+                <OptionItem label="Toggle A" value="toggle_a" />
+                <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-
         menu.find(ClickableBehavior).simulate("click");
 
-        const noop = jest.fn();
-        const nativeEvent = {
-            nativeEvent: {stopImmediatePropagation: noop},
-        };
-        const actionItem = menu.find(ActionItem);
-        actionItem.simulate("mousedown");
-        actionItem.simulate("mouseup", nativeEvent);
-        actionItem.simulate("click");
-        expect(onClick).toHaveBeenCalledTimes(1);
+        // Act
+        const optionItem = menu.find(OptionItem).at(0);
+        optionItem.props().onToggle("toggle_a");
 
-        // Have to reopen menu because menu closes after an item is selected
-        menu.find(ClickableBehavior)
-            .at(0)
-            .simulate("click");
-
-        const optionItem = menu.find(OptionItem);
-        optionItem.simulate("mousedown");
-        optionItem.simulate("mouseup", nativeEvent);
-        optionItem.simulate("click", nativeEvent);
-        expect(onToggle).toHaveBeenCalledTimes(1);
-        expect(onChange).toHaveBeenCalledTimes(1);
+        // Assert
+        expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
     });
 
     it("deselects selected OptionItems", () => {
@@ -199,6 +208,6 @@ describe("ActionMenu", () => {
 
         // Assert
         expect(menu.find(ActionItem)).toHaveLength(1);
-        expect(menu.find(ActionItem).at(0)).toHaveProp("label", "Create");
+        expect(menu.find(ActionItem).first()).toHaveProp("label", "Create");
     });
 });
