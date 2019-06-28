@@ -111,8 +111,8 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             <Dropdown
                 alignment={alignment}
                 menuItems={menuItems}
-                onChange={this.props.onChange}
-                selectedValues={this.props.selectedValues}
+                onChange={onChange}
+                selectedValues={selectedValues}
                 style={style}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
             >
