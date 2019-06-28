@@ -1815,6 +1815,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                     </svg>
                   </li>
                   <li
+                    aria-current="page"
                     className=""
                     style={
                       Object {
