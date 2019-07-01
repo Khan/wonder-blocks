@@ -52,6 +52,17 @@ type Props = {|
      * error being thrown.
      */
     opened?: boolean,
+
+    /**
+     * Enables the backdrop to dismiss the modal on click/tap
+     */
+    backdropDismissEnabled?: boolean,
+
+    /**
+     * The selector for the element that will be focused when the dialog shows.
+     * When not set, the first tabbable element within the dialog will be used.
+     */
+    initialFocusId?: string,
 |};
 
 type State = {|
@@ -72,10 +83,20 @@ type State = {|
  * ```
  *
  * The actual modal itself is constructed separately, using a layout component
- * like StandardModal, OneColumnModal, or TwoColumnModal, and is provided via
+ * like OnePaneDialog and is provided via
  * the `modal` prop.
  */
 export default class ModalLauncher extends React.Component<Props, State> {
+    /**
+     * The most recent element _outside this component_ that received focus.
+     * Be default, it captures the element that triggered the modal opening
+     */
+    lastElementFocusedOutsideModal: ?HTMLElement;
+
+    static defaultProps = {
+        backdropDismissEnabled: true,
+    };
+
     static getDerivedStateFromProps(props: Props, state: State) {
         if (typeof props.opened === "boolean" && props.children) {
             throw new Error("'children' and 'opened' can't be used together");
@@ -94,13 +115,32 @@ export default class ModalLauncher extends React.Component<Props, State> {
 
     state = {opened: false};
 
+    componentDidUpdate(prevProps: Props) {
+        const {opened} = this.props;
+        // ensures the element is stored only when the modal is opened
+        if (!prevProps.opened && opened) {
+            this._saveLastElementFocused();
+        }
+    }
+
+    _saveLastElementFocused = () => {
+        // keep a reference of the element that triggers the modal
+        this.lastElementFocusedOutsideModal = document.activeElement;
+    };
+
     _openModal = () => {
+        this._saveLastElementFocused();
         this.setState({opened: true});
     };
 
     handleCloseModal = () => {
         this.setState({opened: false}, () => {
             this.props.onClose && this.props.onClose();
+
+            if (this.lastElementFocusedOutsideModal != null) {
+                // return focus to the element that triggered the modal
+                this.lastElementFocusedOutsideModal.focus();
+            }
         });
     };
 
@@ -137,7 +177,14 @@ export default class ModalLauncher extends React.Component<Props, State> {
                         /* We need the container View that FocusTrap creates to be at the
                            correct z-index so that it'll be above the global nav in webapp. */
                         <FocusTrap style={styles.container}>
-                            <ModalBackdrop onCloseModal={this.handleCloseModal}>
+                            <ModalBackdrop
+                                initialFocusId={this.props.initialFocusId}
+                                onCloseModal={
+                                    this.props.backdropDismissEnabled
+                                        ? this.handleCloseModal
+                                        : () => {}
+                                }
+                            >
                                 {this._renderModal()}
                             </ModalBackdrop>
                         </FocusTrap>,

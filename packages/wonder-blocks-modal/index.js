@@ -1,14 +1,18 @@
 // @flow
+import ModalDialog from "./components/modal-dialog.js";
+import ModalFooter from "./components/modal-footer.js";
+import ModalHeader from "./components/modal-header.js";
 import ModalLauncher from "./components/modal-launcher.js";
-import StandardModal from "./components/standard-modal.js";
-import TwoColumnModal from "./components/two-column-modal/two-column-modal.js";
-import OneColumnModal from "./components/one-column-modal/one-column-modal.js";
+import ModalPanel from "./components/modal-panel.js";
+import OnePaneDialog from "./components/one-pane-dialog/one-pane-dialog.js";
 import maybeGetPortalMountedModalHostElement from "./util/maybe-get-portal-mounted-modal-host-element.js";
 
 export {
+    ModalHeader,
+    ModalFooter,
+    ModalDialog,
+    ModalPanel,
     ModalLauncher,
-    StandardModal,
-    TwoColumnModal,
-    OneColumnModal,
+    OnePaneDialog,
     maybeGetPortalMountedModalHostElement,
 };

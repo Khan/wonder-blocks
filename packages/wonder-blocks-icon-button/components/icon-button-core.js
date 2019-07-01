@@ -10,37 +10,17 @@ import Color, {
     fade,
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
+import type {
+    ClickableHandlers,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import type {SharedProps} from "./icon-button.js";
 
 type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
-
-    /**
-     * Whether the IconButton is hovered.
-     *
-     * Same styling as focused. Refer to `ClickableBehavior` for more
-     * information on when this prop should be `true`.
-     */
-    hovered: boolean,
-
-    /**
-     * Whether the IconButton is focused.
-     *
-     * Same styling as hvoered. Refer to `ClickableBehavior` for more
-     * information on when this prop should be `true`.
-     */
-    focused: boolean,
-
-    /**
-     * Whether the IconButton is pressed.
-     *
-     * Refer to `ClickableBehavior` for more information on when this prop
-     * should be `true`.
-     */
-    pressed: boolean,
+    ...ClickableState,
 
     /**
      * URL to navigate to.
@@ -61,7 +41,6 @@ export default class IconButtonCore extends React.Component<Props> {
     render() {
         const {
             skipClientNav,
-            "aria-label": ariaLabel,
             color,
             disabled,
             focused,
@@ -98,9 +77,6 @@ export default class IconButtonCore extends React.Component<Props> {
         const child = <Icon size="medium" color="currentColor" icon={icon} />;
 
         const commonProps = {
-            // TODO(kevinb): figure out a better way of forward ARIA props
-            "aria-disabled": disabled ? "true" : undefined,
-            "aria-label": ariaLabel,
             "data-test-id": testId,
             style: [defaultStyle, style],
             ...handlers,
@@ -149,6 +125,10 @@ const sharedStyles = StyleSheet.create({
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
+        ":focus": {
+            // Mobile: Removes a blue highlight style shown when the user clicks a button
+            WebkitTapHighlightColor: "rgba(0,0,0,0)",
+        },
     },
     disabled: {
         cursor: "default",

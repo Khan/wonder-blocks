@@ -5,12 +5,12 @@ import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import addStyle from "../util/add-style.js";
 import getClickableBehavior from "../util/get-clickable-behavior.js";
-import type {ClickableRole, State} from "./clickable-behavior.js";
+import type {ClickableRole, ClickableState} from "./clickable-behavior.js";
 import type {StyleType} from "../util/types.js";
 
 type Props = {|
     "aria-label": string,
-    children: (state: State) => React.Node,
+    children: (state: ClickableState) => React.Node,
     disabled: boolean,
     href?: string,
     onClick?: (e: SyntheticEvent<>) => mixed,

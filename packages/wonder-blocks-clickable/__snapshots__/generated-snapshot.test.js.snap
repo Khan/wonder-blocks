@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-clickable example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <a
+    aria-label=""
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitAppearance": "none",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
+        "marginRight": "25px",
+        "outline": "none",
+        "overflow": "visible",
+        "padding": 0,
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+        "width": "auto",
+      }
+    }
+    tabIndex={0}
+  >
+    <h1>
+      Uses Client-side Nav
+    </h1>
+  </a>
+  <a
+    aria-label=""
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitAppearance": "none",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
+        "marginRight": "25px",
+        "outline": "none",
+        "overflow": "visible",
+        "padding": 0,
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+        "width": "auto",
+      }
+    }
+    tabIndex={0}
+  >
+    <h1>
+      Avoids Client-side Nav
+    </h1>
+  </a>
+</div>
+`;

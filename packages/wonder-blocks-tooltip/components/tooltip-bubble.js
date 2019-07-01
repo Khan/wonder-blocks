@@ -37,12 +37,46 @@ export type Props = {|
 
     /** The `TooltipContent` element that will be rendered in the bubble. */
     children: React.Element<typeof TooltipContent>,
+
+    onActiveChanged: (active: boolean) => mixed,
+
+    /* A callback for updating the timeoutID refrence in tooltip  */
+    onTimeoutChanged: (timeoutID: ?TimeoutID) => mixed,
+
+    /* The timeoutID attached to the tooltip anchor */
+    anchorTimeoutID: ?TimeoutID,
+
     // TODO(somewhatabstract): Update react-docgen to support spread operators
     // (v3 beta introduces this)
     ...TooltipBubbleProps,
 |};
 
-export default class TooltipBubble extends React.Component<Props> {
+type State = {|
+    active: boolean,
+|};
+
+export default class TooltipBubble extends React.Component<Props, State> {
+    state = {
+        active: false,
+    };
+
+    _setActiveState(active: boolean) {
+        this.setState({active});
+        this.props.onActiveChanged(active);
+    }
+
+    handleMouseEnter = () => {
+        if (this.props.anchorTimeoutID) {
+            clearTimeout(this.props.anchorTimeoutID);
+            this.props.onTimeoutChanged(null);
+        }
+        this._setActiveState(true);
+    };
+
+    handleMouseLeave = () => {
+        this.props.onActiveChanged(false);
+    };
+
     render() {
         const {
             id,
@@ -60,6 +94,8 @@ export default class TooltipBubble extends React.Component<Props> {
                 id={id}
                 role="tooltip"
                 data-placement={placement}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
                 ref={updateBubbleRef}
                 style={[
                     outOfBoundaries && styles.hide,
@@ -81,7 +117,6 @@ export default class TooltipBubble extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     bubble: {
-        pointerEvents: "none",
         position: "absolute",
     },
 

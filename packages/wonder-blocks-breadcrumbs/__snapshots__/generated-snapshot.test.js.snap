@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-breadcrumbs example 1 1`] = `
+<nav
+  aria-label="Breadcrumb"
+>
+  <ol
+    className=""
+    style={
+      Object {
+        "display": "flex",
+        "listStyle": "none",
+        "margin": 0,
+        "overflow": "hidden",
+        "padding": 0,
+      }
+    }
+  >
+    <li
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center",
+          "marginRight": 4,
+        }
+      }
+    >
+      <a
+        className=""
+        href="https://khanacademy.org/"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragStart={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "outline": "none",
+            "textDecoration": "none",
+          }
+        }
+        tabIndex={0}
+      >
+        Home
+      </a>
+      <svg
+        aria-hidden={true}
+        className=""
+        height={16}
+        style={
+          Object {
+            "marginLeft": 4,
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <circle
+          cx="8"
+          cy="9"
+          r="1.5"
+        />
+      </svg>
+    </li>
+    <li
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center",
+          "marginRight": 4,
+        }
+      }
+    >
+      <a
+        className=""
+        href="https://khanacademy.org/about"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragStart={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "color": "#1865f2",
+            "cursor": "pointer",
+            "outline": "none",
+            "textDecoration": "none",
+          }
+        }
+        tabIndex={0}
+      >
+        About
+      </a>
+      <svg
+        aria-hidden={true}
+        className=""
+        height={16}
+        style={
+          Object {
+            "marginLeft": 4,
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <circle
+          cx="8"
+          cy="9"
+          r="1.5"
+        />
+      </svg>
+    </li>
+    <li
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center",
+          "marginRight": 4,
+        }
+      }
+    >
+      Current page
+    </li>
+  </ol>
+</nav>
+`;

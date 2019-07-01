@@ -4,7 +4,7 @@
 - performs client-side navigation when href is set and component is a descendent
   of a react-router `Router`
 
-```
+```js
 const {LabelLarge, LabelMedium} = require("@khanacademy/wonder-blocks-typography");
 const Icon = require("@khanacademy/wonder-blocks-icon").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");

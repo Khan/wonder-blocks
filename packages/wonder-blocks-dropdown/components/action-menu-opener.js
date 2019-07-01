@@ -6,7 +6,7 @@ import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import ActionMenuOpenerCore from "./action-menu-opener-core.js";
 
 export type SharedProps = {|
-    ...AriaProps,
+    ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
 
     /**
      * Display text for the opener.
@@ -16,7 +16,7 @@ export type SharedProps = {|
     /**
      * Whether the opener is disabled. If disabled, disallows interaction.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Test ID used for e2e testing.

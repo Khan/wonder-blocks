@@ -3,6 +3,264 @@
 exports[`wonder-blocks-dropdown example 1 1`] = `
 <div
   className=""
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "width": "fit-content",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-label="search"
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": -8,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "width": 40,
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <svg
+      className=""
+      height={24}
+      style={
+        Object {
+          "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
+          "verticalAlign": "text-bottom",
+        }
+      }
+      viewBox="0 0 24 24"
+      width={24}
+    >
+      <path
+        d="M17.293 8.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L12 13.586l5.293-5.293z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <h1
+      className=""
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "@media (maxWidth: 1023px)": Object {
+            "fontSize": 28,
+            "lineHeight": "32px",
+          },
+          "@media (minWidth: 1024px)": Object {
+            "fontSize": 36,
+            "lineHeight": "40px",
+          },
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "cursor": "pointer",
+          "display": "block",
+          "fontFamily": "Lato, sans-serif",
+          "fontWeight": 900,
+          "marginBottom": 0,
+          "marginTop": 0,
+          "outline": "none",
+        }
+      }
+      tabIndex={0}
+    >
+      Settings ⌄
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <h4
+      className=""
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "cursor": "pointer",
+          "display": "block",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 20,
+          "fontWeight": 700,
+          "lineHeight": "24px",
+          "marginBottom": 0,
+          "marginTop": 0,
+          "outline": "none",
+        }
+      }
+      tabIndex={0}
+    >
+      Manage students
+    </h4>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 4 1`] = `
+<div
+  className=""
   style={
     Object {
       "alignItems": "stretch",
@@ -44,7 +302,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
     }
   >
     <button
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="menu"
       className=""
       data-test-id="teacher-menu"
@@ -62,11 +320,13 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      open={false}
       style={
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "none",
@@ -129,565 +389,6 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           }
         >
           Betsy Appleseed
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 4,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 4,
-            "zIndex": 0,
-          }
-        }
-      />
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "flexGrow": 0,
-            "flexShrink": 0,
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-dropdown example 2 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "row",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    aria-hidden="true"
-    className=""
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "flexGrow": 1,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  />
-  <div
-    className=""
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "width": 100,
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      aria-expanded="true"
-      aria-haspopup="menu"
-      className=""
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      open={false}
-      style={
-        Object {
-          "::MozFocusInner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "none",
-          "border": "none",
-          "borderRadius": 4,
-          "boxSizing": "border-box",
-          "color": "#1865f2",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "outline": "none",
-          "position": "relative",
-          "textDecoration": "none",
-          "touchAction": "manipulation",
-        }
-      }
-      tabIndex={0}
-      type="button"
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "alignItems": "center",
-              "display": "inline-block",
-              "fontFamily": "Lato, sans-serif",
-              "fontSize": 16,
-              "fontWeight": "bold",
-              "lineHeight": "20px",
-              "overflow": "hidden",
-              "pointerEvents": "none",
-              "textAlign": "left",
-              "textOverflow": "ellipsis",
-              "userSelect": "none",
-              "whiteSpace": "nowrap",
-            }
-          }
-        >
-          Betsy Appleseed
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 4,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 4,
-            "zIndex": 0,
-          }
-        }
-      />
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "flexGrow": 0,
-            "flexShrink": 0,
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-dropdown example 3 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "row",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    className=""
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "width": "fit-content",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      aria-expanded="true"
-      aria-haspopup="menu"
-      className=""
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      open={false}
-      style={
-        Object {
-          "::MozFocusInner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "none",
-          "border": "none",
-          "borderRadius": 4,
-          "boxSizing": "border-box",
-          "color": "#1865f2",
-          "cursor": "pointer",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "outline": "none",
-          "position": "relative",
-          "textDecoration": "none",
-          "touchAction": "manipulation",
-        }
-      }
-      tabIndex={0}
-      type="button"
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "alignItems": "center",
-              "display": "inline-block",
-              "fontFamily": "Lato, sans-serif",
-              "fontSize": 16,
-              "fontWeight": "bold",
-              "lineHeight": "20px",
-              "overflow": "hidden",
-              "pointerEvents": "none",
-              "textAlign": "left",
-              "textOverflow": "ellipsis",
-              "userSelect": "none",
-              "whiteSpace": "nowrap",
-            }
-          }
-        >
-          Assignments
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 4,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 4,
-            "zIndex": 0,
-          }
-        }
-      />
-      <svg
-        className=""
-        height={16}
-        style={
-          Object {
-            "display": "inline-block",
-            "flexGrow": 0,
-            "flexShrink": 0,
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 16 16"
-        width={16}
-      >
-        <path
-          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`wonder-blocks-dropdown example 4 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "row",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <div
-    className=""
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    style={
-      Object {
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexDirection": "column",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "width": "fit-content",
-        "zIndex": 0,
-      }
-    }
-  >
-    <button
-      aria-disabled="true"
-      aria-expanded="true"
-      aria-haspopup="menu"
-      className=""
-      disabled={true}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      open={false}
-      style={
-        Object {
-          "::MozFocusInner": Object {
-            "border": 0,
-          },
-          "alignItems": "center",
-          "background": "none",
-          "border": "none",
-          "borderRadius": 4,
-          "boxSizing": "border-box",
-          "color": "rgba(33,36,44,0.32)",
-          "cursor": "default",
-          "display": "inline-flex",
-          "height": 40,
-          "justifyContent": "center",
-          "margin": 0,
-          "outline": "none",
-          "position": "relative",
-          "textDecoration": "none",
-          "touchAction": "manipulation",
-        }
-      }
-      tabIndex={-1}
-      type="button"
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "alignItems": "center",
-              "display": "inline-block",
-              "fontFamily": "Lato, sans-serif",
-              "fontSize": 16,
-              "fontWeight": "bold",
-              "lineHeight": "20px",
-              "overflow": "hidden",
-              "pointerEvents": "none",
-              "textAlign": "left",
-              "textOverflow": "ellipsis",
-              "userSelect": "none",
-              "whiteSpace": "nowrap",
-            }
-          }
-        >
-          Empty
         </span>
       </div>
       <div
@@ -761,6 +462,27 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
   }
 >
   <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
     className=""
     onKeyDown={[Function]}
     onKeyUp={[Function]}
@@ -777,16 +499,15 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": "fit-content",
+        "width": 100,
         "zIndex": 0,
       }
     }
   >
     <button
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="menu"
       className=""
-      data-test-id="teacher-menu"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -801,11 +522,13 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      open={false}
       style={
         Object {
           "::MozFocusInner": Object {
             "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
           "background": "none",
@@ -953,6 +676,550 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         "display": "flex",
         "flexDirection": "column",
         "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-expanded="false"
+      aria-haspopup="menu"
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "alignItems": "center",
+              "display": "inline-block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "pointerEvents": "none",
+              "textAlign": "left",
+              "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
+            }
+          }
+        >
+          Assignments
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 4,
+            "zIndex": 0,
+          }
+        }
+      />
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-expanded="false"
+      aria-haspopup="menu"
+      className=""
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "rgba(33,36,44,0.32)",
+          "cursor": "default",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+        }
+      }
+      tabIndex={-1}
+      type="button"
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "alignItems": "center",
+              "display": "inline-block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "pointerEvents": "none",
+              "textAlign": "left",
+              "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
+            }
+          }
+        >
+          Empty
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 4,
+            "zIndex": 0,
+          }
+        }
+      />
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 8 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-expanded="false"
+      aria-haspopup="menu"
+      className=""
+      data-test-id="teacher-menu"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "alignItems": "center",
+              "display": "inline-block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "lineHeight": "20px",
+              "overflow": "hidden",
+              "pointerEvents": "none",
+              "textAlign": "left",
+              "textOverflow": "ellipsis",
+              "userSelect": "none",
+              "whiteSpace": "nowrap",
+            }
+          }
+        >
+          Betsy Appleseed
+        </span>
+      </div>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 4,
+            "MsFlexPreferredSize": 4,
+            "WebkitFlexBasis": 4,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 4,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 4,
+            "zIndex": 0,
+          }
+        }
+      />
+      <svg
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
         "maxWidth": 190,
         "minHeight": 0,
         "minWidth": 170,
@@ -1033,6 +1300,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         Choose a fruit
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1057,7 +1325,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 7 1`] = `
+exports[`wonder-blocks-dropdown example 10 1`] = `
 <div
   className=""
   style={
@@ -1169,6 +1437,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
         Choose a pet
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1193,7 +1462,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 8 1`] = `
+exports[`wonder-blocks-dropdown example 11 1`] = `
 <div
   className=""
   style={
@@ -1304,6 +1573,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
         Banana juice
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1328,7 +1598,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 9 1`] = `
+exports[`wonder-blocks-dropdown example 12 1`] = `
 <div
   className=""
   style={
@@ -1440,6 +1710,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
         Banana juice
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1464,7 +1735,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 10 1`] = `
+exports[`wonder-blocks-dropdown example 13 1`] = `
 <div
   className=""
   style={
@@ -1597,9 +1868,10 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
             }
           }
         >
-          Boba order
+          Choose a drink
         </span>
         <svg
+          aria-hidden="true"
           className=""
           height={16}
           style={
@@ -1625,7 +1897,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 11 1`] = `
+exports[`wonder-blocks-dropdown example 14 1`] = `
 <div
   className=""
   style={
@@ -1737,6 +2009,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
         empty
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1761,7 +2034,163 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 12 1`] = `
+exports[`wonder-blocks-dropdown example 15 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <label
+    className=""
+    htmlFor="unique-single-select"
+    id="label-for-single-select"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Associated label element
+  </label>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="label-for-single-select"
+      className=""
+      disabled={false}
+      id="unique-single-select"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "borderColor": "rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "rgba(33,36,44,0.64)",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "margin": 0,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "marginRight": 8,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Accessible SingleSelect
+      </span>
+      <svg
+        aria-hidden="true"
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "minWidth": 16,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="rgba(33,36,44,0.64)"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 16 1`] = `
 <div
   className=""
   style={
@@ -1873,6 +2302,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
         Color palette
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -1897,7 +2327,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 13 1`] = `
+exports[`wonder-blocks-dropdown example 17 1`] = `
 <div
   className=""
   style={
@@ -2008,6 +2438,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
         Solar system
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -2032,7 +2463,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 14 1`] = `
+exports[`wonder-blocks-dropdown example 18 1`] = `
 <div
   className=""
   style={
@@ -2143,6 +2574,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
         Sophie
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -2167,7 +2599,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 15 1`] = `
+exports[`wonder-blocks-dropdown example 19 1`] = `
 <div
   className=""
   style={
@@ -2188,7 +2620,6 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
   }
 >
   <button
-    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -2209,6 +2640,9 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "#1865f2",
@@ -2260,7 +2694,7 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 16 1`] = `
+exports[`wonder-blocks-dropdown example 20 1`] = `
 <div
   className=""
   style={
@@ -2372,6 +2806,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
         empty
       </span>
       <svg
+        aria-hidden="true"
         className=""
         height={16}
         style={
@@ -2389,6 +2824,162 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
         <path
           d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
           fill="rgba(33,36,44,0.32)"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 21 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <label
+    className=""
+    htmlFor="unique-multi-select"
+    id="label-for-multi-select"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Associated label element
+  </label>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="label-for-multi-select"
+      className=""
+      disabled={false}
+      id="unique-multi-select"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "borderColor": "rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "rgba(33,36,44,0.64)",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "margin": 0,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "marginRight": 8,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Accessible MultiSelect
+      </span>
+      <svg
+        aria-hidden="true"
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "minWidth": 16,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="rgba(33,36,44,0.64)"
         />
       </svg>
     </button>

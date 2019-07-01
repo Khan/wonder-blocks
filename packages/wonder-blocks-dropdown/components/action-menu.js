@@ -4,8 +4,8 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import Dropdown from "./dropdown.js";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import DropdownCore from "./dropdown-core.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import ActionMenuOpener from "./action-menu-opener.js";
@@ -13,10 +13,12 @@ import ActionMenuOpener from "./action-menu-opener.js";
 import type {Item, DropdownItem} from "../util/types.js";
 
 type MenuProps = {|
+    ...AriaProps,
+
     /**
      * The items in this dropdown.
      */
-    children?: Array<Item>,
+    children?: Array<Item> | Item,
 
     /**
      * Text for the opener of this menu.
@@ -139,11 +141,8 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         return React.Children.toArray(children)
             .filter(Boolean)
             .map((item) => {
-                const {
-                    type,
-                    props: {disabled, value},
-                } = item;
-                if (type === ActionItem) {
+                const {disabled, value} = item.props;
+                if (ActionItem.isClassOf(item)) {
                     return {
                         component: item,
                         focusable: !disabled,
@@ -152,7 +151,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                             onClick: this.handleItemSelected,
                         },
                     };
-                } else if (type === OptionItem) {
+                } else if (OptionItem.isClassOf(item)) {
                     return {
                         component: item,
                         focusable: !disabled,
@@ -186,6 +185,15 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             style,
             testId,
             dropdownStyle,
+            // the following props are being included here to avoid
+            // passing them down to the opener as part of sharedProps
+            /* eslint-disable no-unused-vars */
+            children,
+            onChange,
+            selectedValues,
+            "aria-disabled": ariaDisabled, // WB-535 avoids passing this prop to the opener
+            /* eslint-enable no-unused-vars */
+            ...sharedProps
         } = this.props;
         const {open} = this.state;
 
@@ -193,6 +201,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
 
         const opener = (
             <ActionMenuOpener
+                {...sharedProps}
                 disabled={items.length === 0 || disabled}
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
@@ -204,7 +213,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         );
 
         return (
-            <Dropdown
+            <DropdownCore
                 alignment={alignment}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                 items={items}

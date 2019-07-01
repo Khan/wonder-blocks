@@ -1,5 +1,9 @@
 // @flow
-import type {ClickableHandlers} from "./components/clickable-behavior.js";
+import type {
+    ClickableHandlers,
+    ClickableState,
+    ClickableRole,
+} from "./components/clickable-behavior.js";
 import type {AriaProps, IIdentifierFactory, StyleType} from "./util/types.js";
 import type {Intersection} from "./util/get-element-intersection.js";
 
@@ -9,6 +13,7 @@ export {default as View} from "./components/view.js";
 export {
     default as WithSSRPlaceholder,
 } from "./components/with-ssr-placeholder.js";
+export {default as IDProvider} from "./components/id-provider.js";
 export {default as UniqueIDProvider} from "./components/unique-id-provider.js";
 export {default as addStyle} from "./util/add-style.js";
 export {
@@ -21,6 +26,8 @@ export {
 export type {
     AriaProps,
     ClickableHandlers,
+    ClickableState,
+    ClickableRole,
     Intersection,
     IIdentifierFactory,
     StyleType,

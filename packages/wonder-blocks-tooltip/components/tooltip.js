@@ -105,6 +105,7 @@ type Props = {|
 type State = {|
     active: boolean,
     anchorElement: ?HTMLElement,
+    timeoutID: ?TimeoutID,
 |};
 
 export default class Tooltip extends React.Component<Props, State> {
@@ -117,6 +118,7 @@ export default class Tooltip extends React.Component<Props, State> {
     state = {
         active: false,
         anchorElement: null,
+        timeoutID: null,
     };
 
     _updateAnchorElement(ref: ?Element) {
@@ -158,6 +160,11 @@ export default class Tooltip extends React.Component<Props, State> {
                         placement={props.placement}
                         updateTailRef={props.updateTailRef}
                         updateBubbleRef={props.updateBubbleRef}
+                        onActiveChanged={(active) => this.setState({active})}
+                        anchorTimeoutID={this.state.timeoutID}
+                        onTimeoutChanged={(timeoutID) =>
+                            this.setState({timeoutID})
+                        }
                     >
                         {this._renderBubbleContent()}
                     </TooltipBubble>
@@ -188,6 +195,7 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
+                    onTimeoutChanged={(timeoutID) => this.setState({timeoutID})}
                     ids={ids}
                 >
                     {children}

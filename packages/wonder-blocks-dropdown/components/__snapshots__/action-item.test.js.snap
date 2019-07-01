@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionItem should render with disabled styles 1`] = `
+<button
+  className=""
+  disabled={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="menuitem"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "default",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": 40,
+      "margin": 0,
+      "minHeight": 40,
+      "outline": "none",
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+        "userSelect": "none",
+        "whiteSpace": "nowrap",
+      }
+    }
+  />
+</button>
+`;

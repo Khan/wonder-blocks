@@ -25,7 +25,18 @@ const styles = StyleSheet.create({
     },
 });
 
+type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
+// eslint-disable-next-line flowtype/require-exact-type
+type Props = {
+    ...TextViewSharedProps,
+    tag: ValidViewTags,
+};
+
 const StyledDiv = addStyle<"div">("div", styles.default);
+const StyledArticle = addStyle<"article">("article", styles.default);
+const StyledAside = addStyle<"aside">("aside", styles.default);
+const StyledNav = addStyle<"nav">("nav", styles.default);
+const StyledSection = addStyle<"section">("section", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly
@@ -40,9 +51,30 @@ const StyledDiv = addStyle<"div">("div", styles.default);
  * - An `aphrodite` StyleSheet style
  * - An array combining the above
  */
-export default class View extends React.Component<TextViewSharedProps> {
+export default class View extends React.Component<Props> {
+    static defaultProps = {
+        tag: "div",
+    };
+
     render() {
-        const {testId, ...restProps} = this.props;
-        return <StyledDiv data-test-id={testId} {...restProps} />;
+        const {testId, tag, ...restProps} = this.props;
+        switch (tag) {
+            case "article":
+                return <StyledArticle data-test-id={testId} {...restProps} />;
+            case "aside":
+                return <StyledAside data-test-id={testId} {...restProps} />;
+            case "nav":
+                return <StyledNav data-test-id={testId} {...restProps} />;
+            case "section":
+                return <StyledSection data-test-id={testId} {...restProps} />;
+            case "div":
+                return <StyledDiv data-test-id={testId} {...restProps} />;
+            default:
+                // eslint-disable-next-line no-unused-expressions
+                (tag: empty);
+                throw Error(
+                    `${tag} is not an allowed value for the 'tag' prop`,
+                );
+        }
     }
 }

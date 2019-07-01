@@ -267,7 +267,7 @@ class LightRightAlignedExample extends React.Component {
             alignment="right"
             light={true}
             onChange={this.handleChange}
-            placeholder="Boba order"
+            placeholder="Choose a drink"
             selectedValue={this.state.selectedValue}
         >
             <OptionItem label="Regular milk tea with boba" value="regular" />
@@ -298,6 +298,34 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
-    <SingleSelect menuText="Empty" placeholder="empty" />
+    <SingleSelect placeholder="empty" />
+</View>
+```
+
+### Accessibility
+
+If you need to associate this component with another element (e.g. `<label>`),
+make sure to pass the `aria-labelledby` and/or `id` props to the `SingleSelect` component.
+This way, the `opener` will receive this value and it will associate both elements.
+
+```js
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+
+<View>
+    <LabelLarge
+        tag="label"
+        id="label-for-single-select"
+        htmlFor="unique-single-select"
+    >
+        Associated label element
+    </LabelLarge>
+    <SingleSelect
+        aria-labelledby="label-for-single-select"
+        id="unique-single-select"
+        placeholder="Accessible SingleSelect"
+    >
+        <OptionItem label="some value" value="" />
+    </SingleSelect>
 </View>
 ```

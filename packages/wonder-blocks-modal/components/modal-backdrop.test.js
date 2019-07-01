@@ -1,15 +1,15 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import ModalBackdrop from "./modal-backdrop.js";
-import StandardModal from "./standard-modal.js";
+import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
 
 const sleep = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));
 
 const exampleModal = (
-    <StandardModal
+    <OnePaneDialog
         content={<div data-modal-content />}
         title="Title"
         footer={<div data-modal-footer />}
@@ -17,12 +17,12 @@ const exampleModal = (
 );
 
 const exampleModalWithButtons = (
-    <StandardModal
+    <OnePaneDialog
         content={
             <div>
-                <button data-button-id="1" />
+                <button data-button-id="1" data-first-button />
                 <button data-button-id="2" />
-                <button data-button-id="3" data-last-button />
+                <button data-button-id="3" />
             </div>
         }
         title="Title"
@@ -31,6 +31,10 @@ const exampleModalWithButtons = (
 );
 
 describe("ModalBackdrop", () => {
+    beforeEach(() => {
+        unmountAll();
+    });
+
     test("Clicking the backdrop triggers `onCloseModal`", () => {
         const onCloseModal = jest.fn();
 
@@ -78,7 +82,67 @@ describe("ModalBackdrop", () => {
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
-    test("On mount, we focus the last button in the modal", async () => {
+    test("If initialFocusId is set and element is found, we focus that element inside the modal", async () => {
+        // Arrange
+        const initialFocusId = "initial-focus";
+
+        const wrapper = mount(
+            <ModalBackdrop
+                initialFocusId={initialFocusId}
+                onCloseModal={() => {}}
+            >
+                <OnePaneDialog
+                    content={
+                        <div data-modal-content>
+                            <input type="text" />
+                            <button id="initial-focus" />
+                        </div>
+                    }
+                    title="Title"
+                    footer={<div data-modal-footer />}
+                />
+            </ModalBackdrop>,
+        );
+
+        // Act
+        await sleep(); // wait for styles to be applied
+        const initialFocusElement = wrapper.find(`#${initialFocusId}`);
+
+        // Assert
+        // first we verify the element exists in the DOM
+        expect(initialFocusElement).toHaveLength(1);
+        // verify the focus is set on the correct element
+        expect(document.activeElement).toBe(initialFocusElement.getDOMNode());
+    });
+
+    test("If initialFocusId is set but element is NOT found, we focus on the first focusable element instead", async () => {
+        // Arrange
+        const initialFocusId = "initial-focus";
+        const firstFocusableElement = "[data-first-button]";
+
+        const wrapper = mount(
+            <ModalBackdrop
+                initialFocusId={initialFocusId}
+                onCloseModal={() => {}}
+            >
+                {exampleModalWithButtons}
+            </ModalBackdrop>,
+        );
+
+        // Act
+        await sleep(); // wait for styles to be applied
+        const initialFocusElement = wrapper.find(`#${initialFocusId}`);
+
+        // Assert
+        // first we verify the element doesn't exist in the DOM
+        expect(initialFocusElement).toHaveLength(0);
+        // verify the focus is set on the first focusable element instead
+        expect(document.activeElement).toBe(
+            wrapper.find(firstFocusableElement).getDOMNode(),
+        );
+    });
+
+    test("If no initialFocusId is set, we focus the first button in the modal", async () => {
         // Arrange
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
@@ -88,10 +152,30 @@ describe("ModalBackdrop", () => {
 
         // Act
         await sleep(); // wait for styles to be applied
-        const lastButton = wrapper.find("[data-last-button]").getDOMNode();
+        const focusableElement = wrapper
+            .find("[data-first-button]")
+            .getDOMNode();
 
         // Assert
-        expect(document.activeElement).toBe(lastButton);
+        expect(document.activeElement).toBe(focusableElement);
+    });
+
+    test("If there are no focusable elements, we focus the Dialog instead", async () => {
+        // Arrange
+        const wrapper = mount(
+            <ModalBackdrop onCloseModal={() => {}}>
+                {exampleModal}
+            </ModalBackdrop>,
+        );
+
+        // Act
+        await sleep(); // wait for styles to be applied
+        const focusableElement = wrapper
+            .find('div[role="dialog"]')
+            .getDOMNode();
+
+        // Assert
+        expect(document.activeElement).toBe(focusableElement);
     });
 
     // TODO(mdr): I haven't figured out how to actually simulate tab keystrokes

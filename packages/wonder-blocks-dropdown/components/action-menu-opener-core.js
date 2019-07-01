@@ -10,15 +10,16 @@ import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
+import type {
+    ClickableHandlers,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./action-menu-opener.js";
 
 type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
+    ...ClickableState,
 |};
 
 const StyledButton = addStyle<"button">("button");
@@ -40,6 +41,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             hovered,
             pressed,
             testId,
+            open,
             "aria-label": ariaLabel,
             ...handlers
         } = this.props;
@@ -62,7 +64,6 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
 
         return (
             <StyledButton
-                aria-disabled={disabled ? "true" : undefined}
                 aria-expanded={open ? "true" : "false"}
                 aria-haspopup="menu"
                 aria-label={ariaLabel}
@@ -106,6 +107,10 @@ const sharedStyles = StyleSheet.create({
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
+        ":focus": {
+            // Mobile: Removes a blue highlight style shown when the user clicks a button
+            WebkitTapHighlightColor: "rgba(0,0,0,0)",
+        },
     },
     disabled: {
         cursor: "auto",

@@ -15,15 +15,16 @@ import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
+import type {
+    ClickableHandlers,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-core";
 import type {SharedProps} from "./button.js";
 
 type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
+    ...ClickableState,
 |};
 
 const StyledAnchor = addStyle<"a">("a");
@@ -50,7 +51,6 @@ export default class ButtonCore extends React.Component<Props> {
             testId,
             spinner,
             icon,
-            "aria-label": ariaLabel,
             ...handlers
         } = this.props;
         const {router} = this.context;
@@ -84,8 +84,6 @@ export default class ButtonCore extends React.Component<Props> {
         ];
 
         const commonProps = {
-            "aria-disabled": disabled ? "true" : undefined,
-            "aria-label": ariaLabel,
             "data-test-id": testId,
             role: "button",
             style: [defaultStyle, style],
@@ -168,6 +166,10 @@ const sharedStyles = StyleSheet.create({
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
         userSelect: "none",
+        ":focus": {
+            // Mobile: Removes a blue highlight style shown when the user clicks a button
+            WebkitTapHighlightColor: "rgba(0,0,0,0)",
+        },
     },
     withIcon: {
         // The left padding for the button with icon should have 4px less padding
