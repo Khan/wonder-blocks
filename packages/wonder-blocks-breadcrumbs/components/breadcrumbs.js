@@ -37,7 +37,7 @@ export default class Breadcrumbs extends React.Component<Props> {
     // Moved it here, in case we need to override the label for a different
     // language
     static defaultProps = {
-        "aria-label": "Breadcrumb",
+        "aria-label": "Breadcrumbs",
     };
 
     render() {

@@ -2,7 +2,7 @@
 
 exports[`wonder-blocks-breadcrumbs example 1 1`] = `
 <nav
-  aria-label="Breadcrumb"
+  aria-label="Breadcrumbs"
 >
   <ol
     className=""
