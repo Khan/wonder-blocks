@@ -755,7 +755,6 @@ Array [
 
 exports[`RadioCore type:default state:default checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={false}
   checked={false}
   className=""
@@ -786,7 +785,6 @@ exports[`RadioCore type:default state:default checked:false 1`] = `
 
 exports[`RadioCore type:default state:default checked:true 1`] = `
 <input
-  aria-checked={true}
   aria-invalid={false}
   checked={true}
   className=""
@@ -817,7 +815,6 @@ exports[`RadioCore type:default state:default checked:true 1`] = `
 
 exports[`RadioCore type:default state:hovered checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={false}
   checked={false}
   className=""
@@ -848,7 +845,6 @@ exports[`RadioCore type:default state:hovered checked:false 1`] = `
 
 exports[`RadioCore type:default state:hovered checked:true 1`] = `
 <input
-  aria-checked={true}
   aria-invalid={false}
   checked={true}
   className=""
@@ -880,7 +876,6 @@ exports[`RadioCore type:default state:hovered checked:true 1`] = `
 
 exports[`RadioCore type:default state:pressed checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={false}
   checked={false}
   className=""
@@ -911,7 +906,6 @@ exports[`RadioCore type:default state:pressed checked:false 1`] = `
 
 exports[`RadioCore type:default state:pressed checked:true 1`] = `
 <input
-  aria-checked={true}
   aria-invalid={false}
   checked={true}
   className=""
@@ -943,7 +937,6 @@ exports[`RadioCore type:default state:pressed checked:true 1`] = `
 
 exports[`RadioCore type:disabled state:default checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={false}
   checked={false}
   className=""
@@ -976,7 +969,6 @@ exports[`RadioCore type:disabled state:default checked:false 1`] = `
 exports[`RadioCore type:disabled state:default checked:true 1`] = `
 Array [
   <input
-    aria-checked={true}
     aria-invalid={false}
     checked={true}
     className=""
@@ -1022,7 +1014,6 @@ Array [
 
 exports[`RadioCore type:disabled state:hovered checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={false}
   checked={false}
   className=""
@@ -1055,7 +1046,6 @@ exports[`RadioCore type:disabled state:hovered checked:false 1`] = `
 exports[`RadioCore type:disabled state:hovered checked:true 1`] = `
 Array [
   <input
-    aria-checked={true}
     aria-invalid={false}
     checked={true}
     className=""
@@ -1101,7 +1091,6 @@ Array [
 
 exports[`RadioCore type:disabled state:pressed checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={false}
   checked={false}
   className=""
@@ -1134,7 +1123,6 @@ exports[`RadioCore type:disabled state:pressed checked:false 1`] = `
 exports[`RadioCore type:disabled state:pressed checked:true 1`] = `
 Array [
   <input
-    aria-checked={true}
     aria-invalid={false}
     checked={true}
     className=""
@@ -1180,7 +1168,6 @@ Array [
 
 exports[`RadioCore type:error state:default checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={true}
   checked={false}
   className=""
@@ -1211,7 +1198,6 @@ exports[`RadioCore type:error state:default checked:false 1`] = `
 
 exports[`RadioCore type:error state:default checked:true 1`] = `
 <input
-  aria-checked={true}
   aria-invalid={true}
   checked={true}
   className=""
@@ -1242,7 +1228,6 @@ exports[`RadioCore type:error state:default checked:true 1`] = `
 
 exports[`RadioCore type:error state:hovered checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={true}
   checked={false}
   className=""
@@ -1273,7 +1258,6 @@ exports[`RadioCore type:error state:hovered checked:false 1`] = `
 
 exports[`RadioCore type:error state:hovered checked:true 1`] = `
 <input
-  aria-checked={true}
   aria-invalid={true}
   checked={true}
   className=""
@@ -1305,7 +1289,6 @@ exports[`RadioCore type:error state:hovered checked:true 1`] = `
 
 exports[`RadioCore type:error state:pressed checked:false 1`] = `
 <input
-  aria-checked={false}
   aria-invalid={true}
   checked={false}
   className=""
@@ -1336,7 +1319,6 @@ exports[`RadioCore type:error state:pressed checked:false 1`] = `
 
 exports[`RadioCore type:error state:pressed checked:true 1`] = `
 <input
-  aria-checked={true}
   aria-invalid={true}
   checked={true}
   className=""

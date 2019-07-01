@@ -1183,7 +1183,6 @@ exports[`wonder-blocks-form example 4 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-checked={false}
         aria-invalid={false}
         checked={false}
         className=""
@@ -1293,7 +1292,6 @@ exports[`wonder-blocks-form example 4 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-checked={true}
         aria-invalid={false}
         checked={true}
         className=""
@@ -1403,7 +1401,6 @@ exports[`wonder-blocks-form example 4 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-checked={false}
         aria-invalid={true}
         checked={false}
         className=""
@@ -1513,7 +1510,6 @@ exports[`wonder-blocks-form example 4 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-checked={true}
         aria-invalid={true}
         checked={true}
         className=""
@@ -1623,7 +1619,6 @@ exports[`wonder-blocks-form example 4 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-checked={false}
         aria-invalid={false}
         checked={false}
         className=""
@@ -1734,7 +1729,6 @@ exports[`wonder-blocks-form example 4 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-checked={true}
         aria-invalid={false}
         checked={true}
         className=""
@@ -4618,7 +4612,6 @@ exports[`wonder-blocks-form example 8 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""
@@ -4753,7 +4746,6 @@ exports[`wonder-blocks-form example 8 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""
@@ -4909,7 +4901,6 @@ exports[`wonder-blocks-form example 8 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""
@@ -5044,7 +5035,6 @@ exports[`wonder-blocks-form example 8 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""
@@ -5179,7 +5169,6 @@ exports[`wonder-blocks-form example 8 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""
@@ -5390,7 +5379,6 @@ exports[`wonder-blocks-form example 9 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""
@@ -5531,7 +5519,6 @@ exports[`wonder-blocks-form example 9 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""
@@ -5672,7 +5659,6 @@ exports[`wonder-blocks-form example 9 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""
@@ -5813,7 +5799,6 @@ exports[`wonder-blocks-form example 9 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-checked={false}
             aria-invalid={false}
             checked={false}
             className=""

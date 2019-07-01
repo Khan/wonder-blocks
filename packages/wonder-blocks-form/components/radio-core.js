@@ -60,7 +60,6 @@ const StyledInput = addStyle("input");
                     {...sharedProps}
                     type="radio"
                     aria-invalid={error}
-                    aria-checked={checked}
                     checked={checked}
                     disabled={disabled}
                     id={id}
