@@ -21,8 +21,11 @@ exports[`wonder-blocks-popover example 1 1`] = `
   }
 >
   <button
+    aria-controls="uid-popover-0-wb-id"
+    aria-expanded="false"
     className=""
     disabled={false}
+    id="uid-popover-0-wb-id-anchor"
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}

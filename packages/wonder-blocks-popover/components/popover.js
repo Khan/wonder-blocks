@@ -28,7 +28,7 @@ type Props = {|
      * within children. The latter provides a lot of flexibility in terms of
      * what actions may trigger the `Popover` to launch the popover dialog.
      */
-    children: React.Element<any> | (({open: () => void}) => React.Node),
+    children: React.Element<any> | (({open: () => void}) => React.Element<any>),
 
     /**
      * The content of the popover. You can either use

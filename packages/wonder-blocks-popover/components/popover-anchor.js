@@ -22,7 +22,7 @@ type Props = {|
      * what actions may trigger the `Popover` to launch the
      * [PopoverDialog](#PopoverDialog).
      */
-    children: React.Element<any> | (({open: () => void}) => React.Node),
+    children: React.Element<any> | (({open: () => void}) => React.Element<any>),
 
     /**
      * The unique identifier to give to the anchor.
@@ -57,19 +57,26 @@ export default class PopoverAnchor extends React.Component<Props> {
             "aria-expanded": ariaExpanded,
         } = this.props;
 
+        // props that will be injected to both children versions
+        const sharedProps = {
+            id: id,
+            "aria-controls": ariaControls,
+            "aria-expanded": ariaExpanded,
+        };
+
         if (typeof children === "function") {
-            return children({
+            const renderedChildren = children({
                 open: onClick,
-                "aria-controls": ariaControls,
             });
+
+            // we clone it to allow injecting the sharedProps defined before
+            return React.cloneElement(renderedChildren, sharedProps);
         } else {
             // add onClick handler to automatically open the dialog after
             // clicking on this anchor element
             return React.cloneElement(children, {
                 ...children.props,
-                id: id,
-                "aria-controls": ariaControls,
-                "aria-expanded": ariaExpanded,
+                ...sharedProps,
                 onClick: children.props.onClick
                     ? () => {
                           children.props.onClick();
