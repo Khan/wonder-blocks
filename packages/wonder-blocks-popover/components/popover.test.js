@@ -32,8 +32,6 @@ describe("Popover", () => {
 
         // Assert
         expect(wrapper.state("anchorElement")).toBe(anchorElement);
-
-        expect(wrapper.find(PopoverContent)).toHaveLength(0);
     });
 
     it("should hide the popover dialog by default", () => {
@@ -52,7 +50,7 @@ describe("Popover", () => {
         );
 
         // Assert
-        expect(wrapper.find(PopoverContent)).toHaveLength(0);
+        expect(wrapper.find(PopoverContent)).not.toExist();
     });
 
     it("should render a text-only variant", () => {
@@ -74,7 +72,7 @@ describe("Popover", () => {
         wrapper.find("[data-anchor]").simulate("click");
 
         // Assert
-        expect(wrapper.find(PopoverContent)).toHaveLength(1);
+        expect(wrapper.find(PopoverContent)).toExist();
     });
 
     it("should close the popover from inside the content", () => {
@@ -105,7 +103,7 @@ describe("Popover", () => {
         // Act
         // first open the popover
         wrapper.find("[data-anchor]").simulate("click");
-        expect(wrapper.find(PopoverContentCore)).toHaveLength(1);
+        expect(wrapper.find(PopoverContentCore)).toExist();
         // then we try to close it from inside the content
         wrapper.find("[data-close-button]").simulate("click");
 

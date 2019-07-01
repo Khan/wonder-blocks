@@ -110,8 +110,6 @@ type State = {|
  * `PopoverContentCore` component according to the children it is wrapping.
  */
 export default class Popover extends React.Component<Props, State> {
-    // anchorRef: {current: null | HTMLElement};
-
     static defaultProps = {
         placement: "top",
     };
