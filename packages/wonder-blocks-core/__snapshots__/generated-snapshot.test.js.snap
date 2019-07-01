@@ -20,215 +20,6 @@ exports[`wonder-blocks-core example 1 1`] = `
     }
   }
 >
-  <button
-    aria-label=""
-    className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    style={
-      Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        "MozOsxFontSmoothing": "inherit",
-        "WebkitAppearance": "none",
-        "WebkitFontSmoothing": "inherit",
-        "background": "transparent",
-        "border": "none",
-        "boxSizing": "border-box",
-        "color": "inherit",
-        "font": "inherit",
-        "lineHeight": "normal",
-        "margin": 0,
-        "outline": "none",
-        "overflow": "visible",
-        "padding": 0,
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
-        "width": "auto",
-      }
-    }
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className=""
-      style={
-        Object {
-          "alignItems": "stretch",
-          "border": "solid 1px black",
-          "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexDirection": "row",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 16,
-          "position": "relative",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "flex-start",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      >
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "display": "block",
-              "fontFamily": "Lato, sans-serif",
-              "fontSize": 16,
-              "fontWeight": 700,
-              "lineHeight": "20px",
-            }
-          }
-        >
-          Hello, world
-        </span>
-        <div
-          aria-hidden="true"
-          className=""
-          style={
-            Object {
-              "MsFlexBasis": 8,
-              "MsFlexPreferredSize": 8,
-              "WebkitFlexBasis": 8,
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexBasis": 8,
-              "flexDirection": "column",
-              "flexShrink": 0,
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
-              "width": 8,
-              "zIndex": 0,
-            }
-          }
-        />
-        <span
-          className=""
-          style={
-            Object {
-              "MozOsxFontSmoothing": "grayscale",
-              "WebkitFontSmoothing": "antialiased",
-              "display": "block",
-              "fontFamily": "Lato, sans-serif",
-              "fontSize": 16,
-              "fontWeight": 400,
-              "lineHeight": "20px",
-            }
-          }
-        >
-          Lorem Ipsum Dolor
-        </span>
-      </div>
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <svg
-        className=""
-        height={48}
-        style={
-          Object {
-            "display": "inline-block",
-            "flexGrow": 0,
-            "flexShrink": 0,
-            "verticalAlign": "text-bottom",
-          }
-        }
-        viewBox="0 0 24 24"
-        width={48}
-      >
-        <path
-          d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-          fill="currentColor"
-        />
-      </svg>
-    </div>
-  </button>
-</div>
-`;
-
-exports[`wonder-blocks-core example 2 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
   <label
     htmlFor="uid-field-0-wb-id"
   >
@@ -243,7 +34,7 @@ exports[`wonder-blocks-core example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 3 1`] = `
+exports[`wonder-blocks-core example 2 1`] = `
 <div
   className=""
   style={
@@ -277,7 +68,7 @@ exports[`wonder-blocks-core example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 4 1`] = `
+exports[`wonder-blocks-core example 3 1`] = `
 <div
   className=""
   style={
@@ -336,7 +127,7 @@ exports[`wonder-blocks-core example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 5 1`] = `
+exports[`wonder-blocks-core example 4 1`] = `
 <div
   className=""
   style={
@@ -393,7 +184,7 @@ exports[`wonder-blocks-core example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 6 1`] = `
+exports[`wonder-blocks-core example 5 1`] = `
 <div
   className=""
   style={
@@ -450,7 +241,7 @@ exports[`wonder-blocks-core example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 7 1`] = `
+exports[`wonder-blocks-core example 6 1`] = `
 <div
   className=""
   style={
@@ -669,7 +460,7 @@ exports[`wonder-blocks-core example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 8 1`] = `
+exports[`wonder-blocks-core example 7 1`] = `
 <div
   className=""
   style={
@@ -862,7 +653,7 @@ exports[`wonder-blocks-core example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 9 1`] = `
+exports[`wonder-blocks-core example 8 1`] = `
 <div
   className=""
   style={
@@ -995,7 +786,7 @@ exports[`wonder-blocks-core example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 10 1`] = `
+exports[`wonder-blocks-core example 9 1`] = `
 <div
   className=""
   style={
@@ -1112,7 +903,7 @@ exports[`wonder-blocks-core example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 11 1`] = `
+exports[`wonder-blocks-core example 10 1`] = `
 <div
   className=""
   style={
@@ -1171,7 +962,7 @@ exports[`wonder-blocks-core example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 12 1`] = `
+exports[`wonder-blocks-core example 11 1`] = `
 <div
   className=""
   style={
@@ -1228,7 +1019,7 @@ exports[`wonder-blocks-core example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 13 1`] = `
+exports[`wonder-blocks-core example 12 1`] = `
 <div
   className=""
   style={
@@ -1252,7 +1043,7 @@ exports[`wonder-blocks-core example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 14 1`] = `
+exports[`wonder-blocks-core example 13 1`] = `
 <div
   className=""
   style={
@@ -1276,7 +1067,7 @@ exports[`wonder-blocks-core example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 15 1`] = `
+exports[`wonder-blocks-core example 14 1`] = `
 <div
   className=""
   style={
@@ -1355,7 +1146,7 @@ exports[`wonder-blocks-core example 15 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 16 1`] = `
+exports[`wonder-blocks-core example 15 1`] = `
 <div
   className=""
   style={
