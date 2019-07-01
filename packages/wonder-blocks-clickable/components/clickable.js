@@ -11,13 +11,43 @@ import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "../util/types.js";
 
 type Props = {|
+    /**
+     * The child of Clickable must be a funciton which returns the component
+     * which should be made Clickable.
+     */
     children: (eventState: ClickableState) => React.Node,
+
+    /**
+     * An onClick function which Clickable can execure
+     */
     onClick?: (e: SyntheticEvent<>) => mixed,
+
+    /**
+     * Optinal href which Clickable should direct to, uses Client-side routing
+     * by default if react-router is present
+     */
     href?: string,
+
+    /**
+     * Styles to apply to the Clickable compoenent
+     */
     style?: StyleType,
+
+    /**
+     * Disables or enables the child, defaults to false
+     */
     disabled: boolean,
+
+    /**
+     * The role of the component
+     */
     role?: ClickableRole,
+
+    /**
+     * If href is present skipClientNav will avoid client-side routing
+     */
     skipClientNav?: boolean,
+
     "aria-label": string,
     testId?: string,
 |};
