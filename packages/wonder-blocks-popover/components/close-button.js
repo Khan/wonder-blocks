@@ -22,7 +22,7 @@ type Props = {|
     onClose?: () => mixed,
 
     /**
-     * Custom styles
+     * Custom styles applied to the IconButton
      */
     style?: StyleType,
 |};

@@ -44,7 +44,7 @@ type Props = {|
     onClose?: () => mixed,
 
     /**
-     * Custom styles
+     * Custom styles applied to the content container
      */
     style?: StyleType,
 

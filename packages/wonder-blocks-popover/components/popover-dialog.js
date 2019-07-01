@@ -1,11 +1,13 @@
 // @flow
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
 import Color from "@khanacademy/wonder-blocks-color";
 
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {
     Placement,
     PopperElementProps,
@@ -15,6 +17,8 @@ import PopoverContent from "./popover-content.js";
 import PopoverContentCore from "./popover-content-core.js";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * Required to correctly position the elements inside the dialog
      * @ignore
@@ -27,6 +31,11 @@ type Props = {|
     children:
         | React.Element<typeof PopoverContent>
         | React.Element<typeof PopoverContentCore>,
+
+    /**
+     * The unique identifier to give to the popover content.
+     */
+    id?: string,
 
     /**
      * Called when popper changes its placement
@@ -44,6 +53,14 @@ type Props = {|
  * Note that without explicit positioning, the tail will not be centered.
  */
 export default class PopoverDialog extends React.Component<Props> {
+    componentDidMount() {
+        const anchorNode = ((ReactDOM.findDOMNode(this): any): ?HTMLElement);
+
+        if (anchorNode) {
+            anchorNode.focus();
+        }
+    }
+
     componentDidUpdate(prevProps: Props) {
         if (prevProps.placement !== this.props.placement) {
             this.props.onUpdate(this.props.placement);
@@ -54,11 +71,13 @@ export default class PopoverDialog extends React.Component<Props> {
         const {
             placement,
             children,
+            id,
             outOfBoundaries,
             updateBubbleRef,
             updateTailRef,
             tailOffset,
             style,
+            "aria-describedby": ariaDescribedby,
         } = this.props;
 
         const contentProps = (children.props: any);
@@ -71,6 +90,8 @@ export default class PopoverDialog extends React.Component<Props> {
         return (
             <React.Fragment>
                 <View
+                    aria-describedby={ariaDescribedby}
+                    id={id}
                     ref={updateBubbleRef}
                     data-placement={placement}
                     style={[

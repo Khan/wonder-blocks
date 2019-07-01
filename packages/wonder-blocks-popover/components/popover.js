@@ -2,6 +2,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
+import {IDProvider} from "@khanacademy/wonder-blocks-core";
 import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
@@ -162,7 +163,7 @@ export default class Popover extends React.Component<Props, State> {
         }
     }
 
-    renderPopper() {
+    renderPopper(uniqueId: string) {
         const {placement} = this.props;
 
         return (
@@ -173,6 +174,8 @@ export default class Popover extends React.Component<Props, State> {
                 {(props: PopperElementProps) => (
                     <PopoverDialog
                         {...props}
+                        aria-describedby={`${uniqueId}-anchor`}
+                        id={uniqueId}
                         onUpdate={(placement) => this.setState({placement})}
                     >
                         {this.renderContent()}
@@ -194,7 +197,7 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     render() {
-        const {children} = this.props;
+        const {children, id} = this.props;
         const {opened, placement} = this.state;
         const popperHost = this.getHost();
 
@@ -205,15 +208,27 @@ export default class Popover extends React.Component<Props, State> {
                     placement: placement,
                 }}
             >
-                <PopoverAnchor
-                    anchorRef={(ref) => this.updateRef(ref)}
-                    onClick={this.handleOpen}
-                >
-                    {children}
-                </PopoverAnchor>
-                {popperHost &&
-                    opened &&
-                    ReactDOM.createPortal(this.renderPopper(), popperHost)}
+                <IDProvider id={id} scope="popover">
+                    {(uniqueId) => (
+                        <React.Fragment>
+                            <PopoverAnchor
+                                anchorRef={(ref) => this.updateRef(ref)}
+                                id={`${uniqueId}-anchor`}
+                                aria-controls={uniqueId}
+                                aria-expanded={opened ? "true" : "false"}
+                                onClick={this.handleOpen}
+                            >
+                                {children}
+                            </PopoverAnchor>
+                            {popperHost &&
+                                opened &&
+                                ReactDOM.createPortal(
+                                    this.renderPopper(uniqueId),
+                                    popperHost,
+                                )}
+                        </React.Fragment>
+                    )}
+                </IDProvider>
             </PopoverContext.Provider>
         );
     }

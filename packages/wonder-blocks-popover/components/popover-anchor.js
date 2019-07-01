@@ -2,7 +2,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+
 type Props = {|
+    ...AriaProps,
+
     /**
      * Callback to be invoked when the anchored content is mounted.
      * This provides a reference to the anchored content, which can then be
@@ -19,6 +23,11 @@ type Props = {|
      * [PopoverDialog](#PopoverDialog).
      */
     children: React.Element<any> | (({open: () => void}) => React.Node),
+
+    /**
+     * The unique identifier to give to the anchor.
+     */
+    id?: string,
 
     /**
      * Called when the anchor is clicked
@@ -40,17 +49,27 @@ export default class PopoverAnchor extends React.Component<Props> {
     }
 
     render() {
-        const {children, onClick} = this.props;
+        const {
+            children,
+            id,
+            onClick,
+            "aria-controls": ariaControls,
+            "aria-expanded": ariaExpanded,
+        } = this.props;
 
         if (typeof children === "function") {
             return children({
                 open: onClick,
+                "aria-controls": ariaControls,
             });
         } else {
             // add onClick handler to automatically open the dialog after
             // clicking on this anchor element
             return React.cloneElement(children, {
                 ...children.props,
+                id: id,
+                "aria-controls": ariaControls,
+                "aria-expanded": ariaExpanded,
                 onClick: children.props.onClick
                     ? () => {
                           children.props.onClick();
