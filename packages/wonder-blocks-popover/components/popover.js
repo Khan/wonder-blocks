@@ -18,6 +18,7 @@ import PopoverContext from "./popover-context.js";
 import PopoverAnchor from "./popover-anchor.js";
 import PopoverDialog from "./popover-dialog.js";
 import FocusManager from "./focus-manager.js";
+import PopoverKeypressListener from "./popover-keypress-listener.js";
 
 type Props = {|
     ...AriaProps,
@@ -142,7 +143,11 @@ export default class Popover extends React.Component<Props, State> {
      * Popover dialog opened
      */
     handleOpen = () => {
-        this.setState({opened: true});
+        if (this.props.dismissEnabled && this.state.opened) {
+            this.setState({opened: false});
+        } else {
+            this.setState({opened: true});
+        }
     };
 
     updateRef(ref: any) {
@@ -201,7 +206,7 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     render() {
-        const {children, id} = this.props;
+        const {children, dismissEnabled, id} = this.props;
         const {opened, placement} = this.state;
         const popperHost = this.getHost();
 
@@ -233,6 +238,10 @@ export default class Popover extends React.Component<Props, State> {
                         </React.Fragment>
                     )}
                 </IDProvider>
+
+                {dismissEnabled && opened && (
+                    <PopoverKeypressListener onClose={this.handleClose} />
+                )}
             </PopoverContext.Provider>
         );
     }

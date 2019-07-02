@@ -27,6 +27,7 @@ describe("wonder-blocks-popover", () => {
         const example = (
             <View style={styles.example}>
                 <Popover
+                    dismissEnabled
                     onClose={() => console.log("popover closed!")}
                     content={
                         <PopoverContent

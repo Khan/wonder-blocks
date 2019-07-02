@@ -1,6 +1,10 @@
 #### Example: Opening a popover using a trigger element
 
-You always need to add a trigger element inside the Popover to control when and/or from where to open the popover dialog.
+You always need to add a trigger element inside the Popover to control when
+and/or from where to open the popover dialog.
+
+Note that this example uses the `dismissEnabled` prop. This means that the user
+can close the Popover by pressing `esc` or clicking in the trigger element.
 
 ```jsx
 const {StyleSheet} = require("aphrodite");
@@ -15,6 +19,7 @@ const styles = StyleSheet.create({
 
 <View style={styles.example}>
     <Popover
+        dismissEnabled
         onClose={()=> console.log('popover closed!')}
         content={
             <PopoverContent
