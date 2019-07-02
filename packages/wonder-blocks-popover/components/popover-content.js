@@ -119,6 +119,20 @@ export default class PopoverContent extends React.Component<Props> {
         }
     }
 
+    renderActions = (close: () => mixed) => {
+        const {actions, onClose} = this.props;
+
+        return (
+            <View style={styles.actions}>
+                {typeof actions === "function"
+                    ? actions({
+                          close: onClose || close,
+                      })
+                    : actions}
+            </View>
+        );
+    };
+
     render() {
         const {
             actions,
@@ -191,15 +205,7 @@ export default class PopoverContent extends React.Component<Props> {
                                 </View>
                             </View>
 
-                            {actions && (
-                                <View style={styles.actions}>
-                                    {typeof actions === "function"
-                                        ? actions({
-                                              close: (close || onClose: any),
-                                          })
-                                        : actions}
-                                </View>
-                            )}
+                            {actions && this.renderActions((close: any))}
                         </PopoverContentCore>
                     );
                 }}

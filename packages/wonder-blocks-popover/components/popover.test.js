@@ -53,7 +53,7 @@ describe("Popover", () => {
         expect(wrapper.find(PopoverContent)).not.toExist();
     });
 
-    it("should render a text-only variant", () => {
+    it("should render the popover content after clicking the trigger", () => {
         // Arrange
         const wrapper = mount(
             <Popover
@@ -100,14 +100,15 @@ describe("Popover", () => {
             </Popover>,
         );
 
-        // Act
-        // first open the popover
+        // open the popover
         wrapper.find("[data-anchor]").simulate("click");
-        expect(wrapper.find(PopoverContentCore)).toExist();
-        // then we try to close it from inside the content
+
+        // Act
+        // we try to close it from inside the content
         wrapper.find("[data-close-button]").simulate("click");
 
         // Assert
+        expect(wrapper.find(PopoverContentCore)).not.toExist();
         expect(onCloseMock).toBeCalled();
     });
 });

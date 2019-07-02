@@ -1,6 +1,14 @@
 #### Example: Opening a popover using a trigger element
 
-You always need to add a trigger element inside the Popover to control when and/or from where to open the popover dialog.
+This example shows a popover adorning the same element that triggers it. This
+is accomplished by passing a function as children and using the `open` property
+passed it as the `onClick` handler on a button in this example.
+
+**NOTES:**
+- You will always need to add a trigger element inside the Popover to
+control when and/or from where to open the popover dialog.
+- For this example, if you use the `image` prop, make sure to avoid using `icon`
+  and/or `emphasized` at the same time. Doing so will throw an error.
 
 ```jsx
 const {StyleSheet} = require("aphrodite");
@@ -37,7 +45,8 @@ const styles = StyleSheet.create({
 Sometimes you'll want to trigger a popover programmatically. This can be done by
 setting the `opened` prop to `true`. In this situation the `Popover` is a
 controlled component. The parent is responsible for managing the opening/closing
-of the popover when using this prop. This means that you'll also have to update `opened` to false in response to the onClose callback being triggered.
+of the popover when using this prop. This means that you'll also have to update
+`opened` to false in response to the onClose callback being triggered.
 
 ```jsx
 const {StyleSheet} = require("aphrodite");
@@ -154,7 +163,15 @@ class ControlledPopover extends React.Component {
 
 #### Example: Text-only popover (with emphasis and actions)
 
-Text-only variant with added emphasis.
+This example shows the default popover variant. By default, it only includes
+`title` and `content`, but you can add more optional props, such as
+`emphasized`, `closeButtonVisible` and `actions`.
+
+**NOTE:** If you use `actions`, you can use it with the following alternatives:
+1) Passing a Node that contains the actions to be executed. In this case, you'll
+   need to manage the internal logic of each action.
+2) Passing a function as children and using the `close` property passed it as
+   the `onClick` handler on each action inside this example.
 
 ```jsx
 const {StyleSheet} = require("aphrodite");
@@ -195,6 +212,9 @@ const styles = StyleSheet.create({
 Decorate the popover with an illustrated icon. In order to use this variant, you
 will need to set the `icon` prop inside the `PopoverContent`.
 
+**NOTE:** When using this variant, make sure to avoid using `image` and/or
+  `emphasized` at the same time. Doing so will throw an error.
+
 ```jsx
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
@@ -226,9 +246,13 @@ const styles = StyleSheet.create({
 
 #### Example: PopoverContent with illustration
 
-Call attention to the popover using a full-bleed illustration. In order to use
-this variant correctly, you will need to set the `icon` prop inside the
-`PopoverContent`. Also, make sure to add a defined size to the image.
+This example shows a way to call attention to the popover using a full-bleed
+illustration. In order to use this variant correctly, you will need to set the
+`icon` prop inside the `PopoverContent`. Also, make sure to add a defined size
+to the image.
+
+**NOTE:** When using this variant, make sure to avoid using `icon` and/or
+  `emphasized` at the same time. Doing so will throw an error.
 
 ```jsx
 const {StyleSheet} = require("aphrodite");
