@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     h1: {
-        marginRight: "20px",
+        marginRight: "25px",
     }
 });
 
