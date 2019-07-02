@@ -25,6 +25,7 @@ describe("wonder-blocks-icon-button", () => {
                 />
                 <Strut size={16} />
                 <IconButton
+                    testId="hello"
                     icon={icons.search}
                     aria-label="search"
                     kind="secondary"

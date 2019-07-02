@@ -12,6 +12,7 @@ const {Strut} = require("@khanacademy/wonder-blocks-layout");
     />
     <Strut size={16} />
     <IconButton
+        testId="hello"
         icon={icons.search}
         aria-label="search"
         kind="secondary"

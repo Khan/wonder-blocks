@@ -1,8 +1,7 @@
 // @flow
 import React from "react";
 import PropTypes from "prop-types";
-
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import IconButtonCore from "./icon-button-core.js";
@@ -49,7 +48,8 @@ export type SharedProps = {|
     testId?: string,
 
     /**
-     * Optional custom styles.
+     * Optional custom styles. These styles apply to the Click containers and
+     * not the child element
      */
     style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
@@ -150,33 +150,42 @@ export default class IconButton extends React.Component<SharedProps> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
-        const {onClick, href, skipClientNav, ...sharedProps} = this.props;
-
-        const ClickableBehavior = getClickableBehavior(
+        const {
             href,
+            style,
+            color,
+            kind,
+            light,
+            icon,
+            testId,
+            onClick,
+            disabled,
             skipClientNav,
-            this.context.router,
-        );
+            "aria-label": ariaLabel,
+        } = this.props;
 
         return (
-            <ClickableBehavior
-                disabled={sharedProps.disabled}
+            <Clickable
                 href={href}
-                onClick={onClick}
                 role="button"
+                style={style}
+                testId={testId}
+                onClick={onClick}
+                disabled={disabled}
+                aria-label={ariaLabel}
+                skipClientNav={skipClientNav}
             >
-                {(state, handlers) => {
-                    return (
-                        <IconButtonCore
-                            {...sharedProps}
-                            {...state}
-                            {...handlers}
-                            skipClientNav={skipClientNav}
-                            href={href}
-                        />
-                    );
-                }}
-            </ClickableBehavior>
+                {(eventState) => (
+                    <IconButtonCore
+                        color={color}
+                        kind={kind}
+                        icon={icon}
+                        light={light}
+                        disabled={disabled}
+                        {...eventState}
+                    />
+                )}
+            </Clickable>
         );
     }
 }

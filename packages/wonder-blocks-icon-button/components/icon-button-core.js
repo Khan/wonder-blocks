@@ -1,25 +1,19 @@
 // @flow
 import React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-
 import Color, {
     SemanticColor,
     mix,
     fade,
 } from "@khanacademy/wonder-blocks-color";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
-import type {
-    ClickableHandlers,
-    ClickableState,
-} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
+import type {ClickableState} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import type {SharedProps} from "./icon-button.js";
 
 type Props = {|
     ...SharedProps,
-    ...ClickableHandlers,
     ...ClickableState,
 
     /**
@@ -31,30 +25,20 @@ type Props = {|
     href?: string,
 |};
 
-const StyledAnchor = addStyle("a");
-const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
-
 export default class IconButtonCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
         const {
-            skipClientNav,
             color,
             disabled,
             focused,
             hovered,
-            href,
             icon,
             kind,
             light,
             pressed,
-            style,
-            testId,
-            ...handlers
         } = this.props;
-        const {router} = this.context;
 
         const buttonColor =
             color === "destructive"
@@ -74,35 +58,11 @@ export default class IconButtonCore extends React.Component<Props> {
                     : (hovered || focused) && buttonStyles.focus),
         ];
 
-        const child = <Icon size="medium" color="currentColor" icon={icon} />;
-
-        const commonProps = {
-            "data-test-id": testId,
-            style: [defaultStyle, style],
-            ...handlers,
-        };
-
-        if (href && !disabled) {
-            return router && !skipClientNav ? (
-                <StyledLink {...commonProps} to={href}>
-                    {child}
-                </StyledLink>
-            ) : (
-                <StyledAnchor {...commonProps} href={href}>
-                    {child}
-                </StyledAnchor>
-            );
-        } else {
-            return (
-                <StyledButton
-                    type="button"
-                    {...commonProps}
-                    disabled={disabled}
-                >
-                    {child}
-                </StyledButton>
-            );
-        }
+        return (
+            <View style={defaultStyle}>
+                <Icon size="medium" color="currentColor" icon={icon} />
+            </View>
+        );
     }
 }
 

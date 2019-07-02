@@ -1,51 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IconButtonCore kind:primary color:default size:default light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -66,32 +52,14 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:default light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -106,19 +74,21 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -139,32 +109,14 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:default light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -179,19 +131,21 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -212,32 +166,14 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:default light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -252,19 +188,21 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -285,55 +223,41 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:default light:true disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#6296f6",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -354,32 +278,14 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:default light:true focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -394,19 +300,21 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -427,32 +335,14 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:default light:true hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -467,19 +357,21 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -500,32 +392,14 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:default light:true pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -540,19 +414,21 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -573,55 +449,41 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:small light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -642,32 +504,14 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:small light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -682,19 +526,21 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -715,32 +561,14 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:small light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -755,19 +583,21 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -788,32 +618,14 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:small light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -828,19 +640,21 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -861,55 +675,41 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:small light:true disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#6296f6",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -930,32 +730,14 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:small light:true focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -970,19 +752,21 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1003,32 +787,14 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:small light:true hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1043,19 +809,21 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1076,32 +844,14 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:default size:small light:true pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1116,19 +866,21 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1149,55 +901,41 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -1218,32 +956,14 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1258,19 +978,21 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1291,32 +1013,14 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1331,19 +1035,21 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1364,32 +1070,14 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1404,19 +1092,21 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1437,55 +1127,41 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:true disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#e56d61",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -1506,32 +1182,14 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:true focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1546,19 +1204,21 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1579,32 +1239,14 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:true hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1619,19 +1261,21 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1652,32 +1296,14 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:true pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1692,19 +1318,21 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       "color": "#f3bbb4",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1725,55 +1353,41 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -1794,32 +1408,14 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1834,19 +1430,21 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1867,32 +1465,14 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1907,19 +1487,21 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -1940,32 +1522,14 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1980,19 +1544,21 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2013,55 +1579,41 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#e56d61",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -2082,32 +1634,14 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2122,19 +1656,21 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2155,32 +1691,14 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2195,19 +1713,21 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2228,32 +1748,14 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2268,19 +1770,21 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       "color": "#f3bbb4",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2301,55 +1805,41 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:default size:default light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -2370,32 +1860,14 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:default size:default light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2410,19 +1882,21 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2443,32 +1917,14 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:default size:default light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2483,19 +1939,21 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2516,32 +1974,14 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:default size:default light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2556,19 +1996,21 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2589,55 +2031,41 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -2658,32 +2086,14 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2698,19 +2108,21 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2731,32 +2143,14 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2771,19 +2165,21 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2804,32 +2200,14 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2844,19 +2222,21 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -2877,55 +2257,41 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:destructive size:default light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -2946,32 +2312,14 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:destructive size:default light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2986,19 +2334,21 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3019,32 +2369,14 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:destructive size:default light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3059,19 +2391,21 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3092,32 +2426,14 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:destructive size:default light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3132,19 +2448,21 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3165,55 +2483,41 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -3234,32 +2538,14 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3274,19 +2560,21 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3307,32 +2595,14 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3347,19 +2617,21 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3380,32 +2652,14 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3420,19 +2674,21 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3453,55 +2709,41 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:default size:default light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -3522,32 +2764,14 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:default size:default light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3562,19 +2786,21 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3595,32 +2821,14 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:default size:default light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3635,19 +2843,21 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3668,32 +2878,14 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:default size:default light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3708,19 +2900,21 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3741,55 +2935,41 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -3810,32 +2990,14 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3850,19 +3012,21 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3883,32 +3047,14 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3923,19 +3069,21 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -3956,32 +3104,14 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3996,19 +3126,21 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -4029,55 +3161,41 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:destructive size:default light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -4098,32 +3216,14 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:destructive size:default light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4138,19 +3238,21 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -4171,32 +3273,14 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:destructive size:default light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4211,19 +3295,21 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -4244,32 +3330,14 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:destructive size:default light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4284,19 +3352,21 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -4317,55 +3387,41 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <svg
     className=""
@@ -4386,32 +3442,14 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false focused 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4426,19 +3464,21 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -4459,32 +3499,14 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false hovered 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4499,19 +3521,21 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -4532,32 +3556,14 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false pressed 1`] = `
-<button
-  aria-label="search"
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4572,19 +3578,21 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": -8,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
       "padding": 0,
       "position": "relative",
       "textDecoration": "none",
       "touchAction": "manipulation",
       "width": 40,
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <svg
     className=""
@@ -4605,5 +3613,5 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       fill="currentColor"
     />
   </svg>
-</button>
+</div>
 `;
