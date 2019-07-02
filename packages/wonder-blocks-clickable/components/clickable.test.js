@@ -2,8 +2,8 @@
 import React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
+import {View} from "@khanacademy/wonder-blocks-core";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
-
 import Clickable from "./clickable.js";
 
 describe("Clickable", () => {
@@ -15,16 +15,16 @@ describe("Clickable", () => {
         // Arrange
         const wrapper = mount(
             <MemoryRouter>
-                <div>
+                <View>
                     <Clickable testId="button" href="/foo">
                         {(eventState) => <h1>Click Me!</h1>}
                     </Clickable>
                     <Switch>
                         <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
+                            <View id="foo">Hello, world!</View>
                         </Route>
                     </Switch>
-                </div>
+                </View>
             </MemoryRouter>,
         );
 
@@ -42,16 +42,16 @@ describe("Clickable", () => {
         // Arrange
         const wrapper = mount(
             <MemoryRouter>
-                <div>
+                <View>
                     <Clickable testId="button" href="/unknown">
                         {(eventState) => <h1>Click Me!</h1>}
                     </Clickable>
                     <Switch>
                         <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
+                            <View id="foo">Hello, world!</View>
                         </Route>
                     </Switch>
-                </div>
+                </View>
             </MemoryRouter>,
         );
 
@@ -67,16 +67,16 @@ describe("Clickable", () => {
         // Arrange
         const wrapper = mount(
             <MemoryRouter>
-                <div>
+                <View>
                     <Clickable testId="button" href="/foo" skipClientNav>
                         {(eventState) => <h1>Click Me!</h1>}
                     </Clickable>
                     <Switch>
                         <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
+                            <View id="foo">Hello, world!</View>
                         </Route>
                     </Switch>
-                </div>
+                </View>
             </MemoryRouter>,
         );
 
@@ -91,16 +91,16 @@ describe("Clickable", () => {
     test("disallow navigation when href and disabled are both set", () => {
         const wrapper = mount(
             <MemoryRouter>
-                <div>
+                <View>
                     <Clickable testId="button" href="/foo" disabled={true}>
                         {(eventState) => <h1>Click Me!</h1>}
                     </Clickable>
                     <Switch>
                         <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
+                            <View id="foo">Hello, world!</View>
                         </Route>
                     </Switch>
-                </div>
+                </View>
             </MemoryRouter>,
         );
 

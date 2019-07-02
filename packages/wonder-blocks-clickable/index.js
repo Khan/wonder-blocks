@@ -1,4 +1,4 @@
 // @flow
 import Clickable from "./components/clickable.js";
 
-export {Clickable};
+export {Clickable as default};

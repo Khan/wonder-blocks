@@ -170,8 +170,5 @@ const styles = StyleSheet.create({
         /* Corrects font smoothing for webkit */
         WebkitFontSmoothing: "inherit",
         MozOsxFontSmoothing: "inherit",
-
-        /* Corrects inability to style clickable `input` types in iOS */
-        WebkitAppearance: "none",
     },
 });
