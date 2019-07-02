@@ -53,10 +53,14 @@ export default class BreadcrumbsItem extends React.Component<Props> {
     }
 
     render() {
-        const {children, showSeparator} = this.props;
+        const {children, showSeparator, testId, ...otherProps} = this.props;
 
         return (
-            <StyledListItem style={styles.item}>
+            <StyledListItem
+                {...otherProps}
+                style={styles.item}
+                data-test-id={testId}
+            >
                 {children}
                 {showSeparator && this._renderSeparator()}
             </StyledListItem>
