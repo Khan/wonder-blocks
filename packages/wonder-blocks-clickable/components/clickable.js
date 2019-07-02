@@ -77,6 +77,7 @@ export default class Clickable extends React.Component<Props> {
                 <StyledLink
                     {...commonProps}
                     to={this.props.href}
+                    onClick={this.props.onClick}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
                     {this.props.children(clickableState)}
@@ -87,6 +88,7 @@ export default class Clickable extends React.Component<Props> {
                 <StyledAnchor
                     {...commonProps}
                     href={this.props.href}
+                    onClick={this.props.onClick}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
                     {this.props.children(clickableState)}
@@ -97,6 +99,7 @@ export default class Clickable extends React.Component<Props> {
                 <StyledButton
                     {...commonProps}
                     type="button"
+                    onClick={this.props.onClick}
                     disabled={this.props.disabled}
                 >
                     {this.props.children(clickableState)}
@@ -121,7 +124,6 @@ export default class Clickable extends React.Component<Props> {
                         "data-test-id": this.props.testId,
                         role: this.props.role,
                         style: [styles.reset, this.props.style],
-                        onClick: this.props.onClick,
                         ...handlers,
                     })
                 }

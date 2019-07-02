@@ -353,10 +353,10 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
       }
     >
       <button
+        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
-        onClick={[Function]}
         onDragStart={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -368,30 +368,28 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        role="button"
         style={
           Object {
             "::MozFocusInner": Object {
               "border": 0,
             },
-            ":focus": Object {
-              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-            },
-            "alignItems": "center",
-            "background": "none",
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
             "border": "none",
             "boxSizing": "border-box",
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
-            "margin": -8,
+            "color": "inherit",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
             "padding": 0,
-            "position": "relative",
             "textDecoration": "none",
             "touchAction": "manipulation",
-            "width": 40,
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}
@@ -444,10 +442,10 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         }
       />
       <button
+        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
-        onClick={[Function]}
         onDragStart={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -459,30 +457,28 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        role="button"
         style={
           Object {
             "::MozFocusInner": Object {
               "border": 0,
             },
-            ":focus": Object {
-              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-            },
-            "alignItems": "center",
-            "background": "none",
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
             "border": "none",
             "boxSizing": "border-box",
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
-            "margin": -8,
+            "color": "inherit",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
             "padding": 0,
-            "position": "relative",
             "textDecoration": "none",
             "touchAction": "manipulation",
-            "width": 40,
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}
@@ -694,10 +690,10 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
       }
     >
       <button
+        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
-        onClick={[Function]}
         onDragStart={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -709,30 +705,28 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        role="button"
         style={
           Object {
             "::MozFocusInner": Object {
               "border": 0,
             },
-            ":focus": Object {
-              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-            },
-            "alignItems": "center",
-            "background": "none",
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
             "border": "none",
             "boxSizing": "border-box",
-            "color": "#1865f2",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
-            "margin": -8,
+            "color": "inherit",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
             "padding": 0,
-            "position": "relative",
             "textDecoration": "none",
             "touchAction": "manipulation",
-            "width": 40,
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}
@@ -944,10 +938,10 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
       }
     >
       <button
+        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
-        onClick={[Function]}
         onDragStart={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -959,30 +953,28 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        role="button"
         style={
           Object {
             "::MozFocusInner": Object {
               "border": 0,
             },
-            ":focus": Object {
-              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-            },
-            "alignItems": "center",
-            "background": "none",
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
             "border": "none",
             "boxSizing": "border-box",
-            "color": "rgba(33,36,44,0.64)",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
-            "margin": -8,
+            "color": "inherit",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
             "padding": 0,
-            "position": "relative",
             "textDecoration": "none",
             "touchAction": "manipulation",
-            "width": 40,
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}
@@ -1185,10 +1177,10 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
       }
     >
       <button
+        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
-        onClick={[Function]}
         onDragStart={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -1200,30 +1192,28 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        role="button"
         style={
           Object {
             "::MozFocusInner": Object {
               "border": 0,
             },
-            ":focus": Object {
-              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-            },
-            "alignItems": "center",
-            "background": "none",
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
             "border": "none",
             "boxSizing": "border-box",
-            "color": "rgba(33,36,44,0.64)",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
-            "margin": -8,
+            "color": "inherit",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
             "padding": 0,
-            "position": "relative",
             "textDecoration": "none",
             "touchAction": "manipulation",
-            "width": 40,
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}
@@ -1828,10 +1818,10 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
       }
     >
       <button
+        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
-        onClick={[Function]}
         onDragStart={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -1843,30 +1833,28 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         onTouchCancel={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
+        role="button"
         style={
           Object {
             "::MozFocusInner": Object {
               "border": 0,
             },
-            ":focus": Object {
-              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-            },
-            "alignItems": "center",
-            "background": "none",
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
             "border": "none",
             "boxSizing": "border-box",
-            "color": "rgba(33,36,44,0.64)",
-            "cursor": "pointer",
-            "display": "inline-flex",
-            "height": 40,
-            "justifyContent": "center",
-            "margin": -8,
+            "color": "inherit",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
             "padding": 0,
-            "position": "relative",
             "textDecoration": "none",
             "touchAction": "manipulation",
-            "width": 40,
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}
