@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -53,14 +52,6 @@ type Props = {|
  * Note that without explicit positioning, the tail will not be centered.
  */
 export default class PopoverDialog extends React.Component<Props> {
-    componentDidMount() {
-        const anchorNode = ((ReactDOM.findDOMNode(this): any): ?HTMLElement);
-
-        if (anchorNode) {
-            anchorNode.focus();
-        }
-    }
-
     componentDidUpdate(prevProps: Props) {
         if (prevProps.placement !== this.props.placement) {
             this.props.onUpdate(this.props.placement);

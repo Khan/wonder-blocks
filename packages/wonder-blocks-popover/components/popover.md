@@ -43,7 +43,7 @@ of the popover when using this prop. This means that you'll also have to update 
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
+const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
 const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
 const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
@@ -68,6 +68,9 @@ const styles = StyleSheet.create({
         padding: `${Spacing.small}px 0`
     },
     action: {
+        backgroundColor: "transparent",
+        border: "none",
+        color: Color.white,
         cursor: "pointer",
         margin: Spacing.small,
         height: 100,
@@ -76,6 +79,8 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
 });
+
+const CustomButton = addStyle('button');
 
 class ControlledPopover extends React.Component {
     constructor(props) {
@@ -103,30 +108,30 @@ class ControlledPopover extends React.Component {
                             <View>
                                 <HeadingSmall>Custom popover title</HeadingSmall>
                                 <View style={styles.row}>
-                                    <View style={styles.action} onClick={close}>
+                                    <CustomButton style={styles.action} onClick={close}  id="btn-1">
                                         <Icon
                                             icon={customIcon}
                                             color={Color.gold}
                                             size="large"
                                         />
                                         <LabelLarge>Option 1</LabelLarge>
-                                    </View>
-                                    <View style={styles.action} onClick={close}>
+                                    </CustomButton>
+                                    <CustomButton style={styles.action} onClick={close} id="btn-2">
                                         <Icon
                                             icon={customIcon}
                                             color={Color.green}
                                             size="large"
                                         />
                                         <LabelLarge>Option 2</LabelLarge>
-                                    </View>
-                                    <View style={styles.action} onClick={close}>
+                                    </CustomButton>
+                                    <CustomButton style={styles.action} onClick={close} id="btn-3">
                                         <Icon
                                             icon={customIcon}
                                             color={Color.blue}
                                             size="large"
                                         />
                                         <LabelLarge>Option 3</LabelLarge>
-                                    </View>
+                                    </CustomButton>
                                 </View>
                             </View>
                         </PopoverContentCore>

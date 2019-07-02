@@ -17,6 +17,7 @@ import PopoverContentCore from "./popover-content-core.js";
 import PopoverContext from "./popover-context.js";
 import PopoverAnchor from "./popover-anchor.js";
 import PopoverDialog from "./popover-dialog.js";
+import FocusManager from "./focus-manager.js";
 
 type Props = {|
     ...AriaProps,
@@ -165,23 +166,26 @@ export default class Popover extends React.Component<Props, State> {
 
     renderPopper(uniqueId: string) {
         const {placement} = this.props;
+        const {anchorElement} = this.state;
 
         return (
-            <TooltipPopper
-                anchorElement={this.state.anchorElement}
-                placement={placement}
-            >
-                {(props: PopperElementProps) => (
-                    <PopoverDialog
-                        {...props}
-                        aria-describedby={`${uniqueId}-anchor`}
-                        id={uniqueId}
-                        onUpdate={(placement) => this.setState({placement})}
-                    >
-                        {this.renderContent()}
-                    </PopoverDialog>
-                )}
-            </TooltipPopper>
+            <FocusManager anchorElement={anchorElement}>
+                <TooltipPopper
+                    anchorElement={anchorElement}
+                    placement={placement}
+                >
+                    {(props: PopperElementProps) => (
+                        <PopoverDialog
+                            {...props}
+                            aria-describedby={`${uniqueId}-anchor`}
+                            id={uniqueId}
+                            onUpdate={(placement) => this.setState({placement})}
+                        >
+                            {this.renderContent()}
+                        </PopoverDialog>
+                    )}
+                </TooltipPopper>
+            </FocusManager>
         );
     }
 

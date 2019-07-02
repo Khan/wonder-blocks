@@ -56,7 +56,7 @@ describe("wonder-blocks-popover", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
         const {
             default: Icon,
             icons,
@@ -87,6 +87,9 @@ describe("wonder-blocks-popover", () => {
                 padding: `${Spacing.small}px 0`,
             },
             action: {
+                backgroundColor: "transparent",
+                border: "none",
+                color: Color.white,
                 cursor: "pointer",
                 margin: Spacing.small,
                 height: 100,
@@ -95,6 +98,8 @@ describe("wonder-blocks-popover", () => {
                 justifyContent: "center",
             },
         });
+
+        const CustomButton = addStyle("button");
 
         class ControlledPopover extends React.Component {
             constructor(props) {
@@ -124,9 +129,10 @@ describe("wonder-blocks-popover", () => {
                                             Custom popover title
                                         </HeadingSmall>
                                         <View style={styles.row}>
-                                            <View
+                                            <CustomButton
                                                 style={styles.action}
                                                 onClick={close}
+                                                id="btn-1"
                                             >
                                                 <Icon
                                                     icon={customIcon}
@@ -136,10 +142,11 @@ describe("wonder-blocks-popover", () => {
                                                 <LabelLarge>
                                                     Option 1
                                                 </LabelLarge>
-                                            </View>
-                                            <View
+                                            </CustomButton>
+                                            <CustomButton
                                                 style={styles.action}
                                                 onClick={close}
+                                                id="btn-2"
                                             >
                                                 <Icon
                                                     icon={customIcon}
@@ -149,10 +156,11 @@ describe("wonder-blocks-popover", () => {
                                                 <LabelLarge>
                                                     Option 2
                                                 </LabelLarge>
-                                            </View>
-                                            <View
+                                            </CustomButton>
+                                            <CustomButton
                                                 style={styles.action}
                                                 onClick={close}
+                                                id="btn-3"
                                             >
                                                 <Icon
                                                     icon={customIcon}
@@ -162,7 +170,7 @@ describe("wonder-blocks-popover", () => {
                                                 <LabelLarge>
                                                     Option 3
                                                 </LabelLarge>
-                                            </View>
+                                            </CustomButton>
                                         </View>
                                     </View>
                                 </PopoverContentCore>
