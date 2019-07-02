@@ -34,21 +34,30 @@ const StyledList = addStyle("ol");
  * 2. Separator: Adds a separator between each item.
  */
 export default class Breadcrumbs extends React.Component<Props> {
+    // Moved it here, in case we need to override the label for a different
+    // language
+    static defaultProps = {
+        "aria-label": "Breadcrumbs",
+    };
+
     render() {
-        const {children} = this.props;
+        const {children, testId, ...otherProps} = this.props;
         // using React.Children allows to deal with opaque data structures
         // e.g. children = 'string' vs children = []
         const lastChildIndex = React.Children.count(children) - 1;
 
         return (
-            <nav aria-label="Breadcrumb">
+            <nav {...otherProps} data-test-id={testId}>
                 <StyledList style={styles.container}>
-                    {React.Children.map(children, (item, index) =>
-                        React.cloneElement(item, {
+                    {React.Children.map(children, (item, index) => {
+                        const isLastChild = index === lastChildIndex;
+
+                        return React.cloneElement(item, {
                             ...item.props,
-                            showSeparator: index !== lastChildIndex,
-                        }),
-                    )}
+                            showSeparator: !isLastChild,
+                            ["aria-current"]: isLastChild ? "page" : undefined,
+                        });
+                    })}
                 </StyledList>
             </nav>
         );
