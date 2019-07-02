@@ -18,12 +18,12 @@ type Props = {|
     children: (eventState: ClickableState) => React.Node,
 
     /**
-     * An onClick function which Clickable can execure
+     * An onClick function which Clickable can execute when clicked
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
 
     /**
-     * Optinal href which Clickable should direct to, uses Client-side routing
+     * Optinal href which Clickable should direct to, uses client-side routing
      * by default if react-router is present
      */
     href?: string,
@@ -34,20 +34,23 @@ type Props = {|
     style?: StyleType,
 
     /**
-     * Disables or enables the child, defaults to false
+     * Disables or enables the child; defaults to false
      */
     disabled: boolean,
 
     /**
-     * The role of the component
+     * The role of the component, can be a role of type ClickableRole
      */
     role?: ClickableRole,
 
     /**
-     * If href is present skipClientNav will avoid client-side routing
+     * Avoids client-side routing in the presence of the href prop
      */
     skipClientNav?: boolean,
 
+    /**
+     * Use to label the component
+     */
     "aria-label": string,
 
     /**
@@ -61,12 +64,12 @@ const StyledButton = addStyle<"button">("button");
 const StyledLink = addStyle<typeof Link>(Link);
 
 export default class Clickable extends React.Component<Props> {
+    static contextTypes = {router: PropTypes.any};
+
     static defaultProps = {
         disabled: false,
         "aria-label": "",
     };
-
-    static contextTypes = {router: PropTypes.any};
 
     getCorrectTag = (clickableState: ClickableState, commonProps: mixed) => {
         const activeHref = this.props.href && !this.props.disabled;
@@ -113,7 +116,7 @@ export default class Clickable extends React.Component<Props> {
         );
 
         return (
-            <ClickableBehavior>
+            <ClickableBehavior onClick={this.props.onClick}>
                 {(state, handlers) =>
                     this.getCorrectTag(state, {
                         // eslint-disable-next-line react/prop-types
@@ -121,7 +124,6 @@ export default class Clickable extends React.Component<Props> {
                         "data-test-id": this.props.testId,
                         role: this.props.role,
                         style: [styles.reset, this.props.style],
-                        onClick: this.props.onClick,
                         ...handlers,
                     })
                 }
@@ -130,6 +132,7 @@ export default class Clickable extends React.Component<Props> {
     }
 }
 
+// Source:  https://gist.github.com/MoOx/9137295
 const styles = StyleSheet.create({
     reset: {
         border: "none",

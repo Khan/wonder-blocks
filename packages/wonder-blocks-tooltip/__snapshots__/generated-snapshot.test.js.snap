@@ -498,7 +498,6 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     }
   />
   <button
-    aria-describedby="uid-tooltip-7-aria-content"
     aria-label="search"
     className=""
     disabled={false}
@@ -515,54 +514,85 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
           "border": 0,
         },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "none",
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
         "border": "none",
         "boxSizing": "border-box",
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": -8,
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
         "outline": "none",
+        "overflow": "visible",
         "padding": 0,
-        "position": "relative",
         "textDecoration": "none",
         "touchAction": "manipulation",
-        "width": 40,
+        "userSelect": "none",
+        "width": "auto",
       }
     }
     tabIndex={0}
     type="button"
   >
-    <svg
+    <div
       className=""
-      height={24}
       style={
         Object {
-          "display": "inline-block",
-          "flexGrow": 0,
-          "flexShrink": 0,
-          "verticalAlign": "text-bottom",
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "flexDirection": "column",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "minHeight": 0,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "width": 40,
+          "zIndex": 0,
         }
       }
-      viewBox="0 0 24 24"
-      width={24}
     >
-      <path
-        d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-        fill="currentColor"
-      />
-    </svg>
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
   </button>
 </div>
 `;

@@ -377,57 +377,89 @@ exports[`wonder-blocks-modal example 3 1`] = `
             onTouchCancel={[Function]}
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
+            role="button"
             style={
               Object {
                 "::MozFocusInner": Object {
                   "border": 0,
                 },
-                ":focus": Object {
-                  "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                },
-                "alignItems": "center",
-                "background": "none",
+                "MozOsxFontSmoothing": "inherit",
+                "WebkitFontSmoothing": "inherit",
+                "background": "transparent",
                 "border": "none",
                 "boxSizing": "border-box",
-                "color": "rgba(33,36,44,0.64)",
-                "cursor": "pointer",
-                "display": "inline-flex",
-                "height": 40,
-                "justifyContent": "center",
-                "margin": -8,
+                "color": "inherit",
+                "font": "inherit",
+                "lineHeight": "normal",
+                "margin": 0,
                 "outline": "none",
+                "overflow": "visible",
                 "padding": 0,
                 "position": "absolute",
                 "right": 16,
                 "textDecoration": "none",
                 "top": 16,
                 "touchAction": "manipulation",
-                "width": 40,
+                "userSelect": "none",
+                "width": "auto",
                 "zIndex": 1,
               }
             }
             tabIndex={0}
             type="button"
           >
-            <svg
+            <div
               className=""
-              height={24}
               style={
                 Object {
-                  "display": "inline-block",
-                  "flexGrow": 0,
-                  "flexShrink": 0,
-                  "verticalAlign": "text-bottom",
+                  ":focus": Object {
+                    "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "color": "rgba(33,36,44,0.64)",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "flexDirection": "column",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
+                  "zIndex": 0,
                 }
               }
-              viewBox="0 0 24 24"
-              width={24}
             >
-              <path
-                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                fill="currentColor"
-              />
-            </svg>
+              <svg
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
           </button>
           <div
             className=""
@@ -1120,57 +1152,89 @@ exports[`wonder-blocks-modal example 7 1`] = `
             onTouchCancel={[Function]}
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
+            role="button"
             style={
               Object {
                 "::MozFocusInner": Object {
                   "border": 0,
                 },
-                ":focus": Object {
-                  "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                },
-                "alignItems": "center",
-                "background": "none",
+                "MozOsxFontSmoothing": "inherit",
+                "WebkitFontSmoothing": "inherit",
+                "background": "transparent",
                 "border": "none",
                 "boxSizing": "border-box",
-                "color": "rgba(33,36,44,0.64)",
-                "cursor": "pointer",
-                "display": "inline-flex",
-                "height": 40,
-                "justifyContent": "center",
-                "margin": -8,
+                "color": "inherit",
+                "font": "inherit",
+                "lineHeight": "normal",
+                "margin": 0,
                 "outline": "none",
+                "overflow": "visible",
                 "padding": 0,
                 "position": "absolute",
                 "right": 16,
                 "textDecoration": "none",
                 "top": 16,
                 "touchAction": "manipulation",
-                "width": 40,
+                "userSelect": "none",
+                "width": "auto",
                 "zIndex": 1,
               }
             }
             tabIndex={0}
             type="button"
           >
-            <svg
+            <div
               className=""
-              height={24}
               style={
                 Object {
-                  "display": "inline-block",
-                  "flexGrow": 0,
-                  "flexShrink": 0,
-                  "verticalAlign": "text-bottom",
+                  ":focus": Object {
+                    "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "color": "rgba(33,36,44,0.64)",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "flexDirection": "column",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
+                  "zIndex": 0,
                 }
               }
-              viewBox="0 0 24 24"
-              width={24}
             >
-              <path
-                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                fill="currentColor"
-              />
-            </svg>
+              <svg
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
           </button>
           <div
             className=""
@@ -1643,57 +1707,89 @@ exports[`wonder-blocks-modal example 8 1`] = `
             onTouchCancel={[Function]}
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
+            role="button"
             style={
               Object {
                 "::MozFocusInner": Object {
                   "border": 0,
                 },
-                ":focus": Object {
-                  "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                },
-                "alignItems": "center",
-                "background": "none",
+                "MozOsxFontSmoothing": "inherit",
+                "WebkitFontSmoothing": "inherit",
+                "background": "transparent",
                 "border": "none",
                 "boxSizing": "border-box",
-                "color": "rgba(33,36,44,0.64)",
-                "cursor": "pointer",
-                "display": "inline-flex",
-                "height": 40,
-                "justifyContent": "center",
-                "margin": -8,
+                "color": "inherit",
+                "font": "inherit",
+                "lineHeight": "normal",
+                "margin": 0,
                 "outline": "none",
+                "overflow": "visible",
                 "padding": 0,
                 "position": "absolute",
                 "right": 16,
                 "textDecoration": "none",
                 "top": 16,
                 "touchAction": "manipulation",
-                "width": 40,
+                "userSelect": "none",
+                "width": "auto",
                 "zIndex": 1,
               }
             }
             tabIndex={0}
             type="button"
           >
-            <svg
+            <div
               className=""
-              height={24}
               style={
                 Object {
-                  "display": "inline-block",
-                  "flexGrow": 0,
-                  "flexShrink": 0,
-                  "verticalAlign": "text-bottom",
+                  ":focus": Object {
+                    "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "color": "rgba(33,36,44,0.64)",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "flexDirection": "column",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
+                  "zIndex": 0,
                 }
               }
-              viewBox="0 0 24 24"
-              width={24}
             >
-              <path
-                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                fill="currentColor"
-              />
-            </svg>
+              <svg
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
           </button>
           <div
             className=""
@@ -2348,57 +2444,89 @@ exports[`wonder-blocks-modal example 9 1`] = `
             onTouchCancel={[Function]}
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
+            role="button"
             style={
               Object {
                 "::MozFocusInner": Object {
                   "border": 0,
                 },
-                ":focus": Object {
-                  "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                },
-                "alignItems": "center",
-                "background": "none",
+                "MozOsxFontSmoothing": "inherit",
+                "WebkitFontSmoothing": "inherit",
+                "background": "transparent",
                 "border": "none",
                 "boxSizing": "border-box",
-                "color": "rgba(33,36,44,0.64)",
-                "cursor": "pointer",
-                "display": "inline-flex",
-                "height": 40,
-                "justifyContent": "center",
-                "margin": -8,
+                "color": "inherit",
+                "font": "inherit",
+                "lineHeight": "normal",
+                "margin": 0,
                 "outline": "none",
+                "overflow": "visible",
                 "padding": 0,
                 "position": "absolute",
                 "right": 16,
                 "textDecoration": "none",
                 "top": 16,
                 "touchAction": "manipulation",
-                "width": 40,
+                "userSelect": "none",
+                "width": "auto",
                 "zIndex": 1,
               }
             }
             tabIndex={0}
             type="button"
           >
-            <svg
+            <div
               className=""
-              height={24}
               style={
                 Object {
-                  "display": "inline-block",
-                  "flexGrow": 0,
-                  "flexShrink": 0,
-                  "verticalAlign": "text-bottom",
+                  ":focus": Object {
+                    "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                  },
+                  "alignItems": "center",
+                  "background": "none",
+                  "border": "none",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "color": "rgba(33,36,44,0.64)",
+                  "cursor": "pointer",
+                  "display": "inline-flex",
+                  "flexDirection": "column",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": -8,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "textDecoration": "none",
+                  "touchAction": "manipulation",
+                  "width": 40,
+                  "zIndex": 0,
                 }
               }
-              viewBox="0 0 24 24"
-              width={24}
             >
-              <path
-                d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                fill="currentColor"
-              />
-            </svg>
+              <svg
+                className=""
+                height={24}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "verticalAlign": "text-bottom",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width={24}
+              >
+                <path
+                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
           </button>
           <div
             className=""
@@ -3124,57 +3252,89 @@ exports[`wonder-blocks-modal example 10 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
+              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
                     "border": 0,
                   },
-                  ":focus": Object {
-                    "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                  },
-                  "alignItems": "center",
-                  "background": "none",
+                  "MozOsxFontSmoothing": "inherit",
+                  "WebkitFontSmoothing": "inherit",
+                  "background": "transparent",
                   "border": "none",
                   "boxSizing": "border-box",
-                  "color": "rgba(33,36,44,0.64)",
-                  "cursor": "pointer",
-                  "display": "inline-flex",
-                  "height": 40,
-                  "justifyContent": "center",
-                  "margin": -8,
+                  "color": "inherit",
+                  "font": "inherit",
+                  "lineHeight": "normal",
+                  "margin": 0,
                   "outline": "none",
+                  "overflow": "visible",
                   "padding": 0,
                   "position": "absolute",
                   "right": 16,
                   "textDecoration": "none",
                   "top": 16,
                   "touchAction": "manipulation",
-                  "width": 40,
+                  "userSelect": "none",
+                  "width": "auto",
                   "zIndex": 1,
                 }
               }
               tabIndex={0}
               type="button"
             >
-              <svg
+              <div
                 className=""
-                height={24}
                 style={
                   Object {
-                    "display": "inline-block",
-                    "flexGrow": 0,
-                    "flexShrink": 0,
-                    "verticalAlign": "text-bottom",
+                    ":focus": Object {
+                      "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                    },
+                    "alignItems": "center",
+                    "background": "none",
+                    "border": "none",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "color": "rgba(33,36,44,0.64)",
+                    "cursor": "pointer",
+                    "display": "inline-flex",
+                    "flexDirection": "column",
+                    "height": 40,
+                    "justifyContent": "center",
+                    "margin": -8,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "outline": "none",
+                    "padding": 0,
+                    "position": "relative",
+                    "textDecoration": "none",
+                    "touchAction": "manipulation",
+                    "width": 40,
+                    "zIndex": 0,
                   }
                 }
-                viewBox="0 0 24 24"
-                width={24}
               >
-                <path
-                  d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
-                  fill="currentColor"
-                />
-              </svg>
+                <svg
+                  className=""
+                  height={24}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "flexGrow": 0,
+                      "flexShrink": 0,
+                      "verticalAlign": "text-bottom",
+                    }
+                  }
+                  viewBox="0 0 24 24"
+                  width={24}
+                >
+                  <path
+                    d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
             </button>
             <div
               className=""

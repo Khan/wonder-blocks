@@ -40,54 +40,85 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
           "border": 0,
         },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "none",
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
         "border": "none",
         "boxSizing": "border-box",
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": -8,
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
         "outline": "none",
+        "overflow": "visible",
         "padding": 0,
-        "position": "relative",
         "textDecoration": "none",
         "touchAction": "manipulation",
-        "width": 40,
+        "userSelect": "none",
+        "width": "auto",
       }
     }
     tabIndex={0}
     type="button"
   >
-    <svg
+    <div
       className=""
-      height={24}
       style={
         Object {
-          "display": "inline-block",
-          "flexGrow": 0,
-          "flexShrink": 0,
-          "verticalAlign": "text-bottom",
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "flexDirection": "column",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "minHeight": 0,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "width": 40,
+          "zIndex": 0,
         }
       }
-      viewBox="0 0 24 24"
-      width={24}
     >
-      <path
-        d="M17.293 8.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L12 13.586l5.293-5.293z"
-        fill="currentColor"
-      />
-    </svg>
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M17.293 8.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L12 13.586l5.293-5.293z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
   </button>
 </div>
 `;
