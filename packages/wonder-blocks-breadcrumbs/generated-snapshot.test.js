@@ -26,9 +26,7 @@ describe("wonder-blocks-breadcrumbs", () => {
                 <BreadcrumbsItem>
                     <Link href="https://khanacademy.org/about">About</Link>
                 </BreadcrumbsItem>
-                <BreadcrumbsItem aria-current="page">
-                    Current page
-                </BreadcrumbsItem>
+                <BreadcrumbsItem>Current page</BreadcrumbsItem>
             </Breadcrumbs>
         );
         const tree = renderer.create(example).toJSON();
