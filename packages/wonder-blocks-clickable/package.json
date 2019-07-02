@@ -15,25 +15,19 @@
       "access": "public"
     },
     "dependencies": {
-      "@khanacademy/wonder-blocks-button": "^2.3.3",
-      "@khanacademy/wonder-blocks-color": "^1.1.2",
-      "@khanacademy/wonder-blocks-core": "^2.2.0",
-      "@khanacademy/wonder-blocks-icon": "^1.1.2",
-      "@khanacademy/wonder-blocks-layout": "^1.3.1",
-      "@khanacademy/wonder-blocks-modal": "^1.4.0",
-      "@khanacademy/wonder-blocks-spacing": "^2.1.2",
-      "@khanacademy/wonder-blocks-typography": "^1.1.2"
+      "@khanacademy/wonder-blocks-core": "^2.2.0"
     },
     "peerDependencies": {
       "aphrodite": "^1.2.5",
       "popper.js": "^1.14.1",
       "prop-types": "^15.6.2",
-      "react": "^16.4.1",
+      "react": "^16.4.1"
+    },
+    "devDependencies": {
+      "wb-dev-build-settings": "^0.0.2",
       "react-dom": "^16.4.1",
       "react-popper": "^1.0.0",
       "react-router-dom": "^4.2.2"
-    },
-    "devDependencies": {
-      "wb-dev-build-settings": "^0.0.2"
+
     }
   }

@@ -4,11 +4,11 @@ import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import type {
+    StyleType,
     ClickableRole,
     ClickableState,
 } from "@khanacademy/wonder-blocks-core";
 import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
-import type {StyleType} from "../util/types.js";
 
 type Props = {|
     /**
@@ -49,6 +49,10 @@ type Props = {|
     skipClientNav?: boolean,
 
     "aria-label": string,
+
+    /**
+     * Test ID used for e2e testing.
+     */
     testId?: string,
 |};
 
@@ -64,76 +68,63 @@ export default class Clickable extends React.Component<Props> {
 
     static contextTypes = {router: PropTypes.any};
 
-    render() {
-        const {
-            "aria-label": ariaLabel, // eslint-disable-line react/prop-types
-            children,
-            disabled,
-            href,
-            onClick,
-            role,
-            skipClientNav,
-            style,
-            testId,
-        } = this.props;
-        const {router} = this.context;
+    getCorrectTag = (clickableState: ClickableState, commonProps: mixed) => {
+        const activeHref = this.props.href && !this.props.disabled;
+        const useClient = this.context.router && !this.props.skipClientNav;
 
+        if (activeHref && useClient) {
+            return (
+                <StyledLink
+                    {...commonProps}
+                    to={this.props.href}
+                    aria-disabled={this.props.disabled ? "true" : undefined}
+                >
+                    {this.props.children(clickableState)}
+                </StyledLink>
+            );
+        } else if (activeHref && !useClient) {
+            return (
+                <StyledAnchor
+                    {...commonProps}
+                    href={this.props.href}
+                    aria-disabled={this.props.disabled ? "true" : undefined}
+                >
+                    {this.props.children(clickableState)}
+                </StyledAnchor>
+            );
+        } else {
+            return (
+                <StyledButton
+                    {...commonProps}
+                    type="button"
+                    disabled={this.props.disabled}
+                >
+                    {this.props.children(clickableState)}
+                </StyledButton>
+            );
+        }
+    };
+
+    render() {
         const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            router,
+            this.props.href,
+            this.props.skipClientNav,
+            this.context.router,
         );
 
         return (
             <ClickableBehavior>
-                {(state, handlers) => {
-                    const commonProps = {
-                        "aria-label": ariaLabel,
-                        "data-test-id": testId,
-                        role: role,
-                        style: [styles.reset, style],
+                {(state, handlers) =>
+                    this.getCorrectTag(state, {
+                        // eslint-disable-next-line react/prop-types
+                        "aria-label": this.props["aria-label"],
+                        "data-test-id": this.props.testId,
+                        role: this.props.role,
+                        style: [styles.reset, this.props.style],
+                        onClick: this.props.onClick,
                         ...handlers,
-                    };
-
-                    const content = children(state);
-                    const activeHref = href && !disabled;
-                    const useClientRouter = router && !skipClientNav;
-
-                    if (activeHref && useClientRouter) {
-                        return (
-                            <StyledLink
-                                {...commonProps}
-                                to={href}
-                                onClick={onClick}
-                                aria-disabled={disabled ? "true" : undefined}
-                            >
-                                {content}
-                            </StyledLink>
-                        );
-                    } else if (activeHref && !useClientRouter) {
-                        return (
-                            <StyledAnchor
-                                {...commonProps}
-                                href={href}
-                                onClick={onClick}
-                                aria-disabled={disabled ? "true" : undefined}
-                            >
-                                {content}
-                            </StyledAnchor>
-                        );
-                    } else {
-                        return (
-                            <StyledButton
-                                type="button"
-                                {...commonProps}
-                                onClick={onClick}
-                                disabled={disabled}
-                            >
-                                {content}
-                            </StyledButton>
-                        );
-                    }
-                }}
+                    })
+                }
             </ClickableBehavior>
         );
     }
@@ -170,8 +161,5 @@ const styles = StyleSheet.create({
         /* Corrects font smoothing for webkit */
         WebkitFontSmoothing: "inherit",
         MozOsxFontSmoothing: "inherit",
-
-        /* Corrects inability to style clickable `input` types in iOS */
-        WebkitAppearance: "none",
     },
 });

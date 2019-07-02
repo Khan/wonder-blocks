@@ -43,7 +43,6 @@ exports[`wonder-blocks-clickable example 1 1`] = `
           "border": 0,
         },
         "MozOsxFontSmoothing": "inherit",
-        "WebkitAppearance": "none",
         "WebkitFontSmoothing": "inherit",
         "background": "transparent",
         "border": "none",
@@ -124,7 +123,6 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     style={
       Object {
         "MozOsxFontSmoothing": "inherit",
-        "WebkitAppearance": "none",
         "WebkitFontSmoothing": "inherit",
         "background": "transparent",
         "border": "none",
@@ -154,6 +152,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     className=""
     href="/foo"
     onBlur={[Function]}
+    onClick={[Function]}
     onDragStart={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -168,7 +167,6 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     style={
       Object {
         "MozOsxFontSmoothing": "inherit",
-        "WebkitAppearance": "none",
         "WebkitFontSmoothing": "inherit",
         "background": "transparent",
         "border": "none",

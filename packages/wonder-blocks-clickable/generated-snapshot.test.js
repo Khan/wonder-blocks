@@ -53,6 +53,7 @@ describe("wonder-blocks-clickable", () => {
     it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing");
         const {MemoryRouter, Route, Switch} = require("react-router-dom");
 
         const styles = StyleSheet.create({
