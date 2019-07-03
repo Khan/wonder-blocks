@@ -146,15 +146,20 @@ module.exports = {
             content: "packages/wonder-blocks-popover/docs.md",
             sections: [
                 {
+                    name: "Components",
                     components: [
                         "packages/wonder-blocks-popover/components/popover.js",
+                        "packages/wonder-blocks-popover/components/popover-content.js",
+                        "packages/wonder-blocks-popover/components/popover-content-core.js",
                     ],
                 },
                 {
-                    name: "Building Blocks",
+                    name: "Internal Components",
+                    private: true,
                     components: [
-                        "packages/wonder-blocks-popover/components/popover-content.js",
-                        "packages/wonder-blocks-popover/components/popover-content-core.js",
+                        "packages/wonder-blocks-popover/components/close-button.js",
+                        "packages/wonder-blocks-popover/components/popover-anchor.js",
+                        "packages/wonder-blocks-popover/components/popover-dialog.js",
                     ],
                 },
             ],
