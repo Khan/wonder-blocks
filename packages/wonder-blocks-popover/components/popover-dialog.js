@@ -49,10 +49,18 @@ type Props = {|
  * [PopoverContentCore](#PopoverContentCore), and the
  * [TooltipTail](#TooltipTail).
  *
+ * The main difference with [TooltipBubble](#TooltipBubble) is that bubble
+ * handles hover states and PopoverDialog doesn't need to handle any states at
+ * all (for now). Also, PopoverDialog needs to coordinate different background
+ * colors for the content and tail components.
+ *
  * Note that without explicit positioning, the tail will not be centered.
  */
 export default class PopoverDialog extends React.Component<Props> {
     componentDidUpdate(prevProps: Props) {
+        // if the placement has changed, then we need to notify this to the
+        // parent component (`Popover`). This way, the context will update its
+        // `placement` value.
         if (prevProps.placement !== this.props.placement) {
             this.props.onUpdate(this.props.placement);
         }

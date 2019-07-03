@@ -16,9 +16,9 @@ const customIcon = {
 
 const styles = StyleSheet.create({
     customPopover: {
-        maxWidth: 420,
-        width: 420,
-        textAlign: "center"
+        maxWidth: Spacing.medium * 25,
+        width: Spacing.medium * 25,
+        textAlign: "center",
     },
     row: {
         flexDirection: "row",
@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
         padding: `${Spacing.small}px 0`
     },
     action: {
+        cursor: "pointer",
         margin: Spacing.small,
-        height: 100,
-        padding: 2,
+        padding: Spacing.xxSmall,
         alignItems: "center",
         justifyContent: "center"
     },

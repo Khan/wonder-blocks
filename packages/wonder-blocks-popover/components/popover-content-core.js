@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
             Colors.offBlack8
         }`,
         margin: 0,
-        maxWidth: 288,
+        maxWidth: Spacing.medium * 18, // 288px
         padding: Spacing.large,
         overflow: "hidden",
         justifyContent: "center",

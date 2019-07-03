@@ -75,11 +75,11 @@ describe("wonder-blocks-popover", () => {
 
         const styles = StyleSheet.create({
             example: {
-                paddingTop: 300,
+                paddingTop: Spacing.medium * 15,
             },
             customPopover: {
-                maxWidth: 420,
-                width: 420,
+                maxWidth: Spacing.medium * 25,
+                width: Spacing.medium * 25,
                 textAlign: "center",
             },
             row: {
@@ -93,8 +93,7 @@ describe("wonder-blocks-popover", () => {
                 color: Color.white,
                 cursor: "pointer",
                 margin: Spacing.small,
-                height: 100,
-                padding: 2,
+                padding: Spacing.xxSmall,
                 alignItems: "center",
                 justifyContent: "center",
             },
@@ -185,7 +184,7 @@ describe("wonder-blocks-popover", () => {
                                 Anchor element (it doesn't open the popover)
                             </Button>
                         </Popover>
-                        <Strut size={32} />
+                        <Strut size={Spacing.xLarge} />
                         <Button
                             onClick={() => this.setState({popoverOpened: true})}
                         >
@@ -344,6 +343,7 @@ describe("wonder-blocks-popover", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
         const styles = StyleSheet.create({
             example: {
@@ -365,7 +365,7 @@ describe("wonder-blocks-popover", () => {
                             <Button light={true} kind="secondary">
                                 Previous
                             </Button>
-                            <Strut size={16} />
+                            <Strut size={Spacing.medium} />
                             <Button light={true} kind="primary">
                                 Next
                             </Button>
@@ -392,7 +392,9 @@ describe("wonder-blocks-popover", () => {
                 <PopoverContent
                     title="Title"
                     content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
-                    icon="/logo.svg"
+                    icon={
+                        <img src="/logo.svg" width="100%" alt="icon popover" />
+                    }
                 />
             </View>
         );
@@ -444,8 +446,8 @@ describe("wonder-blocks-popover", () => {
 
         const styles = StyleSheet.create({
             customPopover: {
-                maxWidth: 420,
-                width: 420,
+                maxWidth: Spacing.medium * 25,
+                width: Spacing.medium * 25,
                 textAlign: "center",
             },
             row: {
@@ -454,9 +456,9 @@ describe("wonder-blocks-popover", () => {
                 padding: `${Spacing.small}px 0`,
             },
             action: {
+                cursor: "pointer",
                 margin: Spacing.small,
-                height: 100,
-                padding: 2,
+                padding: Spacing.xxSmall,
                 alignItems: "center",
                 justifyContent: "center",
             },

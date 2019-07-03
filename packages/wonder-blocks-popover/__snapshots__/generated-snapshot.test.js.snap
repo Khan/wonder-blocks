@@ -114,7 +114,7 @@ exports[`wonder-blocks-popover example 2 1`] = `
       "minHeight": 0,
       "minWidth": 0,
       "padding": "12px 0",
-      "paddingTop": 300,
+      "paddingTop": 240,
       "position": "relative",
       "zIndex": 0,
     }
@@ -1211,16 +1211,36 @@ exports[`wonder-blocks-popover example 8 1`] = `
         }
       }
     >
-      <img
+      <div
         className=""
-        src="/logo.svg"
         style={
           Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
             "marginRight": 16,
+            "minHeight": 0,
+            "minWidth": 64,
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "relative",
             "width": 64,
+            "zIndex": 0,
           }
         }
-      />
+      >
+        <img
+          alt="icon popover"
+          src="/logo.svg"
+          width="100%"
+        />
+      </div>
       <div
         className=""
         style={
@@ -1543,14 +1563,14 @@ exports[`wonder-blocks-popover example 10 1`] = `
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
-        "maxWidth": 420,
+        "maxWidth": 400,
         "minHeight": 0,
         "minWidth": 0,
         "overflow": "hidden",
         "padding": 24,
         "position": "relative",
         "textAlign": "center",
-        "width": 420,
+        "width": 400,
         "zIndex": 0,
       }
     }
@@ -1620,14 +1640,14 @@ exports[`wonder-blocks-popover example 10 1`] = `
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
+              "cursor": "pointer",
               "display": "flex",
               "flexDirection": "column",
-              "height": 100,
               "justifyContent": "center",
               "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": 2,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }
@@ -1677,14 +1697,14 @@ exports[`wonder-blocks-popover example 10 1`] = `
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
+              "cursor": "pointer",
               "display": "flex",
               "flexDirection": "column",
-              "height": 100,
               "justifyContent": "center",
               "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": 2,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }
@@ -1734,14 +1754,14 @@ exports[`wonder-blocks-popover example 10 1`] = `
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
+              "cursor": "pointer",
               "display": "flex",
               "flexDirection": "column",
-              "height": 100,
               "justifyContent": "center",
               "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": 2,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }

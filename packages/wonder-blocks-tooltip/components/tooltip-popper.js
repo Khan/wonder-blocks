@@ -20,6 +20,8 @@ type Props = {|
     /**
      * This uses the children-as-a-function approach, mirroring react-popper's
      * implementation.
+     *
+     * TODO(juan): figure out to only allow TooltipBubble and PopoverDialog
      */
     children: (PopperElementProps) => React.Element<any>,
 

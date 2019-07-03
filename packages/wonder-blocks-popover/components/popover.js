@@ -104,10 +104,10 @@ type State = {|
 |};
 
 /**
- * Popovers provide additional related information that is related to a
- * particular element and/or content. They can include text, links, icons and
- * illustrations. The main difference with `Tooltip` is that they are normally
- * triggered by clicking an element.
+ * Popovers provide additional information that is related to a particular
+ * element and/or content. They can include text, links, icons and
+ * illustrations. The main difference with `Tooltip` is that they must be
+ * dismissed by clicking an element.
  *
  * This component uses the `PopoverPopper` component to position the
  * `PopoverContentCore` component according to the children it is wrapping.
@@ -117,6 +117,10 @@ export default class Popover extends React.Component<Props, State> {
         placement: "top",
     };
 
+    /**
+     * Used to sync the `opened` state when Popover acts as a controlled
+     * component
+     */
     static getDerivedStateFromProps(props: Props, state: State) {
         return {
             opened:
@@ -150,23 +154,21 @@ export default class Popover extends React.Component<Props, State> {
         }
     };
 
-    updateRef(ref: any) {
+    updateRef = (ref: any) => {
         const actualRef = ref && ReactDOM.findDOMNode(ref);
         if (actualRef && this.state.anchorElement !== actualRef) {
             this.setState({anchorElement: ((actualRef: any): ?HTMLElement)});
         }
-    }
+    };
 
     renderContent() {
         const {content} = this.props;
 
-        if (typeof content === "function") {
-            return content({
-                close: this.handleClose,
-            });
-        } else {
-            return content;
-        }
+        return typeof content === "function"
+            ? content({
+                  close: this.handleClose,
+              })
+            : content;
     }
 
     renderPopper(uniqueId: string) {
@@ -221,7 +223,7 @@ export default class Popover extends React.Component<Props, State> {
                     {(uniqueId) => (
                         <React.Fragment>
                             <PopoverAnchor
-                                anchorRef={(ref) => this.updateRef(ref)}
+                                anchorRef={this.updateRef}
                                 id={`${uniqueId}-anchor`}
                                 aria-controls={uniqueId}
                                 aria-expanded={opened ? "true" : "false"}
