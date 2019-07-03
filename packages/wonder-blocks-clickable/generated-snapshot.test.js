@@ -19,14 +19,12 @@ describe("wonder-blocks-clickable", () => {
         const {Body} = require("@khanacademy/wonder-blocks-typography");
 
         const styles = StyleSheet.create({
-            focused: {
-                border: "none",
-            },
             hovered: {
                 textDecoration: "underline",
+                backgroundColor: Color.teal,
             },
             pressed: {
-                color: Color.teal,
+                color: Color.blue,
             },
         });
 
@@ -34,15 +32,16 @@ describe("wonder-blocks-clickable", () => {
             <View>
                 <Clickable onClick={() => alert("You clicked some text!")}>
                     {(eventState) => (
-                        <Body
-                            style={[
-                                eventState.focused && styles.focused,
-                                eventState.hovered && styles.hovered,
-                                eventState.pressed && styles.pressed,
-                            ]}
-                        >
-                            This text is clickable!
-                        </Body>
+                        <View style={[eventState.hovered && styles.hovered]}>
+                            <Body
+                                style={[
+                                    eventState.hovered && styles.hovered,
+                                    eventState.pressed && styles.pressed,
+                                ]}
+                            >
+                                This text is clickable!
+                            </Body>
+                        </View>
                     )}
                 </Clickable>
             </View>

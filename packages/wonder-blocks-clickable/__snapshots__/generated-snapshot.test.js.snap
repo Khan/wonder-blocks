@@ -63,22 +63,42 @@ exports[`wonder-blocks-clickable example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "display": "block",
-          "fontFamily": "Lato, sans-serif",
-          "fontSize": 16,
-          "fontWeight": 400,
-          "lineHeight": "22px",
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
         }
       }
     >
-      This text is clickable!
-    </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
+        }
+      >
+        This text is clickable!
+      </span>
+    </div>
   </button>
 </div>
 `;
@@ -152,7 +172,6 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     className=""
     href="/foo"
     onBlur={[Function]}
-    onClick={[Function]}
     onDragStart={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
