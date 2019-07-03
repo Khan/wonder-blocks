@@ -72,7 +72,7 @@ export default class CheckboxCore extends React.Component<Props> {
                 <StyledInput
                     {...sharedProps}
                     type="checkbox"
-                    aria-checked={checked}
+                    aria-invalid={error}
                     checked={checked}
                     disabled={disabled}
                     id={id}
