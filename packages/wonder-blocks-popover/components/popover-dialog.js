@@ -50,6 +50,9 @@ type Props = {|
  */
 export default class PopoverDialog extends React.Component<Props> {
     componentDidUpdate(prevProps: Props) {
+        // if the placement has changed, then we need to notify this to the
+        // parent component (`Popover`). This way, the context will update its
+        // `placement` value.
         if (prevProps.placement !== this.props.placement) {
             this.props.onUpdate(this.props.placement);
         }

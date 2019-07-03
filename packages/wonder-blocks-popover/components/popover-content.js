@@ -7,6 +7,8 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
+import type {PopoverContextType} from "./popover-context.js";
+
 import PopoverContentCore from "./popover-content-core.js";
 import PopoverContext from "./popover-context.js";
 
@@ -59,16 +61,21 @@ type CommonProps = {|
     testId?: string,
 
     /**
+     * Decorate the popover with an illustrated icon. It cannot be used at the
+     * same time with image.
+     */
+    icon?: string | React.Element<"img"> | React.Element<"svg">,
+
+    /**
      * Decorate the popover with a full-bleed illustration. It cannot be used at
      * the same time with icon.
      */
     image?: React.Element<"img"> | React.Element<"svg">,
 
     /**
-     * Without these, flow complains about icon and emphasized not being
-     * available on props at all b/c these are exact object types.
+     * Without this, flow complains about emphasized not being available on
+     * props at all b/c these are exact object types.
      */
-    icon?: void,
     emphasized?: void,
 |};
 
@@ -83,17 +90,7 @@ type WithEmphasized = {|
     emphasized: boolean,
 |};
 
-type WithIcon = {|
-    ...CommonProps,
-
-    /**
-     * Decorate the popover with an illustrated icon. It cannot be used at the
-     * same time with image.
-     */
-    icon: string,
-|};
-
-type Props = CommonProps | WithEmphasized | WithIcon;
+type Props = CommonProps | WithEmphasized;
 
 // Created to add custom styles to the icon or image elements
 const StyledImage = addStyle("img");
@@ -119,8 +116,70 @@ export default class PopoverContent extends React.Component<Props> {
         }
     }
 
-    renderActions = (close: () => mixed) => {
+    /**
+     * Runtime validation in case we try to use an invalid shape
+     */
+    validateProps({close, placement}: PopoverContextType) {
+        if (close && this.props.onClose) {
+            throw new Error(
+                "You've specified 'onClose' on the content when using Popover. Please specify 'onClose' on the Popover instead",
+            );
+        }
+
+        // illustration popover can't be placed horizontally
+        if (
+            this.props.image &&
+            (placement === "left" || placement === "right")
+        ) {
+            throw new Error(
+                "'image' can only be vertically placed. You can fix this by either changing `placement` to `top` or `bottom` or removing the `image` prop inside `content`.",
+            );
+        }
+    }
+
+    maybeRenderImage = ({placement}: PopoverContextType) => {
+        const {image} = this.props;
+
+        if (!image) {
+            return null;
+        }
+
+        return (
+            <View
+                style={[
+                    styles.image,
+                    placement === "bottom" && styles.imageToBottom,
+                ]}
+            >
+                {image}
+            </View>
+        );
+    };
+
+    maybeRenderIcon = () => {
+        const {icon} = this.props;
+
+        if (!icon) {
+            return null;
+        }
+
+        return (
+            <View style={styles.iconContainer}>
+                {typeof icon !== "string" ? (
+                    icon
+                ) : (
+                    <StyledImage src={icon} style={styles.icon} />
+                )}
+            </View>
+        );
+    };
+
+    maybeRenderActions = (close: () => mixed) => {
         const {actions, onClose} = this.props;
+
+        if (!actions) {
+            return null;
+        }
 
         return (
             <View style={styles.actions}>
@@ -135,7 +194,6 @@ export default class PopoverContent extends React.Component<Props> {
 
     render() {
         const {
-            actions,
             closeButtonLabel,
             closeButtonVisible,
             content,
@@ -151,21 +209,8 @@ export default class PopoverContent extends React.Component<Props> {
         return (
             <PopoverContext.Consumer>
                 {({close, placement}) => {
-                    if (close && onClose) {
-                        throw new Error(
-                            "You've specified 'onClose' on the content when using Popover. Please specify 'onClose' on the Popover instead",
-                        );
-                    }
-
-                    // illustration popover can't be placed horizontally
-                    if (
-                        image &&
-                        (placement === "left" || placement === "right")
-                    ) {
-                        throw new Error(
-                            "'image' can only be vertically placed. You can fix this by either changing `placement` to `top` or `bottom` or removing the `image` prop inside `content`.",
-                        );
-                    }
+                    // verify if the props are correct
+                    this.validateProps({close, placement});
 
                     return (
                         <PopoverContentCore
@@ -178,24 +223,9 @@ export default class PopoverContent extends React.Component<Props> {
                             testId={testId}
                         >
                             <View style={!!icon && styles.withIcon}>
-                                {image && (
-                                    <View
-                                        style={[
-                                            styles.image,
-                                            placement === "bottom" &&
-                                                styles.imageToBottom,
-                                        ]}
-                                    >
-                                        {image}
-                                    </View>
-                                )}
+                                {this.maybeRenderImage({placement})}
 
-                                {icon && (
-                                    <StyledImage
-                                        style={styles.icon}
-                                        src={icon}
-                                    />
-                                )}
+                                {this.maybeRenderIcon()}
 
                                 <View style={styles.text}>
                                     <HeadingSmall style={styles.title}>
@@ -205,7 +235,7 @@ export default class PopoverContent extends React.Component<Props> {
                                 </View>
                             </View>
 
-                            {actions && this.renderActions((close: any))}
+                            {this.maybeRenderActions((close: any))}
                         </PopoverContentCore>
                     );
                 }}
@@ -236,9 +266,18 @@ const styles = StyleSheet.create({
     /**
      * Icon styles
      */
-    icon: {
-        marginRight: Spacing.medium,
+    iconContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        height: 64,
         width: 64,
+        minWidth: 64,
+        marginRight: Spacing.medium,
+        overflow: "hidden",
+    },
+
+    icon: {
+        width: "100%",
     },
 
     withIcon: {
