@@ -175,6 +175,7 @@ export default class Dropdown extends React.Component<Props, State> {
 
     render() {
         const {
+            style,
             children,
             alignment,
             dropdownStyle,
@@ -182,7 +183,6 @@ export default class Dropdown extends React.Component<Props, State> {
             onChange,
             selectedValues,
             "aria-disabled": ariaDisabled,
-            ...sharedProps
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior();
@@ -207,7 +207,7 @@ export default class Dropdown extends React.Component<Props, State> {
                 alignment={alignment}
                 items={this._getMenuItems()}
                 keyboard={this.state.keyboard}
-                style={this.props.style}
+                style={style}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                 onOpenChanged={this.handleOpenChanged}
                 open={this.state.opened}

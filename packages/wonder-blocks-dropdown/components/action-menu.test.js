@@ -56,7 +56,7 @@ describe("ActionMenu", () => {
         expect(menu.find(Dropdown).state("opened")).toEqual(true);
     });
 
-    it.only("triggers actions", () => {
+    it("triggers actions", () => {
         // Arrange
         const onChange = jest.fn();
         const menu = mount(

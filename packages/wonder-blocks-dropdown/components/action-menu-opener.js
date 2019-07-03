@@ -62,7 +62,6 @@ export default class ActionMenuOpener extends React.Component<Props> {
                         <ActionMenuOpenerCore
                             {...sharedProps}
                             {...state}
-                            opened={this.props.opened}
                             disabled={disabled}
                         >
                             {children}

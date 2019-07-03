@@ -109,11 +109,11 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         const menuItems = React.Children.toArray(this.props.children);
         return (
             <Dropdown
+                style={style}
                 alignment={alignment}
                 menuItems={menuItems}
                 onChange={onChange}
                 selectedValues={selectedValues}
-                style={style}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
             >
                 {(eventState) => (
