@@ -51,6 +51,9 @@ controlled component. The parent is responsible for managing the opening/closing
 of the popover when using this prop. This means that you'll also have to update
 `opened` to false in response to the onClose callback being triggered.
 
+Here you can see as well how the focus is managed when a popover is opened. To see more
+details, please check the **Accesibility section**.
+
 ```jsx
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
@@ -183,11 +186,16 @@ This example shows the default popover variant. By default, it only includes
 ```jsx
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
 const {View} = require("@khanacademy/wonder-blocks-core");
 
 const styles = StyleSheet.create({
     example: {
         alignItems: "center",
+    },
+    row: {
+        flexDirection: "row"
     }
 });
 
@@ -195,16 +203,22 @@ const styles = StyleSheet.create({
     <Popover
         placement="top"
         onClose={()=> console.log('popover closed!')}
+        initialFocusId="initial-focus"
         content={
             <PopoverContent
-                closeButtonVisible
                 title="Title"
                 content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
                 emphasized
                 actions={({close}) => (
-                    <Button onClick={close} light={true} kind="primary">
-                        Continue
-                    </Button>
+                    <View style={styles.row}>
+                        <Button onClick={close} light={true} kind="secondary">
+                            Previous
+                        </Button>
+                        <Strut size={Spacing.medium} />
+                        <Button onClick={close} light={true} kind="primary" id="initial-focus">
+                            Next
+                        </Button>
+                    </View>
                 )}
             />
         }

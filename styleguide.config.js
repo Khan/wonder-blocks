@@ -144,15 +144,12 @@ module.exports = {
         {
             name: "Popover",
             content: "packages/wonder-blocks-popover/docs.md",
+            components: [
+                "packages/wonder-blocks-popover/components/popover.js",
+                "packages/wonder-blocks-popover/components/popover-content.js",
+                "packages/wonder-blocks-popover/components/popover-content-core.js",
+            ],
             sections: [
-                {
-                    name: "Components",
-                    components: [
-                        "packages/wonder-blocks-popover/components/popover.js",
-                        "packages/wonder-blocks-popover/components/popover-content.js",
-                        "packages/wonder-blocks-popover/components/popover-content-core.js",
-                    ],
-                },
                 {
                     name: "Internal Components",
                     private: true,

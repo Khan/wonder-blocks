@@ -91,6 +91,7 @@ export default class PopoverDialog extends React.Component<Props> {
                 <View
                     aria-describedby={ariaDescribedby}
                     id={id}
+                    role="dialog"
                     ref={updateBubbleRef}
                     data-placement={placement}
                     style={[

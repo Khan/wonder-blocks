@@ -209,11 +209,16 @@ describe("wonder-blocks-popover", () => {
     it("example 3", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
+            },
+            row: {
+                flexDirection: "row",
             },
         });
 
@@ -222,20 +227,31 @@ describe("wonder-blocks-popover", () => {
                 <Popover
                     placement="top"
                     onClose={() => console.log("popover closed!")}
+                    initialFocusId="initial-focus"
                     content={
                         <PopoverContent
-                            closeButtonVisible
                             title="Title"
                             content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
                             emphasized
                             actions={({close}) => (
-                                <Button
-                                    onClick={close}
-                                    light={true}
-                                    kind="primary"
-                                >
-                                    Continue
-                                </Button>
+                                <View style={styles.row}>
+                                    <Button
+                                        onClick={close}
+                                        light={true}
+                                        kind="secondary"
+                                    >
+                                        Previous
+                                    </Button>
+                                    <Strut size={Spacing.medium} />
+                                    <Button
+                                        onClick={close}
+                                        light={true}
+                                        kind="primary"
+                                        id="initial-focus"
+                                    >
+                                        Next
+                                    </Button>
+                                </View>
                             )}
                         />
                     }

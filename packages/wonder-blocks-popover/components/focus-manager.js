@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {findFocusableNodes} from "../util/util.js";
+import InitialFocus from "./initial-focus.js";
 
 type Props = {|
     /**
@@ -13,6 +14,18 @@ type Props = {|
      * A reference to the trigger element
      */
     anchorElement: ?HTMLElement,
+
+    /**
+     * When set, we will try to focus on a focusable element inside the popover,
+     * following the accessibility specs.
+     */
+    initialFocusEnabled?: boolean,
+
+    /**
+     * The selector for the element that will be focused when the dialog shows.
+     * When not set, the first tabbable element within the dialog will be used.
+     */
+    initialFocusId?: string,
 |};
 
 /**
@@ -44,15 +57,11 @@ export default class FocusManager extends React.Component<Props> {
     rootNode: ?HTMLElement;
 
     componentDidMount() {
-        if (!this.nextElementAfterPopover) {
-            this.getNextFocusableElement();
-        }
+        this.getNextFocusableElement();
     }
 
     componentDidUpdate() {
-        if (!this.nextElementAfterPopover) {
-            this.getNextFocusableElement();
-        }
+        this.getNextFocusableElement();
     }
 
     /**
@@ -62,7 +71,7 @@ export default class FocusManager extends React.Component<Props> {
         const {anchorElement} = this.props;
 
         if (anchorElement) {
-            // wait for styles to applied
+            // wait for styles to applied, then return the focus to the anchor
             setTimeout(() => anchorElement.focus(), 0);
 
             anchorElement.removeEventListener(
@@ -92,7 +101,7 @@ export default class FocusManager extends React.Component<Props> {
     getNextFocusableElement = () => {
         const {anchorElement} = this.props;
 
-        if (!anchorElement) {
+        if (!anchorElement || this.nextElementAfterPopover) {
             return;
         }
 
@@ -150,8 +159,8 @@ export default class FocusManager extends React.Component<Props> {
     };
 
     /**
-     * Triggered when the focus is set to the first sentinel.
-     * This way, the focus will be redirected to the anchor element.
+     * Triggered when the focus is set to the first sentinel. This way, the
+     * focus will be redirected to the anchor element.
      */
     handleFocusPreviousFocusableElement = () => {
         if (this.props.anchorElement) {
@@ -183,9 +192,8 @@ export default class FocusManager extends React.Component<Props> {
     };
 
     /**
-     * Triggered when the focus is leaving the next focusable element.
-     * This way, the focus is redirected to the last focusable element inside
-     * the popover.
+     * Triggered when the focus is leaving the next focusable element. This way,
+     * the focus is redirected to the last focusable element inside the popover.
      */
     handleKeydownNextFocusableElement = (e: KeyboardEvent) => {
         // It will try focus only if the user is pressing `Shift+tab`
@@ -197,6 +205,8 @@ export default class FocusManager extends React.Component<Props> {
     };
 
     render() {
+        const {children} = this.props;
+
         return (
             <React.Fragment>
                 {/* first sentinel */}
@@ -204,8 +214,20 @@ export default class FocusManager extends React.Component<Props> {
                     tabIndex="0"
                     onFocus={this.handleFocusPreviousFocusableElement}
                 />
-                >
-                <div ref={this.getComponentRootNode}>{this.props.children}</div>
+                <div ref={this.getComponentRootNode}>
+                    {this.props.initialFocusEnabled ? (
+                        // If enabled, the focus will be passed to a given
+                        // element inside the children (popover dialog)
+                        <InitialFocus
+                            initialFocusId={this.props.initialFocusId}
+                        >
+                            {children}
+                        </InitialFocus>
+                    ) : (
+                        // no initial focus, just render the popover dialog
+                        children
+                    )}
+                </div>
                 {/* last sentinel */}
                 <div
                     tabIndex="0"
