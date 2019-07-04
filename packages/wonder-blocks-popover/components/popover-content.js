@@ -46,11 +46,6 @@ type CommonProps = {|
     closeButtonVisible?: boolean,
 
     /**
-     * Called when the popover closes
-     */
-    onClose?: () => mixed,
-
-    /**
      * Custom styles to be injected to the popover content container
      */
     style?: StyleType,
@@ -119,13 +114,7 @@ export default class PopoverContent extends React.Component<Props> {
     /**
      * Runtime validation in case we try to use an invalid shape
      */
-    validateProps({close, placement}: PopoverContextType) {
-        if (close && this.props.onClose) {
-            throw new Error(
-                "You've specified 'onClose' on the content when using Popover. Please specify 'onClose' on the Popover instead",
-            );
-        }
-
+    validateProps({placement}: PopoverContextType) {
         // illustration popover can't be placed horizontally
         if (
             this.props.image &&
@@ -175,7 +164,7 @@ export default class PopoverContent extends React.Component<Props> {
     };
 
     maybeRenderActions = (close: () => mixed) => {
-        const {actions, onClose} = this.props;
+        const {actions} = this.props;
 
         if (!actions) {
             return null;
@@ -185,7 +174,7 @@ export default class PopoverContent extends React.Component<Props> {
             <View style={styles.actions}>
                 {typeof actions === "function"
                     ? actions({
-                          close: onClose || close,
+                          close: close,
                       })
                     : actions}
             </View>
@@ -200,7 +189,6 @@ export default class PopoverContent extends React.Component<Props> {
             emphasized,
             icon,
             image,
-            onClose,
             style,
             title,
             testId,
@@ -218,7 +206,6 @@ export default class PopoverContent extends React.Component<Props> {
                             closeButtonLight={image && placement === "top"}
                             closeButtonLabel={closeButtonLabel}
                             closeButtonVisible={closeButtonVisible}
-                            onClose={onClose}
                             style={style}
                             testId={testId}
                         >

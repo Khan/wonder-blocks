@@ -280,7 +280,6 @@ describe("wonder-blocks-popover", () => {
             <View style={styles.example}>
                 <Popover
                     placement="top"
-                    onClose={() => console.log("popover closed!")}
                     content={
                         <PopoverContent
                             title="Title"

@@ -39,11 +39,6 @@ type Props = {|
     color: "blue" | "darkBlue" | "white",
 
     /**
-     * Called when the popover closes
-     */
-    onClose?: () => mixed,
-
-    /**
      * Custom styles applied to the content container
      */
     style?: StyleType,
@@ -73,7 +68,6 @@ export default class PopoverContentCore extends React.Component<Props> {
             closeButtonVisible,
             color,
             style,
-            onClose,
             testId,
         } = this.props;
 
@@ -90,7 +84,6 @@ export default class PopoverContentCore extends React.Component<Props> {
                     <CloseButton
                         aria-label={closeButtonLabel}
                         light={closeButtonLight || color !== "white"}
-                        onClose={onClose}
                         style={styles.closeButton}
                     />
                 )}

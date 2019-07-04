@@ -12,16 +12,19 @@ describe("PopoverContent", () => {
         const onCloseMock = jest.fn();
 
         const wrapper = mount(
-            <PopoverContent
-                onClose={onCloseMock}
-                title="Title"
-                content="content"
-                actions={({close}) => (
-                    <button data-close-button onClick={close}>
-                        close popover
-                    </button>
-                )}
-            />,
+            <PopoverContext.Provider
+                value={{close: onCloseMock, placement: "left"}}
+            >
+                <PopoverContent
+                    title="Title"
+                    content="content"
+                    actions={({close}) => (
+                        <button data-close-button onClick={close}>
+                            close popover
+                        </button>
+                    )}
+                />
+            </PopoverContext.Provider>,
         );
 
         // Act
@@ -29,28 +32,6 @@ describe("PopoverContent", () => {
 
         // Assert
         expect(onCloseMock).toBeCalled();
-    });
-
-    it("should warn when setting PopoverContext.Provider and onClose together", () => {
-        // Arrange
-        const nodes = (
-            <PopoverContext.Provider value={{close: () => {}}}>
-                <PopoverContent
-                    title="title"
-                    content="content"
-                    onClose={() => {}}
-                />
-                ,
-            </PopoverContext.Provider>
-        );
-
-        // Act
-        const underTest = () => mount(nodes);
-
-        // Assert
-        expect(underTest).toThrowError(
-            "You've specified 'onClose' on the content when using Popover. Please specify 'onClose' on the Popover instead",
-        );
     });
 
     it("should warn when setting a image and icon at the same time", () => {
