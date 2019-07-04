@@ -228,7 +228,6 @@ const styles = StyleSheet.create({
 <View style={styles.example}>
     <Popover
         placement="top"
-        onClose={()=> console.log('popover closed!')}
         content={
             <PopoverContent
                 title="Title"

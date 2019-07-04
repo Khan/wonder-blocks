@@ -17,11 +17,6 @@ type Props = {|
     light?: boolean,
 
     /**
-     * Called when the popover closes
-     */
-    onClose?: () => mixed,
-
-    /**
      * Custom styles
      */
     style?: StyleType,
@@ -39,20 +34,15 @@ export default class CloseButton extends React.Component<Props> {
     };
 
     render() {
-        const {light, onClose, "aria-label": ariaLabel, style} = this.props;
+        const {light, "aria-label": ariaLabel, style} = this.props;
         return (
             <PopoverContext.Consumer>
                 {({close}) => {
-                    if (close && onClose) {
-                        throw new Error(
-                            "You've specified 'onClose' on the content when using Popover. Please specify 'onClose' on the Popover instead",
-                        );
-                    }
                     return (
                         <IconButton
                             icon={icons.dismiss}
                             aria-label={ariaLabel}
-                            onClick={onClose || close}
+                            onClick={close}
                             kind={light ? "primary" : "tertiary"}
                             light={light}
                             style={style}

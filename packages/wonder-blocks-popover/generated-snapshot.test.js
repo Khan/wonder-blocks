@@ -11,6 +11,9 @@ jest.mock("react-dom");
 import Popover from "./components/popover.js";
 import PopoverContent from "./components/popover-content.js";
 import PopoverContentCore from "./components/popover-content-core.js";
+import CloseButton from "./components/close-button.js";
+import PopoverAnchor from "./components/popover-anchor.js";
+import PopoverDialog from "./components/popover-dialog.js";
 
 describe("wonder-blocks-popover", () => {
     it("example 1", () => {
@@ -252,7 +255,6 @@ describe("wonder-blocks-popover", () => {
             <View style={styles.example}>
                 <Popover
                     placement="top"
-                    onClose={() => console.log("popover closed!")}
                     content={
                         <PopoverContent
                             title="Title"
