@@ -24,19 +24,6 @@ exports[`wonder-blocks-clickable example 1 1`] = `
     aria-label=""
     className=""
     disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "::MozFocusInner": Object {
@@ -60,7 +47,6 @@ exports[`wonder-blocks-clickable example 1 1`] = `
         "width": "auto",
       }
     }
-    tabIndex={0}
     type="button"
   >
     <span
@@ -107,19 +93,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     aria-label=""
     className=""
     href="/foo"
-    onBlur={[Function]}
     onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "MozOsxFontSmoothing": "inherit",
@@ -131,7 +105,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
         "font": "inherit",
         "lineHeight": "normal",
         "margin": 0,
-        "marginRight": "25px",
+        "marginRight": 24,
         "outline": "none",
         "overflow": "visible",
         "padding": 0,
@@ -141,7 +115,6 @@ exports[`wonder-blocks-clickable example 2 1`] = `
         "width": "auto",
       }
     }
-    tabIndex={0}
   >
     <h1>
       Uses Client-side Nav
@@ -151,19 +124,6 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     aria-label=""
     className=""
     href="/foo"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
     style={
       Object {
         "MozOsxFontSmoothing": "inherit",
@@ -175,7 +135,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
         "font": "inherit",
         "lineHeight": "normal",
         "margin": 0,
-        "marginRight": "25px",
+        "marginRight": 24,
         "outline": "none",
         "overflow": "visible",
         "padding": 0,
@@ -185,7 +145,6 @@ exports[`wonder-blocks-clickable example 2 1`] = `
         "width": "auto",
       }
     }
-    tabIndex={0}
   >
     <h1>
       Avoids Client-side Nav

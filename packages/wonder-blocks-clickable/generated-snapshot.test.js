@@ -53,7 +53,7 @@ describe("wonder-blocks-clickable", () => {
     it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
         const {MemoryRouter, Route, Switch} = require("react-router-dom");
 
         const styles = StyleSheet.create({
@@ -62,7 +62,7 @@ describe("wonder-blocks-clickable", () => {
                 alignItems: "center",
             },
             h1: {
-                marginRight: "25px",
+                marginRight: Spacing.large,
             },
         });
 
