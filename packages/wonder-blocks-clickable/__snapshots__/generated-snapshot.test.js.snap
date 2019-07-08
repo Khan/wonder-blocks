@@ -151,7 +151,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
         "font": "inherit",
         "lineHeight": "normal",
         "margin": 0,
-        "marginRight": "25px",
+        "marginRight": 24,
         "outline": "none",
         "overflow": "visible",
         "padding": 0,
@@ -172,6 +172,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     className=""
     href="/foo"
     onBlur={[Function]}
+    onClick={[Function]}
     onDragStart={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -194,7 +195,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
         "font": "inherit",
         "lineHeight": "normal",
         "margin": 0,
-        "marginRight": "25px",
+        "marginRight": 24,
         "outline": "none",
         "overflow": "visible",
         "padding": 0,

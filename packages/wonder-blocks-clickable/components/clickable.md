@@ -43,7 +43,7 @@ If your Clickable component is within a React-Router enviroment, your component 
 ```jsx
 const {StyleSheet} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
-const Spacing = require("@khanacademy/wonder-blocks-spacing");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 const {MemoryRouter, Route, Switch} = require("react-router-dom");
 
 const styles = StyleSheet.create({
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     h1: {
-        marginRight: "25px",
+        marginRight: Spacing.large,
     }
 });
 
