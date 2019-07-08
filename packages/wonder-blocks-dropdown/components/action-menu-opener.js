@@ -26,7 +26,7 @@ export type SharedProps = {|
     /**
      * Whether the dropdown is open.
      */
-    open: boolean,
+    opened: boolean,
 |};
 
 type Props = {|
@@ -43,8 +43,8 @@ export default class ActionMenuOpener extends React.Component<Props> {
     };
 
     handleClick = (e: SyntheticEvent<>) => {
-        const {open} = this.props;
-        this.props.onOpenChanged(!open, e.type === "keyup");
+        const {opened} = this.props;
+        this.props.onOpenChanged(!opened, e.type === "keyup");
     };
 
     render() {
@@ -57,12 +57,11 @@ export default class ActionMenuOpener extends React.Component<Props> {
                 onClick={this.handleClick}
                 role="menu"
             >
-                {(state, handlers) => {
+                {(state) => {
                     return (
                         <ActionMenuOpenerCore
                             {...sharedProps}
                             {...state}
-                            {...handlers}
                             disabled={disabled}
                         >
                             {children}
