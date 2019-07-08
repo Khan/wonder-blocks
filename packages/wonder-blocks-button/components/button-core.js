@@ -1,29 +1,22 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-
-import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
+import Icon from "@khanacademy/wonder-blocks-icon";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Color, {
     SemanticColor,
     mix,
     fade,
 } from "@khanacademy/wonder-blocks-color";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import type {ClickableState} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
-import Icon from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-
-import type {
-    ClickableHandlers,
-    ClickableState,
-} from "@khanacademy/wonder-blocks-core";
+import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {SharedProps} from "./button.js";
 
 type Props = {|
     ...SharedProps,
-    ...ClickableHandlers,
     ...ClickableState,
 |};
 
@@ -32,20 +25,18 @@ export default class ButtonCore extends React.Component<Props> {
 
     render() {
         const {
-            children,
-            color,
-            disabled: disabledProp,
-            focused,
-            hovered,
             kind,
-            light,
-            pressed,
             size,
-            style,
-            testId,
-            spinner,
             icon,
-            ...handlers
+            style,
+            color,
+            light,
+            spinner,
+            hovered,
+            focused,
+            pressed,
+            children,
+            disabled: disabledProp,
         } = this.props;
 
         const buttonColor =
@@ -76,13 +67,6 @@ export default class ButtonCore extends React.Component<Props> {
             size === "small" && sharedStyles.small,
         ];
 
-        const commonProps = {
-            "data-test-id": testId,
-            role: "button",
-            style: [defaultStyle, style],
-            ...handlers,
-        };
-
         const Label = size === "small" ? LabelSmall : LabelLarge;
 
         const label = (
@@ -102,7 +86,7 @@ export default class ButtonCore extends React.Component<Props> {
         );
 
         return (
-            <React.Fragment>
+            <View style={[defaultStyle, style]}>
                 {label}
                 {spinner && (
                     <CircularSpinner
@@ -111,43 +95,8 @@ export default class ButtonCore extends React.Component<Props> {
                         light={kind === "primary"}
                     />
                 )}
-            </React.Fragment>
+            </View>
         );
-
-        /* const contents = (
-            <React.Fragment>
-                {label}
-                {spinner && (
-                    <CircularSpinner
-                        style={sharedStyles.spinner}
-                        size={{medium: "small", small: "xsmall"}[size]}
-                        light={kind === "primary"}
-                    />
-                )}
-            </React.Fragment>
-        );
-
-        if (href && !disabled) {
-            return router && !skipClientNav ? (
-                <StyledLink {...commonProps} to={href}>
-                    {contents}
-                </StyledLink>
-            ) : (
-                <StyledAnchor {...commonProps} href={href}>
-                    {contents}
-                </StyledAnchor>
-            );
-        } else {
-            return (
-                <StyledButton
-                    type="button"
-                    {...commonProps}
-                    disabled={disabled}
-                >
-                    {contents}
-                </StyledButton>
-            );
-        } */
     }
 }
 

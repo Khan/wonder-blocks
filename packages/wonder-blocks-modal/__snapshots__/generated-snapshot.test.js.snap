@@ -21,6 +21,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
   }
 >
   <button
+    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -42,55 +43,86 @@ exports[`wonder-blocks-modal example 1 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "#1865f2",
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
         "border": "none",
-        "borderRadius": 4,
         "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
         "margin": 0,
         "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
+        "overflow": "visible",
+        "padding": 0,
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
+        "width": "auto",
       }
     }
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
-          "display": "flex",
-          "fontFamily": "Lato, sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "flexDirection": "column",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+          "zIndex": 0,
         }
       }
     >
-      Open modal with initial focus
-    </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Open modal with initial focus
+      </span>
+    </div>
   </button>
 </div>
 `;
@@ -116,6 +148,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
   }
 >
   <button
+    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -137,55 +170,86 @@ exports[`wonder-blocks-modal example 2 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "#1865f2",
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
         "border": "none",
-        "borderRadius": 4,
         "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
         "margin": 0,
         "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
+        "overflow": "visible",
+        "padding": 0,
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
+        "width": "auto",
       }
     }
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
-          "display": "flex",
-          "fontFamily": "Lato, sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "flexDirection": "column",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+          "zIndex": 0,
         }
       }
     >
-      Open flexible modal
-    </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Open flexible modal
+      </span>
+    </div>
   </button>
 </div>
 `;
@@ -633,6 +697,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
   }
 >
   <button
+    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -654,55 +719,86 @@ exports[`wonder-blocks-modal example 4 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "#1865f2",
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
         "border": "none",
-        "borderRadius": 4,
         "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
         "margin": 0,
         "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
+        "overflow": "visible",
+        "padding": 0,
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
+        "width": "auto",
       }
     }
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
-          "display": "flex",
-          "fontFamily": "Lato, sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "flexDirection": "column",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+          "zIndex": 0,
         }
       }
     >
-      OnePaneDialog
-    </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        OnePaneDialog
+      </span>
+    </div>
   </button>
 </div>
 `;
@@ -728,6 +824,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
   }
 >
   <button
+    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -749,55 +846,86 @@ exports[`wonder-blocks-modal example 5 1`] = `
         "::MozFocusInner": Object {
           "border": 0,
         },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "#1865f2",
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
         "border": "none",
-        "borderRadius": 4,
         "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
         "margin": 0,
         "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
+        "overflow": "visible",
+        "padding": 0,
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
+        "width": "auto",
       }
     }
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
-          "display": "flex",
-          "fontFamily": "Lato, sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "flexDirection": "column",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+          "zIndex": 0,
         }
       }
     >
-      Open modal
-    </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Open modal
+      </span>
+    </div>
   </button>
 </div>
 `;
@@ -1377,6 +1505,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
             }
           >
             <button
+              aria-label=""
               className=""
               disabled={false}
               onBlur={[Function]}
@@ -1398,55 +1527,86 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "::MozFocusInner": Object {
                     "border": 0,
                   },
-                  ":focus": Object {
-                    "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                  },
-                  "alignItems": "center",
-                  "background": "#1865f2",
+                  "MozOsxFontSmoothing": "inherit",
+                  "WebkitFontSmoothing": "inherit",
+                  "background": "transparent",
                   "border": "none",
-                  "borderRadius": 4,
                   "boxSizing": "border-box",
-                  "color": "#ffffff",
-                  "cursor": "pointer",
-                  "display": "inline-flex",
-                  "height": 40,
-                  "justifyContent": "center",
+                  "color": "inherit",
+                  "font": "inherit",
+                  "lineHeight": "normal",
                   "margin": 0,
                   "outline": "none",
-                  "paddingBottom": 0,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 0,
-                  "position": "relative",
+                  "overflow": "visible",
+                  "padding": 0,
                   "textDecoration": "none",
                   "touchAction": "manipulation",
                   "userSelect": "none",
+                  "width": "auto",
                 }
               }
               tabIndex={0}
               type="button"
             >
-              <span
+              <div
                 className=""
                 style={
                   Object {
-                    "MozOsxFontSmoothing": "grayscale",
-                    "WebkitFontSmoothing": "antialiased",
+                    ":focus": Object {
+                      "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                    },
                     "alignItems": "center",
-                    "display": "flex",
-                    "fontFamily": "Lato, sans-serif",
-                    "fontSize": 16,
-                    "fontWeight": "bold",
-                    "lineHeight": "20px",
-                    "overflow": "hidden",
-                    "pointerEvents": "none",
-                    "textOverflow": "ellipsis",
-                    "whiteSpace": "nowrap",
+                    "background": "#1865f2",
+                    "border": "none",
+                    "borderRadius": 4,
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "boxSizing": "border-box",
+                    "color": "#ffffff",
+                    "cursor": "pointer",
+                    "display": "inline-flex",
+                    "flexDirection": "column",
+                    "height": 40,
+                    "justifyContent": "center",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
+                    "outline": "none",
+                    "padding": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 0,
+                    "position": "relative",
+                    "textDecoration": "none",
+                    "touchAction": "manipulation",
+                    "userSelect": "none",
+                    "zIndex": 0,
                   }
                 }
               >
-                Button (no-op)
-              </span>
+                <span
+                  className=""
+                  style={
+                    Object {
+                      "MozOsxFontSmoothing": "grayscale",
+                      "WebkitFontSmoothing": "antialiased",
+                      "alignItems": "center",
+                      "display": "flex",
+                      "fontFamily": "Lato, sans-serif",
+                      "fontSize": 16,
+                      "fontWeight": "bold",
+                      "lineHeight": "20px",
+                      "overflow": "hidden",
+                      "pointerEvents": "none",
+                      "textOverflow": "ellipsis",
+                      "whiteSpace": "nowrap",
+                    }
+                  }
+                >
+                  Button (no-op)
+                </span>
+              </div>
             </button>
           </div>
         </div>
@@ -1984,6 +2144,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
               }
             >
               <button
+                aria-label=""
                 className=""
                 disabled={false}
                 onBlur={[Function]}
@@ -2005,58 +2166,90 @@ exports[`wonder-blocks-modal example 8 1`] = `
                     "::MozFocusInner": Object {
                       "border": 0,
                     },
-                    ":focus": Object {
-                      "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                    },
-                    "alignItems": "center",
-                    "background": "none",
+                    "MozOsxFontSmoothing": "inherit",
+                    "WebkitFontSmoothing": "inherit",
+                    "background": "transparent",
                     "border": "none",
-                    "borderRadius": 4,
                     "boxSizing": "border-box",
-                    "color": "#1865f2",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
+                    "color": "inherit",
+                    "font": "inherit",
+                    "lineHeight": "normal",
                     "margin": 0,
-                    "marginRight": 16,
                     "outline": "none",
-                    "paddingBottom": 0,
-                    "paddingLeft": 0,
-                    "paddingRight": 0,
-                    "paddingTop": 0,
-                    "position": "relative",
+                    "overflow": "visible",
+                    "padding": 0,
                     "textDecoration": "none",
                     "touchAction": "manipulation",
                     "userSelect": "none",
+                    "width": "auto",
                   }
                 }
                 tabIndex={0}
                 type="button"
               >
-                <span
+                <div
                   className=""
                   style={
                     Object {
-                      "MozOsxFontSmoothing": "grayscale",
-                      "WebkitFontSmoothing": "antialiased",
+                      ":focus": Object {
+                        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                      },
                       "alignItems": "center",
-                      "display": "flex",
-                      "fontFamily": "Lato, sans-serif",
-                      "fontSize": 16,
-                      "fontWeight": "bold",
-                      "lineHeight": "20px",
-                      "overflow": "hidden",
-                      "pointerEvents": "none",
-                      "textOverflow": "ellipsis",
-                      "whiteSpace": "nowrap",
+                      "background": "none",
+                      "border": "none",
+                      "borderRadius": 4,
+                      "borderStyle": "solid",
+                      "borderWidth": 0,
+                      "boxSizing": "border-box",
+                      "color": "#1865f2",
+                      "cursor": "pointer",
+                      "display": "inline-flex",
+                      "flexDirection": "column",
+                      "height": 40,
+                      "justifyContent": "center",
+                      "margin": 0,
+                      "marginRight": 16,
+                      "minHeight": 0,
+                      "minWidth": 0,
+                      "outline": "none",
+                      "padding": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "paddingRight": 0,
+                      "paddingTop": 0,
+                      "position": "relative",
+                      "textDecoration": "none",
+                      "touchAction": "manipulation",
+                      "userSelect": "none",
+                      "zIndex": 0,
                     }
                   }
                 >
-                  Tertiary action
-                </span>
+                  <span
+                    className=""
+                    style={
+                      Object {
+                        "MozOsxFontSmoothing": "grayscale",
+                        "WebkitFontSmoothing": "antialiased",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "fontFamily": "Lato, sans-serif",
+                        "fontSize": 16,
+                        "fontWeight": "bold",
+                        "lineHeight": "20px",
+                        "overflow": "hidden",
+                        "pointerEvents": "none",
+                        "textOverflow": "ellipsis",
+                        "whiteSpace": "nowrap",
+                      }
+                    }
+                  >
+                    Tertiary action
+                  </span>
+                </div>
               </button>
               <button
+                aria-label=""
                 className=""
                 disabled={false}
                 onBlur={[Function]}
@@ -2078,58 +2271,90 @@ exports[`wonder-blocks-modal example 8 1`] = `
                     "::MozFocusInner": Object {
                       "border": 0,
                     },
-                    ":focus": Object {
-                      "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                    },
-                    "alignItems": "center",
-                    "background": "none",
+                    "MozOsxFontSmoothing": "inherit",
+                    "WebkitFontSmoothing": "inherit",
+                    "background": "transparent",
                     "border": "none",
-                    "borderRadius": 4,
                     "boxSizing": "border-box",
-                    "color": "#1865f2",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
+                    "color": "inherit",
+                    "font": "inherit",
+                    "lineHeight": "normal",
                     "margin": 0,
-                    "marginRight": 16,
                     "outline": "none",
-                    "paddingBottom": 0,
-                    "paddingLeft": 0,
-                    "paddingRight": 0,
-                    "paddingTop": 0,
-                    "position": "relative",
+                    "overflow": "visible",
+                    "padding": 0,
                     "textDecoration": "none",
                     "touchAction": "manipulation",
                     "userSelect": "none",
+                    "width": "auto",
                   }
                 }
                 tabIndex={0}
                 type="button"
               >
-                <span
+                <div
                   className=""
                   style={
                     Object {
-                      "MozOsxFontSmoothing": "grayscale",
-                      "WebkitFontSmoothing": "antialiased",
+                      ":focus": Object {
+                        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                      },
                       "alignItems": "center",
-                      "display": "flex",
-                      "fontFamily": "Lato, sans-serif",
-                      "fontSize": 16,
-                      "fontWeight": "bold",
-                      "lineHeight": "20px",
-                      "overflow": "hidden",
-                      "pointerEvents": "none",
-                      "textOverflow": "ellipsis",
-                      "whiteSpace": "nowrap",
+                      "background": "none",
+                      "border": "none",
+                      "borderRadius": 4,
+                      "borderStyle": "solid",
+                      "borderWidth": 0,
+                      "boxSizing": "border-box",
+                      "color": "#1865f2",
+                      "cursor": "pointer",
+                      "display": "inline-flex",
+                      "flexDirection": "column",
+                      "height": 40,
+                      "justifyContent": "center",
+                      "margin": 0,
+                      "marginRight": 16,
+                      "minHeight": 0,
+                      "minWidth": 0,
+                      "outline": "none",
+                      "padding": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "paddingRight": 0,
+                      "paddingTop": 0,
+                      "position": "relative",
+                      "textDecoration": "none",
+                      "touchAction": "manipulation",
+                      "userSelect": "none",
+                      "zIndex": 0,
                     }
                   }
                 >
-                  Secondary action
-                </span>
+                  <span
+                    className=""
+                    style={
+                      Object {
+                        "MozOsxFontSmoothing": "grayscale",
+                        "WebkitFontSmoothing": "antialiased",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "fontFamily": "Lato, sans-serif",
+                        "fontSize": 16,
+                        "fontWeight": "bold",
+                        "lineHeight": "20px",
+                        "overflow": "hidden",
+                        "pointerEvents": "none",
+                        "textOverflow": "ellipsis",
+                        "whiteSpace": "nowrap",
+                      }
+                    }
+                  >
+                    Secondary action
+                  </span>
+                </div>
               </button>
               <button
+                aria-label=""
                 className=""
                 disabled={false}
                 onBlur={[Function]}
@@ -2151,56 +2376,87 @@ exports[`wonder-blocks-modal example 8 1`] = `
                     "::MozFocusInner": Object {
                       "border": 0,
                     },
-                    ":focus": Object {
-                      "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                    },
-                    "alignItems": "center",
-                    "background": "#1865f2",
+                    "MozOsxFontSmoothing": "inherit",
+                    "WebkitFontSmoothing": "inherit",
+                    "background": "transparent",
                     "border": "none",
-                    "borderRadius": 4,
                     "boxSizing": "border-box",
-                    "color": "#ffffff",
-                    "cursor": "pointer",
-                    "display": "inline-flex",
-                    "height": 40,
-                    "justifyContent": "center",
+                    "color": "inherit",
+                    "font": "inherit",
+                    "lineHeight": "normal",
                     "margin": 0,
-                    "marginRight": 16,
                     "outline": "none",
-                    "paddingBottom": 0,
-                    "paddingLeft": 16,
-                    "paddingRight": 16,
-                    "paddingTop": 0,
-                    "position": "relative",
+                    "overflow": "visible",
+                    "padding": 0,
                     "textDecoration": "none",
                     "touchAction": "manipulation",
                     "userSelect": "none",
+                    "width": "auto",
                   }
                 }
                 tabIndex={0}
                 type="button"
               >
-                <span
+                <div
                   className=""
                   style={
                     Object {
-                      "MozOsxFontSmoothing": "grayscale",
-                      "WebkitFontSmoothing": "antialiased",
+                      ":focus": Object {
+                        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                      },
                       "alignItems": "center",
-                      "display": "flex",
-                      "fontFamily": "Lato, sans-serif",
-                      "fontSize": 16,
-                      "fontWeight": "bold",
-                      "lineHeight": "20px",
-                      "overflow": "hidden",
-                      "pointerEvents": "none",
-                      "textOverflow": "ellipsis",
-                      "whiteSpace": "nowrap",
+                      "background": "#1865f2",
+                      "border": "none",
+                      "borderRadius": 4,
+                      "borderStyle": "solid",
+                      "borderWidth": 0,
+                      "boxSizing": "border-box",
+                      "color": "#ffffff",
+                      "cursor": "pointer",
+                      "display": "inline-flex",
+                      "flexDirection": "column",
+                      "height": 40,
+                      "justifyContent": "center",
+                      "margin": 0,
+                      "marginRight": 16,
+                      "minHeight": 0,
+                      "minWidth": 0,
+                      "outline": "none",
+                      "padding": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 0,
+                      "position": "relative",
+                      "textDecoration": "none",
+                      "touchAction": "manipulation",
+                      "userSelect": "none",
+                      "zIndex": 0,
                     }
                   }
                 >
-                  Primary action
-                </span>
+                  <span
+                    className=""
+                    style={
+                      Object {
+                        "MozOsxFontSmoothing": "grayscale",
+                        "WebkitFontSmoothing": "antialiased",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "fontFamily": "Lato, sans-serif",
+                        "fontSize": 16,
+                        "fontWeight": "bold",
+                        "lineHeight": "20px",
+                        "overflow": "hidden",
+                        "pointerEvents": "none",
+                        "textOverflow": "ellipsis",
+                        "whiteSpace": "nowrap",
+                      }
+                    }
+                  >
+                    Primary action
+                  </span>
+                </div>
               </button>
             </div>
           </div>
@@ -2611,6 +2867,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                 }
               >
                 <button
+                  aria-label=""
                   className=""
                   disabled={false}
                   onBlur={[Function]}
@@ -2632,55 +2889,86 @@ exports[`wonder-blocks-modal example 9 1`] = `
                       "::MozFocusInner": Object {
                         "border": 0,
                       },
-                      ":focus": Object {
-                        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                      },
-                      "alignItems": "center",
-                      "background": "none",
+                      "MozOsxFontSmoothing": "inherit",
+                      "WebkitFontSmoothing": "inherit",
+                      "background": "transparent",
                       "border": "none",
-                      "borderRadius": 4,
                       "boxSizing": "border-box",
-                      "color": "#1865f2",
-                      "cursor": "pointer",
-                      "display": "inline-flex",
-                      "height": 40,
-                      "justifyContent": "center",
+                      "color": "inherit",
+                      "font": "inherit",
+                      "lineHeight": "normal",
                       "margin": 0,
                       "outline": "none",
-                      "paddingBottom": 0,
-                      "paddingLeft": 0,
-                      "paddingRight": 0,
-                      "paddingTop": 0,
-                      "position": "relative",
+                      "overflow": "visible",
+                      "padding": 0,
                       "textDecoration": "none",
                       "touchAction": "manipulation",
                       "userSelect": "none",
+                      "width": "auto",
                     }
                   }
                   tabIndex={0}
                   type="button"
                 >
-                  <span
+                  <div
                     className=""
                     style={
                       Object {
-                        "MozOsxFontSmoothing": "grayscale",
-                        "WebkitFontSmoothing": "antialiased",
+                        ":focus": Object {
+                          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                        },
                         "alignItems": "center",
-                        "display": "flex",
-                        "fontFamily": "Lato, sans-serif",
-                        "fontSize": 16,
-                        "fontWeight": "bold",
-                        "lineHeight": "20px",
-                        "overflow": "hidden",
-                        "pointerEvents": "none",
-                        "textOverflow": "ellipsis",
-                        "whiteSpace": "nowrap",
+                        "background": "none",
+                        "border": "none",
+                        "borderRadius": 4,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
+                        "boxSizing": "border-box",
+                        "color": "#1865f2",
+                        "cursor": "pointer",
+                        "display": "inline-flex",
+                        "flexDirection": "column",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "margin": 0,
+                        "minHeight": 0,
+                        "minWidth": 0,
+                        "outline": "none",
+                        "padding": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "paddingRight": 0,
+                        "paddingTop": 0,
+                        "position": "relative",
+                        "textDecoration": "none",
+                        "touchAction": "manipulation",
+                        "userSelect": "none",
+                        "zIndex": 0,
                       }
                     }
                   >
-                    Previous
-                  </span>
+                    <span
+                      className=""
+                      style={
+                        Object {
+                          "MozOsxFontSmoothing": "grayscale",
+                          "WebkitFontSmoothing": "antialiased",
+                          "alignItems": "center",
+                          "display": "flex",
+                          "fontFamily": "Lato, sans-serif",
+                          "fontSize": 16,
+                          "fontWeight": "bold",
+                          "lineHeight": "20px",
+                          "overflow": "hidden",
+                          "pointerEvents": "none",
+                          "textOverflow": "ellipsis",
+                          "whiteSpace": "nowrap",
+                        }
+                      }
+                    >
+                      Previous
+                    </span>
+                  </div>
                 </button>
                 <div
                   aria-hidden="true"
@@ -2709,6 +2997,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   }
                 />
                 <button
+                  aria-label=""
                   className=""
                   disabled={false}
                   onBlur={[Function]}
@@ -2730,55 +3019,86 @@ exports[`wonder-blocks-modal example 9 1`] = `
                       "::MozFocusInner": Object {
                         "border": 0,
                       },
-                      ":focus": Object {
-                        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                      },
-                      "alignItems": "center",
-                      "background": "#1865f2",
+                      "MozOsxFontSmoothing": "inherit",
+                      "WebkitFontSmoothing": "inherit",
+                      "background": "transparent",
                       "border": "none",
-                      "borderRadius": 4,
                       "boxSizing": "border-box",
-                      "color": "#ffffff",
-                      "cursor": "pointer",
-                      "display": "inline-flex",
-                      "height": 40,
-                      "justifyContent": "center",
+                      "color": "inherit",
+                      "font": "inherit",
+                      "lineHeight": "normal",
                       "margin": 0,
                       "outline": "none",
-                      "paddingBottom": 0,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 0,
-                      "position": "relative",
+                      "overflow": "visible",
+                      "padding": 0,
                       "textDecoration": "none",
                       "touchAction": "manipulation",
                       "userSelect": "none",
+                      "width": "auto",
                     }
                   }
                   tabIndex={0}
                   type="button"
                 >
-                  <span
+                  <div
                     className=""
                     style={
                       Object {
-                        "MozOsxFontSmoothing": "grayscale",
-                        "WebkitFontSmoothing": "antialiased",
+                        ":focus": Object {
+                          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                        },
                         "alignItems": "center",
-                        "display": "flex",
-                        "fontFamily": "Lato, sans-serif",
-                        "fontSize": 16,
-                        "fontWeight": "bold",
-                        "lineHeight": "20px",
-                        "overflow": "hidden",
-                        "pointerEvents": "none",
-                        "textOverflow": "ellipsis",
-                        "whiteSpace": "nowrap",
+                        "background": "#1865f2",
+                        "border": "none",
+                        "borderRadius": 4,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
+                        "boxSizing": "border-box",
+                        "color": "#ffffff",
+                        "cursor": "pointer",
+                        "display": "inline-flex",
+                        "flexDirection": "column",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "margin": 0,
+                        "minHeight": 0,
+                        "minWidth": 0,
+                        "outline": "none",
+                        "padding": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 0,
+                        "position": "relative",
+                        "textDecoration": "none",
+                        "touchAction": "manipulation",
+                        "userSelect": "none",
+                        "zIndex": 0,
                       }
                     }
                   >
-                    Next
-                  </span>
+                    <span
+                      className=""
+                      style={
+                        Object {
+                          "MozOsxFontSmoothing": "grayscale",
+                          "WebkitFontSmoothing": "antialiased",
+                          "alignItems": "center",
+                          "display": "flex",
+                          "fontFamily": "Lato, sans-serif",
+                          "fontSize": 16,
+                          "fontWeight": "bold",
+                          "lineHeight": "20px",
+                          "overflow": "hidden",
+                          "pointerEvents": "none",
+                          "textOverflow": "ellipsis",
+                          "whiteSpace": "nowrap",
+                        }
+                      }
+                    >
+                      Next
+                    </span>
+                  </div>
                 </button>
               </div>
             </div>
@@ -3303,6 +3623,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                     }
                   />
                   <button
+                    aria-label=""
                     className=""
                     disabled={false}
                     onBlur={[Function]}
@@ -3324,55 +3645,86 @@ exports[`wonder-blocks-modal example 10 1`] = `
                         "::MozFocusInner": Object {
                           "border": 0,
                         },
-                        ":focus": Object {
-                          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                        },
-                        "alignItems": "center",
-                        "background": "#1865f2",
+                        "MozOsxFontSmoothing": "inherit",
+                        "WebkitFontSmoothing": "inherit",
+                        "background": "transparent",
                         "border": "none",
-                        "borderRadius": 4,
                         "boxSizing": "border-box",
-                        "color": "#ffffff",
-                        "cursor": "pointer",
-                        "display": "inline-flex",
-                        "height": 40,
-                        "justifyContent": "center",
+                        "color": "inherit",
+                        "font": "inherit",
+                        "lineHeight": "normal",
                         "margin": 0,
                         "outline": "none",
-                        "paddingBottom": 0,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 0,
-                        "position": "relative",
+                        "overflow": "visible",
+                        "padding": 0,
                         "textDecoration": "none",
                         "touchAction": "manipulation",
                         "userSelect": "none",
+                        "width": "auto",
                       }
                     }
                     tabIndex={0}
                     type="button"
                   >
-                    <span
+                    <div
                       className=""
                       style={
                         Object {
-                          "MozOsxFontSmoothing": "grayscale",
-                          "WebkitFontSmoothing": "antialiased",
+                          ":focus": Object {
+                            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                          },
                           "alignItems": "center",
-                          "display": "flex",
-                          "fontFamily": "Lato, sans-serif",
-                          "fontSize": 16,
-                          "fontWeight": "bold",
-                          "lineHeight": "20px",
-                          "overflow": "hidden",
-                          "pointerEvents": "none",
-                          "textOverflow": "ellipsis",
-                          "whiteSpace": "nowrap",
+                          "background": "#1865f2",
+                          "border": "none",
+                          "borderRadius": 4,
+                          "borderStyle": "solid",
+                          "borderWidth": 0,
+                          "boxSizing": "border-box",
+                          "color": "#ffffff",
+                          "cursor": "pointer",
+                          "display": "inline-flex",
+                          "flexDirection": "column",
+                          "height": 40,
+                          "justifyContent": "center",
+                          "margin": 0,
+                          "minHeight": 0,
+                          "minWidth": 0,
+                          "outline": "none",
+                          "padding": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 16,
+                          "paddingRight": 16,
+                          "paddingTop": 0,
+                          "position": "relative",
+                          "textDecoration": "none",
+                          "touchAction": "manipulation",
+                          "userSelect": "none",
+                          "zIndex": 0,
                         }
                       }
                     >
-                      Primary action
-                    </span>
+                      <span
+                        className=""
+                        style={
+                          Object {
+                            "MozOsxFontSmoothing": "grayscale",
+                            "WebkitFontSmoothing": "antialiased",
+                            "alignItems": "center",
+                            "display": "flex",
+                            "fontFamily": "Lato, sans-serif",
+                            "fontSize": 16,
+                            "fontWeight": "bold",
+                            "lineHeight": "20px",
+                            "overflow": "hidden",
+                            "pointerEvents": "none",
+                            "textOverflow": "ellipsis",
+                            "whiteSpace": "nowrap",
+                          }
+                        }
+                      >
+                        Primary action
+                      </span>
+                    </div>
                   </button>
                 </div>
               </div>

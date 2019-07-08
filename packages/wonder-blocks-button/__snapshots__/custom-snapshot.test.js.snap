@@ -1,29 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ButtonCore kind:primary color:default size:medium light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -31,14 +12,20 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(255,255,255,0.64)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -47,10 +34,9 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -73,33 +59,14 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:medium light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -107,15 +74,21 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -124,10 +97,9 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -150,33 +122,14 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -184,15 +137,21 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -201,10 +160,9 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -227,33 +185,14 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -261,15 +200,21 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
       "background": "#1b50b3",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1b50b3",
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -278,10 +223,9 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -304,33 +248,14 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -338,14 +263,20 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
       "background": "#b5cefb",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -354,10 +285,9 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -380,33 +310,14 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -414,15 +325,21 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -431,10 +348,9 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -457,33 +373,14 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -491,15 +388,21 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -508,10 +411,9 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -534,33 +436,14 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -568,15 +451,21 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
       "background": "#b5cefb",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #b5cefb",
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -585,10 +474,9 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -611,33 +499,14 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:small light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -645,14 +514,20 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(255,255,255,0.64)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -661,10 +536,9 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -687,33 +561,14 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:small light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -721,15 +576,21 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -738,10 +599,9 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -764,33 +624,14 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -798,15 +639,21 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
       "background": "#1865f2",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -815,10 +662,9 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -841,33 +687,14 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -875,15 +702,21 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
       "background": "#1b50b3",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1b50b3",
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -892,10 +725,9 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -918,33 +750,14 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -952,14 +765,20 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
       "background": "#b5cefb",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -968,10 +787,9 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -994,33 +812,14 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:small light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1028,15 +827,21 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1045,10 +850,9 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1071,33 +875,14 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1105,15 +890,21 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1122,10 +913,9 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1148,33 +938,14 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1182,15 +953,21 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
       "background": "#b5cefb",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #b5cefb",
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1199,10 +976,9 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1225,33 +1001,14 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1259,14 +1016,20 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(255,255,255,0.64)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1275,10 +1038,9 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -1301,33 +1063,14 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1335,15 +1078,21 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1352,10 +1101,9 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1378,33 +1126,14 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1412,15 +1141,21 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1429,10 +1164,9 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1455,33 +1189,14 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1489,15 +1204,21 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
       "background": "#9e271d",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #9e271d",
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1506,10 +1227,9 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1532,33 +1252,14 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1566,14 +1267,20 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
       "background": "#f3bbb4",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1582,10 +1289,9 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -1608,33 +1314,14 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1642,15 +1329,21 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1659,10 +1352,9 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1685,33 +1377,14 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1719,15 +1392,21 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1736,10 +1415,9 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1762,33 +1440,14 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:medium light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1796,15 +1455,21 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
       "background": "#f3bbb4",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #f3bbb4",
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1813,10 +1478,9 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1839,33 +1503,14 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1873,14 +1518,20 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(255,255,255,0.64)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1889,10 +1540,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -1915,33 +1565,14 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:small light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -1949,15 +1580,21 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -1966,10 +1603,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -1992,33 +1628,14 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:small light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2026,15 +1643,21 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
       "background": "#d92916",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2043,10 +1666,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -2069,33 +1691,14 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:small light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2103,15 +1706,21 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
       "background": "#9e271d",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #9e271d",
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2120,10 +1729,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -2146,33 +1754,14 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2180,14 +1769,20 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
       "background": "#f3bbb4",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2196,10 +1791,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -2222,33 +1816,14 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:small light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2256,15 +1831,21 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2273,10 +1854,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -2299,33 +1879,14 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:small light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2333,15 +1894,21 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
       "background": "#ffffff",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2350,10 +1917,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -2376,33 +1942,14 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary color:destructive size:small light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2410,15 +1957,21 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
       "background": "#f3bbb4",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #f3bbb4",
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2427,10 +1980,9 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -2453,33 +2005,14 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
-<button
-  aria-label="loading"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2487,14 +2020,20 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(255,255,255,0.64)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2503,10 +2042,9 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -2583,33 +2121,14 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
       />
     </svg>
   </div>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
-<button
-  aria-label="loading"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2617,14 +2136,20 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
       "background": "rgba(33,36,44,0.32)",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(255,255,255,0.64)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2633,10 +2158,9 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -2713,33 +2237,14 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
       />
     </svg>
   </div>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:medium light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2754,10 +2259,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -2766,10 +2275,9 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -2792,33 +2300,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:medium light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2833,10 +2322,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -2845,10 +2338,9 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -2871,33 +2363,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:medium light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2912,10 +2385,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -2924,10 +2401,9 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -2950,33 +2426,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:medium light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -2991,10 +2448,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3003,10 +2464,9 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3029,33 +2489,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:medium light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3070,10 +2511,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
       "color": "#b5cefb",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -3082,10 +2527,9 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -3108,33 +2552,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:medium light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3149,10 +2574,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3161,10 +2590,9 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3187,33 +2615,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3228,10 +2637,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3240,10 +2653,9 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3266,33 +2678,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3307,10 +2700,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3319,10 +2716,9 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3345,33 +2741,14 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3386,10 +2763,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -3398,10 +2779,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -3424,33 +2804,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:small light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3465,10 +2826,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3477,10 +2842,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3503,33 +2867,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:small light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3544,10 +2889,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3556,10 +2905,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3582,33 +2930,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:small light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3623,10 +2952,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3635,10 +2968,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3661,33 +2993,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:small light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3702,10 +3015,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
       "color": "#b5cefb",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -3714,10 +3031,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -3740,33 +3056,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:small light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3781,10 +3078,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3793,10 +3094,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3819,33 +3119,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3860,10 +3141,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3872,10 +3157,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3898,33 +3182,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -3939,10 +3204,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -3951,10 +3220,9 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -3977,33 +3245,14 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4018,10 +3267,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -4030,10 +3283,9 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -4056,33 +3308,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4097,10 +3330,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4109,10 +3346,9 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4135,33 +3371,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4176,10 +3393,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4188,10 +3409,9 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4214,33 +3434,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4255,10 +3456,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4267,10 +3472,9 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4293,33 +3497,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4334,10 +3519,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
       "color": "#f3bbb4",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -4346,10 +3535,9 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -4372,33 +3560,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4413,10 +3582,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4425,10 +3598,9 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4451,33 +3623,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4492,10 +3645,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4504,10 +3661,9 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4530,33 +3686,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:medium light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4571,10 +3708,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
       "color": "#f3bbb4",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4583,10 +3724,9 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4609,33 +3749,14 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4650,10 +3771,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -4662,10 +3787,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -4688,33 +3812,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4729,10 +3834,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4741,10 +3850,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4767,33 +3875,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4808,10 +3897,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4820,10 +3913,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4846,33 +3938,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4887,10 +3960,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -4899,10 +3976,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -4925,33 +4001,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -4966,10 +4023,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
       "color": "#f3bbb4",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -4978,10 +4039,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -5004,33 +4064,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5045,10 +4086,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -5057,10 +4102,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -5083,33 +4127,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5124,10 +4149,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -5136,10 +4165,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -5162,33 +4190,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary color:destructive size:small light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5203,10 +4212,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
       "color": "#f3bbb4",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 15,
       "paddingRight": 15,
@@ -5215,10 +4228,9 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -5241,33 +4253,14 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
-<button
-  aria-label="loading"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5282,10 +4275,14 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -5294,10 +4291,9 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -5374,33 +4370,14 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
       />
     </svg>
   </div>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
-<button
-  aria-label="loading"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5415,10 +4392,14 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -5427,10 +4408,9 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -5507,33 +4487,14 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
       />
     </svg>
   </div>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5541,14 +4502,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -5557,10 +4524,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -5583,33 +4549,14 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#1865f2",
         "borderRadius": 2,
@@ -5627,14 +4574,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -5643,10 +4596,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -5669,33 +4621,14 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#1865f2",
         "borderRadius": 2,
@@ -5713,14 +4646,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -5729,10 +4668,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -5755,33 +4693,14 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#1b50b3",
         "borderRadius": 2,
@@ -5799,14 +4718,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -5815,10 +4740,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -5841,33 +4765,14 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5875,14 +4780,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -5891,10 +4802,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -5917,33 +4827,14 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -5961,14 +4852,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -5977,10 +4874,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6003,33 +4899,14 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -6047,14 +4924,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6063,10 +4946,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6089,33 +4971,14 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#b5cefb",
         "borderRadius": 2,
@@ -6133,14 +4996,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6149,10 +5018,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6175,33 +5043,14 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6209,14 +5058,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6225,10 +5080,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -6251,33 +5105,14 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#1865f2",
         "borderRadius": 2,
@@ -6295,14 +5130,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6311,10 +5152,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6337,33 +5177,14 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#1865f2",
         "borderRadius": 2,
@@ -6381,14 +5202,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6397,10 +5224,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6423,33 +5249,14 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#1b50b3",
         "borderRadius": 2,
@@ -6467,14 +5274,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6483,10 +5296,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6509,33 +5321,14 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6543,14 +5336,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6559,10 +5358,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -6585,33 +5383,14 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -6629,14 +5408,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6645,10 +5430,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6671,33 +5455,14 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -6715,14 +5480,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6731,10 +5502,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6757,33 +5527,14 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#b5cefb",
         "borderRadius": 2,
@@ -6801,14 +5552,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6817,10 +5574,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -6843,33 +5599,14 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6877,14 +5614,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6893,10 +5636,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -6919,33 +5661,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#d92916",
         "borderRadius": 2,
@@ -6963,14 +5686,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -6979,10 +5708,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7005,33 +5733,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#d92916",
         "borderRadius": 2,
@@ -7049,14 +5758,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7065,10 +5780,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7091,33 +5805,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#9e271d",
         "borderRadius": 2,
@@ -7135,14 +5830,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7151,10 +5852,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7177,33 +5877,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7211,14 +5892,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7227,10 +5914,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -7253,33 +5939,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -7297,14 +5964,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7313,10 +5986,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7339,33 +6011,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -7383,14 +6036,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7399,10 +6058,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7425,33 +6083,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:medium light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#f3bbb4",
         "borderRadius": 2,
@@ -7469,14 +6108,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7485,10 +6130,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7511,33 +6155,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7545,14 +6170,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7561,10 +6192,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -7587,33 +6217,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#d92916",
         "borderRadius": 2,
@@ -7631,14 +6242,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7647,10 +6264,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7673,33 +6289,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#d92916",
         "borderRadius": 2,
@@ -7717,14 +6314,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7733,10 +6336,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7759,33 +6361,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:false pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#9e271d",
         "borderRadius": 2,
@@ -7803,14 +6386,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#9e271d",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7819,10 +6408,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -7845,33 +6433,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabled 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7879,14 +6448,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7895,10 +6470,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -7921,33 +6495,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true focused 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -7965,14 +6520,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -7981,10 +6542,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -8007,33 +6567,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovered 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#ffffff",
         "borderRadius": 2,
@@ -8051,14 +6592,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -8067,10 +6614,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -8093,33 +6639,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary color:destructive size:small light:true pressed 1`] = `
-<button
-  aria-label=""
+<div
   className=""
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":after": Object {
         "background": "#f3bbb4",
         "borderRadius": 2,
@@ -8137,14 +6664,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "#f3bbb4",
       "cursor": "pointer",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -8153,10 +6686,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={0}
-  type="button"
 >
   <span
     className=""
@@ -8179,33 +6711,14 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
   >
     Click me
   </span>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
-<button
-  aria-label="loading"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8213,14 +6726,20 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 40,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -8229,10 +6748,9 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -8309,33 +6827,14 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
       />
     </svg>
   </div>
-</button>
+</div>
 `;
 
 exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
-<button
-  aria-label="loading"
+<div
   className=""
-  disabled={true}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragStart={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  role="button"
   style={
     Object {
-      "::MozFocusInner": Object {
-        "border": 0,
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8343,14 +6842,20 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
       "background": "none",
       "border": "none",
       "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
       "cursor": "default",
       "display": "inline-flex",
+      "flexDirection": "column",
       "height": 32,
       "justifyContent": "center",
       "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
       "outline": "none",
+      "padding": 0,
       "paddingBottom": 0,
       "paddingLeft": 0,
       "paddingRight": 0,
@@ -8359,10 +6864,9 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "zIndex": 0,
     }
   }
-  tabIndex={-1}
-  type="button"
 >
   <span
     className=""
@@ -8439,5 +6943,5 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
       />
     </svg>
   </div>
-</button>
+</div>
 `;

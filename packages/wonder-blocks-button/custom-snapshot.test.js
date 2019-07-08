@@ -4,6 +4,7 @@ import renderer from "react-test-renderer";
 
 import ButtonCore from "./components/button-core.js";
 
+// eslint-disable-next-line no-unused-vars
 const defaultHandlers = {
     onClick: () => void 0,
     onMouseEnter: () => void 0,
@@ -48,11 +49,9 @@ describe("ButtonCore", () => {
                                         size={size}
                                         color={color}
                                         light={light}
-                                        tabIndex={disabled ? -1 : 0}
                                         spinner={false}
                                         aria-label={""}
                                         {...stateProps}
-                                        {...defaultHandlers}
                                     >
                                         Click me
                                     </ButtonCore>,
@@ -83,11 +82,9 @@ describe("ButtonCore", () => {
                             size={size}
                             color="default"
                             light={false}
-                            tabIndex={disabled ? -1 : 0}
                             spinner={spinner}
                             aria-label={"loading"}
                             {...stateProps}
-                            {...defaultHandlers}
                         >
                             Click me
                         </ButtonCore>,

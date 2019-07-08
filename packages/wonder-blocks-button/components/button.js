@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
 import PropTypes from "prop-types";
-
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import ButtonCore from "./button-core.js";
 
 export type SharedProps = {|
@@ -166,28 +165,30 @@ export default class Button extends React.Component<SharedProps> {
         const {
             onClick,
             href,
+            testId,
             children,
-            skipClientNav,
             spinner,
             disabled,
+            skipClientNav,
             ...sharedProps
         } = this.props;
 
         return (
             <Clickable
-                disabled={spinner || disabled}
                 href={href}
-                onClick={onClick}
                 role="button"
+                testId={testId}
+                onClick={onClick}
                 skipClientNav={skipClientNav}
+                disabled={spinner || disabled}
             >
-                {(state) => {
+                {(eventState) => {
                     return (
                         <ButtonCore
-                            {...sharedProps}
-                            {...state}
                             disabled={disabled}
                             spinner={spinner}
+                            {...sharedProps}
+                            {...eventState}
                         >
                             {children}
                         </ButtonCore>
