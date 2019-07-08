@@ -65,7 +65,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <div
+    <span
       className=""
       style={
         Object {
@@ -76,20 +76,13 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
-          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
           "outline": "none",
-          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -99,7 +92,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
-          "zIndex": 0,
         }
       }
     >
@@ -123,30 +115,18 @@ exports[`wonder-blocks-layout example 1 1`] = `
           }
         }
       >
-        <div
+        <span
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
               "width": "100%",
-              "zIndex": 0,
             }
           }
         >
           A
-        </div>
+        </span>
       </span>
-    </div>
+    </span>
   </button>
   <div
     aria-hidden="true"
@@ -218,7 +198,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <div
+    <span
       className=""
       style={
         Object {
@@ -229,20 +209,13 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
-          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
           "outline": "none",
-          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -252,7 +225,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
-          "zIndex": 0,
         }
       }
     >
@@ -276,30 +248,18 @@ exports[`wonder-blocks-layout example 1 1`] = `
           }
         }
       >
-        <div
+        <span
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
               "width": "100%",
-              "zIndex": 0,
             }
           }
         >
           B
-        </div>
+        </span>
       </span>
-    </div>
+    </span>
   </button>
   <div
     aria-hidden="true"
@@ -371,7 +331,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <div
+    <span
       className=""
       style={
         Object {
@@ -382,20 +342,13 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
-          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
           "outline": "none",
-          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -405,7 +358,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
-          "zIndex": 0,
         }
       }
     >
@@ -429,30 +381,18 @@ exports[`wonder-blocks-layout example 1 1`] = `
           }
         }
       >
-        <div
+        <span
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
               "width": "100%",
-              "zIndex": 0,
             }
           }
         >
           C
-        </div>
+        </span>
       </span>
-    </div>
+    </span>
   </button>
   <div
     aria-hidden="true"
@@ -519,7 +459,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <div
+    <span
       className=""
       style={
         Object {
@@ -530,20 +470,13 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
-          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
           "outline": "none",
-          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -553,7 +486,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
-          "zIndex": 0,
         }
       }
     >
@@ -577,30 +509,18 @@ exports[`wonder-blocks-layout example 1 1`] = `
           }
         }
       >
-        <div
+        <span
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
               "width": "100%",
-              "zIndex": 0,
             }
           }
         >
           Cancel
-        </div>
+        </span>
       </span>
-    </div>
+    </span>
   </button>
   <div
     aria-hidden="true"
@@ -672,7 +592,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <div
+    <span
       className=""
       style={
         Object {
@@ -683,20 +603,13 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
-          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
           "outline": "none",
-          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -706,7 +619,6 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
-          "zIndex": 0,
         }
       }
     >
@@ -730,30 +642,18 @@ exports[`wonder-blocks-layout example 1 1`] = `
           }
         }
       >
-        <div
+        <span
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
               "width": "100%",
-              "zIndex": 0,
             }
           }
         >
           Accept
-        </div>
+        </span>
       </span>
-    </div>
+    </span>
   </button>
 </div>
 `;

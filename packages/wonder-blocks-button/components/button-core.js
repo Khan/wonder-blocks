@@ -3,7 +3,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import {StyleSheet} from "aphrodite";
 import Icon from "@khanacademy/wonder-blocks-icon";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Color, {
     SemanticColor,
@@ -38,6 +38,8 @@ export default class ButtonCore extends React.Component<Props> {
             children,
             disabled: disabledProp,
         } = this.props;
+
+        const StyledSpan = addStyle("span");
 
         const buttonColor =
             color === "destructive"
@@ -86,11 +88,13 @@ export default class ButtonCore extends React.Component<Props> {
                         style={sharedStyles.icon}
                     />
                 )}
-                <View style={sharedStyles.parentWidth}>{children}</View>
+                <StyledSpan style={sharedStyles.parentWidth}>
+                    {children}
+                </StyledSpan>
             </Label>
         );
         return (
-            <View style={[defaultStyle, style]}>
+            <StyledSpan style={[defaultStyle, style]}>
                 {label}
                 {spinner && (
                     <CircularSpinner
@@ -99,7 +103,7 @@ export default class ButtonCore extends React.Component<Props> {
                         size={{medium: "small", small: "xsmall"}[size]}
                     />
                 )}
-            </View>
+            </StyledSpan>
         );
     }
 }

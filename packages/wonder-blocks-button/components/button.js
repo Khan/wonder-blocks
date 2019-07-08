@@ -99,10 +99,13 @@ export type SharedProps = {|
     skipClientNav?: boolean,
 
     /**
-     * Optional custom styles.
+     * Optional styling for the content of the button.
      */
     innerStyle?: StyleType,
 
+    /**
+     * Optional styling for the buttons container.
+     */
     style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
     /*

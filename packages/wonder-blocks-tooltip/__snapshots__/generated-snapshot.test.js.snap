@@ -185,7 +185,7 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
   tabIndex={0}
   type="button"
 >
-  <div
+  <span
     className=""
     style={
       Object {
@@ -196,20 +196,13 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
         "background": "#1865f2",
         "border": "none",
         "borderRadius": 4,
-        "borderStyle": "solid",
-        "borderWidth": 0,
         "boxSizing": "border-box",
         "color": "#ffffff",
         "cursor": "pointer",
         "display": "inline-flex",
-        "flexDirection": "column",
         "height": 40,
         "justifyContent": "center",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
         "outline": "none",
-        "padding": 0,
         "paddingBottom": 0,
         "paddingLeft": 16,
         "paddingRight": 16,
@@ -219,7 +212,6 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
         "touchAction": "manipulation",
         "userSelect": "none",
         "width": "100%",
-        "zIndex": 0,
       }
     }
   >
@@ -243,30 +235,18 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
         }
       }
     >
-      <div
+      <span
         className=""
         style={
           Object {
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
             "width": "100%",
-            "zIndex": 0,
           }
         }
       >
         Click here!
-      </div>
+      </span>
     </span>
-  </div>
+  </span>
 </button>
 `;
 
@@ -497,7 +477,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     tabIndex={0}
     type="button"
   >
-    <div
+    <span
       className=""
       style={
         Object {
@@ -508,20 +488,13 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
-          "borderStyle": "solid",
-          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
-          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
           "outline": "none",
-          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -531,7 +504,6 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
-          "zIndex": 0,
         }
       }
     >
@@ -555,30 +527,18 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
           }
         }
       >
-        <div
+        <span
           className=""
           style={
             Object {
-              "alignItems": "stretch",
-              "borderStyle": "solid",
-              "borderWidth": 0,
-              "boxSizing": "border-box",
-              "display": "flex",
-              "flexDirection": "column",
-              "margin": 0,
-              "minHeight": 0,
-              "minWidth": 0,
-              "padding": 0,
-              "position": "relative",
               "width": "100%",
-              "zIndex": 0,
             }
           }
         >
           Click me!
-        </div>
+        </span>
       </span>
-    </div>
+    </span>
   </button>
   <div
     aria-hidden="true"
