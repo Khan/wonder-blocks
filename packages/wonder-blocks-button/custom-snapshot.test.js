@@ -4,23 +4,6 @@ import renderer from "react-test-renderer";
 
 import ButtonCore from "./components/button-core.js";
 
-// eslint-disable-next-line no-unused-vars
-const defaultHandlers = {
-    onClick: () => void 0,
-    onMouseEnter: () => void 0,
-    onMouseLeave: () => void 0,
-    onMouseDown: () => void 0,
-    onMouseUp: () => void 0,
-    onDragStart: () => void 0,
-    onTouchStart: () => void 0,
-    onTouchEnd: () => void 0,
-    onTouchCancel: () => void 0,
-    onKeyDown: () => void 0,
-    onKeyUp: () => void 0,
-    onFocus: () => void 0,
-    onBlur: () => void 0,
-};
-
 describe("ButtonCore", () => {
     for (const kind of ["primary", "secondary", "tertiary"]) {
         for (const color of ["default", "destructive"]) {

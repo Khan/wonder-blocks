@@ -34,6 +34,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -54,10 +55,32 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -97,6 +120,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -117,10 +141,32 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -160,6 +206,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -180,10 +227,32 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -223,6 +292,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -243,10 +313,32 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -285,6 +377,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -305,10 +398,32 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -348,6 +463,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -368,10 +484,32 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -411,6 +549,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -431,10 +570,32 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -474,6 +635,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -494,10 +656,32 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -536,6 +720,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -556,10 +741,32 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -599,6 +806,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -619,10 +827,32 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -662,6 +892,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -682,10 +913,32 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -725,6 +978,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -745,10 +999,32 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -787,6 +1063,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -807,10 +1084,32 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -850,6 +1149,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -870,10 +1170,32 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -913,6 +1235,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -933,10 +1256,32 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -976,6 +1321,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -996,10 +1342,32 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1038,6 +1406,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1058,10 +1427,32 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1101,6 +1492,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1121,10 +1513,32 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1164,6 +1578,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1184,10 +1599,32 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1227,6 +1664,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1247,10 +1685,32 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1289,6 +1749,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1309,10 +1770,32 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1352,6 +1835,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1372,10 +1856,32 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1415,6 +1921,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1435,10 +1942,32 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1478,6 +2007,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1498,10 +2028,32 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1540,6 +2092,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1560,10 +2113,32 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1603,6 +2178,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1623,10 +2199,32 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1666,6 +2264,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1686,10 +2285,32 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1729,6 +2350,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1749,10 +2371,32 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1791,6 +2435,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1811,10 +2456,32 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1854,6 +2521,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1874,10 +2542,32 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1917,6 +2607,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -1937,10 +2628,32 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -1980,6 +2693,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2000,10 +2714,32 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2042,6 +2778,7 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2063,10 +2800,32 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
         "textOverflow": "ellipsis",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
   <div
     className=""
@@ -2158,6 +2917,7 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2179,10 +2939,32 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
         "textOverflow": "ellipsis",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
   <div
     className=""
@@ -2275,6 +3057,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2295,10 +3078,32 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2338,6 +3143,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2358,10 +3164,32 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2401,6 +3229,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2421,10 +3250,32 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2464,6 +3315,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2484,10 +3336,32 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2527,6 +3401,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2547,10 +3422,32 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2590,6 +3487,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2610,10 +3508,32 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2653,6 +3573,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2673,10 +3594,32 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2716,6 +3659,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2736,10 +3680,32 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2779,6 +3745,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2799,10 +3766,32 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2842,6 +3831,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2862,10 +3852,32 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2905,6 +3917,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2925,10 +3938,32 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -2968,6 +4003,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -2988,10 +4024,32 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3031,6 +4089,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3051,10 +4110,32 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3094,6 +4175,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3114,10 +4196,32 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3157,6 +4261,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3177,10 +4282,32 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3220,6 +4347,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3240,10 +4368,32 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3283,6 +4433,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3303,10 +4454,32 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3346,6 +4519,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3366,10 +4540,32 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3409,6 +4605,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3429,10 +4626,32 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3472,6 +4691,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3492,10 +4712,32 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3535,6 +4777,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3555,10 +4798,32 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3598,6 +4863,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3618,10 +4884,32 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3661,6 +4949,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3681,10 +4970,32 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3724,6 +5035,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3744,10 +5056,32 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3787,6 +5121,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3807,10 +5142,32 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3850,6 +5207,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3870,10 +5228,32 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3913,6 +5293,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3933,10 +5314,32 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -3976,6 +5379,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -3996,10 +5400,32 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4039,6 +5465,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4059,10 +5486,32 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4102,6 +5551,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4122,10 +5572,32 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4165,6 +5637,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4185,10 +5658,32 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4228,6 +5723,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4248,10 +5744,32 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4291,6 +5809,7 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4312,10 +5831,32 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
         "textOverflow": "ellipsis",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
   <div
     className=""
@@ -4408,6 +5949,7 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4429,10 +5971,32 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
         "textOverflow": "ellipsis",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
   <div
     className=""
@@ -4524,6 +6088,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4544,10 +6109,32 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4596,6 +6183,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4616,10 +6204,32 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4668,6 +6278,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4688,10 +6299,32 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4740,6 +6373,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4760,10 +6394,32 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4802,6 +6458,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4822,10 +6479,32 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4874,6 +6553,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4894,10 +6574,32 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -4946,6 +6648,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -4966,10 +6669,32 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5018,6 +6743,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5038,10 +6764,32 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5080,6 +6828,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5100,10 +6849,32 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5152,6 +6923,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5172,10 +6944,32 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5224,6 +7018,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5244,10 +7039,32 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5296,6 +7113,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5316,10 +7134,32 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5358,6 +7198,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5378,10 +7219,32 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5430,6 +7293,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5450,10 +7314,32 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5502,6 +7388,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5522,10 +7409,32 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5574,6 +7483,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5594,10 +7504,32 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5636,6 +7568,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5656,10 +7589,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5708,6 +7663,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5728,10 +7684,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5780,6 +7758,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5800,10 +7779,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5852,6 +7853,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5872,10 +7874,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5914,6 +7938,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -5934,10 +7959,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -5986,6 +8033,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6006,10 +8054,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6058,6 +8128,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6078,10 +8149,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6130,6 +8223,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6150,10 +8244,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6192,6 +8308,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6212,10 +8329,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6264,6 +8403,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6284,10 +8424,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6336,6 +8498,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6356,10 +8519,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6408,6 +8593,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6428,10 +8614,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6470,6 +8678,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6490,10 +8699,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6542,6 +8773,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6562,10 +8794,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6614,6 +8868,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6634,10 +8889,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6686,6 +8963,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6706,10 +8984,32 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
 </div>
 `;
@@ -6748,6 +9048,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6769,10 +9070,32 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
         "textOverflow": "ellipsis",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
   <div
     className=""
@@ -6864,6 +9187,7 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
       "textDecoration": "none",
       "touchAction": "manipulation",
       "userSelect": "none",
+      "width": "100%",
       "zIndex": 0,
     }
   }
@@ -6885,10 +9209,32 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
         "textOverflow": "ellipsis",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
+        "width": "100%",
       }
     }
   >
-    Click me
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    >
+      Click me
+    </div>
   </span>
   <div
     className=""

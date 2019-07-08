@@ -163,11 +163,12 @@ export default class Button extends React.Component<SharedProps> {
 
     render() {
         const {
-            onClick,
             href,
+            style,
             testId,
-            children,
             spinner,
+            onClick,
+            children,
             disabled,
             skipClientNav,
             ...sharedProps
@@ -176,6 +177,7 @@ export default class Button extends React.Component<SharedProps> {
         return (
             <Clickable
                 href={href}
+                style={style}
                 role="button"
                 testId={testId}
                 onClick={onClick}

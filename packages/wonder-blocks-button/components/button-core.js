@@ -28,7 +28,6 @@ export default class ButtonCore extends React.Component<Props> {
             kind,
             size,
             icon,
-            style,
             color,
             light,
             spinner,
@@ -55,6 +54,7 @@ export default class ButtonCore extends React.Component<Props> {
         const disabled = spinner || disabledProp;
 
         const defaultStyle = [
+            sharedStyles.parentWidth,
             sharedStyles.shared,
             disabled && sharedStyles.disabled,
             icon && sharedStyles.withIcon,
@@ -71,7 +71,11 @@ export default class ButtonCore extends React.Component<Props> {
 
         const label = (
             <Label
-                style={[sharedStyles.text, spinner && sharedStyles.hiddenText]}
+                style={[
+                    sharedStyles.text,
+                    spinner && sharedStyles.hiddenText,
+                    sharedStyles.parentWidth,
+                ]}
             >
                 {icon && (
                     <Icon
@@ -81,18 +85,18 @@ export default class ButtonCore extends React.Component<Props> {
                         style={sharedStyles.icon}
                     />
                 )}
-                {children}
+                <View style={sharedStyles.parentWidth}>{children}</View>
             </Label>
         );
 
         return (
-            <View style={[defaultStyle, style]}>
+            <View style={[defaultStyle]}>
                 {label}
                 {spinner && (
                     <CircularSpinner
+                        light={kind === "primary"}
                         style={sharedStyles.spinner}
                         size={{medium: "small", small: "xsmall"}[size]}
-                        light={kind === "primary"}
                     />
                 )}
             </View>
@@ -101,6 +105,10 @@ export default class ButtonCore extends React.Component<Props> {
 }
 
 const sharedStyles = StyleSheet.create({
+    parentWidth: {
+        width: "100%",
+    },
+
     shared: {
         position: "relative",
         display: "inline-flex",
