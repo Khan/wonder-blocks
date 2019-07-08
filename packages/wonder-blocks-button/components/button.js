@@ -101,6 +101,8 @@ export type SharedProps = {|
     /**
      * Optional custom styles.
      */
+    innerStyle?: StyleType,
+
     style?: StyleType,
     // TODO(yejia): use this if ADR #47 has been implemented
     /*
@@ -163,12 +165,14 @@ export default class Button extends React.Component<SharedProps> {
 
     render() {
         const {
-            onClick,
             href,
+            style,
             testId,
-            children,
             spinner,
+            onClick,
+            children,
             disabled,
+            innerStyle,
             skipClientNav,
             ...sharedProps
         } = this.props;
@@ -176,6 +180,7 @@ export default class Button extends React.Component<SharedProps> {
         return (
             <Clickable
                 href={href}
+                style={style}
                 role="button"
                 testId={testId}
                 onClick={onClick}
@@ -185,6 +190,7 @@ export default class Button extends React.Component<SharedProps> {
                 {(eventState) => {
                     return (
                         <ButtonCore
+                            style={innerStyle}
                             disabled={disabled}
                             spinner={spinner}
                             {...sharedProps}

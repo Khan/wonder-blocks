@@ -59,7 +59,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
-        "width": "auto",
+        "width": 100,
       }
     }
     tabIndex={0}
@@ -98,7 +98,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "textDecoration": "none",
           "touchAction": "manipulation",
           "userSelect": "none",
-          "width": 100,
+          "width": "100%",
           "zIndex": 0,
         }
       }
@@ -119,10 +119,32 @@ exports[`wonder-blocks-layout example 1 1`] = `
             "pointerEvents": "none",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
+            "width": "100%",
           }
         }
       >
-        A
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          A
+        </div>
       </span>
     </div>
   </button>
@@ -190,7 +212,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
-        "width": "auto",
+        "width": 100,
       }
     }
     tabIndex={0}
@@ -229,7 +251,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "textDecoration": "none",
           "touchAction": "manipulation",
           "userSelect": "none",
-          "width": 100,
+          "width": "100%",
           "zIndex": 0,
         }
       }
@@ -250,10 +272,32 @@ exports[`wonder-blocks-layout example 1 1`] = `
             "pointerEvents": "none",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
+            "width": "100%",
           }
         }
       >
-        B
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          B
+        </div>
       </span>
     </div>
   </button>
@@ -321,7 +365,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
-        "width": "auto",
+        "width": 100,
       }
     }
     tabIndex={0}
@@ -360,7 +404,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "textDecoration": "none",
           "touchAction": "manipulation",
           "userSelect": "none",
-          "width": 100,
+          "width": "100%",
           "zIndex": 0,
         }
       }
@@ -381,10 +425,32 @@ exports[`wonder-blocks-layout example 1 1`] = `
             "pointerEvents": "none",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
+            "width": "100%",
           }
         }
       >
-        C
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          C
+        </div>
       </span>
     </div>
   </button>
@@ -447,7 +513,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
-        "width": "auto",
+        "width": 100,
       }
     }
     tabIndex={0}
@@ -486,7 +552,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "textDecoration": "none",
           "touchAction": "manipulation",
           "userSelect": "none",
-          "width": 100,
+          "width": "100%",
           "zIndex": 0,
         }
       }
@@ -507,10 +573,32 @@ exports[`wonder-blocks-layout example 1 1`] = `
             "pointerEvents": "none",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
+            "width": "100%",
           }
         }
       >
-        Cancel
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          Cancel
+        </div>
       </span>
     </div>
   </button>
@@ -578,7 +666,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
-        "width": "auto",
+        "width": 100,
       }
     }
     tabIndex={0}
@@ -617,7 +705,7 @@ exports[`wonder-blocks-layout example 1 1`] = `
           "textDecoration": "none",
           "touchAction": "manipulation",
           "userSelect": "none",
-          "width": 100,
+          "width": "100%",
           "zIndex": 0,
         }
       }
@@ -638,10 +726,32 @@ exports[`wonder-blocks-layout example 1 1`] = `
             "pointerEvents": "none",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
+            "width": "100%",
           }
         }
       >
-        Accept
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          Accept
+        </div>
       </span>
     </div>
   </button>

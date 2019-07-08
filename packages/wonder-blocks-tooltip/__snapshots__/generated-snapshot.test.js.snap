@@ -218,6 +218,7 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
         "textDecoration": "none",
         "touchAction": "manipulation",
         "userSelect": "none",
+        "width": "100%",
         "zIndex": 0,
       }
     }
@@ -238,10 +239,32 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
           "pointerEvents": "none",
           "textOverflow": "ellipsis",
           "whiteSpace": "nowrap",
+          "width": "100%",
         }
       }
     >
-      Click here!
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "100%",
+            "zIndex": 0,
+          }
+        }
+      >
+        Click here!
+      </div>
     </span>
   </div>
 </button>
@@ -507,6 +530,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
           "textDecoration": "none",
           "touchAction": "manipulation",
           "userSelect": "none",
+          "width": "100%",
           "zIndex": 0,
         }
       }
@@ -527,10 +551,32 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
             "pointerEvents": "none",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
+            "width": "100%",
           }
         }
       >
-        Click me!
+        <div
+          className=""
+          style={
+            Object {
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexDirection": "column",
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": "100%",
+              "zIndex": 0,
+            }
+          }
+        >
+          Click me!
+        </div>
       </span>
     </div>
   </button>

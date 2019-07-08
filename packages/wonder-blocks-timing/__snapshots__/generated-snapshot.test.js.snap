@@ -116,6 +116,7 @@ exports[`wonder-blocks-timing example 1 1`] = `
             "textDecoration": "none",
             "touchAction": "manipulation",
             "userSelect": "none",
+            "width": "100%",
             "zIndex": 0,
           }
         }
@@ -136,10 +137,32 @@ exports[`wonder-blocks-timing example 1 1`] = `
               "pointerEvents": "none",
               "textOverflow": "ellipsis",
               "whiteSpace": "nowrap",
+              "width": "100%",
             }
           }
         >
-          Unmount
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": "100%",
+                "zIndex": 0,
+              }
+            }
+          >
+            Unmount
+          </div>
         </span>
       </div>
     </button>
@@ -324,6 +347,7 @@ exports[`wonder-blocks-timing example 2 1`] = `
             "textDecoration": "none",
             "touchAction": "manipulation",
             "userSelect": "none",
+            "width": "100%",
             "zIndex": 0,
           }
         }
@@ -344,10 +368,32 @@ exports[`wonder-blocks-timing example 2 1`] = `
               "pointerEvents": "none",
               "textOverflow": "ellipsis",
               "whiteSpace": "nowrap",
+              "width": "100%",
             }
           }
         >
-          Unmount
+          <div
+            className=""
+            style={
+              Object {
+                "alignItems": "stretch",
+                "borderStyle": "solid",
+                "borderWidth": 0,
+                "boxSizing": "border-box",
+                "display": "flex",
+                "flexDirection": "column",
+                "margin": 0,
+                "minHeight": 0,
+                "minWidth": 0,
+                "padding": 0,
+                "position": "relative",
+                "width": "100%",
+                "zIndex": 0,
+              }
+            }
+          >
+            Unmount
+          </div>
         </span>
       </div>
     </button>
