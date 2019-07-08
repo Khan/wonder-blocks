@@ -57,6 +57,11 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Use to avoid returning Button element if child is a link.
+     */
+    isLink?: boolean,
 |};
 
 const StyledAnchor = addStyle<"a">("a");
@@ -67,15 +72,17 @@ export default class Clickable extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
     static defaultProps = {
+        isLink: false,
         disabled: false,
         "aria-label": "",
     };
 
     getCorrectTag = (clickableState: ClickableState, commonProps: mixed) => {
+        const isLink = this.props.isLink;
         const activeHref = this.props.href && !this.props.disabled;
         const useClient = this.context.router && !this.props.skipClientNav;
 
-        if (activeHref && useClient) {
+        if ((activeHref || isLink) && useClient) {
             return (
                 <StyledLink
                     {...commonProps}
@@ -85,7 +92,7 @@ export default class Clickable extends React.Component<Props> {
                     {this.props.children(clickableState)}
                 </StyledLink>
             );
-        } else if (activeHref && !useClient) {
+        } else if ((activeHref || isLink) && !useClient) {
             return (
                 <StyledAnchor
                     {...commonProps}

@@ -2015,6 +2015,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
       }
     >
       <a
+        aria-label=""
         className=""
         href="#"
         onBlur={[Function]}
@@ -2032,10 +2033,23 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
+            "border": "none",
+            "boxSizing": "border-box",
             "color": "#1865f2",
             "cursor": "pointer",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
+            "padding": 0,
             "textDecoration": "none",
+            "touchAction": "manipulation",
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}

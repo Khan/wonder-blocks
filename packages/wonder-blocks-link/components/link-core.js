@@ -1,15 +1,13 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-
-import {addStyle} from "@khanacademy/wonder-blocks-core";
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {StyleSheet} from "aphrodite";
 import type {
     ClickableHandlers,
     ClickableState,
 } from "@khanacademy/wonder-blocks-core";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
+import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import type {SharedProps} from "./link.js";
 
 type Props = {|
@@ -18,30 +16,24 @@ type Props = {|
     ...ClickableState,
     href: string,
 |};
-
-const StyledAnchor = addStyle<"a">("a");
-const StyledLink = addStyle<typeof Link>(Link);
-
 export default class LinkCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
         const {
             caret, // eslint-disable-line no-unused-vars
-            children,
-            skipClientNav,
-            focused,
-            hovered,
             href,
             kind,
             light,
-            visitable,
-            pressed,
             style,
             testId,
-            ...handlers
+            pressed,
+            focused,
+            hovered,
+            children,
+            visitable,
+            skipClientNav,
         } = this.props;
-        const {router} = this.context;
 
         const linkStyles = _generateStyles(kind, light, visitable);
 
@@ -53,20 +45,16 @@ export default class LinkCore extends React.Component<Props> {
                 : (hovered || focused) && linkStyles.focus,
         ];
 
-        const commonProps = {
-            "data-test-id": testId,
-            style: [defaultStyles, style],
-            ...handlers,
-        };
-
-        return router && !skipClientNav ? (
-            <StyledLink {...commonProps} to={href}>
-                {children}
-            </StyledLink>
-        ) : (
-            <StyledAnchor {...commonProps} href={href}>
-                {children}
-            </StyledAnchor>
+        return (
+            <Clickable
+                href={href}
+                isLink={true}
+                testId={testId}
+                skipClientNav={skipClientNav}
+                style={[defaultStyles, style]}
+            >
+                {(eventState) => <>{children}</>}
+            </Clickable>
         );
     }
 }

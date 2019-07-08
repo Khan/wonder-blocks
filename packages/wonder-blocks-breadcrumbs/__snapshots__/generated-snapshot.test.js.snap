@@ -28,6 +28,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
       }
     >
       <a
+        aria-label=""
         className=""
         href="https://khanacademy.org/"
         onBlur={[Function]}
@@ -45,10 +46,23 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
+            "border": "none",
+            "boxSizing": "border-box",
             "color": "#1865f2",
             "cursor": "pointer",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
+            "padding": 0,
             "textDecoration": "none",
+            "touchAction": "manipulation",
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}
@@ -86,6 +100,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
       }
     >
       <a
+        aria-label=""
         className=""
         href="https://khanacademy.org/about"
         onBlur={[Function]}
@@ -103,10 +118,23 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
         onTouchStart={[Function]}
         style={
           Object {
+            "MozOsxFontSmoothing": "inherit",
+            "WebkitFontSmoothing": "inherit",
+            "background": "transparent",
+            "border": "none",
+            "boxSizing": "border-box",
             "color": "#1865f2",
             "cursor": "pointer",
+            "font": "inherit",
+            "lineHeight": "normal",
+            "margin": 0,
             "outline": "none",
+            "overflow": "visible",
+            "padding": 0,
             "textDecoration": "none",
+            "touchAction": "manipulation",
+            "userSelect": "none",
+            "width": "auto",
           }
         }
         tabIndex={0}
