@@ -110,9 +110,9 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         return (
             <Dropdown
                 style={style}
+                onChange={onChange}
                 alignment={alignment}
                 menuItems={menuItems}
-                onChange={onChange}
                 selectedValues={selectedValues}
                 disabled={menuItems.length === 0 || disabled}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
@@ -121,8 +121,9 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                     <ActionMenuOpenerCore
                         {...sharedProps}
                         {...eventState}
-                        opened={this.state.opened}
                         testId={testId}
+                        opened={this.state.opened}
+                        disabled={menuItems.length === 0 || disabled}
                     >
                         {menuText}
                     </ActionMenuOpenerCore>

@@ -193,7 +193,10 @@ export default class Dropdown extends React.Component<Props, State> {
 
         const ClickableBehavior = getClickableBehavior();
         const opener = (
-            <ClickableBehavior onClick={this.handleClick}>
+            <ClickableBehavior
+                onClick={this.handleClick}
+                disabled={this.props.disabled}
+            >
                 {(eventState, handlers) => (
                     <DropdownAnchor
                         anchorRef={(ref) =>

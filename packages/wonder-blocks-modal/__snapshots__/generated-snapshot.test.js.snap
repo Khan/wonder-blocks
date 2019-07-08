@@ -848,6 +848,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
