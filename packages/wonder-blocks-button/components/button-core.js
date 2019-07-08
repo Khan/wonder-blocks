@@ -90,7 +90,7 @@ export default class ButtonCore extends React.Component<Props> {
             </Label>
         );
         return (
-            <View style={[defaultStyle, style]}>
+            <View style={[defaultStyle]}>
                 {label}
                 {spinner && (
                     <CircularSpinner
