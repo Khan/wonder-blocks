@@ -58,9 +58,20 @@ type Props = {|
     testId?: string,
 
     /**
+     * Optional styling that can be passed to DropdownCore.
+     */
+    style?: StyleType,
+
+    /**
      * Optional styling to add to the dropdown wrapper.
      */
     dropdownStyle?: StyleType,
+
+    /**
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
+     */
+    disabled?: boolean,
 |};
 
 type State = {|
@@ -170,6 +181,7 @@ export default class Dropdown extends React.Component<Props, State> {
 
     render() {
         const {
+            style,
             children,
             alignment,
             dropdownStyle,
@@ -177,12 +189,14 @@ export default class Dropdown extends React.Component<Props, State> {
             onChange,
             selectedValues,
             "aria-disabled": ariaDisabled,
-            ...sharedProps
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior();
         const opener = (
-            <ClickableBehavior onClick={this.handleClick}>
+            <ClickableBehavior
+                onClick={this.handleClick}
+                disabled={this.props.disabled}
+            >
                 {(eventState, handlers) => (
                     <DropdownAnchor
                         anchorRef={(ref) =>
@@ -202,6 +216,7 @@ export default class Dropdown extends React.Component<Props, State> {
                 alignment={alignment}
                 items={this._getMenuItems()}
                 keyboard={this.state.keyboard}
+                style={style}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                 onOpenChanged={this.handleOpenChanged}
                 open={this.state.opened}
