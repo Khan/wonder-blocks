@@ -2,7 +2,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import ButtonCore from "./button-core.js";
@@ -173,35 +173,27 @@ export default class Button extends React.Component<SharedProps> {
             ...sharedProps
         } = this.props;
 
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            this.context.router,
-        );
-
         return (
-            <ClickableBehavior
+            <Clickable
                 disabled={spinner || disabled}
                 href={href}
                 onClick={onClick}
                 role="button"
+                skipClientNav={skipClientNav}
             >
-                {(state, handlers) => {
+                {(state) => {
                     return (
                         <ButtonCore
                             {...sharedProps}
                             {...state}
-                            {...handlers}
                             disabled={disabled}
                             spinner={spinner}
-                            skipClientNav={skipClientNav}
-                            href={href}
                         >
                             {children}
                         </ButtonCore>
                     );
                 }}
-            </ClickableBehavior>
+            </Clickable>
         );
     }
 }

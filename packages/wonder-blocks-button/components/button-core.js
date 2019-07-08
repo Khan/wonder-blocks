@@ -27,22 +27,16 @@ type Props = {|
     ...ClickableState,
 |};
 
-const StyledAnchor = addStyle<"a">("a");
-const StyledButton = addStyle<"button">("button");
-const StyledLink = addStyle<typeof Link>(Link);
-
 export default class ButtonCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
         const {
             children,
-            skipClientNav,
             color,
             disabled: disabledProp,
             focused,
             hovered,
-            href,
             kind,
             light,
             pressed,
@@ -53,7 +47,6 @@ export default class ButtonCore extends React.Component<Props> {
             icon,
             ...handlers
         } = this.props;
-        const {router} = this.context;
 
         const buttonColor =
             color === "destructive"
@@ -108,7 +101,20 @@ export default class ButtonCore extends React.Component<Props> {
             </Label>
         );
 
-        const contents = (
+        return (
+            <React.Fragment>
+                {label}
+                {spinner && (
+                    <CircularSpinner
+                        style={sharedStyles.spinner}
+                        size={{medium: "small", small: "xsmall"}[size]}
+                        light={kind === "primary"}
+                    />
+                )}
+            </React.Fragment>
+        );
+
+        /* const contents = (
             <React.Fragment>
                 {label}
                 {spinner && (
@@ -141,7 +147,7 @@ export default class ButtonCore extends React.Component<Props> {
                     {contents}
                 </StyledButton>
             );
-        }
+        } */
     }
 }
 
