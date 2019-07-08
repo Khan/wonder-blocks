@@ -306,7 +306,6 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       aria-haspopup="menu"
       className=""
       data-test-id="teacher-menu"
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -508,7 +507,6 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -689,7 +687,6 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -870,7 +867,6 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       className=""
-      disabled={true}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -897,8 +893,8 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
           "border": "none",
           "borderRadius": 4,
           "boxSizing": "border-box",
-          "color": "rgba(33,36,44,0.32)",
-          "cursor": "default",
+          "color": "#1865f2",
+          "cursor": "pointer",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "center",
@@ -1052,7 +1048,6 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       aria-haspopup="menu"
       className=""
       data-test-id="teacher-menu"
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}

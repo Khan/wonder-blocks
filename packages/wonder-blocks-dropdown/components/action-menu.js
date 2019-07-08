@@ -114,6 +114,7 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                 menuItems={menuItems}
                 onChange={onChange}
                 selectedValues={selectedValues}
+                disabled={menuItems.length === 0 || disabled}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
             >
                 {(eventState) => (
@@ -121,7 +122,6 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
                         {...sharedProps}
                         {...eventState}
                         opened={this.state.opened}
-                        disabled={menuItems.length === 0 || disabled}
                         testId={testId}
                     >
                         {menuText}

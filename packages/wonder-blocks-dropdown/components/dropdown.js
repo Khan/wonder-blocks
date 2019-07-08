@@ -66,6 +66,12 @@ type Props = {|
      * Optional styling to add to the dropdown wrapper.
      */
     dropdownStyle?: StyleType,
+
+    /**
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
+     */
+    disabled?: boolean,
 |};
 
 type State = {|
