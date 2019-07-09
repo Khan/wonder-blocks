@@ -2,7 +2,7 @@
 import React from "react";
 
 // NOTE: Potentially add to this as more cases come up.
-type ClickableRole =
+export type ClickableRole =
     | "button"
     | "link"
     | "checkbox"

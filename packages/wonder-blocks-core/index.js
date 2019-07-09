@@ -2,6 +2,7 @@
 import type {
     ClickableHandlers,
     ClickableState,
+    ClickableRole,
 } from "./components/clickable-behavior.js";
 import type {AriaProps, IIdentifierFactory, StyleType} from "./util/types.js";
 import type {Intersection} from "./util/get-element-intersection.js";
@@ -26,6 +27,7 @@ export type {
     AriaProps,
     ClickableHandlers,
     ClickableState,
+    ClickableRole,
     Intersection,
     IIdentifierFactory,
     StyleType,
