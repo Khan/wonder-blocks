@@ -37,7 +37,6 @@ exports[`wonder-blocks-modal example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -64,7 +63,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -75,13 +74,20 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -91,6 +97,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -125,7 +132,7 @@ exports[`wonder-blocks-modal example 1 1`] = `
           Open modal with initial focus
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -167,7 +174,6 @@ exports[`wonder-blocks-modal example 2 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -194,7 +200,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -205,13 +211,20 @@ exports[`wonder-blocks-modal example 2 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -221,6 +234,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -255,7 +269,7 @@ exports[`wonder-blocks-modal example 2 1`] = `
           Open flexible modal
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -719,7 +733,6 @@ exports[`wonder-blocks-modal example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -746,7 +759,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -757,13 +770,20 @@ exports[`wonder-blocks-modal example 4 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -773,6 +793,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -807,7 +828,7 @@ exports[`wonder-blocks-modal example 4 1`] = `
           OnePaneDialog
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -849,7 +870,6 @@ exports[`wonder-blocks-modal example 5 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -876,7 +896,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -887,13 +907,20 @@ exports[`wonder-blocks-modal example 5 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -903,6 +930,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -937,7 +965,7 @@ exports[`wonder-blocks-modal example 5 1`] = `
           Open modal
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -1533,7 +1561,6 @@ exports[`wonder-blocks-modal example 7 1`] = `
               onTouchCancel={[Function]}
               onTouchEnd={[Function]}
               onTouchStart={[Function]}
-              role="button"
               style={
                 Object {
                   "::MozFocusInner": Object {
@@ -1560,7 +1587,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
               tabIndex={0}
               type="button"
             >
-              <span
+              <div
                 className=""
                 style={
                   Object {
@@ -1571,13 +1598,20 @@ exports[`wonder-blocks-modal example 7 1`] = `
                     "background": "#1865f2",
                     "border": "none",
                     "borderRadius": 4,
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
                     "boxSizing": "border-box",
                     "color": "#ffffff",
                     "cursor": "pointer",
                     "display": "inline-flex",
+                    "flexDirection": "column",
                     "height": 40,
                     "justifyContent": "center",
+                    "margin": 0,
+                    "minHeight": 0,
+                    "minWidth": 0,
                     "outline": "none",
+                    "padding": 0,
                     "paddingBottom": 0,
                     "paddingLeft": 16,
                     "paddingRight": 16,
@@ -1587,6 +1621,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                     "touchAction": "manipulation",
                     "userSelect": "none",
                     "width": "100%",
+                    "zIndex": 0,
                   }
                 }
               >
@@ -1621,7 +1656,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                     Button (no-op)
                   </span>
                 </span>
-              </span>
+              </div>
             </button>
           </div>
         </div>
@@ -2175,7 +2210,6 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 onTouchCancel={[Function]}
                 onTouchEnd={[Function]}
                 onTouchStart={[Function]}
-                role="button"
                 style={
                   Object {
                     "::MozFocusInner": Object {
@@ -2203,7 +2237,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 tabIndex={0}
                 type="button"
               >
-                <span
+                <div
                   className=""
                   style={
                     Object {
@@ -2214,13 +2248,20 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       "background": "none",
                       "border": "none",
                       "borderRadius": 4,
+                      "borderStyle": "solid",
+                      "borderWidth": 0,
                       "boxSizing": "border-box",
                       "color": "#1865f2",
                       "cursor": "pointer",
                       "display": "inline-flex",
+                      "flexDirection": "column",
                       "height": 40,
                       "justifyContent": "center",
+                      "margin": 0,
+                      "minHeight": 0,
+                      "minWidth": 0,
                       "outline": "none",
+                      "padding": 0,
                       "paddingBottom": 0,
                       "paddingLeft": 0,
                       "paddingRight": 0,
@@ -2230,6 +2271,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       "touchAction": "manipulation",
                       "userSelect": "none",
                       "width": "100%",
+                      "zIndex": 0,
                     }
                   }
                 >
@@ -2264,7 +2306,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       Tertiary action
                     </span>
                   </span>
-                </span>
+                </div>
               </button>
               <button
                 aria-label=""
@@ -2283,7 +2325,6 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 onTouchCancel={[Function]}
                 onTouchEnd={[Function]}
                 onTouchStart={[Function]}
-                role="button"
                 style={
                   Object {
                     "::MozFocusInner": Object {
@@ -2311,7 +2352,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 tabIndex={0}
                 type="button"
               >
-                <span
+                <div
                   className=""
                   style={
                     Object {
@@ -2322,13 +2363,20 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       "background": "none",
                       "border": "none",
                       "borderRadius": 4,
+                      "borderStyle": "solid",
+                      "borderWidth": 0,
                       "boxSizing": "border-box",
                       "color": "#1865f2",
                       "cursor": "pointer",
                       "display": "inline-flex",
+                      "flexDirection": "column",
                       "height": 40,
                       "justifyContent": "center",
+                      "margin": 0,
+                      "minHeight": 0,
+                      "minWidth": 0,
                       "outline": "none",
+                      "padding": 0,
                       "paddingBottom": 0,
                       "paddingLeft": 0,
                       "paddingRight": 0,
@@ -2338,6 +2386,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       "touchAction": "manipulation",
                       "userSelect": "none",
                       "width": "100%",
+                      "zIndex": 0,
                     }
                   }
                 >
@@ -2372,7 +2421,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       Secondary action
                     </span>
                   </span>
-                </span>
+                </div>
               </button>
               <button
                 aria-label=""
@@ -2391,7 +2440,6 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 onTouchCancel={[Function]}
                 onTouchEnd={[Function]}
                 onTouchStart={[Function]}
-                role="button"
                 style={
                   Object {
                     "::MozFocusInner": Object {
@@ -2419,7 +2467,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 tabIndex={0}
                 type="button"
               >
-                <span
+                <div
                   className=""
                   style={
                     Object {
@@ -2430,13 +2478,20 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       "background": "#1865f2",
                       "border": "none",
                       "borderRadius": 4,
+                      "borderStyle": "solid",
+                      "borderWidth": 0,
                       "boxSizing": "border-box",
                       "color": "#ffffff",
                       "cursor": "pointer",
                       "display": "inline-flex",
+                      "flexDirection": "column",
                       "height": 40,
                       "justifyContent": "center",
+                      "margin": 0,
+                      "minHeight": 0,
+                      "minWidth": 0,
                       "outline": "none",
+                      "padding": 0,
                       "paddingBottom": 0,
                       "paddingLeft": 16,
                       "paddingRight": 16,
@@ -2446,6 +2501,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       "touchAction": "manipulation",
                       "userSelect": "none",
                       "width": "100%",
+                      "zIndex": 0,
                     }
                   }
                 >
@@ -2480,7 +2536,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       Primary action
                     </span>
                   </span>
-                </span>
+                </div>
               </button>
             </div>
           </div>
@@ -2907,7 +2963,6 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   onTouchCancel={[Function]}
                   onTouchEnd={[Function]}
                   onTouchStart={[Function]}
-                  role="button"
                   style={
                     Object {
                       "::MozFocusInner": Object {
@@ -2934,7 +2989,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   tabIndex={0}
                   type="button"
                 >
-                  <span
+                  <div
                     className=""
                     style={
                       Object {
@@ -2945,13 +3000,20 @@ exports[`wonder-blocks-modal example 9 1`] = `
                         "background": "none",
                         "border": "none",
                         "borderRadius": 4,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
                         "boxSizing": "border-box",
                         "color": "#1865f2",
                         "cursor": "pointer",
                         "display": "inline-flex",
+                        "flexDirection": "column",
                         "height": 40,
                         "justifyContent": "center",
+                        "margin": 0,
+                        "minHeight": 0,
+                        "minWidth": 0,
                         "outline": "none",
+                        "padding": 0,
                         "paddingBottom": 0,
                         "paddingLeft": 0,
                         "paddingRight": 0,
@@ -2961,6 +3023,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                         "touchAction": "manipulation",
                         "userSelect": "none",
                         "width": "100%",
+                        "zIndex": 0,
                       }
                     }
                   >
@@ -2995,7 +3058,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                         Previous
                       </span>
                     </span>
-                  </span>
+                  </div>
                 </button>
                 <div
                   aria-hidden="true"
@@ -3040,7 +3103,6 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   onTouchCancel={[Function]}
                   onTouchEnd={[Function]}
                   onTouchStart={[Function]}
-                  role="button"
                   style={
                     Object {
                       "::MozFocusInner": Object {
@@ -3067,7 +3129,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   tabIndex={0}
                   type="button"
                 >
-                  <span
+                  <div
                     className=""
                     style={
                       Object {
@@ -3078,13 +3140,20 @@ exports[`wonder-blocks-modal example 9 1`] = `
                         "background": "#1865f2",
                         "border": "none",
                         "borderRadius": 4,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
                         "boxSizing": "border-box",
                         "color": "#ffffff",
                         "cursor": "pointer",
                         "display": "inline-flex",
+                        "flexDirection": "column",
                         "height": 40,
                         "justifyContent": "center",
+                        "margin": 0,
+                        "minHeight": 0,
+                        "minWidth": 0,
                         "outline": "none",
+                        "padding": 0,
                         "paddingBottom": 0,
                         "paddingLeft": 16,
                         "paddingRight": 16,
@@ -3094,6 +3163,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                         "touchAction": "manipulation",
                         "userSelect": "none",
                         "width": "100%",
+                        "zIndex": 0,
                       }
                     }
                   >
@@ -3128,7 +3198,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                         Next
                       </span>
                     </span>
-                  </span>
+                  </div>
                 </button>
               </div>
             </div>
@@ -3669,7 +3739,6 @@ exports[`wonder-blocks-modal example 10 1`] = `
                     onTouchCancel={[Function]}
                     onTouchEnd={[Function]}
                     onTouchStart={[Function]}
-                    role="button"
                     style={
                       Object {
                         "::MozFocusInner": Object {
@@ -3696,7 +3765,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                     tabIndex={0}
                     type="button"
                   >
-                    <span
+                    <div
                       className=""
                       style={
                         Object {
@@ -3707,13 +3776,20 @@ exports[`wonder-blocks-modal example 10 1`] = `
                           "background": "#1865f2",
                           "border": "none",
                           "borderRadius": 4,
+                          "borderStyle": "solid",
+                          "borderWidth": 0,
                           "boxSizing": "border-box",
                           "color": "#ffffff",
                           "cursor": "pointer",
                           "display": "inline-flex",
+                          "flexDirection": "column",
                           "height": 40,
                           "justifyContent": "center",
+                          "margin": 0,
+                          "minHeight": 0,
+                          "minWidth": 0,
                           "outline": "none",
+                          "padding": 0,
                           "paddingBottom": 0,
                           "paddingLeft": 16,
                           "paddingRight": 16,
@@ -3723,6 +3799,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                           "touchAction": "manipulation",
                           "userSelect": "none",
                           "width": "100%",
+                          "zIndex": 0,
                         }
                       }
                     >
@@ -3757,7 +3834,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
                           Primary action
                         </span>
                       </span>
-                    </span>
+                    </div>
                   </button>
                 </div>
               </div>

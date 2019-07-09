@@ -3,7 +3,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import {StyleSheet} from "aphrodite";
 import Icon from "@khanacademy/wonder-blocks-icon";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Color, {
     SemanticColor,
@@ -94,7 +94,7 @@ export default class ButtonCore extends React.Component<Props> {
             </Label>
         );
         return (
-            <StyledSpan style={[defaultStyle, style]}>
+            <View style={[defaultStyle, style]}>
                 {label}
                 {spinner && (
                     <CircularSpinner
@@ -103,7 +103,7 @@ export default class ButtonCore extends React.Component<Props> {
                         size={{medium: "small", small: "xsmall"}[size]}
                     />
                 )}
-            </StyledSpan>
+            </View>
         );
     }
 }

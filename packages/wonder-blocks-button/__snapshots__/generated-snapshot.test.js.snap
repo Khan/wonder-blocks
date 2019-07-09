@@ -37,7 +37,6 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -65,7 +64,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -76,13 +75,20 @@ exports[`wonder-blocks-button example 1 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -92,6 +98,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -126,7 +133,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           Primary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -145,7 +152,6 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -173,7 +179,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -191,9 +197,14 @@ exports[`wonder-blocks-button example 1 1`] = `
           "color": "#1865f2",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -203,6 +214,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -237,7 +249,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           Secondary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -256,7 +268,6 @@ exports[`wonder-blocks-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -284,7 +295,7 @@ exports[`wonder-blocks-button example 1 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -295,13 +306,20 @@ exports[`wonder-blocks-button example 1 1`] = `
           "background": "none",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#1865f2",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 0,
           "paddingRight": 0,
@@ -311,6 +329,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -345,7 +364,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           Tertiary
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -387,7 +406,6 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -415,7 +433,7 @@ exports[`wonder-blocks-button example 2 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -426,13 +444,20 @@ exports[`wonder-blocks-button example 2 1`] = `
           "background": "#d92916",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -442,6 +467,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -476,7 +502,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           Primary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -495,7 +521,6 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -523,7 +548,7 @@ exports[`wonder-blocks-button example 2 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -541,9 +566,14 @@ exports[`wonder-blocks-button example 2 1`] = `
           "color": "#d92916",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -553,6 +583,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -587,7 +618,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           Secondary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -606,7 +637,6 @@ exports[`wonder-blocks-button example 2 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -634,7 +664,7 @@ exports[`wonder-blocks-button example 2 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -645,13 +675,20 @@ exports[`wonder-blocks-button example 2 1`] = `
           "background": "none",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#d92916",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 0,
           "paddingRight": 0,
@@ -661,6 +698,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -695,7 +733,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           Tertiary
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -737,7 +775,6 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -765,7 +802,7 @@ exports[`wonder-blocks-button example 3 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -776,13 +813,20 @@ exports[`wonder-blocks-button example 3 1`] = `
           "background": "rgba(33,36,44,0.32)",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "rgba(255,255,255,0.64)",
           "cursor": "default",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -792,6 +836,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -826,7 +871,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           Primary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -845,7 +890,6 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -873,7 +917,7 @@ exports[`wonder-blocks-button example 3 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -891,9 +935,14 @@ exports[`wonder-blocks-button example 3 1`] = `
           "color": "rgba(33,36,44,0.32)",
           "cursor": "default",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -903,6 +952,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -937,7 +987,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           Secondary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -956,7 +1006,6 @@ exports[`wonder-blocks-button example 3 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -984,7 +1033,7 @@ exports[`wonder-blocks-button example 3 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -995,13 +1044,20 @@ exports[`wonder-blocks-button example 3 1`] = `
           "background": "none",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "rgba(33,36,44,0.32)",
           "cursor": "default",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 0,
           "paddingRight": 0,
@@ -1011,6 +1067,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1045,7 +1102,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           Tertiary
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -1088,7 +1145,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1116,7 +1172,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -1127,13 +1183,20 @@ exports[`wonder-blocks-button example 4 1`] = `
           "background": "#ffffff",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#1865f2",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -1143,6 +1206,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1177,7 +1241,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           Primary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -1196,7 +1260,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1224,7 +1287,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -1242,9 +1305,14 @@ exports[`wonder-blocks-button example 4 1`] = `
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -1254,6 +1322,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1288,7 +1357,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           Secondary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -1307,7 +1376,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1335,7 +1403,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -1346,13 +1414,20 @@ exports[`wonder-blocks-button example 4 1`] = `
           "background": "none",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 0,
           "paddingRight": 0,
@@ -1362,6 +1437,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1396,7 +1472,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           Tertiary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -1415,7 +1491,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1443,7 +1518,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -1454,13 +1529,20 @@ exports[`wonder-blocks-button example 4 1`] = `
           "background": "#b5cefb",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#1865f2",
           "cursor": "default",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -1470,6 +1552,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1504,7 +1587,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           Primary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -1523,7 +1606,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1551,7 +1633,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -1569,9 +1651,14 @@ exports[`wonder-blocks-button example 4 1`] = `
           "color": "#b5cefb",
           "cursor": "default",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -1581,6 +1668,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1615,7 +1703,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           Secondary
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -1634,7 +1722,6 @@ exports[`wonder-blocks-button example 4 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1662,7 +1749,7 @@ exports[`wonder-blocks-button example 4 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -1673,13 +1760,20 @@ exports[`wonder-blocks-button example 4 1`] = `
           "background": "none",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#b5cefb",
           "cursor": "default",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 0,
           "paddingRight": 0,
@@ -1689,6 +1783,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1723,7 +1818,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           Tertiary
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -1765,7 +1860,6 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1793,7 +1887,7 @@ exports[`wonder-blocks-button example 5 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -1804,13 +1898,20 @@ exports[`wonder-blocks-button example 5 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 32,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -1820,6 +1921,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1854,7 +1956,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           Label
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -1873,7 +1975,6 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -1901,7 +2002,7 @@ exports[`wonder-blocks-button example 5 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -1919,9 +2020,14 @@ exports[`wonder-blocks-button example 5 1`] = `
           "color": "#1865f2",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 32,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -1931,6 +2037,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -1965,7 +2072,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           Label
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -1984,7 +2091,6 @@ exports[`wonder-blocks-button example 5 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -2012,7 +2118,7 @@ exports[`wonder-blocks-button example 5 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -2023,13 +2129,20 @@ exports[`wonder-blocks-button example 5 1`] = `
           "background": "none",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#1865f2",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 32,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 0,
           "paddingRight": 0,
@@ -2039,6 +2152,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -2073,7 +2187,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           Label
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -2139,7 +2253,7 @@ exports[`wonder-blocks-button example 6 1`] = `
     }
     tabIndex={0}
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -2150,13 +2264,20 @@ exports[`wonder-blocks-button example 6 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -2166,6 +2287,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -2200,7 +2322,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           href
         </span>
       </span>
-    </span>
+    </div>
   </a>
   <button
     aria-label=""
@@ -2219,7 +2341,6 @@ exports[`wonder-blocks-button example 6 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -2247,7 +2368,7 @@ exports[`wonder-blocks-button example 6 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -2265,9 +2386,14 @@ exports[`wonder-blocks-button example 6 1`] = `
           "color": "#1865f2",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -2277,6 +2403,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -2311,7 +2438,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           onClick
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <a
     aria-label=""
@@ -2354,7 +2481,7 @@ exports[`wonder-blocks-button example 6 1`] = `
     }
     tabIndex={0}
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -2365,13 +2492,20 @@ exports[`wonder-blocks-button example 6 1`] = `
           "background": "none",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#1865f2",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 0,
           "paddingRight": 0,
@@ -2381,6 +2515,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -2415,7 +2550,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           both
         </span>
       </span>
-    </span>
+    </div>
   </a>
 </div>
 `;
@@ -2481,7 +2616,7 @@ exports[`wonder-blocks-button example 7 1`] = `
     }
     tabIndex={0}
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -2492,13 +2627,20 @@ exports[`wonder-blocks-button example 7 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -2508,6 +2650,7 @@ exports[`wonder-blocks-button example 7 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -2542,7 +2685,7 @@ exports[`wonder-blocks-button example 7 1`] = `
           Uses Client-side Nav
         </span>
       </span>
-    </span>
+    </div>
   </a>
   <a
     aria-label=""
@@ -2585,7 +2728,7 @@ exports[`wonder-blocks-button example 7 1`] = `
     }
     tabIndex={0}
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -2596,13 +2739,20 @@ exports[`wonder-blocks-button example 7 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -2612,6 +2762,7 @@ exports[`wonder-blocks-button example 7 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -2646,7 +2797,7 @@ exports[`wonder-blocks-button example 7 1`] = `
           Avoids Client-side Nav
         </span>
       </span>
-    </span>
+    </div>
   </a>
 </div>
 `;
@@ -2688,7 +2839,6 @@ exports[`wonder-blocks-button example 8 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -2716,7 +2866,7 @@ exports[`wonder-blocks-button example 8 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -2727,13 +2877,20 @@ exports[`wonder-blocks-button example 8 1`] = `
           "background": "rgba(33,36,44,0.32)",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "rgba(255,255,255,0.64)",
           "cursor": "default",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -2743,6 +2900,7 @@ exports[`wonder-blocks-button example 8 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -2831,7 +2989,7 @@ exports[`wonder-blocks-button example 8 1`] = `
           />
         </svg>
       </div>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -2850,7 +3008,6 @@ exports[`wonder-blocks-button example 8 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -2878,7 +3035,7 @@ exports[`wonder-blocks-button example 8 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -2889,13 +3046,20 @@ exports[`wonder-blocks-button example 8 1`] = `
           "background": "rgba(33,36,44,0.32)",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "rgba(255,255,255,0.64)",
           "cursor": "default",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 32,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -2905,6 +3069,7 @@ exports[`wonder-blocks-button example 8 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -2993,7 +3158,7 @@ exports[`wonder-blocks-button example 8 1`] = `
           />
         </svg>
       </div>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -3055,7 +3220,6 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3083,7 +3247,7 @@ exports[`wonder-blocks-button example 9 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -3094,13 +3258,20 @@ exports[`wonder-blocks-button example 9 1`] = `
             "background": "#1865f2",
             "border": "none",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "#ffffff",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 40,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 12,
             "paddingRight": 16,
@@ -3110,6 +3281,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -3164,7 +3336,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             primary
           </span>
         </span>
-      </span>
+      </div>
     </button>
     <button
       aria-label=""
@@ -3183,7 +3355,6 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3211,7 +3382,7 @@ exports[`wonder-blocks-button example 9 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -3229,9 +3400,14 @@ exports[`wonder-blocks-button example 9 1`] = `
             "color": "#1865f2",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 40,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 12,
             "paddingRight": 16,
@@ -3241,6 +3417,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -3295,7 +3472,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             secondary
           </span>
         </span>
-      </span>
+      </div>
     </button>
     <button
       aria-label=""
@@ -3314,7 +3491,6 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3342,7 +3518,7 @@ exports[`wonder-blocks-button example 9 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -3353,13 +3529,20 @@ exports[`wonder-blocks-button example 9 1`] = `
             "background": "none",
             "border": "none",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "#1865f2",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 40,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 0,
             "paddingRight": 0,
@@ -3369,6 +3552,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -3423,7 +3607,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             tertiary
           </span>
         </span>
-      </span>
+      </div>
     </button>
   </div>
   <div
@@ -3463,7 +3647,6 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3491,7 +3674,7 @@ exports[`wonder-blocks-button example 9 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -3502,13 +3685,20 @@ exports[`wonder-blocks-button example 9 1`] = `
             "background": "#1865f2",
             "border": "none",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "#ffffff",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 32,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 12,
             "paddingRight": 16,
@@ -3518,6 +3708,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -3573,7 +3764,7 @@ exports[`wonder-blocks-button example 9 1`] = `
              small
           </span>
         </span>
-      </span>
+      </div>
     </button>
     <button
       aria-label=""
@@ -3592,7 +3783,6 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3620,7 +3810,7 @@ exports[`wonder-blocks-button example 9 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -3638,9 +3828,14 @@ exports[`wonder-blocks-button example 9 1`] = `
             "color": "#1865f2",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 32,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 12,
             "paddingRight": 16,
@@ -3650,6 +3845,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -3705,7 +3901,7 @@ exports[`wonder-blocks-button example 9 1`] = `
              small
           </span>
         </span>
-      </span>
+      </div>
     </button>
     <button
       aria-label=""
@@ -3724,7 +3920,6 @@ exports[`wonder-blocks-button example 9 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3752,7 +3947,7 @@ exports[`wonder-blocks-button example 9 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -3763,13 +3958,20 @@ exports[`wonder-blocks-button example 9 1`] = `
             "background": "none",
             "border": "none",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "#1865f2",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 32,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 0,
             "paddingRight": 0,
@@ -3779,6 +3981,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -3834,7 +4037,7 @@ exports[`wonder-blocks-button example 9 1`] = `
              small
           </span>
         </span>
-      </span>
+      </div>
     </button>
   </div>
 </div>
@@ -3877,7 +4080,6 @@ exports[`wonder-blocks-button example 10 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -3904,7 +4106,7 @@ exports[`wonder-blocks-button example 10 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -3915,13 +4117,20 @@ exports[`wonder-blocks-button example 10 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -3931,6 +4140,7 @@ exports[`wonder-blocks-button example 10 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -3965,7 +4175,7 @@ exports[`wonder-blocks-button example 10 1`] = `
           Label
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -4026,7 +4236,6 @@ exports[`wonder-blocks-button example 11 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -4053,7 +4262,7 @@ exports[`wonder-blocks-button example 11 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -4064,13 +4273,20 @@ exports[`wonder-blocks-button example 11 1`] = `
             "background": "#1865f2",
             "border": "none",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "#ffffff",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 40,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
@@ -4080,6 +4296,7 @@ exports[`wonder-blocks-button example 11 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -4114,7 +4331,7 @@ exports[`wonder-blocks-button example 11 1`] = `
             Button in a row
           </span>
         </span>
-      </span>
+      </div>
     </button>
   </div>
   <div
@@ -4173,7 +4390,6 @@ exports[`wonder-blocks-button example 11 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -4200,7 +4416,7 @@ exports[`wonder-blocks-button example 11 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -4211,13 +4427,20 @@ exports[`wonder-blocks-button example 11 1`] = `
             "background": "#1865f2",
             "border": "none",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "#ffffff",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 40,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
@@ -4227,6 +4450,7 @@ exports[`wonder-blocks-button example 11 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -4261,7 +4485,7 @@ exports[`wonder-blocks-button example 11 1`] = `
             Button in a column
           </span>
         </span>
-      </span>
+      </div>
     </button>
   </div>
 </div>
@@ -4304,7 +4528,6 @@ exports[`wonder-blocks-button example 12 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -4333,7 +4556,7 @@ exports[`wonder-blocks-button example 12 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -4351,9 +4574,14 @@ exports[`wonder-blocks-button example 12 1`] = `
           "color": "#1865f2",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -4363,6 +4591,7 @@ exports[`wonder-blocks-button example 12 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -4397,7 +4626,7 @@ exports[`wonder-blocks-button example 12 1`] = `
           label
         </span>
       </span>
-    </span>
+    </div>
   </button>
   <button
     aria-label=""
@@ -4416,7 +4645,6 @@ exports[`wonder-blocks-button example 12 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -4445,7 +4673,7 @@ exports[`wonder-blocks-button example 12 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -4456,13 +4684,20 @@ exports[`wonder-blocks-button example 12 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -4472,6 +4707,7 @@ exports[`wonder-blocks-button example 12 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -4506,7 +4742,7 @@ exports[`wonder-blocks-button example 12 1`] = `
           label in a different language
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
@@ -4567,7 +4803,6 @@ exports[`wonder-blocks-button example 13 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -4595,7 +4830,7 @@ exports[`wonder-blocks-button example 13 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -4606,13 +4841,20 @@ exports[`wonder-blocks-button example 13 1`] = `
             "background": "none",
             "border": "none",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "#1865f2",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 40,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 0,
             "paddingRight": 0,
@@ -4622,6 +4864,7 @@ exports[`wonder-blocks-button example 13 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -4656,7 +4899,7 @@ exports[`wonder-blocks-button example 13 1`] = `
             Tertiary
           </span>
         </span>
-      </span>
+      </div>
     </button>
     <button
       aria-label=""
@@ -4675,7 +4918,6 @@ exports[`wonder-blocks-button example 13 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      role="button"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -4702,7 +4944,7 @@ exports[`wonder-blocks-button example 13 1`] = `
       tabIndex={0}
       type="button"
     >
-      <span
+      <div
         className=""
         style={
           Object {
@@ -4713,13 +4955,20 @@ exports[`wonder-blocks-button example 13 1`] = `
             "background": "#1865f2",
             "border": "none",
             "borderRadius": 4,
+            "borderStyle": "solid",
+            "borderWidth": 0,
             "boxSizing": "border-box",
             "color": "#ffffff",
             "cursor": "pointer",
             "display": "inline-flex",
+            "flexDirection": "column",
             "height": 40,
             "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
             "outline": "none",
+            "padding": 0,
             "paddingBottom": 0,
             "paddingLeft": 16,
             "paddingRight": 16,
@@ -4729,6 +4978,7 @@ exports[`wonder-blocks-button example 13 1`] = `
             "touchAction": "manipulation",
             "userSelect": "none",
             "width": "100%",
+            "zIndex": 0,
           }
         }
       >
@@ -4763,7 +5013,7 @@ exports[`wonder-blocks-button example 13 1`] = `
             Primary
           </span>
         </span>
-      </span>
+      </div>
     </button>
   </div>
 </div>
@@ -4806,7 +5056,6 @@ exports[`wonder-blocks-button example 14 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -4833,7 +5082,7 @@ exports[`wonder-blocks-button example 14 1`] = `
     tabIndex={0}
     type="button"
   >
-    <span
+    <div
       className=""
       style={
         Object {
@@ -4844,13 +5093,20 @@ exports[`wonder-blocks-button example 14 1`] = `
           "background": "#1865f2",
           "border": "none",
           "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 0,
           "boxSizing": "border-box",
           "color": "#ffffff",
           "cursor": "pointer",
           "display": "inline-flex",
+          "flexDirection": "column",
           "height": 40,
           "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
           "outline": "none",
+          "padding": 0,
           "paddingBottom": 0,
           "paddingLeft": 16,
           "paddingRight": 16,
@@ -4860,6 +5116,7 @@ exports[`wonder-blocks-button example 14 1`] = `
           "touchAction": "manipulation",
           "userSelect": "none",
           "width": "100%",
+          "zIndex": 0,
         }
       }
     >
@@ -4894,7 +5151,7 @@ exports[`wonder-blocks-button example 14 1`] = `
           Click me!
         </span>
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
