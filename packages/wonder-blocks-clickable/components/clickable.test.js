@@ -89,6 +89,7 @@ describe("Clickable", () => {
     });
 
     test("disallow navigation when href and disabled are both set", () => {
+        // Arrange
         const wrapper = mount(
             <MemoryRouter>
                 <View>
