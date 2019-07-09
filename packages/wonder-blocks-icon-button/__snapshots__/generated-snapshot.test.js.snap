@@ -37,7 +37,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -161,7 +160,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -272,6 +270,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     className=""
     href="/search"
     onBlur={[Function]}
+    onClick={[Function]}
     onDragStart={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -402,7 +401,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -524,7 +522,6 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
@@ -645,7 +642,6 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {

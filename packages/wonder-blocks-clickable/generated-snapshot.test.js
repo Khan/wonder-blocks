@@ -19,14 +19,12 @@ describe("wonder-blocks-clickable", () => {
         const {Body} = require("@khanacademy/wonder-blocks-typography");
 
         const styles = StyleSheet.create({
-            focused: {
-                border: "none",
-            },
             hovered: {
                 textDecoration: "underline",
+                backgroundColor: Color.teal,
             },
             pressed: {
-                color: Color.teal,
+                color: Color.blue,
             },
         });
 
@@ -34,15 +32,16 @@ describe("wonder-blocks-clickable", () => {
             <View>
                 <Clickable onClick={() => alert("You clicked some text!")}>
                     {(eventState) => (
-                        <Body
-                            style={[
-                                eventState.focused && styles.focused,
-                                eventState.hovered && styles.hovered,
-                                eventState.pressed && styles.pressed,
-                            ]}
-                        >
-                            This text is clickable!
-                        </Body>
+                        <View style={[eventState.hovered && styles.hovered]}>
+                            <Body
+                                style={[
+                                    eventState.hovered && styles.hovered,
+                                    eventState.pressed && styles.pressed,
+                                ]}
+                            >
+                                This text is clickable!
+                            </Body>
+                        </View>
                     )}
                 </Clickable>
             </View>
@@ -53,7 +52,7 @@ describe("wonder-blocks-clickable", () => {
     it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
         const {MemoryRouter, Route, Switch} = require("react-router-dom");
 
         const styles = StyleSheet.create({
@@ -62,7 +61,7 @@ describe("wonder-blocks-clickable", () => {
                 alignItems: "center",
             },
             h1: {
-                marginRight: "25px",
+                marginRight: Spacing.large,
             },
         });
 

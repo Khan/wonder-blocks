@@ -40,7 +40,6 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
-    role="button"
     style={
       Object {
         "::MozFocusInner": Object {
