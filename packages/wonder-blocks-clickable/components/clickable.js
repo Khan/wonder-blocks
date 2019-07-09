@@ -63,6 +63,20 @@ const StyledAnchor = addStyle<"a">("a");
 const StyledButton = addStyle<"button">("button");
 const StyledLink = addStyle<typeof Link>(Link);
 
+/**
+ * A component to turn any custom component into a clickable one.
+ *
+ * Works by wrapping ClickableBehavior around the child element and styling the
+ * child appropriately and encapsulates routing logic which can be customized.
+ * Expects a function which returns an element as it's child.
+ *
+ * Example usage:
+ * ```jsx
+ * <Clickable onClick={() => alert("You clicked me!")}>
+ *     {(eventState) => <h1> Click Me! </h1>}
+ * </Clickable>
+ * ```
+ */
 export default class Clickable extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
@@ -80,6 +94,7 @@ export default class Clickable extends React.Component<Props> {
                 <StyledLink
                     {...commonProps}
                     to={this.props.href}
+                    role={this.props.role}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
                     {this.props.children(clickableState)}
@@ -90,6 +105,7 @@ export default class Clickable extends React.Component<Props> {
                 <StyledAnchor
                     {...commonProps}
                     href={this.props.href}
+                    role={this.props.role}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
                     {this.props.children(clickableState)}
@@ -122,7 +138,6 @@ export default class Clickable extends React.Component<Props> {
                         // eslint-disable-next-line react/prop-types
                         "aria-label": this.props["aria-label"],
                         "data-test-id": this.props.testId,
-                        role: this.props.role,
                         style: [styles.reset, this.props.style],
                         ...handlers,
                     })
