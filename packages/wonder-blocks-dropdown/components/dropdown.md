@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
     }
 });
 
-
 class MixedDropdownExample extends React.Component {
     constructor() {
         super();
@@ -196,7 +195,6 @@ class MixedDropdownExample extends React.Component {
         );
     }
 }
-
 
 <View>
     <MixedDropdownExample />
