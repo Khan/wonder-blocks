@@ -58,41 +58,11 @@ export default class IconButtonCore extends React.Component<Props> {
                     : (hovered || focused) && buttonStyles.focus),
         ];
 
-        // const child = <Icon size="medium" color="currentColor" icon={icon} />;
-
         return (
             <View style={defaultStyle}>
                 <Icon size="medium" color="currentColor" icon={icon} />
             </View>
         );
-
-        /* const commonProps = {
-            "data-test-id": testId,
-            style: [defaultStyle, style],
-            ...handlers,
-        };
-
-        if (href && !disabled) {
-            return router && !skipClientNav ? (
-                <StyledLink {...commonProps} to={href}>
-                    {child}
-                </StyledLink>
-            ) : (
-                <StyledAnchor {...commonProps} href={href}>
-                    {child}
-                </StyledAnchor>
-            );
-        } else {
-            return (
-                <StyledButton
-                    type="button"
-                    {...commonProps}
-                    disabled={disabled}
-                >
-                    {child}
-                </StyledButton>
-            );
-        } */
     }
 }
 

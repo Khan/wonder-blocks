@@ -2432,7 +2432,6 @@ exports[`wonder-blocks-modal example 9 1`] = `
             className=""
             disabled={false}
             onBlur={[Function]}
-            onClick={[Function]}
             onDragStart={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
