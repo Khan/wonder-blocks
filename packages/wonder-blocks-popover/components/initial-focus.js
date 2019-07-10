@@ -36,15 +36,19 @@ export default class InitialFocus extends React.Component<Props> {
      * Gets the focusable element and applies focus to it
      */
     setInitialFocusableElement = (node: HTMLElement) => {
+        // 1. try to get element specified by the user
+        // 2. get first occurence from list of focusable elements
+        // 3. get the container itself
         const firstFocusableElement =
-            // 1. try to get element specified by the user
             this.maybeGetInitialFocusElement(node) ||
-            // 2. get first occurence from list of focusable elements
             this.maybeGetFirstFocusableElement(node) ||
-            // 3. get the container itself
             this.getContainerElement(node);
 
-        // focus on the element
+        if (firstFocusableElement === node) {
+            // add tabIndex to make the container focusable
+            node.tabIndex = -1;
+        }
+
         firstFocusableElement.focus();
     };
 
@@ -58,9 +62,7 @@ export default class InitialFocus extends React.Component<Props> {
             return null;
         }
 
-        return (ReactDOM.findDOMNode(
-            node.querySelector(`#${initialFocusId}`),
-        ): any);
+        return node.querySelector(`#${initialFocusId}`);
     }
 
     /**
@@ -85,7 +87,6 @@ export default class InitialFocus extends React.Component<Props> {
      * receive focus.
      */
     getContainerElement(node: HTMLElement): HTMLElement {
-        // add tabIndex to make the container focusable
         node.tabIndex = -1;
 
         return node;

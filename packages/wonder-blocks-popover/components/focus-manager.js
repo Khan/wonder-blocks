@@ -57,15 +57,15 @@ export default class FocusManager extends React.Component<Props> {
     rootNode: ?HTMLElement;
 
     componentDidMount() {
-        this.getNextFocusableElement();
+        this.addEventListeners();
     }
 
     componentDidUpdate() {
-        this.getNextFocusableElement();
+        this.addEventListeners();
     }
 
     /**
-     * Remove handlers
+     * Remove keydown listeners
      */
     componentWillUnmount() {
         const {anchorElement} = this.props;
@@ -96,6 +96,32 @@ export default class FocusManager extends React.Component<Props> {
     focusableElementsInPopover = [];
 
     /**
+     * Add keydown listeners
+     */
+    addEventListeners = () => {
+        const {anchorElement} = this.props;
+
+        if (anchorElement) {
+            anchorElement.addEventListener(
+                "keydown",
+                this.handleKeydownPreviousFocusableElement,
+                true,
+            );
+        }
+
+        // tries to get the next focusable element outside of the popover
+        this.nextElementAfterPopover = this.getNextFocusableElement();
+
+        if (this.nextElementAfterPopover) {
+            this.nextElementAfterPopover.addEventListener(
+                "keydown",
+                this.handleKeydownNextFocusableElement,
+                true,
+            );
+        }
+    };
+
+    /**
      * Gets the next focusable element after the anchor element
      */
     getNextFocusableElement = () => {
@@ -119,20 +145,10 @@ export default class FocusManager extends React.Component<Props> {
                     : 0;
 
             // get next element's DOM reference
-            this.nextElementAfterPopover = focusableElements[nextElementIndex];
-
-            this.nextElementAfterPopover.addEventListener(
-                "keydown",
-                this.handleKeydownNextFocusableElement,
-                true,
-            );
-
-            anchorElement.addEventListener(
-                "keydown",
-                this.handleKeydownPreviousFocusableElement,
-                true,
-            );
+            return focusableElements[nextElementIndex];
         }
+
+        return;
     };
 
     /**
