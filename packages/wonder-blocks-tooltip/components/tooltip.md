@@ -1,8 +1,6 @@
 ### Text anchor & text tooltip & placement right
 
 ```js
-const React = require("react");
-
 <Tooltip content="This is a text tooltip on the right" placement="right">
     Some text
 </Tooltip>
@@ -13,7 +11,6 @@ const React = require("react");
 In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `UniqueIDProvider`, but we'll cheat here and just give our own identifier).
 
 ```js
-const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
 
 <Tooltip
@@ -34,7 +31,7 @@ In this example, we have the anchor in a scrollable parent. Notice how, when the
 
 ```js
 const {StyleSheet} = require("aphrodite");
-const React = require("react");
+
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 
@@ -70,7 +67,7 @@ This checks that the tooltip works how we want inside a modal. Click the button 
 
 ```js
 const {StyleSheet} = require("aphrodite");
-const React = require("react");
+
 const {View, Text} = require("@khanacademy/wonder-blocks-core");
 const {OnePaneDialog, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
 const Button = require("@khanacademy/wonder-blocks-button").default;
@@ -122,7 +119,6 @@ const modal = (
 
 ```js
 const {StyleSheet} = require("aphrodite");
-const React = require("react");
 
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {LabelSmall} = require("@khanacademy/wonder-blocks-typography");

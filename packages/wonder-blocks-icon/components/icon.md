@@ -1,7 +1,7 @@
 A minimal `Icon` usage:
 
 ```jsx
-const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
+const {icons} = require("@khanacademy/wonder-blocks-icon");
 
 <Icon icon={icons.search} size="small" />
 ```
@@ -11,7 +11,7 @@ still render any icon at any size in a pinch:
 
 ```jsx
 const {View} = require("@khanacademy/wonder-blocks-core");
-const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
+const {icons} = require("@khanacademy/wonder-blocks-icon");
 
 <View>
     {["small", "medium", "large", "xlarge"].map(size =>
@@ -25,7 +25,7 @@ Icons have `display: inline-block` by default:
 ```jsx
 
 const {View} = require("@khanacademy/wonder-blocks-core");
-const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
+const {icons} = require("@khanacademy/wonder-blocks-icon");
 const Color = require("@khanacademy/wonder-blocks-color").default;
 
 <View>

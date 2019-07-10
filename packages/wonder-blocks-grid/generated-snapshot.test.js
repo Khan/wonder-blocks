@@ -14,6 +14,7 @@ import Row from "./components/row.js";
 
 describe("wonder-blocks-grid", () => {
     it("example 1", () => {
+        const {Cell, Row} = require("@khanacademy/wonder-blocks-grid");
         const Color = require("@khanacademy/wonder-blocks-color").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {LabelMedium} = require("@khanacademy/wonder-blocks-typography");
@@ -150,6 +151,7 @@ describe("wonder-blocks-grid", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
+        const {Cell, Row} = require("@khanacademy/wonder-blocks-grid");
         const Color = require("@khanacademy/wonder-blocks-color").default;
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
 
@@ -294,6 +296,7 @@ describe("wonder-blocks-grid", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
+        const {Row} = require("@khanacademy/wonder-blocks-grid");
         const Color = require("@khanacademy/wonder-blocks-color").default;
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
         const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
@@ -393,6 +396,7 @@ describe("wonder-blocks-grid", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
+        const {Cell} = require("@khanacademy/wonder-blocks-grid");
         const Color = require("@khanacademy/wonder-blocks-color").default;
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -441,6 +445,7 @@ describe("wonder-blocks-grid", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
+        const {Cell} = require("@khanacademy/wonder-blocks-grid");
         const Color = require("@khanacademy/wonder-blocks-color").default;
         const {Body} = require("@khanacademy/wonder-blocks-typography");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");

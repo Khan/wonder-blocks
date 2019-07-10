@@ -4,7 +4,7 @@
 A Dropdown allows various elements to be used as dropdown menus. In this example we use the IconButton to open a Dropown of items to select from. A custom dropdown can be implemented by nesting a function which takes in a state parameter and returns your custom opener component inside a Dropdown.
 
 ```js
-const React = require("react");
+const {ActionItem, OptionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
 const {icons} = require("@khanacademy/wonder-blocks-icon");
@@ -73,7 +73,7 @@ const dropdownItems = [
 In this example we use a Title component with a Dropdown. You can define custom styles that will take place on different mouse events that ClickableBehavior supports.
 
 ```js
-const React = require("react");
+const {ActionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 const {Title} = require("@khanacademy/wonder-blocks-typography");
@@ -130,7 +130,7 @@ const dropdownItems = [
 The Dropdown can also be used to attach more complex Dropdowns to custom openers, in this example we have a Dropdown containing ActionItems and OptionItems attached to a HeadingSmall component.
 
 ```js
-const React = require("react");
+const {ActionItem, OptionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");

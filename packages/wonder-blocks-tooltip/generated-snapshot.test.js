@@ -15,8 +15,6 @@ import TooltipBubble from "./components/tooltip-bubble.js";
 
 describe("wonder-blocks-tooltip", () => {
     it("example 1", () => {
-        const React = require("react");
-
         const example = (
             <Tooltip
                 content="This is a text tooltip on the right"
@@ -29,7 +27,6 @@ describe("wonder-blocks-tooltip", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const example = (
@@ -50,7 +47,7 @@ describe("wonder-blocks-tooltip", () => {
     });
     it("example 3", () => {
         const {StyleSheet} = require("aphrodite");
-        const React = require("react");
+
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Body} = require("@khanacademy/wonder-blocks-typography");
 
@@ -89,7 +86,7 @@ describe("wonder-blocks-tooltip", () => {
     });
     it("example 4", () => {
         const {StyleSheet} = require("aphrodite");
-        const React = require("react");
+
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
         const {
             OnePaneDialog,
@@ -146,7 +143,6 @@ describe("wonder-blocks-tooltip", () => {
     });
     it("example 5", () => {
         const {StyleSheet} = require("aphrodite");
-        const React = require("react");
 
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {LabelSmall} = require("@khanacademy/wonder-blocks-typography");
@@ -399,6 +395,7 @@ describe("wonder-blocks-tooltip", () => {
     });
     it("example 14", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <View>
@@ -412,6 +409,7 @@ describe("wonder-blocks-tooltip", () => {
     });
     it("example 15", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <View style={{alignItems: "flex-start"}}>
@@ -425,6 +423,7 @@ describe("wonder-blocks-tooltip", () => {
     });
     it("example 16", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <View>
@@ -441,6 +440,7 @@ describe("wonder-blocks-tooltip", () => {
     });
     it("example 17", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <View>
@@ -455,6 +455,7 @@ describe("wonder-blocks-tooltip", () => {
     it("example 18", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("@khanacademy/wonder-blocks-spacing");
+        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <View>
@@ -475,6 +476,7 @@ describe("wonder-blocks-tooltip", () => {
     it("example 19", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Spacing = require("@khanacademy/wonder-blocks-spacing");
+        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
         const example = (
             <View>

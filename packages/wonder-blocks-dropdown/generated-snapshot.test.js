@@ -19,7 +19,11 @@ import DropdownCore from "./components/dropdown-core.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
-        const React = require("react");
+        const {
+            ActionItem,
+            OptionItem,
+            SeparatorItem,
+        } = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const IconButton = require("@khanacademy/wonder-blocks-icon-button")
             .default;
@@ -88,7 +92,10 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const React = require("react");
+        const {
+            ActionItem,
+            SeparatorItem,
+        } = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
         const {Title} = require("@khanacademy/wonder-blocks-typography");
@@ -141,7 +148,11 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
-        const React = require("react");
+        const {
+            ActionItem,
+            OptionItem,
+            SeparatorItem,
+        } = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
         const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
@@ -216,6 +227,10 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
+        const {
+            ActionItem,
+            SeparatorItem,
+        } = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -272,6 +287,10 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
+        const {
+            ActionItem,
+            SeparatorItem,
+        } = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
         const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -315,7 +334,11 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 6", () => {
-        const React = require("react");
+        const {
+            ActionItem,
+            OptionItem,
+            SeparatorItem,
+        } = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -421,7 +444,10 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 8", () => {
-        const React = require("react");
+        const {
+            ActionItem,
+            SeparatorItem,
+        } = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -481,7 +507,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 9", () => {
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -556,7 +582,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 10", () => {
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -619,7 +645,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 11", () => {
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -674,7 +700,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 12", () => {
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -730,7 +756,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 13", () => {
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const Color = require("@khanacademy/wonder-blocks-color");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
@@ -823,6 +849,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 15", () => {
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
@@ -848,7 +875,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 16", () => {
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -919,7 +946,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 17", () => {
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -984,7 +1011,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 18", () => {
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -1052,7 +1079,7 @@ describe("wonder-blocks-dropdown", () => {
     });
     it("example 19", () => {
         const {StyleSheet} = require("aphrodite");
-        const React = require("react");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View, Text} = require("@khanacademy/wonder-blocks-core");
         const {
             OnePaneDialog,
@@ -1165,6 +1192,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 21", () => {
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
