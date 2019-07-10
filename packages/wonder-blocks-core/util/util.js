@@ -37,13 +37,14 @@ export function processStyleList(style?: StyleType) {
 
     flatten(style).forEach((child) => {
         // Check for aphrodite internal property
-        if ((child: any)._definition) {
+        const _definition = (child: any)._definition;
+        if (_definition != null) {
             if (shouldInlineStyles) {
                 const def = {};
                 // React 16 complains about invalid keys in inline styles.
                 // It doesn't accept kebab-case in media queries and instead
                 // prefers camelCase.
-                for (const [key, value] of Object.entries(child._definition)) {
+                for (const [key, value] of Object.entries(_definition)) {
                     // This regex converts all instances of -{lowercaseLetter}
                     // to the uppercase version of that letter, without the
                     // leading dash.

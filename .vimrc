@@ -14,15 +14,17 @@
 " Asynchronous Lint Engine (ALE) {{{
 " Github link for ALE: https://github.com/w0rp/ale
 
-" Use Khan Academy Linter's eslint executable instead of your local or global.
-let b:ale_javascript_eslint_executable = $HOME."/khan/devtools/khan-linter/node_modules/.bin/eslint"
-let b:ale_javascript_eslint_use_global = 1
-
-" Linters we want to run.
-let b:ale_linters = {
+let g:ale_linters = {
 \   'javascript': [
 \       'flow',
 \       'eslint',
+\   ],
+\}
+
+let g:ale_fixers = {
+\   'javascript': [
+\       'eslint',
+\       'prettier_eslint',
 \       'trim_whitespace',
 \       'remove_trailing_lines',
 \   ],

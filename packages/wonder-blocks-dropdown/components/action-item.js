@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 const {blue, white, offBlack, offBlack32} = Color;
@@ -94,6 +94,10 @@ export default class ActionItem extends React.Component<ActionProps> {
     };
 
     static contextTypes = {router: PropTypes.any};
+    static __IS_ACTION_ITEM__ = true;
+    static isClassOf(instance: React.Element<any>) {
+        return instance && instance.type && instance.type.__IS_ACTION_ITEM__;
+    }
 
     render() {
         const {
@@ -143,11 +147,11 @@ export default class ActionItem extends React.Component<ActionProps> {
 
                     const children = (
                         <React.Fragment>
-                            <LabelLarge
+                            <LabelMedium
                                 style={[indent && styles.indent, styles.label]}
                             >
                                 {label}
-                            </LabelLarge>
+                            </LabelMedium>
                         </React.Fragment>
                     );
 

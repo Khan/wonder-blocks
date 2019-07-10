@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-clickable example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-label=""
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
+        "outline": "none",
+        "overflow": "visible",
+        "padding": 0,
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+        "width": "auto",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
+        }
+      >
+        This text is clickable!
+      </span>
+    </div>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-clickable example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <a
+    aria-label=""
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
+        "marginRight": 24,
+        "outline": "none",
+        "overflow": "visible",
+        "padding": 0,
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+        "width": "auto",
+      }
+    }
+    tabIndex={0}
+  >
+    <h1>
+      Uses Client-side Nav
+    </h1>
+  </a>
+  <a
+    aria-label=""
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
+        "marginRight": 24,
+        "outline": "none",
+        "overflow": "visible",
+        "padding": 0,
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+        "width": "auto",
+      }
+    }
+    tabIndex={0}
+  >
+    <h1>
+      Avoids Client-side Nav
+    </h1>
+  </a>
+</div>
+`;

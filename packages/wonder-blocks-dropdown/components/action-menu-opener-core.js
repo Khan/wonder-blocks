@@ -9,16 +9,31 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-
-import type {ClickableHandlers} from "@khanacademy/wonder-blocks-core";
-import type {SharedProps} from "./action-menu-opener.js";
+import type {AriaProps, ClickableState} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
-    ...SharedProps,
-    ...ClickableHandlers,
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
+    ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
+
+    ...ClickableState,
+    /**
+     * Display text for the opener.
+     */
+    children: string,
+
+    /**
+     * Whether the opener is disabled. If disabled, disallows interaction.
+     */
+    disabled?: boolean,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
+
+    /**
+     * Whether the dropdown is open.
+     */
+    opened: boolean,
 |};
 
 const StyledButton = addStyle<"button">("button");
@@ -40,6 +55,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             hovered,
             pressed,
             testId,
+            opened,
             "aria-label": ariaLabel,
             ...handlers
         } = this.props;
@@ -62,8 +78,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
 
         return (
             <StyledButton
-                aria-disabled={disabled ? "true" : undefined}
-                aria-expanded={open ? "true" : "false"}
+                aria-expanded={opened ? "true" : "false"}
                 aria-haspopup="menu"
                 aria-label={ariaLabel}
                 data-test-id={testId}
@@ -106,6 +121,10 @@ const sharedStyles = StyleSheet.create({
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
+        ":focus": {
+            // Mobile: Removes a blue highlight style shown when the user clicks a button
+            WebkitTapHighlightColor: "rgba(0,0,0,0)",
+        },
     },
     disabled: {
         cursor: "auto",

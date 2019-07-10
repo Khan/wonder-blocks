@@ -38,7 +38,6 @@ export default class CheckboxCore extends React.Component<Props> {
 
     render() {
         const {
-            "aria-label": ariaLabel,
             checked,
             disabled,
             error,
@@ -48,6 +47,7 @@ export default class CheckboxCore extends React.Component<Props> {
             hovered,
             focused,
             pressed,
+            ...sharedProps
         } = this.props;
 
         const stateStyles = _generateStyles(checked, error);
@@ -70,9 +70,9 @@ export default class CheckboxCore extends React.Component<Props> {
         return (
             <React.Fragment>
                 <StyledInput
+                    {...sharedProps}
                     type="checkbox"
-                    aria-checked={checked}
-                    aria-label={ariaLabel}
+                    aria-invalid={error}
                     checked={checked}
                     disabled={disabled}
                     id={id}

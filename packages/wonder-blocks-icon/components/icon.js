@@ -79,23 +79,17 @@ export default class Icon extends React.PureComponent<Props> {
     };
 
     render() {
-        // There is a weird thing where Flow will only recognize a string-quoted
-        // prop name if it's in single quotes, but our tooling normalizes it to
-        // double-quotes on commit. So the aria-label prop isn't included in
-        // props validation.
-        // eslint-disable-next-line react/prop-types
-        const {"aria-label": ariaLabel} = this.props;
-        const {color, icon, size, style} = this.props;
+        const {color, icon, size, style, ...sharedProps} = this.props;
 
         const {assetSize, path} = getPathForIcon(icon, size);
         const pixelSize = viewportPixelsForSize(size);
         const viewboxPixelSize = viewportPixelsForSize(assetSize);
         return (
             <StyledSVG
+                {...sharedProps}
                 style={[styles.svg, style]}
                 width={pixelSize}
                 height={pixelSize}
-                aria-label={ariaLabel}
                 viewBox={`0 0 ${viewboxPixelSize} ${viewboxPixelSize}`}
             >
                 <path fill={color} d={path} />

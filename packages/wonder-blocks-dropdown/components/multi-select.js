@@ -3,10 +3,10 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ActionItem from "./action-item.js";
-import Dropdown from "./dropdown.js";
+import DropdownCore from "./dropdown-core.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
 import {selectDropdownStyle} from "../util/constants.js";
@@ -15,10 +15,25 @@ import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * The items in this select.
      */
     children?: Array<React.Element<OptionItem>>,
+
+    /**
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
+     */
+    disabled: boolean,
+
+    /**
+     * Unique identifier attached to the field control. If used, we need to
+     * guarantee that the ID is unique within everything rendered on a page.
+     * Used to match `<label>` with `<button>` elements for screenreaders.
+     */
+    id?: string,
 
     /**
      * Callback for when the selection changes. Parameter is an updated array of
@@ -54,12 +69,6 @@ type Props = {|
      * opener component. Defaults to left-aligned.
      */
     alignment: "left" | "right",
-
-    /**
-     * Whether this component is disabled. A disabled dropdown may not be opened
-     * and does not support interaction. Defaults to false.
-     */
-    disabled: boolean,
 
     /**
      * Whether to display the "light" version of this component instead, for
@@ -263,11 +272,22 @@ export default class MultiSelect extends React.Component<Props, State> {
         const {
             alignment,
             disabled,
+            id,
             light,
             placeholder,
             style,
             testId,
             dropdownStyle,
+            // the following props are being included here to avoid
+            // passing them down to the opener as part of sharedProps
+            /* eslint-disable no-unused-vars */
+            children,
+            onChange,
+            selectedValues,
+            selectItemType,
+            shortcuts,
+            /* eslint-enable no-unused-vars */
+            ...sharedProps
         } = this.props;
         const {open} = this.state;
 
@@ -277,7 +297,9 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         const opener = (
             <SelectOpener
+                {...sharedProps}
                 disabled={items.length === 0 || disabled}
+                id={id}
                 isPlaceholder={menuText === placeholder}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
@@ -290,7 +312,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         );
 
         return (
-            <Dropdown
+            <DropdownCore
                 role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}

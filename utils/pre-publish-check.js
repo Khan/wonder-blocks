@@ -8,10 +8,21 @@ const {exec} = require("child_process");
 
 const inquirer = require("inquirer");
 
-const checkPublishConfig = (publishConfig) => {
-    if (!publishConfig || publishConfig.access !== "public") {
+const checkPublishConfig = ({name, publishConfig, private: isPrivate}) => {
+    // first check if is marked as public and there's access to publish the current package
+    if (!publishConfig || (!isPrivate && publishConfig.access !== "public")) {
+        const requiredAccessType = isPrivate ? "restricted" : "public";
+
         console.error(
-            `ERROR: ${name} is missing a "publishConfig": {"access": "public"} section.`,
+            `ERROR: ${name} is missing a "publishConfig": {"access": "${requiredAccessType}"} section.`,
+        );
+        process.exit(1);
+    }
+
+    // also check if is marked as private and there's restricted access defined
+    if (isPrivate && publishConfig.access !== "restricted") {
+        console.error(
+            `ERROR: ${name} is marked as private but there is a "publishConfig": {"access": "public"} section already defined. Please change it to "access": "restricted" or remove "private": true to make the package public.`,
         );
         process.exit(1);
     }
@@ -65,9 +76,8 @@ glob(
 
         for (const pkgPath of pkgPaths) {
             const pkgJson = require(path.relative(__dirname, pkgPath));
-            const {publishConfig} = pkgJson;
 
-            checkPublishConfig(publishConfig);
+            checkPublishConfig(pkgJson);
             checkPackageMain(pkgJson);
             checkPackageModule(pkgJson);
             checkPackageSource(pkgJson);

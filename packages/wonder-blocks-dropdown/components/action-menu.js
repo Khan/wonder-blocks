@@ -1,22 +1,19 @@
 // @flow
 
 import * as React from "react";
-import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
-
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import Dropdown from "./dropdown.js";
-import ActionItem from "./action-item.js";
-import OptionItem from "./option-item.js";
-import ActionMenuOpener from "./action-menu-opener.js";
-
-import type {Item, DropdownItem} from "../util/types.js";
+import ActionMenuOpenerCore from "./action-menu-opener-core.js";
+import type {Item} from "../util/types.js";
 
 type MenuProps = {|
+    ...AriaProps,
+
     /**
      * The items in this dropdown.
      */
-    children?: Array<Item>,
+    children?: Array<Item> | Item,
 
     /**
      * Text for the opener of this menu.
@@ -48,26 +45,27 @@ type MenuProps = {|
     disabled: boolean,
 
     /**
-     * Optional styling to add to the opener component wrapper.
-     */
-    style?: StyleType,
-
-    /**
      * Test ID used for e2e testing.
      */
     testId?: string,
 
     /**
-     * Optional styling to add to the dropdown wrapper.
+     * Styling specific to the dropdown component that isn't part of the opener,
+     * passed by the specific implementation of the dropdown menu,
      */
     dropdownStyle?: StyleType,
+
+    /**
+     * Optional styling for the entire dropdown component.
+     */
+    style?: StyleType,
 |};
 
 type State = {|
     /**
      * Whether or not the dropdown is open.
      */
-    open: boolean,
+    opened: boolean,
     /**
      * Whether or not last open state change was triggered by a keyboard click.
      */
@@ -85,97 +83,8 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         disabled: false,
     };
 
-    constructor(props: MenuProps) {
-        super(props);
-
-        this.state = {
-            open: false,
-        };
-    }
-
-    handleOpenChanged = (open: boolean, keyboard?: boolean) => {
-        this.setState({
-            open,
-            keyboard,
-        });
-    };
-
-    handleItemSelected = () => {
-        // Bring focus back to the opener element.
-        if (this.openerElement) {
-            this.openerElement.focus();
-        }
-
-        this.setState({
-            open: false, // close the menu upon selection
-        });
-    };
-
-    handleOptionSelected = (selectedValue: string) => {
-        const {onChange, selectedValues} = this.props;
-
-        // If either of these are not defined, return.
-        if (!onChange || !selectedValues) {
-            return;
-        }
-
-        if (selectedValues.includes(selectedValue)) {
-            const index = selectedValues.indexOf(selectedValue);
-            const updatedSelection = [
-                ...selectedValues.slice(0, index),
-                ...selectedValues.slice(index + 1),
-            ];
-            onChange(updatedSelection);
-        } else {
-            // Item was newly selected
-            onChange([...selectedValues, selectedValue]);
-        }
-        this.handleItemSelected();
-    };
-
-    getMenuItems(): Array<DropdownItem> {
-        const {children, selectedValues} = this.props;
-        const containsOptionItems = Array.isArray(selectedValues);
-        return React.Children.toArray(children)
-            .filter(Boolean)
-            .map((item) => {
-                const {
-                    type,
-                    props: {disabled, value},
-                } = item;
-                if (type === ActionItem) {
-                    return {
-                        component: item,
-                        focusable: !disabled,
-                        populatedProps: {
-                            indent: containsOptionItems,
-                            onClick: this.handleItemSelected,
-                        },
-                    };
-                } else if (type === OptionItem) {
-                    return {
-                        component: item,
-                        focusable: !disabled,
-                        populatedProps: {
-                            onToggle: this.handleOptionSelected,
-                            selected: selectedValues
-                                ? selectedValues.includes(value)
-                                : false,
-                            variant: "check",
-                        },
-                    };
-                } else {
-                    return {
-                        component: item,
-                        focusable: false,
-                        populatedProps: {},
-                    };
-                }
-            });
-    }
-
-    handleOpenerRef = (node: any) => {
-        this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+    state = {
+        opened: false,
     };
 
     render() {
@@ -183,40 +92,43 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             alignment,
             disabled,
             menuText,
-            style,
             testId,
             dropdownStyle,
+            // the following props are being included here to avoid
+            // passing them down to the opener as part of sharedProps
+            /* eslint-disable no-unused-vars */
+            children,
+            onChange,
+            selectedValues,
+            style,
+            "aria-disabled": ariaDisabled, // WB-535 avoids passing this prop to the opener
+            /* eslint-enable no-unused-vars */
+            ...sharedProps
         } = this.props;
-        const {open} = this.state;
 
-        const items = this.getMenuItems();
-
-        const opener = (
-            <ActionMenuOpener
-                disabled={items.length === 0 || disabled}
-                onOpenChanged={this.handleOpenChanged}
-                open={open}
-                ref={this.handleOpenerRef}
-                testId={testId}
-            >
-                {menuText}
-            </ActionMenuOpener>
-        );
-
+        const menuItems = React.Children.toArray(this.props.children);
         return (
             <Dropdown
-                alignment={alignment}
-                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
-                items={items}
-                keyboard={this.state.keyboard}
-                light={false}
-                onOpenChanged={this.handleOpenChanged}
-                open={open}
-                opener={opener}
-                openerElement={this.openerElement}
                 style={style}
-                role="menu"
-            />
+                onChange={onChange}
+                alignment={alignment}
+                menuItems={menuItems}
+                selectedValues={selectedValues}
+                disabled={menuItems.length === 0 || disabled}
+                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
+            >
+                {(eventState) => (
+                    <ActionMenuOpenerCore
+                        {...sharedProps}
+                        {...eventState}
+                        testId={testId}
+                        opened={this.state.opened}
+                        disabled={menuItems.length === 0 || disabled}
+                    >
+                        {menuText}
+                    </ActionMenuOpenerCore>
+                )}
+            </Dropdown>
         );
     }
 }

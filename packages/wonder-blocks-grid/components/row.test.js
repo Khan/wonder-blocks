@@ -13,9 +13,6 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 describe("Row", () => {
     beforeEach(() => {
         unmountAll();
-
-        // eslint-disable-next-line no-console
-        console.error.mockRestore && console.error.mockRestore();
     });
 
     describe("large", () => {
@@ -49,12 +46,6 @@ describe("Row", () => {
 
         it("should throw if there are too many columns", async () => {
             // Arrange
-
-            // Prevent jest complaining when JSDOM console.error's an exception
-            jest.spyOn(console, "error");
-            // eslint-disable-next-line no-console
-            console.error.mockImplementation(() => {});
-
             const render = () => {
                 mount(
                     <div>
@@ -109,12 +100,6 @@ describe("Row", () => {
 
         it("should throw if there are too many columns", () => {
             // Arrange
-
-            // Prevent jest complaining when JSDOM console.error's an exception
-            jest.spyOn(console, "error");
-            // eslint-disable-next-line no-console
-            console.error.mockImplementation(() => {});
-
             const render = () => {
                 mount(
                     <div>
@@ -169,12 +154,6 @@ describe("Row", () => {
 
         it("should throw if there are too many columns", () => {
             // Arrange
-
-            // Prevent jest complaining when JSDOM console.error's an exception
-            jest.spyOn(console, "error");
-            // eslint-disable-next-line no-console
-            console.error.mockImplementation(() => {});
-
             const render = () => {
                 mount(
                     <div>

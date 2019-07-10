@@ -2,7 +2,6 @@
 
 exports[`IconButtonCore kind:primary color:default size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -23,6 +22,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -89,6 +91,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -160,6 +165,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -230,6 +238,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -279,7 +290,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
 
 exports[`IconButtonCore kind:primary color:default size:default light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -300,6 +310,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -366,6 +379,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -437,6 +453,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -507,6 +526,9 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -556,7 +578,6 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
 
 exports[`IconButtonCore kind:primary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -577,6 +598,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -643,6 +667,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -714,6 +741,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -784,6 +814,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -833,7 +866,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
 
 exports[`IconButtonCore kind:primary color:default size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -854,6 +886,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -920,6 +955,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -991,6 +1029,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1061,6 +1102,9 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1110,7 +1154,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1131,6 +1174,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1197,6 +1243,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1268,6 +1317,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1338,6 +1390,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1387,7 +1442,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
 
 exports[`IconButtonCore kind:primary color:destructive size:default light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1408,6 +1462,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1474,6 +1531,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1545,6 +1605,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1615,6 +1678,9 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1664,7 +1730,6 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1685,6 +1750,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1751,6 +1819,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -1822,6 +1893,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1892,6 +1966,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -1941,7 +2018,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -1962,6 +2038,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2028,6 +2107,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2099,6 +2181,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2169,6 +2254,9 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2218,7 +2306,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
 
 exports[`IconButtonCore kind:secondary color:default size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2239,6 +2326,9 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2305,6 +2395,9 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2376,6 +2469,9 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2446,6 +2542,9 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2495,7 +2594,6 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2516,6 +2614,9 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2582,6 +2683,9 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2653,6 +2757,9 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2723,6 +2830,9 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -2772,7 +2882,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
 
 exports[`IconButtonCore kind:secondary color:destructive size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -2793,6 +2902,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2859,6 +2971,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -2930,6 +3045,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3000,6 +3118,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3049,7 +3170,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3070,6 +3190,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3136,6 +3259,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3207,6 +3333,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3277,6 +3406,9 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3326,7 +3458,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 
 exports[`IconButtonCore kind:tertiary color:default size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3347,6 +3478,9 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3413,6 +3547,9 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3484,6 +3621,9 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3554,6 +3694,9 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3603,7 +3746,6 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3624,6 +3766,9 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3690,6 +3835,9 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3761,6 +3909,9 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3831,6 +3982,9 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -3880,7 +4034,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
 
 exports[`IconButtonCore kind:tertiary color:destructive size:default light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -3901,6 +4054,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -3967,6 +4123,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -4038,6 +4197,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4108,6 +4270,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4157,7 +4322,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
 <button
-  aria-disabled="true"
   aria-label="search"
   className=""
   disabled={true}
@@ -4178,6 +4342,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -4244,6 +4411,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",
@@ -4315,6 +4485,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       "::MozFocusInner": Object {
         "border": 0,
       },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
       "alignItems": "center",
       "background": "none",
       "border": "none",
@@ -4384,6 +4557,9 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "none",

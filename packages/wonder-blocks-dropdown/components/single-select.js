@@ -3,9 +3,9 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import Dropdown from "./dropdown.js";
+import DropdownCore from "./dropdown-core.js";
 import SelectOpener from "./select-opener.js";
 import {selectDropdownStyle} from "../util/constants.js";
 
@@ -13,6 +13,8 @@ import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * The items in this select.
      */
@@ -23,6 +25,13 @@ type Props = {|
      * selected item.
      */
     onChange: (selectedValue: string) => mixed,
+
+    /**
+     * Unique identifier attached to the field control. If used, we need to
+     * guarantee that the ID is unique within everything rendered on a page.
+     * Used to match `<label>` with `<button>` elements for screenreaders.
+     */
+    id?: string,
 
     /**
      * Placeholder for the opening component when there are no items selected.
@@ -169,11 +178,15 @@ export default class SingleSelect extends React.Component<Props, State> {
             children,
             disabled,
             dropdownStyle,
+            id,
             light,
             placeholder,
             selectedValue,
             style,
             testId,
+            // eslint-disable-next-line no-unused-vars
+            onChange,
+            ...sharedProps
         } = this.props;
         const {open} = this.state;
 
@@ -188,7 +201,9 @@ export default class SingleSelect extends React.Component<Props, State> {
 
         const opener = (
             <SelectOpener
+                {...sharedProps}
                 disabled={items.length === 0 || disabled}
+                id={id}
                 isPlaceholder={!selectedItem}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
@@ -201,7 +216,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         );
 
         return (
-            <Dropdown
+            <DropdownCore
                 role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}

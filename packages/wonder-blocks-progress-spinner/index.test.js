@@ -8,8 +8,6 @@ describe("@khanacademy/wonder-blocks-progress-spinner", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual([
-            "CircularSpinner",
-        ].sort());
+        expect(Object.keys(result).sort()).toEqual(["CircularSpinner"].sort());
     });
 });

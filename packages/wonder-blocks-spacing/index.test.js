@@ -8,8 +8,6 @@ describe("@khanacademy/wonder-blocks-spacing", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual([
-            "default",
-        ].sort());
+        expect(Object.keys(result).sort()).toEqual(["default"].sort());
     });
 });

@@ -21,8 +21,7 @@ const StyledInput = addStyle("input");
 
 /**
  * The internal stateless 🔘 Radio button
- */
-export default class RadioCore extends React.Component<Props> {
+ */ export default class RadioCore extends React.Component<Props> {
     handleChange = () => {
         // Empty because change is handled by ClickableBehavior
         return;
@@ -30,7 +29,6 @@ export default class RadioCore extends React.Component<Props> {
 
     render() {
         const {
-            "aria-label": ariaLabel,
             checked,
             disabled,
             error,
@@ -40,10 +38,9 @@ export default class RadioCore extends React.Component<Props> {
             hovered,
             focused,
             pressed,
+            ...sharedProps
         } = this.props;
-
         const stateStyles = _generateStyles(checked, error);
-
         const defaultStyle = [
             sharedStyles.inputReset,
             sharedStyles.default,
@@ -54,17 +51,15 @@ export default class RadioCore extends React.Component<Props> {
                     : (hovered || focused) && stateStyles.focus),
             disabled && sharedStyles.disabled,
         ];
-
         const props = {
             "data-test-id": testId,
         };
-
         return (
             <React.Fragment>
                 <StyledInput
+                    {...sharedProps}
                     type="radio"
-                    aria-checked={checked}
-                    aria-label={ariaLabel}
+                    aria-invalid={error}
                     checked={checked}
                     disabled={disabled}
                     id={id}
@@ -80,10 +75,7 @@ export default class RadioCore extends React.Component<Props> {
         );
     }
 }
-
-const size = 16; // circle with a different color. Here, we add that center circle.
-
-// If the checkbox is disabled and selected, it has a border but also an inner
+const size = 16; // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
 const disabledChecked = {
     position: "absolute",
     top: size / 4,
@@ -93,7 +85,6 @@ const disabledChecked = {
     borderRadius: "50%",
     backgroundColor: offBlack32,
 };
-
 const sharedStyles = StyleSheet.create({
     // Reset the default styled input element
     inputReset: {
@@ -101,7 +92,6 @@ const sharedStyles = StyleSheet.create({
         WebkitAppearance: "none",
         MozAppearance: "none",
     },
-
     default: {
         height: size,
         width: size,
@@ -114,7 +104,6 @@ const sharedStyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: "50%",
     },
-
     disabled: {
         cursor: "auto",
         backgroundColor: offWhite,
@@ -122,12 +111,10 @@ const sharedStyles = StyleSheet.create({
         borderWidth: 1,
     },
 });
-
 const fadedBlue = mix(fade(blue, 0.16), white);
 const activeBlue = mix(offBlack32, blue);
 const fadedRed = mix(fade(red, 0.08), white);
 const activeRed = mix(offBlack32, red);
-
 const colors = {
     default: {
         faded: fadedBlue,
@@ -140,9 +127,7 @@ const colors = {
         active: activeRed,
     },
 };
-
 const styles = {};
-
 const _generateStyles = (checked, error) => {
     // "hash" the parameters
     const styleKey = `${String(checked)}-${String(error)}`;
@@ -150,7 +135,6 @@ const _generateStyles = (checked, error) => {
         return styles[styleKey];
     }
     const palette = error ? colors.error : colors.default;
-
     let newStyles = {};
     if (checked) {
         newStyles = {

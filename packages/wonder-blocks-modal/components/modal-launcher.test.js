@@ -5,9 +5,17 @@ import {shallow} from "enzyme";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import expectRenderError from "../../../utils/testing/expect-render-error.js";
 import ModalLauncher from "./modal-launcher.js";
-import OneColumnModal from "./one-column-modal/one-column-modal.js";
+import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
 
-const exampleModal = <OneColumnModal content={<div data-modal-child />} />;
+const sleep = (duration: number = 0) =>
+    new Promise((resolve, reject) => setTimeout(resolve, duration));
+
+const exampleModal = (
+    <OnePaneDialog
+        title="Modal launcher test"
+        content={<div data-modal-child />}
+    />
+);
 
 describe("ModalLauncher", () => {
     window.scrollTo = jest.fn();
@@ -180,5 +188,91 @@ describe("ModalLauncher", () => {
             <ModalLauncher modal={exampleModal} />,
             "either 'children' or 'opened' must be set",
         );
+    });
+
+    test("If backdropDismissEnabled set to false, clicking the backdrop does not trigger `onClose`", () => {
+        const onClose = jest.fn();
+
+        // We use `mount` instead of `shallow` here, because the component's
+        // click handler expects actual DOM events.
+        const wrapper = mount(
+            <ModalLauncher
+                onClose={onClose}
+                modal={exampleModal}
+                opened={true}
+                backdropDismissEnabled={false}
+            />,
+        );
+
+        expect(onClose).not.toHaveBeenCalled();
+
+        wrapper.simulate("click");
+        expect(onClose).not.toHaveBeenCalled();
+    });
+
+    test("if modal is launched, move focus inside the modal", async () => {
+        // Arrange
+        const wrapper = mount(
+            <ModalLauncher modal={exampleModal}>
+                {({openModal}) => (
+                    <button onClick={openModal} data-last-focused-button />
+                )}
+            </ModalLauncher>,
+        );
+
+        const lastButton = wrapper
+            .find("[data-last-focused-button]")
+            .getDOMNode();
+        // force focus
+        lastButton.focus();
+
+        // Act
+        // Launch the modal.
+        wrapper.find("button").simulate("click");
+
+        // wait for styles to be applied
+        await sleep();
+
+        // Assert
+        expect(document.activeElement).not.toBe(lastButton);
+    });
+
+    test("if modal is closed, return focus to the last element focused outside the modal", async () => {
+        // Arrange
+        let savedCloseModal = () => {
+            throw new Error(`closeModal wasn't saved`);
+        };
+
+        const wrapper = mount(
+            <ModalLauncher
+                modal={({closeModal}) => {
+                    savedCloseModal = closeModal;
+                    return exampleModal;
+                }}
+            >
+                {({openModal}) => (
+                    <button onClick={openModal} data-last-focused-button />
+                )}
+            </ModalLauncher>,
+        );
+
+        const lastButton = wrapper
+            .find("[data-last-focused-button]")
+            .getDOMNode();
+        // force focus
+        lastButton.focus();
+
+        // Launch the modal.
+        wrapper.find("button").simulate("click");
+
+        // wait for styles to be applied
+        await sleep();
+
+        // Act
+        savedCloseModal(); // close the modal
+        wrapper.update();
+
+        // Assert
+        expect(document.activeElement).toBe(lastButton);
     });
 });

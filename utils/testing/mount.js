@@ -15,7 +15,9 @@ const unmountAll = () => {
     for (const key of wrappersToUnmount) {
         const wrapper = ACTIVE_WRAPPERS[key];
         delete ACTIVE_WRAPPERS[key];
-        wrapper.unmount();
+        if (wrapper.first().length) {
+            wrapper.unmount();
+        }
     }
 };
 

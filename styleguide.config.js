@@ -14,6 +14,14 @@ module.exports = {
                 "This section only appears to developers. If you want to include content that only appears in the development server, add `private: true` to the section configuration in `styleguide.config.js`.",
         },
         {
+            name: "Breadcrumbs",
+            content: "packages/wonder-blocks-breadcrumbs/docs.md",
+            components: [
+                "packages/wonder-blocks-breadcrumbs/components/breadcrumbs.js",
+                "packages/wonder-blocks-breadcrumbs/components/breadcrumbs-item.js",
+            ],
+        },
+        {
             name: "Button",
             content: "packages/wonder-blocks-button/docs.md",
             components: "packages/wonder-blocks-button/components/button.js",
@@ -28,9 +36,15 @@ module.exports = {
             components: "packages/wonder-blocks-core/components/*.js",
         },
         {
+            name: "Clickable",
+            content: "packages/wonder-blocks-clickable/docs.md",
+            components: "packages/wonder-blocks-clickable/components/*.js",
+        },
+        {
             name: "Dropdown",
             content: "packages/wonder-blocks-dropdown/docs.md",
             components: [
+                "packages/wonder-blocks-dropdown/components/dropdown.js",
                 "packages/wonder-blocks-dropdown/components/action-item.js",
                 "packages/wonder-blocks-dropdown/components/separator-item.js",
                 "packages/wonder-blocks-dropdown/components/option-item.js",
@@ -43,7 +57,7 @@ module.exports = {
                     name: "Internal Components",
                     private: true,
                     components: [
-                        "packages/wonder-blocks-dropdown/components/dropdown.js",
+                        "packages/wonder-blocks-dropdown/components/dropdown-core.js",
                     ],
                 },
             ],
@@ -118,20 +132,15 @@ module.exports = {
                 {
                     name: "Modals",
                     components: [
-                        "packages/wonder-blocks-modal/components/standard-modal.js",
-                        "packages/wonder-blocks-modal/components/two-column-modal/two-column-modal.js",
-                        "packages/wonder-blocks-modal/components/one-column-modal/one-column-modal.js",
+                        "packages/wonder-blocks-modal/components/one-pane-dialog/one-pane-dialog.js",
                     ],
                 },
                 {
-                    // NOTE(jeresig): Not ready to be used yet, need docs.
-                    private: true,
                     name: "Building Blocks",
                     content: "packages/wonder-blocks-modal/building-blocks.md",
                     components: [
                         "packages/wonder-blocks-modal/components/modal-dialog.js",
                         "packages/wonder-blocks-modal/components/modal-panel.js",
-                        "packages/wonder-blocks-modal/components/modal-content.js",
                         "packages/wonder-blocks-modal/components/modal-header.js",
                         "packages/wonder-blocks-modal/components/modal-footer.js",
                     ],
@@ -147,6 +156,17 @@ module.exports = {
         {
             name: "Spacing",
             content: "packages/wonder-blocks-spacing/docs.md",
+        },
+        {
+            name: "Timing",
+            content: "packages/wonder-blocks-timing/docs.md",
+            sections: [
+                {
+                    name: "withActionScheduler",
+                    content:
+                        "packages/wonder-blocks-timing/components/with-action-scheduler.md",
+                },
+            ],
         },
         {
             name: "Toolbar",

@@ -9,52 +9,68 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import ModalLauncher from "./components/modal-launcher.js";
-import StandardModal from "./components/standard-modal.js";
-import TwoColumnModal from "./components/two-column-modal/two-column-modal.js";
-import OneColumnModal from "./components/one-column-modal/one-column-modal.js";
+import OnePaneDialog from "./components/one-pane-dialog/one-pane-dialog.js";
 import ModalDialog from "./components/modal-dialog.js";
 import ModalPanel from "./components/modal-panel.js";
-import ModalContent from "./components/modal-content.js";
 import ModalHeader from "./components/modal-header.js";
 import ModalFooter from "./components/modal-footer.js";
 
 describe("wonder-blocks-modal", () => {
     it("example 1", () => {
         const React = require("react");
+        const {StyleSheet} = require("aphrodite");
 
         const {Title} = require("@khanacademy/wonder-blocks-typography");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
-        class ModalWrapper extends React.Component {
-            render() {
-                return (
-                    <OneColumnModal
-                        content={
-                            <View>
-                                <Title>Hello, world</Title>
-                            </View>
-                        }
-                        footer={
-                            <Button onClick={this.props.onClose}>
-                                Close Modal
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+        });
+
+        const modalInitialFocus = ({closeModal}) => (
+            <OnePaneDialog
+                title="Single-line title"
+                content={
+                    <View>
+                        <View>
+                            <label>Label</label>
+                            <input type="text" />
+                            <Strut size={Spacing.medium} />
+                            <Button id="initial-focus">
+                                Button to receive initial focus
                             </Button>
-                        }
-                    />
-                );
-            }
-        }
+                        </View>
+                    </View>
+                }
+                footer={
+                    <React.Fragment>
+                        <Button kind="tertiary" onClick={closeModal}>
+                            Cancel
+                        </Button>
+                        <Strut size={Spacing.medium} />
+                        <Button>Submit</Button>
+                    </React.Fragment>
+                }
+            />
+        );
 
         const example = (
-            <View style={{flexDirection: "row"}}>
+            <View style={styles.example}>
                 <ModalLauncher
                     onClose={() => window.alert("you closed the modal")}
-                    modal={({closeModal}) => (
-                        <ModalWrapper onClose={closeModal} />
-                    )}
+                    initialFocusId="initial-focus"
+                    modal={modalInitialFocus}
                 >
                     {({openModal}) => (
-                        <Button onClick={openModal}>Open Modal</Button>
+                        <Button onClick={openModal}>
+                            Open modal with initial focus
+                        </Button>
                     )}
                 </ModalLauncher>
             </View>
@@ -63,6 +79,147 @@ describe("wonder-blocks-modal", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
+        const React = require("react");
+        const {StyleSheet} = require("aphrodite");
+
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+            row: {
+                flexDirection: "row",
+                justifyContent: "flex-end",
+            },
+            footer: {
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+            },
+        });
+
+        class ExerciseModal extends React.Component {
+            render() {
+                const {
+                    current,
+                    handleNextButton,
+                    handlePrevButton,
+                    question,
+                    total,
+                } = this.props;
+
+                return (
+                    <OnePaneDialog
+                        title="Exercises"
+                        content={
+                            <View>
+                                <Body>
+                                    This is the current question: {question}
+                                </Body>
+                            </View>
+                        }
+                        footer={
+                            <View style={styles.footer}>
+                                <LabelLarge>
+                                    Step {current + 1} of {total}
+                                </LabelLarge>
+                                <View style={styles.row}>
+                                    <Button
+                                        kind="tertiary"
+                                        onClick={handlePrevButton}
+                                    >
+                                        Previous
+                                    </Button>
+                                    <Strut size={16} />
+                                    <Button
+                                        kind="primary"
+                                        onClick={handleNextButton}
+                                    >
+                                        Next
+                                    </Button>
+                                </View>
+                            </View>
+                        }
+                    />
+                );
+            }
+        }
+
+        class ExerciseContainer extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    currentQuestion: 0,
+                };
+            }
+
+            handleNextButton() {
+                this.setState({
+                    currentQuestion: Math.min(
+                        this.state.currentQuestion + 1,
+                        this.props.questions.length - 1,
+                    ),
+                });
+            }
+
+            handlePrevButton() {
+                this.setState({
+                    currentQuestion: Math.max(
+                        0,
+                        this.state.currentQuestion - 1,
+                    ),
+                });
+            }
+
+            render() {
+                return (
+                    <ModalLauncher
+                        onClose={() => console.log("you closed the modal")}
+                        modal={
+                            <ExerciseModal
+                                question={
+                                    this.props.questions[
+                                        this.state.currentQuestion
+                                    ]
+                                }
+                                current={this.state.currentQuestion}
+                                total={this.props.questions.length}
+                                handlePrevButton={() => this.handlePrevButton()}
+                                handleNextButton={() => this.handleNextButton()}
+                            />
+                        }
+                    >
+                        {({openModal}) => (
+                            <Button onClick={openModal}>
+                                Open flexible modal
+                            </Button>
+                        )}
+                    </ModalLauncher>
+                );
+            }
+        }
+
+        const example = (
+            <View style={styles.example}>
+                <ExerciseContainer
+                    questions={[
+                        "First question",
+                        "Second question",
+                        "Last question",
+                    ]}
+                />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
@@ -99,6 +256,26 @@ describe("wonder-blocks-modal", () => {
                     maxWidth: 300,
                     maxHeight: 200,
                 },
+
+                below: {
+                    background: "url(/blue-blob.png)",
+                    backgroundSize: "cover",
+                    width: 294,
+                    height: 306,
+                    position: "absolute",
+                    top: 0,
+                    left: -60,
+                },
+
+                above: {
+                    background: "url(/asteroid.png)",
+                    backgroundSize: "cover",
+                    width: 418,
+                    height: 260,
+                    position: "absolute",
+                    top: -10,
+                    left: -5,
+                },
             }),
         };
 
@@ -107,19 +284,19 @@ describe("wonder-blocks-modal", () => {
                 <View style={styles.modalPositioner}>
                     <MediaLayout styleSheets={styleSheets}>
                         {({styles}) => (
-                            <OneColumnModal
+                            <OnePaneDialog
                                 style={styles.customModal}
+                                title="Single-line title"
                                 content={
                                     <View>
-                                        <Title style={styles.title}>
-                                            Title
-                                        </Title>
                                         <Body>Hello World!</Body>
                                     </View>
                                 }
                                 onClose={() =>
                                     alert("This would close the modal.")
                                 }
+                                below={<View style={styles.below} />}
+                                above={<View style={styles.above} />}
                             />
                         )}
                     </MediaLayout>
@@ -129,51 +306,58 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {StyleSheet, css} = require("aphrodite");
+    it("example 4", () => {
+        const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            Title,
-            Body,
-            LabelSmall,
-        } = require("@khanacademy/wonder-blocks-typography");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
         const Button = require("@khanacademy/wonder-blocks-button").default;
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
         const styles = StyleSheet.create({
             example: {
-                padding: 32,
+                padding: Spacing.xLarge,
                 alignItems: "center",
             },
 
             title: {
-                marginBottom: 16,
+                marginBottom: Spacing.medium,
             },
 
             modalContent: {
                 margin: "0 auto",
                 maxWidth: 544,
             },
+
+            above: {
+                background: "url(/modal-above.png)",
+                width: 874,
+                height: 551,
+                position: "absolute",
+                top: 40,
+                left: -140,
+            },
+
+            below: {
+                background: "url(/modal-below.png)",
+                width: 868,
+                height: 521,
+                position: "absolute",
+                top: -100,
+                left: -300,
+            },
         });
 
-        const standardModal = ({closeModal}) => (
-            <StandardModal
+        const onePaneDialog = ({closeModal}) => (
+            <OnePaneDialog
                 title="Title"
                 subtitle="You're reading the subtitle!"
+                above={<View style={styles.above} />}
+                below={<View style={styles.below} />}
                 content={
                     <View style={styles.modalContent}>
                         <Body tag="p">
                             {
                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                            }
-                        </Body>
-                        <Body tag="p">
-                            {
-                                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                            }
-                        </Body>
-                        <Body tag="p">
-                            {
-                                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                             }
                         </Body>
                     </View>
@@ -182,111 +366,11 @@ describe("wonder-blocks-modal", () => {
             />
         );
 
-        const twoColumnModal = ({closeModal}) => (
-            <TwoColumnModal
-                sidebar={
-                    <View>
-                        <Title style={styles.title}>Sidebar</Title>
-                        <Body>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris.
-                        </Body>
-                    </View>
-                }
-                content={
-                    <View>
-                        <Title style={styles.title}>Contents</Title>
-                        <View>
-                            <label>
-                                <LabelSmall>Username:</LabelSmall>
-                                <input type="text" />
-                            </label>
-                        </View>
-                        <View>
-                            <label>
-                                <LabelSmall>Password:</LabelSmall>
-                                <input type="password" />
-                            </label>
-                        </View>
-                        <View>
-                            <Button
-                                onClick={closeModal}
-                                style={{marginTop: 16}}
-                            >
-                                Go back
-                            </Button>
-                            <Button
-                                onClick={() => alert("Just kidding, no-op!")}
-                                style={{marginTop: 16}}
-                            >
-                                Log in
-                            </Button>
-                        </View>
-                    </View>
-                }
-            />
-        );
-
-        const oneColumnModal = ({closeModal}) => (
-            <OneColumnModal
-                content={
-                    <View>
-                        <Title style={styles.title}>Title</Title>
-                        <View>
-                            <label>
-                                <LabelSmall>Username:</LabelSmall>
-                                <input type="text" />
-                            </label>
-                        </View>
-                        <View>
-                            <label>
-                                <LabelSmall>Password:</LabelSmall>
-                                <input type="password" />
-                            </label>
-                        </View>
-                        <View>
-                            <Button
-                                onClick={closeModal}
-                                style={{marginTop: 16}}
-                            >
-                                Go back
-                            </Button>
-                            <Button
-                                onClick={() => alert("Just kidding, no-op!")}
-                                style={{marginTop: 16}}
-                            >
-                                Log in
-                            </Button>
-                        </View>
-                    </View>
-                }
-                footer={
-                    <View>
-                        <button>Sample Button</button>
-                    </View>
-                }
-            />
-        );
-
         const example = (
             <View style={styles.example}>
-                <ModalLauncher modal={standardModal}>
+                <ModalLauncher modal={onePaneDialog}>
                     {({openModal}) => (
-                        <Button onClick={openModal}>Standard modal</Button>
-                    )}
-                </ModalLauncher>
-                <br />
-                <ModalLauncher modal={twoColumnModal}>
-                    {({openModal}) => (
-                        <Button onClick={openModal}>Two-column modal</Button>
-                    )}
-                </ModalLauncher>
-                <br />
-                <ModalLauncher modal={oneColumnModal}>
-                    {({openModal}) => (
-                        <Button onClick={openModal}>One-column modal</Button>
+                        <Button onClick={openModal}>OnePaneDialog</Button>
                     )}
                 </ModalLauncher>
             </View>
@@ -294,7 +378,56 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
+    it("example 5", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+
+            modalContent: {
+                margin: "0 auto",
+                maxWidth: 544,
+            },
+        });
+
+        const exampleModal = ({closeModal}) => (
+            <OnePaneDialog
+                title="Backdrop dismission disabled"
+                content={
+                    <View style={styles.modalContent}>
+                        <Body tag="p">
+                            {
+                                "This window won't be closed if you click/tap outside of the ModalPanel. To do that, you can still press `esc` or use the close button located on the top right."
+                            }
+                        </Body>
+                    </View>
+                }
+            />
+        );
+
+        const example = (
+            <View style={styles.example}>
+                <ModalLauncher
+                    modal={exampleModal}
+                    backdropDismissEnabled={false}
+                >
+                    {({openModal}) => (
+                        <Button onClick={openModal}>Open modal</Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
         const React = require("react");
 
         const {Title} = require("@khanacademy/wonder-blocks-typography");
@@ -336,7 +469,8 @@ describe("wonder-blocks-modal", () => {
                             onClose={() => this.handleClose()}
                             opened={this.state.opened}
                             modal={({closeModal}) => (
-                                <OneColumnModal
+                                <OnePaneDialog
+                                    title="Triggered from action menu"
                                     content={
                                         <View>
                                             <Title>Hello, world</Title>
@@ -359,10 +493,10 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
-        const {StyleSheet, css} = require("aphrodite");
+    it("example 7", () => {
+        const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
         const Button = require("@khanacademy/wonder-blocks-button").default;
 
         const styles = StyleSheet.create({
@@ -392,13 +526,24 @@ describe("wonder-blocks-modal", () => {
                 margin: "0 auto",
                 maxWidth: 544,
             },
+
+            above: {
+                background: "url(/modal-above.png)",
+                backgroundSize: "cover",
+                width: 787,
+                height: 496,
+                position: "absolute",
+                top: -20,
+                left: -100,
+            },
         });
 
         const example = (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
-                    <StandardModal
-                        title="Title"
+                    <OnePaneDialog
+                        title="Single-line title"
+                        subtitle="Subtitle that provides additional context to the title"
                         content={
                             <View style={styles.modalContent}>
                                 <Body>
@@ -406,59 +551,6 @@ describe("wonder-blocks-modal", () => {
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
                                     }
                                 </Body>
-                            </View>
-                        }
-                        footer={
-                            <View>
-                                <Button type="button">Button (no-op)</Button>
-                            </View>
-                        }
-                        onClose={() => alert("This would close the modal.")}
-                    />
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 6", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-
-        const styles = StyleSheet.create({
-            previewSizer: {
-                height: 512,
-            },
-
-            modalPositioner: {
-                // Checkerboard background
-                backgroundImage:
-                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-                backgroundSize: "20px 20px",
-                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-        });
-
-        const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <StandardModal
-                        title="Title"
-                        subtitle="Wow, look at all this content!"
-                        content={
-                            <View>
                                 <Body>
                                     {
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
@@ -466,110 +558,15 @@ describe("wonder-blocks-modal", () => {
                                 </Body>
                                 <Body>
                                     {
-                                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                            </View>
-                        }
-                        footer={
-                            <View>
-                                <Button type="button">Button (no-op)</Button>
-                            </View>
-                        }
-                        onClose={() => alert("This would close the modal.")}
-                    />
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 7", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-
-        const styles = StyleSheet.create({
-            previewSizer: {
-                height: 512,
-            },
-
-            modalPositioner: {
-                // Checkerboard background
-                backgroundImage:
-                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-                backgroundSize: "20px 20px",
-                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-        });
-
-        const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <StandardModal
-                        title="Title"
-                        subtitle="Wow, look at all this content!"
-                        content={
-                            <View>
-                                <Body>
-                                    {
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
                                     }
                                 </Body>
-                                <Body>
-                                    {
-                                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
                             </View>
                         }
-                        preview={
-                            <View>
-                                <Body>
-                                    {
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                            </View>
-                        }
-                        footer={
-                            <View>
-                                <Button type="button">Button (no-op)</Button>
-                            </View>
-                        }
+                        footer={<Button type="button">Button (no-op)</Button>}
+                        showCloseButton={false}
                         onClose={() => alert("This would close the modal.")}
+                        above={<View style={styles.above} />}
                     />
                 </View>
             </View>
@@ -578,10 +575,16 @@ describe("wonder-blocks-modal", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 8", () => {
-        const {StyleSheet, css} = require("aphrodite");
+        const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
         const Button = require("@khanacademy/wonder-blocks-button").default;
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+        const {
+            Breadcrumbs,
+            BreadcrumbsItem,
+        } = require("@khanacademy/wonder-blocks-breadcrumbs");
+        const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
         const styles = StyleSheet.create({
             previewSizer: {
@@ -595,7 +598,6 @@ describe("wonder-blocks-modal", () => {
                 backgroundSize: "20px 20px",
                 backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
 
-                display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
@@ -608,12 +610,59 @@ describe("wonder-blocks-modal", () => {
             },
         });
 
+        const defaultStyles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                justifyContent: "flex-end",
+            },
+            button: {
+                marginRight: Spacing.medium,
+            },
+        });
+
+        const smallStyles = StyleSheet.create({
+            row: {
+                flexDirection: "column-reverse",
+                width: "100%",
+            },
+            button: {
+                marginBottom: Spacing.medium,
+            },
+        });
+
+        const styleSheets = {
+            mdOrLarger: defaultStyles,
+            small: smallStyles,
+        };
+
+        const Footer = () => (
+            <MediaLayout styleSheets={styleSheets}>
+                {({styles}) => (
+                    <View style={styles.row}>
+                        <Button style={styles.button} kind="tertiary">
+                            Tertiary action
+                        </Button>
+                        <Button style={styles.button} kind="tertiary">
+                            Secondary action
+                        </Button>
+                        <Button style={styles.button}>Primary action</Button>
+                    </View>
+                )}
+            </MediaLayout>
+        );
+
         const example = (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
-                    <StandardModal
-                        title="Title"
-                        subtitle="Wow, look at all this content!"
+                    <OnePaneDialog
+                        title="Multi-line title that wraps to show how this component adjusts with longer content"
+                        breadcrumbs={
+                            <Breadcrumbs>
+                                <BreadcrumbsItem>Bread</BreadcrumbsItem>
+                                <BreadcrumbsItem>Crumb</BreadcrumbsItem>
+                                <BreadcrumbsItem>Trail</BreadcrumbsItem>
+                            </Breadcrumbs>
+                        }
                         content={
                             <View>
                                 <Body>
@@ -621,32 +670,9 @@ describe("wonder-blocks-modal", () => {
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
                                     }
                                 </Body>
-                                <Body>
-                                    {
-                                        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                                <Body>
-                                    {
-                                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
                             </View>
                         }
-                        header={
-                            <View>
-                                <Body>
-                                    {
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                                    }
-                                </Body>
-                            </View>
-                        }
-                        footer={
-                            <View>
-                                <Button type="button">Button (no-op)</Button>
-                            </View>
-                        }
+                        footer={<Footer />}
                         onClose={() => alert("This would close the modal.")}
                     />
                 </View>
@@ -656,11 +682,15 @@ describe("wonder-blocks-modal", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 9", () => {
-        const {StyleSheet, css} = require("aphrodite");
+        const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
-        const styles = StyleSheet.create({
+        const exampleStyles = StyleSheet.create({
             previewSizer: {
                 height: 512,
             },
@@ -682,48 +712,45 @@ describe("wonder-blocks-modal", () => {
                 top: 0,
                 bottom: 0,
             },
+        });
 
-            title: {
-                marginBottom: 16,
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                justifyContent: "flex-end",
+            },
+            footer: {
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
             },
         });
 
         const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <TwoColumnModal
-                        fullBleedSidebar={false}
-                        sidebar={
-                            <View>
-                                <Title style={styles.title}>Sidebar</Title>
-                                <Body>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris.
-                                </Body>
-                            </View>
-                        }
+            <View style={exampleStyles.previewSizer}>
+                <View style={exampleStyles.modalPositioner}>
+                    <OnePaneDialog
+                        title="Dialog with multi-step footer"
                         content={
                             <View>
-                                <Title style={styles.title}>Contents</Title>
                                 <Body>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit
-                                    esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est.
+                                    {
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                                    }
                                 </Body>
                             </View>
                         }
-                        onClose={() => alert("This would close the modal.")}
+                        footer={
+                            <View style={styles.footer}>
+                                <LabelLarge>Step 1 of 4</LabelLarge>
+                                <View style={styles.row}>
+                                    <Button kind="tertiary">Previous</Button>
+                                    <Strut size={16} />
+                                    <Button kind="primary">Next</Button>
+                                </View>
+                            </View>
+                        }
                     />
                 </View>
             </View>
@@ -732,156 +759,14 @@ describe("wonder-blocks-modal", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 10", () => {
-        const {StyleSheet, css} = require("aphrodite");
+        const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
         const Button = require("@khanacademy/wonder-blocks-button").default;
-
-        const styles = StyleSheet.create({
-            previewSizer: {
-                height: 512,
-            },
-
-            modalPositioner: {
-                // Checkerboard background
-                backgroundImage:
-                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-                backgroundSize: "20px 20px",
-                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-
-            title: {
-                marginBottom: 16,
-            },
-        });
-
-        const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <TwoColumnModal
-                        fullBleedSidebar={false}
-                        sidebar={
-                            <View>
-                                <Title style={styles.title}>Sidebar</Title>
-                                <Body>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris.
-                                </Body>
-                            </View>
-                        }
-                        content={
-                            <View>
-                                <Title style={styles.title}>Contents</Title>
-                                <Body>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit
-                                    esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est.
-                                </Body>
-                                <Body>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit
-                                    esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est.
-                                </Body>
-                            </View>
-                        }
-                        footer={
-                            <View>
-                                <Button>Button (no-op)</Button>
-                            </View>
-                        }
-                        onClose={() => alert("This would close the modal.")}
-                    />
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 11", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-
-        const styles = StyleSheet.create({
-            previewSizer: {
-                height: 512,
-            },
-
-            modalPositioner: {
-                // Checkerboard background
-                backgroundImage:
-                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-                backgroundSize: "20px 20px",
-                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-        });
-
-        const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <TwoColumnModal
-                        fullBleedSidebar={false}
-                        sidebar={<span>foo</span>}
-                        content={<span>bar</span>}
-                        onClose={() => alert("This would close the modal.")}
-                    />
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 12", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
         const {
-            HeadingLarge,
-            Body,
-        } = require("@khanacademy/wonder-blocks-typography");
+            MediaLayout,
+            Strut,
+        } = require("@khanacademy/wonder-blocks-layout");
 
         const styles = StyleSheet.create({
             previewSizer: {
@@ -906,258 +791,122 @@ describe("wonder-blocks-modal", () => {
                 top: 0,
                 bottom: 0,
             },
-
-            imageContainer: {
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                backgroundImage: "url('pencilHand-800x.png')",
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center bottom",
-            },
         });
+
+        const styleSheets = {
+            mdOrLarger: StyleSheet.create({
+                dialog: {
+                    width: "86.72%",
+                    maxWidth: 888,
+                    height: "60.42%",
+                    minHeight: 308,
+                },
+
+                panelGroup: {
+                    flexDirection: "row",
+                    flex: 1,
+                },
+
+                below: {
+                    background: "url(/blue-blob.png)",
+                    backgroundSize: "cover",
+                    width: 294,
+                    height: 306,
+                    position: "absolute",
+                    top: 100,
+                    left: -60,
+                },
+
+                above: {
+                    background: "url(/asteroid.png)",
+                    backgroundSize: "cover",
+                    width: 650,
+                    height: 400,
+                    position: "absolute",
+                    top: -35,
+                    left: 50,
+                },
+            }),
+
+            small: StyleSheet.create({
+                dialog: {
+                    width: "100%",
+                    height: "100%",
+                    overflow: "hidden",
+                },
+
+                panelGroup: {
+                    flexDirection: "column",
+                    flex: 1,
+                },
+            }),
+        };
 
         const example = (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
-                    <TwoColumnModal
-                        sidebar={<View style={styles.imageContainer} />}
-                        fullBleedSidebar={true}
-                        content={
-                            <View>
-                                <HeadingLarge>
-                                    Welcome to your class.
-                                </HeadingLarge>
-                                <Strut size={Spacing.medium} />
-                                <Body>
-                                    Assignments or goals your teacher creates
-                                    for you will appear at the top of your Khan
-                                    Academy home page.
-                                </Body>
-                            </View>
-                        }
-                        footer={<Button>Onward! (no-op)</Button>}
-                        onClose={() => alert("This would close the modal.")}
-                    />
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 13", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-        const {
-            HeadingLarge,
-            Body,
-        } = require("@khanacademy/wonder-blocks-typography");
-
-        const styles = StyleSheet.create({
-            previewSizer: {
-                height: 512,
-            },
-
-            modalPositioner: {
-                // Checkerboard background
-                backgroundImage:
-                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-                backgroundSize: "20px 20px",
-                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-
-            image: {
-                width: "100%",
-                marginBottom: 0,
-                marginTop: "auto",
-            },
-        });
-
-        const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <TwoColumnModal
-                        sidebar={
-                            <img
-                                src="pencilHand-800x.png"
-                                className={css(styles.image)}
-                            />
-                        }
-                        fullBleedSidebar={true}
-                        content={
-                            <View>
-                                <HeadingLarge>
-                                    Welcome to your class.
-                                </HeadingLarge>
-                                <Strut size={Spacing.medium} />
-                                <Body>
-                                    Assignments or goals your teacher creates
-                                    for you will appear at the top of your Khan
-                                    Academy home page.
-                                </Body>
-                            </View>
-                        }
-                        footer={<Button>Onward! (no-op)</Button>}
-                        onClose={() => alert("This would close the modal.")}
-                    />
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 14", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-
-        const styles = StyleSheet.create({
-            previewSizer: {
-                height: 512,
-            },
-
-            modalPositioner: {
-                // Checkerboard background
-                backgroundImage:
-                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-                backgroundSize: "20px 20px",
-                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-
-            title: {
-                marginBottom: 16,
-            },
-        });
-
-        const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <OneColumnModal
-                        content={
-                            <View>
-                                <Title style={styles.title}>Title</Title>
-                                <Body>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit
-                                    esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est.
-                                </Body>
-                            </View>
-                        }
-                        onClose={() => alert("This would close the modal.")}
-                    />
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 15", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-
-        const styles = StyleSheet.create({
-            previewSizer: {
-                height: 512,
-            },
-
-            modalPositioner: {
-                // Checkerboard background
-                backgroundImage:
-                    "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
-                backgroundSize: "20px 20px",
-                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-
-            title: {
-                marginBottom: 16,
-            },
-        });
-
-        const example = (
-            <View style={styles.previewSizer}>
-                <View style={styles.modalPositioner}>
-                    <OneColumnModal
-                        content={
-                            <View>
-                                <Title style={styles.title}>Title</Title>
-                                <Body>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit
-                                    esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est.
-                                </Body>
-                                <Body>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit
-                                    esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est.
-                                </Body>
-                            </View>
-                        }
-                        footer={<Button>Ok</Button>}
-                        onClose={() => alert("This would close the modal.")}
-                    />
+                    <MediaLayout styleSheets={styleSheets}>
+                        {({mediaSize, styles}) => (
+                            <ModalDialog
+                                style={styles.dialog}
+                                below={<View style={styles.below} />}
+                                above={<View style={styles.above} />}
+                            >
+                                <View style={styles.panelGroup}>
+                                    <ModalPanel
+                                        onClose={() =>
+                                            alert("This would close the modal.")
+                                        }
+                                        content={
+                                            <View>
+                                                <Title style={styles.title}>
+                                                    Sidebar
+                                                </Title>
+                                                <Body>
+                                                    Lorem ipsum dolor sit amet,
+                                                    consectetur adipiscing elit,
+                                                    sed do eiusmod tempor
+                                                    incididunt ut labore et
+                                                    dolore magna aliqua. Ut enim
+                                                    ad minim veniam, quis
+                                                    nostrud exercitation ullamco
+                                                    laboris.
+                                                </Body>
+                                            </View>
+                                        }
+                                        light={false}
+                                        closeButtonVisible={
+                                            mediaSize === "small"
+                                        }
+                                    />
+                                    <ModalPanel
+                                        onClose={() =>
+                                            alert("This would close the modal.")
+                                        }
+                                        content={
+                                            <View>
+                                                <Title style={styles.title}>
+                                                    Contents
+                                                </Title>
+                                                <Body>
+                                                    Lorem ipsum dolor sit amet,
+                                                    consectetur adipiscing elit,
+                                                    sed do eiusmod tempor
+                                                    incididunt ut labore et
+                                                    dolore magna aliqua.
+                                                </Body>
+                                                <Strut size={16} />
+                                                <Button>Primary action</Button>
+                                            </View>
+                                        }
+                                        closeButtonVisible={
+                                            mediaSize !== "small"
+                                        }
+                                    />
+                                </View>
+                            </ModalDialog>
+                        )}
+                    </MediaLayout>
                 </View>
             </View>
         );

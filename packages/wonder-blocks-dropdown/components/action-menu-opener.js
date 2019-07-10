@@ -6,7 +6,7 @@ import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import ActionMenuOpenerCore from "./action-menu-opener-core.js";
 
 export type SharedProps = {|
-    ...AriaProps,
+    ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
 
     /**
      * Display text for the opener.
@@ -16,7 +16,7 @@ export type SharedProps = {|
     /**
      * Whether the opener is disabled. If disabled, disallows interaction.
      */
-    disabled?: boolean,
+    disabled: boolean,
 
     /**
      * Test ID used for e2e testing.
@@ -26,7 +26,7 @@ export type SharedProps = {|
     /**
      * Whether the dropdown is open.
      */
-    open: boolean,
+    opened: boolean,
 |};
 
 type Props = {|
@@ -43,8 +43,8 @@ export default class ActionMenuOpener extends React.Component<Props> {
     };
 
     handleClick = (e: SyntheticEvent<>) => {
-        const {open} = this.props;
-        this.props.onOpenChanged(!open, e.type === "keyup");
+        const {opened} = this.props;
+        this.props.onOpenChanged(!opened, e.type === "keyup");
     };
 
     render() {
@@ -57,12 +57,11 @@ export default class ActionMenuOpener extends React.Component<Props> {
                 onClick={this.handleClick}
                 role="menu"
             >
-                {(state, handlers) => {
+                {(state) => {
                     return (
                         <ActionMenuOpenerCore
                             {...sharedProps}
                             {...state}
-                            {...handlers}
                             disabled={disabled}
                         >
                             {children}

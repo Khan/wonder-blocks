@@ -3,13 +3,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import ModalHeader from "./modal-header.js";
 
 type Props = {|
-    /** An optional header to display above the content. */
-    header?: React.Element<typeof ModalHeader> | React.Node,
     /** Should the content scroll on overflow, or just expand. */
     scrollOverflow: boolean,
     /** The contents of the ModalContent */
@@ -18,13 +16,21 @@ type Props = {|
     style?: StyleType,
 |};
 
+/**
+ * The Modal content included after the header
+ */
 export default class ModalContent extends React.Component<Props> {
     static defaultProps = {
         scrollOverflow: true,
     };
 
+    static __IS_MODAL_CONTENT__ = true;
+    static isClassOf(instance: any) {
+        return instance && instance.type && instance.type.__IS_MODAL_CONTENT__;
+    }
+
     render() {
-        const {header, scrollOverflow, style, children} = this.props;
+        const {scrollOverflow, style, children} = this.props;
 
         return (
             <MediaLayout styleSheets={styleSheets}>
@@ -35,13 +41,6 @@ export default class ModalContent extends React.Component<Props> {
                             scrollOverflow && styles.scrollOverflow,
                         ]}
                     >
-                        {!header ||
-                        (typeof header === "object" &&
-                            header.type === ModalHeader) ? (
-                            header
-                        ) : (
-                            <ModalHeader>{header}</ModalHeader>
-                        )}
                         <View style={[styles.content, style]}>{children}</View>
                     </View>
                 )}
@@ -67,14 +66,14 @@ const styleSheets = {
         content: {
             flex: 1,
             minHeight: "100%",
-            padding: 64,
+            padding: Spacing.xLarge,
             boxSizing: "border-box",
         },
     }),
 
     small: StyleSheet.create({
         content: {
-            padding: "32px 16px",
+            padding: `${Spacing.xLarge}px ${Spacing.medium}px`,
         },
     }),
 };

@@ -8,12 +8,16 @@ describe("@khanacademy/wonder-blocks-modal", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual([
-            "ModalLauncher",
-            "OneColumnModal",
-            "StandardModal",
-            "TwoColumnModal",
-            "maybeGetPortalMountedModalHostElement",
-        ].sort());
+        expect(Object.keys(result).sort()).toEqual(
+            [
+                "ModalDialog",
+                "ModalFooter",
+                "ModalHeader",
+                "ModalPanel",
+                "ModalLauncher",
+                "OnePaneDialog",
+                "maybeGetPortalMountedModalHostElement",
+            ].sort(),
+        );
     });
 });

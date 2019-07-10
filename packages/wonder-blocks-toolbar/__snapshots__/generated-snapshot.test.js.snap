@@ -108,7 +108,6 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
       }
     >
       <button
-        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
@@ -129,6 +128,9 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "#1865f2",
@@ -205,7 +207,6 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         }
       />
       <button
-        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
@@ -226,6 +227,9 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "none",
@@ -369,6 +373,9 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "::MozFocusInner": Object {
               "border": 0,
             },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+            },
             "alignItems": "center",
             "background": "none",
             "border": "none",
@@ -457,6 +464,9 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
             "::MozFocusInner": Object {
               "border": 0,
             },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+            },
             "alignItems": "center",
             "background": "none",
             "border": "none",
@@ -542,7 +552,6 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
       }
     >
       <button
-        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
@@ -563,6 +572,9 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "none",
@@ -702,6 +714,9 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
             "::MozFocusInner": Object {
               "border": 0,
             },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+            },
             "alignItems": "center",
             "background": "none",
             "border": "none",
@@ -787,7 +802,6 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
       }
     >
       <button
-        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
@@ -808,6 +822,9 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "#1865f2",
@@ -946,6 +963,9 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "none",
@@ -1185,6 +1205,9 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
             "::MozFocusInner": Object {
               "border": 0,
             },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+            },
             "alignItems": "center",
             "background": "none",
             "border": "none",
@@ -1334,7 +1357,6 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
       }
     >
       <button
-        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
@@ -1355,6 +1377,9 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "#1865f2",
@@ -1558,7 +1583,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         }
       />
       <button
-        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
@@ -1579,6 +1603,9 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "none",
@@ -1658,7 +1685,6 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         }
       />
       <button
-        aria-label=""
         className=""
         disabled={false}
         onBlur={[Function]}
@@ -1679,6 +1705,9 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "#1865f2",
@@ -1818,6 +1847,9 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
           Object {
             "::MozFocusInner": Object {
               "border": 0,
+            },
+            ":focus": Object {
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
             "background": "none",

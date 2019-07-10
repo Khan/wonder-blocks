@@ -142,7 +142,6 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
 
 exports[`wonder-blocks-tooltip example 4 1`] = `
 <button
-  aria-label=""
   className=""
   disabled={false}
   onBlur={[Function]}
@@ -163,6 +162,9 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
     Object {
       "::MozFocusInner": Object {
         "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
       "background": "#1865f2",
@@ -398,7 +400,6 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
 >
   <button
     aria-describedby="uid-tooltip-6-aria-content"
-    aria-label=""
     className=""
     disabled={false}
     onBlur={[Function]}
@@ -419,6 +420,9 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "#1865f2",
@@ -515,6 +519,9 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
       Object {
         "::MozFocusInner": Object {
           "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
         "background": "none",
@@ -1606,6 +1613,8 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
   <div
     className=""
     data-placement="top"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
     role="tooltip"
     style={
       Object {
@@ -1619,7 +1628,6 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -1794,6 +1802,8 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
   <div
     className=""
     data-placement="right"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
     role="tooltip"
     style={
       Object {
@@ -1807,7 +1817,6 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -1982,6 +1991,8 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
   <div
     className=""
     data-placement="bottom"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
     role="tooltip"
     style={
       Object {
@@ -1995,7 +2006,6 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -2142,6 +2152,8 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
   <div
     className=""
     data-placement="left"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
     role="tooltip"
     style={
       Object {
@@ -2155,7 +2167,6 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -2330,6 +2341,8 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
   <div
     className=""
     data-placement="bottom"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
     role="tooltip"
     style={
       Object {
@@ -2343,7 +2356,6 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
-        "pointerEvents": "none",
         "position": "relative",
         "zIndex": 0,
       }
@@ -2491,6 +2503,8 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
   <div
     className=""
     data-placement="top"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
     role="tooltip"
     style={
       Object {

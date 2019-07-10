@@ -100,6 +100,15 @@ export type AriaProps = {|
     "aria-busy"?: "true" | "false",
     "aria-checked"?: "false" | "mixed" | "true" | "undefined",
     "aria-controls"?: IdRefList,
+    // https://www.w3.org/TR/wai-aria-1.1/#aria-current
+    "aria-current"?:
+        | "false"
+        | "true"
+        | "page"
+        | "step"
+        | "location"
+        | "date"
+        | "time",
     "aria-describedat"?: string, // URI
     "aria-describedby"?: IdRefList,
     "aria-disabled"?: "false" | "true",

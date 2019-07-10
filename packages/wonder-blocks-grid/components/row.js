@@ -88,16 +88,16 @@ export default class Row extends React.Component<Props> {
                             ? children({mediaSize, totalColumns})
                             : children;
 
-                    const filteredContents: Array<
-                        React.Node,
-                    > = (React.Children.toArray(contents): Array<React.Node>)
+                    const filteredContents: Array<React.Node> = (React.Children.toArray(
+                        contents,
+                    ): Array<React.Node>)
                         // Go through all of the contents and pre-emptively remove anything
                         // that shouldn't be rendered.
                         .filter(
                             // Flow doesn't let us check .type on a non-null React.Node so
                             // we have to cast it to any.
                             (item: any) =>
-                                item && item.type === Cell
+                                Cell.isClassOf(item)
                                     ? Cell.shouldDisplay(item.props, mediaSize)
                                     : true,
                         )
@@ -116,18 +116,17 @@ export default class Row extends React.Component<Props> {
                         .slice(0, -1);
 
                     return (
-                        <View style={[styles.rowWrap, style]}>
-                            <View
-                                style={[
-                                    styles.row,
-                                    !!maxWidth && styles.rowMaxWidth,
-                                    !!maxWidth && {maxWidth},
-                                ]}
-                            >
-                                <Strut size={marginWidth} />
-                                {filteredContents}
-                                <Strut size={marginWidth} />
-                            </View>
+                        <View
+                            style={[
+                                styles.row,
+                                !!maxWidth && styles.rowMaxWidth,
+                                !!maxWidth && {maxWidth},
+                                style,
+                            ]}
+                        >
+                            <Strut size={marginWidth} />
+                            {filteredContents}
+                            <Strut size={marginWidth} />
                         </View>
                     );
                 }}
