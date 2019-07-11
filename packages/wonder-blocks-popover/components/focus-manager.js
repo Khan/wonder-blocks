@@ -16,12 +16,6 @@ type Props = {|
     anchorElement: ?HTMLElement,
 
     /**
-     * When set, we will try to focus on a focusable element inside the popover,
-     * following the accessibility specs.
-     */
-    initialFocusEnabled?: boolean,
-
-    /**
      * The selector for the element that will be focused when the dialog shows.
      * When not set, the first tabbable element within the dialog will be used.
      */
@@ -235,7 +229,7 @@ export default class FocusManager extends React.Component<Props> {
                     style={{position: "fixed"}}
                 />
                 <div ref={this.getComponentRootNode}>
-                    {this.props.initialFocusEnabled ? (
+                    {/* {this.props.initialFocusId ? (
                         // If enabled, the focus will be passed to a given
                         // element inside the children (popover dialog)
                         <InitialFocus
@@ -246,7 +240,10 @@ export default class FocusManager extends React.Component<Props> {
                     ) : (
                         // no initial focus, just render the popover dialog
                         children
-                    )}
+                    )} */}
+                    <InitialFocus initialFocusId={this.props.initialFocusId}>
+                        {children}
+                    </InitialFocus>
                 </div>
                 {/* last sentinel */}
                 <div

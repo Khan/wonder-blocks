@@ -81,10 +81,6 @@ type Props = {|
      * The selector for the element that will be focused when the popover
      * content shows. When not set, the first focusable element within the
      * popover content will be used.
-     *
-     * NOTE: If Popover acts as a controlled component, this property might not
-     * work as we don't want to force stealing focus from another element in the
-     * DOM.
      */
     initialFocusId?: string,
 
@@ -121,12 +117,6 @@ type State = {|
      * Current popper placement
      */
     placement: Placement,
-    /**
-     * Wether the Popover is controlled or uncontrolled.
-     * This helps us to know if we need to set an initial focus inside the
-     * popover dialog or not.
-     */
-    controlled: boolean,
 |};
 
 /**
@@ -149,14 +139,12 @@ export default class Popover extends React.Component<Props, State> {
      */
     static getDerivedStateFromProps(props: Props, state: State) {
         return {
-            controlled: props.opened,
             opened:
                 typeof props.opened === "boolean" ? props.opened : state.opened,
         };
     }
 
     state = {
-        controlled: false,
         opened: !!this.props.opened,
         anchorElement: null,
         placement: this.props.placement,
@@ -201,12 +189,11 @@ export default class Popover extends React.Component<Props, State> {
 
     renderPopper(uniqueId: string) {
         const {initialFocusId, placement} = this.props;
-        const {anchorElement, controlled} = this.state;
+        const {anchorElement} = this.state;
 
         return (
             <FocusManager
                 anchorElement={anchorElement}
-                initialFocusEnabled={!controlled}
                 initialFocusId={initialFocusId}
             >
                 <TooltipPopper

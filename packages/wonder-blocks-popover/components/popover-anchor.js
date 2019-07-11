@@ -78,7 +78,8 @@ export default class PopoverAnchor extends React.Component<Props> {
                 ...children.props,
                 ...sharedProps,
                 onClick: children.props.onClick
-                    ? () => {
+                    ? (e) => {
+                          e.stopPropagation();
                           // This is done to avoid overriding a custom onClick
                           // handler inside the children node
                           children.props.onClick();

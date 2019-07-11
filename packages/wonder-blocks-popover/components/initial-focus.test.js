@@ -6,11 +6,15 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import InitialFocus from "./initial-focus.js";
 
 describe("InitialFocus", () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+    });
+
     afterEach(() => {
         unmountAll();
     });
 
-    it("should try to focus on a given element by id", async () => {
+    it("should try to focus on a given element by id", () => {
         // Arrange
         const wrapper = mount(
             <InitialFocus initialFocusId="initial-focus-id">
@@ -27,11 +31,14 @@ describe("InitialFocus", () => {
             .find('[data-tab-index="1"]')
             .getDOMNode();
 
+        // Fast-forward until all timers have been executed
+        jest.runAllTimers();
+
         // Assert
         expect(document.activeElement).toBe(firstFocusableElement);
     });
 
-    it("should try to focus on the first focusable element", async () => {
+    it("should try to focus on the first focusable element", () => {
         // Arrange
         const wrapper = mount(
             <InitialFocus>
@@ -48,11 +55,14 @@ describe("InitialFocus", () => {
             .find('[data-tab-index="0"]')
             .getDOMNode();
 
+        // Fast-forward until all timers have been executed
+        jest.runAllTimers();
+
         // Assert
         expect(document.activeElement).toBe(firstFocusableElement);
     });
 
-    it("should try to focus on the container if no focusable elements are found", async () => {
+    it("should try to focus on the container if no focusable elements are found", () => {
         // Arrange
         const wrapper = mount(
             <InitialFocus>
@@ -66,6 +76,9 @@ describe("InitialFocus", () => {
         const firstFocusableElement = wrapper
             .find("[data-container]")
             .getDOMNode();
+
+        // Fast-forward until all timers have been executed
+        jest.runAllTimers();
 
         // Assert
         expect(document.activeElement).toBe(firstFocusableElement);
