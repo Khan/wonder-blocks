@@ -6,7 +6,7 @@ the first item is chosen, the text in the opener would exceed the maxWidth. It
 ellipses instead.
 
 ```js
-const React = require("react");
+const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
@@ -62,7 +62,7 @@ class ExampleWithPlaceholder extends React.Component {
 This example shows how we can add custom styles to the dropdown.
 
 ```js
-const React = require("react");
+const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
@@ -125,7 +125,7 @@ This select starts with a starting selected item. One of the items is disabled
 and thus cannot be selected.
 
 ```js
-const React = require("react");
+const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
@@ -174,7 +174,7 @@ class ExampleWithStartingSelection extends React.Component {
 
 This select is disabled.
 ```js
-const React = require("react");
+const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
@@ -225,7 +225,7 @@ class DisabledExample extends React.Component {
 This single select is on a dark background and is also right-aligned.
 
 ```js
-const React = require("react");
+const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
 const Color = require("@khanacademy/wonder-blocks-color");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -309,6 +309,7 @@ make sure to pass the `aria-labelledby` and/or `id` props to the `SingleSelect` 
 This way, the `opener` will receive this value and it will associate both elements.
 
 ```js
+const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 

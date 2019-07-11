@@ -5,6 +5,7 @@ applied giving it a white background, a gold border, and some vertical padding.
 Note that the margins and gutter have been inserted automatically.
 
 ```jsx
+const {Cell} = require("@khanacademy/wonder-blocks-grid");
 const Color = require("@khanacademy/wonder-blocks-color").default;
 const {View, Text} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
@@ -40,9 +41,10 @@ const styles = StyleSheet.create({
 ```
 
 Another example – If the height of the [Cell's](#cell) contents is taller than
-the [Row](#row) it will allow vertical scrolling. 
+the [Row](#row) it will allow vertical scrolling.
 
 ```jsx
+const {Cell} = require("@khanacademy/wonder-blocks-grid");
 const Color = require("@khanacademy/wonder-blocks-color").default;
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const {View, Text} = require("@khanacademy/wonder-blocks-core");

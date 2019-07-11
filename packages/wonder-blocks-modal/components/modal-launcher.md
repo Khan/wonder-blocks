@@ -2,6 +2,8 @@ Once the modal is launched, tab focus wraps inside the modal content. Pressing T
 
 ```js
 const {StyleSheet} = require("aphrodite");
+
+const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
@@ -77,6 +79,8 @@ By default, `ModalLauncher` allows you to close the modal by clicking on the ove
 
 ```js
 const {StyleSheet} = require("aphrodite");
+
+const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Body} = require("@khanacademy/wonder-blocks-typography");
 const Button = require("@khanacademy/wonder-blocks-button").default;
@@ -125,8 +129,7 @@ component which means you'll also have to update `opened` to `false` in
 response to the `onClose` callback being triggered.
 
 ```js
-const React = require("react");
-
+const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
 const {Title} = require("@khanacademy/wonder-blocks-typography");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Button = require("@khanacademy/wonder-blocks-button").default;

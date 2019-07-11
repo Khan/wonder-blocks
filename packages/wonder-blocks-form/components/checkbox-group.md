@@ -5,9 +5,9 @@ Try out the keyboard navigation! Use tab and shift+tab to navigate among the
 choices, and use space to select/de-select each option.
 
 ```js
-const React = require("react");
-const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Choice} = require("@khanacademy/wonder-blocks-form");
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -68,11 +68,11 @@ the class selector modal. The label is created separately because we are
 reflowing all the elements in the group to row.
 
 ```js
-const React = require("react");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 const {StyleSheet} = require("aphrodite");
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Choice} = require("@khanacademy/wonder-blocks-form");
+const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -134,7 +134,7 @@ This example shows how to use custom styling to change the appearance of the
 checkbox group to look more like a multiple choice question.
 
 ```js
-const React = require("react");
+const {Choice} = require("@khanacademy/wonder-blocks-form");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Color = require("@khanacademy/wonder-blocks-color").default;
 const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
