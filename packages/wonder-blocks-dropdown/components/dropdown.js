@@ -35,6 +35,12 @@ type Props = {|
     menuItems: Array<Item> | Item,
 
     /**
+     * Closes the Dropdown when an OptionItem is selected, use this
+     * prop if you want single-select OptionItems
+     */
+    closeOnOptionSelect?: boolean,
+
+    /**
      * A callback that returns items that are newly selected. Use only if this
      * menu contains select items (and make sure selectedValues is defined).
      */
@@ -101,6 +107,12 @@ export default class Dropdown extends React.Component<Props, State> {
         };
     }
 
+    componentDidMount() {
+        if (this.props.opened === true || this.props.opened === false) {
+            this.handleOpenChanged(this.props.opened);
+        }
+    }
+
     handleItemSelected = () => {
         // Bring focus back to the opener element.
         if (this.openerElement) {
@@ -133,7 +145,10 @@ export default class Dropdown extends React.Component<Props, State> {
             // Item was newly selected
             onChange([...selectedValues, selectedValue]);
         }
-        this.handleItemSelected();
+
+        this.props.closeOnOptionSelect
+            ? this.handleOpenChanged(false)
+            : this.handleItemSelected();
     };
 
     handleClick = (e: SyntheticEvent<>) => {
@@ -213,16 +228,16 @@ export default class Dropdown extends React.Component<Props, State> {
 
         return (
             <DropdownCore
+                role="menu"
+                style={style}
+                opener={opener}
                 alignment={alignment}
+                open={this.state.opened}
                 items={this._getMenuItems()}
                 keyboard={this.state.keyboard}
-                style={style}
-                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
-                onOpenChanged={this.handleOpenChanged}
-                open={this.state.opened}
-                opener={opener}
                 openerElement={this.openerElement}
-                role="menu"
+                onOpenChanged={this.handleOpenChanged}
+                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
             />
         );
     }

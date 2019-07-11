@@ -1,4 +1,4 @@
-The Clickable component allows you to easily turn any custom compoent into a clickable one with consistent behavior and accesibility features.
+The Clickable component allows you to easily turn any custom component into a clickable one with consistent behavior and accesibility features.
 
 **Clickable allows your components to:**
 - Handle mouse / touch / keyboard events
