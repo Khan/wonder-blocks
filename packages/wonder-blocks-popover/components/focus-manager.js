@@ -225,10 +225,14 @@ export default class FocusManager extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                {/* first sentinel */}
+                {/* First sentinel
+                 * We set the sentinels to be position: fixed to make sure
+                 * they're always in view, this prevents page scrolling when
+                 * tabbing. */}
                 <div
                     tabIndex="0"
                     onFocus={this.handleFocusPreviousFocusableElement}
+                    style={{position: "fixed"}}
                 />
                 <div ref={this.getComponentRootNode}>
                     {this.props.initialFocusEnabled ? (
@@ -248,6 +252,7 @@ export default class FocusManager extends React.Component<Props> {
                 <div
                     tabIndex="0"
                     onFocus={this.handleFocusNextFocusableElement}
+                    style={{position: "fixed"}}
                 />
             </React.Fragment>
         );
