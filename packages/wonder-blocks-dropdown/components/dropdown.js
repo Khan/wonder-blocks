@@ -38,7 +38,7 @@ type Props = {|
      * Closes the Dropdown when an OptionItem is selected, use this
      * prop if you want single-select OptionItems
      */
-    closeOnOptionSelect?: boolean,
+    singleSelectOption?: boolean,
 
     /**
      * A callback that returns items that are newly selected. Use only if this
@@ -128,7 +128,7 @@ export default class Dropdown extends React.Component<Props, State> {
     };
 
     handleOptionSelected = (selectedValue: string) => {
-        const {onChange, selectedValues} = this.props;
+        const {onChange, selectedValues, singleSelectOption} = this.props;
 
         if (!onChange || !selectedValues) {
             return;
@@ -140,13 +140,17 @@ export default class Dropdown extends React.Component<Props, State> {
                 ...selectedValues.slice(0, index),
                 ...selectedValues.slice(index + 1),
             ];
-            onChange(updatedSelection);
+            onChange(singleSelectOption ? [selectedValue] : updatedSelection);
         } else {
             // Item was newly selected
-            onChange([...selectedValues, selectedValue]);
+            onChange(
+                singleSelectOption
+                    ? [selectedValue]
+                    : [...selectedValues, selectedValue],
+            );
         }
 
-        this.props.closeOnOptionSelect
+        singleSelectOption
             ? this.handleOpenChanged(false)
             : this.handleItemSelected();
     };
