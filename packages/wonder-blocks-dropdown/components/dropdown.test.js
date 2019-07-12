@@ -12,6 +12,7 @@ import {keyCodes} from "../util/constants.js";
 
 type Props = {|
     singleSelectOption?: boolean,
+    opened?: boolean,
 |};
 type State = {|
     selectedValues: Array<*>,
@@ -190,6 +191,7 @@ describe("Dropdown", () => {
                 return (
                     <Dropdown
                         menuItems={dropdownItems}
+                        opened={this.props.opened}
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                         singleSelectOption={this.props.singleSelectOption}
@@ -295,6 +297,22 @@ describe("Dropdown", () => {
             // Assert
             expect(controlledComponent.find(Dropdown).state("opened")).toBe(
                 false,
+            );
+        });
+
+        it("override the Dropdowns state if the opened prop is set", () => {
+            // Arrange
+            const controlledComponent = mount(
+                <ControlledComponent opened={true} />,
+            );
+
+            // Act
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(controlledComponent.find(Dropdown).state("opened")).toBe(
+                true,
             );
         });
     });
