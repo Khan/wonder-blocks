@@ -11,7 +11,7 @@ import Dropdown from "./dropdown.js";
 import {keyCodes} from "../util/constants.js";
 
 type Props = {|
-    singleSelectOption?: boolean,
+    selectionType?: "single" | "multi",
     opened?: boolean,
 |};
 type State = {|
@@ -193,8 +193,8 @@ describe("Dropdown", () => {
                         menuItems={dropdownItems}
                         opened={this.props.opened}
                         onChange={this.handleChange}
+                        selectionType={this.props.selectionType}
                         selectedValues={this.state.selectedValues}
-                        singleSelectOption={this.props.singleSelectOption}
                     >
                         {(state) => <h1>Manage students</h1>}
                     </Dropdown>
@@ -261,7 +261,7 @@ describe("Dropdown", () => {
         it("only single selects OptionItems if singleSelectOption is passed", () => {
             // Arrange
             const controlledComponent = mount(
-                <ControlledComponent singleSelectOption />,
+                <ControlledComponent selectionType={"single"} />,
             );
             controlledComponent.simulate("click");
             controlledComponent.setState({selectedValues: ["B"]});
@@ -281,16 +281,16 @@ describe("Dropdown", () => {
         it("closes Dropdown if an OptionItem is selected when singleSelectOption is passed", () => {
             // Arrange
             const controlledComponent = mount(
-                <ControlledComponent singleSelectOption />,
+                <ControlledComponent selectionType={"single"} />,
             );
             controlledComponent.simulate("click");
             controlledComponent.setState({selectedValues: ["B"]});
             const dropdownCore = controlledComponent.find(DropdownCore);
 
-            // Act
             dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
             dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
 
+            // Act
             const optionItem = controlledComponent.find(OptionItem).at(0);
             optionItem.simulate("click");
 

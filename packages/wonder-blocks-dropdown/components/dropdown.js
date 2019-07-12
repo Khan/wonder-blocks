@@ -9,12 +9,13 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
-import DropdownCore from "./dropdown-core.js";
-import type {Item, DropdownItem} from "../util/types.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
+import DropdownCore from "./dropdown-core.js";
 import DropdownAnchor from "./dropdown-anchor.js";
+import type {Item, DropdownItem} from "../util/types.js";
 
+type SelectType = "single" | "multi";
 type Props = {|
     ...AriaProps,
 
@@ -38,7 +39,7 @@ type Props = {|
      * Closes the Dropdown when an OptionItem is selected, use this
      * prop if you want single-select OptionItems
      */
-    singleSelectOption?: boolean,
+    selectionType?: SelectType,
 
     /**
      * A callback that returns items that are newly selected. Use only if this
@@ -97,6 +98,7 @@ export default class Dropdown extends React.Component<Props, State> {
 
     static defaultProps = {
         alignment: "left",
+        selectionType: "multi",
     };
 
     constructor(props: Props) {
@@ -128,8 +130,8 @@ export default class Dropdown extends React.Component<Props, State> {
     };
 
     handleOptionSelected = (selectedValue: string) => {
-        const {onChange, selectedValues, singleSelectOption} = this.props;
-
+        const {onChange, selectedValues, selectionType} = this.props;
+        const singleSelect = selectionType === "single";
         if (!onChange || !selectedValues) {
             return;
         }
@@ -140,17 +142,17 @@ export default class Dropdown extends React.Component<Props, State> {
                 ...selectedValues.slice(0, index),
                 ...selectedValues.slice(index + 1),
             ];
-            onChange(singleSelectOption ? [selectedValue] : updatedSelection);
+            onChange(singleSelect ? [selectedValue] : updatedSelection);
         } else {
             // Item was newly selected
             onChange(
-                singleSelectOption
+                singleSelect
                     ? [selectedValue]
                     : [...selectedValues, selectedValue],
             );
         }
 
-        singleSelectOption
+        singleSelect
             ? this.handleOpenChanged(false)
             : this.handleItemSelected();
     };

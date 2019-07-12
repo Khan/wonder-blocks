@@ -198,7 +198,7 @@ describe("wonder-blocks-dropdown", () => {
 
                 return (
                     <Dropdown
-                        singleSelectOption
+                        selectionType={"single"}
                         menuItems={dropdownItems}
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
