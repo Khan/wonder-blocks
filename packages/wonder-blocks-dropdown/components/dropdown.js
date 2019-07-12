@@ -108,7 +108,7 @@ export default class Dropdown extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.opened === true || this.props.opened === false) {
+        if (this.props.opened != null) {
             this.handleOpenChanged(this.props.opened);
         }
     }

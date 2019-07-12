@@ -10,7 +10,9 @@ import DropdownCore from "./dropdown-core.js";
 import Dropdown from "./dropdown.js";
 import {keyCodes} from "../util/constants.js";
 
-type Props = {||};
+type Props = {|
+    singleSelectOption?: boolean,
+|};
 type State = {|
     selectedValues: Array<*>,
 |};
@@ -167,8 +169,6 @@ describe("Dropdown", () => {
     describe("use controlled components", () => {
         window.scrollTo = jest.fn();
         window.getComputedStyle = jest.fn();
-        let controlledComponent;
-
         class ControlledComponent extends React.Component<Props, State> {
             state = {
                 selectedValues: ["A"],
@@ -192,6 +192,7 @@ describe("Dropdown", () => {
                         menuItems={dropdownItems}
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
+                        singleSelectOption={this.props.singleSelectOption}
                     >
                         {(state) => <h1>Manage students</h1>}
                     </Dropdown>
@@ -199,15 +200,12 @@ describe("Dropdown", () => {
             }
         }
 
-        beforeEach(() => {
-            controlledComponent = mount(<ControlledComponent />);
-        });
-
         afterEach(() => {
             unmountAll();
         });
         it("updates selectedValues when OptionItem clicked", () => {
             // Arrange
+            const controlledComponent = mount(<ControlledComponent />);
             controlledComponent.simulate("click");
             const dropdownCore = controlledComponent.find(DropdownCore);
 
@@ -256,6 +254,48 @@ describe("Dropdown", () => {
 
             // Assert
             expect(controlledComponent.state("selectedValues")).toBeFalsy();
+        });
+
+        it("only single selects OptionItems if singleSelectOption is passed", () => {
+            // Arrange
+            const controlledComponent = mount(
+                <ControlledComponent singleSelectOption />,
+            );
+            controlledComponent.simulate("click");
+            controlledComponent.setState({selectedValues: ["B"]});
+            const dropdownCore = controlledComponent.find(DropdownCore);
+
+            // Act
+            dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
+            dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(controlledComponent.state("selectedValues")).toHaveLength(1);
+        });
+
+        it("closes Dropdown if an OptionItem is selected when singleSelectOption is passed", () => {
+            // Arrange
+            const controlledComponent = mount(
+                <ControlledComponent singleSelectOption />,
+            );
+            controlledComponent.simulate("click");
+            controlledComponent.setState({selectedValues: ["B"]});
+            const dropdownCore = controlledComponent.find(DropdownCore);
+
+            // Act
+            dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
+            dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(controlledComponent.find(Dropdown).state("opened")).toBe(
+                false,
+            );
         });
     });
 });
