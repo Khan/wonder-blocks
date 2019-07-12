@@ -15,6 +15,7 @@ This menu shows different type of possible items in this type of menu:
 This menu is also right-aligned.
 
 ```js
+const {ActionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
@@ -47,6 +48,7 @@ The text in the menu opener should be truncated with ellipsis at the end
 and the down caret should be the same size as it is for the other examples.
 
 ```js
+const {ActionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 const {Spring} = require("@khanacademy/wonder-blocks-layout");
@@ -80,7 +82,7 @@ that can toggle to change the state of the application. The user of this menu
 must keep track of the state of the selected items.
 
 ```js
-const React = require("react");
+const {ActionItem, OptionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
 This example shows how we can add custom dropdownStyle to the action menu.
 
 ```js
-const React = require("react");
+const {ActionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {StyleSheet} = require("aphrodite");
 

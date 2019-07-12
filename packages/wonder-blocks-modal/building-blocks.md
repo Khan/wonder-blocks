@@ -4,6 +4,8 @@ Use these low-level building blocks to build your own modal dialog, instead of u
 
 ```js
 const {StyleSheet} = require("aphrodite");
+
+const {ModalDialog, ModalPanel} = require("@khanacademy/wonder-blocks-modal");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");

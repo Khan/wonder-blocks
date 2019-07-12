@@ -29,7 +29,6 @@ used as a settings-like item. The user of this component is responsible for
 keeping track of checked state and providing an onChange callback.
 
 ```js
-const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {LabelMedium, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
 const {StyleSheet} = require("aphrodite");
@@ -80,7 +79,6 @@ be right next to the checkbox), like in this example content item. Use a
 Checkbox. This is for accessibility purposes, and doing this also automatically
 makes the label a click target for the checkbox.
 ```js
-const React = require("react");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {LabelMedium, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
 const {StyleSheet} = require("aphrodite");

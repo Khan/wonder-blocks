@@ -80,7 +80,6 @@ describe("wonder-blocks-form", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {
             LabelMedium,
@@ -135,7 +134,6 @@ describe("wonder-blocks-form", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
-        const React = require("react");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {
             LabelMedium,
@@ -263,9 +261,9 @@ describe("wonder-blocks-form", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
-        const React = require("react");
-        const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Choice} = require("@khanacademy/wonder-blocks-form");
 
         const styles = StyleSheet.create({
             wrapper: {
@@ -334,11 +332,11 @@ describe("wonder-blocks-form", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 6", () => {
-        const React = require("react");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
         const {StyleSheet} = require("aphrodite");
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Choice} = require("@khanacademy/wonder-blocks-form");
+        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
         const styles = StyleSheet.create({
             wrapper: {
@@ -426,7 +424,7 @@ describe("wonder-blocks-form", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 7", () => {
-        const React = require("react");
+        const {Choice} = require("@khanacademy/wonder-blocks-form");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Color = require("@khanacademy/wonder-blocks-color").default;
         const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
@@ -495,7 +493,7 @@ describe("wonder-blocks-form", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 8", () => {
-        const React = require("react");
+        const {Choice} = require("@khanacademy/wonder-blocks-form");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const {StyleSheet} = require("aphrodite");
 
@@ -562,7 +560,7 @@ describe("wonder-blocks-form", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 9", () => {
-        const React = require("react");
+        const {Choice} = require("@khanacademy/wonder-blocks-form");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Color = require("@khanacademy/wonder-blocks-color").default;
         const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");

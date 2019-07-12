@@ -6,6 +6,7 @@ When `mockOnFirstRender` is `false`, the `children` prop is only called after th
 const {Body, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
 const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
 
 let providerRef = null;
 
@@ -46,6 +47,7 @@ When specifying `mockOnFirstRender` to be `true`, the first render will use a mo
 ```jsx
 const {Body, BodyMonospace, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
 const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+const {View} = require("@khanacademy/wonder-blocks-core");
 
 let firstId = null;
 let secondId = null;
@@ -84,6 +86,7 @@ const children = (idf) => {
 ```jsx
 const {Body, HeadingSmall, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
 const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+const {View} = require("@khanacademy/wonder-blocks-core");
 
 const children = ({get}) => (
     <View>
@@ -110,6 +113,7 @@ const children = ({get}) => (
 ```jsx
 const {BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
+const {View} = require("@khanacademy/wonder-blocks-core");
 
 // TODO(somewhatabstract): Update this to be nice once we can get BodyMonospace
 // to allow us to properly preserve whitespace or have an alternative. Or remove

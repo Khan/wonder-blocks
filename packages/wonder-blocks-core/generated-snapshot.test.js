@@ -17,6 +17,8 @@ import WithSSRPlaceholder from "./components/with-ssr-placeholder.js";
 
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
         const example = (
             <View>
                 <IDProvider scope="field">
@@ -33,6 +35,8 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
         const example = (
             <View>
                 <IDProvider scope="field" id="some-user-id">
@@ -50,6 +54,7 @@ describe("wonder-blocks-core", () => {
     });
     it("example 3", () => {
         const {StyleSheet} = require("aphrodite");
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         const styles = StyleSheet.create({
             container: {
@@ -79,6 +84,8 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -92,6 +99,8 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 5", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
         const example = (
             <View>
                 <View testId="foo">Foo</View>
@@ -108,6 +117,7 @@ describe("wonder-blocks-core", () => {
         } = require("@khanacademy/wonder-blocks-typography");
         const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
         const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         let providerRef = null;
 
@@ -159,6 +169,7 @@ describe("wonder-blocks-core", () => {
             HeadingSmall,
         } = require("@khanacademy/wonder-blocks-typography");
         const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         let firstId = null;
         let secondId = null;
@@ -202,6 +213,7 @@ describe("wonder-blocks-core", () => {
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
         const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         const children = ({get}) => (
             <View>
@@ -231,6 +243,7 @@ describe("wonder-blocks-core", () => {
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
         const {Strut} = require("@khanacademy/wonder-blocks-layout");
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         // TODO(somewhatabstract): Update this to be nice once we can get BodyMonospace
         // to allow us to properly preserve whitespace or have an alternative. Or remove
@@ -252,6 +265,7 @@ describe("wonder-blocks-core", () => {
     });
     it("example 10", () => {
         const {StyleSheet} = require("aphrodite");
+        const {Text} = require("@khanacademy/wonder-blocks-core");
 
         const styles = StyleSheet.create({
             container: {
@@ -281,6 +295,8 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 11", () => {
+        const {Text} = require("@khanacademy/wonder-blocks-core");
+
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -294,6 +310,8 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 12", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
         const example = (
             <WithSSRPlaceholder
                 placeholder={() => (
@@ -315,6 +333,8 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 13", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
         const example = (
             <WithSSRPlaceholder placeholder={null}>
                 {() => (
@@ -333,6 +353,7 @@ describe("wonder-blocks-core", () => {
             Body,
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         const trackingArray = [];
         const resultsId = "nossr-example-2-results";
@@ -412,6 +433,7 @@ describe("wonder-blocks-core", () => {
             Body,
             BodyMonospace,
         } = require("@khanacademy/wonder-blocks-typography");
+        const {View} = require("@khanacademy/wonder-blocks-core");
 
         const trackingArray = [];
         const resultsId = "nossr-example-3-results";

@@ -15,6 +15,7 @@ describe("wonder-blocks-breadcrumbs", () => {
     it("example 1", () => {
         const Link = require("@khanacademy/wonder-blocks-link").default;
         const {
+            Breadcrumbs,
             BreadcrumbsItem,
         } = require("@khanacademy/wonder-blocks-breadcrumbs");
 

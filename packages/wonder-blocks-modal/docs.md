@@ -26,9 +26,9 @@ The initial focus placement depends on the following scenarios:
 ### Example: Set initial focus on a given element inside the modal
 
 ```js
-const React = require("react");
 const {StyleSheet} = require("aphrodite");
 
+const {ModalLauncher, OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
 const {Title} = require("@khanacademy/wonder-blocks-typography");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const Button = require("@khanacademy/wonder-blocks-button").default;
@@ -93,12 +93,14 @@ const modalInitialFocus = ({closeModal}) => (
 This example illustrates how we can easily update the Modal's contents by wrapping it into a new component/container. **Modal** is built in a way that provides great flexibility and makes it work with different variations and/or layouts (see Custom Two-Pane Dialog example).
 
 ```js
-const React = require("react");
 const {StyleSheet} = require("aphrodite");
 
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
+const {ModalLauncher, OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const {View} = require("@khanacademy/wonder-blocks-core");
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+const {Body, LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
 const styles = StyleSheet.create({
     example: {
@@ -197,6 +199,8 @@ To use styling for different screen sizes, wrap your component with `MediaLayout
 
 ```js
 const {StyleSheet} = require("aphrodite");
+
+const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
 const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
