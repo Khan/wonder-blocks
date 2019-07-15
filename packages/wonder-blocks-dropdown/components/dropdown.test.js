@@ -10,7 +10,10 @@ import DropdownCore from "./dropdown-core.js";
 import Dropdown from "./dropdown.js";
 import {keyCodes} from "../util/constants.js";
 
-type Props = {||};
+type Props = {|
+    selectionType?: "single" | "multi",
+    opened?: boolean,
+|};
 type State = {|
     selectedValues: Array<*>,
 |};
@@ -167,8 +170,6 @@ describe("Dropdown", () => {
     describe("use controlled components", () => {
         window.scrollTo = jest.fn();
         window.getComputedStyle = jest.fn();
-        let controlledComponent;
-
         class ControlledComponent extends React.Component<Props, State> {
             state = {
                 selectedValues: ["A"],
@@ -190,7 +191,9 @@ describe("Dropdown", () => {
                 return (
                     <Dropdown
                         menuItems={dropdownItems}
+                        opened={this.props.opened}
                         onChange={this.handleChange}
+                        selectionType={this.props.selectionType}
                         selectedValues={this.state.selectedValues}
                     >
                         {(state) => <h1>Manage students</h1>}
@@ -199,15 +202,12 @@ describe("Dropdown", () => {
             }
         }
 
-        beforeEach(() => {
-            controlledComponent = mount(<ControlledComponent />);
-        });
-
         afterEach(() => {
             unmountAll();
         });
         it("updates selectedValues when OptionItem clicked", () => {
             // Arrange
+            const controlledComponent = mount(<ControlledComponent />);
             controlledComponent.simulate("click");
             const dropdownCore = controlledComponent.find(DropdownCore);
 
@@ -256,6 +256,64 @@ describe("Dropdown", () => {
 
             // Assert
             expect(controlledComponent.state("selectedValues")).toBeFalsy();
+        });
+
+        it("only single selects OptionItems if singleSelectOption is passed", () => {
+            // Arrange
+            const controlledComponent = mount(
+                <ControlledComponent selectionType={"single"} />,
+            );
+            controlledComponent.simulate("click");
+            controlledComponent.setState({selectedValues: ["B"]});
+            const dropdownCore = controlledComponent.find(DropdownCore);
+
+            // Act
+            dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
+            dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(controlledComponent.state("selectedValues")).toHaveLength(1);
+        });
+
+        it("closes Dropdown if an OptionItem is selected when singleSelectOption is passed", () => {
+            // Arrange
+            const controlledComponent = mount(
+                <ControlledComponent selectionType={"single"} />,
+            );
+            controlledComponent.simulate("click");
+            controlledComponent.setState({selectedValues: ["B"]});
+            const dropdownCore = controlledComponent.find(DropdownCore);
+
+            dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
+            dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
+
+            // Act
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(controlledComponent.find(Dropdown).state("opened")).toBe(
+                false,
+            );
+        });
+
+        it("override the Dropdowns state if the opened prop is set", () => {
+            // Arrange
+            const controlledComponent = mount(
+                <ControlledComponent opened={true} />,
+            );
+
+            // Act
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(controlledComponent.find(Dropdown).state("opened")).toBe(
+                true,
+            );
         });
     });
 });

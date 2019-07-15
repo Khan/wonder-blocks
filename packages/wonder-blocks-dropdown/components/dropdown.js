@@ -9,12 +9,13 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
-import DropdownCore from "./dropdown-core.js";
-import type {Item, DropdownItem} from "../util/types.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
+import DropdownCore from "./dropdown-core.js";
 import DropdownAnchor from "./dropdown-anchor.js";
+import type {Item, DropdownItem} from "../util/types.js";
 
+type SelectType = "single" | "multi";
 type Props = {|
     ...AriaProps,
 
@@ -33,6 +34,12 @@ type Props = {|
      * The items present in the Dropdown
      */
     menuItems: Array<Item> | Item,
+
+    /**
+     * Closes the Dropdown when an OptionItem is selected, use this
+     * prop if you want single-select OptionItems
+     */
+    selectionType?: SelectType,
 
     /**
      * A callback that returns items that are newly selected. Use only if this
@@ -91,6 +98,7 @@ export default class Dropdown extends React.Component<Props, State> {
 
     static defaultProps = {
         alignment: "left",
+        selectionType: "multi",
     };
 
     constructor(props: Props) {
@@ -99,6 +107,12 @@ export default class Dropdown extends React.Component<Props, State> {
             opened: false,
             keyboard: false,
         };
+    }
+
+    componentDidMount() {
+        if (this.props.opened != null) {
+            this.handleOpenChanged(this.props.opened);
+        }
     }
 
     handleItemSelected = () => {
@@ -116,8 +130,8 @@ export default class Dropdown extends React.Component<Props, State> {
     };
 
     handleOptionSelected = (selectedValue: string) => {
-        const {onChange, selectedValues} = this.props;
-
+        const {onChange, selectedValues, selectionType} = this.props;
+        const singleSelect = selectionType === "single";
         if (!onChange || !selectedValues) {
             return;
         }
@@ -128,12 +142,19 @@ export default class Dropdown extends React.Component<Props, State> {
                 ...selectedValues.slice(0, index),
                 ...selectedValues.slice(index + 1),
             ];
-            onChange(updatedSelection);
+            onChange(singleSelect ? [selectedValue] : updatedSelection);
         } else {
             // Item was newly selected
-            onChange([...selectedValues, selectedValue]);
+            onChange(
+                singleSelect
+                    ? [selectedValue]
+                    : [...selectedValues, selectedValue],
+            );
         }
-        this.handleItemSelected();
+
+        singleSelect
+            ? this.handleOpenChanged(false)
+            : this.handleItemSelected();
     };
 
     handleClick = (e: SyntheticEvent<>) => {
@@ -213,16 +234,16 @@ export default class Dropdown extends React.Component<Props, State> {
 
         return (
             <DropdownCore
+                role="menu"
+                style={style}
+                opener={opener}
                 alignment={alignment}
+                open={this.state.opened}
                 items={this._getMenuItems()}
                 keyboard={this.state.keyboard}
-                style={style}
-                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
-                onOpenChanged={this.handleOpenChanged}
-                open={this.state.opened}
-                opener={opener}
                 openerElement={this.openerElement}
-                role="menu"
+                onOpenChanged={this.handleOpenChanged}
+                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
             />
         );
     }
