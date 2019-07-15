@@ -256,9 +256,9 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: "center",
         justifyContent: "center",
-        height: 64,
-        width: 64,
-        minWidth: 64,
+        height: Spacing.xxxLarge,
+        width: Spacing.xxxLarge,
+        minWidth: Spacing.xxxLarge,
         marginRight: Spacing.medium,
         overflow: "hidden",
     },

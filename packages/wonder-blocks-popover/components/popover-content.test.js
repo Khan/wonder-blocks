@@ -49,8 +49,8 @@ describe("PopoverContent", () => {
         const underTest = () => mount(nodes);
 
         // Assert
-        expect(underTest).toThrowError(
-            "'image' and 'icon' cannot be used at the same time. You can fix this by either removing 'image' or 'icon' from your instance.",
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"'image' and 'icon' cannot be used at the same time. You can fix this by either removing 'image' or 'icon' from your instance."`,
         );
     });
 
@@ -72,8 +72,8 @@ describe("PopoverContent", () => {
         const underTest = () => mount(nodes);
 
         // Assert
-        expect(underTest).toThrowError(
-            "'image' can only be vertically placed. You can fix this by either changing `placement` to `top` or `bottom` or removing the `image` prop inside `content`.",
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"'image' can only be vertically placed. You can fix this by either changing \`placement\` to \`top\` or \`bottom\` or removing the \`image\` prop inside \`content\`."`,
         );
     });
 });
