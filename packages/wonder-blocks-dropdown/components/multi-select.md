@@ -317,3 +317,29 @@ const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
     </MultiSelect>
 </View>
 ```
+
+### Implicit all enabled Multi select
+
+When nothing is selected, show the menu text as "All selected".
+Note that the actual selection logic doesn't change. (Only the menu text)
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+<View style={styles.row}>
+    <MultiSelect implicitAllEnabled={true} selectItemType="fruits">
+        <OptionItem label="Nectarine" value="nectarine" />
+        <OptionItem label="Plum" value="plum" />
+        <OptionItem label="Cantaloupe" value="cantaloupe" />
+        <OptionItem label="Pineapples" value="pineapples" />
+    </MultiSelect>
+</View>
+```

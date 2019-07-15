@@ -132,5 +132,9 @@ describe("MultiSelect", () => {
         // All items are selected
         select.setProps({selectedValues: ["1", "2", "3"]});
         expect(opener.text()).toEqual("All students");
+
+        // implicitAllEnabled
+        select.setProps({implicitAllEnabled: true, selectedValues: []});
+        expect(opener.text()).toEqual("All students");
     });
 });

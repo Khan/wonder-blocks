@@ -1217,4 +1217,28 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+    it("example 22", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
+        const example = (
+            <View style={styles.row}>
+                <MultiSelect implicitAllEnabled={true} selectItemType="fruits">
+                    <OptionItem label="Nectarine" value="nectarine" />
+                    <OptionItem label="Plum" value="plum" />
+                    <OptionItem label="Cantaloupe" value="cantaloupe" />
+                    <OptionItem label="Pineapples" value="pineapples" />
+                </MultiSelect>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
