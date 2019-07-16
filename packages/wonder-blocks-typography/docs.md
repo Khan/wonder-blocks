@@ -74,6 +74,24 @@ const {Title} = require("@khanacademy/wonder-blocks-typography");
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
+const {
+    Title,
+    HeadingLarge,
+    HeadingMedium,
+    HeadingSmall,
+    HeadingXSmall,
+    BodySerifBlock,
+    BodySerif,
+    BodyMonospace,
+    Body,
+    LabelLarge,
+    LabelMedium,
+    LabelSmall,
+    LabelXSmall,
+    Tagline,
+    Caption,
+    Footnote
+} = require("@khanacademy/wonder-blocks-typography");
 
 <View>
     <Title>Привет</Title>
@@ -99,57 +117,88 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
+const {OptionItem, SingleSelect} = require("@khanacademy/wonder-blocks-dropdown");
+const {
+    Title,
+    HeadingLarge,
+    HeadingMedium,
+    HeadingSmall,
+    HeadingXSmall,
+    BodySerifBlock,
+    BodySerif,
+    BodyMonospace,
+    Body,
+    LabelLarge,
+    LabelMedium,
+    LabelSmall,
+    LabelXSmall,
+    Tagline,
+    Caption,
+    Footnote
+} = require("@khanacademy/wonder-blocks-typography");
+
+const languages = {
+    arabic: { text: "مرحبا", dir: "rtl" },
+    armenian: { text: "Բարեւ" },
+    greek: { text: "γεια σας" },
+    hebrew: { text: "שלום", dir: "rtl" }
+};
+
+class LanguageSelector extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValue: "arabic"
+        };
+    }
+
+    renderTypography() {
+        const {text, dir} = this.props.languages[this.state.selectedValue];
+
+        return (
+            <React.Fragment>
+                <Title dir={dir}>{text}</Title>
+                <HeadingLarge dir={dir}>{text}</HeadingLarge>
+                <HeadingMedium dir={dir}>{text}</HeadingMedium>
+                <HeadingSmall dir={dir}>{text}</HeadingSmall>
+                <HeadingXSmall dir={dir}>{text}</HeadingXSmall>
+                <BodySerifBlock dir={dir}>{text}</BodySerifBlock>
+                <BodySerif dir={dir}>{text}</BodySerif>
+                <BodyMonospace dir={dir}>{text}</BodyMonospace>
+                <Body dir={dir}>{text}</Body>
+                <LabelLarge dir={dir}>{text}</LabelLarge>
+                <LabelMedium dir={dir}>{text}</LabelMedium>
+                <LabelSmall dir={dir}>{text}</LabelSmall>
+                <LabelXSmall dir={dir}>{text}</LabelXSmall>
+                <Tagline dir={dir}>{text}</Tagline>
+                <Caption dir={dir}>{text}</Caption>
+                <Footnote dir={dir}>{text}</Footnote>
+            </React.Fragment>
+        );
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <SingleSelect
+                    aria-labelledby="language-selector"
+                    id="unique-language-selector"
+                    placeholder="Select language"
+                    onChange={(selectedValue) => this.setState({selectedValue})}
+                    selectedValue={this.state.selectedValue}
+                >
+                    {Object.keys(this.props.languages).map((item, key) => (
+                        <OptionItem label={item} value={item} key={key} />
+                    ))}
+                </SingleSelect>
+
+                {this.renderTypography()}
+            </React.Fragment>
+        );
+    }
+}
 
 <View>
-    <Title dir="rtl">مرحبا</Title>
-    <HeadingLarge dir="rtl">مرحبا</HeadingLarge>
-    <HeadingMedium dir="rtl">مرحبا</HeadingMedium>
-    <HeadingSmall dir="rtl">مرحبا</HeadingSmall>
-    <HeadingXSmall dir="rtl">مرحبا</HeadingXSmall>
-    <BodySerifBlock dir="rtl">مرحبا</BodySerifBlock>
-    <BodySerif dir="rtl">مرحبا</BodySerif>
-    <BodyMonospace dir="rtl">مرحبا</BodyMonospace>
-    <Body dir="rtl">مرحبا</Body>
-    <LabelLarge dir="rtl">مرحبا</LabelLarge>
-    <LabelMedium dir="rtl">مرحبا</LabelMedium>
-    <LabelSmall dir="rtl">مرحبا</LabelSmall>
-    <LabelXSmall dir="rtl">مرحبا</LabelXSmall>
-    <Tagline dir="rtl">مرحبا</Tagline>
-    <Caption dir="rtl">مرحبا</Caption>
-    <Footnote dir="rtl">مرحبا</Footnote>
-
-    <Title>γεια σας</Title>
-    <HeadingLarge>γεια σας</HeadingLarge>
-    <HeadingMedium>γεια σας</HeadingMedium>
-    <HeadingSmall>γεια σας</HeadingSmall>
-    <HeadingXSmall>γεια σας</HeadingXSmall>
-    <BodySerifBlock>γεια σας</BodySerifBlock>
-    <BodySerif>γεια σας</BodySerif>
-    <BodyMonospace>γεια σας</BodyMonospace>
-    <Body>γεια σας</Body>
-    <LabelLarge>γεια σας</LabelLarge>
-    <LabelMedium>γεια σας</LabelMedium>
-    <LabelSmall>γεια σας</LabelSmall>
-    <LabelXSmall>γεια σας</LabelXSmall>
-    <Tagline>γεια σας</Tagline>
-    <Caption>γεια σας</Caption>
-    <Footnote>γεια σας</Footnote>
-
-    <Title dir="rtl">שלום</Title>
-    <HeadingLarge dir="rtl">שלום</HeadingLarge>
-    <HeadingMedium dir="rtl">שלום</HeadingMedium>
-    <HeadingSmall dir="rtl">שלום</HeadingSmall>
-    <HeadingXSmall dir="rtl">שלום</HeadingXSmall>
-    <BodySerifBlock dir="rtl">שלום</BodySerifBlock>
-    <BodySerif dir="rtl">שלום</BodySerif>
-    <BodyMonospace dir="rtl">שלום</BodyMonospace>
-    <Body dir="rtl">שלום</Body>
-    <LabelLarge dir="rtl">שלום</LabelLarge>
-    <LabelMedium dir="rtl">שלום</LabelMedium>
-    <LabelSmall dir="rtl">שלום</LabelSmall>
-    <LabelXSmall dir="rtl">שלום</LabelXSmall>
-    <Tagline dir="rtl">שלום</Tagline>
-    <Caption dir="rtl">שלום</Caption>
-    <Footnote dir="rtl">שלום</Footnote>
+    <LanguageSelector languages={languages} />
 </View>
 ```

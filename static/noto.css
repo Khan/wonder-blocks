@@ -27,6 +27,35 @@
     unicode-range: U+0600-06FF;
 }
 
+/* Armenian */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/armenian/NotoSansArmenian-Regular.woff2");
+    unicode-range: U+0530–U+058F;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/armenian/NotoSansArmenian-Regular.woff2");
+    unicode-range: U+0530–U+058F;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/armenian//NotoSansArmenian-Bold.woff2");
+    unicode-range: U+0530–U+058F;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/armenian//NotoSansArmenian-Black.woff2");
+    unicode-range: U+0530–U+058F;
+}
+
 /* Greek */
 @font-face {
     font-family: "Noto Serif";

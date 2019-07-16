@@ -710,6 +710,121 @@ exports[`wonder-blocks-typography example 5 1`] = `
     }
   }
 >
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="language-selector"
+      className=""
+      disabled={false}
+      id="unique-language-selector"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "borderColor": "rgba(33,36,44,0.16)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#21242c",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "space-between",
+          "margin": 0,
+          "outline": "none",
+          "paddingLeft": 16,
+          "paddingRight": 12,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "whiteSpace": "nowrap",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "20px",
+            "marginRight": 8,
+            "overflow": "hidden",
+            "textOverflow": "ellipsis",
+            "userSelect": "none",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        arabic
+      </span>
+      <svg
+        aria-hidden="true"
+        className=""
+        height={16}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "minWidth": 16,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 16 16"
+        width={16}
+      >
+        <path
+          d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+          fill="rgba(33,36,44,0.64)"
+        />
+      </svg>
+    </button>
+  </div>
   <h1
     className=""
     dir="rtl"
@@ -1011,594 +1126,6 @@ exports[`wonder-blocks-typography example 5 1`] = `
     }
   >
     مرحبا
-  </span>
-  <h1
-    className=""
-    style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
-          "fontSize": 28,
-          "lineHeight": "32px",
-        },
-        "@media (minWidth: 1024px)": Object {
-          "fontSize": 36,
-          "lineHeight": "40px",
-        },
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontWeight": 900,
-        "marginBottom": 0,
-        "marginTop": 0,
-      }
-    }
-  >
-    γεια σας
-  </h1>
-  <h2
-    className=""
-    style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
-          "fontSize": 24,
-          "lineHeight": "28px",
-        },
-        "@media (minWidth: 1024px)": Object {
-          "fontSize": 28,
-          "lineHeight": "32px",
-        },
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontWeight": 700,
-        "marginBottom": 0,
-        "marginTop": 0,
-      }
-    }
-  >
-    γεια σας
-  </h2>
-  <h3
-    className=""
-    style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
-          "fontSize": 22,
-          "lineHeight": "26px",
-        },
-        "@media (minWidth: 1024px)": Object {
-          "fontSize": 24,
-          "lineHeight": "28px",
-        },
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontWeight": 700,
-        "marginBottom": 0,
-        "marginTop": 0,
-      }
-    }
-  >
-    γεια σας
-  </h3>
-  <h4
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 20,
-        "fontWeight": 700,
-        "lineHeight": "24px",
-        "marginBottom": 0,
-        "marginTop": 0,
-      }
-    }
-  >
-    γεια σας
-  </h4>
-  <h4
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 12,
-        "fontWeight": 700,
-        "letterSpacing": 0.6,
-        "lineHeight": "16px",
-        "marginBottom": 0,
-        "marginTop": 0,
-        "textTransform": "uppercase",
-      }
-    }
-  >
-    γεια σας
-  </h4>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
-        "fontSize": 22,
-        "fontWeight": 400,
-        "lineHeight": "28px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
-        "fontSize": 18,
-        "fontWeight": 400,
-        "lineHeight": "22px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Inconsolata, monospace",
-        "fontSize": 17,
-        "fontWeight": 400,
-        "lineHeight": "22px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 16,
-        "fontWeight": 400,
-        "lineHeight": "22px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 16,
-        "fontWeight": 700,
-        "lineHeight": "20px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 16,
-        "fontWeight": 400,
-        "lineHeight": "20px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 14,
-        "fontWeight": 400,
-        "lineHeight": "18px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 12,
-        "fontWeight": 400,
-        "lineHeight": "16px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 20,
-        "fontWeight": 400,
-        "lineHeight": "24px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 14,
-        "fontWeight": 400,
-        "lineHeight": "20px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 12,
-        "fontWeight": 400,
-        "lineHeight": "18px",
-      }
-    }
-  >
-    γεια σας
-  </span>
-  <h1
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
-          "fontSize": 28,
-          "lineHeight": "32px",
-        },
-        "@media (minWidth: 1024px)": Object {
-          "fontSize": 36,
-          "lineHeight": "40px",
-        },
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontWeight": 900,
-        "marginBottom": 0,
-        "marginTop": 0,
-      }
-    }
-  >
-    שלום
-  </h1>
-  <h2
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
-          "fontSize": 24,
-          "lineHeight": "28px",
-        },
-        "@media (minWidth: 1024px)": Object {
-          "fontSize": 28,
-          "lineHeight": "32px",
-        },
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontWeight": 700,
-        "marginBottom": 0,
-        "marginTop": 0,
-      }
-    }
-  >
-    שלום
-  </h2>
-  <h3
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
-          "fontSize": 22,
-          "lineHeight": "26px",
-        },
-        "@media (minWidth: 1024px)": Object {
-          "fontSize": 24,
-          "lineHeight": "28px",
-        },
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontWeight": 700,
-        "marginBottom": 0,
-        "marginTop": 0,
-      }
-    }
-  >
-    שלום
-  </h3>
-  <h4
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 20,
-        "fontWeight": 700,
-        "lineHeight": "24px",
-        "marginBottom": 0,
-        "marginTop": 0,
-      }
-    }
-  >
-    שלום
-  </h4>
-  <h4
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 12,
-        "fontWeight": 700,
-        "letterSpacing": 0.6,
-        "lineHeight": "16px",
-        "marginBottom": 0,
-        "marginTop": 0,
-        "textTransform": "uppercase",
-      }
-    }
-  >
-    שלום
-  </h4>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
-        "fontSize": 22,
-        "fontWeight": 400,
-        "lineHeight": "28px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
-        "fontSize": 18,
-        "fontWeight": 400,
-        "lineHeight": "22px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Inconsolata, monospace",
-        "fontSize": 17,
-        "fontWeight": 400,
-        "lineHeight": "22px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 16,
-        "fontWeight": 400,
-        "lineHeight": "22px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 16,
-        "fontWeight": 700,
-        "lineHeight": "20px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 16,
-        "fontWeight": 400,
-        "lineHeight": "20px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 14,
-        "fontWeight": 400,
-        "lineHeight": "18px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 12,
-        "fontWeight": 400,
-        "lineHeight": "16px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 20,
-        "fontWeight": 400,
-        "lineHeight": "24px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 14,
-        "fontWeight": 400,
-        "lineHeight": "20px",
-      }
-    }
-  >
-    שלום
-  </span>
-  <span
-    className=""
-    dir="rtl"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 12,
-        "fontWeight": 400,
-        "lineHeight": "18px",
-      }
-    }
-  >
-    שלום
   </span>
 </div>
 `;
