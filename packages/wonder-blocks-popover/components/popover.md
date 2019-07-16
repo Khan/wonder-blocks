@@ -16,6 +16,7 @@ can close the Popover by pressing `esc` or clicking in the trigger element.
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {View} = require("@khanacademy/wonder-blocks-core");
+const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
 
 const styles = StyleSheet.create({
     example: {
@@ -63,6 +64,7 @@ const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
 const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 const {HeadingSmall, LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+const {PopoverContentCore} = require("@khanacademy/wonder-blocks-popover");
 
 const customIcon = {
     small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
@@ -189,6 +191,7 @@ const Button = require("@khanacademy/wonder-blocks-button").default;
 const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
 const {View} = require("@khanacademy/wonder-blocks-core");
+const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
 
 const styles = StyleSheet.create({
     example: {
@@ -240,6 +243,7 @@ will need to set the `icon` prop inside the `PopoverContent`.
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {View} = require("@khanacademy/wonder-blocks-core");
+const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
 
 const styles = StyleSheet.create({
     example: {
@@ -278,6 +282,7 @@ to the image.
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {View} = require("@khanacademy/wonder-blocks-core");
+const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
 
 const styles = StyleSheet.create({
     example: {

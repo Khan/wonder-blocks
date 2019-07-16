@@ -9,7 +9,7 @@ describe("@khanacademy/wonder-blocks-popover", () => {
 
         // Assert
         expect(Object.keys(result).sort()).toEqual(
-            ["PopoverContentCore"].sort(),
+            ["Popover", "PopoverContent", "PopoverContentCore"].sort(),
         );
     });
 });

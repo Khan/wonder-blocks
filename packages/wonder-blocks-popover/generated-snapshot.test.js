@@ -20,6 +20,7 @@ describe("wonder-blocks-popover", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
 
         const styles = StyleSheet.create({
             example: {
@@ -71,6 +72,9 @@ describe("wonder-blocks-popover", () => {
             HeadingSmall,
             LabelLarge,
         } = require("@khanacademy/wonder-blocks-typography");
+        const {
+            PopoverContentCore,
+        } = require("@khanacademy/wonder-blocks-popover");
 
         const customIcon = {
             small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
@@ -212,6 +216,7 @@ describe("wonder-blocks-popover", () => {
         const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
         const {Strut} = require("@khanacademy/wonder-blocks-layout");
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
 
         const styles = StyleSheet.create({
             example: {
@@ -269,6 +274,7 @@ describe("wonder-blocks-popover", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
 
         const styles = StyleSheet.create({
             example: {
@@ -300,6 +306,7 @@ describe("wonder-blocks-popover", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
 
         const styles = StyleSheet.create({
             example: {
