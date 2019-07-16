@@ -55,9 +55,15 @@ type Props = {|
 
     /**
      * Optional placeholder for the opening component when there are no items
-     * selected.
+     * selected and not implicit all enabled.
      */
     placeholder?: string,
+
+    /**
+     * When this is true, the menu text shows "All {selectItemType}" when no
+     * item is selected.
+     */
+    implicitAllEnabled?: boolean,
 
     /**
      * Whether to display shortcuts for Select All and Select None.
@@ -173,11 +179,18 @@ export default class MultiSelect extends React.Component<Props, State> {
         const {
             children,
             placeholder,
+            implicitAllEnabled,
             selectItemType,
             selectedValues,
         } = this.props;
-        // If there is nothing selected, use the placeholder if it exists
-        const noSelectionText = placeholder || `0 ${selectItemType}`;
+        const allSelectedText = `All ${selectItemType}`;
+
+        // When implicit all enabled, use the allSelectedText when no selection
+        // but otherwise, use the placeholder if it exists
+        const noSelectionText = implicitAllEnabled
+            ? allSelectedText
+            : placeholder || `0 ${selectItemType}`;
+
         switch (selectedValues.length) {
             case 0:
                 return noSelectionText;
@@ -192,7 +205,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                     ? selectedItem.props.label
                     : noSelectionText;
             case React.Children.count(children):
-                return `All ${selectItemType}`;
+                return allSelectedText;
             default:
                 return `${selectedValues.length} ${selectItemType}`;
         }
@@ -285,6 +298,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             onChange,
             selectedValues,
             selectItemType,
+            implicitAllEnabled,
             shortcuts,
             /* eslint-enable no-unused-vars */
             ...sharedProps

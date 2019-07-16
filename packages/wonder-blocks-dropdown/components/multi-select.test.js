@@ -133,4 +133,13 @@ describe("MultiSelect", () => {
         select.setProps({selectedValues: ["1", "2", "3"]});
         expect(opener.text()).toEqual("All students");
     });
+
+    it("displays All selected text when no items is selected for opener with implicitAllEnabled", () => {
+        // Arrange, Act
+        const opener = select.find(SelectOpener);
+        select.setProps({implicitAllEnabled: true, selectedValues: []});
+
+        // Assert
+        expect(opener.text()).toEqual("All students");
+    });
 });

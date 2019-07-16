@@ -1218,4 +1218,57 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+    it("example 22", () => {
+        const {StyleSheet} = require("aphrodite");
+        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
+        class ImplicitAllEnabledExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                };
+                // Styleguidist doesn't support arrow functions in class field properties
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(update) {
+                console.log("changes happened!");
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelect
+                        implicitAllEnabled={true}
+                        selectItemType="fruits"
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                    >
+                        <OptionItem label="Nectarine" value="nectarine" />
+                        <OptionItem label="Plum" value="plum" />
+                        <OptionItem label="Cantaloupe" value="cantaloupe" />
+                        <OptionItem label="Pineapples" value="pineapples" />
+                    </MultiSelect>
+                );
+            }
+        }
+
+        const example = (
+            <View style={styles.row}>
+                <ImplicitAllEnabledExample />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
