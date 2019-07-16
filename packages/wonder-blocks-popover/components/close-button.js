@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+
+import PopoverContext from "./popover-context.js";
 
 type Props = {|
     ...AriaProps,
@@ -17,9 +17,9 @@ type Props = {|
     light?: boolean,
 
     /**
-     * Called when the popover closes
+     * Custom styles applied to the IconButton
      */
-    onClose?: () => mixed,
+    style?: StyleType,
 |};
 
 /**
@@ -34,26 +34,22 @@ export default class CloseButton extends React.Component<Props> {
     };
 
     render() {
-        const {light, onClose, "aria-label": ariaLabel} = this.props;
+        const {light, "aria-label": ariaLabel, style} = this.props;
         return (
-            <IconButton
-                icon={icons.dismiss}
-                aria-label={ariaLabel}
-                onClick={onClose}
-                kind={light ? "primary" : "tertiary"}
-                light={light}
-                style={styles.closeButton}
-            />
+            <PopoverContext.Consumer>
+                {({close}) => {
+                    return (
+                        <IconButton
+                            icon={icons.dismiss}
+                            aria-label={ariaLabel}
+                            onClick={close}
+                            kind={light ? "primary" : "tertiary"}
+                            light={light}
+                            style={style}
+                        />
+                    );
+                }}
+            </PopoverContext.Consumer>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    closeButton: {
-        position: "absolute",
-        right: Spacing.xSmall,
-        top: Spacing.xSmall,
-        // Allows the button to be above the title and/or custom content
-        zIndex: 1,
-    },
-});

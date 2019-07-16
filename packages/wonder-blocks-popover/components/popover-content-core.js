@@ -18,6 +18,11 @@ type Props = {|
     children: React.Node,
 
     /**
+     * Close button color
+     */
+    closeButtonLight?: boolean,
+
+    /**
      * Close button label for use in screen readers
      */
     closeButtonLabel?: string,
@@ -31,15 +36,10 @@ type Props = {|
      * Whether we should use the default light color scheme or switch to a
      * different color scheme.
      */
-    color: "blue" | "dark" | "light",
+    color: "blue" | "darkBlue" | "white",
 
     /**
-     * Called when the popover closes
-     */
-    onClose?: () => mixed,
-
-    /**
-     * Custom styles
+     * Custom styles applied to the content container
      */
     style?: StyleType,
 
@@ -55,18 +55,19 @@ type Props = {|
  */
 export default class PopoverContentCore extends React.Component<Props> {
     static defaultProps = {
-        color: "light",
-        closeButtonVisible: true,
+        color: "white",
+        closeButtonLight: false,
+        closeButtonVisible: false,
     };
 
     render() {
         const {
             children,
+            closeButtonLight,
             closeButtonLabel,
             closeButtonVisible,
             color,
             style,
-            onClose,
             testId,
         } = this.props;
 
@@ -75,15 +76,15 @@ export default class PopoverContentCore extends React.Component<Props> {
                 data-test-id={testId}
                 style={[
                     styles.content,
-                    color !== "light" && styles[color],
+                    color !== "white" && styles[color],
                     style,
                 ]}
             >
                 {closeButtonVisible && (
                     <CloseButton
                         aria-label={closeButtonLabel}
-                        light={color !== "light"}
-                        onClose={onClose}
+                        light={closeButtonLight || color !== "white"}
+                        style={styles.closeButton}
                     />
                 )}
                 {children}
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
             Colors.offBlack8
         }`,
         margin: 0,
-        maxWidth: 280,
+        maxWidth: Spacing.medium * 18, // 288px
         padding: Spacing.large,
         overflow: "hidden",
         justifyContent: "center",
@@ -113,8 +114,20 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.blue,
         color: Colors.white,
     },
-    dark: {
+
+    darkBlue: {
         backgroundColor: Colors.darkBlue,
         color: Colors.white,
+    },
+
+    /**
+     * elements
+     */
+    closeButton: {
+        position: "absolute",
+        right: Spacing.xSmall,
+        top: Spacing.xSmall,
+        // Allows the button to be above the title and/or custom content
+        zIndex: 1,
     },
 });

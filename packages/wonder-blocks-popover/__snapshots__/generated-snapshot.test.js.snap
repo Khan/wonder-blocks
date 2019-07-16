@@ -5,6 +5,104 @@ exports[`wonder-blocks-popover example 1 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-controls="uid-popover-0-wb-id"
+    aria-expanded="false"
+    className=""
+    disabled={false}
+    id="uid-popover-0-wb-id-anchor"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "flex",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Open default popover
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -16,6 +114,7 @@ exports[`wonder-blocks-popover example 1 1`] = `
       "minHeight": 0,
       "minWidth": 0,
       "padding": "12px 0",
+      "paddingTop": 240,
       "position": "relative",
       "zIndex": 0,
     }
@@ -26,7 +125,712 @@ exports[`wonder-blocks-popover example 1 1`] = `
     style={
       Object {
         "alignItems": "stretch",
-        "backgroundColor": "#0a2a66",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": "12px 0",
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-controls="uid-popover-1-wb-id"
+      aria-expanded="true"
+      className=""
+      disabled={false}
+      id="uid-popover-1-wb-id-anchor"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Anchor element (it doesn't open the popover)
+      </span>
+    </button>
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 32,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 32,
+          "zIndex": 0,
+        }
+      }
+    />
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "flex",
+            "fontFamily": "Lato, sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Outside button (click here to re-open the popover)
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-controls="uid-popover-2-wb-id"
+    aria-expanded="false"
+    className=""
+    disabled={false}
+    id="uid-popover-2-wb-id-anchor"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "flex",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Open emphasized popover
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-controls="uid-popover-3-wb-id"
+    aria-expanded="false"
+    className=""
+    disabled={false}
+    id="uid-popover-3-wb-id-anchor"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "flex",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Open icon popover
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-controls="uid-popover-4-wb-id"
+    aria-expanded="false"
+    className=""
+    disabled={false}
+    id="uid-popover-4-wb-id-anchor"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "flex",
+          "fontFamily": "Lato, sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Open illustration popover
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#ffffff",
+        "border": "solid 1px rgba(33,36,44,0.16)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxShadow": "0 8px 8px 0 rgba(33,36,44,0.08)",
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": 288,
+        "minHeight": 0,
+        "minWidth": 0,
+        "overflow": "hidden",
+        "padding": 24,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      aria-label="Close Popover"
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "boxSizing": "border-box",
+          "color": "rgba(33,36,44,0.64)",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": -8,
+          "outline": "none",
+          "padding": 0,
+          "position": "absolute",
+          "right": 8,
+          "textDecoration": "none",
+          "top": 8,
+          "touchAction": "manipulation",
+          "width": 40,
+          "zIndex": 1,
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <svg
+        className=""
+        height={24}
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="0 0 24 24"
+        width={24}
+      >
+        <path
+          d="M12 10.586L7.706 6.293a1 1 0 1 0-1.413 1.413L10.586 12l-4.293 4.294a1 1 0 0 0 1.413 1.413L12 13.414l4.294 4.293a1 1 0 0 0 1.413-1.413L13.414 12l4.293-4.294a1 1 0 1 0-1.413-1.413L12 10.586z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <h4
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 20,
+              "fontWeight": 700,
+              "lineHeight": "24px",
+              "marginBottom": 8,
+              "marginTop": 0,
+            }
+          }
+        >
+          Title
+        </h4>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "22px",
+            }
+          }
+        >
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo.
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#1865f2",
         "border": "solid 1px rgba(33,36,44,0.16)",
         "borderRadius": 4,
         "borderStyle": "solid",
@@ -38,14 +842,507 @@ exports[`wonder-blocks-popover example 1 1`] = `
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
-        "maxWidth": 420,
+        "maxWidth": 288,
         "minHeight": 0,
         "minWidth": 0,
         "overflow": "hidden",
         "padding": 24,
         "position": "relative",
-        "textAlign": "center",
-        "width": 420,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <h4
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 20,
+              "fontWeight": 700,
+              "lineHeight": "24px",
+              "marginBottom": 8,
+              "marginTop": 0,
+            }
+          }
+        >
+          Title
+        </h4>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "22px",
+            }
+          }
+        >
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo.
+        </span>
+      </div>
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "center",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "margin": 0,
+          "marginTop": 24,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "row",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          style={
+            Object {
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              ":focus": Object {
+                "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+              },
+              "alignItems": "center",
+              "background": "none",
+              "border": "none",
+              "borderColor": "rgba(255,255,255,0.64)",
+              "borderRadius": 4,
+              "borderStyle": "solid",
+              "borderWidth": 1,
+              "boxSizing": "border-box",
+              "color": "#ffffff",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 0,
+              "outline": "none",
+              "paddingBottom": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "touchAction": "manipulation",
+              "userSelect": "none",
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "center",
+                "display": "flex",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Previous
+          </span>
+        </button>
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 16,
+              "MsFlexPreferredSize": 16,
+              "WebkitFlexBasis": 16,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 16,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 16,
+              "zIndex": 0,
+            }
+          }
+        />
+        <button
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragStart={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          style={
+            Object {
+              "::MozFocusInner": Object {
+                "border": 0,
+              },
+              ":focus": Object {
+                "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+              },
+              "alignItems": "center",
+              "background": "#ffffff",
+              "border": "none",
+              "borderRadius": 4,
+              "boxSizing": "border-box",
+              "color": "#1865f2",
+              "cursor": "pointer",
+              "display": "inline-flex",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 0,
+              "outline": "none",
+              "paddingBottom": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 0,
+              "position": "relative",
+              "textDecoration": "none",
+              "touchAction": "manipulation",
+              "userSelect": "none",
+            }
+          }
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className=""
+            style={
+              Object {
+                "MozOsxFontSmoothing": "grayscale",
+                "WebkitFontSmoothing": "antialiased",
+                "alignItems": "center",
+                "display": "flex",
+                "fontFamily": "Lato, sans-serif",
+                "fontSize": 16,
+                "fontWeight": "bold",
+                "lineHeight": "20px",
+                "overflow": "hidden",
+                "pointerEvents": "none",
+                "textOverflow": "ellipsis",
+                "whiteSpace": "nowrap",
+              }
+            }
+          >
+            Next
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 8 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#ffffff",
+        "border": "solid 1px rgba(33,36,44,0.16)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxShadow": "0 8px 8px 0 rgba(33,36,44,0.08)",
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": 288,
+        "minHeight": 0,
+        "minWidth": 0,
+        "overflow": "hidden",
+        "padding": 24,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "row",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "center",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 64,
+            "justifyContent": "center",
+            "margin": 0,
+            "marginRight": 16,
+            "minHeight": 0,
+            "minWidth": 64,
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "relative",
+            "width": 64,
+            "zIndex": 0,
+          }
+        }
+      >
+        <img
+          alt="icon popover"
+          src="/logo.svg"
+          width="100%"
+        />
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <h4
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 20,
+              "fontWeight": 700,
+              "lineHeight": "24px",
+              "marginBottom": 8,
+              "marginTop": 0,
+            }
+          }
+        >
+          Title
+        </h4>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "22px",
+            }
+          }
+        >
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo.
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#ffffff",
+        "border": "solid 1px rgba(33,36,44,0.16)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxShadow": "0 8px 8px 0 rgba(33,36,44,0.08)",
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": 288,
+        "minHeight": 0,
+        "minWidth": 0,
+        "overflow": "hidden",
+        "padding": 24,
+        "position": "relative",
         "zIndex": 0,
       }
     }
@@ -138,6 +1435,165 @@ exports[`wonder-blocks-popover example 1 1`] = `
         }
       }
     >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "margin": 0,
+            "marginBottom": 24,
+            "marginLeft": -24,
+            "marginRight": -24,
+            "marginTop": -24,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "calc(100% + 48px)",
+            "zIndex": 0,
+          }
+        }
+      >
+        <img
+          height={200}
+          src="/illustration.svg"
+          width={288}
+        />
+      </div>
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "zIndex": 0,
+          }
+        }
+      >
+        <h4
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 20,
+              "fontWeight": 700,
+              "lineHeight": "24px",
+              "marginBottom": 8,
+              "marginTop": 0,
+            }
+          }
+        >
+          Title
+        </h4>
+        <span
+          className=""
+          style={
+            Object {
+              "MozOsxFontSmoothing": "grayscale",
+              "WebkitFontSmoothing": "antialiased",
+              "display": "block",
+              "fontFamily": "Lato, sans-serif",
+              "fontSize": 16,
+              "fontWeight": 400,
+              "lineHeight": "22px",
+            }
+          }
+        >
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo.
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-popover example 10 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": "12px 0",
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#0a2a66",
+        "border": "solid 1px rgba(33,36,44,0.16)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxShadow": "0 8px 8px 0 rgba(33,36,44,0.08)",
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "margin": 0,
+        "maxWidth": 400,
+        "minHeight": 0,
+        "minWidth": 0,
+        "overflow": "hidden",
+        "padding": 24,
+        "position": "relative",
+        "textAlign": "center",
+        "width": 400,
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
       <h4
         className=""
         style={
@@ -184,14 +1640,14 @@ exports[`wonder-blocks-popover example 1 1`] = `
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
+              "cursor": "pointer",
               "display": "flex",
               "flexDirection": "column",
-              "height": 100,
               "justifyContent": "center",
               "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": 2,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }
@@ -241,14 +1697,14 @@ exports[`wonder-blocks-popover example 1 1`] = `
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
+              "cursor": "pointer",
               "display": "flex",
               "flexDirection": "column",
-              "height": 100,
               "justifyContent": "center",
               "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": 2,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }
@@ -298,14 +1754,14 @@ exports[`wonder-blocks-popover example 1 1`] = `
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
+              "cursor": "pointer",
               "display": "flex",
               "flexDirection": "column",
-              "height": 100,
               "justifyContent": "center",
               "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": 2,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }

@@ -9,6 +9,15 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {getRefFn, Placement, Offset} from "../util/types.js";
 
 export type Props = {|
+    /**
+     * Whether we should use the default white background color or switch to a
+     * different bg color.
+     *
+     * NOTE: Added to support custom popovers
+     * @ignore
+     */
+    color: $Keys<typeof Colors>,
+
     /** The offset of the tail indicating where it should be positioned. */
     offset?: Offset,
 
@@ -24,6 +33,10 @@ export type Props = {|
 let tempIdCounter = 0;
 
 export default class TooltipTail extends React.Component<Props> {
+    static defaultProps = {
+        color: "white",
+    };
+
     _calculateDimensionsFromPlacement() {
         const {placement} = this.props;
 
@@ -339,6 +352,8 @@ export default class TooltipTail extends React.Component<Props> {
             width,
         } = this._calculateDimensionsFromPlacement();
 
+        const {color} = this.props;
+
         return (
             <svg
                 className={css(styles.arrow)}
@@ -355,8 +370,8 @@ export default class TooltipTail extends React.Component<Props> {
                  * outline, it draws over white and not the dropshadow behind.
                  */}
                 <polyline
-                    fill={Colors.white}
-                    stroke={Colors.white}
+                    fill={Colors[color]}
+                    stroke={Colors[color]}
                     points={points.join(" ")}
                 />
 
@@ -365,14 +380,14 @@ export default class TooltipTail extends React.Component<Props> {
                     // Redraw the stroke on top of the background color,
                     // so that the ends aren't extra dark where they meet
                     // the border of the tooltip.
-                    fill={Colors.white}
+                    fill={Colors[color]}
                     points={points.join(" ")}
                     stroke={Colors.offBlack16}
                 />
 
                 {/* Draw a trimline to make the arrow appear flush */}
                 <polyline
-                    stroke={Colors.white}
+                    stroke={Colors[color]}
                     points={trimlinePoints.join(" ")}
                 />
             </svg>
