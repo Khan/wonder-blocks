@@ -1,4 +1,4 @@
-### Example: Default popover
+#### Example: Default PopoverContent
 
 Default popover variant that displays text-only.
 
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-### Example: Emphasized popover with custom actions (text-only)
+#### Example: Emphasized PopoverContent with custom actions (text-only)
 
 Text-only variant with added emphasis.
 
@@ -30,6 +30,7 @@ const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const {View} = require("@khanacademy/wonder-blocks-core");
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
 const styles = StyleSheet.create({
     example: {
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
         actions={
             <View style={styles.row}>
                 <Button light={true} kind="secondary">Previous</Button>
-                <Strut size={16} />
+                <Strut size={Spacing.medium} />
                 <Button light={true} kind="primary">Next</Button>
             </View>
         }
@@ -56,9 +57,13 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-### Example: Icon Popover
+#### Example: PopoverContent with icon
 
-Decorate the popover with an illustrated icon.
+Decorate the popover with an illustrated icon. You need to pass an `icon` prop
+with the following constraints:
+
+- string: The URL of the icon asset
+- `<img>` or `<svg>`: Make sure to define a width
 
 ```jsx
 const {StyleSheet} = require("aphrodite");
@@ -74,12 +79,12 @@ const styles = StyleSheet.create({
     <PopoverContent
         title="Title"
         content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
-        icon="/logo.svg"
+        icon={<img src="/logo.svg" width="100%" alt="icon popover" />}
     />
 </View>
 ```
 
-### Example: Illustration Popover
+#### Example: PopoverContent with illustration
 
 Call attention to the popover using a full-bleed illustration.
 
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
     <PopoverContent
         title="Title"
         content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
-        image="/illustration.svg"
+        image={<img src="/illustration.svg" width={288} height={200} />}
         closeButtonVisible
     />
 </View>

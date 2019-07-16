@@ -9,7 +9,12 @@ describe("@khanacademy/wonder-blocks-tooltip", () => {
 
         // Assert
         expect(Object.keys(result).sort()).toEqual(
-            ["default", "TooltipContent"].sort(),
+            [
+                "default",
+                "TooltipContent",
+                "TooltipPopper",
+                "TooltipTail",
+            ].sort(),
         );
     });
 });
