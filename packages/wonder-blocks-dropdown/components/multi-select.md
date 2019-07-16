@@ -317,3 +317,56 @@ const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
     </MultiSelect>
 </View>
 ```
+
+### Implicit all enabled Multi select
+
+When nothing is selected, show the menu text as "All selected".
+Note that the actual selection logic doesn't change. (Only the menu text)
+
+```js
+const {StyleSheet} = require("aphrodite");
+const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
+const {View} = require("@khanacademy/wonder-blocks-core");
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+class ImplicitAllEnabledExample extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValues: [],
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(update) {
+        console.log("changes happened!");
+        this.setState({
+           selectedValues: update,
+        });
+    }
+
+    render() {
+        return <MultiSelect
+            implicitAllEnabled={true}
+            selectItemType="fruits"
+            onChange={this.handleChange}
+            selectedValues={this.state.selectedValues}
+        >
+            <OptionItem label="Nectarine" value="nectarine" />
+            <OptionItem label="Plum" value="plum" />
+            <OptionItem label="Cantaloupe" value="cantaloupe" />
+            <OptionItem label="Pineapples" value="pineapples" />
+        </MultiSelect>;
+    }
+}
+
+<View style={styles.row}>
+    <ImplicitAllEnabledExample />
+</View>
+```

@@ -1,5 +1,5 @@
 // @flow
-describe("@khanacademy/wonder-blocks-tooltip", () => {
+describe("@khanacademy/wonder-blocks-popover", () => {
     test("package exports default", async () => {
         // Arrange
         const importedModule = import("./index.js");
@@ -9,12 +9,7 @@ describe("@khanacademy/wonder-blocks-tooltip", () => {
 
         // Assert
         expect(Object.keys(result).sort()).toEqual(
-            [
-                "default",
-                "TooltipContent",
-                "TooltipPopper",
-                "TooltipTail",
-            ].sort(),
+            ["Popover", "PopoverContent", "PopoverContentCore"].sort(),
         );
     });
 });

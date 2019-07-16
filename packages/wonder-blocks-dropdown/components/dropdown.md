@@ -127,7 +127,7 @@ const dropdownItems = [
 
 ### Mixture of Items in Dropdown
 
-The Dropdown can also be used to attach more complex Dropdowns to custom openers, in this example we have a Dropdown containing ActionItems and OptionItems attached to a HeadingSmall component.
+The Dropdown can also be used to attach more complex Dropdowns to custom openers, in this example we have a Dropdown containing ActionItems and OptionItems attached to a HeadingSmall component. The `selectionType` prop can be set to either "single" or "multi" to change the behavior of selecting OptionItems.
 
 ```js
 const {ActionItem, OptionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
@@ -176,6 +176,7 @@ class MixedDropdownExample extends React.Component {
 
         return (
             <Dropdown
+                selectionType={"single"}
                 menuItems={dropdownItems}
                 onChange={this.handleChange}
                 selectedValues={this.state.selectedValues}

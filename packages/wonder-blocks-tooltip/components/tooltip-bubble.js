@@ -11,7 +11,7 @@ import TooltipTail from "./tooltip-tail.js";
 
 import type {getRefFn, Offset, Placement} from "../util/types.js";
 
-export type TooltipBubbleProps = {|
+export type PopperElementProps = {|
     /** The placement of the bubble with respect to the anchor. */
     placement: Placement,
 
@@ -48,7 +48,7 @@ export type Props = {|
 
     // TODO(somewhatabstract): Update react-docgen to support spread operators
     // (v3 beta introduces this)
-    ...TooltipBubbleProps,
+    ...PopperElementProps,
 |};
 
 type State = {|
