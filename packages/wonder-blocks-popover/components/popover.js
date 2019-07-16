@@ -2,6 +2,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
+import {IDProvider} from "@khanacademy/wonder-blocks-core";
 import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
@@ -16,6 +17,8 @@ import PopoverContentCore from "./popover-content-core.js";
 import PopoverContext from "./popover-context.js";
 import PopoverAnchor from "./popover-anchor.js";
 import PopoverDialog from "./popover-dialog.js";
+import FocusManager from "./focus-manager.js";
+import PopoverKeypressListener from "./popover-keypress-listener.js";
 
 type Props = {|
     ...AriaProps,
@@ -27,7 +30,7 @@ type Props = {|
      * within children. The latter provides a lot of flexibility in terms of
      * what actions may trigger the `Popover` to launch the popover dialog.
      */
-    children: React.Element<any> | (({open: () => void}) => React.Node),
+    children: React.Element<any> | (({open: () => void}) => React.Element<any>),
 
     /**
      * The content of the popover. You can either use
@@ -75,6 +78,13 @@ type Props = {|
     id?: string,
 
     /**
+     * The selector for the element that will be focused when the popover
+     * content shows. When not set, the first focusable element within the
+     * popover content will be used.
+     */
+    initialFocusId?: string,
+
+    /**
      * Renders the popover when true, renders nothing when false.
      *
      * Using this prop makes the component behave as a controlled component. The
@@ -95,8 +105,17 @@ type Props = {|
 |};
 
 type State = {|
+    /**
+     * Keeps a reference of the dialog state
+     */
     opened: boolean,
+    /**
+     * Anchor element DOM reference
+     */
     anchorElement: ?HTMLElement,
+    /**
+     * Current popper placement
+     */
     placement: Placement,
 |};
 
@@ -144,7 +163,11 @@ export default class Popover extends React.Component<Props, State> {
      * Popover dialog opened
      */
     handleOpen = () => {
-        this.setState({opened: true});
+        if (this.props.dismissEnabled && this.state.opened) {
+            this.setState({opened: false});
+        } else {
+            this.setState({opened: true});
+        }
     };
 
     updateRef = (ref: any) => {
@@ -164,23 +187,31 @@ export default class Popover extends React.Component<Props, State> {
             : content;
     }
 
-    renderPopper() {
-        const {placement} = this.props;
+    renderPopper(uniqueId: string) {
+        const {initialFocusId, placement} = this.props;
+        const {anchorElement} = this.state;
 
         return (
-            <TooltipPopper
-                anchorElement={this.state.anchorElement}
-                placement={placement}
+            <FocusManager
+                anchorElement={anchorElement}
+                initialFocusId={initialFocusId}
             >
-                {(props: PopperElementProps) => (
-                    <PopoverDialog
-                        {...props}
-                        onUpdate={(placement) => this.setState({placement})}
-                    >
-                        {this.renderContent()}
-                    </PopoverDialog>
-                )}
-            </TooltipPopper>
+                <TooltipPopper
+                    anchorElement={anchorElement}
+                    placement={placement}
+                >
+                    {(props: PopperElementProps) => (
+                        <PopoverDialog
+                            {...props}
+                            aria-describedby={`${uniqueId}-anchor`}
+                            id={uniqueId}
+                            onUpdate={(placement) => this.setState({placement})}
+                        >
+                            {this.renderContent()}
+                        </PopoverDialog>
+                    )}
+                </TooltipPopper>
+            </FocusManager>
         );
     }
 
@@ -196,7 +227,7 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     render() {
-        const {children} = this.props;
+        const {children, dismissEnabled, id} = this.props;
         const {opened, placement} = this.state;
         const popperHost = this.getHost();
 
@@ -207,15 +238,31 @@ export default class Popover extends React.Component<Props, State> {
                     placement: placement,
                 }}
             >
-                <PopoverAnchor
-                    anchorRef={this.updateRef}
-                    onClick={this.handleOpen}
-                >
-                    {children}
-                </PopoverAnchor>
-                {popperHost &&
-                    opened &&
-                    ReactDOM.createPortal(this.renderPopper(), popperHost)}
+                <IDProvider id={id} scope="popover">
+                    {(uniqueId) => (
+                        <React.Fragment>
+                            <PopoverAnchor
+                                anchorRef={this.updateRef}
+                                id={`${uniqueId}-anchor`}
+                                aria-controls={uniqueId}
+                                aria-expanded={opened ? "true" : "false"}
+                                onClick={this.handleOpen}
+                            >
+                                {children}
+                            </PopoverAnchor>
+                            {popperHost &&
+                                opened &&
+                                ReactDOM.createPortal(
+                                    this.renderPopper(uniqueId),
+                                    popperHost,
+                                )}
+                        </React.Fragment>
+                    )}
+                </IDProvider>
+
+                {dismissEnabled && opened && (
+                    <PopoverKeypressListener onClose={this.handleClose} />
+                )}
             </PopoverContext.Provider>
         );
     }

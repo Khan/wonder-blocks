@@ -6,6 +6,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
 import Color from "@khanacademy/wonder-blocks-color";
 
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {
     Placement,
     PopperElementProps,
@@ -15,6 +16,8 @@ import PopoverContent from "./popover-content.js";
 import PopoverContentCore from "./popover-content-core.js";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * Required to correctly position the elements inside the dialog
      * @ignore
@@ -27,6 +30,11 @@ type Props = {|
     children:
         | React.Element<typeof PopoverContent>
         | React.Element<typeof PopoverContentCore>,
+
+    /**
+     * The unique identifier to give to the popover content.
+     */
+    id?: string,
 
     /**
      * Called when popper changes its placement
@@ -62,11 +70,13 @@ export default class PopoverDialog extends React.Component<Props> {
         const {
             placement,
             children,
+            id,
             outOfBoundaries,
             updateBubbleRef,
             updateTailRef,
             tailOffset,
             style,
+            "aria-describedby": ariaDescribedby,
         } = this.props;
 
         const contentProps = (children.props: any);
@@ -79,6 +89,9 @@ export default class PopoverDialog extends React.Component<Props> {
         return (
             <React.Fragment>
                 <View
+                    aria-describedby={ariaDescribedby}
+                    id={id}
+                    role="dialog"
                     ref={updateBubbleRef}
                     data-placement={placement}
                     style={[

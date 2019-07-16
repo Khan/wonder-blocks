@@ -17,7 +17,7 @@ type Props = {|
     light?: boolean,
 
     /**
-     * Custom styles
+     * Custom styles applied to the IconButton
      */
     style?: StyleType,
 |};

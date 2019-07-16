@@ -30,6 +30,7 @@ describe("wonder-blocks-popover", () => {
         const example = (
             <View style={styles.example}>
                 <Popover
+                    dismissEnabled
                     onClose={() => console.log("popover closed!")}
                     content={
                         <PopoverContent
@@ -59,7 +60,7 @@ describe("wonder-blocks-popover", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
         const {
             default: Icon,
             icons,
@@ -90,6 +91,9 @@ describe("wonder-blocks-popover", () => {
                 padding: `${Spacing.small}px 0`,
             },
             action: {
+                backgroundColor: "transparent",
+                border: "none",
+                color: Color.white,
                 cursor: "pointer",
                 margin: Spacing.small,
                 padding: Spacing.xxSmall,
@@ -97,6 +101,8 @@ describe("wonder-blocks-popover", () => {
                 justifyContent: "center",
             },
         });
+
+        const CustomButton = addStyle("button");
 
         class ControlledPopover extends React.Component {
             constructor(props) {
@@ -126,9 +132,10 @@ describe("wonder-blocks-popover", () => {
                                             Custom popover title
                                         </HeadingSmall>
                                         <View style={styles.row}>
-                                            <View
+                                            <CustomButton
                                                 style={styles.action}
                                                 onClick={close}
+                                                id="btn-1"
                                             >
                                                 <Icon
                                                     icon={customIcon}
@@ -138,10 +145,11 @@ describe("wonder-blocks-popover", () => {
                                                 <LabelLarge>
                                                     Option 1
                                                 </LabelLarge>
-                                            </View>
-                                            <View
+                                            </CustomButton>
+                                            <CustomButton
                                                 style={styles.action}
                                                 onClick={close}
+                                                id="btn-2"
                                             >
                                                 <Icon
                                                     icon={customIcon}
@@ -151,10 +159,11 @@ describe("wonder-blocks-popover", () => {
                                                 <LabelLarge>
                                                     Option 2
                                                 </LabelLarge>
-                                            </View>
-                                            <View
+                                            </CustomButton>
+                                            <CustomButton
                                                 style={styles.action}
                                                 onClick={close}
+                                                id="btn-3"
                                             >
                                                 <Icon
                                                     icon={customIcon}
@@ -164,7 +173,7 @@ describe("wonder-blocks-popover", () => {
                                                 <LabelLarge>
                                                     Option 3
                                                 </LabelLarge>
-                                            </View>
+                                            </CustomButton>
                                         </View>
                                     </View>
                                 </PopoverContentCore>
@@ -200,11 +209,16 @@ describe("wonder-blocks-popover", () => {
     it("example 3", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+        const {Strut} = require("@khanacademy/wonder-blocks-layout");
         const {View} = require("@khanacademy/wonder-blocks-core");
 
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
+            },
+            row: {
+                flexDirection: "row",
             },
         });
 
@@ -213,20 +227,31 @@ describe("wonder-blocks-popover", () => {
                 <Popover
                     placement="top"
                     onClose={() => console.log("popover closed!")}
+                    initialFocusId="initial-focus"
                     content={
                         <PopoverContent
-                            closeButtonVisible
                             title="Title"
                             content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
                             emphasized
                             actions={({close}) => (
-                                <Button
-                                    onClick={close}
-                                    light={true}
-                                    kind="primary"
-                                >
-                                    Continue
-                                </Button>
+                                <View style={styles.row}>
+                                    <Button
+                                        onClick={close}
+                                        light={true}
+                                        kind="secondary"
+                                    >
+                                        Previous
+                                    </Button>
+                                    <Strut size={Spacing.medium} />
+                                    <Button
+                                        onClick={close}
+                                        light={true}
+                                        kind="primary"
+                                        id="initial-focus"
+                                    >
+                                        Next
+                                    </Button>
+                                </View>
                             )}
                         />
                     }

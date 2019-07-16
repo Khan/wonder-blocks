@@ -39,7 +39,7 @@ type Props = {|
     color: "blue" | "darkBlue" | "white",
 
     /**
-     * Custom styles
+     * Custom styles applied to the content container
      */
     style?: StyleType,
 

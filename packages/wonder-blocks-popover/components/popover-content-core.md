@@ -72,8 +72,3 @@ const styles = StyleSheet.create({
     </PopoverContentCore>
 </View>
 ```
-
-#### Accessibility notes
-The popover component will populate the `aria-describedby` attribute
-automatically, unless the user sets an `id` prop inside the Popover instance.
-Internally, it will be set on the trigger element.

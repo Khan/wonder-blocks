@@ -46,7 +46,7 @@ type CommonProps = {|
     closeButtonVisible?: boolean,
 
     /**
-     * Custom styles
+     * Custom styles to be injected to the popover content container
      */
     style?: StyleType,
 

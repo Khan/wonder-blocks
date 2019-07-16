@@ -9,6 +9,8 @@ passed it as the `onClick` handler on a button in this example.
 control when and/or from where to open the popover dialog.
 - For this example, if you use the `image` prop, make sure to avoid using `icon`
   and/or `emphasized` at the same time. Doing so will throw an error.
+- This example uses the `dismissEnabled` prop. This means that the user
+can close the Popover by pressing `esc` or clicking in the trigger element.
 
 ```jsx
 const {StyleSheet} = require("aphrodite");
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
 
 <View style={styles.example}>
     <Popover
+        dismissEnabled
         onClose={()=> console.log('popover closed!')}
         content={
             <PopoverContent
@@ -48,11 +51,14 @@ controlled component. The parent is responsible for managing the opening/closing
 of the popover when using this prop. This means that you'll also have to update
 `opened` to false in response to the onClose callback being triggered.
 
+Here you can see as well how the focus is managed when a popover is opened. To see more
+details, please check the **Accesibility section**.
+
 ```jsx
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
 const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
+const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
 const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
 const {Strut} = require("@khanacademy/wonder-blocks-layout");
 const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
@@ -77,6 +83,9 @@ const styles = StyleSheet.create({
         padding: `${Spacing.small}px 0`
     },
     action: {
+        backgroundColor: "transparent",
+        border: "none",
+        color: Color.white,
         cursor: "pointer",
         margin: Spacing.small,
         padding: Spacing.xxSmall,
@@ -84,6 +93,8 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
 });
+
+const CustomButton = addStyle('button');
 
 class ControlledPopover extends React.Component {
     constructor(props) {
@@ -111,30 +122,30 @@ class ControlledPopover extends React.Component {
                             <View>
                                 <HeadingSmall>Custom popover title</HeadingSmall>
                                 <View style={styles.row}>
-                                    <View style={styles.action} onClick={close}>
+                                    <CustomButton style={styles.action} onClick={close}  id="btn-1">
                                         <Icon
                                             icon={customIcon}
                                             color={Color.gold}
                                             size="large"
                                         />
                                         <LabelLarge>Option 1</LabelLarge>
-                                    </View>
-                                    <View style={styles.action} onClick={close}>
+                                    </CustomButton>
+                                    <CustomButton style={styles.action} onClick={close} id="btn-2">
                                         <Icon
                                             icon={customIcon}
                                             color={Color.green}
                                             size="large"
                                         />
                                         <LabelLarge>Option 2</LabelLarge>
-                                    </View>
-                                    <View style={styles.action} onClick={close}>
+                                    </CustomButton>
+                                    <CustomButton style={styles.action} onClick={close} id="btn-3">
                                         <Icon
                                             icon={customIcon}
                                             color={Color.blue}
                                             size="large"
                                         />
                                         <LabelLarge>Option 3</LabelLarge>
-                                    </View>
+                                    </CustomButton>
                                 </View>
                             </View>
                         </PopoverContentCore>
@@ -175,11 +186,16 @@ This example shows the default popover variant. By default, it only includes
 ```jsx
 const {StyleSheet} = require("aphrodite");
 const Button = require("@khanacademy/wonder-blocks-button").default;
+const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+const {Strut} = require("@khanacademy/wonder-blocks-layout");
 const {View} = require("@khanacademy/wonder-blocks-core");
 
 const styles = StyleSheet.create({
     example: {
         alignItems: "center",
+    },
+    row: {
+        flexDirection: "row"
     }
 });
 
@@ -187,16 +203,22 @@ const styles = StyleSheet.create({
     <Popover
         placement="top"
         onClose={()=> console.log('popover closed!')}
+        initialFocusId="initial-focus"
         content={
             <PopoverContent
-                closeButtonVisible
                 title="Title"
                 content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
                 emphasized
                 actions={({close}) => (
-                    <Button onClick={close} light={true} kind="primary">
-                        Continue
-                    </Button>
+                    <View style={styles.row}>
+                        <Button onClick={close} light={true} kind="secondary">
+                            Previous
+                        </Button>
+                        <Strut size={Spacing.medium} />
+                        <Button onClick={close} light={true} kind="primary" id="initial-focus">
+                            Next
+                        </Button>
+                    </View>
                 )}
             />
         }
@@ -280,8 +302,3 @@ const styles = StyleSheet.create({
     </Popover>
 </View>
 ```
-
-### Accessibility notes
-The popover component will populate the `aria-describedby` attribute
-automatically, unless the user sets an `id` prop inside the Popover instance.
-Internally, it will be set on the trigger element.
