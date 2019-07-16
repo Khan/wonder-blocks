@@ -229,18 +229,6 @@ export default class FocusManager extends React.Component<Props> {
                     style={{position: "fixed"}}
                 />
                 <div ref={this.getComponentRootNode}>
-                    {/* {this.props.initialFocusId ? (
-                        // If enabled, the focus will be passed to a given
-                        // element inside the children (popover dialog)
-                        <InitialFocus
-                            initialFocusId={this.props.initialFocusId}
-                        >
-                            {children}
-                        </InitialFocus>
-                    ) : (
-                        // no initial focus, just render the popover dialog
-                        children
-                    )} */}
                     <InitialFocus initialFocusId={this.props.initialFocusId}>
                         {children}
                     </InitialFocus>
