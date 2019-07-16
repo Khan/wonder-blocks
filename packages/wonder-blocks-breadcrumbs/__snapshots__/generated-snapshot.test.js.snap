@@ -2,7 +2,7 @@
 
 exports[`wonder-blocks-breadcrumbs example 1 1`] = `
 <nav
-  aria-label="Breadcrumb"
+  aria-label="Breadcrumbs"
 >
   <ol
     className=""
@@ -133,6 +133,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
       </svg>
     </li>
     <li
+      aria-current="page"
       className=""
       style={
         Object {

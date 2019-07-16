@@ -50,6 +50,7 @@ describe("wonder-blocks-layout", () => {
     it("example 2", () => {
         const {StyleSheet} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
         const styleSheets = {
             large: StyleSheet.create({

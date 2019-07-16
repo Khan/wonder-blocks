@@ -15,6 +15,7 @@ describe("wonder-blocks-breadcrumbs", () => {
     it("example 1", () => {
         const Link = require("@khanacademy/wonder-blocks-link").default;
         const {
+            Breadcrumbs,
             BreadcrumbsItem,
         } = require("@khanacademy/wonder-blocks-breadcrumbs");
 
@@ -26,9 +27,7 @@ describe("wonder-blocks-breadcrumbs", () => {
                 <BreadcrumbsItem>
                     <Link href="https://khanacademy.org/about">About</Link>
                 </BreadcrumbsItem>
-                <BreadcrumbsItem aria-current="page">
-                    Current page
-                </BreadcrumbsItem>
+                <BreadcrumbsItem>Current page</BreadcrumbsItem>
             </Breadcrumbs>
         );
         const tree = renderer.create(example).toJSON();

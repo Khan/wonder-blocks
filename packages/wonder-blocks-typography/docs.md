@@ -1,5 +1,23 @@
 ```js
 const {View} = require("@khanacademy/wonder-blocks-core");
+const {
+    Title,
+    HeadingLarge,
+    HeadingMedium,
+    HeadingSmall,
+    HeadingXSmall,
+    BodySerifBlock,
+    BodySerif,
+    BodyMonospace,
+    Body,
+    LabelLarge,
+    LabelMedium,
+    LabelSmall,
+    LabelXSmall,
+    Tagline,
+    Caption,
+    Footnote
+} = require("@khanacademy/wonder-blocks-typography");
 
 // NOTE(mdr): I added an `id` attribute to each of these tags, to ensure that
 //     they all pass the `id` attribute correctly. This fact will be saved in
@@ -27,8 +45,10 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 You can change the color of text with the `style` prop:
 
 ```js
-const Color = require("@khanacademy/wonder-blocks-color").default;
 const {StyleSheet} = require("aphrodite");
+
+const Color = require("@khanacademy/wonder-blocks-color").default;
+const {Title} = require("@khanacademy/wonder-blocks-typography");
 
 const styles = StyleSheet.create({
     blueText: {
@@ -45,5 +65,7 @@ The `role` and any `aria-` attribute can be set as props any of the typography
 components
 
 ```js
+const {Title} = require("@khanacademy/wonder-blocks-typography");
+
 <Title aria-label="Accessible Title">Title</Title>
 ```

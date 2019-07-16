@@ -5,7 +5,7 @@ Below you will find a table of all available Wonder Blocks icons. Note that for 
 ```jsx
 const {StyleSheet, css} = require("aphrodite");
 const {View} = require("@khanacademy/wonder-blocks-core");
-const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
+const {icons} = require("@khanacademy/wonder-blocks-icon");
 
 const headings = ["small", "medium"];
 

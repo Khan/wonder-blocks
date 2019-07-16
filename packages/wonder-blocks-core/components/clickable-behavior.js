@@ -2,7 +2,7 @@
 import React from "react";
 
 // NOTE: Potentially add to this as more cases come up.
-type ClickableRole =
+export type ClickableRole =
     | "button"
     | "link"
     | "checkbox"
@@ -48,7 +48,10 @@ type Props = {|
      * The React `Element` returned should take in this component's state
      * (`{hovered, focused, pressed}`) as props.
      */
-    children: (state: State, handlers: ClickableHandlers) => React$Element<*>,
+    children: (
+        state: ClickableState,
+        handlers: ClickableHandlers,
+    ) => React$Element<*>,
 
     /**
      * Whether the component is disabled.
@@ -89,7 +92,7 @@ type Props = {|
     role?: ClickableRole,
 |};
 
-type State = {|
+export type ClickableState = {|
     /**
      * Whether the component is hovered.
      *
@@ -235,7 +238,10 @@ const startState = {
  * rendered as a descendant of a BrowserRouter.
  * See https://reacttraining.com/react-router/web/guides/basic-components.
  */
-export default class ClickableBehavior extends React.Component<Props, State> {
+export default class ClickableBehavior extends React.Component<
+    Props,
+    ClickableState,
+> {
     waitingForClick: boolean;
     enterClick: boolean;
     dragging: boolean;
@@ -244,7 +250,7 @@ export default class ClickableBehavior extends React.Component<Props, State> {
         disabled: false,
     };
 
-    static getDerivedStateFromProps(props: Props, state: State) {
+    static getDerivedStateFromProps(props: Props, state: ClickableState) {
         // If new props are disabled, reset the hovered/focused/pressed states
         if (props.disabled) {
             return startState;

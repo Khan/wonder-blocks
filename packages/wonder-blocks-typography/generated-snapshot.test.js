@@ -28,6 +28,24 @@ import Title from "./components/title.js";
 describe("wonder-blocks-typography", () => {
     it("example 1", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
+        const {
+            Title,
+            HeadingLarge,
+            HeadingMedium,
+            HeadingSmall,
+            HeadingXSmall,
+            BodySerifBlock,
+            BodySerif,
+            BodyMonospace,
+            Body,
+            LabelLarge,
+            LabelMedium,
+            LabelSmall,
+            LabelXSmall,
+            Tagline,
+            Caption,
+            Footnote,
+        } = require("@khanacademy/wonder-blocks-typography");
 
         // NOTE(mdr): I added an `id` attribute to each of these tags, to ensure that
         //     they all pass the `id` attribute correctly. This fact will be saved in
@@ -68,8 +86,10 @@ describe("wonder-blocks-typography", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
         const {StyleSheet} = require("aphrodite");
+
+        const Color = require("@khanacademy/wonder-blocks-color").default;
+        const {Title} = require("@khanacademy/wonder-blocks-typography");
 
         const styles = StyleSheet.create({
             blueText: {
@@ -82,6 +102,8 @@ describe("wonder-blocks-typography", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 3", () => {
+        const {Title} = require("@khanacademy/wonder-blocks-typography");
+
         const example = <Title aria-label="Accessible Title">Title</Title>;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

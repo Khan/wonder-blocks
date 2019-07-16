@@ -14,10 +14,7 @@ describe("wonder-blocks-icon", () => {
     it("example 1", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            default: Icon,
-            icons,
-        } = require("@khanacademy/wonder-blocks-icon");
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
 
         const headings = ["small", "medium"];
 
@@ -106,10 +103,7 @@ describe("wonder-blocks-icon", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 2", () => {
-        const {
-            default: Icon,
-            icons,
-        } = require("@khanacademy/wonder-blocks-icon");
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
 
         const example = <Icon icon={icons.search} size="small" />;
         const tree = renderer.create(example).toJSON();
@@ -117,10 +111,7 @@ describe("wonder-blocks-icon", () => {
     });
     it("example 3", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            default: Icon,
-            icons,
-        } = require("@khanacademy/wonder-blocks-icon");
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
 
         const example = (
             <View>
@@ -134,10 +125,7 @@ describe("wonder-blocks-icon", () => {
     });
     it("example 4", () => {
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            default: Icon,
-            icons,
-        } = require("@khanacademy/wonder-blocks-icon");
+        const {icons} = require("@khanacademy/wonder-blocks-icon");
         const Color = require("@khanacademy/wonder-blocks-color").default;
 
         const example = (

@@ -1,20 +1,22 @@
 //@flow
 import React from "react";
-
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
-
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import SeparatorItem from "./separator-item.js";
 import ActionMenu from "./action-menu.js";
 import {keyCodes} from "../util/constants.js";
+import Dropdown from "./dropdown.js";
 
 describe("ActionMenu", () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
     const onChange = jest.fn();
+    let ClickableBehavior;
 
     beforeEach(() => {
+        ClickableBehavior = getClickableBehavior();
         window.scrollTo = jest.fn();
     });
 
@@ -36,61 +38,69 @@ describe("ActionMenu", () => {
             </ActionMenu>,
         );
 
-        const opener = menu.find("ActionMenuOpener");
-
-        expect(menu.state("open")).toEqual(false);
+        const opener = menu.find(ClickableBehavior);
+        expect(menu.state("opened")).toEqual(false);
 
         // Open menu with mouse
-        opener.simulate("mousedown");
-        opener.simulate("mouseup");
         opener.simulate("click");
-        expect(menu.state("open")).toEqual(true);
+        expect(menu.find(Dropdown).state("opened")).toEqual(true);
 
         // Close menu with space
         opener.simulate("keydown", {keyCode: keyCodes.space});
         opener.simulate("keyup", {keyCode: keyCodes.space});
-        expect(menu.state("open")).toEqual(false);
+        expect(menu.find(Dropdown).state("opened")).toEqual(false);
 
         // Open menu again with enter
         opener.simulate("keydown", {keyCode: keyCodes.enter});
         opener.simulate("keyup", {keyCode: keyCodes.enter});
-        expect(menu.state("open")).toEqual(true);
+        expect(menu.find(Dropdown).state("opened")).toEqual(true);
     });
 
-    it("triggers actions and toggles select items as expected", () => {
+    it("triggers actions", () => {
+        // Arrange
+        const onChange = jest.fn();
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                onChange={onChange}
+                selectedValues={["toggle_a", "toggle_b"]}
+            >
+                <OptionItem label="Toggle A" value="toggle_a" />
+                <OptionItem label="Toggle B" value="toggle_b" />
+            </ActionMenu>,
+        );
+        menu.find(ClickableBehavior).simulate("click");
+
+        // Act
+        // toggle second OptionItem
+        const optionItem = menu.find(OptionItem).at(1);
+        optionItem.props().onToggle("toggle_b");
+
+        // Assert
+        expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
+    });
+
+    it("toggles select items", () => {
+        // Arrange
+        const onChange = jest.fn();
         const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
                 onChange={onChange}
                 selectedValues={[]}
             >
-                <ActionItem label="Action" onClick={onClick} />
-                <SeparatorItem />
-                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
+                <OptionItem label="Toggle A" value="toggle_a" />
+                <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
+        menu.find(ClickableBehavior).simulate("click");
 
-        menu.setState({open: true});
+        // Act
+        const optionItem = menu.find(OptionItem).at(0);
+        optionItem.props().onToggle("toggle_a");
 
-        const noop = jest.fn();
-        const nativeEvent = {
-            nativeEvent: {stopImmediatePropagation: noop},
-        };
-        const actionItem = menu.find(ActionItem);
-        actionItem.simulate("mousedown");
-        actionItem.simulate("mouseup", nativeEvent);
-        actionItem.simulate("click");
-        expect(onClick).toHaveBeenCalledTimes(1);
-
-        // Have to reopen menu because menu closes after an item is selected
-        menu.setState({open: true});
-
-        const optionItem = menu.find(OptionItem);
-        optionItem.simulate("mousedown");
-        optionItem.simulate("mouseup", nativeEvent);
-        optionItem.simulate("click", nativeEvent);
-        expect(onToggle).toHaveBeenCalledTimes(1);
-        expect(onChange).toHaveBeenCalledTimes(1);
+        // Assert
+        expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
     });
 
     it("deselects selected OptionItems", () => {
@@ -106,7 +116,7 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.setState({open: true});
+        menu.find(ClickableBehavior).simulate("click");
 
         // Act
         // toggle second OptionItem
@@ -128,11 +138,12 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.setState({open: true});
+        menu.find(ClickableBehavior).simulate("click");
 
         // Act, Assert
         expect(() => {
             // toggle second OptionItem
+            // eslint-disable-next-line no-console
             const optionItem = menu.find(OptionItem).at(1);
             optionItem.props().onToggle("toggle_b");
         }).not.toThrow();
@@ -151,7 +162,7 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.setState({open: true});
+        menu.find(ClickableBehavior).simulate("click");
 
         // Act
         // toggle second OptionItem
@@ -169,7 +180,7 @@ describe("ActionMenu", () => {
                 <ActionItem label="Action" />
             </ActionMenu>,
         );
-        menu.setState({open: true});
+        menu.find(ClickableBehavior).simulate("click");
 
         // Assert
         expect(menu.find(ActionItem)).toHaveLength(1);
@@ -178,7 +189,7 @@ describe("ActionMenu", () => {
     it("can have a menu with no items", () => {
         // Arrange, Act
         const menu = mount(<ActionMenu menuText={"Action menu!"} />);
-        menu.setState({open: true});
+        menu.find(ClickableBehavior).simulate("click");
 
         // Assert
         expect(menu.find(ActionItem)).toHaveLength(0);
@@ -193,10 +204,10 @@ describe("ActionMenu", () => {
                 {showDeleteAction && <ActionItem label="Delete" />}
             </ActionMenu>,
         );
-        menu.setState({open: true});
+        menu.find(ClickableBehavior).simulate("click");
 
         // Assert
         expect(menu.find(ActionItem)).toHaveLength(1);
-        expect(menu.find(ActionItem).at(0)).toHaveProp("label", "Create");
+        expect(menu.find(ActionItem).first()).toHaveProp("label", "Create");
     });
 });
