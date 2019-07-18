@@ -1,0 +1,115 @@
+/* Arabic */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/arabic/NotoNaskhArabic-Regular.woff2");
+    unicode-range: U+0600-06FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/arabic/NotoSansArabic-Regular.woff2");
+    unicode-range: U+0600-06FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/arabic/NotoSansArabic-Bold.woff2");
+    unicode-range: U+0600-06FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/arabic/NotoSansArabic-Black.woff2");
+    unicode-range: U+0600-06FF;
+}
+
+/* Armenian */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/armenian/NotoSansArmenian-Regular.woff2");
+    unicode-range: U+0530–U+058F;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/armenian/NotoSansArmenian-Regular.woff2");
+    unicode-range: U+0530–U+058F;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/armenian//NotoSansArmenian-Bold.woff2");
+    unicode-range: U+0530–U+058F;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/armenian//NotoSansArmenian-Black.woff2");
+    unicode-range: U+0530–U+058F;
+}
+
+/* Greek */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/greek/NotoSerif-Regular.woff2");
+    unicode-range: U+0370-03FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/greek/NotoSans-Regular.woff2");
+    unicode-range: U+0370-03FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/greek/NotoSans-Bold.woff2");
+    unicode-range: U+0370-03FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/greek/NotoSans-Black.woff2");
+    unicode-range: U+0370-03FF;
+}
+
+/* Hebrew */
+@font-face {
+    font-family: "Noto Serif";
+    font-weight: 400;
+    src: url("fonts/hebrew/NotoSerifHebrew-Regular.woff2");
+    unicode-range: U+0590-05FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("fonts/hebrew/NotoSansHebrew-Regular.woff2");
+    unicode-range: U+0590-05FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("fonts/hebrew/NotoSansHebrew-Bold.woff2");
+    unicode-range: U+0590-05FF;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 900;
+    src: url("fonts/hebrew/NotoSansHebrew-Black.woff2");
+    unicode-range: U+0590-05FF;
+}

@@ -225,7 +225,7 @@ exports[`wonder-blocks-link example 2 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": "Lato, sans-serif",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 20,
           "fontWeight": 700,
           "lineHeight": "24px",

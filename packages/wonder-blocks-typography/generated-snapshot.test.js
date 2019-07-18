@@ -109,6 +109,154 @@ describe("wonder-blocks-typography", () => {
         expect(tree).toMatchSnapshot();
     });
     it("example 4", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {
+            Title,
+            HeadingLarge,
+            HeadingMedium,
+            HeadingSmall,
+            HeadingXSmall,
+            BodySerifBlock,
+            BodySerif,
+            BodyMonospace,
+            Body,
+            LabelLarge,
+            LabelMedium,
+            LabelSmall,
+            LabelXSmall,
+            Tagline,
+            Caption,
+            Footnote,
+        } = require("@khanacademy/wonder-blocks-typography");
+
+        const example = (
+            <View>
+                <Title>Привет</Title>
+                <HeadingLarge>Привет</HeadingLarge>
+                <HeadingMedium>Привет</HeadingMedium>
+                <HeadingSmall>Привет</HeadingSmall>
+                <HeadingXSmall>Привет</HeadingXSmall>
+                <BodySerifBlock>Привет</BodySerifBlock>
+                <BodySerif>Привет</BodySerif>
+                <BodyMonospace>Привет</BodyMonospace>
+                <Body>Привет</Body>
+                <LabelLarge>Привет</LabelLarge>
+                <LabelMedium>Привет</LabelMedium>
+                <LabelSmall>Привет</LabelSmall>
+                <LabelXSmall>Привет</LabelXSmall>
+                <Tagline>Привет</Tagline>
+                <Caption>Привет</Caption>
+                <Footnote>Привет</Footnote>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 5", () => {
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {
+            OptionItem,
+            SingleSelect,
+        } = require("@khanacademy/wonder-blocks-dropdown");
+        const {
+            Title,
+            HeadingLarge,
+            HeadingMedium,
+            HeadingSmall,
+            HeadingXSmall,
+            BodySerifBlock,
+            BodySerif,
+            BodyMonospace,
+            Body,
+            LabelLarge,
+            LabelMedium,
+            LabelSmall,
+            LabelXSmall,
+            Tagline,
+            Caption,
+            Footnote,
+        } = require("@khanacademy/wonder-blocks-typography");
+
+        const languages = {
+            arabic: {text: "مرحبا", dir: "rtl"},
+            armenian: {text: "Բարեւ"},
+            greek: {text: "γεια σας"},
+            hebrew: {text: "שלום", dir: "rtl"},
+        };
+
+        class LanguageSelector extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValue: "arabic",
+                };
+            }
+
+            renderTypography() {
+                const {text, dir} = this.props.languages[
+                    this.state.selectedValue
+                ];
+
+                return (
+                    <React.Fragment>
+                        <Title dir={dir}>{text}</Title>
+                        <HeadingLarge dir={dir}>{text}</HeadingLarge>
+                        <HeadingMedium dir={dir}>{text}</HeadingMedium>
+                        <HeadingSmall dir={dir}>{text}</HeadingSmall>
+                        <HeadingXSmall dir={dir}>{text}</HeadingXSmall>
+                        <BodySerifBlock dir={dir}>{text}</BodySerifBlock>
+                        <BodySerif dir={dir}>{text}</BodySerif>
+                        <BodyMonospace dir={dir}>{text}</BodyMonospace>
+                        <Body dir={dir}>{text}</Body>
+                        <LabelLarge dir={dir}>{text}</LabelLarge>
+                        <LabelMedium dir={dir}>{text}</LabelMedium>
+                        <LabelSmall dir={dir}>{text}</LabelSmall>
+                        <LabelXSmall dir={dir}>{text}</LabelXSmall>
+                        <Tagline dir={dir}>{text}</Tagline>
+                        <Caption dir={dir}>{text}</Caption>
+                        <Footnote dir={dir}>{text}</Footnote>
+                    </React.Fragment>
+                );
+            }
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <SingleSelect
+                            aria-labelledby="language-selector"
+                            id="unique-language-selector"
+                            placeholder="Select language"
+                            onChange={(selectedValue) =>
+                                this.setState({selectedValue})
+                            }
+                            selectedValue={this.state.selectedValue}
+                        >
+                            {Object.keys(this.props.languages).map(
+                                (item, key) => (
+                                    <OptionItem
+                                        label={item}
+                                        value={item}
+                                        key={key}
+                                    />
+                                ),
+                            )}
+                        </SingleSelect>
+
+                        {this.renderTypography()}
+                    </React.Fragment>
+                );
+            }
+        }
+
+        const example = (
+            <View>
+                <LanguageSelector languages={languages} />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 6", () => {
         const Code = ({children}) => (
             <BodyMonospace style={{whiteSpace: "pre"}}>
                 {children}
