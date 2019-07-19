@@ -20,7 +20,10 @@ describe("wonder-blocks-popover", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
+        const {
+            Popover,
+            PopoverContent,
+        } = require("@khanacademy/wonder-blocks-popover");
 
         const styles = StyleSheet.create({
             example: {
@@ -73,6 +76,7 @@ describe("wonder-blocks-popover", () => {
             LabelLarge,
         } = require("@khanacademy/wonder-blocks-typography");
         const {
+            Popover,
             PopoverContentCore,
         } = require("@khanacademy/wonder-blocks-popover");
 
@@ -216,7 +220,10 @@ describe("wonder-blocks-popover", () => {
         const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
         const {Strut} = require("@khanacademy/wonder-blocks-layout");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
+        const {
+            Popover,
+            PopoverContent,
+        } = require("@khanacademy/wonder-blocks-popover");
 
         const styles = StyleSheet.create({
             example: {
@@ -274,7 +281,10 @@ describe("wonder-blocks-popover", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
+        const {
+            Popover,
+            PopoverContent,
+        } = require("@khanacademy/wonder-blocks-popover");
 
         const styles = StyleSheet.create({
             example: {
@@ -306,7 +316,10 @@ describe("wonder-blocks-popover", () => {
         const {StyleSheet} = require("aphrodite");
         const Button = require("@khanacademy/wonder-blocks-button").default;
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {PopoverContent} = require("@khanacademy/wonder-blocks-popover");
+        const {
+            Popover,
+            PopoverContent,
+        } = require("@khanacademy/wonder-blocks-popover");
 
         const styles = StyleSheet.create({
             example: {

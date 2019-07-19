@@ -23,6 +23,205 @@ describe("wonder-blocks-modal", () => {
             ModalLauncher,
             OnePaneDialog,
         } = require("@khanacademy/wonder-blocks-modal");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+
+            title: {
+                marginBottom: Spacing.medium,
+            },
+
+            modalContent: {
+                margin: "0 auto",
+                maxWidth: 544,
+            },
+
+            above: {
+                background: "url(/modal-above.png)",
+                width: 874,
+                height: 551,
+                position: "absolute",
+                top: 40,
+                left: -140,
+            },
+
+            below: {
+                background: "url(/modal-below.png)",
+                width: 868,
+                height: 521,
+                position: "absolute",
+                top: -100,
+                left: -300,
+            },
+        });
+
+        const onePaneDialog = ({closeModal}) => (
+            <OnePaneDialog
+                title="Title"
+                subtitle="You're reading the subtitle!"
+                above={<View style={styles.above} />}
+                below={<View style={styles.below} />}
+                content={
+                    <View style={styles.modalContent}>
+                        <Body tag="p">
+                            {
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                            }
+                        </Body>
+                    </View>
+                }
+                footer={<Button onClick={closeModal}>Close modal</Button>}
+            />
+        );
+
+        const example = (
+            <View style={styles.example}>
+                <ModalLauncher modal={onePaneDialog}>
+                    {({openModal}) => (
+                        <Button onClick={openModal}>OnePaneDialog</Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 2", () => {
+        const {StyleSheet} = require("aphrodite");
+
+        const {
+            ModalLauncher,
+            OnePaneDialog,
+        } = require("@khanacademy/wonder-blocks-modal");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const {Body} = require("@khanacademy/wonder-blocks-typography");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+
+            modalContent: {
+                margin: "0 auto",
+                maxWidth: 544,
+            },
+        });
+
+        const exampleModal = ({closeModal}) => (
+            <OnePaneDialog
+                title="Backdrop dismission disabled"
+                content={
+                    <View style={styles.modalContent}>
+                        <Body tag="p">
+                            {
+                                "This window won't be closed if you click/tap outside of the ModalPanel. To do that, you can still press `esc` or use the close button located on the top right."
+                            }
+                        </Body>
+                    </View>
+                }
+            />
+        );
+
+        const example = (
+            <View style={styles.example}>
+                <ModalLauncher
+                    modal={exampleModal}
+                    backdropDismissEnabled={false}
+                >
+                    {({openModal}) => (
+                        <Button onClick={openModal}>Open modal</Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 3", () => {
+        const {
+            ModalLauncher,
+            OnePaneDialog,
+        } = require("@khanacademy/wonder-blocks-modal");
+        const {Title} = require("@khanacademy/wonder-blocks-typography");
+        const {View} = require("@khanacademy/wonder-blocks-core");
+        const Button = require("@khanacademy/wonder-blocks-button").default;
+        const {
+            ActionMenu,
+            ActionItem,
+        } = require("@khanacademy/wonder-blocks-dropdown");
+
+        class Example extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    opened: false,
+                };
+            }
+
+            handleOpen() {
+                console.log("opening modal");
+                this.setState({opened: true});
+            }
+
+            handleClose() {
+                console.log("closing modal");
+                this.setState({opened: false});
+            }
+
+            render() {
+                return (
+                    <View>
+                        <ActionMenu menuText="actions">
+                            <ActionItem
+                                label="Open modal"
+                                onClick={() => this.handleOpen()}
+                            />
+                        </ActionMenu>
+                        <ModalLauncher
+                            onClose={() => this.handleClose()}
+                            opened={this.state.opened}
+                            modal={({closeModal}) => (
+                                <OnePaneDialog
+                                    title="Triggered from action menu"
+                                    content={
+                                        <View>
+                                            <Title>Hello, world</Title>
+                                        </View>
+                                    }
+                                    footer={
+                                        <Button onClick={closeModal}>
+                                            Close Modal
+                                        </Button>
+                                    }
+                                />
+                            )}
+                        />
+                    </View>
+                );
+            }
+        }
+
+        const example = <Example />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it("example 4", () => {
+        const {StyleSheet} = require("aphrodite");
+
+        const {
+            ModalLauncher,
+            OnePaneDialog,
+        } = require("@khanacademy/wonder-blocks-modal");
         const {Title} = require("@khanacademy/wonder-blocks-typography");
         const {View} = require("@khanacademy/wonder-blocks-core");
         const Button = require("@khanacademy/wonder-blocks-button").default;
@@ -81,7 +280,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
+    it("example 5", () => {
         const {StyleSheet} = require("aphrodite");
 
         const {
@@ -230,7 +429,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
+    it("example 6", () => {
         const {StyleSheet} = require("aphrodite");
 
         const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
@@ -316,196 +515,6 @@ describe("wonder-blocks-modal", () => {
                 </View>
             </View>
         );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 4", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-
-        const styles = StyleSheet.create({
-            example: {
-                padding: Spacing.xLarge,
-                alignItems: "center",
-            },
-
-            title: {
-                marginBottom: Spacing.medium,
-            },
-
-            modalContent: {
-                margin: "0 auto",
-                maxWidth: 544,
-            },
-
-            above: {
-                background: "url(/modal-above.png)",
-                width: 874,
-                height: 551,
-                position: "absolute",
-                top: 40,
-                left: -140,
-            },
-
-            below: {
-                background: "url(/modal-below.png)",
-                width: 868,
-                height: 521,
-                position: "absolute",
-                top: -100,
-                left: -300,
-            },
-        });
-
-        const onePaneDialog = ({closeModal}) => (
-            <OnePaneDialog
-                title="Title"
-                subtitle="You're reading the subtitle!"
-                above={<View style={styles.above} />}
-                below={<View style={styles.below} />}
-                content={
-                    <View style={styles.modalContent}>
-                        <Body tag="p">
-                            {
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                            }
-                        </Body>
-                    </View>
-                }
-                footer={<Button onClick={closeModal}>Close modal</Button>}
-            />
-        );
-
-        const example = (
-            <View style={styles.example}>
-                <ModalLauncher modal={onePaneDialog}>
-                    {({openModal}) => (
-                        <Button onClick={openModal}>OnePaneDialog</Button>
-                    )}
-                </ModalLauncher>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 5", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-
-        const styles = StyleSheet.create({
-            example: {
-                padding: Spacing.xLarge,
-                alignItems: "center",
-            },
-
-            modalContent: {
-                margin: "0 auto",
-                maxWidth: 544,
-            },
-        });
-
-        const exampleModal = ({closeModal}) => (
-            <OnePaneDialog
-                title="Backdrop dismission disabled"
-                content={
-                    <View style={styles.modalContent}>
-                        <Body tag="p">
-                            {
-                                "This window won't be closed if you click/tap outside of the ModalPanel. To do that, you can still press `esc` or use the close button located on the top right."
-                            }
-                        </Body>
-                    </View>
-                }
-            />
-        );
-
-        const example = (
-            <View style={styles.example}>
-                <ModalLauncher
-                    modal={exampleModal}
-                    backdropDismissEnabled={false}
-                >
-                    {({openModal}) => (
-                        <Button onClick={openModal}>Open modal</Button>
-                    )}
-                </ModalLauncher>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 6", () => {
-        const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-        const {Title} = require("@khanacademy/wonder-blocks-typography");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {
-            ActionMenu,
-            ActionItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-
-        class Example extends React.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    opened: false,
-                };
-            }
-
-            handleOpen() {
-                console.log("opening modal");
-                this.setState({opened: true});
-            }
-
-            handleClose() {
-                console.log("closing modal");
-                this.setState({opened: false});
-            }
-
-            render() {
-                return (
-                    <View>
-                        <ActionMenu menuText="actions">
-                            <ActionItem
-                                label="Open modal"
-                                onClick={() => this.handleOpen()}
-                            />
-                        </ActionMenu>
-                        <ModalLauncher
-                            onClose={() => this.handleClose()}
-                            opened={this.state.opened}
-                            modal={({closeModal}) => (
-                                <OnePaneDialog
-                                    title="Triggered from action menu"
-                                    content={
-                                        <View>
-                                            <Title>Hello, world</Title>
-                                        </View>
-                                    }
-                                    footer={
-                                        <Button onClick={closeModal}>
-                                            Close Modal
-                                        </Button>
-                                    }
-                                />
-                            )}
-                        />
-                    </View>
-                );
-            }
-        }
-
-        const example = <Example />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

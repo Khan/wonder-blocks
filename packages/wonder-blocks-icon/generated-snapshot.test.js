@@ -14,7 +14,10 @@ describe("wonder-blocks-icon", () => {
     it("example 1", () => {
         const {StyleSheet, css} = require("aphrodite");
         const {View} = require("@khanacademy/wonder-blocks-core");
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
+        const {
+            default: Icon,
+            icons,
+        } = require("@khanacademy/wonder-blocks-icon");
 
         const headings = ["small", "medium"];
 
