@@ -6,7 +6,6 @@
  * the tests in all of the generated-snapshot.test.js files.
  *
  * TODO(kevinb):
- * - run prettier on the output
  * - extract into a separate repo and publish an npm package
  */
 const fs = require("fs");
@@ -180,7 +179,7 @@ function generateTestFile(root, examples, componentFileMap) {
     // tests found on the current file
     const tests = [];
 
-    // store a reference of the unique declarations
+    // store a reference of the unique declarations for the current file
     const uniqueDeclarations = examples
         .map((example, exampleIndex) => {
             const ast = parse(example, options);
@@ -200,9 +199,9 @@ function generateTestFile(root, examples, componentFileMap) {
                 },
             };
 
-            // // Traverse the tree
+            // Traverse the tree to modify the code examples
             traverse(newAst, {
-                // Remember ImportDeclarations when visiting
+                // Append `const example =` to the code snippet
                 ExpressionStatement(path) {
                     if (path.node.expression.type === "JSXElement") {
                         path.replaceWith(
@@ -217,6 +216,7 @@ function generateTestFile(root, examples, componentFileMap) {
                 },
             });
 
+            // regenerate the code snippet without the import declarations
             const {code} = generate(newAst);
 
             // add snippet the list of tests that are going to be injected into
