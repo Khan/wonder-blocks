@@ -8,8 +8,19 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import ModalLauncher from "./components/modal-launcher.js";
-import OnePaneDialog from "./components/one-pane-dialog/one-pane-dialog.js";
+import {StyleSheet} from "aphrodite";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body, Title, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import Button from "@khanacademy/wonder-blocks-button";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {Strut, MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import {
+    Breadcrumbs,
+    BreadcrumbsItem,
+} from "@khanacademy/wonder-blocks-breadcrumbs";
+
 import ModalDialog from "./components/modal-dialog.js";
 import ModalPanel from "./components/modal-panel.js";
 import ModalHeader from "./components/modal-header.js";
@@ -17,18 +28,173 @@ import ModalFooter from "./components/modal-footer.js";
 
 describe("wonder-blocks-modal", () => {
     it("example 1", () => {
-        const {StyleSheet} = require("aphrodite");
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+            title: {
+                marginBottom: Spacing.medium,
+            },
+            modalContent: {
+                margin: "0 auto",
+                maxWidth: 544,
+            },
+            above: {
+                background: "url(/modal-above.png)",
+                width: 874,
+                height: 551,
+                position: "absolute",
+                top: 40,
+                left: -140,
+            },
+            below: {
+                background: "url(/modal-below.png)",
+                width: 868,
+                height: 521,
+                position: "absolute",
+                top: -100,
+                left: -300,
+            },
+        });
 
-        const {
-            ModalLauncher,
-            OnePaneDialog,
-        } = require("@khanacademy/wonder-blocks-modal");
-        const {Title} = require("@khanacademy/wonder-blocks-typography");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+        const onePaneDialog = ({closeModal}) => (
+            <OnePaneDialog
+                title="Title"
+                subtitle="You're reading the subtitle!"
+                above={<View style={styles.above} />}
+                below={<View style={styles.below} />}
+                content={
+                    <View style={styles.modalContent}>
+                        <Body tag="p">
+                            {
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                            }
+                        </Body>
+                    </View>
+                }
+                footer={<Button onClick={closeModal}>Close modal</Button>}
+            />
+        );
 
+        const example = (
+            <View style={styles.example}>
+                <ModalLauncher modal={onePaneDialog}>
+                    {({openModal}) => (
+                        <Button onClick={openModal}>OnePaneDialog</Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 2", () => {
+        const styles = StyleSheet.create({
+            example: {
+                padding: Spacing.xLarge,
+                alignItems: "center",
+            },
+            modalContent: {
+                margin: "0 auto",
+                maxWidth: 544,
+            },
+        });
+
+        const exampleModal = ({closeModal}) => (
+            <OnePaneDialog
+                title="Backdrop dismission disabled"
+                content={
+                    <View style={styles.modalContent}>
+                        <Body tag="p">
+                            {
+                                "This window won't be closed if you click/tap outside of the ModalPanel. To do that, you can still press `esc` or use the close button located on the top right."
+                            }
+                        </Body>
+                    </View>
+                }
+            />
+        );
+
+        const example = (
+            <View style={styles.example}>
+                <ModalLauncher
+                    modal={exampleModal}
+                    backdropDismissEnabled={false}
+                >
+                    {({openModal}) => (
+                        <Button onClick={openModal}>Open modal</Button>
+                    )}
+                </ModalLauncher>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 3", () => {
+        class Example extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    opened: false,
+                };
+            }
+
+            handleOpen() {
+                console.log("opening modal");
+                this.setState({
+                    opened: true,
+                });
+            }
+
+            handleClose() {
+                console.log("closing modal");
+                this.setState({
+                    opened: false,
+                });
+            }
+
+            render() {
+                return (
+                    <View>
+                        <ActionMenu menuText="actions">
+                            <ActionItem
+                                label="Open modal"
+                                onClick={() => this.handleOpen()}
+                            />
+                        </ActionMenu>
+                        <ModalLauncher
+                            onClose={() => this.handleClose()}
+                            opened={this.state.opened}
+                            modal={({closeModal}) => (
+                                <OnePaneDialog
+                                    title="Triggered from action menu"
+                                    content={
+                                        <View>
+                                            <Title>Hello, world</Title>
+                                        </View>
+                                    }
+                                    footer={
+                                        <Button onClick={closeModal}>
+                                            Close Modal
+                                        </Button>
+                                    }
+                                />
+                            )}
+                        />
+                    </View>
+                );
+            }
+        }
+
+        const example = <Example />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 4", () => {
         const styles = StyleSheet.create({
             example: {
                 padding: Spacing.xLarge,
@@ -81,22 +247,8 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {StyleSheet} = require("aphrodite");
 
-        const {
-            ModalLauncher,
-            OnePaneDialog,
-        } = require("@khanacademy/wonder-blocks-modal");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-        const {
-            Body,
-            LabelLarge,
-        } = require("@khanacademy/wonder-blocks-typography");
-
+    it("example 5", () => {
         const styles = StyleSheet.create({
             example: {
                 padding: Spacing.xLarge,
@@ -123,7 +275,6 @@ describe("wonder-blocks-modal", () => {
                     question,
                     total,
                 } = this.props;
-
                 return (
                     <OnePaneDialog
                         title="Exercises"
@@ -164,7 +315,6 @@ describe("wonder-blocks-modal", () => {
         class ExerciseContainer extends React.Component {
             constructor(props) {
                 super(props);
-
                 this.state = {
                     currentQuestion: 0,
                 };
@@ -230,31 +380,22 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {StyleSheet} = require("aphrodite");
 
-        const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-        const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
-
+    it("example 6", () => {
         const styles = StyleSheet.create({
             previewSizer: {
                 height: 512,
             },
-
             modalPositioner: {
                 // Checkerboard background
                 backgroundImage:
                     "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
                 backgroundSize: "20px 20px",
                 backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-
                 position: "absolute",
                 left: 0,
                 right: 0,
@@ -262,14 +403,12 @@ describe("wonder-blocks-modal", () => {
                 bottom: 0,
             },
         });
-
         const styleSheets = {
             mdOrLarger: StyleSheet.create({
                 customModal: {
                     maxWidth: 300,
                     maxHeight: 200,
                 },
-
                 below: {
                     background: "url(/blue-blob.png)",
                     backgroundSize: "cover",
@@ -279,7 +418,6 @@ describe("wonder-blocks-modal", () => {
                     top: 0,
                     left: -60,
                 },
-
                 above: {
                     background: "url(/asteroid.png)",
                     backgroundSize: "cover",
@@ -291,7 +429,6 @@ describe("wonder-blocks-modal", () => {
                 },
             }),
         };
-
         const example = (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
@@ -319,230 +456,31 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const {StyleSheet} = require("aphrodite");
 
-        const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-
-        const styles = StyleSheet.create({
-            example: {
-                padding: Spacing.xLarge,
-                alignItems: "center",
-            },
-
-            title: {
-                marginBottom: Spacing.medium,
-            },
-
-            modalContent: {
-                margin: "0 auto",
-                maxWidth: 544,
-            },
-
-            above: {
-                background: "url(/modal-above.png)",
-                width: 874,
-                height: 551,
-                position: "absolute",
-                top: 40,
-                left: -140,
-            },
-
-            below: {
-                background: "url(/modal-below.png)",
-                width: 868,
-                height: 521,
-                position: "absolute",
-                top: -100,
-                left: -300,
-            },
-        });
-
-        const onePaneDialog = ({closeModal}) => (
-            <OnePaneDialog
-                title="Title"
-                subtitle="You're reading the subtitle!"
-                above={<View style={styles.above} />}
-                below={<View style={styles.below} />}
-                content={
-                    <View style={styles.modalContent}>
-                        <Body tag="p">
-                            {
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
-                            }
-                        </Body>
-                    </View>
-                }
-                footer={<Button onClick={closeModal}>Close modal</Button>}
-            />
-        );
-
-        const example = (
-            <View style={styles.example}>
-                <ModalLauncher modal={onePaneDialog}>
-                    {({openModal}) => (
-                        <Button onClick={openModal}>OnePaneDialog</Button>
-                    )}
-                </ModalLauncher>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 5", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-
-        const styles = StyleSheet.create({
-            example: {
-                padding: Spacing.xLarge,
-                alignItems: "center",
-            },
-
-            modalContent: {
-                margin: "0 auto",
-                maxWidth: 544,
-            },
-        });
-
-        const exampleModal = ({closeModal}) => (
-            <OnePaneDialog
-                title="Backdrop dismission disabled"
-                content={
-                    <View style={styles.modalContent}>
-                        <Body tag="p">
-                            {
-                                "This window won't be closed if you click/tap outside of the ModalPanel. To do that, you can still press `esc` or use the close button located on the top right."
-                            }
-                        </Body>
-                    </View>
-                }
-            />
-        );
-
-        const example = (
-            <View style={styles.example}>
-                <ModalLauncher
-                    modal={exampleModal}
-                    backdropDismissEnabled={false}
-                >
-                    {({openModal}) => (
-                        <Button onClick={openModal}>Open modal</Button>
-                    )}
-                </ModalLauncher>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it("example 6", () => {
-        const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-        const {Title} = require("@khanacademy/wonder-blocks-typography");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {
-            ActionMenu,
-            ActionItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-
-        class Example extends React.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    opened: false,
-                };
-            }
-
-            handleOpen() {
-                console.log("opening modal");
-                this.setState({opened: true});
-            }
-
-            handleClose() {
-                console.log("closing modal");
-                this.setState({opened: false});
-            }
-
-            render() {
-                return (
-                    <View>
-                        <ActionMenu menuText="actions">
-                            <ActionItem
-                                label="Open modal"
-                                onClick={() => this.handleOpen()}
-                            />
-                        </ActionMenu>
-                        <ModalLauncher
-                            onClose={() => this.handleClose()}
-                            opened={this.state.opened}
-                            modal={({closeModal}) => (
-                                <OnePaneDialog
-                                    title="Triggered from action menu"
-                                    content={
-                                        <View>
-                                            <Title>Hello, world</Title>
-                                        </View>
-                                    }
-                                    footer={
-                                        <Button onClick={closeModal}>
-                                            Close Modal
-                                        </Button>
-                                    }
-                                />
-                            )}
-                        />
-                    </View>
-                );
-            }
-        }
-
-        const example = <Example />;
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
     it("example 7", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-
         const styles = StyleSheet.create({
             previewSizer: {
                 height: 512,
             },
-
             modalPositioner: {
                 // Checkerboard background
                 backgroundImage:
                     "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
                 backgroundSize: "20px 20px",
                 backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-
                 position: "absolute",
                 left: 0,
                 right: 0,
                 top: 0,
                 bottom: 0,
             },
-
             modalContent: {
                 margin: "0 auto",
                 maxWidth: 544,
             },
-
             above: {
                 background: "url(/modal-above.png)",
                 backgroundSize: "cover",
@@ -553,7 +491,6 @@ describe("wonder-blocks-modal", () => {
                 left: -100,
             },
         });
-
         const example = (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
@@ -590,34 +527,21 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-        const {
-            Breadcrumbs,
-            BreadcrumbsItem,
-        } = require("@khanacademy/wonder-blocks-breadcrumbs");
-        const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
+    it("example 8", () => {
         const styles = StyleSheet.create({
             previewSizer: {
                 height: 512,
             },
-
             modalPositioner: {
                 // Checkerboard background
                 backgroundImage:
                     "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
                 backgroundSize: "20px 20px",
                 backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-
                 position: "absolute",
                 left: 0,
                 right: 0,
@@ -625,7 +549,6 @@ describe("wonder-blocks-modal", () => {
                 bottom: 0,
             },
         });
-
         const defaultStyles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -635,7 +558,6 @@ describe("wonder-blocks-modal", () => {
                 marginRight: Spacing.medium,
             },
         });
-
         const smallStyles = StyleSheet.create({
             row: {
                 flexDirection: "column-reverse",
@@ -645,7 +567,6 @@ describe("wonder-blocks-modal", () => {
                 marginBottom: Spacing.medium,
             },
         });
-
         const styleSheets = {
             mdOrLarger: defaultStyles,
             small: smallStyles,
@@ -697,31 +618,21 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
+    it("example 9", () => {
         const exampleStyles = StyleSheet.create({
             previewSizer: {
                 height: 512,
             },
-
             modalPositioner: {
                 // Checkerboard background
                 backgroundImage:
                     "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
                 backgroundSize: "20px 20px",
                 backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-
                 position: "absolute",
                 left: 0,
                 right: 0,
@@ -729,7 +640,6 @@ describe("wonder-blocks-modal", () => {
                 bottom: 0,
             },
         });
-
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -742,7 +652,6 @@ describe("wonder-blocks-modal", () => {
                 width: "100%",
             },
         });
-
         const example = (
             <View style={exampleStyles.previewSizer}>
                 <View style={exampleStyles.modalPositioner}>
@@ -774,6 +683,7 @@ describe("wonder-blocks-modal", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 10", () => {
         const {StyleSheet} = require("aphrodite");
 
@@ -781,9 +691,13 @@ describe("wonder-blocks-modal", () => {
             ModalDialog,
             ModalPanel,
         } = require("@khanacademy/wonder-blocks-modal");
+
         const {View} = require("@khanacademy/wonder-blocks-core");
+
         const Button = require("@khanacademy/wonder-blocks-button").default;
+
         const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
+
         const {
             MediaLayout,
             Strut,
@@ -793,19 +707,16 @@ describe("wonder-blocks-modal", () => {
             previewSizer: {
                 height: 512,
             },
-
             modalPositioner: {
                 // Checkerboard background
                 backgroundImage:
                     "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
                 backgroundSize: "20px 20px",
                 backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-
                 position: "absolute",
                 left: 0,
                 right: 0,
@@ -813,7 +724,6 @@ describe("wonder-blocks-modal", () => {
                 bottom: 0,
             },
         });
-
         const styleSheets = {
             mdOrLarger: StyleSheet.create({
                 dialog: {
@@ -822,12 +732,10 @@ describe("wonder-blocks-modal", () => {
                     height: "60.42%",
                     minHeight: 308,
                 },
-
                 panelGroup: {
                     flexDirection: "row",
                     flex: 1,
                 },
-
                 below: {
                     background: "url(/blue-blob.png)",
                     backgroundSize: "cover",
@@ -837,7 +745,6 @@ describe("wonder-blocks-modal", () => {
                     top: 100,
                     left: -60,
                 },
-
                 above: {
                     background: "url(/asteroid.png)",
                     backgroundSize: "cover",
@@ -848,21 +755,18 @@ describe("wonder-blocks-modal", () => {
                     left: 50,
                 },
             }),
-
             small: StyleSheet.create({
                 dialog: {
                     width: "100%",
                     height: "100%",
                     overflow: "hidden",
                 },
-
                 panelGroup: {
                     flexDirection: "column",
                     flex: 1,
                 },
             }),
         };
-
         const example = (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>

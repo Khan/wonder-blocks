@@ -1,6 +1,6 @@
 ```js
-const Link = require("@khanacademy/wonder-blocks-link").default;
-const {Breadcrumbs, BreadcrumbsItem} = require("@khanacademy/wonder-blocks-breadcrumbs");
+import Link from "@khanacademy/wonder-blocks-link";
+import {Breadcrumbs, BreadcrumbsItem} from "@khanacademy/wonder-blocks-breadcrumbs";
 
 <Breadcrumbs>
     <BreadcrumbsItem>

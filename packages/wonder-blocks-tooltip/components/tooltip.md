@@ -11,7 +11,8 @@
 In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `UniqueIDProvider`, but we'll cheat here and just give our own identifier).
 
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {View} from "@khanacademy/wonder-blocks-core";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 <Tooltip
     id="my-a11y-tooltip"
@@ -30,10 +31,11 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 In this example, we have the anchor in a scrollable parent. Notice how, when the anchor is focused but scrolled out of bounds, the tooltip disappears.
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Body} = require("@khanacademy/wonder-blocks-typography");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 const styles = StyleSheet.create({
     scrollbox: {
@@ -66,11 +68,12 @@ const styles = StyleSheet.create({
 This checks that the tooltip works how we want inside a modal. Click the button to take a look.
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {View, Text} = require("@khanacademy/wonder-blocks-core");
-const {OnePaneDialog, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
-const Button = require("@khanacademy/wonder-blocks-button").default;
+import {View, Text} from "@khanacademy/wonder-blocks-core";
+import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 const styles = StyleSheet.create({
     scrollbox: {
@@ -118,10 +121,11 @@ const modal = (
 ### Tooltips side-by-side
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {LabelSmall} = require("@khanacademy/wonder-blocks-typography");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 const styles = StyleSheet.create({
     "block": {
@@ -156,13 +160,14 @@ const styles = StyleSheet.create({
 ### Tooltips on buttons
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
-const {icons} = require("@khanacademy/wonder-blocks-icon");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
+import Button from "@khanacademy/wonder-blocks-button";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 const styles = {
     container: {

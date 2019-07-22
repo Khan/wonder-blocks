@@ -3,8 +3,8 @@
 Default popover variant that displays text-only.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     example: {
@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
 Text-only variant with added emphasis.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+import {StyleSheet} from "aphrodite";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     example: {
@@ -66,8 +66,8 @@ with the following constraints:
 - `<img>` or `<svg>`: Make sure to define a width
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     example: {
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
 Call attention to the popover using a full-bleed illustration.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     example: {

@@ -1,7 +1,7 @@
 These example demonstrates `<Strut/>`'s incompressibility.
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     row: {
@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
 ```
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     row: {

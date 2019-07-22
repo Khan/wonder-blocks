@@ -1147,7 +1147,7 @@ exports[`wonder-blocks-typography example 6 1`] = `
   }
 >
   const things = {
-            areTested: "This is my new Code element with my code.",
-        };
+    areTested: "This is my new Code element with my code.",
+};
 </span>
 `;

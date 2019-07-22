@@ -3,7 +3,7 @@
 This example allows you to generate an unique ID and make it available to associate the `<label>` and `<input>` elements. To see this example in action, check that `label[for]` and `input[id]` are using the same id.
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
 
 <View>
     <IDProvider scope="field">
@@ -22,7 +22,7 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 In some cases, a parent component using `IDProvider` could have an identifier as well. For this particular scenario, we can reuse this ID and pass it down to `IDProvider`. This will avoid generating a unique identifier, and it will reuse the passed identifier instead.
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
 
 <View>
     <IDProvider scope="field" id="some-user-id">

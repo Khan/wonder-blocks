@@ -4,11 +4,10 @@
 A Dropdown allows various elements to be used as dropdown menus. In this example we use the IconButton to open a Dropown of items to select from. A custom dropdown can be implemented by nesting a function which takes in a state parameter and returns your custom opener component inside a Dropdown.
 
 ```js
-const {ActionItem, OptionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
-const {icons} = require("@khanacademy/wonder-blocks-icon");
-const {StyleSheet} = require("aphrodite");
+import {Dropdown, ActionItem, OptionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 const dropdownItems = [
     <ActionItem
@@ -73,11 +72,12 @@ const dropdownItems = [
 In this example we use a Title component with a Dropdown. You can define custom styles that will take place on different mouse events that ClickableBehavior supports.
 
 ```js
-const {ActionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
-const {Title} = require("@khanacademy/wonder-blocks-typography");
-const Color = require("@khanacademy/wonder-blocks-color").default;
+import {Dropdown, ActionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Title} from "@khanacademy/wonder-blocks-typography";
+import Color from "@khanacademy/wonder-blocks-color";
+import {StyleSheet} from "aphrodite";
+
 // Custom styles for mouse events can be defined like so
 const styles = StyleSheet.create({
     focused: {
@@ -130,10 +130,11 @@ const dropdownItems = [
 The Dropdown can also be used to attach more complex Dropdowns to custom openers, in this example we have a Dropdown containing ActionItems and OptionItems attached to a HeadingSmall component. The `selectionType` prop can be set to either "single" or "multi" to change the behavior of selecting OptionItems.
 
 ```js
-const {ActionItem, OptionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
-const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
+import {Dropdown, ActionItem, OptionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
+
 const styles = StyleSheet.create({
     focused: {
         border: "none",

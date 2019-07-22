@@ -8,17 +8,14 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Breadcrumbs from "./components/breadcrumbs.js";
-import BreadcrumbsItem from "./components/breadcrumbs-item.js";
+import Link from "@khanacademy/wonder-blocks-link";
+import {
+    Breadcrumbs,
+    BreadcrumbsItem,
+} from "@khanacademy/wonder-blocks-breadcrumbs";
 
 describe("wonder-blocks-breadcrumbs", () => {
     it("example 1", () => {
-        const Link = require("@khanacademy/wonder-blocks-link").default;
-        const {
-            Breadcrumbs,
-            BreadcrumbsItem,
-        } = require("@khanacademy/wonder-blocks-breadcrumbs");
-
         const example = (
             <Breadcrumbs>
                 <BreadcrumbsItem>

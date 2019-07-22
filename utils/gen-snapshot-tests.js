@@ -6,19 +6,149 @@
  * the tests in all of the generated-snapshot.test.js files.
  *
  * TODO(kevinb):
- * - run prettier on the output
  * - extract into a separate repo and publish an npm package
  */
 const fs = require("fs");
 const path = require("path");
 const marked = require("marked");
-const babylon = require("babylon");
+const {parse} = require("@babel/core");
+const generate = require("@babel/generator").default;
+const traverse = require("@babel/traverse").default;
+const t = require("@babel/types");
+const chalk = require("chalk");
 
 const {
     getComponentFilesFromSection,
 } = require("./styleguidist-config-utils.js");
 
 const styleguideConfig = require("../styleguide.config.js");
+
+// reuse project babel options
+const options = {
+    configFile: path.resolve("build-settings", "babel.config.js"),
+};
+
+const flattenArray = (acc, current) => [...acc, ...current];
+
+/**
+ * Gets all the declarations imported on the current code snippet
+ *
+ * @param {Node[]} codeBody - Array of AST node objects
+ *
+ * @returns {Array} All the declarations imported in the current AST instance
+ */
+function extractDeclarationsFromExample(codeBody) {
+    return (
+        codeBody
+            // filter only declarations that are different than the current pkg
+            .filter((node) => node.type === "ImportDeclaration")
+            // get the list of specifiers for the current node and append the
+            // module name
+            .map((node) =>
+                node.specifiers.map(({type, local: {name}}) => ({
+                    type,
+                    name,
+                    value: node.source.value,
+                })),
+            )
+            .reduce(flattenArray, [])
+    );
+}
+
+/**
+ * Given a list of AST module declarations, extract the unique declaration names
+ *
+ * @param {Object} uniqueDeclarations - The accumulated declarations
+ *
+ * @param {Object} node - The mapped AST Node object
+ * @param {string} node.name - The name of the export to be imported.
+ * @param {string} node.value - The module to import from.
+ * @param {string} node.type - Represents the AST variant type. In this context,
+ * it takes one of these values: `ImportSpecifier` and `ImportDefaultSpecifier`
+ *
+ * @example
+ * ```
+ * reduceUniqueDeclarations(reduceUniqueDeclarations(
+ *   {},
+ *   {
+ *       value: "@khanacademy/wonder-blocks-icon",
+ *       type: "ImportDefaultSpecifier",
+ *       name: "Icon",
+ *   },
+ * );
+ * ```
+ * returns
+ * ```
+ * {
+ *   "@khanacademy/wonder-blocks-icon": {
+ *       defaultImport: "Icon",
+ *       specifiers: [],
+ *   },
+ * },
+ * ```
+ * @see
+ * https://github.com/babel/babel/blob/master/packages/babel-parser/ast/spec.md#node-objects
+ */
+function reduceUniqueDeclarations(uniqueDeclarations, node) {
+    const {value, type, name} = node;
+
+    // adds new package to import
+    if (!uniqueDeclarations[value]) {
+        uniqueDeclarations[value] = {
+            defaultImport: undefined,
+            specifiers: [],
+        };
+    }
+
+    // set default export from the current module
+    if (type === "ImportDefaultSpecifier") {
+        uniqueDeclarations[value].defaultImport = name;
+    } else {
+        // check for module definitions
+        // Also, avoid duplicating module names
+        if (!uniqueDeclarations[value].specifiers.includes(name)) {
+            uniqueDeclarations[value].specifiers.push(name);
+        }
+    }
+
+    return uniqueDeclarations;
+}
+
+/**
+ * Given an object literal of declarations, generates a string containing the
+ * import statements
+ *
+ * @param {Object} declarations - The list of declarations extracted from the parser
+ * @param {string} declarations.defaultImport - The optional default import
+ * @param {string[]} declarations.specifiers - The modules exported from the current
+ * declaration
+ *
+ * @returns {string} The generated unique import statements
+ */
+function transformDeclarations(declarations) {
+    return Object.keys(declarations).reduce((acc, module) => {
+        const {defaultImport, specifiers} = declarations[module];
+        const hasSpecifiers = specifiers.length > 0;
+
+        let namedExports = "";
+
+        if (defaultImport) {
+            namedExports += defaultImport;
+
+            if (hasSpecifiers) {
+                namedExports += ", ";
+            }
+        }
+
+        // concat non-default modules
+        // eg. {A, B, C}
+        if (hasSpecifiers) {
+            namedExports += `{ ${specifiers.join(", ")} }`;
+        }
+
+        return acc + `import ${namedExports} from "${module}";\n`;
+    }, "");
+}
 
 /**
  * Generate a test file with the given examples.
@@ -29,6 +159,8 @@ const styleguideConfig = require("../styleguide.config.js");
  * insert the necessary requires for components within the root package.
  */
 function generateTestFile(root, examples, componentFileMap) {
+    const hrstart = process.hrtime();
+
     const lines = [
         "// This file is auto-generated by gen-snapshot-tests.js",
         "// Do not edit this file.  To make changes to these snapshot tests:",
@@ -44,59 +176,102 @@ function generateTestFile(root, examples, componentFileMap) {
 
     const modName = root.split("/")[1];
 
+    // tests found on the current file
+    const tests = [];
+
+    // store a reference of the unique declarations for the current file
+    const uniqueDeclarations = examples
+        .map((example, exampleIndex) => {
+            const ast = parse(example, options);
+
+            // list of declarations and/or statements collected by the parser
+            const exampleBody = ast.program.body;
+
+            const statements = exampleBody
+                // filter only declarations that are different than the current pkg
+                .filter((node) => node.type !== "ImportDeclaration");
+
+            const newAst = {
+                type: "File",
+                program: {
+                    type: "Program",
+                    body: statements,
+                },
+            };
+
+            // Traverse the tree to modify the code examples
+            traverse(newAst, {
+                // Append `const example =` to the code snippet
+                ExpressionStatement(path) {
+                    if (path.node.expression.type === "JSXElement") {
+                        path.replaceWith(
+                            t.variableDeclaration("const", [
+                                t.variableDeclarator(
+                                    t.identifier("example"),
+                                    path.node.expression,
+                                ),
+                            ]),
+                        );
+                    }
+                },
+            });
+
+            // regenerate the code snippet without the import declarations
+            const {code} = generate(newAst);
+
+            // add snippet the list of tests that are going to be injected into
+            // the generated-snapshot-test.js file
+            tests.push(`
+
+                it("example ${exampleIndex + 1}", () => {
+                    ${code}
+                    const tree = renderer.create(example).toJSON();
+                    expect(tree).toMatchSnapshot();
+                });
+            `);
+
+            // extract import declarations from AST
+            return extractDeclarationsFromExample(exampleBody);
+        })
+        .reduce(flattenArray, [])
+        .reduce(reduceUniqueDeclarations, {});
+
+    // converts unique declarations object to a string containing all the
+    // imports
+    const transformedDeclarations = transformDeclarations(uniqueDeclarations);
+
+    // then add import declarations from other modules
+    lines.push(transformedDeclarations);
+
     if (componentFileMap) {
         for (const [componentName, filename] of Object.entries(
             componentFileMap,
         )) {
             const relFilename = path.relative(root, filename);
-            lines.push(`import ${componentName} from "./${relFilename}";`);
+
+            // include private components
+            if (!transformedDeclarations.includes(componentName)) {
+                lines.push(`import ${componentName} from "./${relFilename}";`);
+            }
         }
     }
 
     lines.push("");
     lines.push(`describe("${modName}", () => {`);
-
-    examples.forEach((example, exampleIndex) => {
-        lines.push(`    it("example ${exampleIndex + 1}", () => {`);
-
-        const ast = babylon.parse(example, {
-            plugins: ["jsx", "flow"],
-        });
-
-        const lastStatement = ast.program.body[ast.program.body.length - 1];
-
-        if (lastStatement.type !== "ExpressionStatement") {
-            throw new Error("last line should be an expression");
-        }
-
-        if (lastStatement.expression.type !== "JSXElement") {
-            throw new Error("last line should be a JSX Element");
-        }
-
-        lines.push(
-            ...example
-                .split("\n")
-                .map((line, index) =>
-                    index + 1 === lastStatement.loc.start.line
-                        ? `        const example = ${line}`
-                        : `        ${line}`,
-                ),
-        );
-
-        lines.push("        const tree = renderer.create(example).toJSON();");
-        lines.push("        expect(tree).toMatchSnapshot();");
-
-        lines.push(`    });`);
-    });
-
+    lines.push(...tests);
     lines.push("});\n");
 
     const data = lines.join("\n");
 
     const outPath = path.join(root, "generated-snapshot.test.js");
     fs.writeFileSync(outPath, data, "utf8");
+
+    const [s, ns] = process.hrtime(hrstart);
+    const ms = ns / 1000000;
+    const kind = ms > 200 ? "yellow" : "green";
+
     // eslint-disable-next-line no-console
-    console.log(`wrote ${outPath}`);
+    console.info(chalk`Wrote ${outPath} in {bold.${kind} ${s}s ${ms}ms}`);
 }
 
 /**
@@ -173,11 +348,13 @@ function extractExamplesAndComponentFiles(section, componentFileMap) {
 
     // Then process any component files and add their stuff too.
     const files = getComponentFilesFromSection(section);
+
     for (const file of files) {
         const extracted = extractExamplesAndComponentsForFile(
             file,
             componentFileMap,
         );
+
         examples = examples.concat(extracted.examples);
         componentFileMap = extracted.componentFileMap;
     }

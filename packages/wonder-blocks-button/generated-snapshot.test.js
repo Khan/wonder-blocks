@@ -8,13 +8,15 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Button from "./components/button.js";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+import Color from "@khanacademy/wonder-blocks-color";
+import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 describe("wonder-blocks-button", () => {
     it("example 1", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -23,7 +25,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Button
@@ -51,10 +52,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 2", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -63,7 +62,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Button
@@ -94,10 +92,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 3", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -106,7 +102,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Button
@@ -137,11 +132,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 4", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -152,7 +144,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Button
@@ -209,10 +200,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 5", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -221,7 +210,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Button
@@ -252,10 +240,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 6", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -264,7 +250,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Button href="#button-1" style={styles.button}>
@@ -290,11 +275,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {MemoryRouter, Route, Switch} = require("react-router-dom");
 
+    it("example 7", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -303,9 +285,8 @@ describe("wonder-blocks-button", () => {
             button: {
                 marginRight: 10,
             },
-        });
+        }); // NOTE: In actual code you would use BrowserRouter instead
 
-        // NOTE: In actual code you would use BrowserRouter instead
         const example = (
             <MemoryRouter>
                 <View style={styles.row}>
@@ -326,10 +307,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 8", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -339,7 +318,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Button
@@ -363,11 +341,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
 
+    it("example 9", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -377,9 +352,7 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const kinds = ["primary", "secondary", "tertiary"];
-
         const example = (
             <View>
                 <View style={styles.row}>
@@ -412,9 +385,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 10", () => {
         const example = (
             <View>
                 <Button>Label</Button>
@@ -423,10 +395,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 11", () => {
         const styles = StyleSheet.create({
             column: {
                 alignItems: "flex-start",
@@ -441,7 +411,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View>
                 <View style={styles.row}>
@@ -456,10 +425,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 12", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -472,7 +439,6 @@ describe("wonder-blocks-button", () => {
                 minWidth: 144,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Button style={styles.button} kind="secondary">
@@ -486,10 +452,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 13", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -498,7 +462,6 @@ describe("wonder-blocks-button", () => {
                 marginRight: 10,
             },
         });
-
         const example = (
             <View>
                 <View style={styles.row}>
@@ -512,10 +475,8 @@ describe("wonder-blocks-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 14", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -538,9 +499,13 @@ describe("wonder-blocks-button", () => {
             }
 
             handleClick() {
-                this.setState({waiting: true});
+                this.setState({
+                    waiting: true,
+                });
                 this.timeout = setTimeout(() => {
-                    this.setState({waiting: false});
+                    this.setState({
+                        waiting: false,
+                    });
                 }, 2000);
             }
 

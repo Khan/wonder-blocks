@@ -1,6 +1,6 @@
 ```js
-const {StyleSheet} = require("aphrodite");
-const {Text} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {Text} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     container: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 Other props can be passed through `View` or `Text`, as if they were normal tags.
 
 ```js
-const {Text} = require("@khanacademy/wonder-blocks-core");
+import {Text} from "@khanacademy/wonder-blocks-core";
 
 <View>
     <View onClick={() => alert("Clicked!")}>

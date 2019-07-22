@@ -12,6 +12,7 @@ jest.mock("react-dom");
 describe("wonder-blocks-timing", () => {
     it("example 1", () => {
         const Button = require("@khanacademy/wonder-blocks-button").default;
+
         const {IDProvider, View} = require("@khanacademy/wonder-blocks-core");
 
         class Unmounter extends React.Component {
@@ -38,7 +39,9 @@ describe("wonder-blocks-timing", () => {
             }
 
             onClick() {
-                this.setState({mountKids: false});
+                this.setState({
+                    mountKids: false,
+                });
             }
 
             render() {
@@ -79,11 +82,14 @@ describe("wonder-blocks-timing", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 2", () => {
         const {
             withActionScheduler,
         } = require("@khanacademy/wonder-blocks-timing");
+
         const Button = require("@khanacademy/wonder-blocks-button").default;
+
         const {IDProvider, View} = require("@khanacademy/wonder-blocks-core");
 
         class Unmounter extends React.Component {
@@ -110,7 +116,9 @@ describe("wonder-blocks-timing", () => {
             }
 
             onClick() {
-                this.setState({mountKids: false});
+                this.setState({
+                    mountKids: false,
+                });
             }
 
             render() {
@@ -137,7 +145,6 @@ describe("wonder-blocks-timing", () => {
         const MyGoodComponentWithScheduler = withActionScheduler(
             MyGoodComponent,
         );
-
         const example = (
             <IDProvider>
                 {(id) => (

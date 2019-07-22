@@ -5,8 +5,8 @@ Note that without explicit positioning, the tail will not be centered.
 ### Placement top
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
 <View>
     <TooltipBubble placement="top" style={{position: "relative"}}>
@@ -18,8 +18,8 @@ const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 ### Placement right
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
 <View style={{alignItems: "flex-start"}}>
     <TooltipBubble placement="right" style={{position: "relative"}}>
@@ -31,8 +31,8 @@ const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 ### Placement bottom
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
 <View>
     <TooltipBubble placement="bottom" style={{position: "relative"}}>
@@ -44,8 +44,8 @@ const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 ### Placement left
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
 <View>
     <TooltipBubble placement="left" style={{position: "relative"}}>
@@ -58,9 +58,9 @@ const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 Here we tell the tail that it's lefthand side is at 50px.
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Spacing = require("@khanacademy/wonder-blocks-spacing");
-const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
+import {View} from "@khanacademy/wonder-blocks-core";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
 <View>
     <TooltipBubble
@@ -76,9 +76,9 @@ const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 ### Hidden because outOfBoundaries is true
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Spacing = require("@khanacademy/wonder-blocks-spacing");
-const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
+import {View} from "@khanacademy/wonder-blocks-core";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
 <View>
     <TooltipBubble

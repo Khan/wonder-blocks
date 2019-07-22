@@ -5,12 +5,12 @@
 is uncompressible and occupies a fixed amount of space specified by its `size` prop.
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {Spring, Strut} = require("./index.js");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import Button from "@khanacademy/wonder-blocks-button";
+import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 
 const styles = StyleSheet.create({
     container: {
@@ -63,9 +63,9 @@ By default, `MediaLayout` uses `MEDIA_DEFAULT_SPEC` but others can be specified 
 to do this.
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 
 const styleSheets = {
     large: StyleSheet.create({

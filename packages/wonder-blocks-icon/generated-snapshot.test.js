@@ -8,16 +8,14 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Icon from "./components/icon.js";
+import {StyleSheet, css} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import Color from "@khanacademy/wonder-blocks-color";
 
 describe("wonder-blocks-icon", () => {
     it("example 1", () => {
-        const {StyleSheet, css} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
-
         const headings = ["small", "medium"];
-
         const styles = StyleSheet.create({
             emptyCell: {
                 background: "#EEE",
@@ -36,11 +34,12 @@ describe("wonder-blocks-icon", () => {
                 border: "1px #DDD solid",
             },
         });
-
         const example = (
             <table
                 className={css(styles.table)}
-                style={{borderCollapse: "collapse"}}
+                style={{
+                    borderCollapse: "collapse",
+                }}
             >
                 <thead>
                     <tr>
@@ -83,6 +82,7 @@ describe("wonder-blocks-icon", () => {
                                         </td>
                                     );
                                 }
+
                                 return (
                                     <td
                                         className={css(
@@ -98,21 +98,17 @@ describe("wonder-blocks-icon", () => {
                 </tbody>
             </table>
         );
-
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
 
+    it("example 2", () => {
         const example = <Icon icon={icons.search} size="small" />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
 
+    it("example 3", () => {
         const example = (
             <View>
                 {["small", "medium", "large", "xlarge"].map((size) => (
@@ -123,11 +119,8 @@ describe("wonder-blocks-icon", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
 
+    it("example 4", () => {
         const example = (
             <View>
                 Here is an icon inline:
@@ -135,12 +128,13 @@ describe("wonder-blocks-icon", () => {
                     size="small"
                     icon={icons.info}
                     color={Color.red}
-                    style={{margin: 2}}
+                    style={{
+                        margin: 2,
+                    }}
                 />
                 It has color, too.
             </View>
         );
-
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
